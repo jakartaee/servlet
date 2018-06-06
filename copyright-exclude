@@ -1,0 +1,10 @@
+copyright-exclude
+LICENSE
+README
+CONTRIBUTING.md
+src/main/javadoc/doc-files/expert-draft-bg-blank.graffle
+src/main/javadoc/doc-files/expert-draft-bg-blank.png
+src/main/javadoc/doc-files/expert-draft-bg-non-blank.graffle
+src/main/javadoc/doc-files/expert-draft-bg-non-blank.png
+src/main/javadoc/doc-files/expert-draft-bg.png
+src/main/javadoc/doc-files/speclicense.html
