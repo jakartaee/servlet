@@ -48,37 +48,28 @@
     <name>Java Servlet API</name>
 
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
-
-    <developers>
+    
+   <developers>
         <developer>
-            <id>edburns</id>
-            <name>Ed Burns</name>
-            <url>http://purl.oclc.org/NET/edburns/</url>
-            <organization>Oracle</organization>
-            <roles>
-              <role>co-lead</role>
-              <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>shingwaichan</id>
-            <name>Shing Wai Chan</name>
-            <organization>Oracle</organization>
-            <roles>
-                <role>lead</role>
-                <role>developer</role>
-            </roles>
+            <id>yaminikb</id>
+            <name>Yamini K B</name>
+            <organization>Oracle Corporation</organization>
+            <organizationUrl>http://www.oracle.com/</organizationUrl>
         </developer>
     </developers>
-    
 
-    <organization>
-        <name>GlassFish Community</name>
-        <url>https://javaee.github.io</url>
-    </organization>
+    <contributors>
+        <contributor>
+            <name>Ed Burns</name>
+        </contributor>
+        <contributor>
+            <name>Shing Wai Chan</name>
+        </contributor>
+    </contributors>
+
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/servlet/issues</url>
+        <url>https://github.com/eclipse-ee4j/servlet-api/issues</url>
     </issueManagement>
 
     <licenses>
@@ -95,16 +86,19 @@
     </licenses>
     <mailingLists>
         <mailingList>
-            <name>Servlet Developer</name>
-            <archive>servlet-spec@javaee.groups.io</archive>
+          <name>Servlet mailing list</name>
+          <post>servlet-dev@eclipse.org</post>
+          <subscribe>https://dev.eclipse.org/mailman/listinfo/servlet-dev</subscribe>
+          <unsubscribe>https://dev.eclipse.org/mailman/listinfo/servlet-dev</unsubscribe>
+          <archive>https://dev.eclipse.org/mhonarc/lists/servlet-dev</archive>
         </mailingList>
     </mailingLists>
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/servlet.git</connection>
+        <connection>scm:git:https://github.com/eclipse-ee4j/servlet-api.git</connection>
         <developerConnection>
-            scm:git:git@github.com:eclipse-ee4j/servlet.git
+            scm:git:git@github.com:eclipse-ee4j/servlet-api.git
         </developerConnection>
-        <url>https://github.com/eclipse-ee4j/servlet</url>
+        <url>https://github.com/eclipse-ee4j/servlet-api</url>
       <tag>HEAD</tag>
   </scm>
 
