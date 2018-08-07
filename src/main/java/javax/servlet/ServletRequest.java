@@ -320,9 +320,7 @@ public interface ServletRequest {
      * often used in conjunction with {@link RequestDispatcher}.
      *
      * <p>Attribute names should follow the same conventions as
-     * package names. Names beginning with <code>java.*</code>,
-     * <code>javax.*</code>, and <code>com.sun.*</code>, are
-     * reserved for use by Sun Microsystems.
+     * package names.
      *<br> If the object passed in is null, the effect is the same as
      * calling {@link #removeAttribute}.
      * <br> It is warned that when the request is dispatched from the

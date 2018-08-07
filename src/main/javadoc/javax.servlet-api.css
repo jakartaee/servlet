@@ -590,28 +590,3 @@ div.block div.block span.interfaceName {
 div.contentContainer ul.blockList li.blockList h2{
     padding-bottom:0px;
 }
-
-
-/* Change bars from http://www.geocities.com/hentaihelper/2atimlin.htm */
-
-/*
-   .changed_added_4_0 { cursor: url(doc-files/changed_added_4_0_cursor.cur), auto;
-                 background: url(doc-files/changed_added_4_0.png); 
-                 padding-left:0.2em; border-left:solid;
-                 border-left-width:thin; border-right:none;
-                 border-top:none; border-bottom:none; border-color:green }
-
-   .changed_modified_4_0 { cursor: url(doc-files/changed_modified_4_0_cursor.cur), auto;
-                 background: url(doc-files/changed_modified_4_0.png); 
-                 padding-left:0.2em; border-left:solid;
-                 border-left-width:thin; border-right:none;
-                 border-top:none; border-bottom:none; border-color:orange }
-
-   .changed_deleted_4_0 { cursor: url(doc-files/changed_deleted_4_0_cursor.cur), auto;
-                 background: url(doc-files/changed_deleted_4_0.png); 
-                 padding-left:0.2em; border-left:solid;
-                 border-left-width:thin; border-right:none;
-                 border-top:none; border-bottom:none; border-color:red;
-                 text-decoration: line-through; }
-
-*/
