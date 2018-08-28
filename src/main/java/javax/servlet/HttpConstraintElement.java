@@ -16,7 +16,6 @@
 
 package javax.servlet;
 
-import java.util.*;
 import javax.servlet.annotation.HttpConstraint;
 import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
