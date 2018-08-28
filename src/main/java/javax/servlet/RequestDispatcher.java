@@ -35,7 +35,6 @@ import java.io.IOException;
  * @see ServletContext#getNamedDispatcher(java.lang.String)
  * @see ServletRequest#getRequestDispatcher(java.lang.String)
  */
-
 public interface RequestDispatcher {
 
     /**

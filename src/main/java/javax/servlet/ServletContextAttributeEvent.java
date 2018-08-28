@@ -25,7 +25,6 @@ package javax.servlet;
  *
  * @since Servlet 2.3
  */
-
 public class ServletContextAttributeEvent extends ServletContextEvent {
 
     private static final long serialVersionUID = -5804680734245618303L;

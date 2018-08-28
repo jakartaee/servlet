@@ -51,7 +51,6 @@ import java.util.Locale;
  *
  * @see ServletOutputStream
  */
-
 public interface ServletResponse {
 
     /**
@@ -205,7 +204,6 @@ public interface ServletResponse {
      * @see #getWriter
      *
      */
-
     public void setContentType(String type);
 
     /**
@@ -269,7 +267,6 @@ public interface ServletResponse {
      *
      * @since Servlet 2.3
      */
-
     public void resetBuffer();
 
     /**

@@ -43,7 +43,6 @@ import java.util.ResourceBundle;
  * 
  * @since Servlet 4.0
  */
-
 public abstract class GenericFilter implements Filter, FilterConfig, java.io.Serializable {
     private static final long serialVersionUID = 4060116231031076581L;
 

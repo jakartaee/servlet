@@ -32,7 +32,6 @@ import java.util.EventListener;
  *
  * @since Servlet 3.1
  */
-
 public interface HttpSessionIdListener extends EventListener {
 
     /**

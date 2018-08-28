@@ -50,7 +50,6 @@ import java.io.IOException;
  *
  * @since Servlet 2.3
  */
-
 public interface Filter {
 
     /**

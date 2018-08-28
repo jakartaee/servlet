@@ -39,7 +39,6 @@ import java.util.EventListener;
  *
  * @since Servlet 2.4
  */
-
 public interface ServletRequestListener extends EventListener {
 
     /**

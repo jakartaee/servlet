@@ -65,7 +65,6 @@ import javax.servlet.ServletContext;
  * @see HttpSessionBindingListener
  * @see HttpSessionContext
  */
-
 public interface HttpSession {
 
     /**

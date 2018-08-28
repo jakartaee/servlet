@@ -41,14 +41,12 @@ import java.io.IOException;
  * @see ServletRequest
  *
  */
-
 public abstract class ServletInputStream extends InputStream {
 
     /**
      * Does nothing, because this is an abstract class.
      *
      */
-
     protected ServletInputStream() {
     }
 

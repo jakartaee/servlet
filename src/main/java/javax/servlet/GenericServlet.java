@@ -44,7 +44,6 @@ import java.util.ResourceBundle;
  *
  * @author Various
  */
-
 public abstract class GenericServlet implements Servlet, ServletConfig, java.io.Serializable {
     private static final long serialVersionUID = -8592279577370996712L;
 
@@ -232,7 +231,6 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      *
      * @exception IOException      if an input or output exception occurs
      */
-
     @Override
     public abstract void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
 

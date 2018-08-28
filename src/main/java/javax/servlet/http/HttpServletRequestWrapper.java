@@ -34,7 +34,6 @@ import javax.servlet.ServletRequestWrapper;
  * @see javax.servlet.http.HttpServletRequest
  * @since Servlet 2.3
  */
-
 public class HttpServletRequestWrapper extends ServletRequestWrapper implements HttpServletRequest {
 
     /**

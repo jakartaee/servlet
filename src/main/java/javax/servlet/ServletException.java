@@ -23,7 +23,6 @@ package javax.servlet;
  *
  * @author Various
  */
-
 public class ServletException extends Exception {
 
     private static final long serialVersionUID = 4221302886851315160L;
@@ -34,7 +33,6 @@ public class ServletException extends Exception {
      * Constructs a new servlet exception.
      *
      */
-
     public ServletException() {
         super();
     }
@@ -46,7 +44,6 @@ public class ServletException extends Exception {
      * @param message a <code>String</code> specifying the text of the exception message
      *
      */
-
     public ServletException(String message) {
         super(message);
     }
@@ -62,7 +59,6 @@ public class ServletException extends Exception {
      *                  this servlet exception necessary
      *
      */
-
     public ServletException(String message, Throwable rootCause) {
         super(message, rootCause);
         this.rootCause = rootCause;
@@ -82,7 +78,6 @@ public class ServletException extends Exception {
      *                  the servlet exception necessary
      *
      */
-
     public ServletException(Throwable rootCause) {
         super(rootCause);
         this.rootCause = rootCause;
@@ -95,7 +90,6 @@ public class ServletException extends Exception {
      * @return the <code>Throwable</code> that caused this servlet exception
      *
      */
-
     public Throwable getRootCause() {
         return rootCause;
     }

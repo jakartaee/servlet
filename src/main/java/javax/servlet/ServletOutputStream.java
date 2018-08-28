@@ -38,7 +38,6 @@ import java.util.ResourceBundle;
  * @see ServletResponse
  *
  */
-
 public abstract class ServletOutputStream extends OutputStream {
 
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
@@ -49,7 +48,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * Does nothing, because this is an abstract class.
      *
      */
-
     protected ServletOutputStream() {
     }
 
@@ -62,7 +60,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void print(String s) throws IOException {
         if (s == null)
             s = "null";
@@ -95,7 +92,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void print(boolean b) throws IOException {
         String msg;
         if (b) {
@@ -114,7 +110,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void print(char c) throws IOException {
         print(String.valueOf(c));
     }
@@ -128,7 +123,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void print(int i) throws IOException {
         print(String.valueOf(i));
     }
@@ -142,7 +136,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      * 
      */
-
     public void print(long l) throws IOException {
         print(String.valueOf(l));
     }
@@ -157,7 +150,6 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      *
      */
-
     public void print(float f) throws IOException {
         print(String.valueOf(f));
     }
@@ -171,7 +163,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void print(double d) throws IOException {
         print(String.valueOf(d));
     }
@@ -184,7 +175,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println() throws IOException {
         print("\r\n");
     }
@@ -198,7 +188,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(String s) throws IOException {
         print(s);
         println();
@@ -214,7 +203,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(boolean b) throws IOException {
         print(b);
         println();
@@ -229,7 +217,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(char c) throws IOException {
         print(c);
         println();
@@ -245,7 +232,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(int i) throws IOException {
         print(i);
         println();
@@ -261,7 +247,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(long l) throws IOException {
         print(l);
         println();
@@ -277,7 +262,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(float f) throws IOException {
         print(f);
         println();
@@ -293,7 +277,6 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IOException if an input or output exception occurred
      *
      */
-
     public void println(double d) throws IOException {
         print(d);
         println();

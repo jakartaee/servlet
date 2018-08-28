@@ -50,7 +50,6 @@ import javax.servlet.descriptor.JspConfigDescriptor;
  * @see Servlet#getServletConfig
  * @see ServletConfig#getServletContext
  */
-
 public interface ServletContext {
 
     /**

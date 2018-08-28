@@ -32,7 +32,6 @@ import java.util.EventListener;
  * @see HttpSessionBindingEvent
  *
  */
-
 public interface HttpSessionBindingListener extends EventListener {
 
     /**

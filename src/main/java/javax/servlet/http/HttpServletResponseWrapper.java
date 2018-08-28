@@ -35,7 +35,6 @@ import javax.servlet.ServletResponseWrapper;
  *
  * @see javax.servlet.http.HttpServletResponse
  */
-
 public class HttpServletResponseWrapper extends ServletResponseWrapper implements HttpServletResponse {
 
     /**

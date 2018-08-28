@@ -23,7 +23,6 @@ package javax.servlet.http;
  *
  * @since Servlet 3.1
  */
-
 public interface HttpUpgradeHandler {
     /**
      * It is called once the HTTP Upgrade process has been completed and the upgraded connection is ready to start using

@@ -34,7 +34,6 @@ import java.util.Map;
  *
  * @since Servlet 2.3
  */
-
 public class ServletRequestWrapper implements ServletRequest {
 
     private ServletRequest request;

@@ -43,7 +43,6 @@ import javax.servlet.ServletResponse;
  *
  * @since Servlet 4.0
  */
-
 public abstract class HttpFilter extends GenericFilter {
 
     private static final long serialVersionUID = 7478463438252262094L;
@@ -55,7 +54,6 @@ public abstract class HttpFilter extends GenericFilter {
      * 
      * @since 4.0
      */
-
     public HttpFilter() {
     }
 

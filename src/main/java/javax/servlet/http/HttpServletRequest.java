@@ -35,7 +35,6 @@ import javax.servlet.ServletRequest;
  *
  * @author Various
  */
-
 public interface HttpServletRequest extends ServletRequest {
 
     /**
@@ -199,7 +198,6 @@ public interface HttpServletRequest extends ServletRequest {
      * 
      * @since 4.0
      */
-
     default public HttpServletMapping getHttpServletMapping() {
         return new HttpServletMapping() {
             @Override

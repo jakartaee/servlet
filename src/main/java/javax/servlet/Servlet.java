@@ -52,7 +52,6 @@ import java.io.IOException;
  * @see javax.servlet.http.HttpServlet
  *
  */
-
 public interface Servlet {
 
     /**
@@ -79,7 +78,6 @@ public interface Servlet {
      * @see #getServletConfig
      *
      */
-
     public void init(ServletConfig config) throws ServletException;
 
     /**
@@ -96,7 +94,6 @@ public interface Servlet {
      * @see #init
      *
      */
-
     public ServletConfig getServletConfig();
 
     /**
@@ -123,7 +120,6 @@ public interface Servlet {
      * @exception IOException      if an input or output exception occurs
      *
      */
-
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
 
     /**
@@ -135,7 +131,6 @@ public interface Servlet {
      * @return a <code>String</code> containing servlet information
      *
      */
-
     public String getServletInfo();
 
     /**
@@ -151,6 +146,5 @@ public interface Servlet {
      * in memory.
      *
      */
-
     public void destroy();
 }

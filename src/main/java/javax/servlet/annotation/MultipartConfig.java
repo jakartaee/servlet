@@ -31,7 +31,6 @@ import java.lang.annotation.RetentionPolicy;
  * given <tt>multipart/form-data</tt> request by calling {@link javax.servlet.http.HttpServletRequest#getPart getPart}
  * or {@link javax.servlet.http.HttpServletRequest#getParts getParts}.
  */
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MultipartConfig {

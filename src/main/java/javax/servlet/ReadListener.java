@@ -45,7 +45,6 @@ public interface ReadListener extends EventListener {
      *
      * @throws IOException if an I/O related error has occurred during processing
      */
-
     public void onAllDataRead() throws IOException;
 
     /**

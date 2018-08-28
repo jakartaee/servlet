@@ -34,7 +34,6 @@ package javax.servlet.http;
  * @see HttpSessionBindingListener
  * @see HttpSessionAttributeListener
  */
-
 public class HttpSessionBindingEvent extends HttpSessionEvent {
 
     private static final long serialVersionUID = 7308000419984825907L;

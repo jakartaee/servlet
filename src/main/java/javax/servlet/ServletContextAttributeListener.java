@@ -35,7 +35,6 @@ import java.util.EventListener;
  *
  * @since Servlet 2.3
  */
-
 public interface ServletContextAttributeListener extends EventListener {
 
     /**

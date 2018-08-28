@@ -31,7 +31,6 @@ import java.lang.annotation.RetentionPolicy;
  *
  * @since Servlet 3.0
  */
-
 @Inherited
 @Documented
 @Target(ElementType.TYPE)
@@ -83,6 +82,5 @@ public @interface ServletSecurity {
      *         returned array. If the returned array is of zero length, it indicates that no HTTP method specific
      *         constraints are defined.
      */
-
     HttpMethodConstraint[] httpMethodConstraints() default {};
 }

@@ -41,7 +41,6 @@ package javax.servlet;
  * @author Various
  *
  */
-
 public class UnavailableException extends ServletException {
 
     private static final long serialVersionUID = 5622686609215003468L;
@@ -96,7 +95,6 @@ public class UnavailableException extends ServletException {
      * @param msg a <code>String</code> specifying the descriptive message
      *
      */
-
     public UnavailableException(String msg) {
         super(msg);
 
@@ -119,7 +117,6 @@ public class UnavailableException extends ServletException {
      *                negative, indicates that the servlet can't make an estimate
      *
      */
-
     public UnavailableException(String msg, int seconds) {
         super(msg);
 
@@ -140,7 +137,6 @@ public class UnavailableException extends ServletException {
      *         available or temporarily unavailable
      *
      */
-
     public boolean isPermanent() {
         return permanent;
     }
@@ -170,7 +166,6 @@ public class UnavailableException extends ServletException {
      *         number if the servlet is permanently unavailable or cannot make an estimate
      *
      */
-
     public int getUnavailableSeconds() {
         return permanent ? -1 : seconds;
     }

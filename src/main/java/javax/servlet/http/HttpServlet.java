@@ -60,7 +60,6 @@ import javax.servlet.*;
  *
  * @author Various
  */
-
 public abstract class HttpServlet extends GenericServlet {
     private static final long serialVersionUID = 8466325577512134784L;
 
@@ -137,7 +136,6 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @see javax.servlet.ServletResponse#setContentType
      */
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = lStrings.getString("http.method_get_not_supported");
@@ -163,7 +161,6 @@ public abstract class HttpServlet extends GenericServlet {
      * @return a <code>long</code> integer specifying the time the <code>HttpServletRequest</code> object was last
      *         modified, in milliseconds since midnight, January 1, 1970 GMT, or -1 if the time is not known
      */
-
     protected long getLastModified(HttpServletRequest req) {
         return -1;
     }

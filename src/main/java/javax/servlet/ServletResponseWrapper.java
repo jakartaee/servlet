@@ -33,7 +33,6 @@ import java.util.Locale;
  *
  * @see javax.servlet.ServletResponse
  */
-
 public class ServletResponseWrapper implements ServletResponse {
     private ServletResponse response;
 
@@ -56,7 +55,6 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @return the wrapped {@link ServletResponse}
      */
-
     public ServletResponse getResponse() {
         return this.response;
     }
@@ -81,7 +79,6 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @since Servlet 2.4
      */
-
     @Override
     public void setCharacterEncoding(String charset) {
         this.response.setCharacterEncoding(charset);
@@ -90,7 +87,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to return getCharacterEncoding() on the wrapped response object.
      */
-
     @Override
     public String getCharacterEncoding() {
         return this.response.getCharacterEncoding();
@@ -99,7 +95,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to return getOutputStream() on the wrapped response object.
      */
-
     @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return this.response.getOutputStream();
@@ -108,7 +103,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to return getWriter() on the wrapped response object.
      */
-
     @Override
     public PrintWriter getWriter() throws IOException {
         return this.response.getWriter();
@@ -117,7 +111,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call setContentLength(int len) on the wrapped response object.
      */
-
     @Override
     public void setContentLength(int len) {
         this.response.setContentLength(len);
@@ -126,7 +119,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call setContentLengthLong(long len) on the wrapped response object.
      */
-
     @Override
     public void setContentLengthLong(long len) {
         this.response.setContentLengthLong(len);
@@ -135,7 +127,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call setContentType(String type) on the wrapped response object.
      */
-
     @Override
     public void setContentType(String type) {
         this.response.setContentType(type);
@@ -146,7 +137,6 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @since Servlet 2.4
      */
-
     @Override
     public String getContentType() {
         return this.response.getContentType();
@@ -171,7 +161,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call flushBuffer() on the wrapped response object.
      */
-
     @Override
     public void flushBuffer() throws IOException {
         this.response.flushBuffer();
@@ -188,7 +177,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call reset() on the wrapped response object.
      */
-
     @Override
     public void reset() {
         this.response.reset();
@@ -197,7 +185,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call resetBuffer() on the wrapped response object.
      */
-
     @Override
     public void resetBuffer() {
         this.response.resetBuffer();
@@ -206,7 +193,6 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to call setLocale(Locale loc) on the wrapped response object.
      */
-
     @Override
     public void setLocale(Locale loc) {
         this.response.setLocale(loc);
