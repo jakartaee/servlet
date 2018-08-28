@@ -50,6 +50,8 @@ import javax.servlet.ServletResponse;
 public abstract class HttpFilter extends GenericFilter
 {
     
+    private static final long serialVersionUID = 7478463438252262094L;
+
     /**
      * <p>Does nothing, because this is an abstract class.</p>
      * 

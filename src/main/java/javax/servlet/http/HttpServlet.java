@@ -73,6 +73,8 @@ import javax.servlet.*;
 
 public abstract class HttpServlet extends GenericServlet
 {
+    private static final long serialVersionUID = 8466325577512134784L;
+
     private static final String METHOD_DELETE = "DELETE";
     private static final String METHOD_HEAD = "HEAD";
     private static final String METHOD_GET = "GET";

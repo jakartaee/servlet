@@ -50,6 +50,8 @@ import java.util.ResourceBundle;
 public abstract class GenericServlet 
     implements Servlet, ServletConfig, java.io.Serializable
 {
+    private static final long serialVersionUID = -8592279577370996712L;
+
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static ResourceBundle lStrings =
         ResourceBundle.getBundle(LSTRING_FILE);

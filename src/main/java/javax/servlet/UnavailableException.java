@@ -50,6 +50,8 @@ package javax.servlet;
 public class UnavailableException
 extends ServletException {
 
+    private static final long serialVersionUID = 5622686609215003468L;
+
     private Servlet     servlet;           // what's unavailable
     private boolean     permanent;         // needs admin action?
     private int         seconds;           // unavailability estimate
