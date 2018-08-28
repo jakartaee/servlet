@@ -37,20 +37,20 @@ import java.util.Locale;
  
 public class ServletResponseWrapper implements ServletResponse {
 	private ServletResponse response;
-	/**
-	* Creates a ServletResponse adaptor wrapping the given response object.
-	* @throws java.lang.IllegalArgumentException if the response is null.
-        * @param response the {@link ServletResponse} to be wrapped
-        *
-	*/
 
-
-	public ServletResponseWrapper(ServletResponse response) {
-	    if (response == null) {
-		throw new IllegalArgumentException("Response cannot be null");
-	    }
-	    this.response = response;
-	}
+    /**
+     * Creates a ServletResponse adaptor wrapping the given response object.
+     *
+     * @param response the {@link ServletResponse} to be wrapped
+     *
+     * @throws java.lang.IllegalArgumentException if the response is null.
+     */
+    public ServletResponseWrapper(ServletResponse response) {
+        if (response == null) {
+            throw new IllegalArgumentException("Response cannot be null");
+        }
+        this.response = response;
+    }
 
 	/**
 	* Return the wrapped ServletResponse object.
@@ -62,20 +62,19 @@ public class ServletResponseWrapper implements ServletResponse {
 		return this.response;
 	}	
 	
-	
-	/**
-	* Sets the response being wrapped. 
-	* @throws java.lang.IllegalArgumentException if the response is null.
-        *
-        * @param response the {@link ServletResponse} to be installed 
-	*/
-	
-	public void setResponse(ServletResponse response) {
-	    if (response == null) {
-		throw new IllegalArgumentException("Response cannot be null");
-	    }
-	    this.response = response;
-	}
+    /**
+     * Sets the response being wrapped.
+     *
+     * @param response the {@link ServletResponse} to be installed
+     *
+     * @throws java.lang.IllegalArgumentException if the response is null.
+     */
+    public void setResponse(ServletResponse response) {
+        if (response == null) {
+            throw new IllegalArgumentException("Response cannot be null");
+        }
+        this.response = response;
+    }
 
     /**
      * The default behavior of this method is to call setCharacterEncoding(String charset)

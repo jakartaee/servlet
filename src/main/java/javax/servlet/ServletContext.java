@@ -954,6 +954,8 @@ public interface ServletContext {
      * Gets the ServletRegistration corresponding to the servlet with the
      * given <tt>servletName</tt>.
      *
+     * @param servletName the name of a servlet
+     *
      * @return the (complete or preliminary) ServletRegistration for the
      * servlet with the given <tt>servletName</tt>, or null if no
      * ServletRegistration exists under that name
@@ -964,7 +966,6 @@ public interface ServletContext {
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
      *
-     * @param servletName the name of a servlet
      * @since Servlet 3.0
      */
     public ServletRegistration getServletRegistration(String servletName);

@@ -102,13 +102,14 @@ public interface PushBuilder {
     /** 
      * <p>Set the method to be used for the push.</p>
      * 
+     * @param method the method to be used for the push.
+     *
      * @throws NullPointerException if the argument is {@code null}
      *
      * @throws IllegalArgumentException if the argument is the empty String,
      *         or any non-cacheable or unsafe methods defined in RFC 7231,
      *         which are POST, PUT, DELETE, CONNECT, OPTIONS and TRACE.
      *
-     * @param method the method to be used for the push.  
      * @return this builder.
      */
     public PushBuilder method(String method);

@@ -41,9 +41,10 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Creates a ServletRequest adaptor wrapping the given request object. 
-     * @throws java.lang.IllegalArgumentException if the request is null
      *
      * @param request the {@link ServletRequest} to be wrapped
+     *
+     * @throws java.lang.IllegalArgumentException if the request is null
      */
     public ServletRequestWrapper(ServletRequest request) {
         if (request == null) {
