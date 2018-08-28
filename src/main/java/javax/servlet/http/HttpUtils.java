@@ -81,7 +81,7 @@ public class HttpUtils {
             throw new IllegalArgumentException();
         }
 
-        Hashtable<String, String[]> ht = new Hashtable<String, String[]>();
+        Hashtable<String, String[]> ht = new Hashtable<>();
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(s, "&");
         while (st.hasMoreTokens()) {
@@ -154,7 +154,7 @@ public class HttpUtils {
 	
 	if (len <=0) {
             // cheap hack to return an empty hash
-	    return new Hashtable<String, String[]>(); 
+	    return new Hashtable<>(); 
         }
 
 	if (in == null) {
