@@ -72,6 +72,7 @@ public abstract class GenericServlet
      *
      * 
      */
+    @Override
     public void destroy() {
     }
     
@@ -92,6 +93,7 @@ public abstract class GenericServlet
      *				of the initialization parameter
      *
      */ 
+    @Override
     public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -118,6 +120,7 @@ public abstract class GenericServlet
     *				objects containing the names of 
     *				the servlet's initialization parameters
     */
+    @Override
     public Enumeration<String> getInitParameterNames() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -135,6 +138,7 @@ public abstract class GenericServlet
      * @return ServletConfig 	the <code>ServletConfig</code> object
      *				that initialized this servlet
      */    
+    @Override
     public ServletConfig getServletConfig() {
 	return config;
     }
@@ -152,6 +156,7 @@ public abstract class GenericServlet
      *				passed to this servlet by the <code>init</code>
      *				method
      */
+    @Override
     public ServletContext getServletContext() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {
@@ -174,6 +179,7 @@ public abstract class GenericServlet
      * @return String 		information about this servlet, by default an
      * 				empty string
      */    
+    @Override
     public String getServletInfo() {
 	return "";
     }
@@ -198,6 +204,7 @@ public abstract class GenericServlet
      * 
      * @see 				UnavailableException
      */
+    @Override
     public void init(ServletConfig config) throws ServletException {
 	this.config = config;
 	this.init();
@@ -274,6 +281,7 @@ public abstract class GenericServlet
      *					exception occurs
      */
 
+    @Override
     public abstract void service(ServletRequest req, ServletResponse res)
 	throws ServletException, IOException;
     
@@ -284,6 +292,7 @@ public abstract class GenericServlet
      *
      * @return          the name of this servlet instance
      */
+    @Override
     public String getServletName() {
         ServletConfig sc = getServletConfig();
         if (sc == null) {

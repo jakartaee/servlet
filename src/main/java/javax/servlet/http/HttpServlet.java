@@ -907,10 +907,12 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
 
+    @Override
     public boolean isReady() {
         return false;
     }
 
+    @Override
     public void setWriteListener(WriteListener writeListener) {
 
     }

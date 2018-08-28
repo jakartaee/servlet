@@ -84,6 +84,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to call getAttribute(String name)
      * on the wrapped request object.
      */
+    @Override
     public Object getAttribute(String name) {
         return this.request.getAttribute(name);
     }
@@ -93,6 +94,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getAttributeNames()
      * on the wrapped request object.
      */
+    @Override
     public Enumeration<String> getAttributeNames() {
         return this.request.getAttributeNames();
     }    
@@ -102,6 +104,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getCharacterEncoding()
      * on the wrapped request object.
      */
+    @Override
     public String getCharacterEncoding() {
         return this.request.getCharacterEncoding();
     }
@@ -111,6 +114,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to set the character encoding
      * on the wrapped request object.
      */
+    @Override
     public void setCharacterEncoding(String enc)
             throws UnsupportedEncodingException {
         this.request.setCharacterEncoding(enc);
@@ -121,6 +125,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getContentLength()
      * on the wrapped request object.
      */
+    @Override
     public int getContentLength() {
         return this.request.getContentLength();
     }
@@ -131,6 +136,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.1
      */
+    @Override
     public long getContentLengthLong() {
         return this.request.getContentLengthLong();
     }
@@ -140,6 +146,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getContentType()
      * on the wrapped request object.
      */
+    @Override
     public String getContentType() {
         return this.request.getContentType();
     }
@@ -149,6 +156,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getInputStream()
      * on the wrapped request object.
      */
+    @Override
     public ServletInputStream getInputStream() throws IOException {
         return this.request.getInputStream();
     }
@@ -158,6 +166,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return
      * getParameter(String name) on the wrapped request object.
      */
+    @Override
     public String getParameter(String name) {
         return this.request.getParameter(name);
     }
@@ -167,6 +176,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getParameterMap()
      * on the wrapped request object.
      */
+    @Override
     public Map<String, String[]> getParameterMap() {
         return this.request.getParameterMap();
     }
@@ -176,6 +186,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getParameterNames()
      * on the wrapped request object.
      */
+    @Override
     public Enumeration<String> getParameterNames() {
         return this.request.getParameterNames();
     }
@@ -185,6 +196,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return
      * getParameterValues(String name) on the wrapped request object.
      */
+    @Override
     public String[] getParameterValues(String name) {
         return this.request.getParameterValues(name);
     }
@@ -194,6 +206,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getProtocol()
      * on the wrapped request object.
      */
+    @Override
     public String getProtocol() {
         return this.request.getProtocol();
     }
@@ -203,6 +216,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getScheme()
      * on the wrapped request object.
      */
+    @Override
     public String getScheme() {
         return this.request.getScheme();
     }
@@ -212,6 +226,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getServerName()
      * on the wrapped request object.
      */
+    @Override
     public String getServerName() {
         return this.request.getServerName();
     }
@@ -221,6 +236,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getServerPort()
      * on the wrapped request object.
      */
+    @Override
     public int getServerPort() {
         return this.request.getServerPort();
     }
@@ -230,6 +246,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getReader()
      * on the wrapped request object.
      */
+    @Override
     public BufferedReader getReader() throws IOException {
         return this.request.getReader();
     }
@@ -239,6 +256,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getRemoteAddr()
      * on the wrapped request object.
      */
+    @Override
     public String getRemoteAddr() {
         return this.request.getRemoteAddr();
     }
@@ -248,6 +266,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getRemoteHost()
      * on the wrapped request object.
      */
+    @Override
     public String getRemoteHost() {
         return this.request.getRemoteHost();
     }
@@ -257,6 +276,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return
      * setAttribute(String name, Object o) on the wrapped request object.
      */
+    @Override
     public void setAttribute(String name, Object o) {
         this.request.setAttribute(name, o);
     }
@@ -266,6 +286,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to call
      * removeAttribute(String name) on the wrapped request object.
      */
+    @Override
     public void removeAttribute(String name) {
         this.request.removeAttribute(name);
     }
@@ -275,6 +296,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getLocale()
      * on the wrapped request object.
      */
+    @Override
     public Locale getLocale() {
         return this.request.getLocale();
     }
@@ -284,6 +306,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return getLocales()
      * on the wrapped request object.
      */
+    @Override
     public Enumeration<Locale> getLocales() {
         return this.request.getLocales();
     }
@@ -293,6 +316,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return isSecure()
      * on the wrapped request object.
      */
+    @Override
     public boolean isSecure() {
         return this.request.isSecure();
     }
@@ -302,6 +326,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return
      * getRequestDispatcher(String path) on the wrapped request object.
      */
+    @Override
     public RequestDispatcher getRequestDispatcher(String path) {
         return this.request.getRequestDispatcher(path);
     }
@@ -314,6 +339,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * @deprecated As of Version 2.1 of the Java Servlet API,
      * use {@link ServletContext#getRealPath} instead
      */
+    @Override
     @Deprecated
     public String getRealPath(String path) {
         return this.request.getRealPath(path);
@@ -326,6 +352,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 2.4
      */    
+    @Override
     public int getRemotePort(){
         return this.request.getRemotePort();
     }
@@ -337,6 +364,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 2.4
      */
+    @Override
     public String getLocalName(){
         return this.request.getLocalName();
     }
@@ -348,6 +376,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 2.4
      */       
+    @Override
     public String getLocalAddr(){
         return this.request.getLocalAddr();
     }
@@ -359,6 +388,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 2.4
      */
+    @Override
     public int getLocalPort(){
         return this.request.getLocalPort();
     }
@@ -373,6 +403,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public ServletContext getServletContext() {
         return request.getServletContext();
     }
@@ -397,6 +428,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public AsyncContext startAsync() throws IllegalStateException {
         return request.startAsync();
     }
@@ -427,6 +459,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public AsyncContext startAsync(ServletRequest servletRequest,
                                    ServletResponse servletResponse)
             throws IllegalStateException {
@@ -444,6 +477,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public boolean isAsyncStarted() {
         return request.isAsyncStarted();
     }
@@ -459,6 +493,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public boolean isAsyncSupported() {
         return request.isAsyncSupported();
     }
@@ -483,6 +518,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public AsyncContext getAsyncContext() {
         return request.getAsyncContext();
     }
@@ -550,6 +586,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Override
     public DispatcherType getDispatcherType() {
         return request.getDispatcherType();
     }

@@ -422,6 +422,7 @@ public class Cookie implements Cloneable, Serializable {
      * Overrides the standard <code>java.lang.Object.clone</code> 
      * method to return a copy of this Cookie.
      */
+    @Override
     public Object clone() {
         try {
             return super.clone();
