@@ -65,7 +65,7 @@ public interface ServletContextAttributeListener extends EventListener {
      */
     default public void attributeRemoved(ServletContextAttributeEvent event) {}
 
-    /*
+    /**
      * Receives notification that an attribute has been replaced
      * in the ServletContext.
      *
