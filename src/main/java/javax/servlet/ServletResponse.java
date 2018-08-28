@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,7 +76,7 @@ public interface ServletResponse {
      * that container, using vendor specific configuration).
      * The first one of these methods that yields a result is returned.
      * Per-request, the charset for the response can be specified explicitly
-     * using the {@link setCharacterEncoding} and {@link setContentType}
+     * using the {@link #setCharacterEncoding} and {@link #setContentType}
      * methods, or implicitly using the setLocale(java.util.Locale) method.
      * Explicit specifications take precedence over implicit specifications.
      * Calls made to these methods after <code>getWriter</code> has been

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -71,7 +72,7 @@ public class Cookie implements Cloneable, Serializable {
         ResourceBundle.getBundle(LSTRING_FILE);
 
     static {
-        if (Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"))) {
+        if (Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true")).booleanValue()) {
             TSPECIALS = "/()<>@,;:\\\"[]?={} \t";
         } else {
             TSPECIALS = ",; ";
@@ -422,6 +423,7 @@ public class Cookie implements Cloneable, Serializable {
      * Overrides the standard <code>java.lang.Object.clone</code> 
      * method to return a copy of this Cookie.
      */
+    @Override
     public Object clone() {
         try {
             return super.clone();

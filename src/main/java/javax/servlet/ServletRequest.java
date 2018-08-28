@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -427,6 +428,7 @@ public interface ServletRequest {
      * @deprecated  As of Version 2.1 of the Java Servlet API,
      *    use {@link ServletContext#getRealPath} instead.
      */
+    @Deprecated
     public String getRealPath(String path);
     
     /**

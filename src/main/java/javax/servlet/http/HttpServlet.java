@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,6 +74,8 @@ import javax.servlet.*;
 
 public abstract class HttpServlet extends GenericServlet
 {
+    private static final long serialVersionUID = 8466325577512134784L;
+
     private static final String METHOD_DELETE = "DELETE";
     private static final String METHOD_HEAD = "HEAD";
     private static final String METHOD_GET = "GET";
@@ -907,10 +910,12 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
 
+    @Override
     public boolean isReady() {
         return false;
     }
 
+    @Override
     public void setWriteListener(WriteListener writeListener) {
 
     }

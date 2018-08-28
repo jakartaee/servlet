@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +22,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.EnumSet;
 import java.util.EventListener;
 import java.util.Map;
 import java.util.Set;
@@ -954,6 +954,8 @@ public interface ServletContext {
      * Gets the ServletRegistration corresponding to the servlet with the
      * given <tt>servletName</tt>.
      *
+     * @param servletName the name of a servlet
+     *
      * @return the (complete or preliminary) ServletRegistration for the
      * servlet with the given <tt>servletName</tt>, or null if no
      * ServletRegistration exists under that name
@@ -964,7 +966,6 @@ public interface ServletContext {
      * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
      * with {@link javax.servlet.annotation.WebListener}
      *
-     * @param servletName the name of a servlet
      * @since Servlet 3.0
      */
     public ServletRegistration getServletRegistration(String servletName);

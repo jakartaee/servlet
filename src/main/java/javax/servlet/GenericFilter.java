@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,7 +17,6 @@
 
 package javax.servlet;
 
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
@@ -48,6 +48,8 @@ import java.util.ResourceBundle;
 public abstract class GenericFilter 
     implements Filter, FilterConfig, java.io.Serializable
 {
+    private static final long serialVersionUID = 4060116231031076581L;
+
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
     private static final ResourceBundle lStrings =
         ResourceBundle.getBundle(LSTRING_FILE);

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -81,7 +82,7 @@ public class HttpUtils {
             throw new IllegalArgumentException();
         }
 
-        Hashtable<String, String[]> ht = new Hashtable<String, String[]>();
+        Hashtable<String, String[]> ht = new Hashtable<>();
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(s, "&");
         while (st.hasMoreTokens()) {
@@ -154,7 +155,7 @@ public class HttpUtils {
 	
 	if (len <=0) {
             // cheap hack to return an empty hash
-	    return new Hashtable<String, String[]>(); 
+	    return new Hashtable<>(); 
         }
 
 	if (in == null) {

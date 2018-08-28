@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -102,13 +103,14 @@ public interface PushBuilder {
     /** 
      * <p>Set the method to be used for the push.</p>
      * 
+     * @param method the method to be used for the push.
+     *
      * @throws NullPointerException if the argument is {@code null}
      *
      * @throws IllegalArgumentException if the argument is the empty String,
      *         or any non-cacheable or unsafe methods defined in RFC 7231,
      *         which are POST, PUT, DELETE, CONNECT, OPTIONS and TRACE.
      *
-     * @param method the method to be used for the push.  
      * @return this builder.
      */
     public PushBuilder method(String method);

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,6 +50,8 @@ package javax.servlet;
 
 public class UnavailableException
 extends ServletException {
+
+    private static final long serialVersionUID = 5622686609215003468L;
 
     private Servlet     servlet;           // what's unavailable
     private boolean     permanent;         // needs admin action?

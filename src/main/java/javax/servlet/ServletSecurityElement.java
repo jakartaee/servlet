@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,7 +37,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * element and with no HTTP Method specific constraint elements.
      */
     public ServletSecurityElement() {
-        methodConstraints = new HashSet<HttpMethodConstraintElement>();
+        methodConstraints = new HashSet<>();
         methodNames = Collections.emptySet();
     }
 
@@ -52,7 +53,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
         super(constraint.getEmptyRoleSemantic(),
                 constraint.getTransportGuarantee(),
                 constraint.getRolesAllowed());
-        methodConstraints = new HashSet<HttpMethodConstraintElement>();
+        methodConstraints = new HashSet<>();
         methodNames = Collections.emptySet();
     }
 
@@ -71,7 +72,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
     public ServletSecurityElement(
             Collection<HttpMethodConstraintElement> methodConstraints) {
         this.methodConstraints = (methodConstraints == null ?
-            new HashSet<HttpMethodConstraintElement>() : methodConstraints);
+            new HashSet<>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
@@ -94,7 +95,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
                 constraint.getTransportGuarantee(),
                 constraint.getRolesAllowed());
         this.methodConstraints = (methodConstraints == null ?
-            new HashSet<HttpMethodConstraintElement>() : methodConstraints);
+            new HashSet<>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
@@ -110,7 +111,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
         super(annotation.value().value(),
                 annotation.value().transportGuarantee(),
                 annotation.value().rolesAllowed());
-        this.methodConstraints = new HashSet<HttpMethodConstraintElement>();
+        this.methodConstraints = new HashSet<>();
         for (HttpMethodConstraint constraint :
                 annotation.httpMethodConstraints()) {
             this.methodConstraints.add(
@@ -164,7 +165,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      */
     private Collection<String> checkMethodNames(
             Collection<HttpMethodConstraintElement> methodConstraints) {
-        Collection<String> methodNames = new HashSet<String>();
+        Collection<String> methodNames = new HashSet<>();
         for (HttpMethodConstraintElement methodConstraint :
                         methodConstraints) {
             String methodName = methodConstraint.getMethodName();

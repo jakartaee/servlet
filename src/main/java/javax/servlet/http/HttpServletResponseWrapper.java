@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,9 +41,10 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
 
     /** 
      * Constructs a response adaptor wrapping the given response.
-     * @throws java.lang.IllegalArgumentException if the response is null
      *
      * @param response the {@link HttpServletResponse} to be wrapped.
+     *
+     * @throws java.lang.IllegalArgumentException if the response is null
      */
     public HttpServletResponseWrapper(HttpServletResponse response) {
         super(response);

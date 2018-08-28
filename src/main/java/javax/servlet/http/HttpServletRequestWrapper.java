@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,9 +40,10 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
 
     /** 
      * Constructs a request object wrapping the given request.
-     * @throws java.lang.IllegalArgumentException if the request is null
-     
+     *
      * @param request the {@link HttpServletRequest} to be wrapped.
+     *
+     * @throws java.lang.IllegalArgumentException if the request is null
      */
     public HttpServletRequestWrapper(HttpServletRequest request) {
         super(request);
