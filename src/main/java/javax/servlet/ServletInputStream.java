@@ -22,127 +22,109 @@ import java.io.IOException;
 
 /**
  * 
- * Provides an input stream for reading binary data from a client
- * request, including an efficient <code>readLine</code> method
- * for reading data one line at a time. With some protocols, such
- * as HTTP POST and PUT, a <code>ServletInputStream</code>
- * object can be used to read data sent from the client.
+ * Provides an input stream for reading binary data from a client request, including an efficient <code>readLine</code>
+ * method for reading data one line at a time. With some protocols, such as HTTP POST and PUT, a
+ * <code>ServletInputStream</code> object can be used to read data sent from the client.
  *
- * <p>A <code>ServletInputStream</code> object is normally retrieved via
- * the {@link ServletRequest#getInputStream} method.
+ * <p>
+ * A <code>ServletInputStream</code> object is normally retrieved via the {@link ServletRequest#getInputStream} method.
  *
  *
- * <p>This is an abstract class that a servlet container implements.
- * Subclasses of this class
- * must implement the <code>java.io.InputStream.read()</code> method.
+ * <p>
+ * This is an abstract class that a servlet container implements. Subclasses of this class must implement the
+ * <code>java.io.InputStream.read()</code> method.
  *
  *
- * @author 	Various
+ * @author Various
  *
- * @see		ServletRequest 
+ * @see ServletRequest
  *
  */
 
 public abstract class ServletInputStream extends InputStream {
-
-
 
     /**
      * Does nothing, because this is an abstract class.
      *
      */
 
-    protected ServletInputStream() { }
+    protected ServletInputStream() {
+    }
 
-  
-  
-    
     /**
      *
-     * Reads the input stream, one line at a time. Starting at an
-     * offset, reads bytes into an array, until it reads a certain number
-     * of bytes or reaches a newline character, which it reads into the
-     * array as well.
+     * Reads the input stream, one line at a time. Starting at an offset, reads bytes into an array, until it reads a
+     * certain number of bytes or reaches a newline character, which it reads into the array as well.
      *
-     * <p>This method returns -1 if it reaches the end of the input
-     * stream before reading the maximum number of bytes.
+     * <p>
+     * This method returns -1 if it reaches the end of the input stream before reading the maximum number of bytes.
      *
      *
      *
-     * @param b 		an array of bytes into which data is read
+     * @param b   an array of bytes into which data is read
      *
-     * @param off 		an integer specifying the character at which
-     *				this method begins reading
+     * @param off an integer specifying the character at which this method begins reading
      *
-     * @param len		an integer specifying the maximum number of 
-     *				bytes to read
+     * @param len an integer specifying the maximum number of bytes to read
      *
-     * @return			an integer specifying the actual number of bytes 
-     *				read, or -1 if the end of the stream is reached
+     * @return an integer specifying the actual number of bytes read, or -1 if the end of the stream is reached
      *
-     * @exception IOException	if an input or output exception has occurred
+     * @exception IOException if an input or output exception has occurred
      *
      */
     public int readLine(byte[] b, int off, int len) throws IOException {
 
-	if (len <= 0) {
-	    return 0;
-	}
-	int count = 0, c;
+        if (len <= 0) {
+            return 0;
+        }
+        int count = 0, c;
 
-	while ((c = read()) != -1) {
-	    b[off++] = (byte)c;
-	    count++;
-	    if (c == '\n' || count == len) {
-		break;
-	    }
-	}
-	return count > 0 ? count : -1;
+        while ((c = read()) != -1) {
+            b[off++] = (byte) c;
+            count++;
+            if (c == '\n' || count == len) {
+                break;
+            }
+        }
+        return count > 0 ? count : -1;
     }
 
-
     /**
-     * Returns true when all the data from the stream has been read else
-     * it returns false.
+     * Returns true when all the data from the stream has been read else it returns false.
      *
-     * @return <code>true</code> when all data for this particular request
-     *  has been read, otherwise returns <code>false</code>.
+     * @return <code>true</code> when all data for this particular request has been read, otherwise returns
+     *         <code>false</code>.
      *
      * @since Servlet 3.1
      */
     public abstract boolean isFinished();
 
     /**
-     * Returns true if data can be read without blocking else returns
-     * false.
+     * Returns true if data can be read without blocking else returns false.
      *
-     * @return <code>true</code> if data can be obtained without blocking,
-     *  otherwise returns <code>false</code>.
+     * @return <code>true</code> if data can be obtained without blocking, otherwise returns <code>false</code>.
      *
      * @since Servlet 3.1
      */
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletInputStream</code> to invoke the provided
-     * {@link ReadListener} when it is possible to read
+     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to
+     * read
      *
-     * @param readListener the {@link ReadListener} that should be notified
-     *  when it's possible to read.
+     * @param readListener the {@link ReadListener} that should be notified when it's possible to read.
      *
      * @exception IllegalStateException if one of the following conditions is true
-     * <ul>
-     * <li>the associated request is neither upgraded nor the async started
-     * <li>setReadListener is called more than once within the scope of the same request.
-     * </ul>
+     *                                  <ul>
+     *                                  <li>the associated request is neither upgraded nor the async started
+     *                                  <li>setReadListener is called more than once within the scope of the same
+     *                                  request.
+     *                                  </ul>
      *
      * @throws NullPointerException if readListener is null
      *
      * @since Servlet 3.1
-
+     * 
      */
     public abstract void setReadListener(ReadListener readListener);
 }
-
-
-

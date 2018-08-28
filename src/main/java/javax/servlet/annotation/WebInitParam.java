@@ -23,12 +23,11 @@ import java.lang.annotation.Target;
 import java.lang.annotation.Documented;
 
 /**
- * This annotation is used on a Servlet or Filter implementation class
- * to specify an initialization parameter.
+ * This annotation is used on a Servlet or Filter implementation class to specify an initialization parameter.
  * 
  * @since Servlet 3.0
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebInitParam {
@@ -39,14 +38,14 @@ public @interface WebInitParam {
      * @return name of the initialization parameter
      */
     String name();
-    
+
     /**
      * Value of the initialization parameter
      *
      * @return value of the initialization parameter
-     */    
+     */
     String value();
-    
+
     /**
      * Description of the initialization parameter
      *

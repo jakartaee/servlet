@@ -24,85 +24,74 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 /**
- * Provides an output stream for sending binary data to the
- * client. A <code>ServletOutputStream</code> object is normally retrieved 
- * via the {@link ServletResponse#getOutputStream} method.
+ * Provides an output stream for sending binary data to the client. A <code>ServletOutputStream</code> object is
+ * normally retrieved via the {@link ServletResponse#getOutputStream} method.
  *
- * <p>This is an abstract class that the servlet container implements.
- * Subclasses of this class
- * must implement the <code>java.io.OutputStream.write(int)</code>
- * method.
+ * <p>
+ * This is an abstract class that the servlet container implements. Subclasses of this class must implement the
+ * <code>java.io.OutputStream.write(int)</code> method.
  *
  * 
- * @author         Various
+ * @author Various
  *
- * @see         ServletResponse
+ * @see ServletResponse
  *
  */
 
-public abstract class ServletOutputStream extends OutputStream  {
+public abstract class ServletOutputStream extends OutputStream {
 
     private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
-    private static ResourceBundle lStrings =
-        ResourceBundle.getBundle(LSTRING_FILE);
+    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
-
-    
     /**
      *
      * Does nothing, because this is an abstract class.
      *
      */
 
-    protected ServletOutputStream() { }
-
+    protected ServletOutputStream() {
+    }
 
     /**
-     * Writes a <code>String</code> to the client, 
-     * without a carriage return-line feed (CRLF) 
-     * character at the end.
+     * Writes a <code>String</code> to the client, without a carriage return-line feed (CRLF) character at the end.
      *
      *
-     * @param s                       the <code>String</code> to send to the client
+     * @param s the <code>String</code> to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
     public void print(String s) throws IOException {
-        if (s==null) s="null";
+        if (s == null)
+            s = "null";
         int len = s.length();
         for (int i = 0; i < len; i++) {
-            char c = s.charAt (i);
+            char c = s.charAt(i);
 
             //
-            // XXX NOTE:  This is clearly incorrect for many strings,
+            // XXX NOTE: This is clearly incorrect for many strings,
             // but is the only consistent approach within the current
-            // servlet framework.  It must suffice until servlet output
+            // servlet framework. It must suffice until servlet output
             // streams properly encode their output.
             //
-            if ((c & 0xff00) != 0) {        // high order byte must be zero
+            if ((c & 0xff00) != 0) { // high order byte must be zero
                 String errMsg = lStrings.getString("err.not_iso8859_1");
                 Object[] errArgs = new Object[1];
                 errArgs[0] = Character.valueOf(c);
                 errMsg = MessageFormat.format(errMsg, errArgs);
                 throw new CharConversionException(errMsg);
             }
-            write (c);
+            write(c);
         }
     }
 
-
-
     /**
-     * Writes a <code>boolean</code> value to the client,
-     * with no carriage return-line feed (CRLF) 
-     * character at the end.
+     * Writes a <code>boolean</code> value to the client, with no carriage return-line feed (CRLF) character at the end.
      *
-     * @param b                       the <code>boolean</code> value 
-     *                                to send to the client
+     * @param b the <code>boolean</code> value to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -116,16 +105,12 @@ public abstract class ServletOutputStream extends OutputStream  {
         print(msg);
     }
 
-
-
     /**
-     * Writes a character to the client,
-     * with no carriage return-line feed (CRLF) 
-     * at the end.
+     * Writes a character to the client, with no carriage return-line feed (CRLF) at the end.
      *
-     * @param c                       the character to send to the client
+     * @param c the character to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -133,38 +118,27 @@ public abstract class ServletOutputStream extends OutputStream  {
         print(String.valueOf(c));
     }
 
-
-
-
     /**
      *
-     * Writes an int to the client,
-     * with no carriage return-line feed (CRLF) 
-     * at the end.
+     * Writes an int to the client, with no carriage return-line feed (CRLF) at the end.
      *
-     * @param i                       the int to send to the client
+     * @param i the int to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
-     */  
+     */
 
     public void print(int i) throws IOException {
         print(String.valueOf(i));
     }
 
-
-
- 
     /**
      * 
-     * Writes a <code>long</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
+     * Writes a <code>long</code> value to the client, with no carriage return-line feed (CRLF) at the end.
      *
-     * @param l                       the <code>long</code> value 
-     *                                to send to the client
+     * @param l the <code>long</code> value to send to the client
      *
-     * @exception IOException         if an input or output exception 
-     *                                occurred
+     * @exception IOException if an input or output exception occurred
      * 
      */
 
@@ -172,17 +146,13 @@ public abstract class ServletOutputStream extends OutputStream  {
         print(String.valueOf(l));
     }
 
-
-
     /**
      *
-     * Writes a <code>float</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
+     * Writes a <code>float</code> value to the client, with no carriage return-line feed (CRLF) at the end.
      *
-     * @param f                       the <code>float</code> value
-     *                                to send to the client
+     * @param f the <code>float</code> value to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      *
      */
@@ -191,17 +161,13 @@ public abstract class ServletOutputStream extends OutputStream  {
         print(String.valueOf(f));
     }
 
-
-
     /**
      *
-     * Writes a <code>double</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
+     * Writes a <code>double</code> value to the client, with no carriage return-line feed (CRLF) at the end.
      * 
-     * @param d                       the <code>double</code> value
-     *                                to send to the client
+     * @param d the <code>double</code> value to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -209,15 +175,12 @@ public abstract class ServletOutputStream extends OutputStream  {
         print(String.valueOf(d));
     }
 
-
-
     /**
-     * Writes a carriage return-line feed (CRLF)
-     * to the client.
+     * Writes a carriage return-line feed (CRLF) to the client.
      *
      *
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -225,16 +188,13 @@ public abstract class ServletOutputStream extends OutputStream  {
         print("\r\n");
     }
 
-
-
     /**
-     * Writes a <code>String</code> to the client, 
-     * followed by a carriage return-line feed (CRLF).
+     * Writes a <code>String</code> to the client, followed by a carriage return-line feed (CRLF).
      *
      *
-     * @param s                       the <code>String</code> to write to the client
+     * @param s the <code>String</code> to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -243,20 +203,14 @@ public abstract class ServletOutputStream extends OutputStream  {
         println();
     }
 
-
-
-
     /**
      *
-     * Writes a <code>boolean</code> value to the client, 
-     * followed by a 
-     * carriage return-line feed (CRLF).
+     * Writes a <code>boolean</code> value to the client, followed by a carriage return-line feed (CRLF).
      *
      *
-     * @param b                       the <code>boolean</code> value 
-     *                                to write to the client
+     * @param b the <code>boolean</code> value to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -265,16 +219,13 @@ public abstract class ServletOutputStream extends OutputStream  {
         println();
     }
 
-
-
     /**
      *
-     * Writes a character to the client, followed by a carriage
-     * return-line feed (CRLF).
+     * Writes a character to the client, followed by a carriage return-line feed (CRLF).
      *
-     * @param c                       the character to write to the client
+     * @param c the character to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -283,17 +234,14 @@ public abstract class ServletOutputStream extends OutputStream  {
         println();
     }
 
-
-
     /**
      *
-     * Writes an int to the client, followed by a 
-     * carriage return-line feed (CRLF) character.
+     * Writes an int to the client, followed by a carriage return-line feed (CRLF) character.
      *
      *
-     * @param i                       the int to write to the client
+     * @param i the int to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -302,38 +250,30 @@ public abstract class ServletOutputStream extends OutputStream  {
         println();
     }
 
-
-
-    /**  
+    /**
      *
-     * Writes a <code>long</code> value to the client, followed by a 
-     * carriage return-line feed (CRLF).
+     * Writes a <code>long</code> value to the client, followed by a carriage return-line feed (CRLF).
      *
      *
-     * @param l                       the <code>long</code> value to write to the client
+     * @param l the <code>long</code> value to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
-     */  
+     */
 
     public void println(long l) throws IOException {
         print(l);
         println();
     }
 
-
-
     /**
      *
-     * Writes a <code>float</code> value to the client, 
-     * followed by a carriage return-line feed (CRLF).
+     * Writes a <code>float</code> value to the client, followed by a carriage return-line feed (CRLF).
      *
-     * @param f                       the <code>float</code> value 
-     *                                to write to the client
+     * @param f the <code>float</code> value to write to the client
      *
      *
-     * @exception IOException         if an input or output exception 
-     *                                occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -342,18 +282,14 @@ public abstract class ServletOutputStream extends OutputStream  {
         println();
     }
 
-
-
     /**
      *
-     * Writes a <code>double</code> value to the client, 
-     * followed by a carriage return-line feed (CRLF).
+     * Writes a <code>double</code> value to the client, followed by a carriage return-line feed (CRLF).
      *
      *
-     * @param d                       the <code>double</code> value
-     *                                to write to the client
+     * @param d the <code>double</code> value to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException if an input or output exception occurred
      *
      */
 
@@ -365,26 +301,26 @@ public abstract class ServletOutputStream extends OutputStream  {
     /**
      * This method can be used to determine if data can be written without blocking.
      *
-     * @return <code>true</code> if a write to this <code>ServletOutputStream</code>
-     *  will succeed, otherwise returns <code>false</code>.
+     * @return <code>true</code> if a write to this <code>ServletOutputStream</code> will succeed, otherwise returns
+     *         <code>false</code>.
      *
-     *  @since Servlet 3.1
+     * @since Servlet 3.1
      */
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletOutputStream</code> to invoke the provided
-     * {@link WriteListener} when it is possible to write
+     * Instructs the <code>ServletOutputStream</code> to invoke the provided {@link WriteListener} when it is possible
+     * to write
      *
      *
-     * @param writeListener the {@link WriteListener} that should be notified
-     *  when it's possible to write
+     * @param writeListener the {@link WriteListener} that should be notified when it's possible to write
      *
      * @exception IllegalStateException if one of the following conditions is true
-     * <ul>
-     * <li>the associated request is neither upgraded nor the async started
-     * <li>setWriteListener is called more than once within the scope of the same request.
-     * </ul>
+     *                                  <ul>
+     *                                  <li>the associated request is neither upgraded nor the async started
+     *                                  <li>setWriteListener is called more than once within the scope of the same
+     *                                  request.
+     *                                  </ul>
      *
      * @throws NullPointerException if writeListener is null
      *
