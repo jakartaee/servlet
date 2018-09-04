@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +19,7 @@
 package javax.servlet.http;
 
 /**
- * This is the class representing event notifications for changes to
- * sessions within a web application.
+ * This is the class representing event notifications for changes to sessions within a web application.
  *
  * @since Servlet 2.3
  */
@@ -38,10 +38,10 @@ public class HttpSessionEvent extends java.util.EventObject {
 
     /**
      * Return the session that changed.
+     * 
      * @return the {@link HttpSession} for this event.
      */
-    public HttpSession getSession () { 
+    public HttpSession getSession() {
         return (HttpSession) super.getSource();
     }
 }
-

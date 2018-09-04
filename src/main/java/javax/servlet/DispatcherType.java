@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,9 +23,5 @@ package javax.servlet;
  * @since Servlet 3.0
  */
 public enum DispatcherType {
-    FORWARD,
-    INCLUDE,
-    REQUEST,
-    ASYNC,
-    ERROR
+    FORWARD, INCLUDE, REQUEST, ASYNC, ERROR
 }

@@ -32,8 +32,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
     private Collection<HttpMethodConstraintElement> methodConstraints;
 
     /**
-     * Constructs an instance using the default
-     * <code>HttpConstraintElement</code> value as the default Constraint
+     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint
      * element and with no HTTP Method specific constraint elements.
      */
     public ServletSecurityElement() {
@@ -42,60 +41,44 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance with a default Constraint element
-     * and with no HTTP Method specific constraint elements.
+     * Constructs an instance with a default Constraint element and with no HTTP Method specific constraint elements.
      *
-     * @param constraint the HttpConstraintElement to be
-     * applied to all HTTP methods other than those represented in the
-     * <tt>methodConstraints</tt>
+     * @param constraint the HttpConstraintElement to be applied to all HTTP methods other than those represented in the
+     *                   <tt>methodConstraints</tt>
      */
     public ServletSecurityElement(HttpConstraintElement constraint) {
-        super(constraint.getEmptyRoleSemantic(),
-                constraint.getTransportGuarantee(),
-                constraint.getRolesAllowed());
+        super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
         methodConstraints = new HashSet<>();
         methodNames = Collections.emptySet();
     }
 
     /**
-     * Constructs an instance using the default
-     * <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with a collection of HTTP Method specific constraint
-     * elements.
+     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint
+     * element and with a collection of HTTP Method specific constraint elements.
      *
-     * @param methodConstraints the collection of HTTP method specific
-     * constraint elements
+     * @param methodConstraints the collection of HTTP method specific constraint elements
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException if duplicate method names are detected
      */
-    public ServletSecurityElement(
-            Collection<HttpMethodConstraintElement> methodConstraints) {
-        this.methodConstraints = (methodConstraints == null ?
-            new HashSet<>() : methodConstraints);
+    public ServletSecurityElement(Collection<HttpMethodConstraintElement> methodConstraints) {
+        this.methodConstraints = (methodConstraints == null ? new HashSet<>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
     /**
-     * Constructs an instance with a default Constraint element
-     * and with a collection of HTTP Method specific constraint elements.
+     * Constructs an instance with a default Constraint element and with a collection of HTTP Method specific constraint
+     * elements.
      *
-     * @param constraint the HttpConstraintElement to be
-     * applied to all HTTP methods other than those represented in the
-     * <tt>methodConstraints</tt>
-     * @param methodConstraints the collection of HTTP method specific
-     * constraint elements.
+     * @param constraint        the HttpConstraintElement to be applied to all HTTP methods other than those represented
+     *                          in the <tt>methodConstraints</tt>
+     * @param methodConstraints the collection of HTTP method specific constraint elements.
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException if duplicate method names are detected
      */
     public ServletSecurityElement(HttpConstraintElement constraint,
             Collection<HttpMethodConstraintElement> methodConstraints) {
-        super(constraint.getEmptyRoleSemantic(),
-                constraint.getTransportGuarantee(),
-                constraint.getRolesAllowed());
-        this.methodConstraints = (methodConstraints == null ?
-            new HashSet<>() : methodConstraints);
+        super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
+        this.methodConstraints = (methodConstraints == null ? new HashSet<>() : methodConstraints);
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
@@ -104,36 +87,27 @@ public class ServletSecurityElement extends HttpConstraintElement {
      *
      * @param annotation the annotation value
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException if duplicate method names are detected
      */
     public ServletSecurityElement(ServletSecurity annotation) {
-        super(annotation.value().value(),
-                annotation.value().transportGuarantee(),
-                annotation.value().rolesAllowed());
+        super(annotation.value().value(), annotation.value().transportGuarantee(), annotation.value().rolesAllowed());
         this.methodConstraints = new HashSet<>();
-        for (HttpMethodConstraint constraint :
-                annotation.httpMethodConstraints()) {
-            this.methodConstraints.add(
-                new HttpMethodConstraintElement(
-                    constraint.value(),
-                    new HttpConstraintElement(constraint.emptyRoleSemantic(),
-                        constraint.transportGuarantee(),
-                        constraint.rolesAllowed())));
+        for (HttpMethodConstraint constraint : annotation.httpMethodConstraints()) {
+            this.methodConstraints.add(new HttpMethodConstraintElement(constraint.value(), new HttpConstraintElement(
+                    constraint.emptyRoleSemantic(), constraint.transportGuarantee(), constraint.rolesAllowed())));
         }
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
     /**
-     * Gets the (possibly empty) collection of HTTP Method specific
-     * constraint elements.
+     * Gets the (possibly empty) collection of HTTP Method specific constraint elements.
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not
-     * affect this <code>ServletSecurityElement</code>.
+     * <p>
+     * If permitted, any changes to the returned <code>Collection</code> must not affect this
+     * <code>ServletSecurityElement</code>.
      *
      *
-     * @return the (possibly empty) collection of HttpMethodConstraintElement
-     * objects
+     * @return the (possibly empty) collection of HttpMethodConstraintElement objects
      */
     public Collection<HttpMethodConstraintElement> getHttpMethodConstraints() {
         return Collections.unmodifiableCollection(methodConstraints);
@@ -142,11 +116,12 @@ public class ServletSecurityElement extends HttpConstraintElement {
     /**
      * Gets the set of HTTP method names named by the HttpMethodConstraints.
      *
-     *  <p>If permitted, any changes to the returned <code>Collection</code> must not
-     * affect this <code>ServletSecurityElement</code>.
+     * <p>
+     * If permitted, any changes to the returned <code>Collection</code> must not affect this
+     * <code>ServletSecurityElement</code>.
      *
-
      *
+     * 
      * @return the collection String method names
      */
     public Collection<String> getMethodNames() {
@@ -160,18 +135,14 @@ public class ServletSecurityElement extends HttpConstraintElement {
      *
      * @retrun Set of method names
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException if duplicate method names are detected
      */
-    private Collection<String> checkMethodNames(
-            Collection<HttpMethodConstraintElement> methodConstraints) {
+    private Collection<String> checkMethodNames(Collection<HttpMethodConstraintElement> methodConstraints) {
         Collection<String> methodNames = new HashSet<>();
-        for (HttpMethodConstraintElement methodConstraint :
-                        methodConstraints) {
+        for (HttpMethodConstraintElement methodConstraint : methodConstraints) {
             String methodName = methodConstraint.getMethodName();
             if (!methodNames.add(methodName)) {
-                throw new IllegalArgumentException(
-                    "Duplicate HTTP method name: " + methodName);
+                throw new IllegalArgumentException("Duplicate HTTP method name: " + methodName);
             }
         }
         return methodNames;

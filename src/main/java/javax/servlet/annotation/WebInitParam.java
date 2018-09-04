@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,12 +24,11 @@ import java.lang.annotation.Target;
 import java.lang.annotation.Documented;
 
 /**
- * This annotation is used on a Servlet or Filter implementation class
- * to specify an initialization parameter.
+ * This annotation is used on a Servlet or Filter implementation class to specify an initialization parameter.
  * 
  * @since Servlet 3.0
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebInitParam {
@@ -39,14 +39,14 @@ public @interface WebInitParam {
      * @return name of the initialization parameter
      */
     String name();
-    
+
     /**
      * Value of the initialization parameter
      *
      * @return value of the initialization parameter
-     */    
+     */
     String value();
-    
+
     /**
      * Description of the initialization parameter
      *

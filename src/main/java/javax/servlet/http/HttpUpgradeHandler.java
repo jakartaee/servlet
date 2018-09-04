@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,17 +18,15 @@
 package javax.servlet.http;
 
 /**
- * This interface encapsulates the upgrade protocol processing.
- * A HttpUpgradeHandler implementation would allow the servlet container
- * to communicate with it.
+ * This interface encapsulates the upgrade protocol processing. A HttpUpgradeHandler implementation would allow the
+ * servlet container to communicate with it.
  *
  * @since Servlet 3.1
  */
-
 public interface HttpUpgradeHandler {
     /**
-     * It is called once the HTTP Upgrade process has been completed and
-     * the upgraded connection is ready to start using the new protocol.
+     * It is called once the HTTP Upgrade process has been completed and the upgraded connection is ready to start using
+     * the new protocol.
      *
      * @param wc the WebConnection object associated to this upgrade request
      */
