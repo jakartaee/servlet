@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,53 +22,38 @@ import java.util.Enumeration;
 
 /**
  *
- * @author		Various
+ * @author Various
  *
- * @deprecated		As of Java(tm) Servlet API 2.1
- *			for security reasons, with no replacement.
- *			This interface will be removed in a future
- *			version of this API.
+ * @deprecated As of Java(tm) Servlet API 2.1 for security reasons, with no replacement. This interface will be removed
+ *             in a future version of this API.
  *
- * @see			HttpSession
- * @see			HttpSessionBindingEvent
- * @see			HttpSessionBindingListener
+ * @see HttpSession
+ * @see HttpSessionBindingEvent
+ * @see HttpSessionBindingListener
  *
  */
-
 @Deprecated
 public interface HttpSessionContext {
 
     /**
      *
-     * @deprecated 	As of Java Servlet API 2.1 with
-     *			no replacement. This method must 
-     *			return null and will be removed in
-     *			a future version of this API.
+     * @deprecated As of Java Servlet API 2.1 with no replacement. This method must return null and will be removed in a
+     *             future version of this API.
      * @param sessionId the id of the session to be returned
      *
      * @return null in all cases
      */
     @Deprecated
     public HttpSession getSession(String sessionId);
-    
-    
-    
-  
+
     /**
      *
-     * @deprecated	As of Java Servlet API 2.1 with
-     *			no replacement. This method must return 
-     *			an empty <code>Enumeration</code> and will be removed
-     *			in a future version of this API.
+     * @deprecated As of Java Servlet API 2.1 with no replacement. This method must return an empty
+     *             <code>Enumeration</code> and will be removed in a future version of this API.
      *
-     * @return null 
+     * @return null
      *
      */
     @Deprecated
     public Enumeration<String> getIds();
 }
-
-
-
-
-

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,35 +18,42 @@
 package javax.servlet.http;
 
 /**
- * <p>Enumeration of Servlet mapping types.</p>
+ * <p>
+ * Enumeration of Servlet mapping types.
+ * </p>
  *
  * @since 4.0
  */
 public enum MappingMatch {
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the application's context root.</p>
+     * <p>
+     * This is used when the mapping was achieved with an exact match to the application's context root.
+     * </p>
      */
     CONTEXT_ROOT,
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the default servlet of the application, the '{@code /}'
-     * character.</p>
+     * <p>
+     * This is used when the mapping was achieved with an exact match to the default servlet of the application, the
+     * '{@code /}' character.
+     * </p>
      */
     DEFAULT,
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the incoming request.</p>
+     * <p>
+     * This is used when the mapping was achieved with an exact match to the incoming request.
+     * </p>
      */
     EXACT,
     /**
-     * <p>This is used when the mapping was achieved
-     * using an extension, such as "{@code *.xhtml}".</p>
+     * <p>
+     * This is used when the mapping was achieved using an extension, such as "{@code *.xhtml}".
+     * </p>
      */
     EXTENSION,
     /**
-     * <p>This is used when the mapping was achieved
-     * using a path, such as "{@code /faces/*}".</p>
+     * <p>
+     * This is used when the mapping was achieved using a path, such as "{@code /faces/*}".
+     * </p>
      */
     PATH
 }
