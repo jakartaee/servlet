@@ -332,6 +332,12 @@ public interface ServletRequest {
      * <code>null</code> if the servlet container cannot return a <code>RequestDispatcher</code>.
      *
      * <p>
+     * Using a RequestDispatcher, requests may be dispatched to any part of the web application bypassing both implicit
+     * (no direct access to WEB-INF or META-INF) and explicit (defined by the web application) security constraints.
+     * Unsanitized user provided data must not be used to construct the path passed to the RequestDispatcher as it is
+     * very likely to create a security vulnerability in the application.
+     *
+     * <p>
      * The difference between this method and {@link ServletContext#getRequestDispatcher} is that this method can take a
      * relative path.
      *

@@ -257,6 +257,11 @@ public interface ServletContext {
      * This method has a different purpose than <code>java.lang.Class.getResource</code>, which looks up resources based
      * on a class loader. This method does not use class loaders.
      *
+     * <p>
+     * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
+     * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized
+     * user provided data) and when using the result not to create a security vulnerability in the application.
+     *
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the resource located at the named path, or <code>null</code> if there is no resource at that path
@@ -285,6 +290,12 @@ public interface ServletContext {
      * This method is different from <code>java.lang.Class.getResourceAsStream</code>, which uses a class loader. This
      * method allows servlet containers to make a resource available to a servlet from any location, without using a
      * class loader.
+     *
+     * <p>This method bypasses both implicit (no direct access to WEB-INF
+     * or META-INF) and explicit (defined by the web application) security
+     * constraints. Care should be taken both when constructing the path (e.g.
+     * avoid unsanitized user provided data) and when using the result not to
+     * create a security vulnerability in the application.
      *
      *
      * @param path a <code>String</code> specifying the path to the resource
