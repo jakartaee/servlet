@@ -153,7 +153,7 @@
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                         <manifestEntries>
-                            <Automatic-Module-Name>javax.servlet.api</Automatic-Module-Name>
+                            <Automatic-Module-Name>java.servlet</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                     <excludes>
