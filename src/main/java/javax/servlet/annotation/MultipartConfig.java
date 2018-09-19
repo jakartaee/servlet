@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,17 +23,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Annotation that may be specified on a {@link javax.servlet.Servlet}
- * class, indicating that instances of the <tt>Servlet</tt> expect requests
- * that conform to the <tt>multipart/form-data</tt> MIME type.
+ * Annotation that may be specified on a {@link javax.servlet.Servlet} class, indicating that instances of the
+ * <tt>Servlet</tt> expect requests that conform to the <tt>multipart/form-data</tt> MIME type.
  *
- * <p>Servlets annotated with <tt>MultipartConfig</tt> may retrieve the
- * {@link javax.servlet.http.Part} components of a given
- * <tt>multipart/form-data</tt> request by calling 
- * {@link javax.servlet.http.HttpServletRequest#getPart getPart} or
- * {@link javax.servlet.http.HttpServletRequest#getParts getParts}.
+ * <p>
+ * Servlets annotated with <tt>MultipartConfig</tt> may retrieve the {@link javax.servlet.http.Part} components of a
+ * given <tt>multipart/form-data</tt> request by calling {@link javax.servlet.http.HttpServletRequest#getPart getPart}
+ * or {@link javax.servlet.http.HttpServletRequest#getParts getParts}.
  */
-
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MultipartConfig {
@@ -47,17 +45,18 @@ public @interface MultipartConfig {
     /**
      * The maximum size allowed for uploaded files.
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * <p>
+     * The default is <tt>-1L</tt>, which means unlimited.
      *
      * @return the maximum size allowed for uploaded files
      */
     long maxFileSize() default -1L;
 
     /**
-     * The maximum size allowed for <tt>multipart/form-data</tt>
-     * requests
+     * The maximum size allowed for <tt>multipart/form-data</tt> requests
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * <p>
+     * The default is <tt>-1L</tt>, which means unlimited.
      *
      * @return the maximum size allowed for <tt>multipart/form-data</tt> requests
      */

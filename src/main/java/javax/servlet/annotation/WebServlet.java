@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,26 +26,26 @@ import java.lang.annotation.Documented;
 /**
  * Annotation used to declare a servlet.
  *
- * <p>This annotation is processed by the container at deployment time,
- * and the corresponding servlet made available at the specified URL
- * patterns.
+ * <p>
+ * This annotation is processed by the container at deployment time, and the corresponding servlet made available at the
+ * specified URL patterns.
  * 
  * @see javax.servlet.Servlet
  *
  * @since Servlet 3.0
  */
-@Target({ElementType.TYPE})
+@Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebServlet {
-    
+
     /**
      * The name of the servlet
      *
      * @return the name of the servlet
      */
     String name() default "";
-    
+
     /**
      * The URL patterns of the servlet
      *
@@ -58,31 +59,30 @@ public @interface WebServlet {
      * @return the URL patterns of the servlet
      */
     String[] urlPatterns() default {};
-    
+
     /**
-     * The load-on-startup order of the servlet 
+     * The load-on-startup order of the servlet
      *
      * @return the load-on-startup order of the servlet
      */
     int loadOnStartup() default -1;
-    
+
     /**
      * The init parameters of the servlet
      *
      * @return the init parameters of the servlet
      */
-    WebInitParam [] initParams() default {};
-    
+    WebInitParam[] initParams() default {};
+
     /**
      * Declares whether the servlet supports asynchronous operation mode.
      *
      * @return {@code true} if the servlet supports asynchronous operation mode
      * @see javax.servlet.ServletRequest#startAsync
-     * @see javax.servlet.ServletRequest#startAsync(ServletRequest,
-     * ServletResponse)
+     * @see javax.servlet.ServletRequest#startAsync( javax.servlet.ServletRequest,javax.servlet.ServletResponse)
      */
     boolean asyncSupported() default false;
-    
+
     /**
      * The small-icon of the servlet
      *

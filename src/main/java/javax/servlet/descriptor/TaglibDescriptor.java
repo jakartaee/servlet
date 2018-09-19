@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,31 +18,27 @@
 package javax.servlet.descriptor;
 
 /**
- * This interface provides access to the <code>&lt;taglib&gt;</code>
- * related configuration of a web application.
+ * This interface provides access to the <code>&lt;taglib&gt;</code> related configuration of a web application.
  *
- * <p>The configuration is aggregated from the <code>web.xml</code> and
- * <code>web-fragment.xml</code> descriptor files of the web application.
+ * <p>
+ * The configuration is aggregated from the <code>web.xml</code> and <code>web-fragment.xml</code> descriptor files of
+ * the web application.
  *
  * @since Servlet 3.0
  */
 public interface TaglibDescriptor {
-  
+
     /**
-     * Gets the unique identifier of the tag library represented by this
-     * TaglibDescriptor.
-     *  
-     * @return the unique identifier of the tag library represented by this
-     * TaglibDescriptor
+     * Gets the unique identifier of the tag library represented by this TaglibDescriptor.
+     * 
+     * @return the unique identifier of the tag library represented by this TaglibDescriptor
      */
     public String getTaglibURI();
 
     /**
-     * Gets the location of the tag library represented by this
-     * TaglibDescriptor.
-     *  
-     * @return the location of the tag library represented by this
-     * TaglibDescriptor
-     */    
-    public String getTaglibLocation();    
+     * Gets the location of the tag library represented by this TaglibDescriptor.
+     * 
+     * @return the location of the tag library represented by this TaglibDescriptor
+     */
+    public String getTaglibLocation();
 }

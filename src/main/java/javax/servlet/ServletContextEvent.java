@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,32 +18,32 @@
 
 package javax.servlet;
 
-/** 
- * This is the event class for notifications about changes to
- * the servlet context of a web application.
+/**
+ * This is the event class for notifications about changes to the servlet context of a web application.
+ * 
  * @see ServletContextListener
  *
  * @since Servlet 2.3
  */
-
-public class ServletContextEvent extends java.util.EventObject { 
+public class ServletContextEvent extends java.util.EventObject {
 
     private static final long serialVersionUID = -7501701636134222423L;
 
-    /** Construct a ServletContextEvent from the given context.
+    /**
+     * Construct a ServletContextEvent from the given context.
      *
      * @param source - the ServletContext that is sending the event.
      */
     public ServletContextEvent(ServletContext source) {
         super(source);
     }
-    
+
     /**
      * Return the ServletContext that changed.
      *
      * @return the ServletContext that sent the event.
      */
-    public ServletContext getServletContext () { 
+    public ServletContext getServletContext() {
         return (ServletContext) super.getSource();
     }
 }
