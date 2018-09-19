@@ -26,8 +26,8 @@
       <version>1.0</version>
     </parent>
 
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
     <packaging>jar</packaging>
     <version>4.0.2-SNAPSHOT</version>
 
