@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +26,7 @@ import java.io.IOException;
  *
  * <p>A servlet is a small Java program that runs within a Web server.
  * Servlets receive and respond to requests from Web clients,
- * usually across HTTP, the HyperText Transfer Protocol. 
+ * usually across HTTP, the HyperText Transfer Protocol.
  *
  * <p>To implement this interface, you can write a generic servlet
  * that extends
@@ -39,12 +40,12 @@ import java.io.IOException;
  * <ol>
  * <li>The servlet is constructed, then initialized with the <code>init</code> method.
  * <li>Any calls from clients to the <code>service</code> method are handled.
- * <li>The servlet is taken out of service, then destroyed with the 
+ * <li>The servlet is taken out of service, then destroyed with the
  * <code>destroy</code> method, then garbage collected and finalized.
  * </ol>
  *
  * <p>In addition to the life-cycle methods, this interface
- * provides the <code>getServletConfig</code> method, which the servlet 
+ * provides the <code>getServletConfig</code> method, which the servlet
  * can use to get any startup information, and the <code>getServletInfo</code>
  * method, which allows the servlet to return basic information about itself,
  * such as author, version, and copyright.
@@ -60,7 +61,7 @@ import java.io.IOException;
 public interface Servlet {
 
     /**
-     * Called by the servlet container to indicate to a servlet that the 
+     * Called by the servlet container to indicate to a servlet that the
      * servlet is being placed into service.
      *
      * <p>The servlet container calls the <code>init</code>
@@ -76,7 +77,7 @@ public interface Servlet {
      * </ol>
      *
      *
-     * @param config			a <code>ServletConfig</code> object 
+     * @param config			a <code>ServletConfig</code> object
      *					containing the servlet's
      * 					configuration and initialization parameters
      *
@@ -90,18 +91,18 @@ public interface Servlet {
      */
 
     public void init(ServletConfig config) throws ServletException;
-    
-    
+
+
 
     /**
      *
      * Returns a {@link ServletConfig} object, which contains
      * initialization and startup parameters for this servlet.
-     * The <code>ServletConfig</code> object returned is the one 
-     * passed to the <code>init</code> method. 
+     * The <code>ServletConfig</code> object returned is the one
+     * passed to the <code>init</code> method.
      *
-     * <p>Implementations of this interface are responsible for storing the 
-     * <code>ServletConfig</code> object so that this 
+     * <p>Implementations of this interface are responsible for storing the
+     * <code>ServletConfig</code> object so that this
      * method can return it. The {@link GenericServlet}
      * class, which implements this interface, already does this.
      *
@@ -113,25 +114,25 @@ public interface Servlet {
      */
 
     public ServletConfig getServletConfig();
-    
-    
+
+
 
     /**
-     * Called by the servlet container to allow the servlet to respond to 
+     * Called by the servlet container to allow the servlet to respond to
      * a request.
      *
      * <p>This method is only called after the servlet's <code>init()</code>
      * method has completed successfully.
-     * 
-     * <p>  The status code of the response always should be set for a servlet 
+     *
+     * <p>  The status code of the response always should be set for a servlet
      * that throws or sends an error.
      *
-     * 
+     *
      * <p>Servlets typically run inside multithreaded servlet containers
-     * that can handle multiple requests concurrently. Developers must 
+     * that can handle multiple requests concurrently. Developers must
      * be aware to synchronize access to any shared resources such as files,
-     * network connections, and as well as the servlet's class and instance 
-     * variables. 
+     * network connections, and as well as the servlet's class and instance
+     * variables.
      *
      * @param req 	the <code>ServletRequest</code> object that contains
      *			the client's request
@@ -140,7 +141,7 @@ public interface Servlet {
      *			the servlet's response
      *
      * @exception ServletException 	if an exception occurs that interferes
-     *					with the servlet's normal operation 
+     *					with the servlet's normal operation
      *
      * @exception IOException 		if an input or output exception occurs
      *
@@ -148,13 +149,13 @@ public interface Servlet {
 
     public void service(ServletRequest req, ServletResponse res)
 	throws ServletException, IOException;
-	
-	
+
+
 
     /**
      * Returns information about the servlet, such
      * as author, version, and copyright.
-     * 
+     *
      * <p>The string that this method returns should
      * be plain text and not markup of any kind (such as HTML, XML,
      * etc.).
@@ -164,8 +165,8 @@ public interface Servlet {
      */
 
     public String getServletInfo();
-    
-    
+
+
 
     /**
      *
@@ -173,11 +174,11 @@ public interface Servlet {
      * servlet is being taken out of service.  This method is
      * only called once all threads within the servlet's
      * <code>service</code> method have exited or after a timeout
-     * period has passed. After the servlet container calls this 
+     * period has passed. After the servlet container calls this
      * method, it will not call the <code>service</code> method again
      * on this servlet.
      *
-     * <p>This method gives the servlet an opportunity 
+     * <p>This method gives the servlet an opportunity
      * to clean up any resources that are being held (for example, memory,
      * file handles, threads) and make sure that any persistent state is
      * synchronized with the servlet's current state in memory.
