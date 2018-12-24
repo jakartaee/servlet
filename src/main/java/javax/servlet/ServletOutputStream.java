@@ -18,9 +18,9 @@
 
 package javax.servlet;
 
-import java.io.OutputStream;
-import java.io.IOException;
 import java.io.CharConversionException;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  * This is an abstract class that the servlet container implements. Subclasses of this class must implement the
  * <code>java.io.OutputStream.write(int)</code> method.
  *
- * 
+ *
  * @author Various
  *
  * @see ServletResponse
@@ -64,6 +64,7 @@ public abstract class ServletOutputStream extends OutputStream {
         if (s == null)
             s = "null";
         int len = s.length();
+        byte[] out = new byte[len];
         for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
 
@@ -80,8 +81,9 @@ public abstract class ServletOutputStream extends OutputStream {
                 errMsg = MessageFormat.format(errMsg, errArgs);
                 throw new CharConversionException(errMsg);
             }
-            write(c);
+            out[i] = (byte) (0xff & c);
         }
+        write(out,0,len);
     }
 
     /**
@@ -93,13 +95,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void print(boolean b) throws IOException {
-        String msg;
-        if (b) {
-            msg = lStrings.getString("value.true");
-        } else {
-            msg = lStrings.getString("value.false");
-        }
-        print(msg);
+        print(lStrings.getString(b ? "value.true" : "value.false"));
     }
 
     /**
@@ -128,13 +124,13 @@ public abstract class ServletOutputStream extends OutputStream {
     }
 
     /**
-     * 
+     *
      * Writes a <code>long</code> value to the client, with no carriage return-line feed (CRLF) at the end.
      *
      * @param l the <code>long</code> value to send to the client
      *
      * @exception IOException if an input or output exception occurred
-     * 
+     *
      */
     public void print(long l) throws IOException {
         print(String.valueOf(l));
@@ -157,7 +153,7 @@ public abstract class ServletOutputStream extends OutputStream {
     /**
      *
      * Writes a <code>double</code> value to the client, with no carriage return-line feed (CRLF) at the end.
-     * 
+     *
      * @param d the <code>double</code> value to send to the client
      *
      * @exception IOException if an input or output exception occurred
@@ -189,8 +185,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(String s) throws IOException {
-        print(s);
-        println();
+        print(s == null ? "null\r\n" : (s + "\r\n"));
     }
 
     /**
@@ -204,8 +199,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(boolean b) throws IOException {
-        print(b);
-        println();
+        println(lStrings.getString(b ? "value.true" : "value.false"));
     }
 
     /**
@@ -218,8 +212,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(char c) throws IOException {
-        print(c);
-        println();
+        println(String.valueOf(c));
     }
 
     /**
@@ -233,8 +226,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(int i) throws IOException {
-        print(i);
-        println();
+        println(String.valueOf(i));
     }
 
     /**
@@ -248,8 +240,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(long l) throws IOException {
-        print(l);
-        println();
+        println(String.valueOf(l));
     }
 
     /**
@@ -263,8 +254,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(float f) throws IOException {
-        print(f);
-        println();
+        println(String.valueOf(f));
     }
 
     /**
@@ -278,8 +268,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void println(double d) throws IOException {
-        print(d);
-        println();
+        println(String.valueOf(d));
     }
 
     /**
