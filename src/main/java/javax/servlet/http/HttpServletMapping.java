@@ -116,7 +116,7 @@ public interface HttpServletMapping {
      * <p>
      * Return the String representation for the {@code url-pattern} for this mapping. If the {@link #getMappingMatch}
      * value is {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch} value
+     * CONTEXT_ROOT}, this method must return the empty string. If the {@link #getMappingMatch} value
      * is {@code
      * EXTENSION}, this method must return the pattern, without any leading slash. Otherwise, this method returns the
      * pattern exactly as specified in the descriptor or Java configuration.
