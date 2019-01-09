@@ -131,7 +131,7 @@ public interface HttpServletMapping {
     /**
      * <p>
      * Return the String representation for the {@code servlet-name} for this mapping. If the Servlet providing the
-     * response is the default servlet, the return from this method is the name of the defautl servlet, which is
+     * response is the default servlet, the return from this method is the name of the default servlet, which is
      * container specific.
      * </p>
      * 
