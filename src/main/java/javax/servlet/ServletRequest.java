@@ -92,7 +92,7 @@ public interface ServletRequest {
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is
-     * not known ir is greater than Integer.MAX_VALUE. For HTTP servlets, same as the value of the CGI variable
+     * not known or is greater than Integer.MAX_VALUE. For HTTP servlets, same as the value of the CGI variable
      * CONTENT_LENGTH.
      *
      * @return an integer containing the length of the request body or -1 if the length is not known or is greater than
