@@ -45,7 +45,7 @@ public interface ServletRequest {
      * Attributes can be set two ways. The servlet container may set attributes to make available custom information
      * about a request. For example, for requests made using HTTPS, the attribute
      * <code>javax.servlet.request.X509Certificate</code> can be used to retrieve information on the certificate of the
-     * client. Attributes can also be set programatically using {@link ServletRequest#setAttribute}. This allows
+     * client. Attributes can also be set programmatically using {@link ServletRequest#setAttribute}. This allows
      * information to be embedded into a request before a {@link RequestDispatcher} call.
      *
      * <p>
