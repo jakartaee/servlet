@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2018 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2019 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -97,13 +97,13 @@ public interface HttpServletMapping {
 
     /**
      * <p>
-     * Return the portion of the URI path that caused this request to be matched. If the {@link #getMappingMatch} value
-     * is {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch} value
-     * is {@code
-     * EXACT}, this method must return the portion of the path that matched the servlet, omitting any leading slash. If
-     * the {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return the value that
-     * matched the '*'. See the class javadoc for examples.
+     * Return the portion of the URI path that caused this request to be matched. If the {@link #getMappingMatch} value is
+     * {@code
+     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch} value is
+     * {@code
+     * EXACT}, this method must return the portion of the path that matched the servlet, omitting any leading slash. If the
+     * {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return the value that matched
+     * the '*'. See the class javadoc for examples.
      * </p>
      * 
      * @return the match.
@@ -114,10 +114,9 @@ public interface HttpServletMapping {
 
     /**
      * <p>
-     * Return the String representation for the {@code url-pattern} for this mapping. If the {@link #getMappingMatch}
-     * value is {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch} value
+     * Return the String representation for the {@code url-pattern} for this mapping. If the {@link #getMappingMatch} value
      * is {@code
+     * CONTEXT_ROOT}, this method must return the empty string. If the {@link #getMappingMatch} value is {@code
      * EXTENSION}, this method must return the pattern, without any leading slash. Otherwise, this method returns the
      * pattern exactly as specified in the descriptor or Java configuration.
      * </p>
@@ -130,9 +129,8 @@ public interface HttpServletMapping {
 
     /**
      * <p>
-     * Return the String representation for the {@code servlet-name} for this mapping. If the Servlet providing the
-     * response is the default servlet, the return from this method is the name of the defautl servlet, which is
-     * container specific.
+     * Return the String representation for the {@code servlet-name} for this mapping. If the Servlet providing the response
+     * is the default servlet, the return from this method is the name of the default servlet, which is container specific.
      * </p>
      * 
      * @return the String representation for the {@code servlet-name} for this mapping.
