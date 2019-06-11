@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997-2018 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -45,7 +45,7 @@ public interface ServletRequest {
      * Attributes can be set two ways. The servlet container may set attributes to make available custom information
      * about a request. For example, for requests made using HTTPS, the attribute
      * <code>javax.servlet.request.X509Certificate</code> can be used to retrieve information on the certificate of the
-     * client. Attributes can also be set programatically using {@link ServletRequest#setAttribute}. This allows
+     * client. Attributes can also be set programmatically using {@link ServletRequest#setAttribute}. This allows
      * information to be embedded into a request before a {@link RequestDispatcher} call.
      *
      * <p>
@@ -92,7 +92,7 @@ public interface ServletRequest {
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is
-     * not known ir is greater than Integer.MAX_VALUE. For HTTP servlets, same as the value of the CGI variable
+     * not known or is greater than Integer.MAX_VALUE. For HTTP servlets, same as the value of the CGI variable
      * CONTENT_LENGTH.
      *
      * @return an integer containing the length of the request body or -1 if the length is not known or is greater than
