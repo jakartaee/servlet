@@ -59,6 +59,7 @@
 
     <modules>
         <module>api</module>
+        <module>spec</module>
     </modules>
 
     <licenses>
