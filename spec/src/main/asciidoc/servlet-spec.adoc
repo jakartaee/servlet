@@ -1,0 +1,28 @@
+//
+// Copyright (c) 2017, 2019 Contributors to the Eclipse Foundation
+//
+
+= Jakarta Servlet 4.0
+:authors: Jakarta Servlet Team, https://projects.eclipse.org/projects/ee4j.servlet
+:email: https://dev.eclipse.org/mailman/listinfo/servlet-dev
+:version-label!:
+:doctype: book
+:license: Eclipse Foundation Specification License v1.0
+:source-highlighter: coderay
+:toc: left
+:toclevels: 4
+:sectnumlevels: 4
+:sectanchors:
+ifdef::backend-pdf[]
+:pagenums:
+:numbered:
+:title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
+endif::[]
+
+// == License
+:sectnums!:
+include::license-efsl.adoc[]
+
+// == Scope
+:sectnums:
+include::scope.adoc[]
