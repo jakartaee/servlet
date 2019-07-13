@@ -41,7 +41,7 @@ import javax.servlet.ServletResponse;
  *
  * @author Various
  *
- * @since Servlet 4.0
+ * @since 4.0
  */
 public abstract class HttpFilter extends GenericFilter {
 
@@ -85,7 +85,7 @@ public abstract class HttpFilter extends GenericFilter {
      * @throws ServletException if the request for the could not be handled or either parameter is not an instance of
      *                          the respective {@link HttpServletRequest} or {@link HttpServletResponse}.
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -119,7 +119,7 @@ public abstract class HttpFilter extends GenericFilter {
      *
      * @throws ServletException if the request for the could not be handled
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {

@@ -22,7 +22,7 @@ package javax.servlet;
  * This is the event class for notifications of changes to the attributes of the servlet request in an application.
  * 
  * @see ServletRequestAttributeListener
- * @since Servlet 2.4
+ * @since 2.4
  */
 public class ServletRequestAttributeEvent extends ServletRequestEvent {
 

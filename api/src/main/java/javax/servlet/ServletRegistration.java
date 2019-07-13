@@ -22,7 +22,7 @@ import java.util.*;
 /**
  * Interface through which a {@link Servlet} may be further configured.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface ServletRegistration extends Registration {
 

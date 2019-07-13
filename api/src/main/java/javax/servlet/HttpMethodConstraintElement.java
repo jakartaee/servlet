@@ -22,7 +22,7 @@ import javax.servlet.annotation.HttpMethodConstraint;
 /**
  * Java Class represntation of an {@link HttpMethodConstraint} annotation value.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class HttpMethodConstraintElement extends HttpConstraintElement {
 

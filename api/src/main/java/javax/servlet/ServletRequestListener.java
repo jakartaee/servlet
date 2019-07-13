@@ -37,7 +37,7 @@ import java.util.EventListener;
  * Implementations of this interface are invoked at their {@link #requestInitialized} method in the order in which they
  * have been declared, and at their {@link #requestDestroyed} method in reverse order.
  *
- * @since Servlet 2.4
+ * @since 2.4
  */
 public interface ServletRequestListener extends EventListener {
 

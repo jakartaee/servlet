@@ -33,7 +33,7 @@ import javax.servlet.DispatcherType;
  * 
  * @see javax.servlet.Filter
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

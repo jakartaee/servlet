@@ -106,7 +106,7 @@ public interface ServletRequest {
      *
      * @return a long containing the length of the request body or -1L if the length is not known
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public long getContentLengthLong();
 
@@ -367,7 +367,7 @@ public interface ServletRequest {
      *
      * @return an integer specifying the port number
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public int getRemotePort();
 
@@ -376,7 +376,7 @@ public interface ServletRequest {
      *
      * @return a <code>String</code> containing the host name of the IP on which the request was received.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public String getLocalName();
 
@@ -385,7 +385,7 @@ public interface ServletRequest {
      *
      * @return a <code>String</code> containing the IP address on which the request was received.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public String getLocalAddr();
 
@@ -394,7 +394,7 @@ public interface ServletRequest {
      *
      * @return an integer specifying the port number
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public int getLocalPort();
 
@@ -403,7 +403,7 @@ public interface ServletRequest {
      *
      * @return the servlet context to which this ServletRequest was last dispatched
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ServletContext getServletContext();
 
@@ -442,7 +442,7 @@ public interface ServletRequest {
      *                               response has already been closed
      *
      * @see AsyncContext#dispatch()
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public AsyncContext startAsync() throws IllegalStateException;
 
@@ -496,7 +496,7 @@ public interface ServletRequest {
      *                               such dispatch, or is called again within the scope of the same dispatch, or if the
      *                               response has already been closed
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
             throws IllegalStateException;
@@ -515,7 +515,7 @@ public interface ServletRequest {
      *
      * @return true if this request has been put into asynchronous mode, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isAsyncStarted();
 
@@ -529,7 +529,7 @@ public interface ServletRequest {
      *
      * @return true if this request supports asynchronous operation, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isAsyncSupported();
 
@@ -544,7 +544,7 @@ public interface ServletRequest {
      *                               {@link #startAsync} nor {@link #startAsync(ServletRequest,ServletResponse)} has
      *                               been called
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public AsyncContext getAsyncContext();
 
@@ -572,7 +572,7 @@ public interface ServletRequest {
      * 
      * @see DispatcherType
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public DispatcherType getDispatcherType();
 

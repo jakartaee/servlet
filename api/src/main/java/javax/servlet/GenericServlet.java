@@ -23,7 +23,6 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
- *
  * Defines a generic, protocol-independent servlet. To write an HTTP servlet for use on the Web, extend
  * {@link javax.servlet.http.HttpServlet} instead.
  *
@@ -40,7 +39,6 @@ import java.util.ResourceBundle;
  *
  * <p>
  * To write a generic servlet, you need only override the abstract <code>service</code> method.
- *
  *
  * @author Various
  */

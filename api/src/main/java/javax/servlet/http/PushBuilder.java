@@ -87,7 +87,7 @@ import javax.servlet.http.HttpSession;
  * conditional headers (defined in RFC 7232) values are cleared before returning from {@link #push}. All other values
  * are retained over calls to {@link #push()}.
  *
- * @since Servlet 4.0
+ * @since 4.0
  */
 public interface PushBuilder {
     /**

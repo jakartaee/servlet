@@ -28,24 +28,24 @@ import java.lang.annotation.RetentionPolicy;
  *
  * @see javax.servlet.ServletContainerInitializer
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandlesTypes {
 
     /**
-     * The classes in which a {@link javax.servlet.ServletContainerInitializer ServletContainerInitializer} has
-     * expressed interest.
+     * The classes in which a {@link javax.servlet.ServletContainerInitializer ServletContainerInitializer} has expressed
+     * interest.
      *
      * <p>
-     * If an implementation of <tt>ServletContainerInitializer</tt> specifies this annotation, the Servlet container
-     * must pass the <tt>Set</tt> of application classes that extend, implement, or have been annotated with the class
-     * types listed by this annotation to the {@link javax.servlet.ServletContainerInitializer#onStartup} method of the
+     * If an implementation of <tt>ServletContainerInitializer</tt> specifies this annotation, the Jakarta Servlet container
+     * must pass the <tt>Set</tt> of application classes that extend, implement, or have been annotated with the class types
+     * listed by this annotation to the {@link javax.servlet.ServletContainerInitializer#onStartup} method of the
      * ServletContainerInitializer (if no matching classes are found, <tt>null</tt> must be passed instead)
      * 
      * @return the classes in which {@link javax.servlet.ServletContainerInitializer ServletContainerInitializer} has
-     *         expressed interest
+     * expressed interest
      */
     Class<?>[] value();
 }

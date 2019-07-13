@@ -34,7 +34,7 @@ import java.util.EventListener;
  *
  * @see ServletContextEvent
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface ServletContextListener extends EventListener {
 

@@ -36,7 +36,7 @@ import java.util.EventListener;
  * <p>
  * The order in which implementations of this interface are invoked is unspecified.
  *
- * @since Servlet 2.4
+ * @since 2.4
  */
 public interface ServletRequestAttributeListener extends EventListener {
 

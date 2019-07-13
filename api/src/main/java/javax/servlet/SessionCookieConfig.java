@@ -23,7 +23,7 @@ package javax.servlet;
  * <p>
  * An instance of this class is acquired by a call to {@link ServletContext#getSessionCookieConfig}.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface SessionCookieConfig {
 

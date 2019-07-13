@@ -23,13 +23,18 @@
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.5</version>
+        <relativePath/>
     </parent>
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>4.0.2-SNAPSHOT</version>
+    <version>4.0.3-SNAPSHOT</version>
     
-    <name>Java Servlet API</name>
+    <name>Jakarta Servlet</name>
+    <description>
+        Jakarta Servlet defines a server-side API for handling HTTP requests and responses,
+        and a packaging model for such server-side applications.
+    </description>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
 
     <properties>
@@ -37,8 +42,8 @@
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>jakarta.servlet-api</bundle.symbolicName>
         <bundle.version>4.0.0</bundle.version>
-        <window.title>Java Servlet 4.0</window.title>
-        <doc.title>Java Servlet 4.0 API Specification</doc.title>
+        <window.title>Jakarta Servlet 4.0</window.title>
+        <doc.title>Jakarta Servlet 4.0 Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>3.0.4</findbugs.version>
@@ -132,6 +137,7 @@
         </pluginManagement>
 
         <plugins>
+            <!-- Restricts the Java version to 1.8 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -160,7 +166,7 @@
                         <Bundle-Version>${bundle.version}</Bundle-Version>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Description>
-                            Java(TM) Servlet ${spec.version} API Design Specification
+                            Jakarta Servlet ${spec.version} Specification
                         </Bundle-Description>
                         <Extension-Name>${extension.name}</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
@@ -224,6 +230,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.4</version>
                 <configuration>
+                    <source>1.8</source>
                     <sourcepath>src</sourcepath>
                     <doctitle>${doc.title}</doctitle>
                     <windowtitle>${window.title}</windowtitle>
@@ -231,7 +238,7 @@
                     <docfilessubdirs>true</docfilessubdirs>
                     <groups>
                         <group>
-                            <title>Servlet API Documentation</title>
+                            <title>Jakarta Servlet API Documentation</title>
                             <packages>javax.servlet</packages>
                         </group>
                     </groups>

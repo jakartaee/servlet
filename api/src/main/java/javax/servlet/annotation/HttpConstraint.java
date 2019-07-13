@@ -36,7 +36,7 @@ import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
  * non-specific uses of <code>@HttpConstraint</code> do not yield constraints that will explicitly establish unprotected
  * access for such methods; given that they would not otherwise be covered by a constraint.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

@@ -94,7 +94,7 @@ public abstract class ServletInputStream extends InputStream {
      * @return <code>true</code> when all data for this particular request has been read, otherwise returns
      *         <code>false</code>.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public abstract boolean isFinished();
 
@@ -103,7 +103,7 @@ public abstract class ServletInputStream extends InputStream {
      *
      * @return <code>true</code> if data can be obtained without blocking, otherwise returns <code>false</code>.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public abstract boolean isReady();
 
@@ -122,7 +122,7 @@ public abstract class ServletInputStream extends InputStream {
      *
      * @throws NullPointerException if readListener is null
      *
-     * @since Servlet 3.1
+     * @since 3.1
      * 
      */
     public abstract void setReadListener(ReadListener readListener);

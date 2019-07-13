@@ -24,7 +24,7 @@ import java.util.*;
  * <p>
  * This class represents a part or form item that was received within a <code>multipart/form-data</code> POST request.
  * 
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface Part {
 
@@ -55,7 +55,7 @@ public interface Part {
      *
      * @return the submitted file name
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public String getSubmittedFileName();
 

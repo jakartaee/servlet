@@ -68,20 +68,17 @@ public interface Servlet {
      * <li>Does not return within a time period defined by the Web server
      * </ol>
      *
-     *
      * @param config a <code>ServletConfig</code> object containing the servlet's configuration and initialization
-     *               parameters
+     * parameters
      *
      * @exception ServletException if an exception has occurred that interferes with the servlet's normal operation
      *
      * @see UnavailableException
      * @see #getServletConfig
-     *
      */
-    public void init(ServletConfig config) throws ServletException;
+    void init(ServletConfig config) throws ServletException;
 
     /**
-     *
      * Returns a {@link ServletConfig} object, which contains initialization and startup parameters for this servlet.
      * The <code>ServletConfig</code> object returned is the one passed to the <code>init</code> method.
      *
@@ -92,9 +89,8 @@ public interface Servlet {
      * @return the <code>ServletConfig</code> object that initializes this servlet
      *
      * @see #init
-     *
      */
-    public ServletConfig getServletConfig();
+    ServletConfig getServletConfig();
 
     /**
      * Called by the servlet container to allow the servlet to respond to a request.
@@ -104,7 +100,6 @@ public interface Servlet {
      * 
      * <p>
      * The status code of the response always should be set for a servlet that throws or sends an error.
-     *
      * 
      * <p>
      * Servlets typically run inside multithreaded servlet containers that can handle multiple requests concurrently.
@@ -112,15 +107,13 @@ public interface Servlet {
      * well as the servlet's class and instance variables.
      *
      * @param req the <code>ServletRequest</code> object that contains the client's request
-     *
      * @param res the <code>ServletResponse</code> object that contains the servlet's response
      *
      * @exception ServletException if an exception occurs that interferes with the servlet's normal operation
-     *
-     * @exception IOException      if an input or output exception occurs
+     * @exception IOException if an input or output exception occurs
      *
      */
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
+    void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
 
     /**
      * Returns information about the servlet, such as author, version, and copyright.
@@ -129,22 +122,18 @@ public interface Servlet {
      * The string that this method returns should be plain text and not markup of any kind (such as HTML, XML, etc.).
      *
      * @return a <code>String</code> containing servlet information
-     *
      */
-    public String getServletInfo();
+    String getServletInfo();
 
     /**
-     *
-     * Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. This
-     * method is only called once all threads within the servlet's <code>service</code> method have exited or after a
-     * timeout period has passed. After the servlet container calls this method, it will not call the
-     * <code>service</code> method again on this servlet.
+     * Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. This method
+     * is only called once all threads within the servlet's <code>service</code> method have exited or after a timeout
+     * period has passed. After the servlet container calls this method, it will not call the <code>service</code> method
+     * again on this servlet.
      *
      * <p>
-     * This method gives the servlet an opportunity to clean up any resources that are being held (for example, memory,
-     * file handles, threads) and make sure that any persistent state is synchronized with the servlet's current state
-     * in memory.
-     *
+     * This method gives the servlet an opportunity to clean up any resources that are being held (for example, memory, file
+     * handles, threads) and make sure that any persistent state is synchronized with the servlet's current state in memory.
      */
-    public void destroy();
+    void destroy();
 }

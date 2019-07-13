@@ -23,7 +23,7 @@ package javax.servlet;
  *
  * @see ServletContextAttributeListener
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public class ServletContextAttributeEvent extends ServletContextEvent {
 

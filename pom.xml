@@ -29,8 +29,9 @@
     <groupId>org.eclipse.ee4j.servlet</groupId>
     <artifactId>servlet-parent</artifactId>
     <packaging>pom</packaging>
-    <version>4.0.2-SNAPSHOT</version>
-    <name>Java Servlet API</name>
+    <version>4.0.3-SNAPSHOT</version>
+    
+    <name>Jakarta Servlet Parent</name>
     <description>servlet</description>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
 

@@ -26,7 +26,7 @@ import java.io.IOException;
  * calling filter is the last filter in the chain, to invoke the resource at the end of the chain.
  *
  * @see Filter
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface FilterChain {
 
@@ -39,6 +39,6 @@ public interface FilterChain {
      * @throws IOException      if an I/O related error has occurred during the processing
      * @throws ServletException if an exception has occurred that interferes with the filterChain's normal operation
      */
-    public void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
+    void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
 
 }

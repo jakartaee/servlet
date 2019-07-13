@@ -82,7 +82,7 @@ public interface ServletResponse {
      * @return a <code>String</code> specifying the content type, for example, <code>text/html; charset=UTF-8</code>, or
      *         null
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public String getContentType();
 
@@ -158,7 +158,7 @@ public interface ServletResponse {
      * @see #setContentType
      * @see #setLocale
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     public void setCharacterEncoding(String charset);
 
@@ -178,7 +178,7 @@ public interface ServletResponse {
      * @param len a long specifying the length of the content being returned to the client; sets the Content-Length
      *            header
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public void setContentLengthLong(long len);
 
@@ -265,7 +265,7 @@ public interface ServletResponse {
      * @see #isCommitted
      * @see #reset
      *
-     * @since Servlet 2.3
+     * @since 2.3
      */
     public void resetBuffer();
 

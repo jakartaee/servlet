@@ -23,7 +23,7 @@ package javax.servlet;
  * this web application.
  *
  * @see ServletRequestListener
- * @since Servlet 2.4
+ * @since 2.4
  */
 public class ServletRequestEvent extends java.util.EventObject {
 
