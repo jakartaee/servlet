@@ -41,7 +41,7 @@ import java.util.ResourceBundle;
  *
  * @author Various
  * 
- * @since Servlet 4.0
+ * @since 4.0
  */
 public abstract class GenericFilter implements Filter, FilterConfig, java.io.Serializable {
     private static final long serialVersionUID = 4060116231031076581L;
@@ -57,7 +57,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * Does nothing. All of the filter initialization is done by one of the <code>init</code> methods.
      * </p>
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public GenericFilter() {
     }
@@ -76,7 +76,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      *
      * @return String a <code>String</code> containing the value of the initialization parameter
      *
-     * @since Servlet 4.0
+     * @since 4.0
      *
      */
     @Override
@@ -103,7 +103,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * @return Enumeration an enumeration of <code>String</code> objects containing the names of the filter's
      *         initialization parameters
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public Enumeration<String> getInitParameterNames() {
@@ -122,7 +122,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      *
      * @return FilterConfig the <code>FilterConfig</code> object that initialized this filter
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public FilterConfig getFilterConfig() {
         return config;
@@ -140,7 +140,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * @return ServletContext the <code>ServletContext</code> object passed to this filter by the <code>init</code>
      *         method
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public ServletContext getServletContext() {
@@ -168,7 +168,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * 
      * @see UnavailableException
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public void init(FilterConfig config) throws ServletException {
@@ -188,7 +188,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * 
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public void init() throws ServletException {
 
@@ -201,7 +201,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      *
      * @return the name of this filter instance
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public String getFilterName() {

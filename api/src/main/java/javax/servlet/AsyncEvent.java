@@ -22,7 +22,7 @@ package javax.servlet;
  * {@link ServletRequest#startAsync} or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}) has
  * completed, timed out, or produced an error.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class AsyncEvent {
 

@@ -22,7 +22,7 @@ import javax.servlet.annotation.MultipartConfig;
 /**
  * Java Class represntation of an {@link MultipartConfig} annotation value.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class MultipartConfigElement {
 

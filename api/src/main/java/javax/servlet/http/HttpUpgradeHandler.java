@@ -21,7 +21,7 @@ package javax.servlet.http;
  * This interface encapsulates the upgrade protocol processing. A HttpUpgradeHandler implementation would allow the
  * servlet container to communicate with it.
  *
- * @since Servlet 3.1
+ * @since 3.1
  */
 public interface HttpUpgradeHandler {
     /**

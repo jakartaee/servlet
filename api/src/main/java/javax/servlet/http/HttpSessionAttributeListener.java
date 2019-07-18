@@ -31,7 +31,7 @@ import java.util.EventListener;
  * <p>
  * The order in which implementations of this interface are invoked is unspecified.
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface HttpSessionAttributeListener extends EventListener {
 

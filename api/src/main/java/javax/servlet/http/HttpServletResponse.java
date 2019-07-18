@@ -307,7 +307,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @return the current status code of this response
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public int getStatus();
 
@@ -327,7 +327,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @return the value of the response header with the given name, or <tt>null</tt> if no header with the given name
      *         has been set on this response
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public String getHeader(String name);
 
@@ -345,7 +345,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @return a (possibly empty) <code>Collection</code> of the values of the response header with the given name
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Collection<String> getHeaders(String name);
 
@@ -361,7 +361,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @return a (possibly empty) <code>Collection</code> of the names of the headers of this response
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Collection<String> getHeaderNames();
 
@@ -396,7 +396,7 @@ public interface HttpServletResponse extends ServletResponse {
      *                                  not supported in the request, for instance, the underlying protocol is HTTP 1.0,
      *                                  or the response is not in chunked encoding in HTTP 1.1.
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     default public void setTrailerFields(Supplier<Map<String, String>> supplier) {
     }
@@ -408,7 +408,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @return <code>Supplier</code> of trailer headers
      * 
-     * @since Servlet 4.0
+     * @since 4.0
      */
     default public Supplier<Map<String, String>> getTrailerFields() {
         return null;

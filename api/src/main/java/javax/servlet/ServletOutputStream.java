@@ -277,7 +277,7 @@ public abstract class ServletOutputStream extends OutputStream {
      * @return <code>true</code> if a write to this <code>ServletOutputStream</code> will succeed, otherwise returns
      *         <code>false</code>.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public abstract boolean isReady();
 
@@ -297,7 +297,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      * @throws NullPointerException if writeListener is null
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public abstract void setWriteListener(WriteListener writeListener);
 

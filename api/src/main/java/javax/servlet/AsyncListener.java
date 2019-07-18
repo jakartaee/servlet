@@ -24,7 +24,7 @@ import java.util.EventListener;
  * Listener that will be notified in the event that an asynchronous operation initiated on a ServletRequest to which the
  * listener had been added has completed, timed out, or resulted in an error.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface AsyncListener extends EventListener {
 

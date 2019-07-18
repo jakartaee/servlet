@@ -24,7 +24,7 @@ import java.util.EventListener;
  *
  * Callback notification mechanism that signals to the developer it's possible to write content without blocking.
  *
- * @since Servlet 3.1
+ * @since 3.1
  */
 public interface WriteListener extends EventListener {
 

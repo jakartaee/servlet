@@ -32,7 +32,7 @@ import javax.servlet.ServletRequestWrapper;
  * object.
  * 
  * @see javax.servlet.http.HttpServletRequest
- * @since Servlet 2.3
+ * @since 2.3
  */
 public class HttpServletRequestWrapper extends ServletRequestWrapper implements HttpServletRequest {
 
@@ -232,7 +232,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return changeSessionId() on the wrapped request object.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     @Override
     public String changeSessionId() {
@@ -277,7 +277,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call authenticate on the wrapped request object.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
@@ -287,7 +287,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call login on the wrapped request object.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public void login(String username, String password) throws ServletException {
@@ -297,7 +297,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call login on the wrapped request object.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public void logout() throws ServletException {
@@ -310,7 +310,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * <p>
      * Any changes to the returned <code>Collection</code> must not affect this <code>HttpServletRequestWrapper</code>.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public Collection<Part> getParts() throws IOException, ServletException {
@@ -320,7 +320,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call getPart on the wrapped request object.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public Part getPart(String name) throws IOException, ServletException {
@@ -332,7 +332,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * Create an instance of <code>HttpUpgradeHandler</code> for a given class and uses it for the http protocol upgrade
      * processing.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     @Override
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
@@ -342,7 +342,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call newPushBuilder on the wrapped request object.
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public PushBuilder newPushBuilder() {
@@ -352,7 +352,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call getTrailerFields on the wrapped request object.
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public Map<String, String> getTrailerFields() {
@@ -362,7 +362,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to call isTrailerFieldsReady on the wrapped request object.
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     @Override
     public boolean isTrailerFieldsReady() {

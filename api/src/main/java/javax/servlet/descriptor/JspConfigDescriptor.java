@@ -26,7 +26,7 @@ import java.util.Collection;
  * The configuration is aggregated from the <code>web.xml</code> and <code>web-fragment.xml</code> descriptor files of
  * the web application.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface JspConfigDescriptor {
 

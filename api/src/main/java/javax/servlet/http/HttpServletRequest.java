@@ -280,7 +280,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a {@link PushBuilder} for issuing server push responses from the current request, or null if push is not
      *         supported
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     default public PushBuilder newPushBuilder() {
         return null;
@@ -468,7 +468,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @throws IllegalStateException if there is no session associated with the request
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public String changeSessionId();
 
@@ -544,7 +544,7 @@ public interface HttpServletRequest extends ServletRequest {
      *                               (i.e., the underlying login mechanism did NOT establish the message and HTTP status
      *                               code to be returned to the user)
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException;
 
@@ -571,7 +571,7 @@ public interface HttpServletRequest extends ServletRequest {
      *                             or if a non-null caller identity had already been established (prior to the call to
      *                             login), or if validation of the provided username and password fails.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void login(String username, String password) throws ServletException;
 
@@ -581,7 +581,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @exception ServletException if logout fails
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void logout() throws ServletException;
 
@@ -611,7 +611,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Collection<Part> getParts() throws IOException, ServletException;
 
@@ -633,7 +633,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Part getPart(String name) throws IOException, ServletException;
 
@@ -653,7 +653,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @see javax.servlet.http.HttpUpgradeHandler
      * @see javax.servlet.http.WebConnection
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException;
 
@@ -678,7 +678,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     default public Map<String, String> getTrailerFields() {
         return Collections.emptyMap();
@@ -701,7 +701,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return a boolean whether trailer fields are ready to read
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     default public boolean isTrailerFieldsReady() {
         return true;

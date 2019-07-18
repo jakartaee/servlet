@@ -28,7 +28,7 @@ import java.lang.annotation.RetentionPolicy;
  *
  * @see javax.servlet.ServletContainerInitializer
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

@@ -50,7 +50,7 @@ import java.util.Set;
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface ServletContainerInitializer {
 

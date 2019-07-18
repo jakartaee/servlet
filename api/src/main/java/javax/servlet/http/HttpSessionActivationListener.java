@@ -25,7 +25,7 @@ import java.util.EventListener;
  * and that session will be activated. A container that migrates session between VMs or persists sessions is required to
  * notify all attributes bound to sessions implementing HttpSessionActivationListener.
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface HttpSessionActivationListener extends EventListener {
 

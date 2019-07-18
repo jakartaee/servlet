@@ -32,7 +32,7 @@ import java.util.Map;
  *
  * @see javax.servlet.ServletRequest
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public class ServletRequestWrapper implements ServletRequest {
 
@@ -119,7 +119,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getContentLengthLong() on the wrapped request object.
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     @Override
     public long getContentLengthLong() {
@@ -293,7 +293,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getRemotePort() on the wrapped request object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public int getRemotePort() {
@@ -303,7 +303,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getLocalName() on the wrapped request object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public String getLocalName() {
@@ -313,7 +313,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getLocalAddr() on the wrapped request object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public String getLocalAddr() {
@@ -323,7 +323,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getLocalPort() on the wrapped request object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public int getLocalPort() {
@@ -335,7 +335,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @return the servlet context to which the wrapped servlet request was last dispatched
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public ServletContext getServletContext() {
@@ -356,7 +356,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @see ServletRequest#startAsync
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public AsyncContext startAsync() throws IllegalStateException {
@@ -381,7 +381,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
@@ -396,7 +396,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @see ServletRequest#isAsyncStarted
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public boolean isAsyncStarted() {
@@ -410,7 +410,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @see ServletRequest#isAsyncSupported
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public boolean isAsyncSupported() {
@@ -430,7 +430,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @see ServletRequest#getAsyncContext
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public AsyncContext getAsyncContext() {
@@ -444,7 +444,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @return true if this ServletRequestWrapper wraps the given ServletRequest instance, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isWrapperFor(ServletRequest wrapped) {
         if (request == wrapped) {
@@ -465,7 +465,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @throws IllegalArgumentException if the given class does not implement {@link ServletRequest}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isWrapperFor(Class<?> wrappedType) {
         if (!ServletRequest.class.isAssignableFrom(wrappedType)) {
@@ -488,7 +488,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * 
      * @see ServletRequest#getDispatcherType
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     @Override
     public DispatcherType getDispatcherType() {

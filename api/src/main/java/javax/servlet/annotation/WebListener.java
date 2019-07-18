@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
  * {@link javax.servlet.http.HttpSessionAttributeListener}, or {@link javax.servlet.http.HttpSessionIdListener}
  * interfaces.
  * 
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)

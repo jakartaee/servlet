@@ -29,7 +29,7 @@ import java.util.Locale;
  * through to the wrapped response object.
  * 
  * @author Various
- * @since Servlet 2.3
+ * @since 2.3
  *
  * @see javax.servlet.ServletResponse
  */
@@ -77,7 +77,7 @@ public class ServletResponseWrapper implements ServletResponse {
      * The default behavior of this method is to call setCharacterEncoding(String charset) on the wrapped response
      * object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public void setCharacterEncoding(String charset) {
@@ -135,7 +135,7 @@ public class ServletResponseWrapper implements ServletResponse {
     /**
      * The default behavior of this method is to return getContentType() on the wrapped response object.
      *
-     * @since Servlet 2.4
+     * @since 2.4
      */
     @Override
     public String getContentType() {
@@ -213,7 +213,7 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @return true if this ServletResponseWrapper wraps the given ServletResponse instance, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isWrapperFor(ServletResponse wrapped) {
         if (response == wrapped) {
@@ -234,7 +234,7 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @throws IllegalArgumentException if the given class does not implement {@link ServletResponse}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isWrapperFor(Class<?> wrappedType) {
         if (!ServletResponse.class.isAssignableFrom(wrappedType)) {

@@ -24,7 +24,7 @@ import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 /**
  * Java Class representation of an {@link HttpConstraint} annotation value.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class HttpConstraintElement {
 

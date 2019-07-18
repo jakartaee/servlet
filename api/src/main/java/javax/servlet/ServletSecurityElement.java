@@ -24,7 +24,7 @@ import javax.servlet.annotation.ServletSecurity;
 /**
  * Java Class representation of a {@link ServletSecurity} annotation value.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public class ServletSecurityElement extends HttpConstraintElement {
 

@@ -27,7 +27,7 @@ import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
  * This annotation is used within the {@link ServletSecurity} annotation to represent security constraints on specific
  * HTTP protocol messages.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

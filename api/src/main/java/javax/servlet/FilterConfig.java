@@ -24,7 +24,7 @@ import java.util.Enumeration;
  * A filter configuration object used by a servlet container to pass information to a filter during initialization.
  *
  * @see Filter
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface FilterConfig {
 

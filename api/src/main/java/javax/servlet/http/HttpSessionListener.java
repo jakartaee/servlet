@@ -34,7 +34,7 @@ import java.util.EventListener;
  *
  * @see HttpSessionEvent
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface HttpSessionListener extends EventListener {
 

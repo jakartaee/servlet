@@ -406,7 +406,7 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @param isHttpOnly true if this cookie is to be marked as <i>HttpOnly</i>, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void setHttpOnly(boolean isHttpOnly) {
         this.isHttpOnly = isHttpOnly;
@@ -417,7 +417,7 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @return true if this Cookie has been marked as <i>HttpOnly</i>, false otherwise
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean isHttpOnly() {
         return isHttpOnly;

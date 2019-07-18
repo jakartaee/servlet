@@ -86,7 +86,7 @@ public interface ServletContext {
      *
      * @see javax.servlet.http.HttpServletRequest#getContextPath()
      *
-     * @since Servlet 2.5
+     * @since 2.5
      */
     public String getContextPath();
 
@@ -143,7 +143,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public int getEffectiveMajorVersion();
 
@@ -164,7 +164,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public int getEffectiveMinorVersion();
 
@@ -221,7 +221,7 @@ public interface ServletContext {
      * @return a Set containing the directory listing, or null if there are no resources in the web application whose
      *         path begins with the supplied path.
      *
-     * @since Servlet 2.3
+     * @since 2.3
      */
     public Set<String> getResourcePaths(String path);
 
@@ -524,7 +524,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public boolean setInitParameter(String name, String value);
 
@@ -606,7 +606,7 @@ public interface ServletContext {
      *
      * @return The name of the web application or null if no name has been declared in the deployment descriptor.
      *
-     * @since Servlet 2.3
+     * @since 2.3
      */
     public String getServletContextName();
 
@@ -649,7 +649,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ServletRegistration.Dynamic addServlet(String servletName, String className);
 
@@ -683,7 +683,7 @@ public interface ServletContext {
      * @throws IllegalArgumentException      if the given servlet instance implements {@link SingleThreadModel}, or
      *                                       <code>servletName</code> is null or an empty String
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet);
 
@@ -722,7 +722,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass);
 
@@ -753,7 +753,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public ServletRegistration.Dynamic addJspFile(String servletName, String jspFile);
 
@@ -787,7 +787,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException;
 
@@ -805,7 +805,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ServletRegistration getServletRegistration(String servletName);
 
@@ -830,7 +830,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Map<String, ? extends ServletRegistration> getServletRegistrations();
 
@@ -870,7 +870,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public FilterRegistration.Dynamic addFilter(String filterName, String className);
 
@@ -903,7 +903,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public FilterRegistration.Dynamic addFilter(String filterName, Filter filter);
 
@@ -939,7 +939,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass);
 
@@ -970,7 +970,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public <T extends Filter> T createFilter(Class<T> clazz) throws ServletException;
 
@@ -987,7 +987,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public FilterRegistration getFilterRegistration(String filterName);
 
@@ -1012,7 +1012,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Map<String, ? extends FilterRegistration> getFilterRegistrations();
 
@@ -1032,7 +1032,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public SessionCookieConfig getSessionCookieConfig();
 
@@ -1060,7 +1060,7 @@ public interface ServletContext {
      *                                       specifies a session tracking mode that is not supported by the servlet
      *                                       container
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes);
 
@@ -1080,7 +1080,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
 
@@ -1104,7 +1104,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public Set<SessionTrackingMode> getEffectiveSessionTrackingModes();
 
@@ -1157,7 +1157,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void addListener(String className);
 
@@ -1201,7 +1201,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public <T extends EventListener> void addListener(T t);
 
@@ -1249,7 +1249,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void addListener(Class<? extends EventListener> listenerClass);
 
@@ -1293,7 +1293,7 @@ public interface ServletContext {
      *                                       {@link javax.servlet.http.HttpSessionIdListener}, or
      *                                       {@link javax.servlet.http.HttpSessionListener} interfaces.
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public <T extends EventListener> T createListener(Class<T> clazz) throws ServletException;
 
@@ -1313,7 +1313,7 @@ public interface ServletContext {
      *
      * @see javax.servlet.descriptor.JspConfigDescriptor
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public JspConfigDescriptor getJspConfigDescriptor();
 
@@ -1336,7 +1336,7 @@ public interface ServletContext {
      *
      * @throws SecurityException             if a security manager denies access to the requested class loader
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public ClassLoader getClassLoader();
 
@@ -1361,7 +1361,7 @@ public interface ServletContext {
      *
      * @throws IllegalStateException         if the ServletContext has already been initialized
      *
-     * @since Servlet 3.0
+     * @since 3.0
      */
     public void declareRoles(String... roleNames);
 
@@ -1382,7 +1382,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 3.1
+     * @since 3.1
      */
     public String getVirtualServerName();
 
@@ -1397,7 +1397,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public int getSessionTimeout();
 
@@ -1414,7 +1414,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public void setSessionTimeout(int sessionTimeout);
 
@@ -1431,7 +1431,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public String getRequestCharacterEncoding();
 
@@ -1448,7 +1448,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public void setRequestCharacterEncoding(String encoding);
 
@@ -1465,7 +1465,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public String getResponseCharacterEncoding();
 
@@ -1482,7 +1482,7 @@ public interface ServletContext {
      *                                       <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      *                                       {@link javax.servlet.annotation.WebListener}
      *
-     * @since Servlet 4.0
+     * @since 4.0
      */
     public void setResponseCharacterEncoding(String encoding);
 }

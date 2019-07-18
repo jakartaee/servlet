@@ -48,7 +48,7 @@ import java.io.IOException;
  * <li>Mime-type chain Filter
  * </ol>
  *
- * @since Servlet 2.3
+ * @since 2.3
  */
 public interface Filter {
 

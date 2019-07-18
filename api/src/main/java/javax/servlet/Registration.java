@@ -33,7 +33,7 @@ import java.util.Set;
  * respectively. In most cases, preliminary registrations will be completed by an appropriate, container-provided
  * {@link ServletContainerInitializer}.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 public interface Registration {
 

@@ -29,7 +29,7 @@ import java.lang.annotation.RetentionPolicy;
  * container on HTTP protocol messages. The Servlet container will enforce these constraints on the url-patterns mapped
  * to the servlets mapped to the annotated class.
  *
- * @since Servlet 3.0
+ * @since 3.0
  */
 @Inherited
 @Documented
