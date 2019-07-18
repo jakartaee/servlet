@@ -111,7 +111,7 @@ public interface ServletContext {
     public ServletContext getContext(String uripath);
 
     /**
-     * Returns the major version of Servlets that this container supports. All implementations that
+     * Returns the major version of Jakarta Servlet that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 4.
      *
      * @return 4
@@ -119,7 +119,7 @@ public interface ServletContext {
     public int getMajorVersion();
 
     /**
-     * Returns the minor version of Servlets that this container supports. All implementations that
+     * Returns the minor version of Jakarta Servlet that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 0.
      *
      * @return 0
