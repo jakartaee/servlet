@@ -111,7 +111,7 @@ public interface ServletContext {
     public ServletContext getContext(String uripath);
 
     /**
-     * Returns the major version of the Servlet API that this servlet container supports. All implementations that
+     * Returns the major version of Servlets that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 4.
      *
      * @return 4
@@ -119,7 +119,7 @@ public interface ServletContext {
     public int getMajorVersion();
 
     /**
-     * Returns the minor version of the Servlet API that this servlet container supports. All implementations that
+     * Returns the minor version of Servlets that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 0.
      *
      * @return 0
@@ -351,12 +351,12 @@ public interface ServletContext {
     public RequestDispatcher getNamedDispatcher(String name);
 
     /**
-     * @deprecated As of Java Servlet API 2.1, with no direct replacement.
+     * @deprecated As of Java(tm) Servlet API 2.1, with no direct replacement.
      *
      *             <p>
      *             This method was originally defined to retrieve a servlet from a <code>ServletContext</code>. In this
      *             version, this method always returns <code>null</code> and remains only to preserve binary
-     *             compatibility. This method will be permanently removed in a future version of the Java Servlet API.
+     *             compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
      *
      *             <p>
      *             In lieu of this method, servlets can share information using the <code>ServletContext</code> class
@@ -370,13 +370,13 @@ public interface ServletContext {
     public Servlet getServlet(String name) throws ServletException;
 
     /**
-     * @deprecated As of Java Servlet API 2.0, with no replacement.
+     * @deprecated As of Java(tm) Servlet API 2.0, with no replacement.
      *
      *             <p>
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlets known to
      *             this servlet context. In this version, this method always returns an empty enumeration and remains
      *             only to preserve binary compatibility. This method will be permanently removed in a future version of
-     *             the Java Servlet API.
+     *             Jakarta Servlets.
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
      */
@@ -384,13 +384,13 @@ public interface ServletContext {
     public Enumeration<Servlet> getServlets();
 
     /**
-     * @deprecated As of Java Servlet API 2.1, with no replacement.
+     * @deprecated As of Java(tm) Servlet API 2.1, with no replacement.
      *
      *             <p>
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlet names
      *             known to this context. In this version, this method always returns an empty <code>Enumeration</code>
      *             and remains only to preserve binary compatibility. This method will be permanently removed in a
-     *             future version of the Java Servlet API.
+     *             future version of Jakarta Servlets.
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
      */
@@ -407,7 +407,7 @@ public interface ServletContext {
     public void log(String msg);
 
     /**
-     * @deprecated As of Java Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
+     * @deprecated As of Java(tm) Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
      *
      *             <p>
      *             This method was originally defined to write an exception's stack trace and an explanatory error
@@ -541,8 +541,8 @@ public interface ServletContext {
      * The attribute is returned as a <code>java.lang.Object</code> or some subclass.
      *
      * <p>
-     * Attribute names should follow the same convention as package names. The Java Servlet API specification reserves
-     * names matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves
+     * names matching <code>jakarta.*</code>, <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
      *
@@ -577,8 +577,8 @@ public interface ServletContext {
      * If a null value is passed, the effect is the same as calling <code>removeAttribute()</code>.
      *
      * <p>
-     * Attribute names should follow the same convention as package names. The Java Servlet API specification reserves
-     * names matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves
+     * names matching <code>jakarta.*</code>, <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
      *
      * @param name   a <code>String</code> specifying the name of the attribute
      *

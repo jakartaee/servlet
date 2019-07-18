@@ -357,7 +357,7 @@ public interface ServletRequest {
      * 
      * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed.
      * 
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead.
+     * @deprecated As of Version 2.1 of the Java(tm) Servlet API, use {@link ServletContext#getRealPath} instead.
      */
     @Deprecated
     public String getRealPath(String path);

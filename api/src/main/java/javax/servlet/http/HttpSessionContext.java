@@ -37,7 +37,7 @@ public interface HttpSessionContext {
 
     /**
      *
-     * @deprecated As of Java Servlet API 2.1 with no replacement. This method must return null and will be removed in a
+     * @deprecated As of Java(tm) Servlet API 2.1 with no replacement. This method must return null and will be removed in a
      *             future version of this API.
      * @param sessionId the id of the session to be returned
      *
@@ -48,7 +48,7 @@ public interface HttpSessionContext {
 
     /**
      *
-     * @deprecated As of Java Servlet API 2.1 with no replacement. This method must return an empty
+     * @deprecated As of Java(tm) Servlet API 2.1 with no replacement. This method must return an empty
      *             <code>Enumeration</code> and will be removed in a future version of this API.
      *
      * @return null
