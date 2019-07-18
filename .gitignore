@@ -3,7 +3,7 @@
 *.iws
 *.swp
 *~
-/target/
+target/
 .idea
 nbactions.xml
 .classpath
