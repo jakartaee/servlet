@@ -351,7 +351,7 @@ public interface ServletContext {
     public RequestDispatcher getNamedDispatcher(String name);
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.1, with no direct replacement.
+     * @deprecated As of Java Servlet API 2.1, with no direct replacement.
      *
      *             <p>
      *             This method was originally defined to retrieve a servlet from a <code>ServletContext</code>. In this
@@ -370,7 +370,7 @@ public interface ServletContext {
     public Servlet getServlet(String name) throws ServletException;
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.0, with no replacement.
+     * @deprecated As of Java Servlet API 2.0, with no replacement.
      *
      *             <p>
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlets known to
@@ -384,7 +384,7 @@ public interface ServletContext {
     public Enumeration<Servlet> getServlets();
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.1, with no replacement.
+     * @deprecated As of Java Servlet API 2.1, with no replacement.
      *
      *             <p>
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlet names
@@ -407,7 +407,7 @@ public interface ServletContext {
     public void log(String msg);
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
+     * @deprecated As of Java Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
      *
      *             <p>
      *             This method was originally defined to write an exception's stack trace and an explanatory error
@@ -541,8 +541,8 @@ public interface ServletContext {
      * The attribute is returned as a <code>java.lang.Object</code> or some subclass.
      *
      * <p>
-     * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves
-     * names matching <code>jakarta.*</code>, <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * Attribute names should follow the same convention as package names. The Java Servlet API specification reserves
+     * names matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
      *
@@ -577,8 +577,8 @@ public interface ServletContext {
      * If a null value is passed, the effect is the same as calling <code>removeAttribute()</code>.
      *
      * <p>
-     * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves
-     * names matching <code>jakarta.*</code>, <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * Attribute names should follow the same convention as package names. The Java Servlet API specification reserves
+     * names matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
      *
      * @param name   a <code>String</code> specifying the name of the attribute
      *

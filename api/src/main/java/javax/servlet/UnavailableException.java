@@ -51,7 +51,7 @@ public class UnavailableException extends ServletException {
 
     /**
      * 
-     * @deprecated As of Java(tm) Servlet API 2.2, use {@link #UnavailableException(String)} instead.
+     * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String)} instead.
      *
      * @param servlet the <code>Servlet</code> instance that is unavailable
      *
@@ -66,7 +66,7 @@ public class UnavailableException extends ServletException {
     }
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.2, use {@link #UnavailableException(String, int)} instead.
+     * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String, int)} instead.
      *
      * @param seconds an integer specifying the number of seconds the servlet expects to be unavailable; if zero or
      *                negative, indicates that the servlet can't make an estimate
@@ -142,7 +142,7 @@ public class UnavailableException extends ServletException {
     }
 
     /**
-     * @deprecated As of Java(tm) Servlet API 2.2, with no replacement.
+     * @deprecated As of Java Servlet API 2.2, with no replacement.
      *
      *             Returns the servlet that is reporting its unavailability.
      * 

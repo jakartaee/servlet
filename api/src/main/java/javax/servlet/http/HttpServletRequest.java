@@ -512,7 +512,7 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdFromURL();
 
     /**
-     * @deprecated As of Version 2.1 of the Java(tm) Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
+     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
      *
      * @return <code>true</code> if the session ID was conveyed to the server as part of a URL; otherwise,
      *         <code>false</code>

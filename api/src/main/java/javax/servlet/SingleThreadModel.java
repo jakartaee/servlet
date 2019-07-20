@@ -37,7 +37,7 @@ package javax.servlet;
  *
  * @author Various
  *
- * @deprecated As of Java(tm) Servlet API 2.4, with no direct replacement.
+ * @deprecated As of Java Servlet API 2.4, with no direct replacement.
  */
 @Deprecated
 public interface SingleThreadModel {

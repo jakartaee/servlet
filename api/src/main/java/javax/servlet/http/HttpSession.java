@@ -138,7 +138,7 @@ public interface HttpSession {
     /**
      *
      * @deprecated As of Version 2.1, this method is deprecated and has no replacement. It will be removed in a future
-     *             version of the Java(tm) Servlet API.
+     *             version of the Java Servlet API.
      *
      * @return the {@link HttpSessionContext} for this session.
      */
