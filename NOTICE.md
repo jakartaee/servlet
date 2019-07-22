@@ -1,13 +1,13 @@
-# Notices for Eclipse Project for Servlet
+# Notices for Jakarta Servlet
 
-This content is produced and maintained by the Eclipse Project for Servlet
+This content is produced and maintained by the Jakarta Servlet
 project.
 
 * Project home: https://projects.eclipse.org/projects/ee4j.servlet
 
 ## Trademarks
 
-Eclipse Project for Servlet is a trademark of the Eclipse Foundation.
+Jakarta Servlet is a trademark of the Eclipse Foundation.
 
 ## Copyright
 

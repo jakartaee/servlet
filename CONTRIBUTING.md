@@ -1,10 +1,10 @@
-# Contributing to Eclipse Project for Servlet
+# Contributing to Jakarta Servlet
 
 Thanks for your interest in this project.
 
 ## Project description
 
-Java Servlets is a standard technology for interacting with the web on the
+Jakarta Servlets is a standard technology for interacting with the web on the
 Jakarta EE platform. 
 
 * https://projects.eclipse.org/projects/ee4j.servlet

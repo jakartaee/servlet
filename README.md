@@ -1,5 +1,5 @@
-Java Servlet API
-================
+Jakarta Servlet API
+===================
 
 Building
 --------
