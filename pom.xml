@@ -29,7 +29,7 @@
     <groupId>org.eclipse.ee4j.servlet</groupId>
     <artifactId>servlet-parent</artifactId>
     <packaging>pom</packaging>
-    <version>4.0.2-SNAPSHOT</version>
+    <version>4.0.3-SNAPSHOT</version>
     <name>Jakarta Servlet Parent</name>
     <description>
         Jakarta Servlet defines a server-side API for handling HTTP requests and responses.
