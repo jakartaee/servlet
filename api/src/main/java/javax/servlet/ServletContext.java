@@ -111,7 +111,7 @@ public interface ServletContext {
     public ServletContext getContext(String uripath);
 
     /**
-     * Returns the major version of the Servlet API that this servlet container supports. All implementations that
+     * Returns the major version of Jakarta Servlet that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 4.
      *
      * @return 4
@@ -119,7 +119,7 @@ public interface ServletContext {
     public int getMajorVersion();
 
     /**
-     * Returns the minor version of the Servlet API that this servlet container supports. All implementations that
+     * Returns the minor version of Jakarta Servlet that this container supports. All implementations that
      * comply with Version 4.0 must have this method return the integer 0.
      *
      * @return 0
@@ -356,7 +356,7 @@ public interface ServletContext {
      *             <p>
      *             This method was originally defined to retrieve a servlet from a <code>ServletContext</code>. In this
      *             version, this method always returns <code>null</code> and remains only to preserve binary
-     *             compatibility. This method will be permanently removed in a future version of the Java Servlet API.
+     *             compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
      *
      *             <p>
      *             In lieu of this method, servlets can share information using the <code>ServletContext</code> class
@@ -376,7 +376,7 @@ public interface ServletContext {
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlets known to
      *             this servlet context. In this version, this method always returns an empty enumeration and remains
      *             only to preserve binary compatibility. This method will be permanently removed in a future version of
-     *             the Java Servlet API.
+     *             Jakarta Servlets.
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
      */
@@ -390,7 +390,7 @@ public interface ServletContext {
      *             This method was originally defined to return an <code>Enumeration</code> of all the servlet names
      *             known to this context. In this version, this method always returns an empty <code>Enumeration</code>
      *             and remains only to preserve binary compatibility. This method will be permanently removed in a
-     *             future version of the Java Servlet API.
+     *             future version of Jakarta Servlets.
      *
      * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
      */

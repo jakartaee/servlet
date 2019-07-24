@@ -29,7 +29,7 @@
     <artifactId>jakarta.servlet-api</artifactId>
     <version>4.0.3-SNAPSHOT</version>
     
-    <name>Java Servlet API</name>
+    <name>Jakarta Servlet</name>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
 
     <properties>
@@ -37,8 +37,8 @@
         <extension.name>javax.servlet</extension.name>
         <bundle.symbolicName>jakarta.servlet-api</bundle.symbolicName>
         <bundle.version>4.0.0</bundle.version>
-        <window.title>Java Servlet 4.0</window.title>
-        <doc.title>Java Servlet 4.0 API Specification</doc.title>
+        <window.title>Jakarta Servlet 4.0</window.title>
+        <doc.title>Jakarta Servlet 4.0 Specification</doc.title>
         <vendor.name>Oracle Corporation</vendor.name>
         <implementation.vendor.id>org.glassfish</implementation.vendor.id>
         <findbugs.version>3.0.4</findbugs.version>
@@ -231,7 +231,7 @@
                     <docfilessubdirs>true</docfilessubdirs>
                     <groups>
                         <group>
-                            <title>Servlet API Documentation</title>
+                            <title>Servlet Documentation</title>
                             <packages>javax.servlet</packages>
                         </group>
                     </groups>
