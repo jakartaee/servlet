@@ -160,7 +160,7 @@
                         <Bundle-Version>${bundle.version}</Bundle-Version>
                         <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
                         <Bundle-Description>
-                            Java(TM) Servlet ${spec.version} API Design Specification
+                            Jakarta Servlet ${spec.version}
                         </Bundle-Description>
                         <Extension-Name>${extension.name}</Extension-Name>
                         <Specification-Version>${spec.version}</Specification-Version>
