@@ -9,6 +9,8 @@ Status: {revremark}
 Release: {revdate}
 ....
 
+Copyright (c) 2019 Eclipse Foundation.
+
 === Eclipse Foundation Specification License
 
 By using and/or copying this document, or the Eclipse Foundation
