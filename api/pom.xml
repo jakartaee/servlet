@@ -229,6 +229,7 @@
                     <windowtitle>${window.title}</windowtitle>
                     <stylesheetfile>javax.servlet-api.css</stylesheetfile>
                     <docfilessubdirs>true</docfilessubdirs>
+                    <bottom><![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} <a href="https://eclipse.org">Eclipse Foundation</a>. Licensed under the <a href="{@docRoot}/doc-files/speclicense.html">Eclipse Foundation Specification License - v1.0</a>.]]></bottom>
                     <groups>
                         <group>
                             <title>Servlet Documentation</title>
