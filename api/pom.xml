@@ -39,8 +39,8 @@
         <bundle.version>4.0.0</bundle.version>
         <window.title>Jakarta Servlet 4.0</window.title>
         <doc.title>Jakarta Servlet 4.0 Specification</doc.title>
-        <vendor.name>Oracle Corporation</vendor.name>
-        <implementation.vendor.id>org.glassfish</implementation.vendor.id>
+        <vendor.name>Eclipse Foundation</vendor.name>
+        <implementation.vendor.id>org.eclipse</implementation.vendor.id>
         <findbugs.version>3.0.4</findbugs.version>
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
