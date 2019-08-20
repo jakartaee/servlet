@@ -218,61 +218,72 @@
                 </executions>
             </plugin>
             
-            <!-- Creates the javadoc jar -->
+            <!-- 
+               Create Javadoc for API jar
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
-                <configuration>
-                    <sourcepath>src</sourcepath>
-                    <doctitle>${doc.title}</doctitle>
-                    <windowtitle>${window.title}</windowtitle>
-                    <stylesheetfile>javax.servlet-api.css</stylesheetfile>
-                    <docfilessubdirs>true</docfilessubdirs>
-                    <bottom><![CDATA[Copyright &#169; {inceptionYear}&#x2013;{currentYear} <a href="https://eclipse.org">Eclipse Foundation</a>. Licensed under the <a href="{@docRoot}/doc-files/speclicense.html">Eclipse Foundation Specification License - v1.0</a>.]]></bottom>
-                    <groups>
-                        <group>
-                            <title>Servlet Documentation</title>
-                            <packages>javax.servlet</packages>
-                        </group>
-                    </groups>
-                    <tags>
-                        <tag>
-                            <name>implSpec</name>
-                            <placement>a</placement>
-                            <head>Implementation Requirements:</head>
-                        </tag>
-                        <tag>
-                            <name>param</name>
-                        </tag>
-                        <tag>
-                            <name>return</name>
-                        </tag>
-                        <tag>
-                            <name>throws</name>
-                        </tag>
-                        <tag>
-                            <name>since</name>
-                        </tag>
-                        <tag>
-                            <name>version</name>
-                        </tag>
-                        <tag>
-                            <name>serialData</name>
-                        </tag>
-                        <tag>
-                            <name>factory</name>
-                        </tag>
-                        <tag>
-                            <name>see</name>
-                        </tag>
-                    </tags>
-                </configuration>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
+                        <id>attach-api-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration>
+                            <source>1.8</source>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                            <description>Jakarta Servlet API documentation</description>
+                            <doctitle>Jakarta Servlet API documentation</doctitle>
+                            <windowtitle>Jakarta Servlet API documentation</windowtitle>
+                            <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
+                            <bottom><![CDATA[
+Comments to: <a href="mailto:servlet-dev@eclipse.org">servlet-dev@eclipse.org</a>.<br>
+Copyright &#169; 2019 Eclipse Foundation. All rights reserved.<br>
+Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
+                            </bottom>
+                            <docfilessubdirs>true</docfilessubdirs>
+                            <groups>
+                                <group>
+                                    <title>Jakarta Servlet API Documentation</title>
+                                    <packages>
+                                        javax.servlet.*
+                                    </packages>
+                                </group>
+                            </groups>
+                            <tags>
+                                <tag>
+                                    <name>implSpec</name>
+                                    <placement>a</placement>
+                                    <head>Implementation Requirements:</head>
+                                </tag>
+                                <tag>
+                                    <name>param</name>
+                                </tag>
+                                <tag>
+                                    <name>return</name>
+                                </tag>
+                                <tag>
+                                    <name>throws</name>
+                                </tag>
+                                <tag>
+                                    <name>since</name>
+                                </tag>
+                                <tag>
+                                    <name>version</name>
+                                </tag>
+                                <tag>
+                                    <name>serialData</name>
+                                </tag>
+                                <tag>
+                                    <name>factory</name>
+                                </tag>
+                                <tag>
+                                    <name>see</name>
+                                </tag>
+                            </tags>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
