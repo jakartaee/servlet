@@ -92,6 +92,7 @@ public class Cookie implements Cloneable, Serializable {
     private boolean secure; // ;Secure ... e.g. use SSL
     private int version = 0; // ;Version=1 ... means RFC 2109++ style
     private boolean isHttpOnly = false;
+    private SameSite sameSite = null;
 
     /**
      * Constructs a cookie with the specified name and value.
@@ -421,5 +422,102 @@ public class Cookie implements Cloneable, Serializable {
      */
     public boolean isHttpOnly() {
         return isHttpOnly;
+    }
+
+    /**
+     * Sets the <i>SameSite</i> attribute for this cookie with the provided value.
+     *
+     * <p>
+     * When <code>sameSite</code> is not <code>null</code>, this cookie will have its <code>SameSite</code>
+     * attribute set with the provided value.
+     *
+     * @param sameSite the <i>SameSite</i> attribute's value; may be null if the attribute should not be set
+     *
+     * @since Servlet 5.0
+     */
+    public void setSameSite(SameSite sameSite) {
+        this.sameSite = sameSite;
+    }
+
+    /**
+     * Returns the <i>SameSite</i> attribute associated with this cookie.
+     *
+     * @return the <i>SameSite</i> attribute associated with this cookie; may be null to indicate that the attribute
+     *         should not be set
+     *
+     * @since Servlet 5.0
+     */
+    public SameSite getSameSite() {
+        return sameSite;
+    }
+
+    /**
+     * The available values that can be used with the cookie's <i>SameSite</i> attribute.
+     */
+    public enum SameSite {
+
+        /**
+         * This mode effectively disables the protection provided by SameSite cookies.
+         *
+         * <p>
+         * When SameSiteMode is {@literal None}, applications should have additional measures to protect cookies
+         * from CSRF attacks.
+         *
+         * <p>
+         * Browsers may default to {@link SameSite#LAX} or {@link SameSite#STRICT} when the flag is not
+         * explicitly set by applications in the Set-Cookie header. Setting the {@literal SameSite} attribute to
+         * {@literal None} ensures that this default behavior is disabled in browsers.
+         *
+         * <p>
+         * Note that this mode is browser dependent, and browsers may require cookies to have the {@literal Secure}
+         * attribute to be set at the same time.
+         */
+        NONE("None"),
+        /**
+         * This mode allows sending cookies along for cross-site top level navigation requests.
+         *
+         * <p>
+         * When SameSite is set to {@literal Lax}, the browser is allowed to send the cookie value along with top level
+         * navigation requests when making requests cross-site.
+         */
+        LAX("Lax"),
+        /**
+         * This mode prevents browsers from sending cookies along with any kind of cross-site requests.
+         *
+         * <p>
+         * When SameSite is set to {@literal Strict}, the browser is not allowed to send the cookie value along with
+         * cross-site requests.
+         *
+         * <p>
+         * This behaviour could prevent applications seeing the end-user's session when a cross-site navigation
+         * takes place. To overcome this, applications should consider utilising multiple cookies to keep track of
+         * sessions.
+         */
+        STRICT("Strict");
+
+        private final String value;
+
+        SameSite(String value) {
+            this.value = value;
+        }
+
+        /**
+         * Retrieves the {@link SameSite} instance from its String representation.
+         *
+         * @param value the String to be converted
+         * @return the corresponding {@link SameSite} enum
+         */
+        public static SameSite fromString(String value) {
+            return valueOf(value.toUpperCase(Locale.ENGLISH));
+        }
+
+        /**
+         * Gets the literal representation of the same site mode that can be included in Set-Cookie headers.
+         *
+         * @return the literal representation of the same site mode
+         */
+        public String toLiteral() {
+            return value;
+        }
     }
 }
