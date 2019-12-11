@@ -74,12 +74,11 @@ public interface Part {
      * implementation to use, for example, file renaming, where possible, rather than copying all of the underlying
      * data, thus gaining a significant performance benefit.
      *
-     * @param fileName The location into which the uploaded part should be stored. The value may be a file name or a
-     *                 path. The actual location of the file in the filesystem is relative to
-     *                 {@link javax.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as provided
-     *                 and are relative to <code>getLocation()</code>. Note: that this is a system dependent string and
-     *                 URI notation may not be acceptable on all systems. For portability, this string should be
-     *                 generated with the File or Path APIs.
+     * @param fileName The location into which the uploaded part should be stored. Relative paths are relative to 
+     *                 {@link javax.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as 
+     *                 provided. Note: that this is a system dependent string and URI notation may not be 
+     *                 acceptable on all systems. For portability, this string should be generated with the
+     *                 File or Path APIs.
      *
      * @throws IOException if an error occurs.
      */
