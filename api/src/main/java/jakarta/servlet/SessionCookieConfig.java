@@ -52,7 +52,7 @@ public interface SessionCookieConfig {
      *
      * @return the cookie name set via {@link #setName}, or <tt>null</tt> if {@link #setName} was never called
      *
-     * @see javax.servlet.http.Cookie#getName()
+     * @see jakarta.servlet.http.Cookie#getName()
      */
     public String getName();
 
@@ -65,7 +65,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setDomain(String)
+     * @see jakarta.servlet.http.Cookie#setDomain(String)
      */
     public void setDomain(String domain);
 
@@ -75,7 +75,7 @@ public interface SessionCookieConfig {
      *
      * @return the cookie domain set via {@link #setDomain}, or <tt>null</tt> if {@link #setDomain} was never called
      *
-     * @see javax.servlet.http.Cookie#getDomain()
+     * @see jakarta.servlet.http.Cookie#getDomain()
      */
     public String getDomain();
 
@@ -88,7 +88,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setPath(String)
+     * @see jakarta.servlet.http.Cookie#setPath(String)
      */
     public void setPath(String path);
 
@@ -102,7 +102,7 @@ public interface SessionCookieConfig {
      *
      * @return the cookie path set via {@link #setPath}, or <tt>null</tt> if {@link #setPath} was never called
      *
-     * @see javax.servlet.http.Cookie#getPath()
+     * @see jakarta.servlet.http.Cookie#getPath()
      */
     public String getPath();
 
@@ -119,8 +119,8 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setComment(String)
-     * @see javax.servlet.http.Cookie#getVersion
+     * @see jakarta.servlet.http.Cookie#setComment(String)
+     * @see jakarta.servlet.http.Cookie#getVersion
      */
     public void setComment(String comment);
 
@@ -130,7 +130,7 @@ public interface SessionCookieConfig {
      *
      * @return the cookie comment set via {@link #setComment}, or <tt>null</tt> if {@link #setComment} was never called
      *
-     * @see javax.servlet.http.Cookie#getComment()
+     * @see jakarta.servlet.http.Cookie#getComment()
      */
     public String getComment();
 
@@ -150,7 +150,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setHttpOnly(boolean)
+     * @see jakarta.servlet.http.Cookie#setHttpOnly(boolean)
      */
     public void setHttpOnly(boolean httpOnly);
 
@@ -163,7 +163,7 @@ public interface SessionCookieConfig {
      *         <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired will be marked as
      *         <i>HttpOnly</i>, false otherwise
      *
-     * @see javax.servlet.http.Cookie#isHttpOnly()
+     * @see jakarta.servlet.http.Cookie#isHttpOnly()
      */
     public boolean isHttpOnly();
 
@@ -186,7 +186,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setSecure(boolean)
+     * @see jakarta.servlet.http.Cookie#setSecure(boolean)
      * @see ServletRequest#isSecure()
      */
     public void setSecure(boolean secure);
@@ -202,7 +202,7 @@ public interface SessionCookieConfig {
      *         HTTPS, and false if they will be marked as <i>secure</i> only if the request that initiated the
      *         corresponding session was also secure
      *
-     * @see javax.servlet.http.Cookie#getSecure()
+     * @see jakarta.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
      */
     public boolean isSecure();
@@ -218,7 +218,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      *                               acquired has already been initialized
      *
-     * @see javax.servlet.http.Cookie#setMaxAge
+     * @see jakarta.servlet.http.Cookie#setMaxAge
      */
     public void setMaxAge(int maxAge);
 
@@ -233,7 +233,7 @@ public interface SessionCookieConfig {
      *         represented by the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired, or
      *         <tt>-1</tt> (the default)
      *
-     * @see javax.servlet.http.Cookie#getMaxAge
+     * @see jakarta.servlet.http.Cookie#getMaxAge
      */
     public int getMaxAge();
 }

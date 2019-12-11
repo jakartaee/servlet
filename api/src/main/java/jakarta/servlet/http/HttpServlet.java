@@ -73,7 +73,7 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
 
-    private static final String LSTRING_FILE = "javax.servlet.http.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     /**
@@ -103,7 +103,7 @@ public abstract class HttpServlet extends GenericServlet {
      * sent before the response body.
      *
      * <p>
-     * Where possible, set the Content-Length header (with the {@link javax.servlet.ServletResponse#setContentLength}
+     * Where possible, set the Content-Length header (with the {@link jakarta.servlet.ServletResponse#setContentLength}
      * method), to allow the servlet container to use a persistent connection to return its response to the client,
      * improving performance. The content length is automatically set if the entire response fits inside the response
      * buffer.
@@ -133,7 +133,7 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @throws ServletException if the request for the GET could not be handled
      *
-     * @see javax.servlet.ServletResponse#setContentType
+     * @see jakarta.servlet.ServletResponse#setContentType
      */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
@@ -213,7 +213,7 @@ public abstract class HttpServlet extends GenericServlet {
      * sent before the response body.
      *
      * <p>
-     * Where possible, set the Content-Length header (with the {@link javax.servlet.ServletResponse#setContentLength}
+     * Where possible, set the Content-Length header (with the {@link jakarta.servlet.ServletResponse#setContentLength}
      * method), to allow the servlet container to use a persistent connection to return its response to the client,
      * improving performance. The content length is automatically set if the entire response fits inside the response
      * buffer.
@@ -239,7 +239,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the request for the POST could not be handled
      *
      * @see jakarta.servlet.ServletOutputStream
-     * @see javax.servlet.ServletResponse#setContentType
+     * @see jakarta.servlet.ServletResponse#setContentType
      */
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
@@ -479,7 +479,7 @@ public abstract class HttpServlet extends GenericServlet {
     /**
      * Receives standard HTTP requests from the public <code>service</code> method and dispatches them to the
      * <code>do</code><i>XXX</i> methods defined in this class. This method is an HTTP-specific version of the
-     * {@link javax.servlet.Servlet#service} method. There's no need to override this method.
+     * {@link jakarta.servlet.Servlet#service} method. There's no need to override this method.
      *
      * @param req  the {@link HttpServletRequest} object that contains the request the client made of the servlet
      *
@@ -489,7 +489,7 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @throws ServletException if the HTTP request cannot be handled
      * 
-     * @see javax.servlet.Servlet#service
+     * @see jakarta.servlet.Servlet#service
      */
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getMethod();
@@ -572,7 +572,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the HTTP request cannot be handled or if either parameter is not an instance of its
      *                          respective {@link HttpServletRequest} or {@link HttpServletResponse} counterparts.
      * 
-     * @see javax.servlet.Servlet#service
+     * @see jakarta.servlet.Servlet#service
      */
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
@@ -598,7 +598,7 @@ public abstract class HttpServlet extends GenericServlet {
 // file private
 class NoBodyResponse extends HttpServletResponseWrapper {
 
-    private static final ResourceBundle lStrings = ResourceBundle.getBundle("javax.servlet.http.LocalStrings");
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
 
     private NoBodyOutputStream noBody;
     private PrintWriter writer;
@@ -696,7 +696,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 // file private
 class NoBodyOutputStream extends ServletOutputStream {
 
-    private static final String LSTRING_FILE = "javax.servlet.http.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private int contentLength = 0;

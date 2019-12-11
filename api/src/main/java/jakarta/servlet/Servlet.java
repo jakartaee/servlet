@@ -28,8 +28,8 @@ import java.io.IOException;
  * clients, usually across HTTP, the HyperText Transfer Protocol.
  *
  * <p>
- * To implement this interface, you can write a generic servlet that extends <code>javax.servlet.GenericServlet</code>
- * or an HTTP servlet that extends <code>javax.servlet.http.HttpServlet</code>.
+ * To implement this interface, you can write a generic servlet that extends <code>jakarta.servlet.GenericServlet</code>
+ * or an HTTP servlet that extends <code>jakarta.servlet.http.HttpServlet</code>.
  *
  * <p>
  * This interface defines methods to initialize a servlet, to service requests, and to remove a servlet from the server.

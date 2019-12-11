@@ -60,7 +60,7 @@ public class Cookie implements Cloneable, Serializable {
 
     private static final String TSPECIALS;
 
-    private static final String LSTRING_FILE = "javax.servlet.http.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
 
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 

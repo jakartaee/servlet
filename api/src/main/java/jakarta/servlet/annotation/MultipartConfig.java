@@ -28,8 +28,8 @@ import java.lang.annotation.RetentionPolicy;
  *
  * <p>
  * Servlets annotated with <tt>MultipartConfig</tt> may retrieve the {@link jakarta.servlet.http.Part} components of a
- * given <tt>multipart/form-data</tt> request by calling {@link javax.servlet.http.HttpServletRequest#getPart getPart}
- * or {@link javax.servlet.http.HttpServletRequest#getParts getParts}.
+ * given <tt>multipart/form-data</tt> request by calling {@link jakarta.servlet.http.HttpServletRequest#getPart getPart}
+ * or {@link jakarta.servlet.http.HttpServletRequest#getParts getParts}.
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

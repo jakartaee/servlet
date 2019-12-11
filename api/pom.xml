@@ -34,7 +34,7 @@
 
     <properties>
         <spec.version>4.0</spec.version>
-        <extension.name>javax.servlet</extension.name>
+        <extension.name>jakarta.servlet</extension.name>
         <bundle.symbolicName>jakarta.servlet-api</bundle.symbolicName>
         <bundle.version>4.0.0</bundle.version>
         <window.title>Jakarta Servlet 4.0</window.title>
@@ -168,7 +168,7 @@
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>${implementation.vendor.id}</Implementation-Vendor-Id>
-                        <Export-Package>javax.servlet.*</Export-Package>
+                        <Export-Package>jakarta.servlet.*</Export-Package>
                     </instructions>
                 </configuration>
                 <executions>
@@ -248,7 +248,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                                 <group>
                                     <title>Jakarta Servlet API Documentation</title>
                                     <packages>
-                                        javax.servlet.*
+                                        jakarta.servlet.*
                                     </packages>
                                 </group>
                             </groups>

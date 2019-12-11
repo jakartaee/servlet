@@ -44,37 +44,37 @@ public interface AsyncContext {
      * The name of the request attribute under which the original request URI is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_REQUEST_URI = "javax.servlet.async.request_uri";
+    static final String ASYNC_REQUEST_URI = "jakarta.servlet.async.request_uri";
 
     /**
      * The name of the request attribute under which the original context path is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path";
+    static final String ASYNC_CONTEXT_PATH = "jakarta.servlet.async.context_path";
 
     /**
      * The name of the request attribute under which the original {@link jakarta.servlet.http.HttpServletMapping} is made
      * available to the target of a {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_MAPPING = "javax.servlet.async.mapping";
+    static final String ASYNC_MAPPING = "jakarta.servlet.async.mapping";
 
     /**
      * The name of the request attribute under which the original path info is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_PATH_INFO = "javax.servlet.async.path_info";
+    static final String ASYNC_PATH_INFO = "jakarta.servlet.async.path_info";
 
     /**
      * The name of the request attribute under which the original servlet path is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_SERVLET_PATH = "javax.servlet.async.servlet_path";
+    static final String ASYNC_SERVLET_PATH = "jakarta.servlet.async.servlet_path";
 
     /**
      * The name of the request attribute under which the original query string is made available to the target of a
      * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}
      */
-    static final String ASYNC_QUERY_STRING = "javax.servlet.async.query_string";
+    static final String ASYNC_QUERY_STRING = "jakarta.servlet.async.query_string";
 
     /**
      * Gets the request that was used to initialize this AsyncContext by calling {@link ServletRequest#startAsync()} or
@@ -121,7 +121,7 @@ public interface AsyncContext {
      * <p>
      * If the asynchronous cycle was started with {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
      * and the request passed is an instance of HttpServletRequest, then the dispatch is to the URI returned by
-     * {@link javax.servlet.http.HttpServletRequest#getRequestURI}. Otherwise, the dispatch is to the URI of the request
+     * {@link jakarta.servlet.http.HttpServletRequest#getRequestURI}. Otherwise, the dispatch is to the URI of the request
      * when it was last dispatched by the container.
      *
      * <p>

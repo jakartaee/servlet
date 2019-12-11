@@ -78,8 +78,8 @@ public @interface WebServlet {
      * Declares whether the servlet supports asynchronous operation mode.
      *
      * @return {@code true} if the servlet supports asynchronous operation mode
-     * @see javax.servlet.ServletRequest#startAsync
-     * @see javax.servlet.ServletRequest#startAsync( javax.servlet.ServletRequest,javax.servlet.ServletResponse)
+     * @see jakarta.servlet.ServletRequest#startAsync
+     * @see jakarta.servlet.ServletRequest#startAsync( jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
      */
     boolean asyncSupported() default false;
 

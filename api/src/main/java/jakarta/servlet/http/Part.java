@@ -75,7 +75,7 @@ public interface Part {
      * data, thus gaining a significant performance benefit.
      *
      * @param fileName The location into which the uploaded part should be stored. Relative paths are relative to 
-     *                 {@link javax.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as 
+     *                 {@link jakarta.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as 
      *                 provided. Note: that this is a system dependent string and URI notation may not be 
      *                 acceptable on all systems. For portability, this string should be generated with the
      *                 File or Path APIs.

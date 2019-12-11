@@ -23,7 +23,7 @@
          which is inherited from java.util.EventObject.
      -->
     <Match>
-        <Class name="javax.servlet.ServletRequestEvent"/>
+        <Class name="jakarta.servlet.ServletRequestEvent"/>
         <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
     </Match>
 </FindBugsFilter>

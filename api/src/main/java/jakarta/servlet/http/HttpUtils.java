@@ -32,7 +32,7 @@ import java.io.IOException;
 @Deprecated
 public class HttpUtils {
 
-    private static final String LSTRING_FILE = "javax.servlet.http.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     /**

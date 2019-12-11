@@ -56,7 +56,7 @@ public interface ServletContext {
      * The name of the <tt>ServletContext</tt> attribute which stores the private temporary directory (of type
      * <tt>java.io.File</tt>) provided by the servlet container for the <tt>ServletContext</tt>
      */
-    public static final String TEMPDIR = "javax.servlet.context.tempdir";
+    public static final String TEMPDIR = "jakarta.servlet.context.tempdir";
 
     /**
      * The name of the <code>ServletContext</code> attribute whose value (of type
@@ -65,7 +65,7 @@ public interface ServletContext {
      * <code>&lt;absolute-ordering&gt;</code> without any <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
      */
-    public static final String ORDERED_LIBS = "javax.servlet.context.orderedLibs";
+    public static final String ORDERED_LIBS = "jakarta.servlet.context.orderedLibs";
 
     /**
      * Returns the context path of the web application.
@@ -78,13 +78,13 @@ public interface ServletContext {
      *
      * <p>
      * It is possible that a servlet container may match a context by more than one context path. In such cases the
-     * {@link javax.servlet.http.HttpServletRequest#getContextPath()} will return the actual context path used by the
+     * {@link jakarta.servlet.http.HttpServletRequest#getContextPath()} will return the actual context path used by the
      * request and it may differ from the path returned by this method. The context path returned by this method should
      * be considered as the prime or preferred context path of the application.
      *
      * @return The context path of the web application, or "" for the root context
      *
-     * @see javax.servlet.http.HttpServletRequest#getContextPath()
+     * @see jakarta.servlet.http.HttpServletRequest#getContextPath()
      *
      * @since Servlet 2.5
      */
@@ -363,7 +363,7 @@ public interface ServletContext {
      *             and can perform shared business logic by invoking methods on common non-servlet classes.
      *
      * @param name the servlet name
-     * @return the {@code javax.servlet.Servlet Servlet} with the given name
+     * @return the {@code jakarta.servlet.Servlet Servlet} with the given name
      * @throws ServletException if an exception has occurred that interfaces with servlet's normal operation
      */
     @Deprecated
@@ -378,7 +378,7 @@ public interface ServletContext {
      *             only to preserve binary compatibility. This method will be permanently removed in a future version of
      *             Jakarta Servlets.
      *
-     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
+     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet}
      */
     @Deprecated
     public Enumeration<Servlet> getServlets();
@@ -392,7 +392,7 @@ public interface ServletContext {
      *             and remains only to preserve binary compatibility. This method will be permanently removed in a
      *             future version of Jakarta Servlets.
      *
-     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
+     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet} names
      */
     @Deprecated
     public Enumeration<String> getServletNames();

@@ -177,12 +177,12 @@ public interface HttpServletRequest extends ServletRequest {
      * followed by a call to {@link RequestDispatcher#include}, the returned {@code
      * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
      * sequence to be invoked. If the currently active {@code Servlet} invocation was obtained by a call to
-     * {@link javax.servlet.AsyncContext#dispatch}, the returned {@code
+     * {@link jakarta.servlet.AsyncContext#dispatch}, the returned {@code
      * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
-     * sequence to be invoked. See {@link javax.servlet.RequestDispatcher#FORWARD_MAPPING},
-     * {@link javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link javax.servlet.AsyncContext#ASYNC_MAPPING} for
+     * sequence to be invoked. See {@link jakarta.servlet.RequestDispatcher#FORWARD_MAPPING},
+     * {@link jakarta.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link jakarta.servlet.AsyncContext#ASYNC_MAPPING} for
      * additional request attributes related to {@code HttpServletMapping}. If the currently active {@code Servlet}
-     * invocation was obtained by a call to {@link javax.servlet.ServletContext#getNamedDispatcher}, the returned
+     * invocation was obtained by a call to {@link jakarta.servlet.ServletContext#getNamedDispatcher}, the returned
      * {@code HttpServletMapping} is the one corresponding to the path for the mapping last applied to this request.
      * </p>
      * 
@@ -294,13 +294,13 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * It is possible that a servlet container may match a context by more than one context path. In such cases this
      * method will return the actual context path used by the request and it may differ from the path returned by the
-     * {@link javax.servlet.ServletContext#getContextPath()} method. The context path returned by
-     * {@link javax.servlet.ServletContext#getContextPath()} should be considered as the prime or preferred context path
+     * {@link jakarta.servlet.ServletContext#getContextPath()} method. The context path returned by
+     * {@link jakarta.servlet.ServletContext#getContextPath()} should be considered as the prime or preferred context path
      * of the application.
      *
      * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request
      *
-     * @see javax.servlet.ServletContext#getContextPath()
+     * @see jakarta.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
 
@@ -399,7 +399,7 @@ public interface HttpServletRequest extends ServletRequest {
      * number, and server path, but it does not include query string parameters.
      *
      * <p>
-     * If this request has been forwarded using {@link javax.servlet.RequestDispatcher#forward}, the server path in the
+     * If this request has been forwarded using {@link jakarta.servlet.RequestDispatcher#forward}, the server path in the
      * reconstructed URL must reflect the path used to obtain the RequestDispatcher, and not the server path specified
      * by the client.
      *
@@ -608,8 +608,8 @@ public interface HttpServletRequest extends ServletRequest {
      *                               is no <code>@MultipartConfig</code> or <code>multipart-config</code> in deployment
      *                               descriptors
      *
-     * @see javax.servlet.annotation.MultipartConfig#maxFileSize
-     * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
+     * @see jakarta.servlet.annotation.MultipartConfig#maxFileSize
+     * @see jakarta.servlet.annotation.MultipartConfig#maxRequestSize
      *
      * @since Servlet 3.0
      */
@@ -630,8 +630,8 @@ public interface HttpServletRequest extends ServletRequest {
      *                               is no <code>@MultipartConfig</code> or <code>multipart-config</code> in deployment
      *                               descriptors
      *
-     * @see javax.servlet.annotation.MultipartConfig#maxFileSize
-     * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
+     * @see jakarta.servlet.annotation.MultipartConfig#maxFileSize
+     * @see jakarta.servlet.annotation.MultipartConfig#maxRequestSize
      *
      * @since Servlet 3.0
      */

@@ -40,7 +40,7 @@ import java.util.ResourceBundle;
  */
 public abstract class ServletOutputStream extends OutputStream {
 
-    private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     /**

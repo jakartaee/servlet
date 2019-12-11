@@ -46,7 +46,7 @@ import java.util.ResourceBundle;
 public abstract class GenericFilter implements Filter, FilterConfig, java.io.Serializable {
     private static final long serialVersionUID = 4060116231031076581L;
 
-    private static final String LSTRING_FILE = "javax.servlet.LocalStrings";
+    private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private transient FilterConfig config;
