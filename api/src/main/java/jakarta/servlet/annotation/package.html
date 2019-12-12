@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2008, 2018 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,14 +16,18 @@
 
 -->
 
-<FindBugsFilter>
-    <!--
-         Shing Wai Chan has discussed this issue with Bill Shannon.
-         The ServletRequestEvent is not intended to be a Serializable,
-         which is inherited from java.util.EventObject.
-     -->
-    <Match>
-        <Class name="jakarta.servlet.ServletRequestEvent"/>
-        <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
-    </Match>
-</FindBugsFilter>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+
+
+</HEAD>
+<BODY BGCOLOR="white">
+
+The jakarta.servlet.annotation package contains a number of annotations 
+that allow users to use annotations to declare servlets, filters,
+listeners and specify the metadata for the declared component.
+
+@since Servlet 3.0
+</BODY>
+</HTML>
