@@ -45,7 +45,6 @@
         <findbugs.exclude>exclude.xml</findbugs.exclude>
         <findbugs.threshold>Low</findbugs.threshold>
         <copyright-plugin.version>1.49</copyright-plugin.version>
-	<legal.source.folder>${maven.multiModuleProjectDirectory}</legal.source.folder>
     </properties>
 
     <developers>
@@ -318,6 +317,23 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                         <version>1.8.1</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.commonjava.maven.plugins</groupId>
+                <artifactId>directory-maven-plugin</artifactId>
+                <version>0.3.1</version>
+                <executions>
+                    <execution>
+                        <id>directories</id>
+                        <goals>
+                            <goal>execution-root</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <property>legal.source.folder</property>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
