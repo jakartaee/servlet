@@ -20,9 +20,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"> <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <groupId>org.eclipse.ee4j.servlet</groupId>
+        <artifactId>servlet-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
     </parent>
 
     <groupId>jakarta.servlet</groupId>
@@ -326,7 +326,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                     <execution>
                         <id>directories</id>
                         <goals>
-                            <goal>execution-root</goal>
+                            <goal>highest-basedir</goal>
                         </goals>
                         <phase>initialize</phase>
                         <configuration>
