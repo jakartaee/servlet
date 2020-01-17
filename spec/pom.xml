@@ -46,7 +46,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4.1</version>
+                <version>3.0.0-M3</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -56,8 +56,8 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.8.0,1.9.0)</version>
-                                    <message>You need JDK8 or lower</message>
+                                    <version>[1.8.0,)</version>
+                                    <message>You need JDK8 or higher</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
