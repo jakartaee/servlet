@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+    All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -143,6 +144,29 @@
                 </configuration>
             </plugin>
             
+            <!-- Checks copyright / license headers -->        
+            <plugin>
+                <groupId>org.glassfish.copyright</groupId>
+                <artifactId>glassfish-copyright-maven-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <excludeFile>etc/config/copyright-exclude</excludeFile>
+                    <!--svn|mercurial|git - defaults to svn-->
+                    <scm>git</scm>
+                    <!-- turn on/off debugging -->
+                    <debug>off</debug>
+                    <!-- skip files not under SCM-->
+                    <scmOnly>true</scmOnly>
+                    <!-- turn off warnings -->
+                    <warn>true</warn>
+                    <!-- for use with repair -->
+                    <update>false</update>
+                    <!-- check that year is correct -->
+                    <ignoreYear>false</ignoreYear>
+                    <templateFile>etc/config/copyright.txt</templateFile>
+                </configuration>
+            </plugin>
+
             <!-- 
                 spec-version-maven-plugin would normally appear here.
                 But somehow is missing for Servlet.
