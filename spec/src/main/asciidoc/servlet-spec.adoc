@@ -1,8 +1,8 @@
 //
-// Copyright (c) 2017, 2019 Contributors to the Eclipse Foundation
+// Copyright (c) 2017, 2020 Contributors to the Eclipse Foundation
 //
 
-= Jakarta Servlet
+= Jakarta Servlet Specification, Version 5.0
 :authors: Jakarta Servlet Team, https://projects.eclipse.org/projects/ee4j.servlet
 :email: https://dev.eclipse.org/mailman/listinfo/servlet-dev
 :version-label!:
@@ -26,3 +26,8 @@ include::license-efsl.adoc[]
 // == Scope
 :sectnums:
 include::scope.adoc[]
+
+// == Scope
+:sectnums:
+include::servlet-spec-body.adoc[]
+

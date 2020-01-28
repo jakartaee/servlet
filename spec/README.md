@@ -1,5 +1,5 @@
 Jakarta Servlet Specification
-============================
+=============================
 
 This project generates the Jakarta Servlet Specification.
 
@@ -16,7 +16,7 @@ Run the full build:
 `mvn install`
 
 Locate the html files:
-- `target/generated-docs/servlet-spec-<version>.html`
+- target/generated-docs/Servlet.html
 
 Locate the PDF files:
-- `target/generated-docs/servlet-spec-<version>.pdf`
+- target/generated-docs/Servlet.pdf
