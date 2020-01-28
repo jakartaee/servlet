@@ -9,4 +9,9 @@
     <property name="severity" value="error" />
 
     <property name="fileExtensions" value="java, properties, xml" />
+
+    <module name="TreeWalker">
+        <module name="UnusedImports"/>
+        <module name="RedundantImport"/>
+    </module>
 </module>
