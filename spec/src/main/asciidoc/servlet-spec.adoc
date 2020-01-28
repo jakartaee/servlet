@@ -26,3 +26,8 @@ include::license-efsl.adoc[]
 // == Scope
 :sectnums:
 include::scope.adoc[]
+
+// == Body
+:sectnums:
+include::servlet-body.adoc[]
+
