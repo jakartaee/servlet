@@ -379,6 +379,9 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <configLocation>checkstyle-rules.xml</configLocation>
+                </configuration>
             </plugin>
         </plugins>
     </build>
