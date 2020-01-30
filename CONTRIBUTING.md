@@ -36,6 +36,18 @@ Contributor Agreement (ECA) on file.
 For more information, please see the Eclipse Committer Handbook:
 https://www.eclipse.org/projects/handbook/#resources-commit
 
+## Project Contribution Guidelines
+
+ * Code should adhere to the style defined at https://github.com/eclipse-ee4j/ee4j.
+ * Contributions should be made via github pull requests at https://github.com/eclipse-ee4j/servlet-api/pulls 
+ * Pull Requests should have reviews requested from several project committers from different organisations than the author(s). 
+ * Pull Request by committers that receive no review responses after a reasonable time, considering time zones and working days, can be interpreted as approved.
+ * Pull Requests should pass continuous integration tests prior to merging.
+ * Pull Requests for significant contributions, new features or changed behaviour should be open for comment and review in a non draft state for at least 1 week prior to merging.
+ * For disputed Pull Requests, any committer may request a formal consensus vote (ie. +1, 0, -1). Any such vote will be scheduled, conducted and adjudicated by the Project Leader(s).
+ * If a disputed Pull Request is merged prior to a consensus being established, then it shall be considered reverted and consensus must be sought for it to remain rather than for it's reversion.
+ * In trivial or exceptional circumstances, these guidelines may be bypassed if the reasons for doing so are documented.
+
 ## Contact
 
 Contact the project developers via the project's "dev" list.
