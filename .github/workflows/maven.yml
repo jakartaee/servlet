@@ -29,6 +29,7 @@ jobs:
     - name: Run spotless checks
       run: mvn --batch-mode
                --also-make
+               --no-transfer-progress
                --projects api
                --define maven.javadoc.skip=true
                --define skipTests=true
