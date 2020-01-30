@@ -25,8 +25,8 @@ package jakarta.servlet.http;
  */
 public interface HttpUpgradeHandler {
     /**
-     * It is called once the HTTP Upgrade process has been completed and the upgraded connection is ready to start using
-     * the new protocol.
+     * It is called once the HTTP Upgrade process has been completed and the upgraded connection is ready to start using the
+     * new protocol.
      *
      * @param wc the WebConnection object associated to this upgrade request
      */

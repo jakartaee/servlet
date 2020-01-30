@@ -64,8 +64,8 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
 
     /**
      * <p>
-     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if
-     * the parameter does not exist. See {@link FilterConfig#getInitParameter}.
+     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if the
+     * parameter does not exist. See {@link FilterConfig#getInitParameter}.
      * </p>
      *
      * <p>
@@ -100,8 +100,8 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * This method is supplied for convenience. It gets the parameter names from the filter's <code>FilterConfig</code>
      * object.
      *
-     * @return Enumeration an enumeration of <code>String</code> objects containing the names of the filter's
-     *         initialization parameters
+     * @return Enumeration an enumeration of <code>String</code> objects containing the names of the filter's initialization
+     * parameters
      *
      * @since Servlet 4.0
      */
@@ -137,8 +137,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * <p>
      * This method is supplied for convenience. It gets the context from the filter's <code>FilterConfig</code> object.
      *
-     * @return ServletContext the <code>ServletContext</code> object passed to this filter by the <code>init</code>
-     *         method
+     * @return ServletContext the <code>ServletContext</code> object passed to this filter by the <code>init</code> method
      *
      * @since Servlet 4.0
      */
@@ -159,8 +158,8 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * </p>
      * 
      * <p>
-     * This implementation stores the {@link FilterConfig} object it receives from the servlet container for later use.
-     * When overriding this form of the method, call <code>super.init(config)</code>.
+     * This implementation stores the {@link FilterConfig} object it receives from the servlet container for later use. When
+     * overriding this form of the method, call <code>super.init(config)</code>.
      * 
      * @param config the <code>FilterConfig</code> object that contains configuration information for this filter
      *
@@ -183,8 +182,8 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      *
      * <p>
      * Instead of overriding {@link #init(FilterConfig)}, simply override this method and it will be called by
-     * <code>GenericFilter.init(FilterConfig config)</code>. The <code>FilterConfig</code> object can still be retrieved
-     * via {@link #getFilterConfig}.
+     * <code>GenericFilter.init(FilterConfig config)</code>. The <code>FilterConfig</code> object can still be retrieved via
+     * {@link #getFilterConfig}.
      * 
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
      *

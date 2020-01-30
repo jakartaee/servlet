@@ -71,8 +71,8 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     }
 
     /**
-     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if
-     * the parameter does not exist. See {@link ServletConfig#getInitParameter}.
+     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if the
+     * parameter does not exist. See {@link ServletConfig#getInitParameter}.
      *
      * <p>
      * This method is supplied for convenience. It gets the value of the named parameter from the servlet's
@@ -94,17 +94,17 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     }
 
     /**
-     * Returns the names of the servlet's initialization parameters as an <code>Enumeration</code> of
-     * <code>String</code> objects, or an empty <code>Enumeration</code> if the servlet has no initialization
-     * parameters. See {@link ServletConfig#getInitParameterNames}.
+     * Returns the names of the servlet's initialization parameters as an <code>Enumeration</code> of <code>String</code>
+     * objects, or an empty <code>Enumeration</code> if the servlet has no initialization parameters. See
+     * {@link ServletConfig#getInitParameterNames}.
      *
      * <p>
-     * This method is supplied for convenience. It gets the parameter names from the servlet's
-     * <code>ServletConfig</code> object.
+     * This method is supplied for convenience. It gets the parameter names from the servlet's <code>ServletConfig</code>
+     * object.
      *
      *
      * @return Enumeration an enumeration of <code>String</code> objects containing the names of the servlet's
-     *         initialization parameters
+     * initialization parameters
      */
     @Override
     public Enumeration<String> getInitParameterNames() {
@@ -131,12 +131,10 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      * {@link ServletConfig#getServletContext}.
      *
      * <p>
-     * This method is supplied for convenience. It gets the context from the servlet's <code>ServletConfig</code>
-     * object.
+     * This method is supplied for convenience. It gets the context from the servlet's <code>ServletConfig</code> object.
      *
      *
-     * @return ServletContext the <code>ServletContext</code> object passed to this servlet by the <code>init</code>
-     *         method
+     * @return ServletContext the <code>ServletContext</code> object passed to this servlet by the <code>init</code> method
      */
     @Override
     public ServletContext getServletContext() {
@@ -185,8 +183,8 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      *
      * <p>
      * Instead of overriding {@link #init(ServletConfig)}, simply override this method and it will be called by
-     * <code>GenericServlet.init(ServletConfig config)</code>. The <code>ServletConfig</code> object can still be
-     * retrieved via {@link #getServletConfig}.
+     * <code>GenericServlet.init(ServletConfig config)</code>. The <code>ServletConfig</code> object can still be retrieved
+     * via {@link #getServletConfig}.
      *
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
      */
@@ -205,13 +203,13 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     }
 
     /**
-     * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log
-     * file, prepended by the servlet's name. See {@link ServletContext#log(String, Throwable)}.
+     * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file,
+     * prepended by the servlet's name. See {@link ServletContext#log(String, Throwable)}.
      *
      *
      * @param message a <code>String</code> that describes the error or exception
      *
-     * @param t       the <code>java.lang.Throwable</code> error or exception
+     * @param t the <code>java.lang.Throwable</code> error or exception
      */
     public void log(String message, Throwable t) {
         getServletContext().log(getServletName() + ": " + message, t);
@@ -229,7 +227,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      *
      * @exception ServletException if an exception occurs that interferes with the servlet's normal operation occurred
      *
-     * @exception IOException      if an input or output exception occurs
+     * @exception IOException if an input or output exception occurs
      */
     @Override
     public abstract void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;

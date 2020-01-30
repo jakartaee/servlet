@@ -97,10 +97,10 @@ public interface PushBuilder {
      * 
      * @param method the method to be used for the push.
      *
-     * @throws NullPointerException     if the argument is {@code null}
+     * @throws NullPointerException if the argument is {@code null}
      *
-     * @throws IllegalArgumentException if the argument is the empty String, or any non-cacheable or unsafe methods
-     *                                  defined in RFC 7231, which are POST, PUT, DELETE, CONNECT, OPTIONS and TRACE.
+     * @throws IllegalArgumentException if the argument is the empty String, or any non-cacheable or unsafe methods defined
+     * in RFC 7231, which are POST, PUT, DELETE, CONNECT, OPTIONS and TRACE.
      *
      * @return this builder.
      */
@@ -110,8 +110,8 @@ public interface PushBuilder {
      * Set the query string to be used for the push.
      *
      * The query string will be appended to any query String included in a call to {@link #path(String)}. Any duplicate
-     * parameters must be preserved. This method should be used instead of a query in {@link #path(String)} when
-     * multiple {@link #push()} calls are to be made with the same query string.
+     * parameters must be preserved. This method should be used instead of a query in {@link #path(String)} when multiple
+     * {@link #push()} calls are to be made with the same query string.
      * 
      * @param queryString the query string to be used for the push.
      * @return this builder.
@@ -120,9 +120,8 @@ public interface PushBuilder {
 
     /**
      * Set the SessionID to be used for the push. The session ID will be set in the same way it was on the associated
-     * request (ie as a cookie if the associated request used a cookie, or as a url parameter if the associated request
-     * used a url parameter). Defaults to the requested session ID or any newly assigned session id from a newly created
-     * session.
+     * request (ie as a cookie if the associated request used a cookie, or as a url parameter if the associated request used
+     * a url parameter). Defaults to the requested session ID or any newly assigned session id from a newly created session.
      * 
      * @param sessionId the SessionID to be used for the push.
      * @return this builder.
@@ -131,11 +130,11 @@ public interface PushBuilder {
 
     /**
      * <p>
-     * Set a request header to be used for the push. If the builder has an existing header with the same name, its value
-     * is overwritten.
+     * Set a request header to be used for the push. If the builder has an existing header with the same name, its value is
+     * overwritten.
      * </p>
      *
-     * @param name  The header name to set
+     * @param name The header name to set
      * @param value The header value to set
      * @return this builder.
      */
@@ -146,7 +145,7 @@ public interface PushBuilder {
      * Add a request header to be used for the push.
      * </p>
      * 
-     * @param name  The header name to add
+     * @param name The header name to add
      * @param value The header value to add
      * @return this builder.
      */
@@ -178,24 +177,23 @@ public interface PushBuilder {
      * Push a resource given the current state of the builder, the method must be non-blocking.
      *
      * <p>
-     * Push a resource based on the current state of the PushBuilder. Calling this method does not guarantee the
-     * resource will actually be pushed, since it is possible the client can decline acceptance of the pushed resource
-     * using the underlying HTTP/2 protocol.
+     * Push a resource based on the current state of the PushBuilder. Calling this method does not guarantee the resource
+     * will actually be pushed, since it is possible the client can decline acceptance of the pushed resource using the
+     * underlying HTTP/2 protocol.
      * </p>
      *
      * <p>
-     * If the builder has a session ID, then the pushed request will include the session ID either as a Cookie or as a
-     * URI parameter as appropriate. The builders query string is merged with any passed query string.
+     * If the builder has a session ID, then the pushed request will include the session ID either as a Cookie or as a URI
+     * parameter as appropriate. The builders query string is merged with any passed query string.
      * </p>
      *
      * <p>
-     * Before returning from this method, the builder has its path, conditional headers (defined in RFC 7232) nulled.
-     * All other fields are left as is for possible reuse in another push.
+     * Before returning from this method, the builder has its path, conditional headers (defined in RFC 7232) nulled. All
+     * other fields are left as is for possible reuse in another push.
      * </p>
      *
-     * @throws IllegalStateException if there was no call to {@link #path} on this instance either between its
-     *                               instantiation or the last call to {@code push()} that did not throw an
-     *                               IllegalStateException.
+     * @throws IllegalStateException if there was no call to {@link #path} on this instance either between its instantiation
+     * or the last call to {@code push()} that did not throw an IllegalStateException.
      */
     public void push();
 
@@ -224,8 +222,8 @@ public interface PushBuilder {
      * Return the set of header to be used for the push.
      *
      * <p>
-     * The returned set is not backed by the {@code PushBuilder} object, so changes in the returned set are not
-     * reflected in the {@code PushBuilder} object, and vice-versa.
+     * The returned set is not backed by the {@code PushBuilder} object, so changes in the returned set are not reflected in
+     * the {@code PushBuilder} object, and vice-versa.
      * </p>
      *
      * @return the set of header to be used for the push.

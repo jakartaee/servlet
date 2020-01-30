@@ -70,7 +70,7 @@ public interface Servlet {
      *
      *
      * @param config a <code>ServletConfig</code> object containing the servlet's configuration and initialization
-     *               parameters
+     * parameters
      *
      * @exception ServletException if an exception has occurred that interferes with the servlet's normal operation
      *
@@ -82,8 +82,8 @@ public interface Servlet {
 
     /**
      *
-     * Returns a {@link ServletConfig} object, which contains initialization and startup parameters for this servlet.
-     * The <code>ServletConfig</code> object returned is the one passed to the <code>init</code> method.
+     * Returns a {@link ServletConfig} object, which contains initialization and startup parameters for this servlet. The
+     * <code>ServletConfig</code> object returned is the one passed to the <code>init</code> method.
      *
      * <p>
      * Implementations of this interface are responsible for storing the <code>ServletConfig</code> object so that this
@@ -117,7 +117,7 @@ public interface Servlet {
      *
      * @exception ServletException if an exception occurs that interferes with the servlet's normal operation
      *
-     * @exception IOException      if an input or output exception occurs
+     * @exception IOException if an input or output exception occurs
      *
      */
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException;
@@ -135,15 +135,14 @@ public interface Servlet {
 
     /**
      *
-     * Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. This
-     * method is only called once all threads within the servlet's <code>service</code> method have exited or after a
-     * timeout period has passed. After the servlet container calls this method, it will not call the
-     * <code>service</code> method again on this servlet.
+     * Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. This method
+     * is only called once all threads within the servlet's <code>service</code> method have exited or after a timeout
+     * period has passed. After the servlet container calls this method, it will not call the <code>service</code> method
+     * again on this servlet.
      *
      * <p>
-     * This method gives the servlet an opportunity to clean up any resources that are being held (for example, memory,
-     * file handles, threads) and make sure that any persistent state is synchronized with the servlet's current state
-     * in memory.
+     * This method gives the servlet an opportunity to clean up any resources that are being held (for example, memory, file
+     * handles, threads) and make sure that any persistent state is synchronized with the servlet's current state in memory.
      *
      */
     public void destroy();

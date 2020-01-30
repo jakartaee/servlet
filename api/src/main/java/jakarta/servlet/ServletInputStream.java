@@ -60,7 +60,7 @@ public abstract class ServletInputStream extends InputStream {
      *
      *
      *
-     * @param b   an array of bytes into which data is read
+     * @param b an array of bytes into which data is read
      *
      * @param off an integer specifying the character at which this method begins reading
      *
@@ -92,7 +92,7 @@ public abstract class ServletInputStream extends InputStream {
      * Returns true when all the data from the stream has been read else it returns false.
      *
      * @return <code>true</code> when all data for this particular request has been read, otherwise returns
-     *         <code>false</code>.
+     * <code>false</code>.
      *
      * @since Servlet 3.1
      */
@@ -108,17 +108,15 @@ public abstract class ServletInputStream extends InputStream {
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to
-     * read
+     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to read
      *
      * @param readListener the {@link ReadListener} that should be notified when it's possible to read.
      *
      * @exception IllegalStateException if one of the following conditions is true
-     *                                  <ul>
-     *                                  <li>the associated request is neither upgraded nor the async started
-     *                                  <li>setReadListener is called more than once within the scope of the same
-     *                                  request.
-     *                                  </ul>
+     * <ul>
+     * <li>the associated request is neither upgraded nor the async started
+     * <li>setReadListener is called more than once within the scope of the same request.
+     * </ul>
      *
      * @throws NullPointerException if readListener is null
      *

@@ -45,13 +45,13 @@ public interface FilterConfig {
     public ServletContext getServletContext();
 
     /**
-     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if
-     * the initialization parameter does not exist.
+     * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if the
+     * initialization parameter does not exist.
      *
      * @param name a <code>String</code> specifying the name of the initialization parameter
      *
      * @return a <code>String</code> containing the value of the initialization parameter, or <code>null</code> if the
-     *         initialization parameter does not exist
+     * initialization parameter does not exist
      */
     public String getInitParameter(String name);
 
@@ -60,7 +60,7 @@ public interface FilterConfig {
      * objects, or an empty <code>Enumeration</code> if the filter has no initialization parameters.
      *
      * @return an <code>Enumeration</code> of <code>String</code> objects containing the names of the filter's
-     *         initialization parameters
+     * initialization parameters
      */
     public Enumeration<String> getInitParameterNames();
 
