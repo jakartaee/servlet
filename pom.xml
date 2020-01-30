@@ -76,13 +76,6 @@
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <java>
-                            <eclipse>
-                                <file>https://raw.githubusercontent.com/eclipse-ee4j/ee4j/master/codestyle/ee4j-eclipse-formatting.xml</file>
-                            </eclipse>
-                        </java>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
