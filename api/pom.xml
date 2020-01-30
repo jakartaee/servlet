@@ -46,7 +46,7 @@
         <findbugs.threshold>Low</findbugs.threshold>
         <copyright-plugin.version>1.49</copyright-plugin.version>
 	<legal.source.folder>${maven.multiModuleProjectDirectory}</legal.source.folder>
-        <spotless.check.skip>true</spotless.check.skip>
+        <spotless.check.skip>false</spotless.check.skip>
     </properties>
 
     <developers>
