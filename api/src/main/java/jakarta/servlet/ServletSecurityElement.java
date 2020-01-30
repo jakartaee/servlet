@@ -32,8 +32,8 @@ public class ServletSecurityElement extends HttpConstraintElement {
     private Collection<HttpMethodConstraintElement> methodConstraints;
 
     /**
-     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with no HTTP Method specific constraint elements.
+     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint element
+     * and with no HTTP Method specific constraint elements.
      */
     public ServletSecurityElement() {
         methodConstraints = new HashSet<>();
@@ -44,7 +44,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * Constructs an instance with a default Constraint element and with no HTTP Method specific constraint elements.
      *
      * @param constraint the HttpConstraintElement to be applied to all HTTP methods other than those represented in the
-     *                   <tt>methodConstraints</tt>
+     * <tt>methodConstraints</tt>
      */
     public ServletSecurityElement(HttpConstraintElement constraint) {
         super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
@@ -53,8 +53,8 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with a collection of HTTP Method specific constraint elements.
+     * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint element
+     * and with a collection of HTTP Method specific constraint elements.
      *
      * @param methodConstraints the collection of HTTP method specific constraint elements
      *
@@ -69,8 +69,8 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * Constructs an instance with a default Constraint element and with a collection of HTTP Method specific constraint
      * elements.
      *
-     * @param constraint        the HttpConstraintElement to be applied to all HTTP methods other than those represented
-     *                          in the <tt>methodConstraints</tt>
+     * @param constraint the HttpConstraintElement to be applied to all HTTP methods other than those represented in the
+     * <tt>methodConstraints</tt>
      * @param methodConstraints the collection of HTTP method specific constraint elements.
      *
      * @throws IllegalArgumentException if duplicate method names are detected

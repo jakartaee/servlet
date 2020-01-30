@@ -71,14 +71,13 @@ public interface Part {
      * 
      * <p>
      * This method is not guaranteed to succeed if called more than once for the same part. This allows a particular
-     * implementation to use, for example, file renaming, where possible, rather than copying all of the underlying
-     * data, thus gaining a significant performance benefit.
+     * implementation to use, for example, file renaming, where possible, rather than copying all of the underlying data,
+     * thus gaining a significant performance benefit.
      *
-     * @param fileName The location into which the uploaded part should be stored. Relative paths are relative to 
-     *                 {@link jakarta.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as 
-     *                 provided. Note: that this is a system dependent string and URI notation may not be 
-     *                 acceptable on all systems. For portability, this string should be generated with the
-     *                 File or Path APIs.
+     * @param fileName The location into which the uploaded part should be stored. Relative paths are relative to
+     * {@link jakarta.servlet.MultipartConfigElement#getLocation()}. Absolute paths are used as provided. Note: that this is
+     * a system dependent string and URI notation may not be acceptable on all systems. For portability, this string should
+     * be generated with the File or Path APIs.
      *
      * @throws IOException if an error occurs.
      */
@@ -93,15 +92,15 @@ public interface Part {
 
     /**
      *
-     * Returns the value of the specified mime header as a <code>String</code>. If the Part did not include a header of
-     * the specified name, this method returns <code>null</code>. If there are multiple headers with the same name, this
-     * method returns the first header in the part. The header name is case insensitive. You can use this method with
-     * any request header.
+     * Returns the value of the specified mime header as a <code>String</code>. If the Part did not include a header of the
+     * specified name, this method returns <code>null</code>. If there are multiple headers with the same name, this method
+     * returns the first header in the part. The header name is case insensitive. You can use this method with any request
+     * header.
      *
      * @param name a <code>String</code> specifying the header name
      *
-     * @return a <code>String</code> containing the value of the requested header, or <code>null</code> if the part does
-     *         not have a header of that name
+     * @return a <code>String</code> containing the value of the requested header, or <code>null</code> if the part does not
+     * have a header of that name
      */
     public String getHeader(String name);
 
@@ -124,8 +123,8 @@ public interface Part {
      * Gets the header names of this Part.
      *
      * <p>
-     * Some servlet containers do not allow servlets to access headers using this method, in which case this method
-     * returns <code>null</code>
+     * Some servlet containers do not allow servlets to access headers using this method, in which case this method returns
+     * <code>null</code>
      *
      * <p>
      * Any changes to the returned <code>Collection</code> must not affect this <code>Part</code>.

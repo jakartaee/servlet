@@ -25,8 +25,8 @@ import java.util.EventListener;
  *
  * <p>
  * In order to receive these notification events, the implementation class must be either declared in the deployment
- * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via one
- * of the addListener methods defined on {@link jakarta.servlet.ServletContext}.
+ * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via
+ * one of the addListener methods defined on {@link jakarta.servlet.ServletContext}.
  *
  * <p>
  * Implementations of this interface are invoked at their {@link #sessionCreated} method in the order in which they have

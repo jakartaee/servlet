@@ -31,8 +31,8 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
     /**
      * Constructs an instance with default {@link HttpConstraintElement} value.
      *
-     * @param methodName the name of an HTTP protocol method. The name must not be null, or the empty string, and must
-     *                   be a legitimate HTTP Method name as defined by RFC 2616
+     * @param methodName the name of an HTTP protocol method. The name must not be null, or the empty string, and must be a
+     * legitimate HTTP Method name as defined by RFC 2616
      */
     public HttpMethodConstraintElement(String methodName) {
         if (methodName == null || methodName.length() == 0) {
@@ -44,8 +44,8 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
     /**
      * Constructs an instance with specified {@link HttpConstraintElement} value.
      *
-     * @param methodName the name of an HTTP protocol method. The name must not be null, or the empty string, and must
-     *                   be a legitimate HTTP Method name as defined by RFC 2616
+     * @param methodName the name of an HTTP protocol method. The name must not be null, or the empty string, and must be a
+     * legitimate HTTP Method name as defined by RFC 2616
      *
      * @param constraint the HTTPconstraintElement value to assign to the named HTTP method
      */
