@@ -19,11 +19,6 @@ package jakarta.servlet.http;
 
 import java.util.Set;
 
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 /**
  * Build a request to be pushed.
  * 
