@@ -4909,9 +4909,9 @@ An object implementing the `RequestDispatcher`
 interface may be obtained from the `ServletContext` via the following
 methods:
 
- `getRequestDispatcher`
+* `getRequestDispatcher`
 
- `getNamedDispatcher`
+* `getNamedDispatcher`
 
 The `getRequestDispatcher` method takes a
 `String` argument describing a path within the scope of the
@@ -4953,17 +4953,15 @@ allow the optional attachment of query string information to the path.
 For example, a Developer may obtain a `RequestDispatcher` by using the
 following code:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,java]
+----
 String path = “/raisins.jsp?orderno=5”;
 
 RequestDispatcher rd =
 context.getRequestDispatcher(path);
 
 rd.include(request, response);
-
-|===
+----
 
 Parameters specified in the query string used
 to create the `RequestDispatcher` take precedence over other parameters
@@ -5023,22 +5021,15 @@ the path by which it was invoked.
 
 The following request attributes must be set:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source]
+----
 javax.servlet.include.request_uri
-
 javax.servlet.include.context_path
-
 javax.servlet.include.servlet_path
-
 javax.servlet.include.mapping
-
 javax.servlet.include.path_info
-
 javax.servlet.include.query_string
-
-|===
+----
 
 These attributes are accessible from the
 included servlet via the `getAttribute` method on the request object and
@@ -5091,22 +5082,15 @@ the path of the original request.
 
 The following request attributes must be set:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source]
+----
 javax.servlet.forward.mapping
-
 javax.servlet.forward.request_uri
-
 javax.servlet.forward.context_path
-
 javax.servlet.forward.servlet_path
-
 javax.servlet.forward.path_info
-
 javax.servlet.forward.query_string
-
-|===
+----
 
 The values of these attributes must be equal
 to the return values of the `HttpServletRequest` methods `getRequestURI`
@@ -5145,21 +5129,21 @@ method or use one of the `dispatch` methods described below.
 The following methods can be used to dispatch
 requests from the `AsyncContext` :
 
- `dispatch(path)`
+`dispatch(path)`::
 
 The `dispatch` method takes a `String`
 argument describing a path within the scope of the `ServletContext` .
 This path must be relative to the root of the `ServletContext` and begin
 with a ‘ `/` ’.
 
- `dispatch(servletContext, path)`
+`dispatch(servletContext, path)`::
 
 The `dispatch` method takes a `String`
 argument describing a path within the scope of the _ServletContext
 specified_ . This path must be relative to the root of the
 `ServletContext specified` and begin with a ‘ `/` ’.
 
- `dispatch()`
+`dispatch()`::
 
 The `dispatch` method takes no argument. It
 uses the original URI as the path. If the `AsyncContext` was initialized
@@ -5194,22 +5178,15 @@ original request.
 
 The following request attributes must be set:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source]
+----
 javax.servlet.async.mapping
-
 javax.servlet.async.request_uri
-
 javax.servlet.async.context_path
-
 javax.servlet.async.servlet_path
-
 javax.servlet.async.path_info
-
 javax.servlet.async.query_string
-
-|===
+----
 
 The values of these attributes must be equal
 to the return values of the `HttpServletRequest` methods `getRequestURI`
