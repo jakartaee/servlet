@@ -3132,7 +3132,7 @@ parameter in the URL string. The name of the parameter must be
 `jsessionid` . Here is an example of a URL containing encoded path
 information:
 
-http://www.example.com/catalog/index.html;jsessionid=1234
+\http://www.example.com/catalog/index.html;jsessionid=1234
 
 URL rewriting exposes session identifiers in
 logs, bookmarks, referer headers, cached HTML, and the URL bar. URL
@@ -3160,9 +3160,9 @@ recognized as part of a session.
 The session is considered to be “new” if
 either of the following is true:
 
-The client does not yet know about the session
+* The client does not yet know about the session
 
-The client chooses not to join a session.
+* The client chooses not to join a session.
 
 These conditions define the situation where
 the servlet container has no mechanism by which to associate a request
@@ -3181,7 +3181,7 @@ creation by invoking
 
 === [[a1098]] Session Scope
 
- `HttpSession` objects must be scoped at the
+`HttpSession` objects must be scoped at the
 application (or servlet context) level. The underlying mechanism, such
 as the cookie used to establish the session, can be the same for
 different contexts, but the object referenced, including the attributes
@@ -3212,9 +3212,9 @@ be obtained by having the object implement the
 following methods that will signal an object being bound into, or being
 unbound from, a session.
 
- `valueBound`
+* `valueBound`
 
- `valueUnbound`
+* `valueUnbound`
 
 The `valueBound` method must be called before
 the object is made available via the `getAttribute` method of the
@@ -3281,14 +3281,14 @@ instances of the `HttpSession` class using the `setAttribute` or
 `putValue` methods appropriately. The following restrictions are imposed
 to meet these conditions:
 
-The container must accept objects that
+* The container must accept objects that
 implement the `Serializable` interface.
 
-The container may choose to support storage of
+* The container may choose to support storage of
 other designated objects in the `HttpSession` , such as references to
 Enterprise JavaBeans components and transactions.
 
-Migration of sessions will be handled by
+* Migration of sessions will be handled by
 container-specific facilities.
 
 The distributed servlet container must throw
