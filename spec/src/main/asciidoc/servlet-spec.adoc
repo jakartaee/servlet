@@ -16,6 +16,7 @@
 ifdef::backend-pdf[]
 :pagenums:
 :numbered:
+:sectnums:
 :title-logo-image: image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]
 endif::[]
 
@@ -24,7 +25,7 @@ endif::[]
 include::license-efsl.adoc[]
 
 // == Scope
-:sectnums:
+:sectnums!:
 include::scope.adoc[]
 
 // == Scope
