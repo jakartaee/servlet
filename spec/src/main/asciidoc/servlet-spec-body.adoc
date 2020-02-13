@@ -6029,21 +6029,21 @@ request URL from the request object minus the context path and the path
 parameters. The URL path mapping rules below are used in order. The
 first successful match is used with no further matches attempted:
 
-The container will try to find an exact match
+. The container will try to find an exact match
 of the path of the request to the path of the servlet. A successful
 match selects the servlet.
 
-The container will recursively try to match
+. The container will recursively try to match
 the longest path-prefix. This is done by stepping down the path tree a
-directory at a time, using the `’` _/_ `’` character as a path
+directory at a time, using the `’/’` character as a path
 separator. The longest match determines the servlet selected.
 
-If the last segment in the URL path contains
+. If the last segment in the URL path contains
 an extension (e.g. `.jsp` ), the servlet container will try to match a
 servlet that handles requests for the extension. An extension is defined
-as the part of the last segment after the last `’` _._ `’` character.
+as the part of the last segment after the last `’.’` character.
 
-If neither of the previous three rules result
+. If neither of the previous three rules result
 in a servlet match, the container will attempt to serve content
 appropriate for the resource requested. If a "default" servlet is
 defined for the application, it will be used. Many containers provide an
@@ -6057,24 +6057,24 @@ comparisons for matching.
 In the Web application deployment descriptor,
 the following syntax is used to define mappings:
 
-A string beginning with a `‘` `/_ _’`
-character and ending with a `‘` _/*_ `’` suffix is used for path
+* A string beginning with a `‘/'`
+character and ending with a `‘/*’` suffix is used for path
 mapping.
 
-A string beginning with a `‘` _*._ `’` prefix
+* A string beginning with a `‘*.’` prefix
 is used as an extension mapping.
 
-The empty string ("") is a special URL pattern
+* The empty string ("") is a special URL pattern
 that exactly maps to the application's context root, i.e., requests of
 the form http://host:port/<context-root>/. In this case the path info is
-`’` `/` _’_ and the servlet path and context path is empty string (““).
+`’/’` and the servlet path and context path is empty string (““).
 
-A string containing only the `’` `/_ _’`
+* A string containing only the `'/'`
 character indicates the "default" servlet of the application. In this
 case the servlet path is the request URI minus the context path and the
 path info is null.
 
-All other strings are used for exact matches
+* All other strings are used for exact matches
 only.
 
 If the effective `web.xml` (after merging
@@ -6084,9 +6084,9 @@ that are mapped to multiple servlets then the deployment must fail.
 ==== [[a2123]] Implicit Mappings
 
 If the container has an internal JSP
-container, the `*.jsp` extension is mapped to it, allowing JSP pages to
-be executed on demand. This mapping is termed an `implicit` mapping. If
-a `*.jsp` mapping is defined by the Web application, its mapping takes
+container, the `\*.jsp` extension is mapped to it, allowing JSP pages to
+be executed on demand. This mapping is termed an _implicit_ mapping. If
+a `\*.jsp` mapping is defined by the Web application, its mapping takes
 precedence over the implicit mapping.
 
 A servlet container is allowed to make other
@@ -6098,70 +6098,62 @@ functionality on the server.
 
 Consider the following set of mappings:
 
-.Table 12-1 Example Set of Maps
+.Example Set of Maps
+[caption="Table 12-1  "]
+[cols="2", options="header"]
+|===
+|Path Pattern
+|Servlet
 
-Path Pattern
+|`/foo/bar/*`
+|`servlet1`
 
-Servlet
+|`/baz/*`
+|`servlet2`
 
- `/foo/bar/*`
+|`/catalog`
+|`servlet3`
 
- `servlet1`
-
- `/baz/*`
-
- `servlet2`
-
- `/catalog`
-
- `servlet3`
-
- `*.bop`
-
- `servlet4`
+|`*.bop`
+|`servlet4`
+|===
 
 The following behavior would result:
 
-.Table 12-2 Incoming Paths Applied to Example Maps
+.Incoming Paths Applied to Example Maps
+[caption="Table 12-2  "]
+[cols="2", options="header"]
+|===
+|Incoming Path
+|Servlet Handling Request
 
-Incoming Path
+|`/foo/bar/index.html`
+|`servlet1`
 
-Servlet Handling Request
+|`/foo/bar/index.bop`
+|`servlet1`
 
- `/foo/bar/index.html`
+|`/baz`
+|`servlet2`
 
- `servlet1`
+|`/baz/index.html`
+|`servlet2`
 
- `/foo/bar/index.bop`
+|`/catalog`
+|`servlet3`
 
- `servlet1`
+|`/catalog/index.html`
+|"default"”" servlet
 
- `/baz`
+|`/catalog/racecar.bop`
+|`servlet4`
 
- `servlet2`
-
- `/baz/index.html`
-
- `servlet2`
-
- `/catalog`
-
- `servlet3`
-
- `/catalog/index.html`
-
-“default” servlet
-
- `/catalog/racecar.bop`
-
- `servlet4`
-
- `/index.bop`
-
- `servlet4`
+|`/index.bop`
+|`servlet4`
+|===
 
 Note that in the case of `/catalog/index.html`
-and `/catalog/racecar.bop` , the servlet mapped to “ `/catalog` ” is not
+and `/catalog/racecar.bop` , the servlet mapped to `/catalog` is not
 used because the match is not exact.
 
 === [[a2160]] Runtime Discovery of Mappings
