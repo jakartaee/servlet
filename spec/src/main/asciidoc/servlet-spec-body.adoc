@@ -1346,20 +1346,24 @@ container provides `multipart/form-data` processing:
 * If the servlet container provides
 `multipart/form-data` processing, the data is made available through the
 following methods in `HttpServletRequest` :
++
+--
 
 ** `public Collection<Part> getParts()`
 
 ** `public Part getPart(String name)`
-+
+
 Each part provides access to the headers,
 content type related with it and the content via the
 `Part.getInputStream` method.
-+
+
 For parts with `form-data` as the
 `Content-Disposition` , but without a filename, the string value of the
 part will also be available through the `getParameter` and
 `getParameterValues` methods on `HttpServletRequest` , using the name of
 the part.
+
+--
 
 * If the servlet container does not provide the
 `multi-part/form-data` processing, the data will be available through
@@ -1468,8 +1472,7 @@ It is important to note that, except for URL
 encoding differences between the request URI and the path parts, the
 following equation is always true:
 
- requestURI = contextPath + servletPath +
-pathInfo
+ requestURI = contextPath + servletPath + pathInfo
 
 To give a few examples to clarify the above
 points, consider the following:
@@ -1782,7 +1785,7 @@ other servlets in the context can access.
 
 A `ServletContext` is rooted at a known path
 within a Web server. For example, a servlet context could be located at
-`http://example.com/catalog` . All requests that begin with the
+`\http://example.com/catalog` . All requests that begin with the
 `/catalog` request path, known as the context path, are routed to the
 Web application associated with the `ServletContext` .
 
@@ -1807,9 +1810,9 @@ interface allow the servlet access to context initialization parameters
 associated with a Web application as specified by the Application
 Developer in the deployment descriptor:
 
- `getInitParameter`
+* `getInitParameter`
 
- `getInitParameterNames`
+* `getInitParameterNames`
 
 Initialization parameters are used by an
 Application Developer to convey setup information. Typical examples are
@@ -1972,19 +1975,17 @@ using the classloader associated with the application represented by the
 interfaces:
 
 
-`javax.servlet.ServletContextAttributeListener`
+* `javax.servlet.ServletContextAttributeListener`
 
-`javax.servlet.ServletRequestListener`
+* `javax.servlet.ServletRequestListener`
 
+* `javax.servlet.ServletRequestAttributeListener`
 
-`javax.servlet.ServletRequestAttributeListener`
+* `javax.servlet.http.HttpSessionListener`
 
-`javax.servlet.http.HttpSessionListener`
+* `javax.servlet.http.HttpSessionAttributeListener`
 
-
-`javax.servlet.http.HttpSessionAttributeListener`
-
-`javax.servlet.http.HttpSessionIdListener`
+* `javax.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
 `ServletContainerInitializer’s` `onStartup` method, then the class with
@@ -2005,20 +2006,17 @@ Add the given listener to the
 `ServletContext` . The given listener MUST be an instance of one or more
 of the following interfaces:
 
+* `javax.servlet.ServletContextAttributeListener`
 
-`javax.servlet.ServletContextAttributeListener`
+* `javax.servlet.ServletRequestListener`
 
- `javax.servlet.ServletRequestListener`
+* `javax.servlet.ServletRequestAttributeListener`
 
+* `javax.servlet.http.HttpSessionListener`
 
-`javax.servlet.ServletRequestAttributeListener`
+* `javax.servlet.http.HttpSessionAttributeListener`
 
- `javax.servlet.http.HttpSessionListener`
-
-
-`javax.servlet.http.HttpSessionAttributeListener`
-
- `javax.servlet.http.HttpSessionIdListener`
+* `javax.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
 `ServletContainerInitializer’s` `onStartup` method, then the given
@@ -2037,20 +2035,17 @@ Add the listener of the given class type to
 the `ServletContext` . The given listener class MUST implement one or
 more of the following interfaces:
 
+* `javax.servlet.ServletContextAttributeListener`
 
-`javax.servlet.ServletContextAttributeListener`
+* `javax.servlet.ServletRequestListener`
 
- `javax.servlet.ServletRequestListener`
+* `javax.servlet.ServletRequestAttributeListener`
 
+* `javax.servlet.http.HttpSessionListener`
 
-`javax.servlet.ServletRequestAttributeListener`
+* `javax.servlet.http.HttpSessionAttributeListener`
 
- `javax.servlet.http.HttpSessionListener`
-
-
-`javax.servlet.http.HttpSessionAttributeListener`
-
- `javax.servlet.http.HttpSessionIdListener`
+* `javax.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
 `ServletContainerInitializer’s` `onStartup` method, then the given
@@ -2069,20 +2064,17 @@ This method instantiates the given
 EventListener class. The specified EventListener class MUST implement at
 least one of the following interfaces:
 
+* `javax.servlet.ServletContextAttributeListener`
 
-`javax.servlet.ServletContextAttributeListener`
+* `javax.servlet.ServletRequestListener`
 
- `javax.servlet.ServletRequestListener`
+* `javax.servlet.ServletRequestAttributeListener`
 
+* `javax.servlet.http.HttpSessionListener`
 
-`javax.servlet.ServletRequestAttributeListener`
+* `javax.servlet.http.HttpSessionAttributeListener`
 
- `javax.servlet.http.HttpSessionListener`
-
-
-`javax.servlet.http.HttpSessionAttributeListener`
-
- `javax.servlet.http.HttpSessionIdListener`
+* `javax.servlet.http.HttpSessionIdListener`
 
 This method MUST support all annotations
 applicable to the above listener interfaces as defined by this
@@ -2100,8 +2092,7 @@ question and the metadata defined in it MUST be used unless it is
 overridden by calls to the API in the `ServletRegistration.Dynamic` /
 `ServletRegistration` .
 
- _@ServletSecurity, @RunAs, @DeclareRoles,
-@MultipartConfig_ .
+`@ServletSecurity`, `@RunAs`, `@DeclareRoles`, `@MultipartConfig`.
 
 For Filters and Listeners no annotations need
 to be introspected.
@@ -2121,9 +2112,9 @@ application. The specified timeout in `setSessionTimeout` is in minutes.
 If the timeout is 0 or less the container ensures the default behavior
 of sessions is never to time out.
 
- `getSessionTimeout()`
+* `getSessionTimeout()`
 
- `setSessionTimeout(int timeout)`
+* `setSessionTimeout(int timeout)`
 
 ==== [[a795]] Programmatically configuring character encoding
 
@@ -2131,15 +2122,13 @@ The following methods of the `ServletContext`
 interface allow the web application to access and configure request and
 response character encoding.
 
- `getRequestCharacterEncoding()`
+* `getRequestCharacterEncoding()`
 
- _setRequestCharacterEncoding(String
-encoding)_
+* `setRequestCharacterEncoding(String encoding)`
 
- `getResponseCharacterEncoding()`
+* `getResponseCharacterEncoding()`
 
- _setResponseCharacterEncoding(String
-encoding)_
+* `setResponseCharacterEncoding(String encoding)`
 
 If no request character encoding is specified
 in deployment descriptor or container specific configuration (for all
@@ -2157,13 +2146,13 @@ any other servlet that is part of the same Web application. The
 following methods of `ServletContext` interface allow access to this
 functionality:
 
- `setAttribute`
+* `setAttribute`
 
- `getAttribute`
+* `getAttribute`
 
- `getAttributeNames`
+* `getAttributeNames`
 
- `removeAttribute`
+* `removeAttribute`
 
 ==== [[a808]] Context Attributes in a Distributed Container
 
@@ -2182,9 +2171,9 @@ access only to the hierarchy of static content documents that are part
 of the Web application, including HTML, GIF, and JPEG files, via the
 following methods of the `ServletContext` interface:
 
- `getResource`
+* `getResource`
 
- `getResourceAsStream`
+* `getResourceAsStream`
 
 The `getResource` and `getResourceAsStream`
 methods take a `String` with a leading “/” as an argument that gives the
@@ -2289,17 +2278,17 @@ servlets to specify buffering parameters.
 The following methods in the `ServletResponse`
 interface allow a servlet to access and set buffering information:
 
- `getBufferSize`
+* `getBufferSize`
 
- `setBufferSize`
+* `setBufferSize`
 
- `isCommitted`
+* `isCommitted`
 
- `reset`
+* `reset`
 
- `resetBuffer`
+* `resetBuffer`
 
- `flushBuffer`
+* `flushBuffer`
 
 These methods are provided on the
 `ServletResponse` interface to allow buffering operations to be
@@ -2346,9 +2335,9 @@ to be committed.
 A servlet can set headers of an HTTP response
 via the following methods of the `HttpServletResponse` interface:
 
- `setHeader`
+* `setHeader`
 
- `addHeader`
+* `addHeader`
 
 The `setHeader` method sets a header with a
 given name and value. A previous header is replaced by the new header.
@@ -2364,13 +2353,13 @@ Headers may contain data that represents an
 `HttpServletResponse` interface allow a servlet to set a header using
 the correct formatting for the appropriate data type:
 
- `setIntHeader`
+* `setIntHeader`
 
- `setDateHeader`
+* `setDateHeader`
 
- `addIntHeader`
+* `addIntHeader`
 
- `addDateHeader`
+* `addDateHeader`
 
 To be successfully transmitted back to the
 client, headers (not trailer) must be set before the response is
@@ -2398,9 +2387,9 @@ configurable to suppress this header.
 
 Here’s the examples of this header.
 
-X-Powered-By: Servlet/5.0
+ X-Powered-By: Servlet/5.0
 
-X-Powered-By: Servlet/5.0 JSP/2.3 (GlassFish
+ X-Powered-By: Servlet/5.0 JSP/2.3 (GlassFish
 Server Open Source Edition 5.0 Java/Oracle Corporation/1.8)
 
 === [[a866]] HTTP Trailer
@@ -2442,9 +2431,9 @@ the following changes have been made to handle response related classes
 The `WriteListener` provides the following
 callback methods which the container invokes appropriately.
 
- `WriteListener`
+.WriteListener
 
- `void onWritePossible().` When a
+ `void onWritePossible()`:: When a
 `WriteListener` is registered with the `ServletOutputStream` , this
 method will be invoked by the container the first time when it is
 possible to write data. The container will subsequently invoke the
@@ -2452,7 +2441,7 @@ possible to write data. The container will subsequently invoke the
 `ServletOutputStream` , described below, returns a value of `false` and
 a write operation has subsequently become possible.
 
- `onError(Throwable t)` . Invoked when an
+ `onError(Throwable t)`:: Invoked when an
 error occurs processing the response.
 
 Along with the `WriteListener` , the
@@ -2460,9 +2449,10 @@ following methods have been added to `ServletOutputStream` class to
 allow the developer to check with the runtime whether or not it is
 possible to write the data to be sent to the client.
 
- `ServletOutputStream`
+.ServletOutputStream
 
- `boolean isReady().` This method returns
+`boolean isReady()`::
+This method returns
 `true` if a write to the `ServletOutputStream` will succeed, otherwise
 it will return `false` . If this method returns `true` , a write
 operation can be performed on the `ServletOutputStream` . If no further
@@ -2471,8 +2461,8 @@ return `false` till the underlying data is flushed at which point the
 container will invoke the `onWritePossible` method of the
 `WriteListener.` A subsequent call to this method will return `true` .
 
- _void setWriteListener(WriteListener
-listener)_ . Associates the `WriteListener` with this
+`void setWriteListener(WriteListener listener)`::
+Associates the `WriteListener` with this
 `ServletOutputStream` . for the container to invoke the callback methods
 on the `WriteListener` when it is possible to write data. Registering a
 `WriteListener` will start non-blocking IO. It is illegal to switch to
@@ -2488,9 +2478,9 @@ The Servlet container must access methods in
 The following convenience methods exist in the
 `HttpServletResponse` interface:
 
- `sendRedirect`
+* `sendRedirect`
 
- `sendError`
+* `sendError`
 
 The `sendRedirect` method will set the
 appropriate headers and content body to redirect the client to a
@@ -2528,31 +2518,25 @@ container’s default locale is used to determine the response’s locale,
 but no specification is made for the communication with a client, such
 as `Content-Language` header in the case of HTTP.
 
-[width="100%",cols="100%",]
-|===
-a|
+
+[source,xml]
+----
 <locale-encoding-mapping-list>
-
  <locale-encoding-mapping>
-
  <locale>ja</locale>
-
  <encoding>Shift_JIS</encoding>
-
  </locale-encoding-mapping>
-
 </locale-encoding-mapping-list>
-
-|===
+----
 
 The <response-character-encoding> element can
 be used to explicitly set the default encoding for all responses in a
 given web application.
 
-[width="100%",cols="100%",]
-|===
-|<response-character-encoding>UTF-8</response-character-encoding>
-|===
+[source,xml]
+----
+<response-character-encoding>UTF-8</response-character-encoding>
+----
 
 If neither element exists or does not provide
 a mapping, `setLocale` uses a container dependent mapping. The
@@ -2587,18 +2571,18 @@ immediately flush all remaining content in the response buffer to the
 client. The following events indicate that the servlet has satisfied the
 request and that the response object is to be closed:
 
-The termination of the `service` method of the
+* The termination of the `service` method of the
 servlet.
 
-The amount of content specified in the
+* The amount of content specified in the
 `setContentLength` or `setContentLengthLong` method of the response has
 been greater than zero and has been written to the response.
 
-The `sendError` method is called.
+* The `sendError` method is called.
 
-The `sendRedirect` method is called.
+* The `sendRedirect` method is called.
 
-The `complete` method on `AsyncContext` is
+* The `complete` method on `AsyncContext` is
 called.
 
 === [[a913]] Lifetime of the Response Object
