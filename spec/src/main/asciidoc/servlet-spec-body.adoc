@@ -3342,7 +3342,6 @@ session.
 
 == [[a1135]] Annotations and pluggability
 
-
 This chapter describes the use of annotations
 and other enhancements to enable pluggability of frameworks and
 libraries for use within a web application.
@@ -3355,7 +3354,7 @@ located in the `WEB-INF/classes` directory, or if they are packaged in a
 jar file located in `WEB-INF/lib` within the application.
 
 The web application deployment descriptor
-contains a “ `metadata-complete` ” attribute on the `web-app` element.
+contains a `metadata-complete` attribute on the `web-app` element.
 This attribute defines whether this deployment descriptor and any web
 fragments, if any, are complete, or whether the class files available to
 this module and packaged with this application should be examined for
@@ -3364,33 +3363,31 @@ in this sense, refers to any information that could have been specified
 by the deployment descriptor or fragments, but instead is specified as
 annotations on classes.
 
-If the value of the “ `metadata-complete` ”
+If the value of the `metadata-complete`
 attribute is specified as `true` , the deployment tool must ignore any
 annotations that specify such deployment information in the class files
 packaged in the web application. Please see
 <<#a1418,Assembling the descriptor from web.xml, web-fragment.xml and annotations>>,
-<<#a1743,Processing annotations and fragments>> and <<#a2993,Handling of metadata-complete>> for additional details on the handling of “
-`metadata-complete` ”.
+<<#a1743,Processing annotations and fragments>> and <<#a2993,Handling of metadata-complete>> for additional details on the handling of `metadata-complete`.
 
-If the “ `metadata-complete` ” attribute is
+If the `metadata-complete` attribute is
 not specified, or its value is `false` , the deployment tool must
 examine the class files of the application for such annotations. Note
-that a `true` value for “ `metadata-complete` ” does `not` preempt the
-processing of `all` annotations, only those listed below.
+that a `true` value for `metadata-complete` does *not* preempt the
+processing of *all* annotations, only those listed below.
 
 Annotations that do not have equivalents in
 the deployment XSD include `javax.servlet.annotation.HandlesTypes` and
 all of the CDI-related annotations. These annotations must be processed
-during annotation scanning, regardless of the value of “
-`metadata-complete` ”.
+during annotation scanning, regardless of the value of `metadata-complete`.
 
 When EJBs are packaged in a `.war` file, and
 the `.war` file contains an `ejb-jar.xml` file, the `metadata-complete`
 attribute of the `ejb-jar.xml` file determines the processing of the
 annotations for enterprise beans. If there is no `ejb-jar.xml` file, and
-the `web.xml` specifies the `metadata-complete` attribute as “ `true` ”,
+the `web.xml` specifies the `metadata-complete` attribute as `true`,
 these annotations are processed as though there were an `ejb-jar.xml`
-file whose `metadata-complete` attribute was specified as “ `true` ”.
+file whose `metadata-complete` attribute was specified as `true`.
 See the Enterprise JavaBeans™ specification for requirements pertaining
 to annotations for EJBs.
 
@@ -3400,100 +3397,100 @@ metadata covered by the Web xsd.
 
 From `javax.servlet.annotation` :
 
- `HttpConstraint`
+* `HttpConstraint`
 
- `HttpMethodConstraint`
+* `HttpMethodConstraint`
 
- `MultipartConfig`
+* `MultipartConfig`
 
- `ServletSecurity`
+* `ServletSecurity`
 
- `WebFilter`
+* `WebFilter`
 
- `WebInitParam`
+* `WebInitParam`
 
- `WebListener`
+* `WebListener`
 
- `WebServlet`
+* `WebServlet`
 
 The following annotations from related
 packages are also covered by the `web.xml` and associated fragments.
 
 From `javax.annotation` :
 
- `PostConstruct`
+* `PostConstruct`
 
- `PreDestroy`
+* `PreDestroy`
 
- `Resource`
+* `Resource`
 
- `Resources`
+* `Resources`
 
 From `javax.annotation.security` :
 
- `DeclareRoles`
+* `DeclareRoles`
 
- `RunAs`
+* `RunAs`
 
-From `javax.annotation.sql` : ``
+From `javax.annotation.sql` :
 
- `DataSourceDefinition`
+* `DataSourceDefinition`
 
- `DataSourceDefinitions`
+* `DataSourceDefinitions`
 
 From `javax.ejb` :
 
- `EJB`
+* `EJB`
 
- `EJBs`
+* `EJBs`
 
 From `javax.jms` :
 
- `JMSConnectionFactoryDefinition`
+* `JMSConnectionFactoryDefinition`
 
- `JMSConnectionFactoryDefinitions`
+* `JMSConnectionFactoryDefinitions`
 
- `JMSDestinationDefinition`
+* `JMSDestinationDefinition`
 
-JMSDestinationDefinitions
+* `JMSDestinationDefinitions`
 
 From `javax.mail` :
 
- `MailSessionDefinition`
+* `MailSessionDefinition`
 
- `MailSessionDefinitions`
+* `MailSessionDefinitions`
 
 From `javax.persistence` :
 
- `PersistenceContext`
+* `PersistenceContext`
 
- `PersistenceContexts`
+* `PersistenceContexts`
 
- `PersistenceUnit`
+* `PersistenceUnit`
 
-PersistenceUnits ``
+* `PersistenceUnits`
 
 From `javax.resource` :
 
- `AdministeredObjectDefinition`
+* `AdministeredObjectDefinition`
 
- `AdministeredObjectDefinitions`
+* `AdministeredObjectDefinitions`
 
- `ConnectionFactoryDefinition`
+* `ConnectionFactoryDefinition`
 
- `ConnectionFactoryDefinitions`
+* `ConnectionFactoryDefinitions`
 
 All annotations in the following packages:
 
- `javax.jws`
+* `javax.jws`
 
- `javax.jws.soap`
+* `javax.jws.soap`
 
- `javax.xml.ws`
+* `javax.xml.ws`
 
- `javax.xml.ws.soap`
+* `javax.xml.ws.soap`
 
- `javax.xml.ws.spi`
+* `javax.xml.ws.spi`
 
 Following are the annotations that MUST be
 supported by a Servlet compliant web container.
@@ -3525,40 +3522,33 @@ MUST extend the `javax.servlet.http.HttpServlet` class.
 Following is an example of how this
 annotation would be used.
 
-@WebServlet Annotation Example
-
+.@WebServlet Annotation Example
+[source,java]
+----
 @WebServlet(”/foo”)
-
-public class CalculatorServlet extends
-HttpServlet\{
+public class CalculatorServlet extends HttpServlet{
 
  //...
 
 }
+----
 
 Following is an example of how this
 annotation would be used with some more of the attributes specified.
 
 
+.@WebServlet annotation example using other annotation attributes specified
+[source,java]
+----
+@WebServlet(name=”MyServlet”, urlPatterns=\{"/foo", "/bar"})
+public class SampleUsingAnnotationAttributes extends HttpServlet{
 
-@WebServlet annotation example using other
-annotation attributes specified
-
-@WebServlet(name=”MyServlet”,
-urlPatterns=\{"/foo", "/bar"})
-
-public class SampleUsingAnnotationAttributes
-extends HttpServlet\{
-
- public void doGet(HttpServletRequest req,
-HttpServletResponse res) \{
-
-
+ public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
  }
 
 }
-
+----
 
 
 ==== [[a1215]] @WebFilter
@@ -3581,22 +3571,21 @@ implement `javax.servlet.Filter` .
 Following is an example of how this
 annotation would be used.
 
- `@WebFilter` annotation example
-
+.@WebFilter annotation example
+[source,java]
+----
 @WebFilter(“/foo”)
 
-public class MyFilter implements Filter \{
+public class MyFilter implements Filter {
 
- public void doFilter(HttpServletRequest req,
-HttpServletResponse res)
-
- \{
+ public void doFilter(HttpServletRequest req, HttpServletResponse res) {
 
  ...
 
  }
 
 }
+----
 
 ==== [[a1227]] @WebInitParam
 
@@ -3611,44 +3600,39 @@ annotate a listener to get events for various operations on the
 particular web application context. Classes annotated with
 `@WebListener` MUST implement one of the following interfaces:
 
- `javax.servlet.ServletContextListener`
+* `javax.servlet.ServletContextListener`
 
+* `javax.servlet.ServletContextAttributeListener`
 
-`javax.servlet.ServletContextAttributeListener`
+* `javax.servlet.ServletRequestListener`
 
- `javax.servlet.ServletRequestListener`
+* `javax.servlet.ServletRequestAttributeListener`
 
+* `javax.servlet.http.HttpSessionListener`
 
-`javax.servlet.ServletRequestAttributeListener`
+* `javax.servlet.http.HttpSessionAttributeListener`
 
- `javax.servlet.http.HttpSessionListener`
-
-
-`javax.servlet.http.HttpSessionAttributeListener`
-
- `javax.servlet.http.HttpSessionIdListener`
+* `javax.servlet.http.HttpSessionIdListener`
 
 An example:
 
+[source,java]
+----
 @WebListener
+public class MyListener implements ServletContextListener{
 
-public class MyListener implements
-ServletContextListener\{
-
- public void
-contextInitialized(ServletContextEvent sce) \{
+ public void contextInitialized(ServletContextEvent sce) {
 
  ServletContext sc = sce.getServletContext();
 
- sc.addServlet("myServlet", "Sample servlet",
-"foo.bar.MyServlet", null, -1);
+ sc.addServlet("myServlet", "Sample servlet", "foo.bar.MyServlet", null, -1);
 
- sc.addServletMapping("myServlet", new
-String[] \{ "/urlpattern/*" });
+ sc.addServletMapping("myServlet", new String[] { "/urlpattern/*" });
 
  }
 
 }
+----
 
 ==== [[a1247]] @MultipartConfig
 
@@ -3686,7 +3670,7 @@ below. The order can be specified in the deployment descriptor only.
 
 ==== [[a1255]] Modularity of web.xml
 
- Using the annotations defined above makes
+Using the annotations defined above makes
 the use of web.xml optional. However for overriding either the default
 values or the values set via annotations, the deployment descriptor is
 used. As before, if the `metadata-complete` element is set to `true` in
@@ -3742,33 +3726,21 @@ An example of what a library or framework can
 include is shown below
 
 
-
+[source,xml]
+----
 <web-fragment>
 
  <servlet>
-
- <servlet-name>welcome</servlet-name>
-
- <servlet-class>
-
- WelcomeServlet
-
- </servlet-class>
-
+  <servlet-name>welcome</servlet-name>
+  <servlet-class>WelcomeServlet</servlet-class>
  </servlet>
 
  <listener>
-
- <listener-class>
-
- RequestListener
-
- </listener-class>
-
+  <listener-class>RequestListener</listener-class>
  </listener>
 
 </web-fragment>
-
+----
 
 
 The above web-fragment.xml would be included
@@ -3798,23 +3770,23 @@ Two cases must be considered to allow
 application configuration resources to express their ordering
 preferences.
 
-Absolute ordering: an
+. Absolute ordering: an
 `<absolute-ordering>` element in the `web.xml` . There can only be one
 `<absolute-ordering>` element in a `web.xml` .
 
- In this case, ordering preferences that
+.. In this case, ordering preferences that
 would have been handled by case 2 below must be ignored.
 
-The `web.xml` and WEB-INF/classes MUST be
+.. The `web.xml` and WEB-INF/classes MUST be
 processed before any of the web-fragments listed in the
 `absolute-ordering` element.
 
-Any `<name>` element direct children of the
+.. Any `<name>` element direct children of the
 `<absolute-ordering>` MUST be interpreted as indicating the absolute
 ordering in which those named web-fragments, which may or may not be
 present, must be processed.
 
-The `<absolute-ordering>`
+.. The `<absolute-ordering>`
 element may contain zero or one `<others/>` element. The required action
 for this element is described below. If the `<absolute-ordering>`
 element does not contain an `<others/>` element, any web-fragment not
@@ -3832,321 +3804,325 @@ setting of `metadata-complete` , jars excluded by `<absolute-ordering>`
 elements are not scanned for classes to be handled by any
 `ServletContainerInitializer` .
 
-Duplicate name exception: if, when traversing
+.. Duplicate name exception: if, when traversing
 the children of `<absolute-ordering>` , multiple children with the same
 `<name>` element are encountered, only the first such occurrence must be
 considered.
 
-Relative ordering: an `<ordering>` element
+. Relative ordering: an `<ordering>` element
 within the `web-fragment.xml` . There can only be one `<ordering>`
 element in a `web-fragment.xml` .
 
-A `web-fragment.xml` may have an `<ordering>`
+.. A `web-fragment.xml` may have an `<ordering>`
 element. If so, this element must contain zero or one `<before>` element
 and zero or one `<after>` element. The meaning of these elements is
 explained below.
 
-The `web.xml` and WEB-INF/classes MUST be
+.. The `web.xml` and WEB-INF/classes MUST be
 processed before any of the web-fragments listed in the `ordering`
 element.
 
-Duplicate name exception: if, when traversing
+.. Duplicate name exception: if, when traversing
 the web-fragments, multiple members with the same `<name>` element are
 encountered, the application must log an informative error message
 including information to help fix the problem, and must fail to deploy.
 For example, one way to fix this problem is for the user to use absolute
 ordering, in which case relative ordering is ignored.
 
-Consider this abbreviated but illustrative
-example. 3 web-fragments - `MyFragment1` , `MyFragment2` and
+.. Consider this abbreviated but illustrative
+example. 3 web-fragments: `MyFragment1` , `MyFragment2` and
 `MyFragment3` are part of the application that also includes a `web.xml`
-.
-
-web-fragment.xml
-
++
+--
+.web-fragment.xml
+[source,xml]
+----
 <web-fragment>
-
  <name>MyFragment1</name>
-
-
-<ordering><after><name>MyFragment2</name></after></ordering>
-
- ...
-
+  <ordering>
+   <after>
+    <name>MyFragment2</name>
+   </after>
+  </ordering>
+  ...
 </web-fragment>
+----
 
-
-
-web-fragment.xml
-
+.web-fragment.xml
+[source,xml]
+----
 <web-fragment>
-
  <name>MyFragment2</name>
-
  ..
 
 </web-fragment>
+----
 
-
-
-web-fragment.xml
-
+.web-fragment.xml
+[source,xml]
+----
 <web-fragment>
-
  <name>MyFragment3</name>
-
-
-<ordering><before><others/></before></ordering>
-
+ <ordering>
+  <before>
+   <others/>
+  </before>
+ </ordering>
  ..
-
 </web-fragment>
+----
 
-
-
-web.xml
-
+.web.xml
+[source,xml]
+----
 <web-app>
 
  ...
 
 </web-app>
+----
 
 In this example the processing order will be
 
- `web.xml`
+. `web.xml`
 
- `MyFragment3`
+. `MyFragment3`
 
- `MyFragment2`
+. `MyFragment2`
 
- `MyFragment1`
+. `MyFragment1`
+
+--
 
 The preceding example illustrates some, but
 not all, of the following principles.
 
- `<before>` means the document must be
+* `<before>` means the document must be
 ordered before the document with the name matching what is specified
 within the nested `<name>` element.
 
- `<after>` means the document must be ordered
+* `<after>` means the document must be ordered
 after the document with the name matching what is specified within the
 nested `<name>` element.
 
-There is a special element `<others/>` which
+* There is a special element `<others/>` which
 may be included zero or one time within the `<before>` or `<after>`
 element, or zero or one time directly within the `<absolute-ordering>`
 element. The `<others/>` element must be handled as follows.
 
- If the `<before>` element contains a nested
+** If the `<before>` element contains a nested
 `<others/>` , the document will be moved to the beginning of the list of
 sorted documents. If there are multiple documents stating
 `<before><others/>` , they will all be at the beginning of the list of
 sorted documents, but the ordering within the group of such documents is
 unspecified.
 
-If the `<after>` element contains a nested
+** If the `<after>` element contains a nested
 `<others/>` , the document will be moved to the end of the list of
 sorted documents. If there are multiple documents requiring
 `<after><others/>` , they will all be at the end of the list of sorted
 documents, but the ordering within the group of such documents is
 unspecified.
 
-Within a `<before>` or `<after>` element, if
+** Within a `<before>` or `<after>` element, if
 an `<others/>` element is present, but is not the only `<name>` element
 within its parent element, the other elements within that parent must be
 considered in the ordering process.
 
-If the `<others/>` element appears directly
+** If the `<others/>` element appears directly
 within the `<absolute-ordering>` element, the runtime must ensure that
 any web-fragments not explicitly named in the `<absolute-ordering>`
 section are included at that point in the processing order.
 
-If a `web-fragment.xml` file does not have an
+* If a `web-fragment.xml` file does not have an
 `<ordering>` or the `web.xml` does not have an `<absolute-ordering>`
 element the artifacts are assumed to not have any ordering dependency.
 
-If the runtime discovers circular references,
+* If the runtime discovers circular references,
 an informative message must be logged, and the application must fail to
 deploy. Again, one course of action the user may take is to use absolute
 ordering in the `web.xml` .
 
-The previous example can be extended to
+* The previous example can be extended to
 illustrate the case when the `web.xml` contains an ordering section.
++
+--
 
-web.xml
-
+.web.xml
+[source,xml]
+----
 <web-app>
-
 <absolute-ordering>
-
  <name>MyFragment3</name>
-
  <name>MyFragment2</name>
-
  </absolute-ordering>
-
  ...
 
 </web-app>
-
-
+----
 
 In this example, the ordering for the various
 elements will be
 
- `web.xml`
+. `web.xml`
 
- `MyFragment3`
+. `MyFragment3`
 
- `MyFragment2`
+. `MyFragment2`
+
+--
 
 Some additional example scenarios are
 included below. All of these apply to relative ordering and not absolute
 ordering
 
-Document A:
+.Example 1
+--
 
- `<after>`
+.Document A:
+[source,xml]
+----
+ <after>
+ <others/>
+ <name>C</name>
+ </after>
+----
 
- `<others/>`
-
- `<name>`
-
- `C`
-
- `</name>`
-
- `</after>`
+.Document B:
+[source,xml]
+----
+ <before>
+ <others/>
+ </before>
+----
 
 
+.Document C:
+[source,xml]
+----
+ <after>
+  <others/>
+ </after>
+----
 
-Document B
+.Document D: 
+no ordering
 
- `<before>`
+.Document E: 
+no ordering
 
- `<others/>`
-
- `</before>`
-
-Document C:
-
- `<after>`
-
- `<others/>`
-
- `</after>`
-
-Document D: no ordering
-
-Document E: no ordering
-
-Document F:
-
-< `before>`
-
- `<others/>`
-
- `<name>`
-
- `B`
-
- `</name>`
-
- `</before>`
+.Document F:
+[source,xml]
+----
+<before>
+ <others/>
+ <name>B</name>
+</before>
+----
 
 Resulting parse order:
 
- `web.xml` , F, B, D, E, C, A.
+ web.xml, F, B, D, E, C, A.
 
-Document <no id>:
+--
 
+
+.Example 2
+--
+
+.Document <no id>:
+[source,xml]
+----
 <after>
-
  <others/>
-
-</after> +
-<before>
-
- <name>
-
- C
-
- </name>
-
-</before>
-
-Document B:
-
-<before>
-
- <others/>
-
-</before>
-
-
-
-Document C: no ordering
-
-Document D:
-
-<after>
-
- <others/>
-
 </after>
-
-Document E:
-
 <before>
-
- <others/>
-
+ <name>C</name>
 </before>
+----
 
-Document F: no ordering
+.Document B:
+[source,xml]
+----
+<before>
+ <others/>
+</before>
+----
+
+.Document C: 
+no ordering
+
+.Document D:
+[source,xml]
+----
+<after>
+ <others/>
+</after>
+----
+
+.Document E:
+[source,xml]
+----
+<before>
+ <others/>
+</before>
+----
+
+.Document F: 
+no ordering
 
 Resulting parse order can be one of the
 following:
 
-B, E, F, <no id>, C, D
+ B, E, F, <no id>, C, D
 
-B, E, F, <no id>, D, C
+ B, E, F, <no id>, D, C
 
-E, B, F, <no id>, C, D
+ E, B, F, <no id>, C, D
 
-E, B, F, <no id>, D, C
+ E, B, F, <no id>, D, C
 
-E, B, F, D, <no id>, C
+ E, B, F, D, <no id>, C
 
-E, B, F, D, <no id>, D
+ E, B, F, D, <no id>, D
 
-Document A:
+--
 
+.Example 3
+--
+
+.Document A:
+[source,xml]
+----
 <after>
-
- <name>
-
- B
-
- </name>
-
+ <name>B</name>
 </after>
+----
 
-Document B: no ordering
+.Document B: 
+no ordering
 
-Document C:
-
+.Document C:
+[source,xml]
+----
 <before>
-
  <others/>
-
 </before>
+----
 
-Document D: no ordering
+.Document D: 
+no ordering
 
-Resulting parse order: C, B, D, A. The parse
-order could also be: C, D, B, A or C, B, A, D
+
+Resulting parse order can be one of the
+following:
+
+ C, B, D, A
+ C, D, B, A
+ C, B, A, D
+
+--
+
 
 ==== [[a1418]] Assembling the descriptor from web.xml, web-fragment.xml and annotations
 
@@ -4159,115 +4135,115 @@ which they are invoked is unspecified. Below are a set of rules that
 apply for assembling the final deployment descriptor for the
 application:
 
-The order for listeners, servlets, filters if
+. The order for listeners, servlets, filters if
 relevant must be specified in either the `web-fragment.xml` or the
 `web.xml` .
 
-The ordering will be based on the order in
+. The ordering will be based on the order in
 which they are defined in the descriptor and on the `absolute-ordering`
 element in the `web.xml` or an `ordering` element in the
 `web-fragment.xml` , if present.
 
-Filters that match a request are chained in
+.. Filters that match a request are chained in
 the order in which they are declared in the `web.xml` .
 
-Servlets are initialized either lazily at
+.. Servlets are initialized either lazily at
 request processing time or eagerly during deployment. In the latter
 case, they are initialized in the order indicated by their
 `load-on-startup` elements.
 
-The listeners are invoked
+.. The listeners are invoked
 in the order in which they are declared in the `web.xml` as specified
 below:
 
- Implementations of
+... Implementations of
 `javax.servlet.ServletContextListener` are invoked at their
 `contextInitialized` method in the order in which they have been
 declared, and at their `contextDestroyed` method in reverse order.
 
-Implementations of
+... Implementations of
 `javax.servlet.ServletRequestListener` are invoked at their
 `requestInitialized` method in the order in which they have been
 declared, and at their `requestDestroyed` method in reverse order.
 
-Implementations of
+... Implementations of
 `javax.servlet.http.HttpSessionListener` are invoked at their
 `sessionCreated` method in the order in which they have been declared,
 and at their `sessionDestroyed` method in reverse order.
 
-The methods of implementation of
+... The methods of implementation of
 `javax.servlet.ServletContextAttributeListener` ,
 `javax.servlet.ServletRequestAttributeListener` and
 `javax.servlet.HttpSessionAttributeListener` are invoked in the order in
 which they are declared when corresponding events are fired.
 
-If a servlet is disabled using the `enabled`
+. If a servlet is disabled using the `enabled`
 element introduced in the `web.xml` then the servlet will not be
 available at the `url-pattern` specified for the servlet.
 
-The `web.xml` of the web application has the
+. The `web.xml` of the web application has the
 highest precedence when resolving conflicts between the `web.xml` ,
 `web-fragment.xml` and annotations.
 
-If `metadata-complete` is not specified in
+. If `metadata-complete` is not specified in
 the descriptors, or is set to `false` in the deployment descriptor, then
 the effective metadata for the application is derived by combining the
 metadata present in the annotations and the descriptors. The rules for
 merging are specified below -
 
-Configuration settings in web fragments are
+.. Configuration settings in web fragments are
 used to augment those specified in the main web.xml in such a way as if
 they had been specified in the same web.xml.
 
-The order in which configuration
+.. The order in which configuration
 settings of web fragments are added to those in the main web.xml is as
 specified above in <<#a1279,Ordering of web.xml and web-fragment.xml>>
 
-The `metadata-complete` attribute when set to
+.. The `metadata-complete` attribute when set to
 `true` in the main `web.xml` , is considered complete and scanning of
 annotations and fragments will not occur at deployment time. The
 `absolute-ordering` and `ordering` elements will be ignored if present.
 When set to `true` on a fragment, the `metadata-complete` attribute
 applies only to scanning of annotations in that particular jar.
 
-Web fragments are merged into the main
+.. Web fragments are merged into the main
 `web.xml` unless the `metadata-complete` is set to `true` . The merging
 takes place after annotation processing on the corresponding fragment.
 
-The following are considered configuration
+.. The following are considered configuration
 conflicts when augmenting a `web.xml` with web fragments:
 
-Multiple `<init-param>` elements with the
+... Multiple `<init-param>` elements with the
 same `<param-name>` but different `<param-value>`
 
-Multiple `<mime-mapping>` elements with the
+... Multiple `<mime-mapping>` elements with the
 same `<extension>` but different `<mime-type>`
 
-The above configuration conflicts are
+.. The above configuration conflicts are
 resolved as follows:
 
-Configuration conflicts between the main
+... Configuration conflicts between the main
 `web.xml` and a web fragment are resolved such that the configuration in
 the `web.xml` takes precedence.
 
-Configuration conflicts between two web
+... Configuration conflicts between two web
 fragments, where the element at the center of the conflict is not
 present in the main `web.xml` , will result in an error. An informative
 message must be logged, and the application must fail to deploy.
 
-After the above conflicts have been resolved,
+.. After the above conflicts have been resolved,
 these additional rules are applied
 
-Elements that may be declared any number of
-times are additive across the `web-fragments` in the resulting `web.xml`
-. For example, `<context-param>` elements with different `<param-name>`
+... Elements that may be declared any number of
+times are additive across the `web-fragments` in the resulting `web.xml`.
+For example, `<context-param>` elements with different `<param-name>`
 are additive.
 
-Elements that may be declared any number of
+... Elements that may be declared any number of
 times, if specified in the `web.xml` overrides the values specified in
 the `web-fragments` with the same name.
 
-If an element with a minimum occurrence of
+... If an element with a minimum occurrence of
 zero, and a maximum occurrence of one, is present in a web fragment, and
 missing in the main `web.xml` , the main `web.xml` inherits the setting
 from the web fragment. If the element is present in both the main
@@ -4278,7 +4254,7 @@ the web fragment specifies a `<load-on-startup>` element, whereas the
 one in the main `web.xml` does not, then the `<load-on-startup>` element
 from the web fragment will be used in the merged `web.xml` .
 
-It is considered an error if an element with
+... It is considered an error if an element with
 a minimum occurrence of zero, and a maximum occurrence of one, is
 specified differently in two web fragments, while absent from the main
 `web.xml` . For example, if two web fragments declare the same servlet,
@@ -4286,30 +4262,30 @@ but with different `<load-on-startup>` elements, and the same servlet is
 also declared in the main `web.xml` , but without any
 `<load-on-startup>` , then an error must be reported.
 
- `<welcome-file>` declarations are additive.
+... `<welcome-file>` declarations are additive.
 
- `<servlet-mapping>` elements with the same
+... `<servlet-mapping>` elements with the same
 `<servlet-name>` are additive across `web-fragments` .
 `<servlet-mapping>` specified in the `web.xml` overrides values
 specified in the `web-fragments` with the same `<servlet-name>` .
 
- `<filter-mapping>` elements with the same
+... `<filter-mapping>` elements with the same
 `<filter-name>` are additive across `web-fragments` . `<filter-mapping>`
 specified in the `web.xml` overrides values specified in the
 `web-fragments` with the same `<filter-name>` .
 
-Multiple `<listener>` elements with the same
+... Multiple `<listener>` elements with the same
 `<listener-class>` are treated as a single `<listener>` declaration
 
-The `web.xml` resulting from the merge is
+... The `web.xml` resulting from the merge is
 considered `<distributable>` only if the `web.xml` and all the web
 fragments are marked as `<distributable>` .
 
-The top-level `<icon>` and it’s children
+... The top-level `<icon>` and it’s children
 elements, `<display-name>` , and `<description>` elements of a web
 fragment are ignored.
 
- `jsp-property-group` is additive. It is
+... `jsp-property-group` is additive. It is
 recommended that `jsp-config` element use the `url-pattern` as opposed
 to extension mappings when bundling static resources in the
 `META-INF/resources` directory of a jar file. Further more JSP resources
@@ -4319,12 +4295,12 @@ if there exists one. This helps prevent a web-fragment’s
 application and the `jsp-property-group` from affecting the JSPs in a
 fragment’s `META-INF/resources` directory.
 
-For all the resource reference elements (
-_env-entry, ejb-ref, ejb-local-ref, service-ref, resource-ref,
-resource-env-ref, message-destination-ref, persistence-context-ref and
-persistence-unit-ref_ ) the following rules apply:
+.. For all the resource reference elements (
+`env-entry`, `ejb-ref`, `ejb-local-ref`, `service-ref`, `resource-ref`,
+`resource-env-ref`, `message-destination-ref`, `persistence-context-ref` and
+`persistence-unit-ref`) the following rules apply:
 
-If any resource reference element is present
+... If any resource reference element is present
 in a web fragment, and is missing in the main `web.xml` , the main
 `web.xml` inherits the value from the web fragment. If the element is
 present in both the main `web.xml` and the web fragment, with the same
@@ -4336,11 +4312,11 @@ the fragment are merged into the main `web.xml` except for the
 used without any child elements being merged from the fragment except
 `<injection-target>` as described below.
 
-If a resource reference element is specified
+... If a resource reference element is specified
 in two fragments, while absent from the main `web.xml` , and all the
 attributes and child elements of the resource reference element are
-identical, the resource reference will be merged into the main `web.xml`
-. It is considered an error if a resource reference element has the same
+identical, the resource reference will be merged into the main `web.xml`.
+It is considered an error if a resource reference element has the same
 name specified in two fragments, while absent from the main `web.xml`
 and the attributes and child elements are not identical in the two
 fragments. An error must be reported and the application MUST fail to
@@ -4348,29 +4324,29 @@ deploy. For example, if two web fragments declare a `<resource-ref>`
 with the same `<resource-ref-name>` element but the type in one is
 specified as `javax.sql.DataSource` while the type in the other is that
 of a JavaMail resource, it is an error and the application will fail to
-deploy
+deploy.
 
-For resource reference `` element with the
+... For resource reference element with the
 same name `<injection-target>` elements from the fragments will be
-merged into the main `web.xml` .
+merged into the main `web.xml`.
 
-In addition to the merging rules for
+.. In addition to the merging rules for
 `web-fragment.xml` defined above, the following rules apply when using
 the resource reference annotations ( `@Resource` , `@Resources, @EJB` ,
-_@EJBs, @WebServiceRef, @WebServiceRefs, @PersistenceContext,
-@PersistenceContexts,@PersistenceUnit, and @PersistenceUnits_ )
-
-If a resource reference `` annotation is
+`@EJBs`, `@WebServiceRef`, `@WebServiceRefs`, `@PersistenceContext`,
+`@PersistenceContexts`,`@PersistenceUnit`, and `@PersistenceUnits`).
++
+If a resource reference annotation is
 applied on a class, it is equivalent to defining a resource, however it
 is not equivalent to defining an `injection-target` . The rules above
 apply for `injection-target` element in this case.
-
++
 If a resource reference annotation is used on
 a field it is equivalent to defining the `injection-target` element in
 the `web.xml` . However if there is no `injection-target` element in the
 descriptor then the `injection-target` from the fragments will still be
 merged into the `web.xml` as defined above.
-
++
 If on the other hand there is an
 `injection-target` in the main `web.xml` and there is a resource
 reference `annotation` with the same resource name, then it is
@@ -4379,7 +4355,7 @@ case since there is an `injection-target` specified in the descriptor,
 the rules defined above would apply in addition to overriding the value
 for the resource reference annotation.
 
-If a `data-source` element is specified in
+.. If a `data-source` element is specified in
 two fragments, while absent from the main `web.xml` , and all the
 attributes and child elements of the `data-source` element are
 identical, the `data-source` will be merged into the main `web.xml` . It
@@ -4388,340 +4364,181 @@ specified in two fragments, while absent from the main `web.xml` and the
 attributes and child elements are not identical in the two fragments. In
 such a case an error must be reported and the application MUST fail to
 deploy.
-
++
 Below are some examples that show the outcome
 in the different cases.
++
+.Example 1
+--
+
+.web.xml
+no resource-ref definition
 
 
 
-web.xml - no resource-ref definition
-
-Fragment 1
-
-web-fragment.xml
-
+.Fragment 1 - web-fragment.xml
+[source,xml]
+----
 <resource-ref>
-
  <resource-ref-name="foo">
-
  ...
-
  <injection-target>
-
- <injection-target-class>
-
- com.example.Bar.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz
-
- </injection-target-name>
-
+  <injection-target-class>com.example.Bar</injection-target-class>
+  <injection-target-name>baz</injection-target-name>
  </injection-target>
-
 </resource-ref>
-
-
+----
 
 The effective metadata would be
 
-
-
+[source,xml]
+----
 <resource-ref>
+ <resource-ref-name="foo">
+ ....
 
+ <injection-target>
+  <injection-target-class>com.example.Bar</injection-target-class>
+  <injection-target-name>baz</injection-target-name>
+ </injection-target>
+</resource-ref>
+----
+
+--
++
+.Example 2
+--
+
+.web.xml
+[source,xml]
+----
+<resource-ref>
+ <resource-ref-name="foo">
+ ...
+
+</resource-ref>
+----
+
+.Fragment 1 - web-fragment.xml
+[source,xml]
+----
+<resource-ref>
+ <resource-ref-name="foo">
+ ...
+ <injection-target>
+  <injection-target-class>com.example.Bar</injection-target-class>
+  <injection-target-name>baz</injection-target-name>
+ </injection-target>
+</resource-ref>
+----
+
+.Fragment 2 - web-fragment.xml
+[source,xml]
+----
+<resource-ref>
+ <resource-ref-name="foo">
+ ...
+
+ <injection-target>
+  <injection-target-class>com.example.Bar2</injection-target-class>
+  <injection-target-name>baz2</injection-target-name>
+ </injection-target>
+</resource-ref>
+----
+
+The effective metadata would be
+
+[source,xml]
+----
+<resource-ref>
  <resource-ref-name="foo">
 
  ....
 
  <injection-target>
-
- <injection-target-class>
-
- com.example.Bar.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz
-
- </injection-target-name>
-
+  <injection-target-class>com.example.Bar</injection-target-class>
+  <injection-target-name>baz</injection-target-name>
  </injection-target>
-
+ <injection-target>
+  <injection-target-class>com.example.Bar2</injection-target-class>
+  <injection-target-name>baz2</injection-target-name>
+ </injection-target>
 </resource-ref>
+----
 
+--
++
+. Example 3
+--
 
-
-
-
-web.xml
-
+.web.xml
+[source,xml]
+----
 <resource-ref>
-
  <resource-ref-name="foo">
-
+ <injection-target>
+ <injection-target-class>com.example.Bar3</injection-target-class>
+ <injection-target-name>baz3</injection-target-name>
  ...
 
 </resource-ref>
+----
 
-
-
-Fragment 1
-
-web-fragment.xml
-
+.Fragment 1 - web-fragment.xml
+[source,xml]
+----
 <resource-ref>
-
  <resource-ref-name="foo">
-
  ...
 
  <injection-target>
-
- <injection-target-class>
-
- com.example.Bar.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz
-
- </injection-target-name>
-
+  <injection-target-class>com.example.Bar</injection-target-class>
+  <injection-target-name>baz</injection-target-name>
  </injection-target>
-
 </resource-ref>
+----
 
-
-
-Fragment 2
-
-web-fragment.xml
-
+.Fragment 2 - web-fragment.xml
+[source,xml]
+----
 <resource-ref>
-
  <resource-ref-name="foo">
-
  ...
 
  <injection-target>
-
- <injection-target-class>
-
- com.example.Bar2.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz2
-
- </injection-target-name>
-
+  <injection-target-class>com.example.Bar2</injection-target-class>
+  <injection-target-name>baz2</injection-target-name>
  </injection-target>
-
 </resource-ref>
-
-The effective metadata would be
-
-<resource-ref>
-
- <resource-ref-name="foo">
-
- ....
-
- <injection-target>
-
- <injection-target-class>
-
- com.example.Bar.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz
-
- </injection-target-name>
-
- </injection-target>
-
-
-
- <injection-target>
-
- <injection-target-class>
-
- com.example.Bar2.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz2
-
- </injection-target-name>
-
- </injection-target>
-
-</resource-ref>
-
-
-
-
-
-web.xml
-
-
-
-<resource-ref>
-
- <resource-ref-name="foo">
-
- <injection-target>
-
- <injection-target-class>
-
- com.example.Bar3.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz3
-
- </injection-target-name>
-
-
-
- ...
-
-</resource-ref>
-
-
-
-Fragment 1
-
-web-fragment.xml<resource-ref>
-
- <resource-ref-name="foo">
-
- ...
-
- <injection-target>
-
- <injection-target-class>
-
- com.example.Bar.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz
-
- </injection-target-name>
-
- </injection-target>
-
-</resource-ref>
-
-
-
-Fragment 2
-
-web-fragment.xml<resource-ref>
-
- <resource-ref-name="foo">
-
- ...
-
- <injection-target>
-
- <injection-target-class>
-
- com.example.Bar2.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz2
-
- </injection-target-name>
-
- </injection-target>
-
-</resource-ref>
-
-
+----
 
 The effective metadata would be
 
 
-
+[source,xml]
+----
 <resource-ref>
-
  <resource-ref-name="foo">
-
  <injection-target>
-
- <injection-target-class>
-
- com.example.Bar3.class
-
- </injection-target-class>
-
- <injection-target-name>
-
- baz3
-
- </injection-target-name>
-
-<injection-target-class>
-
- com.example.Bar.class
-
-</injection-target-class>
-
-<injection-target-name>
-
- baz
-
-</injection-target-name>
-
-<injection-target-class>
-
- com.example.Bar2.class
-
-</injection-target-class>
-
-<injection-target-name>
-
- baz2
-
-</injection-target-name>
-
+ <injection-target-class>com.example.Bar3</injection-target-class>
+ <injection-target-name>baz3</injection-target-name>
+ <injection-target-class>com.example.Bar</injection-target-class>
+ <injection-target-name>baz</injection-target-name>
+ <injection-target-class>com.example.Bar2</injection-target-class>
+ <injection-target-name>baz2</injection-target-name>
 </injection-target>
-
-
-
  ...
 
 </resource-ref>
-
+----
 
 
 The `<injection-target>` from fragment 1 and
 2 will be merged into the main web.xml
 
-If the main `web.xml` does not have any
+--
+
+.. If the main `web.xml` does not have any
 `<post-construct>` element specified and web-fragments have specified
 `<post-construct>` then the `<post-construct>` elements from the
 fragments will be merged into the main `web.xml` . However if in the
@@ -4730,7 +4547,7 @@ the `<post-construct>` elements from the fragment will not be merged. It
 is the responsibility of the author of the `web.xml` to make sure that
 the `<post-construct>` list is complete.
 
-If the main `web.xml` does not have any
+.. If the main `web.xml` does not have any
 `<pre-destroy>` element specified and web-fragments have specified
 `<pre-destroy>` then the `<pre-destroy>` elements from the fragments
 will be merged into the main `web.xml` . However if in the main
@@ -4739,215 +4556,158 @@ will be merged into the main `web.xml` . However if in the main
 responsibility of the author of the `web.xml` to make sure that the
 `<pre-destroy>` list is complete.
 
-After processing the `web-fragment.xml` ,
+.. After processing the `web-fragment.xml` ,
 annotations from the corresponding fragment are processed to complete
 the effective metadata for the fragment before processing the next
 fragment. The following rules are used for processing annotations:
 
-Any metadata specified via an annotation that
+.. Any metadata specified via an annotation that
 isn’t already present in the descriptor will be used to augment the
 effective descriptor.
 
-Configuration specified in the main `web.xml`
+... Configuration specified in the main `web.xml`
 or a web fragment takes precedence over the configuration specified via
 annotations.
 
-For a servlet defined via the `@WebServlet`
+... For a servlet defined via the `@WebServlet`
 annotation, to override values via the descriptor, the name of the
 servlet in the descriptor MUST match the name of the servlet specified
 via the annotation (explicitly specified or the default name, if one is
 not specified via the annotation).
 
-Init params for servlets and filters defined
+... Init params for servlets and filters defined
 via annotations, will be overridden in the descriptor if the name of the
 init param exactly matches the name specified via the annotation. Init
 params are additive between the annotations and descriptors.
 
- `url-patterns` , when specified in a
+... `url-patterns` , when specified in a
 descriptor for a given servlet name overrides the url patterns specified
 via the annotation.
 
-For a filter defined via the `@WebFilter`
+... For a filter defined via the `@WebFilter`
 annotation, to override values via the descriptor, the name of the
 filter in the descriptor MUST match the name of the filter specified via
 the annotation (explicitly specified or the default name, if one is not
 specified via the annotation).
 
- `url-patterns` to which a filter is applied,
+... `url-patterns` to which a filter is applied,
 when specified in a descriptor for a given filter name overrides the url
 patterns specified via the annotation.
 
-DispatcherTypes to which a filter applies,
+... DispatcherTypes to which a filter applies,
 when specified in a descriptor for a given filter name overrides the
 DispatcherTypes specified via the annotation.
 
-The following examples demonstrates some of
-the above rules -
+... The following examples demonstrates some of
+the above rules:
++
+--
 
 A Servlet declared via an annotation and
 packaged with the corresponding `web.xml` in the descriptor
 
-
-
+[source,java]
+----
 @WebServlet(urlPatterns=”/MyPattern”,
-initParams=\{@WebInitParam(name="ccc", value="333")})
-
-public class com.example.Foo extends
-HttpServlet
-
- \{
+initParams={@WebInitParam(name="ccc", value="333")})
+public class com.example.Foo extends HttpServlet {
 
  ...
 
  }
+----
 
-
-
-web.xml
-
+.web.xml
+[source,xml]
+----
 <servlet>
-
-
-<servlet-class>com.example.Foo</servlet-class>
-
+ <servlet-class>com.example.Foo</servlet-class>
  <servlet-name>Foo</servlet-name>
-
  <init-param>
-
- <param-name>aaa</param-name>
-
- <param-value>111</param-value>
-
+  <param-name>aaa</param-name>
+  <param-value>111</param-value>
  </init-param>
-
- </servlet>
-
-
-
- <servlet>
-
-
-<servlet-class>com.example.Foo</servlet-class>
-
+</servlet>
+<servlet>
+ <servlet-class>com.example.Foo</servlet-class>
  <servlet-name>Fum</servlet-name>
-
  <init-param>
-
- <param-name>bbb</param-name>
-
- <param-value>222</param-value>
-
+  <param-name>bbb</param-name>
+  <param-value>222</param-value>
  </init-param>
-
- </servlet>
-
-
-
+</servlet>
+<servlet-mapping>
+  <servlet-name>Foo</servlet-name>
+  <url-pattern>/foo/*</url-pattern>
+</servlet-mapping>
  <servlet-mapping>
-
- <servlet-name>Foo</servlet-name>
-
- <url-pattern>/foo/*</url-pattern>
-
+  <servlet-name>Fum</servlet-name>
+  <url-pattern>/fum/*</url-pattern>
  </servlet-mapping>
-
- <servlet-mapping>
-
- <servlet-name>Fum</servlet-name>
-
- <url-pattern>/fum/*</url-pattern>
-
- </servlet-mapping>
-
-
+----
 
 Since the name of the servlet declared via
 the annotation does not match the name of the servlet declared in the
 `web.xml` , the annotation specifies a new servlet declaration in
 addition to the other declarations in `web.xml` and is equivalent to:
 
-
-
- <servlet>
-
-
-<servlet-class>com.example.Foo</servlet-class>
-
+.web.xml
+[source,xml]
+----
+<servlet>
+ <servlet-class>com.example.Foo</servlet-class>
  <servlet-name>com.example.Foo</servlet-name>
-
  <init-param>
-
- <param-name>ccc</param-name>
-
- <param-value>333</param-name>
-
- </servlet>
+  <param-name>ccc</param-name>
+  <param-value>333</param-name>
+</servlet>
+----
 
 If the above `web.xml` were replaced with the
 following
 
+.web.xml
+[source,xml]
+----
 <servlet>
-
-
-<servlet-class>com.example.Foo</servlet-class>
-
+ <servlet-class>com.example.Foo</servlet-class>
  <servlet-name>com.example.Foo</servlet-name>
-
  <init-param>
-
- <param-name>aaa</param-name>
-
- <param-value>111</param-value>
-
+  <param-name>aaa</param-name>
+  <param-value>111</param-value>
  </init-param>
-
- </servlet>
-
-
-
- <servlet-mapping>
-
+</servlet>
+<servlet-mapping>
  <servlet-name>com.example.Foo</servlet-name>
-
  <url-pattern>/foo/*</url-pattern>
-
- </servlet-mapping>
+</servlet-mapping>
+----
 
 Then the effective descriptor would be
-equivalent to <servlet>
+equivalent to 
 
-
-<servlet-class>com.example.Foo</servlet-class>
-
+.web.xml
+[source,xml]
+----
+<servlet>
+ <servlet-class>com.example.Foo</servlet-class>
  <servlet-name>com.example.Foo</servlet-name>
-
  <init-param>
-
- <param-name>aaa</param-name>
-
- <param-value>111</param-value>
-
+  <param-name>aaa</param-name>
+  <param-value>111</param-value>
  </init-param>
-
  <init-param>
-
- <param-name>ccc</param-name>
-
- <param-value>333</param-value>
-
+  <param-name>ccc</param-name>
+  <param-value>333</param-value>
  </init-param>
-
- </servlet>
-
-
-
- <servlet-mapping>
-
+</servlet>
+<servlet-mapping>
  <servlet-name>com.example.Foo</servlet-name>
-
  <url-pattern>/foo/*</url-pattern>
+</servlet-mapping>
+----
 
- </servlet-mapping>
+--
 
 ==== [[a1716]] Shared libraries / runtimes pluggability
 
@@ -5019,25 +4779,20 @@ jar file will bundle in it's `META-INF/services` directory a file called
 `javax.servlet.ServletContainerInitializer` that will point to the
 `JAXWSServletContainerInitializer` shown below).
 
+.JAXWSServletContainerInitializer.java
+[source,java]
+----
+
 @HandlesTypes(WebService.class)
+JAXWSServletContainerInitializer implements ServletContainerInitializer {
 
-JAXWSServletContainerInitializer implements
-ServletContainerInitializer
-
-\{
-
- public void onStartup(Set<Class<?>> c,
-ServletContext ctx) throws ServletException \{
-
- // JAX-WS specific code here to initialize
-the runtime // and setup the mapping etc.
-
- ServletRegistration reg =
-ctx.addServlet("JAXWSServlet", "com.sun.webservice.JAXWSServlet");
-
- reg.addServletMapping("/foo");
-
+ public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
+   // JAX-WS specific code here to initialize the runtime
+   // and setup the mapping etc.
+   ServletRegistration reg = ctx.addServlet("JAXWSServlet", "com.sun.webservice.JAXWSServlet");
+   reg.addServletMapping("/foo");
  }
+----
 
 The framework jar file can also be bundled in
 `WEB-INF/lib` directory of the war file. If the
@@ -5110,37 +4865,30 @@ annotations if used in the application must be processed. The following
 table describes whether or not to process annotations and `web.xml`
 fragments.
 
-.*Table 8-1* Annotations and web fragment processing requirements
+.Annotations and web fragment processing requirements
+[caption="Table 8-1  "]
+[cols="3", options="header"]
+|===
+|Deployment descriptor
+|metadata-complete
+|process annotations and web fragments
 
-Deployment descriptor
+|web.xml 2.5
+|yes
+|no
 
-metadata-complete
+|web.xml 2.5
+|no
+|yes
 
-process annotations and web fragments
+|web.xml 3.0 or later
+|yes
+|no
 
-web.xml 2.5
-
-yes
-
-no
-
-web.xml 2.5
-
-no
-
-yes
-
-web.xml 3.0 or later
-
-yes
-
-no
-
-web.xml 3.0 or later
-
-no
-
-yes
+|web.xml 3.0 or later
+|no
+|yes
+|===
 
 
 == [[a1764]] Dispatching Requests
