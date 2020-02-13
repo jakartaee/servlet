@@ -5766,117 +5766,77 @@ which the container invokes the listener beans for each event type.
 Events types and the listener interfaces used
 to monitor them are shown in the following tables:
 
-.Table 11-1 Servlet Context Events
+.Servlet Context Events
+[caption="Table 11-1  "]
+[cols="3", options="header"]
+|===
+|Event Type
+|Description
+|Listener Interface
 
-Event Type
-
-Description
-
-Listener Interface
-
-Lifecycle
-
-The servlet context has just been created and
+|Lifecycle
+|The servlet context has just been created and
 is available to service its first request, or the servlet context is
 about to be shut down.
+|`javax.servlet.ServletContextListener`
 
-javax.servlet.
-
-ServletContextListener
-
-Changes to attributes
-
-Attributes on the servlet context have been
+|Changes to attributes
+|Attributes on the servlet context have been
 added, removed, or replaced.
+|`javax.servlet.ServletContextAttributeListener`
+|===
 
-javax.servlet.
+.[[a2018]] HTTP Session Events
+[caption="Table 11-2  "]
+[cols="3", options="header"]
+|===
+|Event Type
+|Description
+|Listener Interface
 
-ServletContextAttributeListener
-
-.Table 11-2 [[a2018]] HTTP Session Events
-
-Event Type
-
-Description
-
-Listener Interface
-
-Lifecycle
-
-An `HttpSession` has been created,
+|Lifecycle
+|An `HttpSession` has been created,
 invalidated, or timed out.
+|`javax.servlet.http.HttpSessionListener`
 
- `javax.servlet.http.`
+|Changes to attributes
+|Attributes have been added, removed, or
+replaced on an `HttpSession`.
+|`javax.servlet.http.HttpSessionAttributeListener`
 
- `HttpSessionListener`
+|Changes to id
+|The id of `HttpSession` has been changed.
+|`javax.servlet.http.HttpSessionIdListener`
 
-Changes to attributes
+|Session migration
+|`HttpSession` has been activated or passivated.
+|`javax.servlet.http.HttpSessionActivationListener`
 
-Attributes have been added, removed, or
-replaced on an `HttpSession` .
-
- `javax.servlet.http`
-
- `HttpSessionAttributeListener`
-
-Changes to id
-
-The id of `HttpSession` has been changed.
-
-javax.servlet.http
-
-HttpSessionIdListener
-
-Session migration
-
- `HttpSession` has been activated or
-passivated.
-
-javax.servlet.http
-
-HttpSessionActivationListener
-
-Object binding
-
-Object has been bound to or unbound from
-`HttpSession`
-
-javax.servlet.http
-
-HttpSessionBindingListener
+|Object binding
+|Object has been bound to or unbound from `HttpSession`
+|`javax.servlet.http.HttpSessionBindingListener`
+|===
 
 .Table 11-3 Servlet Request Events
+[caption="Table 11-3  "]
+[cols="3", options="header"]
+|===
+|Event Type
+|Description
+|Listener Interface
 
-Event Type
+|Lifecycle
+|A servlet request has started being processed by Web components.
+|`javax.servlet.ServletRequestListener`
 
-Description
+|Changes to attributes
+|Attributes have been added, removed, or replaced on a `ServletRequest`.
+|`javax.servlet.ServletRequestAttributeListener`
 
-Listener Interface
-
-Lifecycle
-
-A servlet request has started being processed
-by Web components.
-
- `javax.servlet.`
-
- `ServletRequestListener`
-
-Changes to attributes
-
-Attributes have been added, removed, or
-replaced on a `ServletRequest` .
-
- `javax.servlet.`
-
- `ServletRequestAttributeListener`
-
-Async events
-
-A timeout, connection termination or
-completion of async processing
-
-javax.servlet.AsyncListener
+|Async events
+|A timeout, connection termination or completion of async processing
+|`javax.servlet.AsyncListener`
+|===
 
 For details of the API, refer to the API
 reference.
@@ -5888,14 +5848,14 @@ consider a simple Web application containing a number of servlets that
 make use of a database. The Developer has provided a servlet context
 listener class for management of the database connection.
 
-When the application starts up, the listener
+. When the application starts up, the listener
 class is notified. The application logs on to the database, and stores
 the connection in the servlet context.
 
-Servlets in the application access the
+. Servlets in the application access the
 connection as needed during activity in the Web application.
 
-When the Web server is shut down, or the
+. When the Web server is shut down, or the
 application is removed from the Web server, the listener class is
 notified and the database connection is closed.
 
@@ -5953,40 +5913,25 @@ and `com.example.MyLoggingModule` both implement
 lifecycle events before `com.example.MyLoggingModule` . Here is the
 deployment descriptor for this application:
 
-[width="100%",cols="100%",]
-|===
-a|
+.web.xml
+[source,xml]
+----
 <web-app>
-
-
-<display-name>MyListeningApplication</display-name>
-
+ <display-name>MyListeningApplication</display-name>
  <listener>
-
-
-<listener-class>com.example.MyConnectionManager</listener-class>
-
+  <listener-class>com.example.MyConnectionManager</listener-class>
  </listener>
 
  <listener>
-
-
-<listener-class>com.example.MyLoggingModule</listener-class>
-
+  <listener-class>com.example.MyLoggingModule</listener-class>
  </listener>
 
  <servlet>
-
-
-<display-name>RegistrationServlet</display-name>
-
- ...etc
-
+  <display-name>RegistrationServlet</display-name>
+  ...etc
  </servlet>
-
 </web-app>
-
-|===
+----
 
 === [[a2088]] Listener Instances and Threading
 
