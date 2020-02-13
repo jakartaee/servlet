@@ -5212,14 +5212,14 @@ on multiple containers from multiple vendors.
 
 A Web application is rooted at a specific path
 within a Web server. For example, a catalog application could be located
-at `http://www.example.com/catalog` . All requests that start with this
+at `\http://www.example.com/catalog` . All requests that start with this
 prefix will be routed to the `ServletContext` which represents the
 catalog application.
 
 A servlet container can establish rules for
 automatic generation of Web applications. For example a `~user/` mapping
-could be used to map to a Web application based at ``
-`/home/user/public_html/` .
+could be used to map to a Web application based at
+`/home/user/public_html/`.
 
 By default, an instance of a Web application
 must run on one VM at any one time. This behavior can be overridden if
@@ -5240,19 +5240,13 @@ application.
 A Web application may consist of the following
 items:
 
-Servlets
-
-JSP™ Pages footnote:[See the JavaServer Pages specification available from
+* Servlets
+* JSP™ Pages footnote:[See the JavaServer Pages specification available from
 `https://jcp.org/en/jsr/detail?id=245`.]
-
-Utility Classes
-
-Static documents (HTML, images, sounds, etc.)
-
-Client side Java applets, beans, and classes
-
-Descriptive meta information that ties all of
-the above elements together
+* Utility Classes
+* Static documents (HTML, images, sounds, etc.)
+* Client side Java applets, beans, and classes
+* Descriptive meta information that ties all of the above elements together
 
 === [[a1865]] Deployment Hierarchies
 
@@ -5308,14 +5302,13 @@ directory listing thereof.
 
 The contents of the `WEB-INF` directory are:
 
- `The` _/WEB-INF/web.xml_ `` deployment
-descriptor.
+* The `/WEB-INF/web.xml` deployment descriptor.
 
- `The` _/WEB-INF/classes/_ directory for
+* The `/WEB-INF/classes/` directory for
 servlet and utility classes. The classes in this directory must be
 available to the application class loader.
 
- `The` _/WEB-INF/lib/*.jar_ area for Java
+* The `/WEB-INF/lib/*.jar` area for Java
 ARchive files. These files contain servlets, beans, static resources and
 JSPs packaged in a JAR file and other utility classes useful to the Web
 application. The Web application class loader must be able to load
@@ -5333,31 +5326,19 @@ with a `SC_NOT_FOUND` (404) response.
 The following is a listing of all the files in
 a sample Web application:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source]
+----
 /index.html
-
 /howto.jsp
-
 /feedback.jsp
-
 /images/banner.gif
-
 /images/jumping.gif
-
 /WEB-INF/web.xml
-
 /WEB-INF/lib/jspbean.jar
-
-
-`/WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html`
-
+/WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html
 /WEB-INF/classes/com/mycorp/servlets/MyServlet.class
-
 /WEB-INF/classes/com/mycorp/util/MyUtils.class
-
-|===
+----
 
 === [[a1888]] Web Application Archive File
 
@@ -5381,21 +5362,21 @@ The Web application deployment descriptor (see
 <<#a2643,Deployment Descriptor>>”) includes
 the following types of configuration and deployment information:
 
- `ServletContext` Init Parameters
+* `ServletContext` Init Parameters
 
-Session Configuration
+* Session Configuration
 
-Servlet/JSP Definitions
+* Servlet/JSP Definitions
 
-Servlet/JSP Mappings
+* Servlet/JSP Mappings
 
-MIME Type Mappings
+* MIME Type Mappings
 
-Welcome File list
+* Welcome File list
 
-Error Pages
+* Error Pages
 
-Security
+* Security
 
 ==== [[a1901]] Dependencies On Extensions
 
@@ -5480,45 +5461,41 @@ these resources is done in the deployment descriptor.
 If the location of the error handler is a
 servlet or a JSP page:
 
-The original unwrapped request and response
+* The original unwrapped request and response
 objects created by the container are passed to the servlet or JSP page.
 
-The request path and attributes are set as if
+* The request path and attributes are set as if
 a `RequestDispatcher.forward` to the error resource had been performed.
 
 The request attributes in
 <<#a1919,Request Attributes and their types>>
 must be set.
 
-.[[a1919]]Table 10-1  Request Attributes and their types
+.[[a1919]]Request Attributes and their types
+[caption="Table 10-1  "]
+[cols="2", options="header"]
+|===
+|Request Attributes
+|Type
 
-Request Attributes
+|`javax.servlet.error.status_code`
+|`java.lang.Integer`
 
-Type
+|`javax.servlet.error.exception_type`
+|`java.lang.Class`
 
- `javax.servlet.error.status_code`
+|`javax.servlet.error.message`
+|`java.lang.String`
 
- `java.lang.Integer`
+|`javax.servlet.error.exception`
+|`java.lang.Throwable`
 
- `javax.servlet.error.exception_type`
+|`javax.servlet.error.request_uri`
+|`java.lang.String`
 
- `java.lang.Class`
-
- `javax.servlet.error.message`
-
- `java.lang.String`
-
- `javax.servlet.error.exception`
-
- `java.lang.Throwable`
-
- `javax.servlet.error.request_uri`
-
- `java.lang.String`
-
- `javax.servlet.error.servlet_name`
-
- `java.lang.String`
+|`javax.servlet.error.servlet_name`
+|`java.lang.String`
+|===
 
 These attributes allow the servlet to generate
 specialized content depending on the status code, the exception type,
@@ -5551,11 +5528,11 @@ indicated by the location entry.
 A servlet or filter may throw the following
 exceptions during processing of a request:
 
-runtime exceptions or errors
+* runtime exceptions or errors
 
- `ServletExceptions` or subclasses thereof
+* `ServletExceptions` or subclasses thereof
 
- `IOExceptions` or subclasses thereof
+* `IOExceptions` or subclasses thereof
 
 The Web application may have declared error
 pages using the `exception-type` element. In this case the container
@@ -5658,59 +5635,46 @@ Consider a Web application where:
 The deployment descriptor lists the following
 welcome files.
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <welcome-file-list>
-
  <welcome-file>index.html</welcome-file>
-
  <welcome-file>default.jsp</welcome-file>
-
 </welcome-file-list>
-
-|===
+----
 
 The static content in the WAR is as follows
 
-[width="100%",cols="100%",]
-|===
-a|
+[source]
+----
 /foo/index.html
-
 /foo/default.jsp
-
 /foo/orderform.html
-
 /foo/home.gif
-
 /catalog/default.jsp
-
 /catalog/products/shop.jsp
-
 /catalog/products/register.jsp
+----
 
-|===
-
-A request URI of `/foo` will be redirected to
+* A request URI of `/foo` will be redirected to
 a URI of `/foo/` .
 
-A request URI of `/foo/` will be returned as
+* A request URI of `/foo/` will be returned as
 `/foo/index.html` .
 
-A request URI of `/catalog` will be redirected
+* A request URI of `/catalog` will be redirected
 to a URI of `/catalog/` .
 
-A request URI of `/catalog/` will be returned
+* A request URI of `/catalog/` will be returned
 as `/catalog/default.jsp` .
 
-A request URI of `/catalog/index.html` will
+* A request URI of `/catalog/index.html` will
 cause a `404 not found`
 
-A request URI of `/catalog/products` will be
+* A request URI of `/catalog/products` will be
 redirected to a URI of `/catalog/products/` .
 
-A request URI of `/catalog/products/` will be
+* A request URI of `/catalog/products/` will be
 passed to the “default” servlet, if any. If no “default” servlet is
 mapped, the request may cause a `404 not found` , may cause a directory
 listing including `shop.jsp` and `register.jsp` , or may cause other
@@ -5718,7 +5682,7 @@ behavior defined by the container. See
 <<#a2114,Specification of Mappings>>” for the
 definition of “default” servlet.
 
-All of the above static content can also be
+* All of the above static content can also be
 packaged in a JAR file with the content listed above packaged in the
 `META-INF/resources` directory of the jar file. The JAR file can then be
 included in the `WEB-INF/lib` directory of the web application.
@@ -5739,18 +5703,18 @@ When a web application is deployed into a
 container, the following steps must be performed, in this order, before
 the web application begins processing client requests.
 
-Instantiate an instance of each event listener
+* Instantiate an instance of each event listener
 identified by a `<listener>` element in the deployment descriptor.
 
-For instantiated listener instances that
+* For instantiated listener instances that
 implement `ServletContextListener` , call the `contextInitialized()`
 method.
 
-Instantiate an instance of each filter
+* Instantiate an instance of each filter
 identified by a `<filter>` element in the deployment descriptor and call
 each filter instance’s `init()` method.
 
-Instantiate an instance of each servlet
+* Instantiate an instance of each servlet
 identified by a `<servlet>` element that includes a `<load-on-startup>`
 element in the order defined by the load-on-startup element values, and
 call each servlet instance’s `init()` method.
