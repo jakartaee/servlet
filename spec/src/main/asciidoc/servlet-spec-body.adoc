@@ -2632,45 +2632,45 @@ referred to as Web resources.
 Among the types of functionality available to
 the developer needing to use filters are the following:
 
-The accessing of a resource before a request
+* The accessing of a resource before a request
 to it is invoked.
 
-The processing of the request for a resource
+* The processing of the request for a resource
 before it is invoked.
 
-The modification of request headers and data
+* The modification of request headers and data
 by wrapping the request in customized versions of the request object.
 
-The modification of response headers and
+* The modification of response headers and
 response data by providing customized versions of the response object.
 
-The interception of an invocation of a
+* The interception of an invocation of a
 resource after its call.
 
-Actions on a servlet, on groups of servlets,
+* Actions on a servlet, on groups of servlets,
 or static content by zero, one, or more filters in a specifiable order.
 
 ==== [[a932]] Examples of Filtering Components
 
-Authentication filters
+* Authentication filters
 
-Logging and auditing filters
+* Logging and auditing filters
 
-Image conversion filters
+* Image conversion filters
 
-Data compression filters
+* Data compression filters
 
-Encryption filters
+* Encryption filters
 
-Tokenizing filters
+* Tokenizing filters
 
- Filters that trigger resource access events
+* Filters that trigger resource access events
 
-XSL/T filters that transform XML content
+* XSL/T filters that transform XML content
 
-MIME-type chain filters
+* MIME-type chain filters
 
-Caching filters
+* Caching filters
 
 === [[a943]] Main Concepts
 
@@ -2815,14 +2815,11 @@ A filter is defined either via the
 in the deployment descriptor using the `<filter>` element. In this
 element, the programmer declares the following:
 
- `filter-name` : used to map the filter to a
-servlet or URL
+* `filter-name` : used to map the filter to a servlet or URL
 
- `filter-class` : used by the container to
-identify the filter type
+* `filter-class` : used by the container to identify the filter type
 
- `init-params` : initialization parameters
-for a filter
+* `init-params` : initialization parameters for a filter
 
 Optionally, the programmer can specify icons,
 a textual description, and a display name for tool manipulation. The
@@ -2834,19 +2831,13 @@ same filter class.
 
 Here is an example of a filter declaration:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter>
-
  <filter-name>Image Filter</filter-name>
-
-
-<filter-class>com.example.ImageServlet</filter-class>
-
+ <filter-class>com.example.ImageServlet</filter-class>
 </filter>
-
-|===
+----
 
 Once a filter has been declared in the
 deployment descriptor, the assembler uses the `<filter-mapping>` element
@@ -2855,35 +2846,26 @@ the filter is to be applied. Filters can be associated with a servlet
 using the `<servlet-name>` element. For example, the following code
 example maps the Image Filter filter to the `ImageServlet` servlet:
 
-[width="100%",cols="100%",]
-|===
-a|
+
+[source,xml]
+----
 <filter-mapping>
-
  <filter-name>Image Filter</filter-name>
-
  <servlet-name>ImageServlet</servlet-name>
-
 </filter-mapping>
-
-|===
+----
 
 Filters can be associated with groups of
 servlets and static content using the `<url-pattern>` style of filter
 mapping:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
  <filter-name>Logging Filter</filter-name>
-
  <url-pattern>/*</url-pattern>
-
 </filter-mapping>
-
-|===
+----
 
 Here the Logging Filter is applied to all the
 servlets and static content pages in the Web application, because every
@@ -2898,11 +2880,11 @@ The order the container uses in building the
 chain of filters to be applied for a particular request URI is as
 follows:
 
-First, the `<url-pattern>` matching filter
+. First, the `<url-pattern>` matching filter
 mappings in the same order that these elements appear in the deployment
 descriptor.
 
-Next, the `<servlet-name>` matching filter
+. Next, the `<servlet-name>` matching filter
 mappings in the same order that these elements appear in the deployment
 descriptor.
 
@@ -2912,90 +2894,57 @@ mapping into multiple filter mappings (one for each <servlet-name> and
 <url-pattern>), preserving the order of the <servlet-name> and
 <url-pattern> elements. For example, the following filter mapping:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
- <filter-name>Multiple Mappings
-Filter</filter-name>
-
+ <filter-name>Multiple Mappings Filter</filter-name>
  <url-pattern>/foo/*</url-pattern>
-
  <servlet-name>Servlet1</servlet-name>
-
  <servlet-name>Servlet2</servlet-name>
-
  <url-pattern>/bar/*</url-pattern>
-
 </filter-mapping>
-
-|===
+----
 
 is equivalent to:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
- <filter-name>Multipe Mappings
-Filter</filter-name>
-
+ <filter-name>Multipe Mappings Filter</filter-name>
  <url-pattern>/foo/*</url-pattern>
-
 </filter-mapping>
 
-
-
 <filter-mapping>
-
- <filter-name>Multipe Mappings
-Filter</filter-name>
-
+ <filter-name>Multipe Mappings Filter</filter-name>
  <servlet-name>Servlet1</servlet-name>
-
 </filter-mapping>
 
-
-
 <filter-mapping>
-
- <filter-name>Multipe Mappings
-Filter</filter-name>
-
+ <filter-name>Multipe Mappings Filter</filter-name>
  <servlet-name>Servlet2</servlet-name>
-
 </filter-mapping>
-
-
 
 <filter-mapping>
-
- <filter-name>Multipe Mappings
-Filter</filter-name>
-
+ <filter-name>Multipe Mappings Filter</filter-name>
  <url-pattern>/bar/*</url-pattern>
-
 </filter-mapping>
-
-|===
+----
 
 The requirement about the order of the filter
 chain means that the container, when receiving an incoming request,
 processes the request as follows:
 
-Identifies the target Web resource according
+* Identifies the target Web resource according
 to the rules of <<#a2114,Specification of Mappings>>.
 
-If there are filters matched by servlet name
+* If there are filters matched by servlet name
 and the Web resource has a `<servlet-name>` , the container builds the
 chain of filters matching in the order declared in the deployment
 descriptor. The last filter in this chain corresponds to the last
 `<servlet-name>` matching filter and is the filter that invokes the
 target Web resource.
 
-If there are filters using `<url-pattern>`
+* If there are filters using `<url-pattern>`
 matching and the `<url-pattern>` matches the request URI according to
 the rules of <<#a2114,Specification of Mappings>>, the container builds the chain of `<url-pattern>` matched
 filters in the same order as declared in the deployment descriptor. The
@@ -3019,55 +2968,50 @@ By using the new `<dispatcher>` element in the
 deployment descriptor, the developer can indicate for a filter-mapping
 whether he would like the filter to be applied to requests when:
 
-The request comes directly from the client.
-
+. The request comes directly from the client.
++
 This is indicated by a `<dispatcher>` element
 with value `REQUEST` , or by the absence of any `<dispatcher>` elements.
 
-The request is being processed under a request
+. The request is being processed under a request
 dispatcher representing the Web component matching the `<url-pattern>`
 or `<servlet-name>` using a `forward()` call.
-
++
 This is indicated by a `<dispatcher>` element
 with value `FORWARD` .
 
-The request is being processed under a request
+. The request is being processed under a request
 dispatcher representing the Web component matching the `<url-pattern>`
 or `<servlet-name>` using an `include()` call.
-
++
 This is indicated by a `<dispatcher>` element
 with value `INCLUDE` .
 
-The request is being processed with the error
+. The request is being processed with the error
 page mechanism specified in <<#a1911,Error Handling>> to an error resource matching the `<url-pattern>` .
-
++
 This is indicated by a `<dispatcher>` element
 with the value `ERROR` .
 
-The request is being processed with the async
+. The request is being processed with the async
 context dispatch mechanism specified in
 <<#a446,Asynchronous processing>> to a web
 component using a `dispatch` call.
-
++
 This is indicated by a `<dispatcher>` element
 with the value `ASYNC.`
 
-Or any combination of 1, 2, 3, 4 or 5 above.
+. Or any combination of 1, 2, 3, 4 or 5 above.
 
 For example:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
  <filter-name>Logging Filter</filter-name>
-
  <url-pattern>/products/*</url-pattern>
-
 </filter-mapping>
-
-|===
+----
 
 would result in the Logging Filter being
 invoked by client requests starting `/products/...` but not underneath a
@@ -3076,20 +3020,14 @@ request dispatcher call where the request dispatcher has path commencing
 initial dispatch of the request and on resumed request. The following
 code:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
  <filter-name>Logging Filter</filter-name>
-
  <servlet-name>ProductServlet</servlet-name>
-
  <dispatcher>INCLUDE</dispatcher>
-
 </filter-mapping>
-
-|===
+----
 
 would result in the Logging Filter not being
 invoked by client requests to the `ProductServlet` , nor underneath a
@@ -3098,22 +3036,15 @@ be invoked underneath a request dispatcher `include()` call where the
 request dispatcher has a name commencing `ProductServlet` . The
 following code:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
  <filter-name>Logging Filter</filter-name>
-
  <url-pattern>/products/*</url-pattern>
-
  <dispatcher>FORWARD</dispatcher>
-
  <dispatcher>REQUEST</dispatcher>
-
 </filter-mapping>
-
-|===
+----
 
 would result in the Logging Filter being
 invoked by client requests starting `/products/...` and underneath a
@@ -3123,21 +3054,14 @@ path commencing `/products/...` .
 Finally, the following code uses the special
 servlet name ‘*’:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <filter-mapping>
-
- <filter-name>All Dispatch
-Filter</filter-name>
-
+ <filter-name>All Dispatch Filter</filter-name>
  <servlet-name>*</servlet-name>
-
  <dispatcher>FORWARD</dispatcher>
-
 </filter-mapping>
-
-|===
+----
 
 This code would result in the All Dispatch
 Filter being invoked on request dispatcher forward() calls for all
