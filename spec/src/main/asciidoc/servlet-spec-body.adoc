@@ -8356,12 +8356,12 @@ migrating other Java EE objects from one JVM to another.
 
 Servlet containers that are part of a Java EE
 product should not allow the application to override Java SE or Java EE
-platform classes, such as those in `java.*` and `javax.*` namespaces,
+platform classes, such as those in `java.\*` and `javax.*` namespaces,
 that either Java SE or Java EE do not allow to be modified.
 
 ==== [[a2890]] Web Application Environment
 
-Java `` EE defines a naming environment that
+Java EE defines a naming environment that
 allows applications to easily access resources and external information
 without explicit knowledge of how the external information is named or
 organized.
@@ -8372,23 +8372,15 @@ deployment descriptor for specifying information allowing a servlet to
 obtain references to resources and enterprise beans. The deployment
 elements that contain this information are:
 
- `env-entry`
-
- `ejb-ref`
-
- `ejb-local-ref`
-
- `resource-ref`
-
- `resource-env-ref`
-
- `service-ref`
-
- `message-destination-ref`
-
- `persistence-context-ref`
-
- `persistence-unit-ref`
+* `env-entry`
+* `ejb-ref`
+* `ejb-local-ref`
+* `resource-ref`
+* `resource-env-ref`
+* `service-ref`
+* `message-destination-ref`
+* `persistence-context-ref`
+* `persistence-unit-ref`
 
 The developer uses these elements to describe
 certain objects that the Web application requires to be registered in
@@ -8423,12 +8415,10 @@ The name of the pre-defined `java.net.URL`
 resource for the context root of a web application has the following
 syntax:
 
-
 `java:global[/<app-name>]/<module-name>!ROOT` in the global namespace
 and
 
- `java:app/<module-name>!ROOT` in the
-application-specific namespace.
+`java:app/<module-name>!ROOT` in the application-specific namespace.
 
 Plese see section EE 8.1.1 (Component
 creation) and EE 8.1.2 (Application assembly) for the rules to determine
@@ -8453,24 +8443,20 @@ If a web application is deployed standalone
 with `module-name` as `myWebApp.` The URL can then be injected into
 another web module as follows:
 
-
-
-
-`@Resource(lookup=“java:global/myWebApp!ROOT”)`
-
- `URL myWebApp;`
+[source,java]
+----
+@Resource(lookup=“java:global/myWebApp!ROOT”)
+URL myWebApp;
+----
 
 When packaged in an ear file named `myApp` it
 can be used as follows:
 
- `` 
-
-
-`@Resource(lookup=“java:global/myApp/myWebApp!ROOT”)`
-
- `URL myWebApp;`
-
-
+[source,java]
+----
+@Resource(lookup=“java:global/myApp/myWebApp!ROOT”)
+URL myWebApp;
+----
 
 === [[a2924]] Security
 
@@ -8488,14 +8474,14 @@ identity of a web user to be propagated to the EJB container.
 
 In other scenarios, web containers are
 required to allow web users that are not known to the web container or
-to the EJB `` container to make calls:
+to the EJB container to make calls:
 
-Web containers are required to support access
+* Web containers are required to support access
 to web resources by clients that have not authenticated themselves to
 the container. This is the common mode of access to web resources on the
 Internet.
 
-Application code may be the sole processor of
+* Application code may be the sole processor of
 signon and customization of data based on caller identity.
 
 In these scenarios, a web application
@@ -8542,22 +8528,12 @@ containers that are JSP pages enabled or part of a Java EE application
 server. They are not required to be supported by containers wishing to
 support only the servlet specification:
 
- `jsp-config`
-
-Syntax for declaring resource references (
-`env-entry` , `ejb-ref` , `ejb-local-ref` , `resource-ref` ,
-`resource-env-ref` )
-
-Syntax for specifying the message destination
-( `message-destination` , `message-destination-ref` )
-
-Reference to a Web service ( `service-ref` )
-
-Reference to a Persistence context (
-`persistence-context-ref` )
-
-Reference to a Persistence Unit (
-`persistence-unit-ref` )
+* `jsp-config`
+* Syntax for declaring resource references (`env-entry`, `ejb-ref`, `ejb-local-ref`, `resource-ref`, `resource-env-ref`)
+* Syntax for specifying the message destination( `message-destination`, `message-destination-ref` )
+* Reference to a Web service ( `service-ref` )
+* Reference to a Persistence context (`persistence-context-ref` )
+* Reference to a Persistence Unit (`persistence-unit-ref` )
 
 The syntax for these elements is now held in
 the JavaServer Pages specification version 2.2, and the Java EE
@@ -8591,24 +8567,24 @@ using the same syntax as for HTTP Servlet components using the `servlet`
 element. The child elements are used to specify endpoint information in
 the following way:
 
-the `servlet-name` element defines a logical
+* the `servlet-name` element defines a logical
 name which may be used to locate this endpoint description among the
 other Web components in the WAR
 
-the `servlet-class` element provides the fully
+* the `servlet-class` element provides the fully
 qualified Java class name of this endpoint implementation
 
-the `description` element(s) may be used to
+* the `description` element(s) may be used to
 describe the component and may be displayed in a tool
 
-the `load-on-startup` element specifies the
+* the `load-on-startup` element specifies the
 order in which the component is initialized relative to other Web
 components in the Web container
 
-the `security-role-ref` element may be used to
+* the `security-role-ref` element may be used to
 test whether the authenticated user is in a logical security role
 
-the `run-as` element may be used to override
+* the `run-as` element may be used to override
 the identity propagated to EJBs called by this component
 
 Any servlet initialization parameters defined
@@ -8617,20 +8593,20 @@ Additionally, the JAX-WS and JAX-RPC enabled Web component inherits the
 traditional Web component mechanisms for defining the following
 information:
 
-mapping of the component to the Web
+* mapping of the component to the Web
 container’s URL namespace using the servlet mapping technique
 
-authorization constraints on Web components
+* authorization constraints on Web components
 using security constraints
 
-the ability to use servlet filters to provide
+* the ability to use servlet filters to provide
 low-level byte stream support for manipulating JAX-WS and/or JAX-RPC
 messages using the filter mapping technique
 
-the time out characteristics of any HTTP
+* the time out characteristics of any HTTP
 sessions that are associated with the component
 
-links to Java EE objects stored in the JNDI
+* links to Java EE objects stored in the JNDI
 namespace
 
 All of the above requirements can be met
@@ -8666,43 +8642,31 @@ interfaces and are declared in the web application deployment descriptor
 or using the annotations defined in <<#a1138,Annotations and pluggability>> or added programmatically.
 
 .Components and Interfaces supporting Annotations and Resource Injection
+[caption="Table 15-1  "]
+[cols="2", options="header"]
+|===
+|Component Type
+|Classes implementing the following interfaces
 
-Component Type
+|Servlets
+|javax.servlet.Servlet
 
-Classes implementing the following interfaces
+|Filters
+|javax.servlet.Filter
 
-Servlets
-
-javax.servlet.Servlet
-
-Filters
-
-javax.servlet.Filter
-
-Listeners
-
- `javax.servlet.ServletContextListener`
-
-
+|Listeners
+|`javax.servlet.ServletContextListener`
 `javax.servlet.ServletContextAttributeListener`
-
- `javax.servlet.ServletRequestListener`
-
-
+`javax.servlet.ServletRequestListener`
 `javax.servlet.ServletRequestAttributeListener`
-
- `javax.servlet.http.HttpSessionListener`
-
-
+`javax.servlet.http.HttpSessionListener`
 `javax.servlet.http.HttpSessionAttributeListener`
+`javax.servlet.http.HttpSessionIdListener`
+`javax.servlet.AsyncListener`
 
- `javax.servlet.http.HttpSessionIdListener`
-
-javax.servlet.AsyncListener
-
-Handlers
-
-javax.servlet.http.HttpUgradeHandler
+|Handlers
+|`javax.servlet.http.HttpUgradeHandler`
+|===
 
 Web containers are not required to perform
 resource injection for annotations occurring in classes other than those
@@ -8766,30 +8730,27 @@ interface or a subclass thereof.
 Following is an example of how this
 annotation would be used.
 
- `@DeclareRoles` Annotation Example
-
+.@DeclareRoles Annotation Example
+[source,java]
+----
 @DeclareRoles("BusinessAdmin")
-
- public class CalculatorServlet \{
-
+public class CalculatorServlet {
  //...
-
  }
+----
 
 Declaring `@DeclareRoles` ("BusinessAdmin")
 is equivalent to defining the following in the web.xml.
 
-@DeclareRoles web.xml
-
+.@DeclareRoles web.xml
+[source,xml]
+----
 <web-app>
-
  <security-role>
-
  <role-name>BusinessAdmin</role-name>
-
  </security-role>
-
- </web-app>
+</web-app>
+----
 
 This annotation is not used to relink
 application roles to other roles. When such linking is necessary, it is
@@ -8809,7 +8770,7 @@ specification (JSR 250) section 2.12.
 
 ==== [[a3015]] @EJB Annotation
 
-Enterprise `` JavaBeans™ 3.2 (EJB) components
+Enterprise JavaBeans™ 3.2 (EJB) components
 may be referenced from a web component using the `@EJB` annotation. The
 `@EJB` annotation provides the equivalent functionality of declaring the
 `ejb-ref` or `ejb-local-ref` elements in the deployment descriptor.
@@ -8818,11 +8779,14 @@ a reference to the corresponding EJB component.
 
 An example:
 
+[source,java]
+----
 @EJB private ShoppingCart myCart;
+----
 
 In the case above a reference to the EJB
-component “ `myCart` ” is injected as the value of the private field “
-`myCart` ” prior to the classs declaring the injection being made
+component `myCart` is injected as the value of the private field
+`myCart` prior to the classs declaring the injection being made
 available.
 
 The behavior the `@ EJB` annotation is further
@@ -8835,16 +8799,15 @@ The `@EJBs` annotation allows more than one
 
 An example:
 
-@EJBs Annotation Example
-
-@EJBs(\{@EJB(Calculator),
+.@EJBs Annotation Example
+[source,java]
+----
+@EJBs({@EJB(Calculator),
 @EJB(ShoppingCart)})
-
-public class ShoppingCartServlet \{
-
+public class ShoppingCartServlet {
 //...
-
 }
+----
 
 The example above the EJB components
 `ShoppingCart` and `Calculator` are made available to
@@ -8868,20 +8831,21 @@ Chapter 5 for further details.
 
 An example of a @Resource annotation follows:
 
-@Resource Example
+.@Resource Example
+[source,java]
+----
+@Resource 
+private javax.sql.DataSource catalogDS;
 
-@Resource private javax.sql.DataSource
-catalogDS;
-
-public getProductsByCategory() \{
+public getProductsByCategory() {
 
  // get a connection and execute the query
-
  Connection conn = catalogDS.getConnection();
 
 ..
 
 }
+----
 
 In the example code above, a servlet, filter,
 or listener declares a field `catalogDS` of type `javax.sql.DataSource`
@@ -8903,11 +8867,12 @@ managed entity manager for referenced persistence units.
 
 An example:
 
-@PersistenceContext Example
-
+.@PersistenceContext Example
+[source,java]
+----
 @PersistenceContext (type=EXTENDED)
-
 EntityManager em;
+----
 
 The behavior the `@PersistenceContext`
 annotation is further detailed in section 10.5.1 of the Java Persistence
@@ -8930,11 +8895,12 @@ separate persistence.xml configuration file as described in section
 
 An example:
 
-@PersistenceUnit Example
-
+.@PersistenceUnit Example
+[source,java]
+----
 @PersistenceUnit
-
 EntityManagerFactory emf;
+----
 
 The behavior the `@PersistenceUnit` annotation
 is further detailed in section 10.5.2 of the Java Persistence API,
@@ -8957,15 +8923,16 @@ lifecycle methods on the component are called.
 
 An example:
 
-@PostConstruct Example
-
+.@PostConstruct Example
+[source,java]
+----
 @PostConstruct
-
 public void postConstruct() \{
 
  ...
 
 }
+----
 
 The example above shows a method using the
 `@PostConstruct` annotation.
@@ -8988,10 +8955,10 @@ component being removed by the container.
 
 An example:
 
-@PreDestroy Example
-
+.@PreDestroy Example
+[source,java]
+----
 @PreDestroy
-
 public void cleanup() \{
 
  // clean up any open resources
@@ -8999,6 +8966,7 @@ public void cleanup() \{
  ...
 
 }
+----
 
 The method annotated with `@PreDestroy` must
 return void and must not throw a checked exception. The method may be
@@ -9017,23 +8985,19 @@ on the same annotation target.
 
 An example:
 
-@Resources Example
-
-@Resources (\{
-
-@Resource(name=”myDB”
-type=javax.sql.DataSource),
-
-@Resource(name=”myMQ”
-type=javax.jms.ConnectionFactory)
-
+.@Resources Example
+[source,java]
+----
+@Resources ({
+@Resource(name=”myDB” type=javax.sql.DataSource),
+@Resource(name=”myMQ” type=javax.jms.ConnectionFactory)
 })
-
-public class CalculatorServlet \{
+public class CalculatorServlet {
 
 //...
 
 }
+----
 
 In the example above a JMS connection factory
 and a data source are made available to the `CalculatorServlet` by means
@@ -9052,20 +9016,16 @@ interface or a subclass thereof.
 
 An example:
 
-@RunAs Example
-
+.@RunAs Example
+[source,java]
+----
 @RunAs(“Admin”)
-
-public class CalculatorServlet \{
-
-
+public class CalculatorServlet {
 
 @EJB private ShoppingCart myCart;
 
-
-
  public void doGet(HttpServletRequest, req,
-HttpServletResponse res) \{
+HttpServletResponse res) {
 
  //....
 
@@ -9080,20 +9040,19 @@ HttpServletResponse res) \{
  //....
 
 }
+----
 
 The `@RunAs(“Admin”)` statement would be
 equivalent to defining the following in the web.xml.
 
-@RunAs web.xml Example
-
+.@RunAs web.xml Example
+[source,xml]
+----
 <servlet>
-
-
-<servlet-name>CalculatorServlet</servlet-name>
-
+ <servlet-name>CalculatorServlet</servlet-name>
  <run-as>Admin</run-as>
-
 </servlet>
+----
 
 The example above shows how a servlet uses the
 `@RunAs` annotation to propagate the security identity “ `Admin` ” to an
@@ -9112,8 +9071,10 @@ reference to a web service in a web component in same way as a
 `resource-ref` element would in the deployment descriptor.
 
 An example:
-
+[source,java]
+----
 @WebServiceRef private MyService service;
+----
 
 In this example a reference to the web service
 “ `MyService` ” will be injected to the class declaring the annotation.
