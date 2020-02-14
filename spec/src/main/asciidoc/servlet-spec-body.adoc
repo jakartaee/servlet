@@ -6202,20 +6202,24 @@ implementation details may vary, servlet containers have mechanisms and
 infrastructure for meeting these requirements that share some of the
 following characteristics:
 
- `Authentication` : The means by which
+Authentication::
+The means by which
 communicating entities prove to one another that they are acting on
 behalf of specific identities that are authorized for access.
 
- `Access control for resources:` The means by
+Access control for resources::
+The means by
 which interactions with resources are limited to collections of users or
 programs for the purpose of enforcing integrity, confidentiality, or
 availability constraints.
 
- `Data Integrity:` The means used to prove
+Data Integrity:: 
+The means used to prove
 that information has not been modified by a third party while in
 transit.
 
- `Confidentiality or Data Privacy:` The means
+Confidentiality or Data Privacy:: 
+The means
 used to ensure that information is made available only to users who are
 authorized to access it.
 
@@ -6246,17 +6250,17 @@ aware applications when declarative security alone is not sufficient to
 express the security model of the application. Programmatic security
 consists of the following methods of the `HttpServletRequest` interface:
 
- `authenticate`
+* `authenticate`
 
- `login`
+* `login`
 
-logout
+* `logout`
 
- `getRemoteUser`
+* `getRemoteUser`
 
- `isUserInRole`
+* `isUserInRole`
 
- `getUserPrincipal`
+* `getUserPrincipal`
 
 The `login` method allows an application to
 perform username and password collection (as an alternative to
@@ -6304,35 +6308,30 @@ For example, to map the security role
 reference "FOO" to the security role with role-name "manager" the syntax
 would be:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <security-role-ref>
-
  <role-name>FOO</role-name>
-
  <role-link>manager</role-link>
-
 </security-role-ref>
-
-|===
+----
 
 In this case, if a servlet called by a user
-belonging to the "manager" security role were to call i
-`sUserInRole("FOO")` the result would be `true` .
+belonging to the "manager" security role were to call
+`isUserInRole("FOO")` the result would be `true` .
 
 If no `matching security-role-ref` exists for
 a role reference used in a call to `isUserInRole` , the container must
 default to testing the user for membership in the security-role with
 `role-name` equal to the role reference used in the call.
 
-The role name “*” should never be used as an
-argument in calling `isUserInRole` . Any call to `isUserInRole` with “*”
+The role name “pass:[*]” should never be used as an
+argument in calling `isUserInRole` . Any call to `isUserInRole` with “pass:[*]”
 must return false. If the role-name of the security-role to be tested is
-“**”, and the application has NOT declared an application security-role
-with role-name “**”, `isUserInRole` must only return true if the user
+“pass:[*]pass:[*]”, and the application has NOT declared an application security-role
+with role-name “pass:[*]pass:[*]”, `isUserInRole` must only return true if the user
 has been authenticated; that is, only when `getRemoteUser` and
-`getUserPrincipa` l would both return a non-null value. Otherwise, the
+`getUserPrincipal` would both return a non-null value. Otherwise, the
 container must check the user for membership in the application role.
 
 The declaration of `security-role-ref`
@@ -6347,7 +6346,7 @@ Container.
 
 ==== [[a2208]] @ServletSecurity Annotation
 
-The @ `ServletSecurity` annotation provides
+The `@ServletSecurity` annotation provides
 an alternative mechanism for defining access control constraints
 equivalent to those that could otherwise have been expressed
 declaratively via `security-constraint` elements in the portable
@@ -6357,49 +6356,45 @@ support the use of the `@ServletSecurity` annotation on classes (and
 subclasses thereof) that implement the `javax.servlet.Servlet`
 interface.
 
+[source,java]
+----
 package javax.servlet.annotation;
 
 @Inherited
-
 @Documented
-
 @Target(value=TYPE)
-
 @Retention(value=RUNTIME)
-
-public @interface ServletSecurity \{
+public @interface ServletSecurity {
 
  HttpConstraint value();
 
- HttpMethodConstraint[]
-httpMethodConstraints();
+ HttpMethodConstraint[] httpMethodConstraints();
 
 }
+----
 
-==== The ServletSecurity Interface
+.The ServletSecurity Interface
+[caption="TABLE 13-1   "]
+[cols="3", options="header"]
+|===
+|Element
+|Description
+|Default
 
-Element
-
-Description
-
-Default
-
- `value`
-
-the HttpConstraint that defines the
+|`value`
+|the HttpConstraint that defines the
 protection to be applied to all HTTP methods that are NOT represented in
 the array returned by httpMethodConstraints.
+|@HttpConstraint
 
-@HttpConstraint
-
- `httpMethodConstraints`
-
-the array of HTTP method specific
+|`httpMethodConstraints`
+|the array of HTTP method specific
 constraints.
+|{}
+|===
 
-\{}
-
-`@HttpConstraint`::
+[discrete]
+===== `@HttpConstraint`
 
 The `@HttpConstraint` annotation is used
 within the `@ServletSecurity` annotation to represent the security
@@ -6419,109 +6414,99 @@ exception is made to ensure that such potentially non-specific uses of
 establish unprotected access for such methods; given that they would not
 otherwise be covered by a constraint.
 
+[source,java]
+----
 package javax.servlet.annotation;
 
 @Documented
-
 @Retention(value=RUNTIME)
-
-public @interface HttpConstraint \{
+public @interface HttpConstraint {
 
  ServletSecurity.EmptyRoleSemantic value();
 
  java.lang.String[] rolesAllowed();
 
- ServletSecurity.TransportGuarantee
-transportGuarantee();
+ ServletSecurity.TransportGuarantee transportGuarantee();
 
 }
+----
 
-.TABLE 13-2 The HttpConstraint Interface
+.The HttpConstraint Interface
+[caption="TABLE 13-2   "]
+[cols="3", options="header"]
+|===
+|Element
+|Description
+|Default
 
-Element
-
-Description
-
-Default
-
- `value`
-
-The default authorization semantic that
+|`value`
+|The default authorization semantic that
 applies (only) when rolesAllowed returns an-empty array.
+|PERMIT
 
-PERMIT
-
- `rolesAllowed`
-
-An array containing the names of the
+|`rolesAllowed`
+|An array containing the names of the
 authorized roles
+|{}
 
-\{}
-
- `transportGuarantee`
-
-The data protection requirements that must be
+|`transportGuarantee`
+|The data protection requirements that must be
 satisfied by the connections on which requests arrive.
+|NONE
+|===
 
-NONE
-
-`@HttpMethodConstraint`::
+[discrete]
+===== `@HttpMethodConstraint`
 
 The `@HttpMethodConstraint` annotation is
 used within the `@ServletSecurity` annotation to represent security
 constraints on specific HTTP protocol messages.
 
+[source,java]
+----
 package javax.servlet.annotation;
 
 @Documented
-
 @Retention(value=RUNTIME)
-
-public @interface HttpMethodConstraint \{
+public @interface HttpMethodConstraint {
 
  ServletSecurity.EmptyRoleSemantic value();
 
  java.lang.String[] rolesAllowed();
 
- ServletSecurity.TransportGuarantee
-transportGuarantee();
+ ServletSecurity.TransportGuarantee transportGuarantee();
 
 }
+----
 
-.TABLE 13-3 The HttpMethodConstraint Interface
+.The HttpMethodConstraint Interface
+[caption="TABLE 13-3   "]
+[cols="3", options="header"]
+|===
+|Element
+|Description
+|Default
 
-Element
-
-Description
-
-Default
-
-value
-
-The HTTP protocol method name
+|value
+|The HTTP protocol method name
+|
 
 
-
- `emptyRoleSemantic`
-
-The default authorization semantic that
+|`emptyRoleSemantic`
+|The default authorization semantic that
 applies (only) when rolesAllowed returns an empty array.
+|PERMIT
 
-PERMIT
-
- `rolesAllowed`
-
-An array containing the names of the
+|`rolesAllowed`
+|An array containing the names of the
 authorized roles
+|{}
 
-\{}
-
- `transportGuarantee`
-
-The data protection requirements that must be
+|`transportGuarantee`
+|The data protection requirements that must be
 satisfied by the connections on which requests arrive.
-
-NONE
+|NONE
+|===
 
 The `@ServletSecurity` annotation may be
 specified on (that is, targeted to) a `Servlet` implementation class,
@@ -6581,90 +6566,73 @@ if any, established programmatically for the target servlet via the
 The following examples demonstrate the use of
 the ServletSecurity annotation.
 
-for all HTTP methods, no constraints
-
+.for all HTTP methods, no constraints
+[source,java]
+----
 @ServletSecurity
-
-public class Example1 extends HttpServlet \{
-
-}
-
-for all HTTP methods, no auth-constraint,
-confidential transport required
-
-@ServletSecurity(@HttpConstraint(transportGuarantee
-= TransportGuarantee.CONFIDENTIAL))
-
-public class Example2 extends HttpServlet \{
+public class Example1 extends HttpServlet {
 
 }
+----
 
-for all HTTP methods, all access denied
+.for all HTTP methods, no auth-constraint, confidential transport required
+[source,java]
+----
+@ServletSecurity(@HttpConstraint(transportGuarantee = TransportGuarantee.CONFIDENTIAL))
+public class Example2 extends HttpServlet {
 
+}
+----
+
+.for all HTTP methods, all access denied
+[source,java]
+----
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.DENY))
-
-public class Example3 extends HttpServlet \{
-
-}
-
-for all HTTP methods, auth-constraint
-requiring membership in Role R1
-
-@ServletSecurity(@HttpConstraint(rolesAllowed
-= "R1"))
-
-public class Example4 extends HttpServlet \{
+public class Example3 extends HttpServlet {
 
 }
+----
 
-for All HTTP methods except GET and POST, no
-constraints; for methods GET and POST, auth-constraint requiring
-membership in Role R1; for POST, confidential transport required
+.for all HTTP methods, auth-constraint requiring membership in Role R1
+[source,java]
+----
+@ServletSecurity(@HttpConstraint(rolesAllowed = "R1"))
+public class Example4 extends HttpServlet {
 
-@ServletSecurity((httpMethodConstraints = \{
+}
+----
 
- @HttpMethodConstraint(value = "GET",
-rolesAllowed = "R1"),
-
- @HttpMethodConstraint(value = "POST",
-rolesAllowed = "R1",
-
- transportGuarantee =
-TransportGuarantee.CONFIDENTIAL)
-
+.for All HTTP methods except GET and POST, no constraints; for methods GET and POST, auth-constraint requiring membership in Role R1; for POST, confidential transport required
+[source,java]
+----
+@ServletSecurity((httpMethodConstraints = {
+ @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
+ @HttpMethodConstraint(value = "POST", rolesAllowed = "R1", transportGuarantee = TransportGuarantee.CONFIDENTIAL)
  })
-
-public class Example5 extends HttpServlet \{
-
-}
-
-for all HTTP methods except GET
-auth-constraint requiring membership in Role R1; for GET, no constraints
-
-@ServletSecurity(value =
-@HttpConstraint(rolesAllowed = "R1"),
-
- httpMethodConstraints =
-@HttpMethodConstraint("GET"))
-
-public class Example6 extends HttpServlet \{
+public class Example5 extends HttpServlet {
 
 }
+----
 
-for all HTTP methods except TRACE,
-auth-constraint requiring membership in Role R1; for TRACE, all access
-denied
-
-@ServletSecurity(value =
-@HttpConstraint(rolesAllowed = "R1"),
-
- httpMethodConstraints =
-@HttpMethodConstraint(value="TRACE", emptyRoleSemantic =
-EmptyRoleSemantic.DENY))
-
-public class Example7 extends HttpServlet \{
+.for all HTTP methods except GET auth-constraint requiring membership in Role R1; for GET, no constraints
+[source,java]
+----
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = "R1"), httpMethodConstraints = @HttpMethodConstraint("GET"))
+public class Example6 extends HttpServlet {
 
 }
+----
+
+.for all HTTP methods except TRACE,
+auth-constraint requiring membership in Role R1; for TRACE, all access denied
+[source,java]
+----
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = "R1"),
+ httpMethodConstraints = @HttpMethodConstraint(value="TRACE", emptyRoleSemantic = EmptyRoleSemantic.DENY))
+public class Example7 extends HttpServlet {
+
+}
+----
 
 ===== [[a2323]] Mapping @ServletSecurity to security-constraint
 
@@ -6699,27 +6667,23 @@ the presence and value of any contained `auth-constraint` and
 the `@HttpConstraint` value as defined in
 <<#a2361,Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
 
-mapping @ServletSecurity with no contained
-@HttpMethodConstraint
+.mapping @ServletSecurity with no contained @HttpMethodConstraint
+[source,java]
+----
+@ServletSecurity(@HttpConstraint(rolesAllowed = "Role1"))
+----
 
-@ServletSecurity(@HttpConstraint(rolesAllowed
-= "Role1"))
-
+[source,xml]
+----
 <security-constraint>
-
  <web-resource-collection>
-
- <url-pattern>...</url-pattern>
-
+  <url-pattern>...</url-pattern>
  </web-resource-collection>
-
  <auth-constraint>
-
- <role-name>Role1</role-name>
-
+  <role-name>Role1</role-name>
  </auth-constraint>
-
 </security-constraint>
+----
 
 When one or more `@HttpMethodConstraint`
 elements are specified, the method-independent constraint corresponds to
@@ -6744,51 +6708,32 @@ determined by the mapping of the associated `@HttpConstraint` and
 `@HttpMethodConstraint` values as defined in
 <<#a2361,Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
 
-mapping @ServletSecurity with contained
-@HttpMethodConstraint
+.mapping @ServletSecurity with contained @HttpMethodConstraint
+[source,java]
+----
+@ServletSecurity(value=@HttpConstraint(rolesAllowed = "Role1"),
+httpMethodConstraints = @HttpMethodConstraint(value = "TRACE", emptyRoleSemantic = EmptyRoleSemantic.DENY))
+----
 
-@ServletSecurity(value=@HttpConstraint(rolesAllowed
-= "Role1"),
-
- httpMethodConstraints =
-@HttpMethodConstraint(value = "TRACE",
-
- emptyRoleSemantic = EmptyRoleSemantic.DENY))
-
-
-
+[source,xml]
+----
 <security-constraint>
-
  <web-resource-collection>
-
- <url-pattern>...</url-pattern>
-
-
-<http-method-omission>TRACE</http-method-omission>
-
+  <url-pattern>...</url-pattern>
+  <http-method-omission>TRACE</http-method-omission>
  </web-resource-collection>
-
  <auth-constraint>
-
- <role-name>Role1</role-name>
-
+  <role-name>Role1</role-name>
  </auth-constraint>
-
 </security-constraint>
-
 <security-constraint>
-
  <web-resource-collection>
-
- <url-pattern>...</url-pattern>
-
+  <url-pattern>...</url-pattern>
  <http-method>TRACE</http-method>
-
  </web-resource-collection>
-
- <auth-constraint/>
-
+  <auth-constraint/>
 </security-constraint>
+----
 
 ===== [[a2361]] Mapping @HttpConstraint and @HttpMethodConstraint to XML.
 
@@ -6801,24 +6746,24 @@ annotations share a common model for expressing the equivalent of the
 portable deployment descriptor. That model is composed of the following
 3 elements:
 
- `emptyRoleSemantic`
+`emptyRoleSemantic`::
 
-the authorization semantic, either `PERMIT`
+The authorization semantic, either `PERMIT`
 or `DENY` , that applies when no roles are named in `rolesAllowed` . The
 default value for this element is `PERMIT` , and `DENY` is not supported
 in combination with a non-empty `rolesAllowed` list.
 
- `rolesAllowed`
+`rolesAllowed`::
 
- A list containing the names of the
+A list containing the names of the
 authorized roles. When this list is empty, its meaning depends on the
-value of the `emptyRoleSemantic` . The role name “*” has no special
+value of the `emptyRoleSemantic` . The role name “\*” has no special
 meaning when included in the list of allowed roles. When the special
 role name “**” appears in `rolesAllowed` , it indicates that user
 authentication, independent of role, is required and sufficient. The
 default value for this element is an empty list.
 
- `transportGuarantee`
+`transportGuarantee`::
 
 The data protection requirements, either
 `NONE` or `CONFIDENTIAL` , that must be satisfied by the connections on
@@ -6830,66 +6775,51 @@ The following examples depict the
 correspondence between the `@HttpConstraint` model described above and
 `auth-constraint` and `user-data-constraint` elements in web.xml.
 
-emptyRoleSemantic=PERMIT, rolesAllowed=\{},
-transportGuarantee=NONE
+.emptyRoleSemantic=PERMIT, rolesAllowed={}, transportGuarantee=NONE
 
-no constraints
+`no constraints`
 
-emptyRoleSemantic=PERMIT, rolesAllowed=\{},
-transportGuarantee=CONFIDENTIAL
-
+.emptyRoleSemantic=PERMIT, rolesAllowed={}, transportGuarantee=CONFIDENTIAL
+[source,xml]
+----
 <user-data-constraint>
-
-
-<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-
+ <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
+----
 
-emptyRoleSemantic=PERMIT,
-rolesAllowed=\{Role1}, transportGuarantee=NONE
-
+.emptyRoleSemantic=PERMIT,rolesAllowed={Role1}, transportGuarantee=NONE
+[source,xml]
+----
 <auth-constraint>
-
-
-<security-role-name>Role1</security-role-name>
-
+ <security-role-name>Role1</security-role-name>
 </auth-constraint>
+----
 
-emptyRoleSemantic=PERMIT,
-rolesAllowed=\{Role1}, transportGuarantee=CONFIDENTIAL
-
+.emptyRoleSemantic=PERMIT,rolesAllowed={Role1}, transportGuarantee=CONFIDENTIAL
+[source,xml]
+----
 <auth-constraint>
-
-
-<security-role-name>Role1</security-role-name>
-
+ <security-role-name>Role1</security-role-name>
 </auth-constraint>
-
 <user-data-constraint>
-
-
-<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-
+ <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
+----
 
-
-
-emptyRoleSemantic=DENY, rolesAllowed=\{},
-transportGuarantee=NONE
-
+.emptyRoleSemantic=DENY, rolesAllowed=\{}, transportGuarantee=NONE
+[source,xml]
+----
 <auth-constraint/>
+----
 
-emptyRoleSemantic=DENY, rolesAllowed=\{},
-transportGuarantee=CONFIDENTIAL
-
+.emptyRoleSemantic=DENY, rolesAllowed=\{}, transportGuarantee=CONFIDENTIAL
+[source,xml]
+----
 <auth-constraint/>
-
-<user-data-constraint>
-
-
-<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-
+ <user-data-constraint>
+  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
+----
 
 ==== [[a2395]] setServletSecurity of ServletRegistration.Dynamic
 
@@ -6897,8 +6827,7 @@ The `setServletSecurity` method may be used
 within a `ServletContextListener` to define the security constraints to
 be applied to the mappings defined for a `ServletRegistration` .
 
- _Collection<String>
-setServletSecurity(ServletSecurityElement arg);_
+ Collection<String> setServletSecurity(ServletSecurityElement arg);
 
 The `javax.servlet.ServletSecurityElement`
 argument to `setServletSecurity` is analogous in structure and model to
@@ -6929,8 +6858,6 @@ when `setServletSecurity` is called on a `ServletRegistration` it
 establishes the security constraints that apply to the `url-patterns` of
 the registration.
 
-
-
 === [[a2404]] Roles
 
 A security role is a logical grouping of users
@@ -6943,14 +6870,14 @@ programmatic security for the principal associated with an incoming
 request based on the security attributes of the principal. This may
 happen in either of the following ways:
 
-A deployer has mapped a security role to a
+. A deployer has mapped a security role to a
 user group in the operational environment. The user groups to which the
 calling principal belongs are retrieved from its security attributes.
 The principal is in the security role only if the principal belongs to
 the user group to which the security role has been mapped by the
 deployer.
 
-A deployer has mapped a security role to a
+. A deployer has mapped a security role to a
 principal name in a security policy domain. In this case, the principal
 name of the calling principal is retrieved from its security attributes.
 The principal is in the security role only if the principal name is the
@@ -6961,13 +6888,13 @@ same as a principal name to which the security role was mapped.
 A web client can authenticate a user to a web
 server using one of the following mechanisms:
 
-HTTP Basic Authentication
+* HTTP Basic Authentication
 
-HTTP Digest Authentication
+* HTTP Digest Authentication
 
-HTTPS Client Authentication
+* HTTPS Client Authentication
 
-Form Based Authentication
+* Form Based Authentication
 
 ==== [[a2415]] HTTP Basic Authentication
 
@@ -7022,32 +6949,32 @@ authenticated and possesses authority to access the resource, the
 requested web resource is activated and a reference to it is returned.
 If the user is not authenticated, all of the following steps occur:
 
-The login form associated with the security
+. The login form associated with the security
 constraint is sent to the client and the URL path and HTTP protocol
 method triggering the authentication is stored by the container.
 
-The user is asked to fill out the form,
+. The user is asked to fill out the form,
 including the username and password fields.
 
-The client posts the form back to the server.
+. The client posts the form back to the server.
 
-The container attempts to authenticate the
+. The container attempts to authenticate the
 user using the information from the form.
 
-If authentication fails, the error page is
+. If authentication fails, the error page is
 returned using either a forward or a redirect, and the status code of
 the response is set to 200. The error page contains information about
 the failure.
 
-If authentication succeeds, the client is
+. If authentication succeeds, the client is
 redirected to the resource using the store URL path.
 
-When the redirected and authenticated request
+. When the redirected and authenticated request
 arrives at the container, the container restores the request and HTTP
 protocol method, and the authenticated user’s principal is checked to
 see if it is in an authorized role for accessing the resource.
 
-If the user is authorized, the request is
+. If the user is authorized, the request is
 accepted for processing by the container.
 
 The HTTP protocol method of the redirected
@@ -7057,7 +6984,7 @@ redirection of step 6, the form authenticator must process the
 redirected request even if authentication is not required for the HTTP
 method with which the request arrives. To improve the predictability of
 the HTTP method of the redirected request, containers should redirect
-(in step 6) using the 303 (SC_SEE_OTHER) status code, except where
+(in step 6) using the 303 (`SC_SEE_OTHER`) status code, except where
 interoperability with HTTP 1.0 user agents is required; in which cases
 the 302 status code should be used.
 
@@ -7067,12 +6994,12 @@ as Basic Authentication.
 
 When the request that is triggering
 authentication arrives over a secure transport, or the login page is
-subject to a user-data-constraint of CONFIDENTIAL, the login page must
+subject to a user-data-constraint of `CONFIDENTIAL`, the login page must
 be returned to the user, and submitted to the container over a secure
 transport.
 
 The login page should be subject to a
-`user-data-constrain` t of CONFIDENTIAL, and a `user-data-constraint` of
+`user-data-constraint` of `CONFIDENTIAL`, and a `user-data-constraint` of
 CONFIDENTIAL should be included in every `security-constraint` that
 contains a requirement for authentication.
 
@@ -7097,19 +7024,13 @@ should specify `autocomplete=”off”` on the password form field.
 Here is an example showing how the form should
 be coded into the HTML page:
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <form method=”POST” action=”j_security_check”>
-
-<input type=”text” name=”j_username”>
-
-<input type=”password” name=”j_password”
-autocomplete=”off”>
-
+ <input type=”text” name=”j_username”>
+ <input type=”password” name=”j_password” autocomplete=”off”>
 </form>
-
-|===
+----
 
 If the form based login is invoked because of
 an HTTP request, the original request parameters must be preserved by
@@ -7158,14 +7079,14 @@ users and groups) to which roles are mapped in a runtime environment are
 environment specific rather than application specific, it is desirable
 to:
 
-Make login mechanisms and policies a property
+. Make login mechanisms and policies a property
 of the environment the web application is deployed in.
 
-Be able to use the same authentication
+. Be able to use the same authentication
 information to represent a principal to all applications deployed in the
 same container, and
 
-Require re-authentication of users only when a
+. Require re-authentication of users only when a
 security policy domain boundary has been crossed.
 
 Therefore, a servlet container is required to
@@ -7182,42 +7103,36 @@ authorization and or user data constraints with HTTP operations on web
 resources. A security constraint, represented as a `security-constraint`
 in a deployment descriptor, consists of the following elements:
 
-web resource collection (
-`web-resource-collection` in deployment descriptor)
+* web resource collection (`web-resource-collection` in deployment descriptor)
 
-authorization constraint ( `auth-constraint`
-in deployment descriptor)
+* authorization constraint ( `auth-constraint` in deployment descriptor)
 
-user data constraint ( `user-data-constraint`
-in deployment descriptor)
+*user data constraint ( `user-data-constraint` in deployment descriptor)
 
 The HTTP operations and web resources to which
 a security constraint applies (i.e. the constrained requests) are
 identified by one or more web resource collections. A web resource
 collection consists of the following elements:
 
-URL patterns ( `url-pattern` in deployment
-descriptor)
+* URL patterns ( `url-pattern` in deployment descriptor)
 
-HTTP methods ( `http-method` or
-`http-method-omission` elements in the deployment descriptor)
+* HTTP methods ( `http-method` or `http-method-omission` elements in the deployment descriptor)
 
 An authorization constraint establishes a
 requirement for authentication and names the authorization roles
 permitted to perform the constrained requests. A user must be a member
 of at least one of the named roles to be permitted to perform the
-constrained requests. The special role name “*” is a shorthand for all
+constrained requests. The special role name “pass:[*]” is a shorthand for all
 role names defined in the deployment descriptor. The special role name
-“**” is a shorthand for any authenticated user independent of role. When
-the special role name “**” appears in an authorization constraint, it
+“pass:[*]pass:[*]” is a shorthand for any authenticated user independent of role. When
+the special role name “pass:[*]pass:[*]” appears in an authorization constraint, it
 indicates that any authenticated user, independent of role, is
 authorized to perform the constrained requests. An authorization
 constraint that names no roles indicates that access to the constrained
 requests must not be permitted under any circumstances. An authorization
 constraint consists of the following element:
 
-role name ( `role-name` in deployment
-descriptor)
+* role name ( `role-name` in deployment descriptor)
 
 A user data constraint establishes a
 requirement that the constrained requests be received over a protected
@@ -7231,8 +7146,7 @@ connection including an unprotected one. Containers may impose a
 confidential transport guarantee in response to the INTEGRAL value. A
 user data constraint consists of the following element:
 
-transport guarantee ( `transport-guarantee` in
-deployment descriptor)
+* transport guarantee ( `transport-guarantee` in deployment descriptor)
 
 If no authorization constraint applies to a
 request, the container must accept the request without requiring user
@@ -7257,9 +7171,9 @@ for combining constraints in which the same pattern and method occur are
 as follows:
 
 The combination of authorization constraints
-that name roles or that imply roles via the name “*” shall yield the
+that name roles or that imply roles via the name “pass:[*]” shall yield the
 union of the role names in the individual constraints as permitted
-roles. An authorization constraint that names the role “**” shall
+roles. An authorization constraint that names the role “pass:[*]pass:[*]” shall
 combine with authorization constraints that name or imply roles to
 permit any authenticated user independent of role. A security constraint
 that does not contain an authorization constraint shall combine with
@@ -7283,228 +7197,111 @@ combination of constraints and their translation into a table of
 applicable constraints. Suppose that a deployment descriptor contained
 the following security constraints.
 
-[width="100%",cols="100%",]
-|===
-a|
+[source,xml]
+----
 <security-constraint>
-
-
-
  <web-resource-collection>
-
- <web-resource-name>precluded
-methods</web-resource-name>
-
- <url-pattern>/*</url-pattern>
-
- <url-pattern>/acme/wholesale/*</url-pattern>
-
- <url-pattern>/acme/retail/*</url-pattern>
-
-
-<http-method-omission>GET</http-method-omission>
-
-
-<http-method-omission>POST</http-method-omission>
-
+  <web-resource-name>precluded methods</web-resource-name>
+  <url-pattern>/*</url-pattern>
+  <url-pattern>/acme/wholesale/*</url-pattern>
+  <url-pattern>/acme/retail/*</url-pattern>
+  <http-method-omission>GET</http-method-omission>
+  <http-method-omission>POST</http-method-omission>
  </web-resource-collection>
-
-
-
  <auth-constraint/>
-
-
-
 </security-constraint>
 
-
-
 <security-constraint>
-
-
-
  <web-resource-collection>
-
-
-<web-resource-name>wholesale</web-resource-name>
-
- <url-pattern>/acme/wholesale/*</url-pattern>
-
- <http-method>GET</http-method>
-
- <http-method>PUT</http-method>
-
- </web-resource-collection>
-
-
-
- <auth-constraint>
-
- <role-name>SALESCLERK</role-name>
-
- </auth-constraint>
-
-
-
+  <web-resource-name>wholesale</web-resource-name>
+   <url-pattern>/acme/wholesale/*</url-pattern>
+   <http-method>GET</http-method>
+   <http-method>PUT</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>SALESCLERK</role-name>
+  </auth-constraint>
 </security-constraint>
 
-
-
-|===
-
-[width="100%",cols="100%",]
-|===
-a|
 <security-constraint>
-
-
-
  <web-resource-collection>
-
- <web-resource-name>wholesale
-2</web-resource-name>
-
- <url-pattern>/acme/wholesale/*</url-pattern>
-
- <http-method>GET</http-method>
-
- <http-method>POST</http-method>
-
+  <web-resource-name>wholesale 2</web-resource-name>
+  <url-pattern>/acme/wholesale/*</url-pattern>
+  <http-method>GET</http-method>
+  <http-method>POST</http-method>
  </web-resource-collection>
-
-
-
  <auth-constraint>
-
- <role-name>CONTRACTOR</role-name>
-
+  <role-name>CONTRACTOR</role-name>
  </auth-constraint>
-
-
-
  <user-data-constraint>
-
-
-<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-
+  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
  </user-data-constraint>
-
-
-
 </security-constraint>
-
-
 
 <security-constraint>
-
-
-
  <web-resource-collection>
-
-
-<web-resource-name>retail</web-resource-name>
-
- <url-pattern>/acme/retail/*</url-pattern>
-
- <http-method>GET</http-method>
-
- <http-method>POST</http-method>
-
+  <web-resource-name>retail</web-resource-name>
+  <url-pattern>/acme/retail/*</url-pattern>
+  <http-method>GET</http-method>
+  <http-method>POST</http-method>
  </web-resource-collection>
 
-
-
  <auth-constraint>
-
- <role-name>CONTRACTOR</role-name>
-
- <role-name>HOMEOWNER</role-name>
-
+  <role-name>CONTRACTOR</role-name>
+  <role-name>HOMEOWNER</role-name>
  </auth-constraint>
-
-
-
 </security-constraint>
 
-|===
+----
 
 The translation of this hypothetical
 deployment descriptor would yield the constraints defined in
 <<#a2544,Security Constraint Table>>.
 
 .[[a2544]] Security Constraint Table
+[caption="Table 13-4  "]
+[cols="4", options="header"]
+|===
+|url-pattern
+|http-method
+|permitted roles
+|supported connection types
 
-url-pattern
+|/*
+|all methods except GET, POST
+|access precluded
+|not constrained
 
-http-method
+|/acme/wholesale/*
+|all methods except GET, POST
+|access precluded
+|not constrained
 
-permitted roles
+|/acme/wholesale/*
+|GET
+|CONTRACTOR SALESCLERK
+|not constrained
 
-supported connection types
+|/acme/wholesale/*
+|POST
+|CONTRACTOR
+|CONFIDENTIAL
 
-/*
+|/acme/retail/*
+|all methods except GET, POST
+|access precluded
+|not constrained
 
-all methods except GET, POST
+|/acme/retail/*
+|GET
+|CONTRACTOR HOMEOWNER
+|not constrained
 
-access
-
-precluded
-
-not constrained
-
-/acme/wholesale/*
-
-all methods except GET, POST
-
-access precluded
-
-not constrained
-
-/acme/wholesale/*
-
-GET
-
-CONTRACTOR
-
-SALESCLERK
-
-not constrained
-
-/acme/wholesale/*
-
-POST
-
-CONTRACTOR
-
-CONFIDENTIAL
-
-/acme/retail/*
-
-all methods except GET, POST
-
-access precluded
-
-not constrained
-
-/acme/retail/*
-
-GET
-
-CONTRACTOR
-
-HOMEOWNER
-
-not constrained
-
-/acme/retail/*
-
-POST
-
-CONTRACTOR
-
-HOMEOWNER
-
-not constrained
+|/acme/retail/*
+|POST
+|CONTRACTOR HOMEOWNER
+|not constrained
+|===
 
 ==== [[a2581]] Processing Requests
 
@@ -7548,7 +7345,7 @@ and a 403 (SC_FORBIDDEN) status code shall be returned to the user.
 The `security-constraint` schema provides the
 ability to enumerate (including by omission) the HTTP protocol methods
 to which the protection requirements defined in a `security-constraint`
-apply. When HTTP methods are enumerated within a s `ecurity-constraint`
+apply. When HTTP methods are enumerated within a `security-constraint`
 , the protections defined by the constraint apply only to the methods
 established by the enumeration. We refer to the HTTP methods that are
 not established by the enumeration as "uncovered" HTTP methods.
@@ -7556,7 +7353,7 @@ Uncovered HTTP methods are NOT protected at all request URLs for which a
 `url-pattern` of the `security-constraint` is a best match.
 
 When HTTP methods are not enumerated within a
-`security-constrain` t, the protections defined by the constraint apply
+`security-constraint`, the protections defined by the constraint apply
 to the complete set of HTTP (extension) methods. In that case, there are
 no uncovered HTTP methods at all request URLs for which a `url-pattern`
 of the `security-constraint` is a best match.
@@ -7567,107 +7364,66 @@ determination of whether methods are uncovered is made after all the
 constraints that apply to a `url-pattern` have been combined as
 described in <<#a2472,Combining Constraints>>.
 
-A `security-constraint` names one or more
-HTTP methods in `http-metho` d elements. All HTTP methods other than
-those named in the constraint are uncovered. +
+. A `security-constraint` names one or more
+HTTP methods in `http-method` elements. All HTTP methods other than
+those named in the constraint are uncovered.
++
+[source,xml]
+----
+<security-constraint>
+ <web-resource-collection>
+  <web-resource-name>wholesale</web-resource-name>
+  <url-pattern>/acme/wholesale/*</url-pattern>
+  <http-method>GET</http-method>
+ </web-resource-collection>
+ <auth-constraint>
+  <role-name>SALESCLERK</role-name>
+ </auth-constraint>
+</security-constraint>
+----
++
 All HTTP Methods except GET are uncovered.
 
-[width="100%",cols="100%",]
-|===
-a|
+. A `security-constraint` names one or more
+HTTP methods in `http-method-omission` elements. All HTTP methods named
+in the constraint are uncovered. 
++
+[source,xml]
+----
 <security-constraint>
-
-
-
  <web-resource-collection>
-
-
-<web-resource-name>wholesale</web-resource-name>
-
- <url-pattern>/acme/wholesale/*</url-pattern>
-
- <http-method>GET</http-method>
-
+  <web-resource-name>wholesale</web-resource-name>
+  <url-pattern>/acme/wholesale/*</url-pattern>
+  <http-method-omission>GET</http-method-omission>
  </web-resource-collection>
-
-
-
- <auth-constraint>
-
- <role-name>SALESCLERK</role-name>
-
- </auth-constraint>
-
-
-
-</security-constraint>
-
-|===
-
-A `security-constraint` names one or more
-HTTP methods in `http-method-omissio` n elements. All HTTP methods named
-in the constraint are uncovered. +
-GET is uncovered. All other methods are covered by the excluding
-`auth-contraint` .
-
-[width="100%",cols="100%",]
-|===
-a|
-<security-constraint>
-
-
-
- <web-resource-collection>
-
-
-<web-resource-name>wholesale</web-resource-name>
-
- <url-pattern>/acme/wholesale/*</url-pattern>
-
-
-<http-method-omission>GET</http-method-omission>
-
- </web-resource-collection>
-
  <auth-constraint/>
-
-
-
 </security-constraint>
+----
++
+GET is uncovered. All other methods are covered by the excluding
+`auth-contraint`.
 
-|===
-
-A `@ServletSecurity` annotation includes an
+. A `@ServletSecurity` annotation includes an
 `@HttpConstraint` that returns all default values and it also includes
 at least one `@HttpMethodConstraint` that returns other than all default
 values. All HTTP methods other than those named in an
 `@HTTPMethodConstraint` are uncovered by the annotation. This case is
 analogous to case 1, and equivalent use of the `setServletSecurity`
 method of the `ServletRegistration` interface will also produce an
-analogous result. +
-All HTTP Methods except GET and POST are uncovered.
-
-[width="100%",cols="100%",]
-|===
-a|
-@ServletSecurity((httpMethodConstraints = \{
-
- @HttpMethodConstraint(value = "GET",
-rolesAllowed = "R1"),
-
- @HttpMethodConstraint(value = "POST",
-rolesAllowed = "R1",
-
- transportGuarantee =
-TransportGuarantee.CONFIDENTIAL)
-
+analogous result.
++
+[source,java]
+----
+@ServletSecurity((httpMethodConstraints = {
+  @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
+  @HttpMethodConstraint(value = "POST", rolesAllowed = "R1", transportGuarantee = TransportGuarantee.CONFIDENTIAL)
  })
-
-public class Example5 extends HttpServlet \{
+public class Example5 extends HttpServlet {
 
 }
-
-|===
+----
++
+All HTTP Methods except GET and POST are uncovered.
 
 ===== [[a2622]] Rules for Security Constraint Configuration
 
@@ -7675,16 +7431,16 @@ Objective: Make sure all HTTP methods at all
 constrained URL patterns have the intended security protections (that
 is, are covered).
 
-Do not name HTTP methods in constraints; in
+. Do not name HTTP methods in constraints; in
 which case, the security protections defined for the URL patterns will
 apply to all HTTP methods.
 
-If you can’t follow rule #1, add the
+. If you can’t follow rule #1, add the
 `<deny-uncovered-http-methods>` and declare (using the `<http-method>`
 element, or equivalent annotation) all the HTTP methods (with security
 protections) that are to be allowed at the constrained URL patterns.
 
-If you can’t follow rule #2, declare
+. If you can’t follow rule #2, declare
 constraints to cover all HTTP methods at each constrained URL pattern.
 Use the `<http-method-omission>` element or the `HttpMethodConstraint`
 annotation to represent the set of all HTTP methods other than those
