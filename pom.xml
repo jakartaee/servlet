@@ -67,7 +67,7 @@
                <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
-                    <version>1.28.0</version>
+                    <version>1.29.0</version>
                     <executions>
                         <execution>
                             <id>spotless-check</id>
