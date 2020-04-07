@@ -146,10 +146,25 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <release>9</release>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>base-compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <release>8</release>
+                            <excludes>
+                                <exclude>module-info.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             
             <!-- Checks copyright / license headers -->        
@@ -223,9 +238,6 @@
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <Automatic-Module-Name>java.servlet</Automatic-Module-Name>
-                        </manifestEntries>
                     </archive>
                     <excludes>
                         <exclude>**/*.java</exclude>
@@ -266,6 +278,11 @@
                         </goals>
                         <configuration>
                             <source>1.8</source>
+                            <release>8</release>
+                            <sourceFileExcludes>
+                                <sourceFileExclude>module-info.java</sourceFileExclude>
+                            </sourceFileExcludes>
+                            <notimestamp>true</notimestamp>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Servlet API documentation</description>
                             <doctitle>Jakarta Servlet API documentation</doctitle>
