@@ -278,11 +278,6 @@
                         </goals>
                         <configuration>
                             <source>1.8</source>
-                            <release>8</release>
-                            <sourceFileExcludes>
-                                <sourceFileExclude>module-info.java</sourceFileExclude>
-                            </sourceFileExcludes>
-                            <notimestamp>true</notimestamp>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Servlet API documentation</description>
                             <doctitle>Jakarta Servlet API documentation</doctitle>
