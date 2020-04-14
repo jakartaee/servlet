@@ -92,6 +92,7 @@ public class Cookie implements Cloneable, Serializable {
     private boolean secure; // ;Secure ... e.g. use SSL
     private int version = 0; // ;Version=1 ... means RFC 2109++ style
     private boolean isHttpOnly = false;
+    private SameSite sameSite;
 
     /**
      * Constructs a cookie with the specified name and value.
@@ -421,5 +422,60 @@ public class Cookie implements Cloneable, Serializable {
      */
     public boolean isHttpOnly() {
         return isHttpOnly;
+    }
+
+    /**
+     * Returns the <i>SameSite</i> attribute of the cookie.
+     *
+     * @return the <i>SameSite</i> attribute of the cookie
+     */
+    public SameSite getSameSite() {
+        return sameSite;
+    }
+
+    /**
+     * Sets the <i>SameSite</i> attribute of the cookie.
+     *
+     * @param sameSite the <i>SameSite</i> attribute of the cookie
+     */
+    public void setSameSite(SameSite sameSite) {
+        this.sameSite = sameSite;
+    }
+
+    /**
+     * Available SameSite directives for the cookie as described in RFC6265bis.
+     */
+    public enum SameSite {
+
+        /**
+         * The cookie will only be sent if the site for the cookie matches the current
+         * site URL. The cookie will not be sent along with requests initiated by
+         * third party websites.
+         */
+        STRICT("Strict"),
+
+        /**
+         * The cookie will only be sent if the site for the cookie matches the current
+         * site URL. The cookie will be sent along with the GET request initiated by
+         * third party website.
+         */
+        LAX("Lax"),
+
+        /**
+         * The cookie will be sent cross-origin. This directive requires the Secure
+         * attribute.
+         */
+        NONE("None");
+
+        private final String value;
+
+        SameSite(final String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
     }
 }

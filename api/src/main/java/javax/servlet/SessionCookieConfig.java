@@ -17,6 +17,8 @@
 
 package javax.servlet;
 
+import javax.servlet.http.Cookie;
+
 /**
  * Class that may be used to configure various properties of cookies used for session tracking purposes.
  *
@@ -236,4 +238,24 @@ public interface SessionCookieConfig {
      * @see javax.servlet.http.Cookie#getMaxAge
      */
     public int getMaxAge();
+
+    /**
+     * Returns the <i>SameSite</i> attribute of the cookie.
+     *
+     * @see javax.servlet.http.Cookie.SameSite
+     * @see javax.servlet.http.Cookie#getSameSite()
+     *
+     * @return the <i>SameSite</i> attribute of the cookie
+     */
+    public Cookie.SameSite getSameSite();
+
+    /**
+     * Sets the <i>SameSite</i> attribute of the cookie.
+     *
+     * @see javax.servlet.http.Cookie.SameSite
+     * @see javax.servlet.http.Cookie#setSameSite
+     *
+     * @param sameSite the <i>SameSite</i> attribute of the cookie
+     */
+    public void setSameSite(final Cookie.SameSite sameSite);
 }
