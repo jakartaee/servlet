@@ -50,7 +50,7 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
      * event, the object must implement {@link HttpSessionBindingListener}.
      *
      * @param session the session to which the object is bound or unbound
-     * @param name    the name with which the object is bound or unbound
+     * @param name the name with which the object is bound or unbound
      *
      * @see #getName
      * @see #getSession
@@ -66,8 +66,8 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
      * event, the object must implement {@link HttpSessionBindingListener}.
      *
      * @param session the session to which the object is bound or unbound
-     * @param name    the name with which the object is bound or unbound
-     * @param value   the object that is bound or unbound
+     * @param name the name with which the object is bound or unbound
+     * @param value the object that is bound or unbound
      *
      * @see #getName
      * @see #getSession
@@ -88,9 +88,9 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
     }
 
     /**
-     * Returns the value of the attribute that has been added, removed or replaced. If the attribute was added (or
-     * bound), this is the value of the attribute. If the attribute was removed (or unbound), this is the value of the
-     * removed attribute. If the attribute was replaced, this is the old value of the attribute.
+     * Returns the value of the attribute that has been added, removed or replaced. If the attribute was added (or bound),
+     * this is the value of the attribute. If the attribute was removed (or unbound), this is the value of the removed
+     * attribute. If the attribute was replaced, this is the old value of the attribute.
      *
      * @return the value of the attribute that has been added, removed or replaced
      *

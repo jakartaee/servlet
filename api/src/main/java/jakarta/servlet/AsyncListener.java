@@ -51,8 +51,8 @@ public interface AsyncListener extends EventListener {
      * Notifies this AsyncListener that an asynchronous operation has timed out.
      * 
      * <p>
-     * The {@link AsyncContext} corresponding to the asynchronous operation that has timed out may be obtained by
-     * calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <tt>event</tt>.
+     * The {@link AsyncContext} corresponding to the asynchronous operation that has timed out may be obtained by calling
+     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <tt>event</tt>.
      *
      * <p>
      * In addition, if this AsyncListener had been registered via a call to
@@ -90,8 +90,8 @@ public interface AsyncListener extends EventListener {
      * {@link ServletRequest#startAsync} methods.
      *
      * <p>
-     * The {@link AsyncContext} corresponding to the asynchronous operation that is being reinitialized may be obtained
-     * by calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <tt>event</tt>.
+     * The {@link AsyncContext} corresponding to the asynchronous operation that is being reinitialized may be obtained by
+     * calling {@link AsyncEvent#getAsyncContext getAsyncContext} on the given <tt>event</tt>.
      * 
      * <p>
      * In addition, if this AsyncListener had been registered via a call to
@@ -100,9 +100,8 @@ public interface AsyncListener extends EventListener {
      * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse}, respectively, on the given <tt>event</tt>.
      *
      * <p>
-     * This AsyncListener will not receive any events related to the new asynchronous cycle unless it registers itself
-     * (via a call to {@link AsyncContext#addListener}) with the AsyncContext that is delivered as part of the given
-     * AsyncEvent.
+     * This AsyncListener will not receive any events related to the new asynchronous cycle unless it registers itself (via
+     * a call to {@link AsyncContext#addListener}) with the AsyncContext that is delivered as part of the given AsyncEvent.
      *
      * @param event the AsyncEvent indicating that a new asynchronous cycle is being initiated
      *

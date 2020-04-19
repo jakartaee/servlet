@@ -43,8 +43,8 @@ public class AsyncEvent {
     /**
      * Constructs an AsyncEvent from the given AsyncContext, ServletRequest, and ServletResponse.
      *
-     * @param context  the AsyncContex to be delivered with this AsyncEvent
-     * @param request  the ServletRequest to be delivered with this AsyncEvent
+     * @param context the AsyncContex to be delivered with this AsyncEvent
+     * @param request the ServletRequest to be delivered with this AsyncEvent
      * @param response the ServletResponse to be delivered with this AsyncEvent
      */
     public AsyncEvent(AsyncContext context, ServletRequest request, ServletResponse response) {
@@ -54,7 +54,7 @@ public class AsyncEvent {
     /**
      * Constructs an AsyncEvent from the given AsyncContext and Throwable.
      *
-     * @param context   the AsyncContex to be delivered with this AsyncEvent
+     * @param context the AsyncContex to be delivered with this AsyncEvent
      * @param throwable the Throwable to be delivered with this AsyncEvent
      */
     public AsyncEvent(AsyncContext context, Throwable throwable) {
@@ -64,9 +64,9 @@ public class AsyncEvent {
     /**
      * Constructs an AsyncEvent from the given AsyncContext, ServletRequest, ServletResponse, and Throwable.
      *
-     * @param context   the AsyncContex to be delivered with this AsyncEvent
-     * @param request   the ServletRequest to be delivered with this AsyncEvent
-     * @param response  the ServletResponse to be delivered with this AsyncEvent
+     * @param context the AsyncContex to be delivered with this AsyncEvent
+     * @param request the ServletRequest to be delivered with this AsyncEvent
+     * @param response the ServletResponse to be delivered with this AsyncEvent
      * @param throwable the Throwable to be delivered with this AsyncEvent
      */
     public AsyncEvent(AsyncContext context, ServletRequest request, ServletResponse response, Throwable throwable) {
@@ -90,12 +90,12 @@ public class AsyncEvent {
      *
      * <p>
      * If the AsyncListener to which this AsyncEvent is being delivered was added using
-     * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the returned ServletRequest
-     * will be the same as the one supplied to the above method. If the AsyncListener was added via
+     * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the returned ServletRequest will be
+     * the same as the one supplied to the above method. If the AsyncListener was added via
      * {@link AsyncContext#addListener(AsyncListener)}, this method must return null.
      *
-     * @return the ServletRequest that was used to initialize this AsyncEvent, or null if this AsyncEvent was
-     *         initialized without any ServletRequest
+     * @return the ServletRequest that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized
+     * without any ServletRequest
      */
     public ServletRequest getSuppliedRequest() {
         return request;
@@ -106,12 +106,12 @@ public class AsyncEvent {
      *
      * <p>
      * If the AsyncListener to which this AsyncEvent is being delivered was added using
-     * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the returned ServletResponse
-     * will be the same as the one supplied to the above method. If the AsyncListener was added via
+     * {@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}, the returned ServletResponse will
+     * be the same as the one supplied to the above method. If the AsyncListener was added via
      * {@link AsyncContext#addListener(AsyncListener)}, this method must return null.
      *
-     * @return the ServletResponse that was used to initialize this AsyncEvent, or null if this AsyncEvent was
-     *         initialized without any ServletResponse
+     * @return the ServletResponse that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized
+     * without any ServletResponse
      */
     public ServletResponse getSuppliedResponse() {
         return response;
@@ -120,8 +120,8 @@ public class AsyncEvent {
     /**
      * Gets the Throwable from this AsyncEvent.
      *
-     * @return the Throwable that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized
-     *         without any Throwable
+     * @return the Throwable that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized without
+     * any Throwable
      */
     public Throwable getThrowable() {
         return throwable;

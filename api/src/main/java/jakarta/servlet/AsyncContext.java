@@ -82,8 +82,8 @@ public interface AsyncContext {
      *
      * @return the request that was used to initialize this AsyncContext
      *
-     * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in
-     *                                  the asynchronous cycle
+     * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in the
+     * asynchronous cycle
      */
     public ServletRequest getRequest();
 
@@ -93,25 +93,23 @@ public interface AsyncContext {
      *
      * @return the response that was used to initialize this AsyncContext
      *
-     * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in
-     *                                  the asynchronous cycle
+     * @exception IllegalStateException if {@link #complete} or any of the {@link #dispatch} methods has been called in the
+     * asynchronous cycle
      */
     public ServletResponse getResponse();
 
     /**
-     * Checks if this AsyncContext was initialized with the original or application-wrapped request and response
-     * objects.
+     * Checks if this AsyncContext was initialized with the original or application-wrapped request and response objects.
      * 
      * <p>
      * This information may be used by filters invoked in the <i>outbound</i> direction, after a request was put into
      * asynchronous mode, to determine whether any request and/or response wrappers that they added during their
-     * <i>inbound</i> invocation need to be preserved for the duration of the asynchronous operation, or may be
-     * released.
+     * <i>inbound</i> invocation need to be preserved for the duration of the asynchronous operation, or may be released.
      *
      * @return true if this AsyncContext was initialized with the original request and response objects by calling
-     *         {@link ServletRequest#startAsync()}, or if it was initialized by calling
-     *         {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and neither the ServletRequest nor
-     *         ServletResponse arguments carried any application-provided wrappers; false otherwise
+     * {@link ServletRequest#startAsync()}, or if it was initialized by calling
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and neither the ServletRequest nor
+     * ServletResponse arguments carried any application-provided wrappers; false otherwise
      */
     public boolean hasOriginalRequestAndResponse();
 
@@ -119,8 +117,8 @@ public interface AsyncContext {
      * Dispatches the request and response objects of this AsyncContext to the servlet container.
      * 
      * <p>
-     * If the asynchronous cycle was started with {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
-     * and the request passed is an instance of HttpServletRequest, then the dispatch is to the URI returned by
+     * If the asynchronous cycle was started with {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and
+     * the request passed is an instance of HttpServletRequest, then the dispatch is to the URI returned by
      * {@link jakarta.servlet.http.HttpServletRequest#getRequestURI}. Otherwise, the dispatch is to the URI of the request
      * when it was last dispatched by the container.
      *
@@ -156,9 +154,9 @@ public interface AsyncContext {
      *
      * <p>
      * This method returns immediately after passing the request and response objects to a container managed thread, on
-     * which the dispatch operation will be performed. If this method is called before the container-initiated dispatch
-     * that called <tt>startAsync</tt> has returned to the container, the dispatch operation will be delayed until after
-     * the container-initiated dispatch has returned to the container.
+     * which the dispatch operation will be performed. If this method is called before the container-initiated dispatch that
+     * called <tt>startAsync</tt> has returned to the container, the dispatch operation will be delayed until after the
+     * container-initiated dispatch has returned to the container.
      *
      * <p>
      * The dispatcher type of the request is set to <tt>DispatcherType.ASYNC</tt>. Unlike
@@ -166,8 +164,8 @@ public interface AsyncContext {
      * headers will not be reset, and it is legal to dispatch even if the response has already been committed.
      *
      * <p>
-     * Control over the request and response is delegated to the dispatch target, and the response will be closed when
-     * the dispatch target has completed execution, unless {@link ServletRequest#startAsync()} or
+     * Control over the request and response is delegated to the dispatch target, and the response will be closed when the
+     * dispatch target has completed execution, unless {@link ServletRequest#startAsync()} or
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} are called.
      * 
      * <p>
@@ -175,25 +173,23 @@ public interface AsyncContext {
      * container, as follows:
      * <ol>
      * <li>Invoke, at their {@link AsyncListener#onError onError} method, all {@link AsyncListener} instances registered
-     * with the ServletRequest for which this AsyncContext was created, and make the caught <tt>Throwable</tt> available
-     * via {@link AsyncEvent#getThrowable}.</li>
+     * with the ServletRequest for which this AsyncContext was created, and make the caught <tt>Throwable</tt> available via
+     * {@link AsyncEvent#getThrowable}.</li>
      * <li>If none of the listeners called {@link #complete} or any of the {@link #dispatch} methods, perform an error
      * dispatch with a status code equal to <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>, and make the above
-     * <tt>Throwable</tt> available as the value of the <tt>RequestDispatcher.ERROR_EXCEPTION</tt> request
-     * attribute.</li>
+     * <tt>Throwable</tt> available as the value of the <tt>RequestDispatcher.ERROR_EXCEPTION</tt> request attribute.</li>
      * <li>If no matching error page was found, or the error page did not call {@link #complete} or any of the
      * {@link #dispatch} methods, call {@link #complete}.</li>
      * </ol>
      *
      * <p>
-     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to
-     * one of the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch
-     * operation within the same asynchronous cycle will result in an IllegalStateException. If startAsync is
-     * subsequently called on the dispatched request, then any of the dispatch or {@link #complete} methods may be
-     * called.
+     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to one of
+     * the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch operation
+     * within the same asynchronous cycle will result in an IllegalStateException. If startAsync is subsequently called on
+     * the dispatched request, then any of the dispatch or {@link #complete} methods may be called.
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not
-     *                               been called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
+     * called during the resulting dispatch, or if {@link #complete} was called
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -203,32 +199,30 @@ public interface AsyncContext {
      * Dispatches the request and response objects of this AsyncContext to the given <tt>path</tt>.
      *
      * <p>
-     * The <tt>path</tt> parameter is interpreted in the same way as in
-     * {@link ServletRequest#getRequestDispatcher(String)}, within the scope of the {@link ServletContext} from which
-     * this AsyncContext was initialized.
+     * The <tt>path</tt> parameter is interpreted in the same way as in {@link ServletRequest#getRequestDispatcher(String)},
+     * within the scope of the {@link ServletContext} from which this AsyncContext was initialized.
      *
      * <p>
      * All path related query methods of the request must reflect the dispatch target, while the original request URI,
      * context path, path info, servlet path, and query string may be recovered from the {@link #ASYNC_REQUEST_URI},
-     * {@link #ASYNC_CONTEXT_PATH}, {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and
-     * {@link #ASYNC_QUERY_STRING} attributes of the request. These attributes will always reflect the original path
-     * elements, even under repeated dispatches.
+     * {@link #ASYNC_CONTEXT_PATH}, {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and {@link #ASYNC_QUERY_STRING}
+     * attributes of the request. These attributes will always reflect the original path elements, even under repeated
+     * dispatches.
      *
      * <p>
-     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to
-     * one of the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch
-     * operation within the same asynchronous cycle will result in an IllegalStateException. If startAsync is
-     * subsequently called on the dispatched request, then any of the dispatch or {@link #complete} methods may be
-     * called.
+     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to one of
+     * the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch operation
+     * within the same asynchronous cycle will result in an IllegalStateException. If startAsync is subsequently called on
+     * the dispatched request, then any of the dispatch or {@link #complete} methods may be called.
      *
      * <p>
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * @param path the path of the dispatch target, scoped to the ServletContext from which this AsyncContext was
-     *             initialized
+     * initialized
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not
-     *                               been called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
+     * called during the resulting dispatch, or if {@link #complete} was called
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -239,50 +233,49 @@ public interface AsyncContext {
      * <tt>context</tt>.
      *
      * <p>
-     * The <tt>path</tt> parameter is interpreted in the same way as in
-     * {@link ServletRequest#getRequestDispatcher(String)}, except that it is scoped to the given <tt>context</tt>.
+     * The <tt>path</tt> parameter is interpreted in the same way as in {@link ServletRequest#getRequestDispatcher(String)},
+     * except that it is scoped to the given <tt>context</tt>.
      *
      * <p>
      * All path related query methods of the request must reflect the dispatch target, while the original request URI,
      * context path, path info, servlet path, and query string may be recovered from the {@link #ASYNC_REQUEST_URI},
-     * {@link #ASYNC_CONTEXT_PATH}, {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and
-     * {@link #ASYNC_QUERY_STRING} attributes of the request. These attributes will always reflect the original path
-     * elements, even under repeated dispatches.
+     * {@link #ASYNC_CONTEXT_PATH}, {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and {@link #ASYNC_QUERY_STRING}
+     * attributes of the request. These attributes will always reflect the original path elements, even under repeated
+     * dispatches.
      *
      * <p>
-     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to
-     * one of the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch
-     * operation within the same asynchronous cycle will result in an IllegalStateException. If startAsync is
-     * subsequently called on the dispatched request, then any of the dispatch or {@link #complete} methods may be
-     * called.
+     * There can be at most one asynchronous dispatch operation per asynchronous cycle, which is started by a call to one of
+     * the {@link ServletRequest#startAsync} methods. Any attempt to perform an additional asynchronous dispatch operation
+     * within the same asynchronous cycle will result in an IllegalStateException. If startAsync is subsequently called on
+     * the dispatched request, then any of the dispatch or {@link #complete} methods may be called.
      *
      * <p>
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * @param context the ServletContext of the dispatch target
-     * @param path    the path of the dispatch target, scoped to the given ServletContext
+     * @param path the path of the dispatch target, scoped to the given ServletContext
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not
-     *                               been called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
+     * called during the resulting dispatch, or if {@link #complete} was called
      *
      * @see ServletRequest#getDispatcherType
      */
     public void dispatch(ServletContext context, String path);
 
     /**
-     * Completes the asynchronous operation that was started on the request that was used to initialze this
-     * AsyncContext, closing the response that was used to initialize this AsyncContext.
+     * Completes the asynchronous operation that was started on the request that was used to initialze this AsyncContext,
+     * closing the response that was used to initialize this AsyncContext.
      *
      * <p>
-     * Any listeners of type {@link AsyncListener} that were registered with the ServletRequest for which this
-     * AsyncContext was created will be invoked at their {@link AsyncListener#onComplete(AsyncEvent) onComplete} method.
+     * Any listeners of type {@link AsyncListener} that were registered with the ServletRequest for which this AsyncContext
+     * was created will be invoked at their {@link AsyncListener#onComplete(AsyncEvent) onComplete} method.
      *
      * <p>
      * It is legal to call this method any time after a call to {@link ServletRequest#startAsync()} or
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and before a call to one of the
-     * <tt>dispatch</tt> methods of this class. If this method is called before the container-initiated dispatch that
-     * called <tt>startAsync</tt> has returned to the container, then the call will not take effect (and any invocations
-     * of {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the container-initiated dispatch has
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and before a call to one of the <tt>dispatch</tt>
+     * methods of this class. If this method is called before the container-initiated dispatch that called
+     * <tt>startAsync</tt> has returned to the container, then the call will not take effect (and any invocations of
+     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the container-initiated dispatch has
      * returned to the container.
      */
     public void complete();
@@ -296,37 +289,36 @@ public interface AsyncContext {
     public void start(Runnable run);
 
     /**
-     * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to
-     * one of the {@link ServletRequest#startAsync} methods.
+     * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to one
+     * of the {@link ServletRequest#startAsync} methods.
      *
      * <p>
-     * The given AsyncListener will receive an {@link AsyncEvent} when the asynchronous cycle completes successfully,
-     * times out, results in an error, or a new asynchronous cycle is being initiated via one of the
+     * The given AsyncListener will receive an {@link AsyncEvent} when the asynchronous cycle completes successfully, times
+     * out, results in an error, or a new asynchronous cycle is being initiated via one of the
      * {@link ServletRequest#startAsync} methods.
      *
      * <p>
      * AsyncListener instances will be notified in the order in which they were added.
      *
      * <p>
-     * If {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} or {@link ServletRequest#startAsync} is
-     * called, the exact same request and response objects are available from the {@link AsyncEvent} when the
-     * {@link AsyncListener} is notified.
+     * If {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} or {@link ServletRequest#startAsync} is called,
+     * the exact same request and response objects are available from the {@link AsyncEvent} when the {@link AsyncListener}
+     * is notified.
      *
      * @param listener the AsyncListener to be registered
      * 
-     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one
-     *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
-     *                               container
+     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one of
+     * the {@link ServletRequest#startAsync} methods was called, has returned to the container
      */
     public void addListener(AsyncListener listener);
 
     /**
-     * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to
-     * one of the {@link ServletRequest#startAsync} methods.
+     * Registers the given {@link AsyncListener} with the most recent asynchronous cycle that was started by a call to one
+     * of the {@link ServletRequest#startAsync} methods.
      *
      * <p>
-     * The given AsyncListener will receive an {@link AsyncEvent} when the asynchronous cycle completes successfully,
-     * times out, results in an error, or a new asynchronous cycle is being initiated via one of the
+     * The given AsyncListener will receive an {@link AsyncEvent} when the asynchronous cycle completes successfully, times
+     * out, results in an error, or a new asynchronous cycle is being initiated via one of the
      * {@link ServletRequest#startAsync} methods.
      *
      * <p>
@@ -335,18 +327,17 @@ public interface AsyncContext {
      * <p>
      * The given ServletRequest and ServletResponse objects will be made available to the given AsyncListener via the
      * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and {@link AsyncEvent#getSuppliedResponse
-     * getSuppliedResponse} methods, respectively, of the {@link AsyncEvent} delivered to it. These objects should not
-     * be read from or written to, respectively, at the time the AsyncEvent is delivered, because additional wrapping
-     * may have occurred since the given AsyncListener was registered, but may be used in order to release any resources
-     * associated with them.
+     * getSuppliedResponse} methods, respectively, of the {@link AsyncEvent} delivered to it. These objects should not be
+     * read from or written to, respectively, at the time the AsyncEvent is delivered, because additional wrapping may have
+     * occurred since the given AsyncListener was registered, but may be used in order to release any resources associated
+     * with them.
      *
-     * @param listener        the AsyncListener to be registered
-     * @param servletRequest  the ServletRequest that will be included in the AsyncEvent
+     * @param listener the AsyncListener to be registered
+     * @param servletRequest the ServletRequest that will be included in the AsyncEvent
      * @param servletResponse the ServletResponse that will be included in the AsyncEvent
      *
-     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one
-     *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
-     *                               container
+     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one of
+     * the {@link ServletRequest#startAsync} methods was called, has returned to the container
      */
     public void addListener(AsyncListener listener, ServletRequest servletRequest, ServletResponse servletResponse);
 
@@ -354,8 +345,8 @@ public interface AsyncContext {
      * Instantiates the given {@link AsyncListener} class.
      *
      * <p>
-     * The returned AsyncListener instance may be further customized before it is registered with this AsyncContext via
-     * a call to one of the <code>addListener</code> methods.
+     * The returned AsyncListener instance may be further customized before it is registered with this AsyncContext via a
+     * call to one of the <code>addListener</code> methods.
      *
      * <p>
      * The given AsyncListener class must define a zero argument constructor, which is used to instantiate it.
@@ -367,7 +358,7 @@ public interface AsyncContext {
      * <p>
      * This method supports any annotations applicable to AsyncListener.
      *
-     * @param       <T> the class of the object to instantiate
+     * @param <T> the class of the object to instantiate
      * @param clazz the AsyncListener class to instantiate
      *
      * @return the new AsyncListener instance
@@ -384,8 +375,8 @@ public interface AsyncContext {
      * {@link ServletRequest#startAsync} methods was called has returned to the container.
      *
      * <p>
-     * The timeout will expire if neither the {@link #complete} method nor any of the dispatch methods are called. A
-     * timeout value of zero or less indicates no timeout.
+     * The timeout will expire if neither the {@link #complete} method nor any of the dispatch methods are called. A timeout
+     * value of zero or less indicates no timeout.
      * 
      * <p>
      * If {@link #setTimeout} is not called, then the container's default timeout, which is available via a call to
@@ -396,9 +387,8 @@ public interface AsyncContext {
      *
      * @param timeout the timeout in milliseconds
      *
-     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one
-     *                               of the {@link ServletRequest#startAsync} methods was called, has returned to the
-     *                               container
+     * @throws IllegalStateException if this method is called after the container-initiated dispatch, during which one of
+     * the {@link ServletRequest#startAsync} methods was called, has returned to the container
      */
     public void setTimeout(long timeout);
 
@@ -406,8 +396,8 @@ public interface AsyncContext {
      * Gets the timeout (in milliseconds) for this AsyncContext.
      *
      * <p>
-     * This method returns the container's default timeout for asynchronous operations, or the timeout value passed to
-     * the most recent invocation of {@link #setTimeout}.
+     * This method returns the container's default timeout for asynchronous operations, or the timeout value passed to the
+     * most recent invocation of {@link #setTimeout}.
      *
      * <p>
      * A timeout value of zero or less indicates no timeout.

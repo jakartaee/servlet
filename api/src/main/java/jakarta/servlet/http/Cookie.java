@@ -108,16 +108,15 @@ public class Cookie implements Cloneable, Serializable {
      * cookie's value can be changed after creation with the <code>setValue</code> method.
      *
      * <p>
-     * By default, cookies are created according to the Netscape cookie specification. The version can be changed with
-     * the <code>setVersion</code> method.
+     * By default, cookies are created according to the Netscape cookie specification. The version can be changed with the
+     * <code>setVersion</code> method.
      *
-     * @param name  the name of the cookie
+     * @param name the name of the cookie
      *
      * @param value the value of the cookie
      *
-     * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for
-     *                                  example, a comma, space, or semicolon) or matches a token reserved for use by
-     *                                  the cookie protocol
+     * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for example,
+     * a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol
      *
      * @see #setValue
      * @see #setVersion
@@ -144,8 +143,8 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Specifies a comment that describes a cookie's purpose. The comment is useful if the browser presents the cookie
-     * to the user. Comments are not supported by Netscape Version 0 cookies.
+     * Specifies a comment that describes a cookie's purpose. The comment is useful if the browser presents the cookie to
+     * the user. Comments are not supported by Netscape Version 0 cookies.
      *
      * @param purpose a <code>String</code> specifying the comment to display to the user
      *
@@ -173,8 +172,8 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * The form of the domain name is specified by RFC 2109. A domain name begins with a dot (<code>.foo.com</code>) and
      * means that the cookie is visible to servers in a specified Domain Name System (DNS) zone (for example,
-     * <code>www.foo.com</code>, but not <code>a.b.foo.com</code>). By default, cookies are only returned to the server
-     * that sent them.
+     * <code>www.foo.com</code>, but not <code>a.b.foo.com</code>). By default, cookies are only returned to the server that
+     * sent them.
      *
      * @param domain the domain name within which this cookie is visible; form is according to RFC 2109
      *
@@ -202,15 +201,15 @@ public class Cookie implements Cloneable, Serializable {
      * Sets the maximum age in seconds for this Cookie.
      *
      * <p>
-     * A positive value indicates that the cookie will expire after that many seconds have passed. Note that the value
-     * is the <i>maximum</i> age when the cookie will expire, not the cookie's current age.
+     * A positive value indicates that the cookie will expire after that many seconds have passed. Note that the value is
+     * the <i>maximum</i> age when the cookie will expire, not the cookie's current age.
      *
      * <p>
-     * A negative value means that the cookie is not stored persistently and will be deleted when the Web browser exits.
-     * A zero value causes the cookie to be deleted.
+     * A negative value means that the cookie is not stored persistently and will be deleted when the Web browser exits. A
+     * zero value causes the cookie to be deleted.
      *
-     * @param expiry an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is
-     *               not stored; if zero, deletes the cookie
+     * @param expiry an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is not
+     * stored; if zero, deletes the cookie
      *
      * @see #getMaxAge
      */
@@ -224,8 +223,8 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * By default, <code>-1</code> is returned, which indicates that the cookie will persist until browser shutdown.
      *
-     * @return an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie persists
-     *         until browser shutdown
+     * @return an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie persists until
+     * browser shutdown
      *
      * @see #setMaxAge
      */
@@ -254,8 +253,8 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the path on the server to which the browser returns this cookie. The cookie is visible to all subpaths on
-     * the server.
+     * Returns the path on the server to which the browser returns this cookie. The cookie is visible to all subpaths on the
+     * server.
      *
      * @return a <code>String</code> specifying a path that contains a servlet name, for example, <i>/catalog</i>
      *
@@ -271,8 +270,8 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * The default value is <code>false</code>.
      *
-     * @param flag if <code>true</code>, sends the cookie from the browser to the server only when using a secure
-     *             protocol; if <code>false</code>, sent on any protocol
+     * @param flag if <code>true</code>, sends the cookie from the browser to the server only when using a secure protocol;
+     * if <code>false</code>, sent on any protocol
      *
      * @see #getSecure
      */
@@ -281,8 +280,8 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns <code>true</code> if the browser is sending cookies only over a secure protocol, or <code>false</code> if
-     * the browser can send cookies using any protocol.
+     * Returns <code>true</code> if the browser is sending cookies only over a secure protocol, or <code>false</code> if the
+     * browser can send cookies using any protocol.
      *
      * @return <code>true</code> if the browser uses a secure protocol, <code>false</code> otherwise
      *
@@ -308,9 +307,9 @@ public class Cookie implements Cloneable, Serializable {
      * If you use a binary value, you may want to use BASE64 encoding.
      *
      * <p>
-     * With Version 0 cookies, values should not contain white space, brackets, parentheses, equals signs, commas,
-     * double quotes, slashes, question marks, at signs, colons, and semicolons. Empty values may not behave the same
-     * way on all browsers.
+     * With Version 0 cookies, values should not contain white space, brackets, parentheses, equals signs, commas, double
+     * quotes, slashes, question marks, at signs, colons, and semicolons. Empty values may not behave the same way on all
+     * browsers.
      *
      * @param newValue the new value of the cookie
      *
@@ -333,8 +332,8 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Returns the version of the protocol this cookie complies with. Version 1 complies with RFC 2109, and version 0
-     * complies with the original cookie specification drafted by Netscape. Cookies provided by a browser use and
-     * identify the browser's cookie version.
+     * complies with the original cookie specification drafted by Netscape. Cookies provided by a browser use and identify
+     * the browser's cookie version.
      * 
      * @return 0 if the cookie complies with the original Netscape specification; 1 if the cookie complies with RFC 2109
      *
@@ -353,8 +352,8 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * Since RFC 2109 is still somewhat new, consider version 1 as experimental; do not use it yet on production sites.
      *
-     * @param v 0 if the cookie should comply with the original Netscape specification; 1 if the cookie should comply
-     *          with RFC 2109
+     * @param v 0 if the cookie should comply with the original Netscape specification; 1 if the cookie should comply with
+     * RFC 2109
      *
      * @see #getVersion
      */
@@ -401,8 +400,8 @@ public class Cookie implements Cloneable, Serializable {
      * <tt>HttpOnly</tt> attribute to it.
      *
      * <p>
-     * <i>HttpOnly</i> cookies are not supposed to be exposed to client-side scripting code, and may therefore help
-     * mitigate certain kinds of cross-site scripting attacks.
+     * <i>HttpOnly</i> cookies are not supposed to be exposed to client-side scripting code, and may therefore help mitigate
+     * certain kinds of cross-site scripting attacks.
      *
      * @param isHttpOnly true if this cookie is to be marked as <i>HttpOnly</i>, false otherwise
      *

@@ -83,7 +83,7 @@ public abstract class ServletOutputStream extends OutputStream {
             }
             out[i] = (byte) (0xff & c);
         }
-        write(out,0,len);
+        write(out, 0, len);
     }
 
     /**
@@ -275,25 +275,24 @@ public abstract class ServletOutputStream extends OutputStream {
      * This method can be used to determine if data can be written without blocking.
      *
      * @return <code>true</code> if a write to this <code>ServletOutputStream</code> will succeed, otherwise returns
-     *         <code>false</code>.
+     * <code>false</code>.
      *
      * @since Servlet 3.1
      */
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletOutputStream</code> to invoke the provided {@link WriteListener} when it is possible
-     * to write
+     * Instructs the <code>ServletOutputStream</code> to invoke the provided {@link WriteListener} when it is possible to
+     * write
      *
      *
      * @param writeListener the {@link WriteListener} that should be notified when it's possible to write
      *
      * @exception IllegalStateException if one of the following conditions is true
-     *                                  <ul>
-     *                                  <li>the associated request is neither upgraded nor the async started
-     *                                  <li>setWriteListener is called more than once within the scope of the same
-     *                                  request.
-     *                                  </ul>
+     * <ul>
+     * <li>the associated request is neither upgraded nor the async started
+     * <li>setWriteListener is called more than once within the scope of the same request.
+     * </ul>
      *
      * @throws NullPointerException if writeListener is null
      *

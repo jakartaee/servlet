@@ -26,11 +26,11 @@ import java.lang.annotation.Target;
 /**
  * This annotation is used to declare a WebListener.
  *
- * Any class annotated with WebListener must implement one or more of the {@link jakarta.servlet.ServletContextListener},
- * {@link jakarta.servlet.ServletContextAttributeListener}, {@link jakarta.servlet.ServletRequestListener},
- * {@link jakarta.servlet.ServletRequestAttributeListener}, {@link jakarta.servlet.http.HttpSessionListener}, or
- * {@link jakarta.servlet.http.HttpSessionAttributeListener}, or {@link jakarta.servlet.http.HttpSessionIdListener}
- * interfaces.
+ * Any class annotated with WebListener must implement one or more of the
+ * {@link jakarta.servlet.ServletContextListener}, {@link jakarta.servlet.ServletContextAttributeListener},
+ * {@link jakarta.servlet.ServletRequestListener}, {@link jakarta.servlet.ServletRequestAttributeListener},
+ * {@link jakarta.servlet.http.HttpSessionListener}, or {@link jakarta.servlet.http.HttpSessionAttributeListener}, or
+ * {@link jakarta.servlet.http.HttpSessionIdListener} interfaces.
  * 
  * @since Servlet 3.0
  */
