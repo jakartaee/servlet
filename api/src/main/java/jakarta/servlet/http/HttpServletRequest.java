@@ -168,18 +168,18 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * <p>
      * Return the {@link HttpServletMapping} by which the {@link HttpServlet} for this {@code HttpServletRequest} was
-     * invoked. The mappings for any applicable {@link jakarta.servlet.Filter}s are not indicated in the result. If the
-     * currently active {@link jakarta.servlet.Servlet} invocation was obtained by a call to
+     * invoked. The mappings for any applicable {@link jakarta.servlet.Filter}s are not indicated in the result.
+     * If the currently active {@link jakarta.servlet.Servlet} invocation was obtained by a call to
      * {@link ServletRequest#getRequestDispatcher} followed by a call to {@link RequestDispatcher#forward}, the returned
-     * {@code
-     * HttpServletMapping} is the one corresponding to the path used to obtain the {@link RequestDispatcher}. If the
-     * currently active {@code Servlet} invocation was obtained by a call to {@link ServletRequest#getRequestDispatcher}
-     * followed by a call to {@link RequestDispatcher#include}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
-     * sequence to be invoked. If the currently active {@code Servlet} invocation was obtained by a call to
-     * {@link jakarta.servlet.AsyncContext#dispatch}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
-     * sequence to be invoked. See {@link jakarta.servlet.RequestDispatcher#FORWARD_MAPPING},
+     * {@code HttpServletMapping} is the one corresponding to the path used to obtain the {@link RequestDispatcher}.
+     * If the currently active {@code Servlet} invocation was obtained by a call to
+     * {@link ServletRequest#getRequestDispatcher} followed by a call to {@link RequestDispatcher#include}, the returned
+     * {@code HttpServletMapping} is the one corresponding to the first {@code Servlet} in the invocation sequence that
+     * was invoked.
+     * If the currently active {@code Servlet} invocation was obtained by a call to
+     * {@link jakarta.servlet.AsyncContext#dispatch} or {@link jakarta.servlet.AsyncContext#dispatch(String)},
+     * the returned {@code HttpServletMapping} is the one corresponding to the first {@code Servlet} that will be invoked.
+     * See {@link jakarta.servlet.RequestDispatcher#FORWARD_MAPPING},
      * {@link jakarta.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link jakarta.servlet.AsyncContext#ASYNC_MAPPING} for
      * additional request attributes related to {@code HttpServletMapping}. If the currently active {@code Servlet}
      * invocation was obtained by a call to {@link jakarta.servlet.ServletContext#getNamedDispatcher}, the returned
@@ -190,9 +190,8 @@ public interface HttpServletRequest extends ServletRequest {
      * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
      * </p>
      * 
-     * @implSpec The default implementation returns a {@code
-     * HttpServletMapping} that returns the empty string for the match value, pattern and servlet name and {@code null}
-     *           for the match type.
+     * @implSpec The default implementation returns a {@code HttpServletMapping} that returns the empty string for
+     *           the match value, pattern and servlet name and {@code null} for the match type.
      *
      * @return An instance of {@code HttpServletMapping} describing the manner in which the current request was invoked.
      * 
