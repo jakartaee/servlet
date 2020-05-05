@@ -49,6 +49,21 @@ https://www.eclipse.org/projects/handbook/#resources-commit
  * If the consensus for a merged Pull Request or commit is disputed, then it shall be considered reverted and consensus must be sought for it to remain rather than for it's reversion.
  * In trivial or exceptional circumstances, these guidelines may be bypassed if the reasons for doing so are documented.
 
+## Eclipse Development Process
+
+This Eclipse Foundation open project is governed by the Eclipse Foundation
+Development Process and operates under the terms of the Eclipse IP Policy.
+
+The Jakarta EE Specification Committee has adopted the Jakarta EE Specification
+Process (JESP) in accordance with the Eclipse Foundation Specification Process
+v1.2 (EFSP) to ensure that the specification process is complied with by all
+Jakarta EE specification projects.
+
+* https://eclipse.org/projects/dev_process
+* https://www.eclipse.org/org/documents/Eclipse_IP_Policy.pdf
+* https://jakarta.ee/about/jesp/
+* https://www.eclipse.org/legal/efsp_non_assert.php
+
 ## Contact
 
 Contact the project developers via the project's "dev" list.
