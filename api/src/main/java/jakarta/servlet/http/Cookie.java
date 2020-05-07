@@ -429,9 +429,11 @@ public class Cookie implements Cloneable, Serializable {
      *
      * <p>
      * When <code>sameSite</code> is not <code>null</code>, this cookie will have its <code>SameSite</code>
-     * attribute set with the provided value.
+￼    * attribute set with the provided value. When <code>sameSite</code> is <code>null</code>, the container may
+     * use a context specific default for the cookie's <code>SameSite</code> attribute or it may not be set.
      *
-     * @param sameSite the <i>SameSite</i> attribute's value; may be null if the attribute should not be set
+     * @param sameSite the <i>SameSite</i> attribute's value; may be null if the attribute should be a container
+     *                 provided context default or not set if there is no context default.
      *
      * @since Servlet 5.0
      */
@@ -443,7 +445,7 @@ public class Cookie implements Cloneable, Serializable {
      * Returns the <i>SameSite</i> attribute associated with this cookie.
      *
      * @return the <i>SameSite</i> attribute associated with this cookie; may be null to indicate that the attribute
-     *         should not be set
+     *         should be a container provided context default or not set if there is no context default.
      *
      * @since Servlet 5.0
      */
