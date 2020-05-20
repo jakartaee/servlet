@@ -166,44 +166,38 @@ public interface HttpServletRequest extends ServletRequest {
     public int getIntHeader(String name);
 
     /**
-     * Return the HttpServletMapping for the current dispatch of the request.
+     * Return the HttpServletMapping of the request.
      * <p>
      * The mapping returned depends on the current {@link jakarta.servlet.DispatcherType} as obtained from
      * {@link #getDispatcherType()}:
      *  <dl>
-     *   <dt>{@link jakarta.servlet.DispatcherType#REQUEST}</dt>
-     *   <dd>Return the mapping for the current {@code Servlet}.</dd>
-     *
-     *   <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
-     *   <dd>If the {@link jakarta.servlet.RequestDispatcher} called was obtained
-     *       by {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)} then
-     *       return the value that would have been returned prior to the call to 
-     *       {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} 
-     *       i.e the value returned is unchanged by the forward call to a named dispatcher.
-     *       Otherwise return the mapping for the target of the dispatch 
-     *       i.e. the mapping for the current {@code Servlet}.</dd>
+     *   <dt>{@link jakarta.servlet.DispatcherType#REQUEST},
+     *   {@link jakarta.servlet.DispatcherType#ASYNC},
+     *   {@link jakarta.servlet.DispatcherType#ERROR}</dt>
+     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
+     *       {@link jakarta.servlet.Servlet}.</dd>
      *
      *   <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
-     *   <dd>Return the value that would have been returned prior to the call to 
-     *       {@link RequestDispatcher#include(ServletRequest, ServletResponse)}
-     *       i.e the value returned is unchanged by the include call.</dd>
+     *   <dd>Return the mapping as prior to the current dispatch. 
+     *       i.e the mapping returned is unchanged by a call to</dd>
+     *       {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
      *
-     *   <dt>{@link jakarta.servlet.DispatcherType#ASYNC}</dt>
+     *   <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
      *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
-     *       {@code Servlet}.</dd>
-     *
-     *   <dt>{@link jakarta.servlet.DispatcherType#ERROR}</dt>
-     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
-     *       {@code Servlet}.</dd>
+     *       {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was 
+     *       obtained via {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)},
+     *       in which case return the mapping as prior to the current dispatch. 
+     *       i.e the mapping returned is changed during a call to
+     *       {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if  
+     *       the dispatcher is not a named dispatcher.</dd>
      *  </dl>
      * </p>
      * <p>
-     * Note: For dispatch types that return the mapping for the source of the dispatch, the lookup of the
-     * mapping for the dispatch source is recursive. For example:
+     * For example:
      *  <ul>
-     *   <li>For a sequence Servlet1-&gt;include-&gt;Servlet2-&gt;include-&gt;Servlet3, a call to this method in
+     *   <li>For a sequence Servlet1&nbsp;--include--&gt;&nbsp;Servlet2&nbsp;--include--&gt;&nbsp;Servlet3, a call to this method in
      *       Servlet3 will return the mapping for Servlet1.</li>
-     *   <li>For a sequence Servlet1-&gt;async-&gt;Servlet2-&gt;include-&gt;Servlet3, a call to this method in
+     *   <li>For a sequence Servlet1&nbsp;--async--&gt;&nbsp;Servlet2&nbsp;--named-forward--&gt;&nbsp;Servlet3, a call to this method in
      *       Servlet3 will return the mapping for Servlet2.</li>
      *  </ul>
      * </p>
