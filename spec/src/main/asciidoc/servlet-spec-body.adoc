@@ -64,7 +64,7 @@ such.
 The full specifications of classes, interfaces,
 and method signatures that define the Jakarta Servlet API, as well as their
 accompanying Javadoc™ documentation, is available online at
-`https://jakarta.ee/specifications/servle` .
+`https://jakarta.ee/specifications/servlet` .
 
 Other Jakarta Platform Specifications
 
