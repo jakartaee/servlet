@@ -270,9 +270,8 @@ to the clients, or may respond to requests without delivering them to
 the servlet under the compliance with RFC 7234.
 
 A servlet container may place security
-restrictions on the environment in which a servlet executes. In a Java
-Platform, Standard Edition (J2SE, v.1.3 or above), these
-restrictions should be placed using the permission architecture defined
+restrictions on the environment in which a servlet executes. These
+restrictions may be placed using the permission architecture defined
 by the Java platform. For example some application servers may limit the
 creation of a `Thread` object to insure that other components of the
 container are not negatively impacted.
@@ -5421,8 +5420,8 @@ a servlet in a WAR must allow the developer to load any resources
 contained in library JARs within the WAR following normal Java SE
 semantics using `getResource` . As described in the JakartaEE license
 agreement, servlet containers that are not part of a JakartaEE product
-should not allow the application to override Java SE platform classes,
-such as those in the java.*, javax.*, and jakarta.* namespaces, that Java SE does
+should not allow the application to override JakartaEE platform classes,
+such as those in the jakarta.* namespaces, that JakartaEE does
 not allow to be modified. The container should not allow applications to
 override or access the container’s implementation classes. It is
 recommended also that the application class loader be implemented so
