@@ -166,36 +166,33 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * The mapping returned depends on the current {@link jakarta.servlet.DispatcherType} as obtained from
      * {@link #getDispatcherType()}:
-     *  <dl>
-     *   <dt>{@link jakarta.servlet.DispatcherType#REQUEST},
-     *   {@link jakarta.servlet.DispatcherType#ASYNC},
-     *   {@link jakarta.servlet.DispatcherType#ERROR}</dt>
-     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
-     *       {@link jakarta.servlet.Servlet}.</dd>
+     * <dl>
+     * <dt>{@link jakarta.servlet.DispatcherType#REQUEST}, {@link jakarta.servlet.DispatcherType#ASYNC},
+     * {@link jakarta.servlet.DispatcherType#ERROR}</dt>
+     * <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
+     * {@link jakarta.servlet.Servlet}.</dd>
      *
-     *   <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
-     *   <dd>Return the mapping as prior to the current dispatch. 
-     *       i.e the mapping returned is unchanged by a call to</dd>
-     *       {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
+     * <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
+     * <dd>Return the mapping as prior to the current dispatch. i.e the mapping returned is unchanged by a call to</dd>
+     * {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
      *
-     *   <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
-     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
-     *       {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was 
-     *       obtained via {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)},
-     *       in which case return the mapping as prior to the current dispatch. 
-     *       i.e the mapping returned is changed during a call to
-     *       {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if  
-     *       the dispatcher is not a named dispatcher.</dd>
-     *  </dl>
+     * <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
+     * <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
+     * {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was obtained via
+     * {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)}, in which case return the mapping as prior to the
+     * current dispatch. i.e the mapping returned is changed during a call to
+     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if the dispatcher is not a named
+     * dispatcher.</dd>
+     * </dl>
      * </p>
      * <p>
      * For example:
-     *  <ul>
-     *   <li>For a sequence Servlet1&nbsp;--include--&gt;&nbsp;Servlet2&nbsp;--include--&gt;&nbsp;Servlet3, a call to this method in
-     *       Servlet3 will return the mapping for Servlet1.</li>
-     *   <li>For a sequence Servlet1&nbsp;--async--&gt;&nbsp;Servlet2&nbsp;--named-forward--&gt;&nbsp;Servlet3, a call to this method in
-     *       Servlet3 will return the mapping for Servlet2.</li>
-     *  </ul>
+     * <ul>
+     * <li>For a sequence Servlet1&nbsp;--include--&gt;&nbsp;Servlet2&nbsp;--include--&gt;&nbsp;Servlet3, a call to this
+     * method in Servlet3 will return the mapping for Servlet1.</li>
+     * <li>For a sequence Servlet1&nbsp;--async--&gt;&nbsp;Servlet2&nbsp;--named-forward--&gt;&nbsp;Servlet3, a call to this
+     * method in Servlet3 will return the mapping for Servlet2.</li>
+     * </ul>
      * </p>
      * <p>
      * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
