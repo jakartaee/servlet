@@ -61,10 +61,10 @@ public class HttpConstraintElement {
     /**
      * Constructor to establish all of getEmptyRoleSemantic, getRolesAllowed, and getTransportGuarantee.
      *
-     * @param semantic  <tt>EmptyRoleSemantic.DENY</tt> or <tt>EmptyRoleSemantic.PERMIT</tt>
+     * @param semantic <tt>EmptyRoleSemantic.DENY</tt> or <tt>EmptyRoleSemantic.PERMIT</tt>
      * @param guarantee <tt>TransportGuarantee.NONE</tt> or <tt>TransportGuarantee.CONFIDENTIAL</tt>
      * @param roleNames the names of the roles that are to be allowed access, or missing if the semantic is
-     *                  <tt>EmptyRoleSemantic.DENY</tt>
+     * <tt>EmptyRoleSemantic.DENY</tt>
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic, TransportGuarantee guarantee, String... roleNames) {
         if (semantic == EmptyRoleSemantic.DENY && roleNames.length > 0) {
@@ -79,11 +79,11 @@ public class HttpConstraintElement {
      * Gets the default authorization semantic.
      *
      * <p>
-     * This value is insignificant when <code>getRolesAllowed</code> returns a non-empty array, and should not be
-     * specified when a non-empty array is specified for <tt>getRolesAllowed</tt>.
+     * This value is insignificant when <code>getRolesAllowed</code> returns a non-empty array, and should not be specified
+     * when a non-empty array is specified for <tt>getRolesAllowed</tt>.
      *
      * @return the {@link EmptyRoleSemantic} to be applied when <code>getRolesAllowed</code> returns an empty (that is,
-     *         zero-length) array
+     * zero-length) array
      */
     public EmptyRoleSemantic getEmptyRoleSemantic() {
         return this.emptyRoleSemantic;
@@ -103,16 +103,15 @@ public class HttpConstraintElement {
      * Gets the names of the authorized roles.
      *
      * <p>
-     * Duplicate role names appearing in getRolesAllowed are insignificant and may be discarded. The String <tt>"*"</tt>
-     * has no special meaning as a role name (should it occur in getRolesAllowed).
+     * Duplicate role names appearing in getRolesAllowed are insignificant and may be discarded. The String <tt>"*"</tt> has
+     * no special meaning as a role name (should it occur in getRolesAllowed).
      *
      * @return a (possibly empty) array of role names. When the array is empty, its meaning depends on the value of
-     *         {@link #getEmptyRoleSemantic}. If its value is <tt>DENY</tt>, and <code>getRolesAllowed</code> returns an
-     *         empty array, access is to be denied independent of authentication state and identity. Conversely, if its
-     *         value is <code>PERMIT</code>, it indicates that access is to be allowed independent of authentication
-     *         state and identity. When the array contains the names of one or more roles, it indicates that access is
-     *         contingent on membership in at least one of the named roles (independent of the value of
-     *         {@link #getEmptyRoleSemantic}).
+     * {@link #getEmptyRoleSemantic}. If its value is <tt>DENY</tt>, and <code>getRolesAllowed</code> returns an empty
+     * array, access is to be denied independent of authentication state and identity. Conversely, if its value is
+     * <code>PERMIT</code>, it indicates that access is to be allowed independent of authentication state and identity. When
+     * the array contains the names of one or more roles, it indicates that access is contingent on membership in at least
+     * one of the named roles (independent of the value of {@link #getEmptyRoleSemantic}).
      */
     public String[] getRolesAllowed() {
         return copyStrings(this.rolesAllowed);

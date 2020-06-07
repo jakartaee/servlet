@@ -30,8 +30,8 @@ import java.util.EventListener;
  *
  * <p>
  * In order to receive these notification events, the implementation class must be either declared in the deployment
- * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via one
- * of the addListener methods defined on {@link ServletContext}.
+ * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via
+ * one of the addListener methods defined on {@link ServletContext}.
  *
  * <p>
  * The order in which implementations of this interface are invoked is unspecified.
@@ -43,8 +43,8 @@ public interface ServletRequestAttributeListener extends EventListener {
     /**
      * Receives notification that an attribute has been added to the ServletRequest.
      *
-     * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the
-     *             attribute that was added
+     * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the attribute
+     * that was added
      *
      * @implSpec The default implementation takes no action.
      */
@@ -54,8 +54,8 @@ public interface ServletRequestAttributeListener extends EventListener {
     /**
      * Receives notification that an attribute has been removed from the ServletRequest.
      *
-     * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the
-     *             attribute that was removed
+     * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and value of the attribute
+     * that was removed
      *
      * @implSpec The default implementation takes no action.
      */
@@ -66,7 +66,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      * Receives notification that an attribute has been replaced on the ServletRequest.
      *
      * @param srae the ServletRequestAttributeEvent containing the ServletRequest and the name and (old) value of the
-     *             attribute that was replaced
+     * attribute that was replaced
      *
      * @implSpec The default implementation takes no action.
      */

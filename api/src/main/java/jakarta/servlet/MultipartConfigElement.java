@@ -50,9 +50,9 @@ public class MultipartConfigElement {
     /**
      * Constructs an instance with all values specified.
      *
-     * @param location          the directory location where files will be stored
-     * @param maxFileSize       the maximum size allowed for uploaded files
-     * @param maxRequestSize    the maximum size allowed for multipart/form-data requests
+     * @param location the directory location where files will be stored
+     * @param maxFileSize the maximum size allowed for uploaded files
+     * @param maxRequestSize the maximum size allowed for multipart/form-data requests
      * @param fileSizeThreshold the size threshold after which files will be written to disk
      */
     public MultipartConfigElement(String location, long maxFileSize, long maxRequestSize, int fileSizeThreshold) {

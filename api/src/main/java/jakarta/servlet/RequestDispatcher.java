@@ -94,8 +94,8 @@ public interface RequestDispatcher {
     static final String INCLUDE_PATH_INFO = "jakarta.servlet.include.path_info";
 
     /**
-     * The name of the request attribute under which the {@link jakarta.servlet.http.HttpServletMapping} of the target of
-     * an {@link #include(ServletRequest,ServletResponse) include} is stored
+     * The name of the request attribute under which the {@link jakarta.servlet.http.HttpServletMapping} of the target of an
+     * {@link #include(ServletRequest,ServletResponse) include} is stored
      */
     static final String INCLUDE_MAPPING = "jakarta.servlet.include.mapping";
 
@@ -117,8 +117,7 @@ public interface RequestDispatcher {
     public static final String ERROR_EXCEPTION = "jakarta.servlet.error.exception";
 
     /**
-     * The name of the request attribute under which the type of the exception object is propagated during an error
-     * dispatch
+     * The name of the request attribute under which the type of the exception object is propagated during an error dispatch
      */
     public static final String ERROR_EXCEPTION_TYPE = "jakarta.servlet.error.exception_type";
 
@@ -128,8 +127,8 @@ public interface RequestDispatcher {
     public static final String ERROR_MESSAGE = "jakarta.servlet.error.message";
 
     /**
-     * The name of the request attribute under which the request URI whose processing caused the error is propagated
-     * during an error dispatch
+     * The name of the request attribute under which the request URI whose processing caused the error is propagated during
+     * an error dispatch
      */
     public static final String ERROR_REQUEST_URI = "jakarta.servlet.error.request_uri";
 
@@ -145,9 +144,8 @@ public interface RequestDispatcher {
     public static final String ERROR_STATUS_CODE = "jakarta.servlet.error.status_code";
 
     /**
-     * Forwards a request from a servlet to another resource (servlet, JSP file, or HTML file) on the server. This
-     * method allows one servlet to do preliminary processing of a request and another resource to generate the
-     * response.
+     * Forwards a request from a servlet to another resource (servlet, JSP file, or HTML file) on the server. This method
+     * allows one servlet to do preliminary processing of a request and another resource to generate the response.
      *
      * <p>
      * For a <code>RequestDispatcher</code> obtained via <code>getRequestDispatcher()</code>, the
@@ -161,20 +159,20 @@ public interface RequestDispatcher {
      * forward.
      *
      * <p>
-     * The request and response parameters must be either the same objects as were passed to the calling servlet's
-     * service method or be subclasses of the {@link ServletRequestWrapper} or {@link ServletResponseWrapper} classes
-     * that wrap them.
+     * The request and response parameters must be either the same objects as were passed to the calling servlet's service
+     * method or be subclasses of the {@link ServletRequestWrapper} or {@link ServletResponseWrapper} classes that wrap
+     * them.
      *
      * <p>
      * This method sets the dispatcher type of the given request to <code>DispatcherType.FORWARD</code>.
      *
-     * @param request  a {@link ServletRequest} object that represents the request the client makes of the servlet
+     * @param request a {@link ServletRequest} object that represents the request the client makes of the servlet
      *
      * @param response a {@link ServletResponse} object that represents the response the servlet returns to the client
      *
-     * @throws ServletException      if the target resource throws this exception
+     * @throws ServletException if the target resource throws this exception
      *
-     * @throws IOException           if the target resource throws this exception
+     * @throws IOException if the target resource throws this exception
      *
      * @throws IllegalStateException if the response was already committed
      *
@@ -184,28 +182,28 @@ public interface RequestDispatcher {
 
     /**
      *
-     * Includes the content of a resource (servlet, JSP page, HTML file) in the response. In essence, this method
-     * enables programmatic server-side includes.
+     * Includes the content of a resource (servlet, JSP page, HTML file) in the response. In essence, this method enables
+     * programmatic server-side includes.
      *
      * <p>
      * The {@link ServletResponse} object has its path elements and parameters remain unchanged from the caller's. The
      * included servlet cannot change the response status code or set headers; any attempt to make a change is ignored.
      *
      * <p>
-     * The request and response parameters must be either the same objects as were passed to the calling servlet's
-     * service method or be subclasses of the {@link ServletRequestWrapper} or {@link ServletResponseWrapper} classes
-     * that wrap them.
+     * The request and response parameters must be either the same objects as were passed to the calling servlet's service
+     * method or be subclasses of the {@link ServletRequestWrapper} or {@link ServletResponseWrapper} classes that wrap
+     * them.
      *
      * <p>
      * This method sets the dispatcher type of the given request to <code>DispatcherType.INCLUDE</code>.
      *
-     * @param request  a {@link ServletRequest} object that contains the client's request
+     * @param request a {@link ServletRequest} object that contains the client's request
      *
      * @param response a {@link ServletResponse} object that contains the servlet's response
      *
      * @throws ServletException if the included resource throws this exception
      *
-     * @throws IOException      if the included resource throws this exception
+     * @throws IOException if the included resource throws this exception
      *
      * @see ServletRequest#getDispatcherType
      */

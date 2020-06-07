@@ -55,7 +55,7 @@ public class UnavailableException extends ServletException {
      *
      * @param servlet the <code>Servlet</code> instance that is unavailable
      *
-     * @param msg     a <code>String</code> specifying the descriptive message
+     * @param msg a <code>String</code> specifying the descriptive message
      *
      */
     @Deprecated
@@ -69,12 +69,12 @@ public class UnavailableException extends ServletException {
      * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String, int)} instead.
      *
      * @param seconds an integer specifying the number of seconds the servlet expects to be unavailable; if zero or
-     *                negative, indicates that the servlet can't make an estimate
+     * negative, indicates that the servlet can't make an estimate
      *
      * @param servlet the <code>Servlet</code> that is unavailable
      * 
-     * @param msg     a <code>String</code> specifying the descriptive message, which can be written to a log file or
-     *                displayed for the user.
+     * @param msg a <code>String</code> specifying the descriptive message, which can be written to a log file or displayed
+     * for the user.
      *
      */
     @Deprecated
@@ -106,15 +106,15 @@ public class UnavailableException extends ServletException {
      * giving an estimate of how long it will be unavailable.
      * 
      * <p>
-     * In some cases, the servlet cannot make an estimate. For example, the servlet might know that a server it needs is
-     * not running, but not be able to report how long it will take to be restored to functionality. This can be
-     * indicated with a negative or zero value for the <code>seconds</code> argument.
+     * In some cases, the servlet cannot make an estimate. For example, the servlet might know that a server it needs is not
+     * running, but not be able to report how long it will take to be restored to functionality. This can be indicated with
+     * a negative or zero value for the <code>seconds</code> argument.
      *
-     * @param msg     a <code>String</code> specifying the descriptive message, which can be written to a log file or
-     *                displayed for the user.
+     * @param msg a <code>String</code> specifying the descriptive message, which can be written to a log file or displayed
+     * for the user.
      *
      * @param seconds an integer specifying the number of seconds the servlet expects to be unavailable; if zero or
-     *                negative, indicates that the servlet can't make an estimate
+     * negative, indicates that the servlet can't make an estimate
      *
      */
     public UnavailableException(String msg, int seconds) {
@@ -130,11 +130,11 @@ public class UnavailableException extends ServletException {
 
     /**
      *
-     * Returns a <code>boolean</code> indicating whether the servlet is permanently unavailable. If so, something is
-     * wrong with the servlet, and the system administrator must take some corrective action.
+     * Returns a <code>boolean</code> indicating whether the servlet is permanently unavailable. If so, something is wrong
+     * with the servlet, and the system administrator must take some corrective action.
      *
-     * @return <code>true</code> if the servlet is permanently unavailable; <code>false</code> if the servlet is
-     *         available or temporarily unavailable
+     * @return <code>true</code> if the servlet is permanently unavailable; <code>false</code> if the servlet is available
+     * or temporarily unavailable
      *
      */
     public boolean isPermanent() {
@@ -144,7 +144,7 @@ public class UnavailableException extends ServletException {
     /**
      * @deprecated As of Java Servlet API 2.2, with no replacement.
      *
-     *             Returns the servlet that is reporting its unavailability.
+     * Returns the servlet that is reporting its unavailability.
      * 
      * @return the <code>Servlet</code> object that is throwing the <code>UnavailableException</code>
      *
@@ -158,12 +158,12 @@ public class UnavailableException extends ServletException {
      * Returns the number of seconds the servlet expects to be temporarily unavailable.
      *
      * <p>
-     * If this method returns a negative number, the servlet is permanently unavailable or cannot provide an estimate of
-     * how long it will be unavailable. No effort is made to correct for the time elapsed since the exception was first
+     * If this method returns a negative number, the servlet is permanently unavailable or cannot provide an estimate of how
+     * long it will be unavailable. No effort is made to correct for the time elapsed since the exception was first
      * reported.
      *
-     * @return an integer specifying the number of seconds the servlet will be temporarily unavailable, or a negative
-     *         number if the servlet is permanently unavailable or cannot make an estimate
+     * @return an integer specifying the number of seconds the servlet will be temporarily unavailable, or a negative number
+     * if the servlet is permanently unavailable or cannot make an estimate
      *
      */
     public int getUnavailableSeconds() {

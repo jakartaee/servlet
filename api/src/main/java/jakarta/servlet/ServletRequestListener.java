@@ -30,8 +30,8 @@ import java.util.EventListener;
  *
  * <p>
  * In order to receive these notification events, the implementation class must be either declared in the deployment
- * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via one
- * of the addListener methods defined on {@link ServletContext}.
+ * descriptor of the web application, annotated with {@link jakarta.servlet.annotation.WebListener}, or registered via
+ * one of the addListener methods defined on {@link ServletContext}.
  *
  * <p>
  * Implementations of this interface are invoked at their {@link #requestInitialized} method in the order in which they
@@ -45,7 +45,7 @@ public interface ServletRequestListener extends EventListener {
      * Receives notification that a ServletRequest is about to go out of scope of the web application.
      *
      * @param sre the ServletRequestEvent containing the ServletRequest and the ServletContext representing the web
-     *            application
+     * application
      *
      * @implSpec The default implementation takes no action.
      */
@@ -56,7 +56,7 @@ public interface ServletRequestListener extends EventListener {
      * Receives notification that a ServletRequest is about to come into scope of the web application.
      *
      * @param sre the ServletRequestEvent containing the ServletRequest and the ServletContext representing the web
-     *            application
+     * application
      *
      * @implSpec The default implementation takes no action.
      */

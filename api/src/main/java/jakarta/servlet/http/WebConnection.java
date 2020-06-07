@@ -17,9 +17,9 @@
 
 package jakarta.servlet.http;
 
-import java.io.IOException;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.ServletOutputStream;
+import java.io.IOException;
 
 /**
  * This interface encapsulates the connection for an upgrade request. It allows the protocol handler to send service

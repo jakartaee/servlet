@@ -18,11 +18,11 @@
 
 package jakarta.servlet.http;
 
+import jakarta.servlet.ServletResponseWrapper;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.function.Supplier;
-import jakarta.servlet.ServletResponseWrapper;
 
 /**
  * 
@@ -131,8 +131,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call setDateHeader(String name, long date) on the wrapped response
-     * object.
+     * The default behavior of this method is to call setDateHeader(String name, long date) on the wrapped response object.
      */
     @Override
     public void setDateHeader(String name, long date) {
@@ -140,8 +139,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call addDateHeader(String name, long date) on the wrapped response
-     * object.
+     * The default behavior of this method is to call addDateHeader(String name, long date) on the wrapped response object.
      */
     @Override
     public void addDateHeader(String name, long date) {
@@ -149,8 +147,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to return setHeader(String name, String value) on the wrapped response
-     * object.
+     * The default behavior of this method is to return setHeader(String name, String value) on the wrapped response object.
      */
     @Override
     public void setHeader(String name, String value) {
@@ -158,8 +155,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to return addHeader(String name, String value) on the wrapped response
-     * object.
+     * The default behavior of this method is to return addHeader(String name, String value) on the wrapped response object.
      */
     @Override
     public void addHeader(String name, String value) {
@@ -167,8 +163,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call setIntHeader(String name, int value) on the wrapped response
-     * object.
+     * The default behavior of this method is to call setIntHeader(String name, int value) on the wrapped response object.
      */
     @Override
     public void setIntHeader(String name, int value) {
@@ -176,8 +171,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call addIntHeader(String name, int value) on the wrapped response
-     * object.
+     * The default behavior of this method is to call addIntHeader(String name, int value) on the wrapped response object.
      */
     @Override
     public void addIntHeader(String name, int value) {
@@ -196,7 +190,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * The default behavior of this method is to call setStatus(int sc, String sm) on the wrapped response object.
      *
      * @deprecated As of version 2.1, due to ambiguous meaning of the message parameter. To set a status code use
-     *             {@link #setStatus(int)}, to send an error with a description use {@link #sendError(int, String)}
+     * {@link #setStatus(int)}, to send an error with a description use {@link #sendError(int, String)}
      */
     @Deprecated
     @Override
@@ -205,8 +199,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call {@link HttpServletResponse#getStatus} on the wrapped response
-     * object.
+     * The default behaviour of this method is to call {@link HttpServletResponse#getStatus} on the wrapped response object.
      *
      * @return the current status code of the wrapped response
      */
@@ -216,13 +209,12 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call {@link HttpServletResponse#getHeader} on the wrapped response
-     * object.
+     * The default behaviour of this method is to call {@link HttpServletResponse#getHeader} on the wrapped response object.
      *
      * @param name the name of the response header whose value to return
      *
-     * @return the value of the response header with the given name, or <tt>null</tt> if no header with the given name
-     *         has been set on the wrapped response
+     * @return the value of the response header with the given name, or <tt>null</tt> if no header with the given name has
+     * been set on the wrapped response
      *
      * @since Servlet 3.0
      */
@@ -250,8 +242,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call {@link HttpServletResponse#getHeaderNames} on the wrapped
-     * response object.
+     * The default behaviour of this method is to call {@link HttpServletResponse#getHeaderNames} on the wrapped response
+     * object.
      *
      * <p>
      * Any changes to the returned <code>Collection</code> must not affect this <code>HttpServletResponseWrapper</code>.
@@ -266,8 +258,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call {@link HttpServletResponse#setTrailerFields} on the wrapped
-     * response object.
+     * The default behaviour of this method is to call {@link HttpServletResponse#setTrailerFields} on the wrapped response
+     * object.
      *
      * @param supplier of trailer headers
      *
@@ -279,8 +271,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call {@link HttpServletResponse#getTrailerFields} on the wrapped
-     * response object.
+     * The default behaviour of this method is to call {@link HttpServletResponse#getTrailerFields} on the wrapped response
+     * object.
      *
      * @return supplier of trailer headers
      *

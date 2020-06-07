@@ -74,8 +74,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to call setCharacterEncoding(String charset) on the wrapped response
-     * object.
+     * The default behavior of this method is to call setCharacterEncoding(String charset) on the wrapped response object.
      *
      * @since Servlet 2.4
      */
