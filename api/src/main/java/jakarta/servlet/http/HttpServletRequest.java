@@ -162,26 +162,41 @@ public interface HttpServletRequest extends ServletRequest {
     public int getIntHeader(String name);
 
     /**
+     * Return the HttpServletMapping of the request.
      * <p>
-     * Return the {@link HttpServletMapping} by which the {@link HttpServlet} for this {@code HttpServletRequest} was
-     * invoked. The mappings for any applicable {@link jakarta.servlet.Filter}s are not indicated in the result. If the
-     * currently active {@link jakarta.servlet.Servlet} invocation was obtained by a call to
-     * {@link ServletRequest#getRequestDispatcher} followed by a call to {@link RequestDispatcher#forward}, the returned
-     * {@code
-     * HttpServletMapping} is the one corresponding to the path used to obtain the {@link RequestDispatcher}. If the
-     * currently active {@code Servlet} invocation was obtained by a call to {@link ServletRequest#getRequestDispatcher}
-     * followed by a call to {@link RequestDispatcher#include}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
-     * sequence to be invoked. If the currently active {@code Servlet} invocation was obtained by a call to
-     * {@link jakarta.servlet.AsyncContext#dispatch}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that caused the first {@code Servlet} in the invocation
-     * sequence to be invoked. See {@link jakarta.servlet.RequestDispatcher#FORWARD_MAPPING},
-     * {@link jakarta.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link jakarta.servlet.AsyncContext#ASYNC_MAPPING} for
-     * additional request attributes related to {@code HttpServletMapping}. If the currently active {@code Servlet}
-     * invocation was obtained by a call to {@link jakarta.servlet.ServletContext#getNamedDispatcher}, the returned
-     * {@code HttpServletMapping} is the one corresponding to the path for the mapping last applied to this request.
+     * The mapping returned depends on the current {@link jakarta.servlet.DispatcherType} as obtained from
+     * {@link #getDispatcherType()}:
+     *  <dl>
+     *   <dt>{@link jakarta.servlet.DispatcherType#REQUEST},
+     *   {@link jakarta.servlet.DispatcherType#ASYNC},
+     *   {@link jakarta.servlet.DispatcherType#ERROR}</dt>
+     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
+     *       {@link jakarta.servlet.Servlet}.</dd>
+     *
+     *   <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
+     *   <dd>Return the mapping as prior to the current dispatch. 
+     *       i.e the mapping returned is unchanged by a call to</dd>
+     *       {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
+     *
+     *   <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
+     *   <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
+     *       {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was 
+     *       obtained via {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)},
+     *       in which case return the mapping as prior to the current dispatch. 
+     *       i.e the mapping returned is changed during a call to
+     *       {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if  
+     *       the dispatcher is not a named dispatcher.</dd>
+     *  </dl>
      * </p>
-     * 
+     * <p>
+     * For example:
+     *  <ul>
+     *   <li>For a sequence Servlet1&nbsp;--include--&gt;&nbsp;Servlet2&nbsp;--include--&gt;&nbsp;Servlet3, a call to this method in
+     *       Servlet3 will return the mapping for Servlet1.</li>
+     *   <li>For a sequence Servlet1&nbsp;--async--&gt;&nbsp;Servlet2&nbsp;--named-forward--&gt;&nbsp;Servlet3, a call to this method in
+     *       Servlet3 will return the mapping for Servlet2.</li>
+     *  </ul>
+     * </p>
      * <p>
      * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
      * </p>
