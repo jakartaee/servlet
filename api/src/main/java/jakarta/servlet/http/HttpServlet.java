@@ -143,11 +143,7 @@ public abstract class HttpServlet extends GenericServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = lStrings.getString("http.method_get_not_supported");
-        if (protocol.endsWith("1.1")) {
-            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, msg);
-        } else {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
-        }
+        resp.sendError(getMethodNotSupportedCode(protocol), msg);
     }
 
     /**
@@ -248,11 +244,7 @@ public abstract class HttpServlet extends GenericServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = lStrings.getString("http.method_post_not_supported");
-        if (protocol.endsWith("1.1")) {
-            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, msg);
-        } else {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
-        }
+        resp.sendError(getMethodNotSupportedCode(protocol), msg);
     }
 
     /**
@@ -286,11 +278,7 @@ public abstract class HttpServlet extends GenericServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = lStrings.getString("http.method_put_not_supported");
-        if (protocol.endsWith("1.1")) {
-            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, msg);
-        } else {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
-        }
+        resp.sendError(getMethodNotSupportedCode(protocol), msg);
     }
 
     /**
@@ -317,10 +305,16 @@ public abstract class HttpServlet extends GenericServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
         String msg = lStrings.getString("http.method_delete_not_supported");
-        if (protocol.endsWith("1.1")) {
-            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, msg);
-        } else {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, msg);
+        resp.sendError(getMethodNotSupportedCode(protocol), msg);
+    }
+
+    private int getMethodNotSupportedCode(String protocol) throws IOException {
+        switch (protocol) {
+        case "HTTP/0.9":
+        case "HTTP/1.0":
+            return HttpServletResponse.SC_BAD_REQUEST;
+        default:
+            return HttpServletResponse.SC_METHOD_NOT_ALLOWED;
         }
     }
 
