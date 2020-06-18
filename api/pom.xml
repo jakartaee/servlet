@@ -22,12 +22,12 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
     </parent>
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>4.0.4-SNAPSHOT</version>
+    <version>4.0.4</version>
     
     <name>Jakarta Servlet</name>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
@@ -125,7 +125,7 @@
                     <extensions>true</extensions>
                     <configuration>
                         <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <nexusUrl>https://jakarta.oss.sonatype.org/</nexusUrl>
                     </configuration>
                 </plugin>
             </plugins>
@@ -395,7 +395,7 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                         </executions>
                         <configuration>
                             <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <nexusUrl>https://jakarta.oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
