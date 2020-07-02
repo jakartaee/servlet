@@ -1,3 +1,0 @@
-== Specification Scope
-
-Jakarta Servlet defines server-side handling for HTTP requests and responses.
