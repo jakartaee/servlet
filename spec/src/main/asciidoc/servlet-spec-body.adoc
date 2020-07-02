@@ -295,10 +295,10 @@ independence.
 * They can access the large set of APIs
 available for the Java platform.
 
-=== [[a382]] Relationship to JakartaEE Platform
+=== [[a382]] Relationship to Jakarta EE Platform
 
 The Jakarta Servlet API v.5.0 is a required API
-of the JakartaEE Platform, 9 footnote:[Please see the JakartaEE
+of the Jakarta EE Platform, 9 footnote:[Please see the Jakarta EE
 Platform, specification available at
 `https://jakarta.ee/specifications/platform/9/`].
 Servlet containers and servlets deployed into them must meet additional
@@ -607,11 +607,11 @@ becomes available, the thread handling that event continues processing
 either in the same thread or by dispatching to a resource in the
 container using the `AsyncContext` .
 
-JakartaEE features such as
+Jakarta EE features such as
 <<#a2890,Web Application Environment>> and
 <<#a2926,Propagation of Security Identity in EJB™ Calls>> are available only to
 threads executing the initial request or when the request is dispatched
-to the container via the `AsyncContext.dispatch` method. JakartaEE features
+to the container via the `AsyncContext.dispatch` method. Jakarta EE features
 may be available to other threads operating directly on
 the response object via the `AsyncContext.start(Runnable)` method.
 
@@ -5380,10 +5380,10 @@ with an informative error message.
 The class loader that a container uses to load
 a servlet in a WAR must allow the developer to load any resources
 contained in library JARs within the WAR following normal Java SE
-semantics using `getResource` . As described in the JakartaEE license
-agreement, servlet containers that are not part of a JakartaEE product
-should not allow the application to override JakartaEE platform classes,
-such as those in the jakarta.* namespaces, that JakartaEE does
+semantics using `getResource` . As described in the Jakarta EE license
+agreement, servlet containers that are not part of a Jakarta EE product
+should not allow the application to override Jakarta EE platform classes,
+such as those in the jakarta.* namespaces, that Jakarta EE does
 not allow to be modified. The container should not allow applications to
 override or access the container’s implementation classes. It is
 recommended also that the application class loader be implemented so
@@ -5648,10 +5648,10 @@ included in the `WEB-INF/lib` directory of the web application.
 
 === [[a1981]] Web Application Environment
 
-Servlet containers that are not part of a JakartaEE
+Servlet containers that are not part of a Jakarta EE
 technology-compliant implementation are encouraged, but not required,
 to implement the application environment functionality described in
-<<#a2890,Web Application Environment>> and the JakartaEE specification. If they do not
+<<#a2890,Web Application Environment>> and the Jakarta EE specification. If they do not
 implement the facilities required to support this environment, upon
 deploying an application that relies on them, the container should
 provide a warning.
@@ -7000,7 +7000,7 @@ and has created an HTTP session, the timeout or invalidation of that
 session leads to the user being logged out in the sense that subsequent
 requests must cause the user to be re-authenticated. The scope of the
 logout is the same as that of the authentication: for example, if the
-container supports single signon, such as JakartaEE technology compliant
+container supports single signon, such as Jakarta EE technology compliant
 web containers, the user would need to reauthenticate with any of the
 web applications hosted on the web container.
 
@@ -7504,8 +7504,7 @@ descriptors. The deployment descriptor conveys the elements and
 configuration information of a Web application between Application
 Developers, Application Assemblers, and Deployers.
 
-For Jakarta Servlets v.4.0 and greater, the
-deployment descriptor is defined in terms of an XML schema document.
+For Servlet 5.0, the deployment descriptor is defined in terms of an XML schema document.
 
 For backwards compatibility of applications
 written to previous versions of the API, any deployment descriptors
@@ -7910,7 +7909,7 @@ enterprise bean, which is either `Entity` or `Session` . The `home`
 defines the fully qualified name of the referenced enterprise bean’s
 home interface. The `remote` defines the fully qualified name of the
 referenced enterprise bean’s remote interface. The `ejb-link` specifies
-that an EJB reference is linked to the enterprise bean. See JakartaEE
+that an EJB reference is linked to the enterprise bean. See Jakarta EE
 Platform version 9 for more detail. In addition to
 these elements, the injection-target element can be used to define
 injection of the named enterprise bean into a component field or
@@ -7958,7 +7957,7 @@ can access the `init-param` name-value pairs using the `HandlerInfo`
 interface. If `port-name` is not specified, the handler is assumed to be
 associated with all ports of the service. See Jakarta Enterprise Web Services
 Specification `https://jakarta.ee/specifications/enterprise-ws/` for detail.
-The container that is not a part of a JakartaEE implementation is not
+The container that is not a part of a Jakarta EE implementation is not
 required to support this element.
 
 === service-ref Element Structure
@@ -8033,7 +8032,7 @@ message-driven bean to a message destination. The Assembler sets the
 value to reflect the flow of messages between producers and consumers in
 the application. The value must be the `message-destination-name` of a
 message destination in the same deployment file or in another deployment
-file in the same JakartaEE application unit. Alternatively, the value may
+file in the same Jakarta EE application unit. Alternatively, the value may
 be composed of a path name specifying a deployment file containing the
 referenced message destination with the `message-destination-name` of
 the destination appended and separated from the path name by "#". The
@@ -8180,11 +8179,11 @@ of the definitions listed in the deployment descriptor schema.
 [source,xml]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app
-xmlns="https://jakarta.ee/xml/ns/jakartaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-web-app_4_0.xsd" version="4.0">
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         web-app_5_0.xsd"
+         version="5.0">
 
  <display-name>A Simple Application</display-name>
 
@@ -8238,12 +8237,11 @@ web-app_4_0.xsd" version="4.0">
 ----
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app
-xmlns="https://jakarta.ee/xml/ns/jakartaee"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-web-app_4_0.xsd"
-version="4.0">
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+         web-app_5_0.xsd"
+         version="5.0">
 
  <display-name>A Secure Application</display-name>
 
@@ -8296,15 +8294,15 @@ containers that are included in products that also include other Jakarta
 technologies.
 
 In the following sections any reference to
-Jakarta applies to not only the full JakartaEE profile but also any
+Jakarta applies to not only the full Jakarta EE profile but also any
 profile that includes support for Servlet, like the Jakarta Web Profile.
-For more information on profiles please refer to the JakartaEE platform
+For more information on profiles please refer to the Jakarta EE platform
 specification.
 
 === [[a2885]] Sessions
 
 Distributed servlet containers that are part
-of a JakartaEE Platform implementation must support the mechanism necessary for
+of a Jakarta EE Platform implementation must support the mechanism necessary for
 migrating other Jakarta objects from one JVM to another.
 
 === [[a2887]] Web Applications
@@ -8318,7 +8316,7 @@ that either Java SE or Jakarta do not allow to be modified.
 
 ==== [[a2890]] Web Application Environment
 
-JakartaEE Platform defines a naming environment that
+Jakarta EE Platform defines a naming environment that
 allows applications to easily access resources and external information
 without explicit knowledge of how the external information is named or
 organized.
@@ -8345,11 +8343,11 @@ the JNDI namespace in the Web container at runtime.
 
 The requirements of the Jakarta environment
 with regard to setting up the environment are described in Chapter 5 of
-the JakartaEE Platform Specification.
+the Jakarta EE Platform Specification.
 
 Servlet containers that are part of a Jakarta
 technology-compliant implementation are required to support this syntax.
-Consult the JakartaEE Platform Specification for more details. This type of servlet
+Consult the Jakarta EE Platform Specification for more details. This type of servlet
 container must support lookups of such objects and calls made to those
 objects when performed on a thread managed by the servlet container.
 This type of servlet container should support this behavior when
@@ -8361,7 +8359,7 @@ non-portable.
 
 ==== [[a2905]] JNDI Name for Web Module Context Root URL
 
-The JakartaEE Platform Specification defines a
+The Jakarta EE Platform Specification defines a
 standardized global JNDI namespace and a series of related namespaces
 that map to various scopes of a Jakarta application. These namespaces
 can be used by applications to portably retrieve references to
@@ -8449,7 +8447,7 @@ the Servlet to an EJBs, including calls originating from the Servlet’s
 `init` and `destroy` methods. The security role name must be one of the
 security role names defined for the web application.
 
-For web containers running as part of a JakartaEE platform,
+For web containers running as part of a Jakarta EE platform,
 the use of `run-as` elements must be supported both for
 calls to EJB components within the same Jakarta application, and for
 calls to EJB components deployed in other Jakarta applications.
@@ -8474,7 +8472,7 @@ is available for download at `https://jakarta.ee/specifications/authentication/`
 
 This section details the deployment
 descriptor, packaging and deployment descriptor processing requirements
-of a JakartaEE Platform technology compliant container and products that include
+of a Jakarta EE Platform technology compliant container and products that include
 support for JSP and or Web Services.
 
 ==== [[a2939]] Deployment Descriptor Elements
@@ -8494,7 +8492,7 @@ support only the servlet specification:
 
 The syntax for these elements is now held in
 the Jakarta Server Pages specification version 3.0,
-and the JakartaEE Platform specification.
+and the Jakarta EE Platform specification.
 
 ==== [[a2948]] Packaging and Deployment of JAX-WS Components
 
@@ -8572,11 +8570,11 @@ using the pluggability mechanism defined in
 
 ==== [[a2965]] Rules for Processing the Deployment Descriptor
 
-The containers and tools that are part of JakartaEE Platform
+The containers and tools that are part of Jakarta EE Platform
 technology-compliant implementation are required to validate the
 deployment descriptor against the XML schema for structural correctness.
 The validation is recommended, but not required for the web containers
-and tools that are not part of a JakartaEE Platform technology compliant
+and tools that are not part of a Jakarta EE Platform technology compliant
 implementation.
 
 === [[a2967]] Annotations and Resource Injection
@@ -8584,13 +8582,13 @@ implementation.
 The Java Metadata specification (JSR-175),
 which is part of J2SE 5.0 and later versions, provides a means of
 specifying configuration data in Java code. Metadata in Java code is
-also referred to as annotations. In JakartaEE Platform, annotations are used to
+also referred to as annotations. In Jakarta EE Platform, annotations are used to
 declare dependencies on external resources and configuration data in
 Java code without the need to define that data in a configuration file.
 
 This section describes the behavior of
 annotations and resource injection in Jakarta technology compliant
-Servlet containers. This section expands on the JakartaEE Platform specification
+Servlet containers. This section expands on the Jakarta EE Platform specification
 section 5 titled “Resources, Naming, and Injection.”
 
 Annotations must be supported on the
@@ -8722,7 +8720,7 @@ for the argument role-name the caller is tested for membership in the
 role mapped to the `role-name` .
 
 For further details on the `@DeclareRoles`
-annotation refer to the Jakarta Annotations for the JakartaEE Platform
+annotation refer to the Jakarta Annotations for the Jakarta EE Platform
 specification section 2.12.
 
 ==== [[a3015]] @EJB Annotation
@@ -8783,7 +8781,7 @@ or `resource-env-ref` element in the deployment descriptor.
 The `@Resource` annotation is specified on a
 class, method or field. The container is responsible injecting
 references to resources declared by the `@Resource` annotation and
-mapping it to the proper JNDI resources. See the JakartaEE Platform Specification
+mapping it to the proper JNDI resources. See the Jakarta EE Platform Specification
 Chapter 5 for further details.
 
 An example of a @Resource annotation follows:
@@ -8813,7 +8811,7 @@ type ( `javax.sql.DataSource` ). Moreover, the `catalogDS` resource no
 longer needs to be defined in the deployment descriptor.
 
 The semantics of the `@Resource` annotation
-are further detailed in the Jakarta Annotations for the JakartaEE Platform
+are further detailed in the Jakarta Annotations for the Jakarta EE Platform
 specification Section 5.2.5.
 
 ==== [[a3043]] @PersistenceContext Annotation
@@ -8899,7 +8897,7 @@ even if the class does not request any resources to be injected. If the
 method throws an unchecked exception the class MUST not be put into
 service and no method on that instance can be called.
 
-Refer to the JakataEE Platform specification section 2.5
+Refer to the Jakarta EE Platform specification section 2.5
 and the Jakarta Annotations specification section 2.5 for more details.
 
 ==== [[a3072]] @PreDestroy Annotation
@@ -8960,7 +8958,7 @@ of an `@Resources` annotation.
 
 The semantics of the `@Resources` annotation
 are further detailed in the Jakarta Annotations specification
-specification section 2.4.
+specification section 2.0
 
 ==== [[a3096]] @RunAs Annotation
 
@@ -9043,14 +9041,14 @@ This annotation allows for more than one
 behavior of this annotation is further detailed in the JAX-WS
 Specification (JSR 224) section 7.
 
-==== [[a3129]] Contexts and Dependency Injection for JakartaEE Platform requirements
+==== [[a3129]] Contexts and Dependency Injection for Jakarta EE Platform requirements
 
 In a product that supports Contexts and
-Dependency Injection (CDI) for JakartaEE Platform and in which CDI is enabled,
+Dependency Injection (CDI) for Jakarta EE Platform and in which CDI is enabled,
 implementations MUST support the use of CDI managed beans. Servlets,
 Filters, Listeners and HttpUpgradeHandlers MUST support CDI injection
 and the use of interceptors as described in Section 5.24, "Support
-for Dependency Injection" of the JakartaEE Platform 9 specification.
+for Dependency Injection" of the Jakarta EE Platform 9 specification.
 
 [appendix]
 == [[a3133]] Change Log
@@ -9062,10 +9060,10 @@ Jakarta Servlet 5.0 specification developed under the Jakarta EE Working Group.
 === [[a384]] Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
 (see <<#a383, Changes since Jakarta Servlet 5.0>>).
-Thus, migrating a Jakarta Servlet 4.0 project to Servlet 5.0 and above,
+Thus, migrating a Servlet 4.0 project to Servlet 5.0 and above,
 requires the replacement of the namespace `javax.\*` with `jakarta.*`.
 
-=== [[a383]] Changes since Jakarta Servlet 5.0
+=== [[a383]] Changes since Jakarta Servlet 4.0
 The only major change was a change of namespaces.
 The `javax.\*` namespaces have been replaced with `jakarta.*`.
 
