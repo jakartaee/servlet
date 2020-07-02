@@ -92,7 +92,7 @@ Platform, Web site: `https://jakarta.ee/specifications/`
 === [[a26]] Other Important References
 
 The following Internet specifications provide
-information relevant to the development and implementation of the Java
+information relevant to the development and implementation of the Jakarta
 Servlet API and standard servlet engines:
 
 RFC 1630 Uniform Resource Identifiers (URI)
@@ -192,41 +192,6 @@ that we receive, you will not normally receive a reply from an engineer.
 However, each and every comment is read, evaluated, and archived by the
 specification team.
 
-:sectnums!:
-=== Expert Group members
-
-Euigeun Chung (TmaxSoft, Inc)
-
-Greg Wilkins (Webtide LLC)
-
-Justin Lee (MongoDB, Inc)
-
-Mark Thomas
-
-Martin Mulholland (IBM)
-
-Minehiko IIDA (Fujitsu Limited)
-
-Neil Griffin (Liferay Inc)
-
-Stuart Douglas (RedHat)
-
-Wenbo Zhu ( Google Inc.)
-
-:sectnums!:
-=== Acknowledgements
-
-Bill Shannon from Oracle has provided invaluable
-technical input to the specification. Ron Monzillo from Oracle has
-helped drive some of the proposals and technical discussions around
-security aspects. Rajiv Mordani has capably lead this specification
-since version 2.5 and has made an enormous contribution to its success
-over time. Arjan Tijms has contributed much to the Java EE JCP expert
-groups over the years, in particular to Security and JSF. Arjan
-suggested the initial design of the Mapping Discovery API in Servlet
-4.0.
-
-
 :sectnums:
 == [[a357]] Overview
 
@@ -234,9 +199,9 @@ suggested the initial design of the Mapping Discovery API in Servlet
 
 A servlet is a Jakarta technology-based Web
 component, managed by a container, that generates dynamic content. Like
-other Java technology-based components, servlets are
+other Jakarta technology-based components, servlets are
 platform-independent Java classes that are compiled to platform-neutral
-byte code that can be loaded dynamically into and run by a Java
+byte code that can be loaded dynamically into and run by a Jakarta
 technology-enabled Web server. Containers, sometimes called servlet
 engines, are Web server extensions that provide servlet functionality.
 Servlets interact with Web clients via a request/response paradigm
@@ -437,7 +402,7 @@ In the case where a servlet was deployed as
 part of an application marked in the deployment descriptor as
 distributable, a container may have only one instance per servlet
 declaration per Java Virtual Machine (JVM™)footnote:[The terms "Java
-virtual machine" and "JVM" mean a virtual machine for the JakartaEE
+virtual machine" and "JVM" mean a virtual machine for the Jakarta EE
 platform.]
 However, if the servlet in a distributable application implements the
 `SingleThreadModel` interface, the container may instantiate multiple
@@ -1371,9 +1336,7 @@ with an attribute name.
 
 Attribute names beginning with the prefix of
 `jakarta.` are reserved for definition by this specification.
-Similarly, attribute names beginning with the prefixes of `java.`, `sun.` ,
-`com.sun., oracle and com.oracle` are reserved for definition by Oracle
-Corporation. It is suggested that all attributes placed in the attribute
+It is suggested that all attributes placed in the attribute
 set be named in accordance with the reverse domain name convention
 suggested by the Java Programming Language
 Specification footnote:[The Java Programming
@@ -2085,7 +2048,7 @@ Resource injection on all components
 programmatically, other than the ones added via the methods that takes
 an instance, will only be supported when the component is a CDI Managed
 Bean. For details please refer to
-<<#a3129,Contexts and Dependency Injection for Java EE requirements>>.
+<<#a3129,Contexts and Dependency Injection for Jakarta EE requirements>>.
 
 ==== [[a791]] Programmatically configuring session time out
 
@@ -2373,8 +2336,8 @@ Here’s the examples of this header.
 
  X-Powered-By: Servlet/5.0
 
- X-Powered-By: Servlet/5.0 JSP/2.3 (GlassFish
-Server Open Source Edition 5.0 Java/Oracle Corporation/1.8)
+ X-Powered-By: Servlet/5.0 JSP/3.0 (GlassFish
+Server 6.0 Java/Oracle Corporation/1.8)
 
 === [[a866]] HTTP Trailer
 
@@ -2947,7 +2910,7 @@ them on a per-request basis.
 
 ==== [[a1027]] Filters and the RequestDispatcher
 
-New since version 2.4 of the Java Servlet
+New since version 2.4 of the Servlet
 specification is the ability to configure filters to be invoked under
 request dispatcher `forward()` and `include()` calls.
 
@@ -3753,7 +3716,7 @@ resource authors may declare the ordering requirements of their
 artifacts.
 
 A `web-fragment.xml` may have a top level
-`<name>` element of type `javaee:java-identifierType` . There can only
+`<name>` element of type `jakartaee:java-identifierType` . There can only
 be one `<name>` element in a `web-fragment.xml` . If a `<name>` element
 is present, it must be considered for the ordering of artifacts (unless
 the duplicate name exception applies, as described below).
@@ -8348,8 +8311,8 @@ migrating other Jakarta objects from one JVM to another.
 
 ==== [[a2888]] Web Application Class Loader
 
-Servlet containers that are part of a JakartaEE Platform
-product should not allow the application to override Java SE or JakartaEE
+Servlet containers that are part of a Jakarta EE Platform
+product should not allow the application to override Java SE or Jakarta EE
 platform classes, such as those in `java.\*`, `javax.*`, and `jakarta.*` namespaces,
 that either Java SE or Jakarta do not allow to be modified.
 
