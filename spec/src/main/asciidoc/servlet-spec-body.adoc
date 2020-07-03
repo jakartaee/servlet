@@ -4935,10 +4935,9 @@ The behavior of this method is similar to the
 method of the same name in the `ServletContext` . The servlet container
 uses information in the request object to transform the given relative
 path against the current servlet to a complete path. For example, in a
-context rooted at `’` `/_ `’` and `` a request to _`
-`/garden/tools.html` , a request dispatcher obtained via ``
-`ServletRequest.getRequestDispatcher("header.html")` will behave exactly
-like a call to ``
+context rooted at `’/’` and a request to
+`/garden/tools.html`, a request dispatcher obtained via
+`ServletRequest.getRequestDispatcher("header.html")` will behave exactly like a call to
 `ServletContext.getRequestDispatcher("/garden/header.html")` .
 
 ==== [[a1776]] Query Strings in Request Dispatcher Paths
