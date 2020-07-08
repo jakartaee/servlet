@@ -7358,7 +7358,7 @@ in the constraint are uncovered.
 ----
 +
 GET is uncovered. All other methods are covered by the excluding
-`auth-contraint`.
+`auth-constraint`.
 
 . A `@ServletSecurity` annotation includes an
 `@HttpConstraint` that returns all default values and it also includes
