@@ -87,8 +87,7 @@ version 9
 
 Jakarta Server Pages™ ("JSP™"), version 3.0
 
-Java Naming and Directory Interface™
-("J.N.D.I.").
+Java Naming and Directory Interface™ ("JNDI").
 
 Jakarta Context and Dependency Injection for the Jakarta EE
 Platform
@@ -96,11 +95,10 @@ Platform
 Jakarta Managed Beans specification
 
 These specifications may be found at the Jakarta EE
-Platform, Web site: `https://jakarta.ee/specifications/`
-.
+Platform, Web site: `https://jakarta.ee/specifications/`.
 
 :sectnums!:
-=== [[a26]] Other Important References
+=== Other Important References
 
 The following Internet specifications provide
 information relevant to the development and implementation of the Jakarta
@@ -198,15 +196,10 @@ We welcome any and all feedback about this
 specification. Please e-mail your comments to
 `servlet-dev@eclipse.org` `.`
 
-Please note that due to the volume of feedback
-that we receive, you will not normally receive a reply from an engineer.
-However, each and every comment is read, evaluated, and archived by the
-specification team.
-
 :sectnums:
-== [[a357]] Overview
+== Overview
 
-=== [[a358]] What is a Servlet?
+=== What is a Servlet?
 
 A servlet is a Jakarta technology-based Web
 component, managed by a container, that generates dynamic content. Like
@@ -218,7 +211,7 @@ engines, are Web server extensions that provide servlet functionality.
 Servlets interact with Web clients via a request/response paradigm
 implemented by the servlet container.
 
-=== [[a361]] What is a Servlet Container?
+=== What is a Servlet Container?
 
 The servlet container is a part of a Web
 server or application server that provides the network services over
@@ -255,7 +248,7 @@ container are not negatively impacted.
 Java SE 8 is the minimum version of the
 underlying Java platform with which servlet containers must be built.
 
-=== [[a368]] An Example
+=== An Example
 
 The following is a typical sequence of events:
 
@@ -283,7 +276,7 @@ response object.
 request, the servlet container ensures that the response is properly
 flushed, and returns control back to the host Web server.
 
-=== [[a375]] Comparing Servlets with Other Technologies
+=== Comparing Servlets with Other Technologies
 
 In functionality, servlets provide a higher
 level abstraction than Common Gateway Interface (CGI) programs but a
@@ -306,7 +299,7 @@ independence.
 * They can access the large set of APIs
 available for the Java platform.
 
-=== [[a382]] Relationship to Jakarta EE Platform
+=== Relationship to Jakarta EE Platform
 
 The Jakarta Servlet API v.5.0 is a required API
 of the Jakarta EE Platform, 9 footnote:[Please see the Jakarta EE
@@ -318,7 +311,7 @@ Jakarta EE environment.
 
 
 
-== [[a390]] The Servlet Interface
+== The Servlet Interface
 
 
 The `Servlet` interface is the central
@@ -329,7 +322,7 @@ implement the `Servlet` interface are `GenericServlet` and `HttpServlet`
 . For most purposes, Developers will extend `HttpServlet` to implement
 their servlets.
 
-=== [[a392]] Request Handling Methods
+=== Request Handling Methods
 
 The basic `Servlet` interface defines a
 `service` method for handling client requests. This method is called for
@@ -345,7 +338,7 @@ Generally the Web container handles concurrent
 requests to the same servlet by concurrent execution of the `service`
 method on different threads.
 
-==== [[a397]] HTTP Specific Request Handling Methods
+==== HTTP Specific Request Handling Methods
 
 The `HttpServlet` abstract subclass adds
 additional methods beyond the basic `Servlet` interface that are
@@ -371,7 +364,7 @@ a Servlet Developer will only concern himself with the `doGet` and
 `doPost` methods. The other methods are considered to be methods for use
 by programmers very familiar with HTTP programming.
 
-==== [[a407]] Additional Methods
+==== Additional Methods
 
 The `doPut` and `doDelete` methods allow
 Servlet Developers to support HTTP/1.1 clients that employ these
@@ -384,7 +377,7 @@ containing all instances of the headers sent in the `TRACE` request.
 The `CONNECT` method is not supported because
 it applies to proxies and the Servlet API is targeted at endpoints.
 
-==== [[a410]] Conditional GET Support
+==== Conditional GET Support
 
 The `HttpServlet` interface defines the
 `getLastModified` method to support conditional `GET` operations. A
@@ -393,13 +386,13 @@ been modified since a specified time. In appropriate situations,
 implementation of this method may aid efficient utilization of network
 resources.
 
-=== [[a412]] Number of Instances
+=== Number of Instances
 
 The servlet declaration which is either via
-the annotation as described in <<#a1135,Annotations and pluggability>> or
+the annotation as described in <<Annotations and pluggability>> or
 part of the deployment descriptor of
 the Web application containing the servlet, as described in
-<<#a2643,Deployment Descriptor>>, controls how
+<<Deployment Descriptor>>, controls how
 the servlet container provides instances of the servlet.
 
 For a servlet not hosted in a distributed
@@ -419,7 +412,7 @@ However, if the servlet in a distributable application implements the
 `SingleThreadModel` interface, the container may instantiate multiple
 instances of that servlet in each JVM of the container.
 
-==== [[a416]] Note About The Single Thread Model
+==== Note About The Single Thread Model
 
 The use of the `SingleThreadModel` interface
 guarantees that only one thread at a time will execute in a given
@@ -436,7 +429,7 @@ such as avoiding the usage of an instance variable or synchronizing the
 block of the code accessing those resources. The `SingleThreadModel`
 Interface is deprecated in this version of the specification.
 
-=== [[a419]] Servlet Life Cycle
+=== Servlet Life Cycle
 
 A servlet is managed through a well defined
 life cycle that defines how it is loaded and instantiated, is
@@ -446,7 +439,7 @@ This life cycle is expressed in the API by the `init` , `service` , and
 servlets must implement directly or indirectly through the
 `GenericServlet` or `HttpServlet` abstract classes.
 
-==== [[a421]] Loading and Instantiation
+==== Loading and Instantiation
 
 The servlet container is responsible for
 loading and instantiating servlets. The loading and instantiation can
@@ -462,7 +455,7 @@ system, or other network services.
 After loading the `Servlet` class, the
 container instantiates it for use.
 
-==== [[a425]] Initialization
+==== Initialization
 
 After the servlet object is instantiated, the
 container must initialize the servlet before it can handle requests from
@@ -476,10 +469,10 @@ object allows the servlet to access name-value initialization parameters
 from the Web application’s configuration information. The configuration
 object also gives the servlet access to an object (implementing the
 `ServletContext` interface) that describes the servlet’s runtime
-environment. See <<#a704,Servlet Context>>
+environment. See <<Servlet Context>>
 for more information about the `ServletContext` interface.
 
-===== [[a427]] Error Conditions on Initialization
+===== Error Conditions on Initialization
 
 During initialization, the servlet instance
 can throw an `UnavailableException` or a `ServletException` . In this
@@ -493,7 +486,7 @@ exception to this rule is when an `UnavailableException` indicates a
 minimum time of unavailability, and the container must wait for the
 period to pass before creating and initializing a new servlet instance.
 
-===== [[a430]] Tool Considerations
+===== Tool Considerations
 
 The triggering of static initialization
 methods when a tool loads and introspects a Web application is to be
@@ -504,7 +497,7 @@ should not try to establish connections to databases or Jakarta Enterprise
 Beans containers when only static (class) initialization methods
 have been invoked.
 
-==== [[a432]] Request Handling
+==== Request Handling
 
 After a servlet is properly initialized, the
 servlet container may use it to handle client requests. Requests are
@@ -521,7 +514,7 @@ Note that a servlet instance placed into
 service by a servlet container may handle no requests during its
 lifetime.
 
-===== [[a436]] Multithreading Issues
+===== Multithreading Issues
 
 A servlet container may send concurrent
 requests through the `service` method of the servlet. To handle the
@@ -548,7 +541,7 @@ recommended that Developers not synchronize the `service` method (or
 methods dispatched to it) in these circumstances because of detrimental
 effects on performance.
 
-===== [[a440]] Exceptions During Request Handling
+===== Exceptions During Request Handling
 
 A servlet may throw either a
 `ServletException` or an `UnavailableException` during the service of a
@@ -578,7 +571,7 @@ distinction between a permanent and temporary unavailability and treat
 all `UnavailableExceptions` as permanent, thereby removing a servlet
 that throws any `UnavailableException` from service.
 
-===== [[a446]] Asynchronous processing
+===== Asynchronous processing
 
 Some times a filter and/or servlet is unable
 to complete the processing of a request without waiting for a resource
@@ -619,8 +612,8 @@ either in the same thread or by dispatching to a resource in the
 container using the `AsyncContext` .
 
 Jakarta EE features such as
-<<#a2890,Web Application Environment>> and
-<<#a2926,Propagation of Security Identity in EJB™ Calls>> are available only to
+<<Web Application Environment>> and
+<<Propagation of Security Identity in EJB™ Calls>> are available only to
 threads executing the initial request or when the request is dispatched
 to the container via the `AsyncContext.dispatch` method. Jakarta EE features
 may be available to other threads operating directly on
@@ -769,7 +762,7 @@ methods is given as `DispatcherType.ASYNC` . Finally the dispatcher type
 of a request dispatched to an error page by the container’s error
 handling mechanism is given as `DispatcherType.ERROR` .
 
-[[a469]] `AsyncContext`
+`AsyncContext`
 
 This class represents the execution context
 for the asynchronous operation that was started on the `ServletRequest`
@@ -860,7 +853,7 @@ interpreted as relative to the `ServletContext` that initialized the
 `AsyncContext` . All path related query methods of the request MUST
 reflect the dispatch target, while the original request URI, context
 path, path info and query string may be obtained from the request
-attributes as defined in <<#a1837,Dispatched Request Parameters>>.
+attributes as defined in <<Dispatched Request Parameters>>.
 These attributes MUST always reflect the original
 path elements, even after multiple dispatches.
 
@@ -872,12 +865,11 @@ convenience to dispatch the request and response used to initialize the
 an instance of `HttpServletRequest` , then the dispatch is to the URI
 returned by `HttpServletRequest.getRequestURI()` . Otherwise the
 dispatch is to the URI of the request when it was last dispatched by the
-container. The examples <<#a480,CODE EXAMPLE 2-1>> ,
-<<#a485,CODE EXAMPLE 2-2>> and
-<<#a492,CODE EXAMPLE 2-3>> shown below demonstrate what the
+container. The examples <<CODE EXAMPLE 2-1>> ,
+<<CODE EXAMPLE 2-2>> and
+<<CODE EXAMPLE 2-3>> shown below demonstrate what the
 target URI of dispatch would be in the different cases.
 
-[[a480]]
 .CODE EXAMPLE 2-1
 [source,java]
 ----
@@ -887,7 +879,6 @@ AsyncContext ac = request.startAsync();
 ac.dispatch(); // ASYNC dispatch to /url/A
 ----
 
-[[a485]]
 .CODE EXAMPLE 2-2
 [source,java]
 ----
@@ -906,7 +897,6 @@ AsyncContext ac = request.startAsync();
 ac.dispatch(); // ASYNC dispatch to /url/A
 ----
 
-[[a492]]
 .CODE EXAMPLE 2-3
 [source,java]
 ----
@@ -971,7 +961,7 @@ cycle is illegal and will result in an `IllegalStateException` . If
 of the `dispatch` methods may be called with the same restriction as
 above.
 +
-[[a505]] Any errors or exceptions
+Any errors or exceptions
 that may occur during the execution of the `dispatch` methods MUST be
 caught and handled by the container as follows:
 +
@@ -1118,7 +1108,7 @@ image:servlet-12.png[image]
 
 
 
-===== [[a534]] Thread Safety
+===== Thread Safety
 
 Other than the `startAsync` and `complete`
 methods, implementations of the request and response objects are not
@@ -1130,8 +1120,8 @@ safe.
 If a thread created by the application uses
 the container-managed objects, such as the request or response object,
 those objects must be accessed only within the object’s life cycle as
-defined in sections <<#a698,Lifetime of the Request Object>> and
-<<#a913,Lifetime of the Response Object>> respectively.
+defined in sections <<Lifetime of the Request Object>> and
+<<Lifetime of the Response Object>> respectively.
 Be aware that other than the `startAsync`, and `complete` methods,
 the request and response objects are not thread safe.
 If those objects were accessed in the multiple threads, the
@@ -1140,7 +1130,7 @@ thread safety, for instance, synchronizing the call of the methods to
 access the request attribute, or using a local output stream for the
 response object within a thread.
 
-===== [[a537]] Upgrade Processing
+===== Upgrade Processing
 
 In HTTP/1.1, the Upgrade general-header
 allows the client to specify the additional communication protocols that
@@ -1182,7 +1172,7 @@ while processing HTTP upgrade.
 When the upgrade processing is done,
 `HttpUpgradeHandler.destroy` will be invoked.
 
-==== [[a545]] End of Service
+==== End of Service
 
 The servlet container is not required to keep
 a servlet loaded for any particular period of time. A servlet instance
@@ -1212,7 +1202,7 @@ servlet container must release the servlet instance so that it is
 eligible for garbage collection.
 
 
-== [[a553]] The Request
+== The Request
 
 
 The request object encapsulates all
@@ -1220,12 +1210,12 @@ information from the client request. In the HTTP protocol, this
 information is transmitted from the client to the server in the HTTP
 headers and the message body of the request.
 
-=== [[a555]] HTTP Protocol Parameters
+=== HTTP Protocol Parameters
 
 Request parameters for the servlet are the
 strings sent by the client to a servlet container as part of its
 request. When the request is an `HttpServletRequest` object, and
-conditions set out in <<#a565,When Parameters Are Available>> are met,
+conditions set out in <<When Parameters Are Available>> are met,
 the container populates the parameters from the URI query string and POST-ed data.
 
 The parameters are stored as a set of
@@ -1260,7 +1250,7 @@ Path parameters that are part of a GET request
 parsed from the `String` values returned by the `getRequestURI` method
 or the `getPathInfo` method.
 
-==== [[a565]] When Parameters Are Available
+==== When Parameters Are Available
 
 The following are the conditions that must be
 met before post form data will be populated to the parameter set:
@@ -1281,7 +1271,7 @@ be available to the servlet via the request object’s input stream. If
 the conditions are met, post form data will no longer be available for
 reading directly from the request object’s input stream.
 
-=== [[a572]] File upload
+=== File upload
 
 Servlet container allows files to be uploaded
 when data is sent as `multipart/form-data` .
@@ -1292,7 +1282,7 @@ is met.
 
 * The servlet handling the request is annotated
 with the `@MultipartConfig` as defined in
-<<#a1247,@MultipartConfig>>.
+<<@MultipartConfig>>.
 
 * Deployment descriptors contain a
 `multipart-config` element for the servlet handling the request.
@@ -1327,7 +1317,7 @@ the part.
 `multi-part/form-data` processing, the data will be available through
 the `HttpServletReuqest.getInputStream` .
 
-=== [[a585]] Attributes
+=== Attributes
 
 Attributes are objects associated with a
 request. Attributes may be set by the container to express information
@@ -1354,7 +1344,7 @@ Specification footnote:[The Java Programming
 Language Specification is available at
 `http://docs.oracle.com/javase/specs/`] for package naming.
 
-=== [[a592]] Headers
+=== Headers
 
 A servlet can access the headers of an HTTP
 request through the following methods of the `HttpServletRequest`
@@ -1388,7 +1378,7 @@ the header value to an `int` , a `NumberFormatException` is thrown. If
 the `getDateHeader` method cannot translate the header to a `Date`
 object, an `IllegalArgumentException` is thrown.
 
-=== [[a602]] Request Path Elements
+=== Request Path Elements
 
 The request path that leads to a servlet
 servicing a request is composed of many important sections. The
@@ -1462,7 +1452,7 @@ The following behavior is observed:
 |ContextPath: `/catalog`, ServletPath: `/help/feedback.jsp`, PathInfo: `null`
 |===
 
-=== [[a642]] Path Translation Methods
+=== Path Translation Methods
 
 There are two convenience methods in the API
 which allow the Developer to obtain the file system path equivalent to a
@@ -1486,7 +1476,7 @@ considered only if the container has unpacked them from their containing
 JAR file when a call to `getRealPath()` is made, and in this case MUST
 return the unpacked location.
 
-=== [[a648]] Non Blocking IO
+=== Non Blocking IO
 
 Non-blocking request processing in the Web
 Container helps improve the ever increasing demand for improved Web
@@ -1495,8 +1485,8 @@ simultaneously be handled by the Web Container. Non-blocking IO in the
 Servlet container allows developers to read data as it becomes available
 or write data when possible to do so. Non-blocking IO only works with
 async request processing in Servlets and Filters (as defined in
-<<#a446,Asynchronous processing>>), and
-upgrade processing (as defined in <<#a537,Upgrade Processing>>).
+<<Asynchronous processing>>), and
+upgrade processing (as defined in <<Upgrade Processing>>).
 Otherwise, an `IllegalStateException` must be
 thrown when `ServletInputStream.setReadListener` or
 `ServletOutputStream.setWriteListener` is invoked.
@@ -1557,7 +1547,7 @@ MUST be thrown. A subsequent call to `setReadListener` in the scope of
 the current request is illegal and an `IllegalStateException` MUST be
 thrown.
 
-=== [[a662]] HTTP/2 Server Push
+=== HTTP/2 Server Push
 
 Server push is the most visible of the
 improvements in HTTP/2 to appear in the servlet API. All of the new
@@ -1579,7 +1569,7 @@ desired, then call `push()` . Please see the javadoc for method
 `jakarta.servlet.http.PushBuilder` for the normative specification. The
 remainder of this section calls out implementation requirements with
 respect to the section titled “Server Push” in the HTTP/2 specification
-version referenced in <<#a26,Other Important References>>.
+version referenced in <<Other Important References>>.
 
 Unless explicitly excluded, Servlet 5.0
 containers must support server push as specified in the HTTP/2
@@ -1597,7 +1587,7 @@ that references the pushed stream’s stream identifier. One common use of
 this interaction is when a browser already has the resource in its
 cache.
 
-=== [[a668]] Cookies
+=== Cookies
 
 The `HttpServletRequest` interface provides
 the `getCookies` method to obtain an array of cookies that are present
@@ -1612,7 +1602,7 @@ be exposed to client-side scripting code (It’s not filtered out unless
 the client knows to look for this attribute). The use of `HttpOnly`
 cookies helps mitigate certain kinds of cross-site scripting attacks.
 
-=== [[a670]] SSL Attributes
+=== SSL Attributes
 
 If a request has been transmitted over a
 secure protocol, such as HTTPS, this information must be exposed via the
@@ -1651,7 +1641,7 @@ ascending order of trust. The first certificate in the chain is the one
 set by the client, the next is the one used to authenticate the first,
 and so on.
 
-=== [[a687]] Internationalization
+=== Internationalization
 
 Clients may optionally indicate to a Web
 server what language they would prefer the response be given in. This
@@ -1682,7 +1672,7 @@ default locale for the servlet container and the `getLocales` method
 must contain an enumeration of a single `Locale` element of the default
 locale.
 
-=== [[a694]] Request data encoding
+=== Request data encoding
 
 Currently, many browsers do not send a char
 encoding qualifier with the Content-Type header, leaving open the
@@ -1711,7 +1701,7 @@ must be called prior to parsing any post data or reading any input from
 the request. Calling this method once data has been read will not affect
 the encoding.
 
-=== [[a698]] Lifetime of the Request Object
+=== Lifetime of the Request Object
 
 Each request object is valid only within the
 scope of a servlet’s `service` method, or within the scope of a filter’s
@@ -1727,10 +1717,10 @@ not recommended as it may have indeterminate results.
 
 In case of upgrade, the above is still true.
 
-== [[a704]] Servlet Context
+== Servlet Context
 
 
-=== [[a706]] Introduction to the ServletContext Interface
+=== Introduction to the ServletContext Interface
 
 The `ServletContext` interface defines a
 servlet’s view of the Web application within which the servlet is
@@ -1746,7 +1736,7 @@ within a Web server. For example, a servlet context could be located at
 `/catalog` request path, known as the context path, are routed to the
 Web application associated with the `ServletContext` .
 
-=== [[a709]] Scope of a ServletContext Interface
+=== Scope of a ServletContext Interface
 
 There is one instance object of the
 `ServletContext` interface associated with each Web application deployed
@@ -1760,7 +1750,7 @@ application and have a default `ServletContext` . In a distributed
 container, the default `ServletContext` is non-distributable and must
 only exist in one JVM.
 
-=== [[a712]] Initialization Parameters
+=== Initialization Parameters
 
 The following methods of the `ServletContext`
 interface allow the servlet access to context initialization parameters
@@ -1776,7 +1766,7 @@ Application Developer to convey setup information. Typical examples are
 a Webmaster’s e-mail address, or the name of a system that holds
 critical data.
 
-=== [[a717]] Configuration methods
+=== Configuration methods
 
 The following methods are added to
 `ServletContext` since Servlet 3.0 to enable programmatic definition of
@@ -1795,7 +1785,7 @@ neither declared in `web.xml` or `web-fragment.xml` nor annotated with
 for all the methods defined in `ServletContext` for programmatic
 configuration of servlets, filters and listeners.
 
-==== [[a720]] Programmatically adding and configuring Servlets
+==== Programmatically adding and configuring Servlets
 
 The ability to programmatically add a servlet
 to a context is useful for framework developers. For example a framework
@@ -1806,32 +1796,32 @@ the other parameters of the servlet like `init-params` , `url-mappings`
 etc. There are three overloaded versions of the method as described
 below.
 
-===== [[a722]] addServlet(String servletName, String className)
+===== addServlet(String servletName, String className)
 
 This method allows the application to declare
 a servlet programmatically. It adds the servlet with the given name, and
 class name to the servlet context.
 
-===== [[a724]] addServlet(String servletName, Servlet servlet)
+===== addServlet(String servletName, Servlet servlet)
 
 This method allows the application to declare
 a servlet programmatically. It adds the servlet with the given name, and
 servlet instance to the servlet context.
 
-===== [[a726]] addServlet(String servletName, Class <? extends Servlet> servletClass)
+===== addServlet(String servletName, Class <? extends Servlet> servletClass)
 
 This method allows the application to declare
 a servlet programmatically. It adds the servlet with the given name, and
 an instance of the servlet class to the servlet context.
 
-===== [[a728]] addJspFile(String servletName, String jspfile)
+===== addJspFile(String servletName, String jspfile)
 
 This method allows the application to declare
 a jsp programmatically. It adds the jsp with the given name, and an
 instance of the servlet class corresponding to the jsp file to the
 servlet context.
 
-===== [[a730]] <T extends Servlet> T createServlet(Class<T> clazz)
+===== <T extends Servlet> T createServlet(Class<T> clazz)
 
 This method instantiates the given `Servlet`
 class. The method must support all the annotations applicable to
@@ -1839,7 +1829,7 @@ Servlets except `@WebServlet` . The returned `Servlet` instance may be
 further customized before it is registered with the `ServletContext` via
 a call to `addServlet(String, Servlet)` as defined above.
 
-===== [[a732]] ServletRegistration getServletRegistration(String servletName)
+===== ServletRegistration getServletRegistration(String servletName)
 
 This method returns the `ServletRegistration`
 corresponding to the servlet with the given `name` , or `null` if no
@@ -1849,7 +1839,7 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml` , nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-===== [[a734]] Map<String, ? extends ServletRegistration> getServletRegistrations()
+===== Map<String, ? extends ServletRegistration> getServletRegistrations()
 
 This method returns a map of
 ServletRegistration objects, keyed by name corresponding to all servlets
@@ -1865,27 +1855,27 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml` , nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-==== [[a736]] Programmatically adding and configuring Filters
+==== Programmatically adding and configuring Filters
 
-===== [[a737]] addFilter(String filterName, String className)
+===== addFilter(String filterName, String className)
 
 This method allows the application to declare
 a filter programmatically. It adds the filter with the given name, and
 class name to the web application.
 
-===== [[a739]] addFilter(String filterName, Filter filter)
+===== addFilter(String filterName, Filter filter)
 
 This method allows the application to declare
 a filter programmatically. It adds the filter with the given name, and
 filter instance to the web application.
 
-===== [[a741]] addFilter(String filterName, Class <? extends Filter> filterClass)
+===== addFilter(String filterName, Class <? extends Filter> filterClass)
 
 This method allows the application to declare
 a filter programmatically. It adds the filter with the given name, and
 an instance of the filter class to the web application.
 
-===== [[a743]] <T extends Filter> T createFilter(Class<T> clazz)
+===== <T extends Filter> T createFilter(Class<T> clazz)
 
 This method instantiates the given `Filter`
 class. The method must support all the annotations applicable to
@@ -1895,7 +1885,7 @@ it is registered with the `ServletContext` via a call to
 must define a zero argument constructor, which is used to instantiate
 it.
 
-===== [[a745]] FilterRegistration getFilterRegistration(String filterName)
+===== FilterRegistration getFilterRegistration(String filterName)
 
 This method returns the `FilterRegistration`
 corresponding to the filter with the given `name` , or `null` if no
@@ -1905,7 +1895,7 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml` , nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-===== [[a747]] Map<String, ? extends FilterRegistration> getFilterRegistrations()
+===== Map<String, ? extends FilterRegistration> getFilterRegistrations()
 
 This method returns a map of
 `FilterRegistration` objects, keyed by name corresponding to all filters
@@ -1921,9 +1911,9 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml` , nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-==== [[a749]] Programmatically adding and configuring Listeners
+==== Programmatically adding and configuring Listeners
 
-===== [[a750]] void addListener(String className)
+===== void addListener(String className)
 
 Add the listener with the given class name to
 the `ServletContext` . The class with the given name will be loaded
@@ -1957,7 +1947,7 @@ jakarta.servlet.ServletContextListener_ or
 `jakarta.servlet.http.HttpSessionListener,` then the new listener will be
 added to the end of the ordered list of listeners of that interface.
 
-===== [[a759]] <T extends EventListener> void addListener(T t)
+===== <T extends EventListener> void addListener(T t)
 
 Add the given listener to the
 `ServletContext` . The given listener MUST be an instance of one or more
@@ -1986,7 +1976,7 @@ jakarta.servlet.ServletContextListener_ or
 `jakarta.servlet.http.HttpSessionListener,` then the new listener will be
 added to the end of the ordered list of listeners of that interface.
 
-===== [[a768]] void addListener(Class <? extends EventListener> listenerClass)
+===== void addListener(Class <? extends EventListener> listenerClass)
 
 Add the listener of the given class type to
 the `ServletContext` . The given listener class MUST implement one or
@@ -2015,7 +2005,7 @@ jakarta.servlet.ServletContextListener_ or
 `jakarta.servlet.http.HttpSessionListener,` then the new listener will be
 added to the end of the ordered list of listeners of that interface.
 
-===== [[a777]] <T extends EventListener> void createListener(Class<T> clazz)
+===== <T extends EventListener> void createListener(Class<T> clazz)
 
 This method instantiates the given
 EventListener class. The specified EventListener class MUST implement at
@@ -2040,7 +2030,7 @@ customized before it is registered with the ServletContext via a call to
 addListener(T t). The given EventListener class MUST define a zero
 argument constructor, which is used to instantiate it.
 
-===== [[a786]] Annotation processing requirements for programmatically added Servlets, Filters and Listeners
+===== Annotation processing requirements for programmatically added Servlets, Filters and Listeners
 
 When using the programmatic API to add a
 servlet or create a servlet, apart from the addServlet that takes an
@@ -2059,9 +2049,9 @@ Resource injection on all components
 programmatically, other than the ones added via the methods that takes
 an instance, will only be supported when the component is a CDI Managed
 Bean. For details please refer to
-<<#a3129,Contexts and Dependency Injection for Jakarta EE requirements>>.
+<<Contexts and Dependency Injection for Jakarta EE requirements>>.
 
-==== [[a791]] Programmatically configuring session time out
+==== Programmatically configuring session time out
 
 The following methods of the `ServletContext`
 interface allow the web application to access and configure the default
@@ -2074,7 +2064,7 @@ of sessions is never to time out.
 
 * `setSessionTimeout(int timeout)`
 
-==== [[a795]] Programmatically configuring character encoding
+==== Programmatically configuring character encoding
 
 The following methods of the `ServletContext`
 interface allow the web application to access and configure request and
@@ -2096,7 +2086,7 @@ deployment descriptor or container specific configuration (for all web
 applications in the container), `getResponseCharacterEncoding()` returns
 null.
 
-=== [[a802]] Context Attributes
+=== Context Attributes
 
 A servlet can bind an object attribute into
 the context by name. Any attribute bound into a context is available to
@@ -2112,17 +2102,17 @@ functionality:
 
 * `removeAttribute`
 
-==== [[a808]] Context Attributes in a Distributed Container
+==== Context Attributes in a Distributed Container
 
 Context attributes are local to the JVM in
 which they were created. This prevents `ServletContext` attributes from
 being a shared memory store in a distributed container. When information
 needs to be shared between servlets running in a distributed
 environment, the information should be placed into a session (See
-<<#a1069,Sessions>>”), stored in a database,
+<<Sessions>>”), stored in a database,
 or set in an Jakarta Enterprise Beans component.
 
-=== [[a810]] Resources
+=== Resources
 
 The `ServletContext` interface provides direct
 access only to the hierarchy of static content documents that are part
@@ -2155,7 +2145,7 @@ specification footnote:[The Jakarta Server Pages
 specification can be found at `https://jakarta.ee/specifications/pages`],
 a method call of the form
 `getResource("/index.jsp")` would return the JSP source code and not the
-processed output. See <<#a1764,Dispatching Requests>>” for more
+processed output. See <<Dispatching Requests>>” for more
 information about accessing dynamic content.
 
 The full listing of the resources in the Web
@@ -2163,7 +2153,7 @@ application can be accessed using the `getResourcePaths(String path)`
 method. The full details on the semantics of this method may be found in
 the API documentation in this specification.
 
-=== [[a817]] Multiple Hosts and Servlet Contexts
+=== Multiple Hosts and Servlet Contexts
 
 Web servers may support multiple logical hosts
 sharing one IP address on a server. This capability is sometimes
@@ -2180,7 +2170,7 @@ and the name returned by this method must be distinct, stable per
 logical host, and suitable for use in associating server configuration
 information with the logical host.
 
-=== [[a821]] Reloading Considerations
+=== Reloading Considerations
 
 Although a Container Provider implementation
 of a class reloading scheme for ease of development is not required, any
@@ -2201,7 +2191,7 @@ classes or objects, and cause unexpected behavior. The requirement is
 needed to prevent problems caused by demand generation of new class
 loaders.
 
-==== [[a824]] Temporary Working Directories
+==== Temporary Working Directories
 
 A temporary storage directory is required for
 each servlet context. Servlet containers must provide a private
@@ -2218,7 +2208,7 @@ not visible to the servlet contexts of other Web applications running on
 the servlet container.
 
 
-== [[a829]] The Response
+== The Response
 
 
 The response object encapsulates all
@@ -2226,7 +2216,7 @@ information to be returned from the server to the client. In the HTTP
 protocol, this information is transmitted from the server to the client
 either by HTTP headers or the message body of the request.
 
-=== [[a831]] Buffering
+=== Buffering
 
 A servlet container is allowed, but not
 required, to buffer output going to the client for efficiency purposes.
@@ -2288,7 +2278,7 @@ immediately flush the contents of a filled buffer to the client. If this
 is the first data that is sent to the client, the response is considered
 to be committed.
 
-=== [[a848]] Headers
+=== Headers
 
 A servlet can set headers of an HTTP response
 via the following methods of the `HttpServletResponse` interface:
@@ -2350,7 +2340,7 @@ Here’s the examples of this header.
  X-Powered-By: Servlet/5.0 JSP/3.0 (GlassFish
 Server 6.0 Java/Oracle Corporation/1.8)
 
-=== [[a866]] HTTP Trailer
+=== HTTP Trailer
 
 HTTP trailer is a collection of special kind
 of HTTP headers that comes after the response body. Trailer is specified
@@ -2372,18 +2362,18 @@ the `HttpServletResponse` interface.
 Please see the javadoc for these two methods
 for the normative specification.
 
-=== [[a872]] Non Blocking IO
+=== Non Blocking IO
 
 Non-blocking IO only works with async request
 processing in Servlets and Filters (as defined in
-<<#a446,Asynchronous processing>>), and
-upgrade processing (as defined in <<#a537,Upgrade Processing>>).
+<<Asynchronous processing>>), and
+upgrade processing (as defined in <<Upgrade Processing>>).
 Otherwise, an `IllegalStateException` must be
 thrown when `ServletInputStream.setReadListener` or
 `ServletOutputStream.setWriteListener` is invoked. To support
 non-blocking writes in the Web container, in addition to the changes
 made in the `ServletRequest` as described in
-<<#a648,Non Blocking IO>>,
+<<Non Blocking IO>>,
 the following changes have been made to handle response related classes
 / interfaces.
 
@@ -2432,7 +2422,7 @@ unspecified behavior.
 The Servlet container must access methods in
 `WriteListener` in a thread safe manner.
 
-=== [[a883]] Convenience Methods
+=== Convenience Methods
 
 The following convenience methods exist in the
 `HttpServletResponse` interface:
@@ -2466,7 +2456,7 @@ committed), the data in the response buffer must be cleared and replaced
 with the data set by these methods. If the response is committed, these
 methods must throw an `IllegalStateException` .
 
-=== [[a891]] Internationalization
+=== Internationalization
 
 Servlets should set the locale and the
 character encoding of a response. The locale is set using the
@@ -2523,7 +2513,7 @@ types. Note that the character encoding cannot be communicated via HTTP
 headers if the servlet does not specify a content type; however, it is
 still used to encode text written via the servlet response’s writer.
 
-=== [[a905]] Closure of Response Object
+=== Closure of Response Object
 
 When a response is closed, the container must
 immediately flush all remaining content in the response buffer to the
@@ -2544,7 +2534,7 @@ been greater than zero and has been written to the response.
 * The `complete` method on `AsyncContext` is
 called.
 
-=== [[a913]] Lifetime of the Response Object
+=== Lifetime of the Response Object
 
 Each response object is valid only within the
 scope of a servlet’s `service` method, or within the scope of a filter’s
@@ -2559,7 +2549,7 @@ corresponding request has not been called, outside the scope described
 above may lead to non-deterministic behavior.
 
 
-== [[a918]] Filtering
+== Filtering
 
 
 Filters are Java components that allow on the
@@ -2573,11 +2563,11 @@ conventions and semantics for their implementation.
 
 API documentation for servlet filters is
 provided online. The configuration syntax for filters is given by the
-deployment descriptor schema in <<#a2643,Deployment Descriptor>>.
+deployment descriptor schema in <<Deployment Descriptor>>.
 The reader should use these sources as
 references when reading this chapter.
 
-=== [[a922]] What is a filter?
+=== What is a filter?
 
 A filter is a reusable piece of code that can
 transform the content of HTTP requests, responses, and header
@@ -2610,7 +2600,7 @@ resource after its call.
 * Actions on a servlet, on groups of servlets,
 or static content by zero, one, or more filters in a specifiable order.
 
-==== [[a932]] Examples of Filtering Components
+==== Examples of Filtering Components
 
 * Authentication filters
 
@@ -2632,7 +2622,7 @@ or static content by zero, one, or more filters in a specifiable order.
 
 * Caching filters
 
-=== [[a943]] Main Concepts
+=== Main Concepts
 
 The main concepts of this filtering model are
 described in this section.
@@ -2648,7 +2638,7 @@ deployment descriptor. This is done by mapping filters to a particular
 servlet by the servlet’s logical name, or mapping to a group of servlets
 and static content resources by mapping a filter to a URL pattern.
 
-==== [[a946]] Filter Lifecycle
+==== Filter Lifecycle
 
 After deployment of the Web application, and
 before a request causes the container to access a Web resource, the
@@ -2727,7 +2717,7 @@ service by the container, the container must first call the `destroy`
 method on the filter to enable the filter to release any resources and
 perform other cleanup operations.
 
-==== [[a962]] Wrapping Requests and Responses
+==== Wrapping Requests and Responses
 
 Central to the notion of filtering is the
 concept of wrapping a request or response in order that it can override
@@ -2754,7 +2744,7 @@ caller wraps the request or response objects. In this case, the request
 and response objects seen by the called servlet must be the same wrapper
 objects that were passed in by the calling servlet or filter.
 
-==== [[a966]] Filter Environment
+==== Filter Environment
 
 A set of initialization parameters can be
 associated with a filter using the `<init-params>` element in the
@@ -2767,11 +2757,11 @@ functionality, and for storage of state in the `ServletContext` ’s
 attribute list. A Filter and the target servlet or resource at the end
 of the filter chain must execute in the same invocation thread.
 
-==== [[a968]] Configuration of Filters in a Web Application
+==== Configuration of Filters in a Web Application
 
 A filter is defined either via the
 `@WebFilter` annotation as defined in
-<<#a1215,@WebFilter>> of the specification or
+<<@WebFilter>> of the specification or
 in the deployment descriptor using the `<filter>` element. In this
 element, the programmer declares the following:
 
@@ -2834,7 +2824,7 @@ request URI matches the ‘ `/*` ’ URL pattern.
 When processing a `<filter-mapping>` element
 using the `<url-pattern>` style, the container must determine whether
 the `<url-pattern>` matches the request URI using the path mapping rules
-defined in <<#a2101,Mapping Requests to Servlets>>.
+defined in <<Mapping Requests to Servlets>>.
 
 The order the container uses in building the
 chain of filters to be applied for a particular request URI is as
@@ -2895,7 +2885,7 @@ chain means that the container, when receiving an incoming request,
 processes the request as follows:
 
 * Identifies the target Web resource according
-to the rules of <<#a2114,Specification of Mappings>>.
+to the rules of <<Specification of Mappings>>.
 
 * If there are filters matched by servlet name
 and the Web resource has a `<servlet-name>` , the container builds the
@@ -2906,7 +2896,7 @@ target Web resource.
 
 * If there are filters using `<url-pattern>`
 matching and the `<url-pattern>` matches the request URI according to
-the rules of <<#a2114,Specification of Mappings>>,
+the rules of <<Specification of Mappings>>,
 the container builds the chain of `<url-pattern>` matched
 filters in the same order as declared in the deployment descriptor. The
 last filter in this chain is the last `<url-pattern>` matching filter in
@@ -2919,7 +2909,7 @@ It is expected that high performance Web
 containers will cache filter chains so that they do not need to compute
 them on a per-request basis.
 
-==== [[a1027]] Filters and the RequestDispatcher
+==== Filters and the RequestDispatcher
 
 New since version 2.4 of the Servlet
 specification is the ability to configure filters to be invoked under
@@ -2949,7 +2939,7 @@ This is indicated by a `<dispatcher>` element
 with value `INCLUDE` .
 
 . The request is being processed with the error
-page mechanism specified in <<#a1911,Error Handling>> to an error
+page mechanism specified in <<Error Handling>> to an error
 resource matching the `<url-pattern>` .
 +
 This is indicated by a `<dispatcher>` element
@@ -2957,7 +2947,7 @@ with the value `ERROR` .
 
 . The request is being processed with the async
 context dispatch mechanism specified in
-<<#a446,Asynchronous processing>> to a web
+<<Asynchronous processing>> to a web
 component using a `dispatch` call.
 +
 This is indicated by a `<dispatcher>` element
@@ -3030,7 +3020,7 @@ Filter being invoked on request dispatcher forward() calls for all
 request dispatchers obtained by name or by path.
 
 
-== [[a1069]] Sessions
+== Sessions
 
 
 The Hypertext Transfer Protocol (HTTP) is by
@@ -3044,12 +3034,12 @@ This specification defines a simple
 several approaches to track a user’s session without involving the
 Application Developer in the nuances of any one approach.
 
-=== [[a1073]] Session Tracking Mechanisms
+=== Session Tracking Mechanisms
 
 The following sections describe approaches to
 tracking a user’s sessions
 
-==== [[a1075]] Cookies
+==== Cookies
 
 Session tracking through HTTP cookies is the
 most used session tracking mechanism and is required to be supported by
@@ -3073,7 +3063,7 @@ for its session tracking cookies, the same custom name will also be used
 as the name of the URI parameter if the session id is encoded in the URL
 (provided that URL rewriting has been enabled).
 
-==== [[a1080]] SSL Sessions
+==== SSL Sessions
 
 Secure Sockets Layer, the encryption
 technology used in the HTTPS protocol, has a built-in mechanism allowing
@@ -3081,7 +3071,7 @@ multiple requests from a client to be unambiguously identified as being
 part of a session. A servlet container can easily use this data to
 define a session.
 
-==== [[a1082]] URL Rewriting
+==== URL Rewriting
 
 URL rewriting is the lowest common denominator
 of session tracking. When a client will not accept a cookie, URL
@@ -3101,14 +3091,14 @@ logs, bookmarks, referer headers, cached HTML, and the URL bar. URL
 rewriting should not be used as a session tracking mechanism where
 cookies or SSL sessions are supported and suitable.
 
-==== [[a1087]] Session Integrity
+==== Session Integrity
 
 Web containers must be able to support the
 HTTP session while servicing HTTP requests from clients that do not
 support the use of cookies. To fulfill this requirement, Web containers
 commonly support the URL rewriting mechanism.
 
-=== [[a1089]] Creating a Session
+=== Creating a Session
 
 A session is considered “new” when it is only
 a prospective session and has not been established. Because HTTP is a
@@ -3141,7 +3131,7 @@ session id. The value of the session id can be obtained by calling
 creation by invoking
 `jakarta.servlet.http.HttpServletRequest.changeSessionId()` .
 
-=== [[a1098]] Session Scope
+=== Session Scope
 
 `HttpSession` objects must be scoped at the
 application (or servlet context) level. The underlying mechanism, such
@@ -3160,7 +3150,7 @@ resumable by requests into that context regardless of whether their
 associated context was being accessed directly or as the target of a
 request dispatch at the time the sessions were created.
 
-=== [[a1103]] Binding Attributes into a Session
+=== Binding Attributes into a Session
 
 A servlet can bind an object attribute into an
 `HttpSession` implementation by name. Any object bound into a session is
@@ -3184,7 +3174,7 @@ the object is made available via the `getAttribute` method of the
 the object is no longer available via the `getAttribute` method of the
 `HttpSession` interface.
 
-=== [[a1109]] Session Timeouts
+=== Session Timeouts
 
 In the HTTP protocol, there is no explicit
 termination signal when a client is no longer active. This means that
@@ -3207,7 +3197,7 @@ will not take effect until all servlets using that session have exited
 the service method. Once the session invalidation is initiated, a new
 request must not be able to see that session.
 
-=== [[a1113]] Last Accessed Times
+=== Last Accessed Times
 
 The `getLastAccessedTime` method of the
 `HttpSession` interface allows a servlet to determine the last time the
@@ -3215,9 +3205,9 @@ session was accessed before the current request. The session is
 considered to be accessed when a request that is part of the session is
 first handled by the servlet container.
 
-=== [[a1115]] Important Session Semantics
+=== Important Session Semantics
 
-==== [[a1117]] Threading Issues
+==== Threading Issues
 
 Multiple servlets executing request threads
 may have active access to the same session object at the same time. The
@@ -3228,14 +3218,14 @@ the attribute objects themselves. This will protect the attribute
 collection inside the `HttpSession` object from concurrent access,
 eliminating the opportunity for an application to cause that collection
 to become corrupted. Unless explicitly stated elsewhere in the
-specification (for example <<#a1117,Threading Issues>> for session objects),
+specification (for example <<Threading Issues>> for session objects),
 objects vended from the request or
 response must be assumed to be non thread safe. This includes, but is
 not limited to the `PrintWriter` returned from
 `ServletResponse.getWriter()` and the `OutputStream` returned from
 `ServletResponse.getOutputStream()` . ``
 
-==== [[a1119]] Distributed Environments
+==== Distributed Environments
 
 Within an application marked as distributable,
 all requests that are part of a session must be handled by one JVM at a
@@ -3292,7 +3282,7 @@ than one Java virtual machine, the developer cannot depend on static
 variables for storing an application state. They should store such
 states using an enterprise bean or a database.
 
-==== [[a1131]] Client Semantics
+==== Client Semantics
 
 Due to the fact that cookies or SSL
 certificates are typically controlled by the Web browser process and are
@@ -3303,13 +3293,13 @@ always assume that all windows of a client are participating in the same
 session.
 
 
-== [[a1135]] Annotations and pluggability
+== Annotations and pluggability
 
 This chapter describes the use of annotations
 and other enhancements to enable pluggability of frameworks and
 libraries for use within a web application.
 
-=== [[a1138]] Annotations and pluggability
+=== Annotations and pluggability
 
 In a web application, classes using
 annotations will have their annotations processed only if they are
@@ -3330,9 +3320,9 @@ If the value of the `metadata-complete`
 attribute is specified as `true` , the deployment tool must ignore any
 annotations that specify such deployment information in the class files
 packaged in the web application. Please see
-<<#a1418,Assembling the descriptor from web.xml, web-fragment.xml and annotations>>,
-<<#a1743,Processing annotations and fragments>> and
-<<#a2993,Handling of metadata-complete>> for additional details on the handling
+<<Assembling the descriptor from web.xml, web-fragment.xml and annotations>>,
+<<Processing annotations and fragments>> and
+<<Handling of metadata-complete>> for additional details on the handling
 of `metadata-complete`.
 
 If the `metadata-complete` attribute is
@@ -3460,7 +3450,7 @@ All annotations in the following packages:
 Following are the annotations that MUST be
 supported by a Servlet compliant web container.
 
-==== [[a1196]] @WebServlet
+==== @WebServlet
 
 This annotation is used to define a `Servlet`
 component in a web application. This annotation is specified on a class
@@ -3477,7 +3467,7 @@ specify at least one url pattern to be deployed. If the same servlet
 class is declared in the deployment descriptor under a different name, a
 new instance of the servlet MUST be instantiated. If the same servlet
 class is added with a different name to the `ServletContext` via the
-programmatic API defined in <<#a720,Programmatically adding and configuring Servlets>>,
+programmatic API defined in <<Programmatically adding and configuring Servlets>>,
 the attribute values
 declared via the `@WebServlet` annotation MUST be ignored and a new
 instance of the servlet with the name specified MUST be created.
@@ -3517,7 +3507,7 @@ public class SampleUsingAnnotationAttributes extends HttpServlet{
 ----
 
 
-==== [[a1215]] @WebFilter
+==== @WebFilter
 
 This annotation is used to define a `Filter`
 in a web application. This annotation is specified on a class and
@@ -3553,13 +3543,13 @@ public class MyFilter implements Filter {
 }
 ----
 
-==== [[a1227]] @WebInitParam
+==== @WebInitParam
 
 This annotation is used to specify any init
 parameters that must be passed to the `Servlet` or the `Filter` . It is
 an attribute of the `WebServlet` and `WebFilter` annotation.
 
-==== [[a1229]] @WebListener
+==== @WebListener
 
 The `WebListener` annotation is used to
 annotate a listener to get events for various operations on the
@@ -3600,7 +3590,7 @@ public class MyListener implements ServletContextListener{
 }
 ----
 
-==== [[a1247]] @MultipartConfig
+==== @MultipartConfig
 
 This annotation, when specified on a
 `Servlet` , indicates that the request it expects is of type
@@ -3615,10 +3605,10 @@ relative path is specified, it will be relative to the `tempdir`
 location. The test for absolute path vs relative path MUST be done via
 `java.io.File.isAbsolute` .
 
-==== [[a1249]] Other annotations / conventions
+==== Other annotations / conventions
 
 In addition to these annotations all the
-annotations defined in <<#a2967,Annotations and Resource Injection>> will continue to work in the context of these
+annotations defined in <<Annotations and Resource Injection>> will continue to work in the context of these
 new annotations.
 
 By default all applications will have
@@ -3632,9 +3622,9 @@ annotations. If ordering is important then look at the section for
 modularity of web.xml and ordering of `web.xml` and `web-fragment.xml`
 below. The order can be specified in the deployment descriptor only.
 
-=== [[a1253]] Pluggability
+=== Pluggability
 
-==== [[a1255]] Modularity of web.xml
+==== Modularity of web.xml
 
 Using the annotations defined above makes
 the use of web.xml optional. However for overriding either the default
@@ -3716,7 +3706,7 @@ applied is undefined. If ordering is an important aspect for a
 particular application please see rules defined below on how to achieve
 the order desired.
 
-==== [[a1279]] Ordering of web.xml and web-fragment.xml
+==== Ordering of web.xml and web-fragment.xml
 
 Since the specification allows the
 application configuration resources to be composed of multiple
@@ -4090,7 +4080,7 @@ following:
 --
 
 
-==== [[a1418]] Assembling the descriptor from web.xml, web-fragment.xml and annotations
+==== Assembling the descriptor from web.xml, web-fragment.xml and annotations
 
 If the order in which the listeners,
 servlets, filters are invoked is important to an application then a
@@ -4163,7 +4153,7 @@ they had been specified in the same web.xml.
 
 .. The order in which configuration
 settings of web fragments are added to those in the main web.xml is as
-specified above in <<#a1279,Ordering of web.xml and web-fragment.xml>>
+specified above in <<Ordering of web.xml and web-fragment.xml>>
 
 .. The `metadata-complete` attribute when set to
 `true` in the main `web.xml` , is considered complete and scanning of
@@ -4675,7 +4665,7 @@ equivalent to
 
 --
 
-==== [[a1716]] Shared libraries / runtimes pluggability
+==== Shared libraries / runtimes pluggability
 
 In addition to supporting fragments and use
 of annotations one of the requirements is that not only we be able to
@@ -4779,7 +4769,7 @@ are excluded from an absolute ordering MUST be ignored, and the order in
 which these services are discovered MUST follow the application’s class
 loading delegation model.
 
-=== [[a1737]] JSP container pluggability
+=== JSP container pluggability
 
 The `ServletContainerInitializer` and
 programmatic registration features make it possible to provide a clear
@@ -4821,7 +4811,7 @@ names (with possible exclusions if fragment JAR files have been excluded
 from `absolute-ordering` ), or `null` if the application does not
 specify any absolute or relative ordering.
 
-=== [[a1743]] Processing annotations and fragments
+=== Processing annotations and fragments
 
 Web applications can include both annotations
 and the `web.xml` / `web-fragment.xml` deployment descriptors.
@@ -4861,7 +4851,7 @@ fragments.
 |===
 
 
-== [[a1764]] Dispatching Requests
+== Dispatching Requests
 
 
 When building a Web application, it is often
@@ -4873,7 +4863,7 @@ When asynchronous processing is enabled on
 the request, the `AsyncContext` allows a user to dispatch the request
 back to the servlet container.
 
-=== [[a1768]] Obtaining a RequestDispatcher
+=== Obtaining a RequestDispatcher
 
 An object implementing the `RequestDispatcher`
 interface may be obtained from the `ServletContext` via the following
@@ -4888,7 +4878,7 @@ The `getRequestDispatcher` method takes a
 `ServletContext` . This path must be relative to the root of the
 `ServletContext` and begin with a ‘ `/` ’, or be empty. The method uses
 the path to look up a servlet, using the servlet path matching rules in
-<<#a2101,Mapping Requests to Servlets>>, wraps
+<<Mapping Requests to Servlets>>, wraps
 it with a `RequestDispatcher` object, and returns the resulting object.
 If no servlet can be resolved based on the given path, a
 `RequestDispatcher` is provided that returns the content for that path.
@@ -4914,7 +4904,7 @@ context rooted at `’/’` and a request to
 `ServletRequest.getRequestDispatcher("header.html")` will behave exactly like a call to
 `ServletContext.getRequestDispatcher("/garden/header.html")` .
 
-==== [[a1776]] Query Strings in Request Dispatcher Paths
+==== Query Strings in Request Dispatcher Paths
 
 The `ServletContext` and `ServletRequest`
 methods that create `RequestDispatcher` objects using path information
@@ -4938,7 +4928,7 @@ of the same name passed to the included servlet. The parameters
 associated with a `RequestDispatcher` are scoped to apply only for the
 duration of the `include` or `forward` call.
 
-=== [[a1782]] Using a Request Dispatcher
+=== Using a Request Dispatcher
 
 To use a request dispatcher, a servlet calls
 either the `include` method or `forward` method of the
@@ -4954,7 +4944,7 @@ The Container Provider should ensure that the
 dispatch of the request to a target servlet occurs in the same thread of
 the same JVM as the original request.
 
-=== [[a1785]] The Include Method
+=== The Include Method
 
 The `include` method of the
 `RequestDispatcher` interface may be called at any time. The target
@@ -4981,7 +4971,7 @@ then the default servlet MUST throw `FileNotFoundException` . If the
 exception isn't caught and handled, and the response hasn’t been
 committed, the status code MUST be set to 500.
 
-==== [[a1790]] Included Request Parameters
+==== Included Request Parameters
 
 Except for servlets obtained by using the
 `getNamedDispatcher` method, a servlet that has been invoked by another
@@ -5010,7 +5000,7 @@ for that include.
 If the included servlet was obtained by using
 the `getNamedDispatcher` method, these attributes must not be set.
 
-=== [[a1801]] The Forward Method
+=== The Forward Method
 
 The `forward` method of the
 `RequestDispatcher` interface may be called by the calling servlet only
@@ -5036,13 +5026,13 @@ occurs in the target of the `RequestDispatcher.forward()` the exception
 may be propagated back through all the calling filters and servlets and
 eventually back to the container
 
-==== [[a1807]] Query String
+==== Query String
 
 The request dispatching mechanism is
 responsible for aggregating query string parameters when forwarding or
 including requests.
 
-==== [[a1809]] Forwarded Request Parameters
+==== Forwarded Request Parameters
 
 Except for servlets obtained by using the
 `getNamedDispatcher` method, a servlet that has been invoked by another
@@ -5076,7 +5066,7 @@ subsequent includes are called.
 If the forwarded servlet was obtained by using
 the `getNamedDispatcher` method, these attributes must not be set.
 
-=== [[a1821]] Error Handling
+=== Error Handling
 
 If the servlet that is the target of a request
 dispatcher throws a runtime exception or a checked exception of type
@@ -5085,7 +5075,7 @@ calling servlet. All other exceptions should be wrapped as
 `ServletExceptions` and the root cause of the exception set to the
 original exception, as it should not be propagated.
 
-=== [[a1823]] Obtaining an AsyncContext
+=== Obtaining an AsyncContext
 
 An object implementing the `AsyncContext`
 interface may be obtained from the `ServletRequest` via one of
@@ -5093,7 +5083,7 @@ interface may be obtained from the `ServletRequest` via one of
 to either complete the processing of the request via the `complete()`
 method or use one of the `dispatch` methods described below.
 
-=== [[a1825]] The Dispatch Method
+=== The Dispatch Method
 
 The following methods can be used to dispatch
 requests from the `AsyncContext` :
@@ -5133,13 +5123,13 @@ The path elements of the request object
 exposed to the target servlet must reflect the path specified in the
 `AsyncContext.dispatch` .
 
-==== [[a1835]] Query String
+==== Query String
 
 The request dispatching mechanism is
 responsible for aggregating query string parameters when dispatching
 requests.
 
-==== [[a1837]] Dispatched Request Parameters
+==== Dispatched Request Parameters
 
 A servlet that has been invoked by using the
 `dispatch` method of `AsyncContext` has access to the path of the
@@ -5169,7 +5159,7 @@ Note that these attributes must always reflect the information in the
 original request even under the situation that multiple dispatches are
 called.
 
-== [[a1849]] Web Applications
+== Web Applications
 
 
 A Web application is a collection of servlets,
@@ -5177,7 +5167,7 @@ HTML pages, classes, and other resources that make up a complete
 application on a Web server. The Web application can be bundled and run
 on multiple containers from multiple vendors.
 
-=== [[a1851]] Web Applications Within Web Servers
+=== Web Applications Within Web Servers
 
 A Web application is rooted at a specific path
 within a Web server. For example, a catalog application could be located
@@ -5197,14 +5187,14 @@ descriptor. An application marked as distributable must obey a more
 restrictive set of rules than is required of a normal Web application.
 These rules are set out throughout this specification.
 
-=== [[a1855]] Relationship to ServletContext
+=== Relationship to ServletContext
 
 The servlet container must enforce a one to
 one correspondence between a Web application and a `ServletContext` . A
 `ServletContext` object provides a servlet with its view of the
 application.
 
-=== [[a1857]] Elements of a Web Application
+=== Elements of a Web Application
 
 A Web application may consist of the following
 items:
@@ -5217,7 +5207,7 @@ items:
 * Client side Java applets, beans, and classes
 * Descriptive meta information that ties all of the above elements together
 
-=== [[a1865]] Deployment Hierarchies
+=== Deployment Hierarchies
 
 This specification defines a hierarchical
 structure used for deployment and packaging purposes that can exist in
@@ -5225,7 +5215,7 @@ an open file system, in an archive file, or in some other form. It is
 recommended, but not required, that servlet containers support this
 structure as a runtime representation.
 
-=== [[a1867]] Directory Structure
+=== Directory Structure
 
 A Web application exists as a structured
 hierarchy of directories. The root of this hierarchy serves as the
@@ -5239,7 +5229,7 @@ present both in the root context and in the `META-INF/resources`
 directory of a JAR file in the `WEB-INF/lib` directory of the
 application, then the file that is available in the root context MUST be
 used. The rules for matching URLs to context path are laid out in
-<<#a2101,Mapping Requests to Servlets>>. Since
+<<Mapping Requests to Servlets>>. Since
 the context path of an application determines the URL namespace of the
 contents of the Web application, Web containers must reject Web
 applications defining a context path that could cause potential
@@ -5290,7 +5280,7 @@ where static resources are packaged in JAR files, any requests from the
 client to access the resources in `WEB-INF/` directory must be returned
 with a `SC_NOT_FOUND` (404) response.
 
-==== [[a1876]] Example of Application Directory Structure
+==== Example of Application Directory Structure
 
 The following is a listing of all the files in
 a sample Web application:
@@ -5309,7 +5299,7 @@ a sample Web application:
 /WEB-INF/classes/com/mycorp/util/MyUtils.class
 ----
 
-=== [[a1888]] Web Application Archive File
+=== Web Application Archive File
 
 Web applications can be packaged and signed
 into a Web ARchive format (WAR) file using the standard Java archive
@@ -5325,10 +5315,10 @@ are visible to servlet code via the `getResource` and
 to access the resources in `META-INF` directory must be returned with a
 `SC_NOT_FOUND` (404) response.
 
-=== [[a1891]] Web Application Deployment Descriptor
+=== Web Application Deployment Descriptor
 
 The Web application deployment descriptor (see
-<<#a2643,Deployment Descriptor>>”) includes
+<<Deployment Descriptor>>”) includes
 the following types of configuration and deployment information:
 
 * `ServletContext` Init Parameters
@@ -5347,7 +5337,7 @@ the following types of configuration and deployment information:
 
 * Security
 
-==== [[a1901]] Dependencies On Extensions
+==== Dependencies On Extensions
 
 When a number of applications make use of the
 same code or resources, they will typically be installed as library
@@ -5386,7 +5376,7 @@ If a Web container is not able to satisfy the
 dependencies declared in this manner, it should reject the application
 with an informative error message.
 
-==== [[a1907]] Web Application Class Loader
+==== Web Application Class Loader
 
 The class loader that a container uses to load
 a servlet in a WAR must allow the developer to load any resources
@@ -5411,16 +5401,16 @@ any callbacks (including listener callbacks) into the web application,
 and set it back to the original `ClassLoader` , once the callback
 returns.
 
-=== [[a1909]] Replacing a Web Application
+=== Replacing a Web Application
 
 A server should be able to replace an
 application with a new version without restarting the container. When an
 application is replaced, the container should provide a robust method
 for preserving session data within that application.
 
-=== [[a1911]] Error Handling
+=== Error Handling
 
-==== [[a1913]] Request Attributes
+==== Request Attributes
 
 A Web application must be able to specify that
 when errors occur, other resources in the application are used to
@@ -5437,10 +5427,10 @@ objects created by the container are passed to the servlet or JSP page.
 a `RequestDispatcher.forward` to the error resource had been performed.
 
 The request attributes in
-<<#a1919,Request Attributes and their types>>
+<<Request Attributes and their types>>
 must be set.
 
-.[[a1919]]Request Attributes and their types
+.Request Attributes and their types
 [caption="Table 10-1  "]
 [cols="2", options="header"]
 |===
@@ -5478,7 +5468,7 @@ to the attributes list for version 2.3 of this specification, the
 exception type and error message attributes are redundant. They are
 retained for backwards compatibility with earlier versions of the API.
 
-==== [[a1936]] Error Pages
+==== Error Pages
 
 To allow developers to customize the
 appearance of content returned to a Web client when a servlet generates
@@ -5545,23 +5535,23 @@ the error page mechanism.
 
 If the application is using
 asynchronous operations as described in
-<<#a446,Asynchronous processing>>, it is the
+<<Asynchronous processing>>, it is the
 application’s responsibility to handle all errors in application created
 threads. The container MAY take care of the errors from the thread
 issued via `AsyncContext.start` . For handling errors that occur during
 `AsyncContext.dispatch` see
-<<#a505,Any errors or exceptions that may occur during the execution of the dispatch methods MUST be caught and handled by the container as follows:>>
+<<Any errors or exceptions that may occur during the execution of the dispatch methods MUST be caught and handled by the container as follows:>>
 
-==== [[a1951]] Error Filters
+==== Error Filters
 
 The error page mechanism operates on the
 original unwrapped/unfiltered request and response objects created by
 the container. The mechanism described in
-<<#a1027,Filters and the RequestDispatcher>>”
+<<Filters and the RequestDispatcher>>”
 may be used to specify filters that are applied before an error response
 is generated.
 
-=== [[a1953]] Welcome Files
+=== Welcome Files
 
 Web Application developers can define an
 ordered list of partial URIs called welcome files in the Web application
@@ -5649,7 +5639,7 @@ passed to the “default” servlet, if any. If no “default” servlet is
 mapped, the request may cause a `404 not found` , may cause a directory
 listing including `shop.jsp` and `register.jsp` , or may cause other
 behavior defined by the container. See
-<<#a2114,Specification of Mappings>>” for the
+<<Specification of Mappings>>” for the
 definition of “default” servlet.
 
 * All of the above static content can also be
@@ -5657,17 +5647,17 @@ packaged in a JAR file with the content listed above packaged in the
 `META-INF/resources` directory of the jar file. The JAR file can then be
 included in the `WEB-INF/lib` directory of the web application.
 
-=== [[a1981]] Web Application Environment
+=== Web Application Environment
 
 Servlet containers that are not part of a Jakarta EE
 technology-compliant implementation are encouraged, but not required,
 to implement the application environment functionality described in
-<<#a2890,Web Application Environment>> and the Jakarta EE specification. If they do not
+<<Web Application Environment>> and the Jakarta EE specification. If they do not
 implement the facilities required to support this environment, upon
 deploying an application that relies on them, the container should
 provide a warning.
 
-=== [[a1984]] Web Application Deployment
+=== Web Application Deployment
 
 When a web application is deployed into a
 container, the following steps must be performed, in this order, before
@@ -5689,7 +5679,7 @@ identified by a `<servlet>` element that includes a `<load-on-startup>`
 element in the order defined by the load-on-startup element values, and
 call each servlet instance’s `init()` method.
 
-=== [[a1990]] Inclusion of a web.xml Deployment Descriptor
+=== Inclusion of a web.xml Deployment Descriptor
 
 A web application is NOT required to contain a
 web.xml if it does NOT contain any Servlet, Filter, or Listener
@@ -5698,10 +5688,10 @@ an application containing only static files or JSP pages does not
 require a web.xml to be present.
 
 
-== [[a1995]] Application Lifecycle Events
+== Application Lifecycle Events
 
 
-=== [[a1997]] Introduction
+=== Introduction
 
 The application events facility gives the Web
 Application Developer greater control over the lifecycle of the
@@ -5709,7 +5699,7 @@ Application Developer greater control over the lifecycle of the
 better code factorization, and increases efficiency in managing the
 resources that the Web application uses.
 
-=== [[a1999]] Event Listeners
+=== Event Listeners
 
 Application event listeners are classes that
 implement one or more of the servlet event listener interfaces. They are
@@ -5731,7 +5721,7 @@ There may be multiple listener classes
 listening to each event type, and the Developer may specify the order in
 which the container invokes the listener beans for each event type.
 
-==== [[a2004]] Event Types and Listener Interfaces
+==== Event Types and Listener Interfaces
 
 Events types and the listener interfaces used
 to monitor them are shown in the following tables:
@@ -5756,7 +5746,7 @@ added, removed, or replaced.
 |`jakarta.servlet.ServletContextAttributeListener`
 |===
 
-.[[a2018]] HTTP Session Events
+.HTTP Session Events
 [caption="Table 11-2  "]
 [cols="3", options="header"]
 |===
@@ -5811,7 +5801,7 @@ replaced on an `HttpSession`.
 For details of the API, refer to the API
 reference.
 
-==== [[a2058]] An Example of Listener Use
+==== An Example of Listener Use
 
 To illustrate a use of the event scheme,
 consider a simple Web application containing a number of servlets that
@@ -5829,9 +5819,9 @@ connection as needed during activity in the Web application.
 application is removed from the Web server, the listener class is
 notified and the database connection is closed.
 
-=== [[a2063]] Listener Class Configuration
+=== Listener Class Configuration
 
-==== [[a2064]] Provision of Listener Classes
+==== Provision of Listener Classes
 
 The Developer of the Web application provides
 listener classes implementing one or more of the listener interfaces in
@@ -5840,7 +5830,7 @@ constructor taking no arguments. The listener classes are packaged into
 the WAR, either under the `WEB-INF/classes` archive entry, or inside a
 JAR in the `WEB-INF/lib` directory.
 
-==== [[a2066]] Deployment Declarations
+==== Deployment Declarations
 
 Listener classes are declared in the Web
 application deployment descriptor using the `listener` element. They are
@@ -5848,7 +5838,7 @@ listed by class name in the order in which they are to be invoked.
 Unlike other listeners, listeners of type `AsyncListener` may only be
 registered (with a `ServletRequest` ) programmatically.
 
-==== [[a2068]] Listener Registration
+==== Listener Registration
 
 The Web container creates an instance of each
 listener class and registers it for event notifications prior to the
@@ -5858,10 +5848,10 @@ implement and the order in which they appear in the deployment
 descriptor. During web application execution, listeners for the given
 events are mostly invoked in their registration orders, but there are
 some exceptions. For instance, `HttpSessionListener.destroy` are invoked
-in reverse order. See <<#a1418,Assembling the descriptor from web.xml,
+in reverse order. See <<Assembling the descriptor from web.xml,
 web-fragment.xml and annotations>>” for details.
 
-==== [[a2070]] Notifications At Shutdown
+==== Notifications At Shutdown
 
 On application shutdown, listeners are
 notified in reverse order to their declarations with notifications to
@@ -5869,7 +5859,7 @@ session listeners preceding notifications to context listeners. Session
 listeners must be notified of session invalidations prior to context
 listeners being notified of application shutdown.
 
-=== [[a2072]] Deployment Descriptor Example
+=== Deployment Descriptor Example
 
 The following example is the deployment
 grammar for registering two servlet context lifecycle listeners and an
@@ -5904,7 +5894,7 @@ deployment descriptor for this application:
 </web-app>
 ----
 
-=== [[a2088]] Listener Instances and Threading
+=== Listener Instances and Threading
 
 The container is required to complete
 instantiation of the listener classes in a Web application prior to the
@@ -5918,7 +5908,7 @@ required to synchronize the resulting notifications to attribute
 listener classes. Listener classes that maintain state are responsible
 for the integrity of the data and should handle this case explicitly.
 
-=== [[a2091]] Listener Exceptions
+=== Listener Exceptions
 
 Application code inside a listener may throw
 an exception during operation. Some listener notifications occur under
@@ -5926,7 +5916,7 @@ the call tree of another component in the application. An example of
 this is a servlet that sets a session attribute, where the session
 listener throws an unhandled exception. The container must allow
 unhandled exceptions to be handled by the error page mechanism described
-in <<#a1911,Error Handling>>”. If there is no
+in <<Error Handling>>”. If there is no
 error page specified for those exceptions, the container must ensure to
 send a response back with status 500. In this case no more listeners
 under that event are called.
@@ -5947,7 +5937,7 @@ Developers wishing normal processing to occur
 after a listener generates an exception must handle their own exceptions
 within the notification methods.
 
-=== [[a2095]] Distributed Containers
+=== Distributed Containers
 
 In distributed Web containers, `HttpSession`
 instances are scoped to the particular JVM servicing session requests,
@@ -5957,7 +5947,7 @@ context events or `HttpSession` events to other JVMs. Listener class
 instances are scoped to one per deployment descriptor declaration per
 JVM.
 
-=== [[a2097]] Session Events
+=== Session Events
 
 Listener classes provide the Developer with a
 way of tracking sessions within a Web application. It is often useful in
@@ -5967,14 +5957,14 @@ application called the `invalidate` method. The distinction may be
 determined indirectly using listeners and the `HttpSession` API methods.
 
 
-== [[a2101]] Mapping Requests to Servlets
+== Mapping Requests to Servlets
 
 
 The mapping techniques described in
 this chapter are required for Web containers mapping client requests to
 servlets.
 
-=== [[a2104]] Use of URL Paths
+=== Use of URL Paths
 
 Upon receipt of a client request, the Web
 container determines the Web application to which to forward it. The Web
@@ -5986,7 +5976,7 @@ configuration to change this encoding or enable more fine-grained
 encoding such as using a different encoding for the path and query
 string portions of the URL. Note that the encoding used to process the
 remainder of the request, after the URL, can be configured as specified
-in <<#a694,Request data encoding>>.
+in <<Request data encoding>>.
 
 The Web container next must locate the servlet
 to process the request using the path mapping procedure described below.
@@ -6019,7 +6009,7 @@ implicit default servlet for serving content.
 The container must use case-sensitive string
 comparisons for matching.
 
-=== [[a2114]] Specification of Mappings
+=== Specification of Mappings
 
 In the Web application deployment descriptor,
 the following syntax is used to define mappings:
@@ -6048,7 +6038,7 @@ If the effective `web.xml` (after merging
 information from fragments and annotations) contains any url-patterns
 that are mapped to multiple servlets then the deployment must fail.
 
-==== [[a2123]] Implicit Mappings
+==== Implicit Mappings
 
 If the container has an internal JSP
 container, the `\*.jsp` extension is mapped to it, allowing JSP pages to
@@ -6061,7 +6051,7 @@ implicit mappings as long as explicit mappings take precedence. For
 example, an implicit mapping of `*.shtml` could be mapped to include
 functionality on the server.
 
-==== [[a2126]] Example Mapping Set
+==== Example Mapping Set
 
 Consider the following set of mappings:
 
@@ -6123,26 +6113,26 @@ Note that in the case of `/catalog/index.html`
 and `/catalog/racecar.bop` , the servlet mapped to `/catalog` is not
 used because the match is not exact.
 
-=== [[a2160]] Runtime Discovery of Mappings
+=== Runtime Discovery of Mappings
 
 Every mapping that causes a Servlet to be
 activated, regardless of whether or not Servlet Filters are involved, is
 discoverable at runtime via the Servlet Mapping API.
 
-==== [[a2163]] Runtime Discovery of Servlet Mappings
+==== Runtime Discovery of Servlet Mappings
 
 The method `getHttpServletMapping()` on
 `HttpServletRequest` returns an `HttpServletMapping` implementation that
 provides information for the mapping that caused the current `Servlet`
 to be invoked. Please see the javadocs for the normative specification.
-Please see sections <<#a1790,Included Request Parameters>>,
-<<#a1809,Forwarded Request Parameters>> and <<#a1837,Dispatched Request Parameters>>
+Please see sections <<Included Request Parameters>>,
+<<Forwarded Request Parameters>> and <<Dispatched Request Parameters>>
 for relevant request attributes. As with the included and
 forwarded request parameters, the `HttpServletMapping` is not available
 for servlets that have been obtained with a call to
 `ServletContext.getNamedDispatcher()` . ``
 
-== [[a2166]] Security
+== Security
 
 
 Web applications are created by Application
@@ -6159,7 +6149,7 @@ security mechanisms and interfaces and the deployment descriptor,
 annotation, and programmatic mechanisms for conveying the security
 requirements of applications.
 
-=== [[a2169]] Introduction
+=== Introduction
 
 A web application contains resources that can
 be accessed by many users. These resources often traverse unprotected,
@@ -6192,7 +6182,7 @@ The means
 used to ensure that information is made available only to users who are
 authorized to access it.
 
-=== [[a2176]] Declarative Security
+=== Declarative Security
 
 Declarative security refers to the means of
 expressing an application’s security model or requirements, including
@@ -6212,7 +6202,7 @@ the application that are requested by the client. The security model
 does not apply when a servlet uses the `RequestDispatcher` to invoke a
 static resource or servlet using a `forward` or an `include` .
 
-=== [[a2180]] Programmatic Security
+=== Programmatic Security
 
 Programmatic security is used by security
 aware applications when declarative security alone is not sufficient to
@@ -6307,13 +6297,13 @@ The declaration of `security-role-ref`
 elements informs the deployer of the role references used by the
 application and for which mappings must be defined.
 
-=== [[a2206]] Programmatic Security Policy Configuration
+=== Programmatic Security Policy Configuration
 
 This section defines the annotations and apis
 provided to configure the security constraints enforced by the Servlet
 Container.
 
-==== [[a2208]] @ServletSecurity Annotation
+==== @ServletSecurity Annotation
 
 The `@ServletSecurity` annotation provides
 an alternative mechanism for defining access control constraints
@@ -6530,7 +6520,7 @@ deployment descriptor, or barring any such elements, by the constraints,
 if any, established programmatically for the target servlet via the
 `setServletSecurity` method of the `ServletRegistration` interface.
 
-===== [[a2287]] Examples
+===== Examples
 
 The following examples demonstrate the use of
 the ServletSecurity annotation.
@@ -6603,7 +6593,7 @@ public class Example7 extends HttpServlet {
 }
 ----
 
-===== [[a2323]] Mapping @ServletSecurity to security-constraint
+===== Mapping @ServletSecurity to security-constraint
 
 This section describes the mapping of the
 `@ServletSecurity` annotation to its equivalent representation as
@@ -6634,7 +6624,7 @@ element. The `url-pattern` elements defined by the corresponding servlet
 the presence and value of any contained `auth-constraint` and
 `user-data-constraint` elements would be determined by the mapping of
 the `@HttpConstraint` value as defined in
-<<#a2361,Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
+<<Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
 
 .mapping @ServletSecurity with no contained @HttpMethodConstraint
 [source,java]
@@ -6675,7 +6665,7 @@ both constraints, and the presence and value of any contained
 `auth-constraint` and `user-data-constraint` elements would be
 determined by the mapping of the associated `@HttpConstraint` and
 `@HttpMethodConstraint` values as defined in
-<<#a2361,Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
+<<Mapping @HttpConstraint and @HttpMethodConstraint to XML.>>
 
 .mapping @ServletSecurity with contained @HttpMethodConstraint
 [source,java]
@@ -6704,7 +6694,7 @@ httpMethodConstraints = @HttpMethodConstraint(value = "TRACE", emptyRoleSemantic
 </security-constraint>
 ----
 
-===== [[a2361]] Mapping @HttpConstraint and @HttpMethodConstraint to XML.
+===== Mapping @HttpConstraint and @HttpMethodConstraint to XML.
 
 This section describes the mapping of the
 `@HttpConstraint` and `@HttpMethodConstraint` annotation values (defined
@@ -6790,7 +6780,7 @@ correspondence between the `@HttpConstraint` model described above and
 </user-data-constraint>
 ----
 
-==== [[a2395]] setServletSecurity of ServletRegistration.Dynamic
+==== setServletSecurity of ServletRegistration.Dynamic
 
 The `setServletSecurity` method may be used
 within a `ServletContextListener` to define the security constraints to
@@ -6801,7 +6791,7 @@ be applied to the mappings defined for a `ServletRegistration` .
 The `jakarta.servlet.ServletSecurityElement`
 argument to `setServletSecurity` is analogous in structure and model to
 the `ServletSecurity` interface of the `@ServletSecurity` annotation. As
-such, the mappings defined in <<#a2323,Mapping @ServletSecurity to security-constraint>>, apply analogously to
+such, the mappings defined in <<Mapping @ServletSecurity to security-constraint>>, apply analogously to
 the mapping of a `ServletSecurityElement` with contained
 `HttpConstraintElement` and `HttpMethodConstraintElement` values, to its
 equivalent `security-constraint` representation.
@@ -6827,7 +6817,7 @@ when `setServletSecurity` is called on a `ServletRegistration` it
 establishes the security constraints that apply to the `url-patterns` of
 the registration.
 
-=== [[a2404]] Roles
+=== Roles
 
 A security role is a logical grouping of users
 defined by the Application Developer or Assembler. When the application
@@ -6852,7 +6842,7 @@ name of the calling principal is retrieved from its security attributes.
 The principal is in the security role only if the principal name is the
 same as a principal name to which the security role was mapped.
 
-=== [[a2409]] Authentication
+=== Authentication
 
 A web client can authenticate a user to a web
 server using one of the following mechanisms:
@@ -6865,7 +6855,7 @@ server using one of the following mechanisms:
 
 * Form Based Authentication
 
-==== [[a2415]] HTTP Basic Authentication
+==== HTTP Basic Authentication
 
 HTTP Basic Authentication, which is based on a
 username and password, is the authentication mechanism defined in the
@@ -6883,7 +6873,7 @@ protection can alleviate some of these concerns: a secure transport
 mechanism (HTTPS), or security at the network level (such as the IPSEC
 protocol or VPN strategies) is applied in some deployment scenarios.
 
-==== [[a2418]] HTTP Digest Authentication
+==== HTTP Digest Authentication
 
 Like HTTP Basic Authentication, HTTP Digest
 Authentication authenticates a user based on a username and a password.
@@ -6899,7 +6889,7 @@ container so that it can validate received authenticators by calculating
 the expected digest. Servlet containers SHOULD support HTTP_DIGEST
 authentication.
 
-==== [[a2420]] Form Based Authentication
+==== Form Based Authentication
 
 The look and feel of the “login screen” cannot
 be varied using the web browser’s built-in authentication mechanisms.
@@ -6976,7 +6966,7 @@ The login method of the HttpServletRequest
 interface provides an alternative means for an application to control
 the look and feel of it’s login screens.
 
-===== [[a2437]] Login Form Notes
+===== Login Form Notes
 
 Form based login and URL based session
 tracking can be problematic to implement. Form based login should be
@@ -7015,7 +7005,7 @@ container supports single signon, such as Jakarta EE technology compliant
 web containers, the user would need to reauthenticate with any of the
 web applications hosted on the web container.
 
-==== [[a2447]] HTTPS Client Authentication
+==== HTTPS Client Authentication
 
 End user authentication using HTTPS (HTTP over
 SSL) is a strong authentication mechanism. This mechanism requires the
@@ -7023,7 +7013,7 @@ client to possess a Public Key Certificate (PKC). Currently, PKCs are
 useful in e-commerce applications and also for a single-signon from
 within the browser.
 
-==== [[a2449]] Additional Container Authentication Mechanisms
+==== Additional Container Authentication Mechanisms
 
 Servlet containers should provide public
 interfaces that may be used to integrate and configure additional HTTP
@@ -7040,7 +7030,7 @@ The SPI is available for download at:
 https://jakarta.ee/specifications/authentication/
 
 
-=== [[a2453]] Server Tracking of Authentication Information
+=== Server Tracking of Authentication Information
 
 As the underlying security identities (such as
 users and groups) to which roles are mapped in a runtime environment are
@@ -7063,7 +7053,7 @@ the web application level). This allows users authenticated for one web
 application to access other resources managed by the container permitted
 to the same security identity.
 
-=== [[a2459]] Specifying Security Constraints
+=== Specifying Security Constraints
 
 Security constraints are a declarative way of
 defining the protection of web content. A security constraint associates
@@ -7122,7 +7112,7 @@ authentication. If no user data constraint applies to a request, the
 container must accept the request when received over any connection
 including an unprotected one.
 
-==== [[a2472]] Combining Constraints
+==== Combining Constraints
 
 For the purpose of combining constraints, an
 HTTP method is said to occur within a `web-resource-collection` when no
@@ -7158,7 +7148,7 @@ a `user-data-constraint` shall combine with other `user-data-constraint`
 to cause the unprotected connection type to be an accepted connection
 type.
 
-==== [[a2477]] Example
+==== Example
 
 The following example illustrates the
 combination of constraints and their translation into a table of
@@ -7224,9 +7214,9 @@ the following security constraints.
 
 The translation of this hypothetical
 deployment descriptor would yield the constraints defined in
-<<#a2544,Security Constraint Table>>.
+<<Security Constraint Table>>.
 
-.[[a2544]] Security Constraint Table
+.Security Constraint Table
 [caption="Table 13-4  "]
 [cols="4", options="header"]
 |===
@@ -7271,11 +7261,11 @@ deployment descriptor would yield the constraints defined in
 |not constrained
 |===
 
-==== [[a2581]] Processing Requests
+==== Processing Requests
 
 When a Servlet container receives a request,
 it shall use the algorithm described in
-<<#a2104,Use of URL Paths>> to select the
+<<Use of URL Paths>> to select the
 constraints (if any) defined on the `url-pattern` that is the best match
 to the request URI. If no constraints are selected, the container shall
 accept the request. Otherwise the container shall determine if the HTTP
@@ -7308,7 +7298,7 @@ permitted roles and the authentication identity of the request is not a
 member of any of these roles, the request shall be rejected as forbidden
 and a 403 (SC_FORBIDDEN) status code shall be returned to the user.
 
-==== [[a2585]] Uncovered HTTP Protocol Methods
+==== Uncovered HTTP Protocol Methods
 
 The `security-constraint` schema provides the
 ability to enumerate (including by omission) the HTTP protocol methods
@@ -7330,7 +7320,7 @@ The examples that follow depict the three
 ways in which HTTP protocol methods may be left uncovered. The
 determination of whether methods are uncovered is made after all the
 constraints that apply to a `url-pattern` have been combined as
-described in <<#a2472,Combining Constraints>>.
+described in <<Combining Constraints>>.
 
 . A `security-constraint` names one or more
 HTTP methods in `http-method` elements. All HTTP methods other than
@@ -7394,7 +7384,7 @@ public class Example5 extends HttpServlet {
 +
 All HTTP Methods except GET and POST are uncovered.
 
-===== [[a2622]] Rules for Security Constraint Configuration
+===== Rules for Security Constraint Configuration
 
 Objective: Make sure all HTTP methods at all
 constrained URL patterns have the intended security protections (that
@@ -7418,7 +7408,7 @@ annotations, use the `HttpConstraint` annotation to define the security
 semantic to be applied to all other HTTP methods and configure
 `EmptyRoleSemantic=DENY` to cause all other HTTP methods to be denied.
 
-===== [[a2627]] Handling Uncovered HTTP Methods
+===== Handling Uncovered HTTP Methods
 
 During application deployment, the container
 must inform the deployer of any uncovered HTTP methods present in the
@@ -7467,7 +7457,7 @@ methods is ALLOW or DENY. This option may be configured on a
 per-application granularity or larger. Note that setting this default to
 DENY may cause some applications to fail.
 
-=== [[a2635]] Default Policies
+=== Default Policies
 
 By default, authentication is not needed to
 access resources. Authentication is required when the security
@@ -7478,7 +7468,7 @@ transport is not required unless the security constraints that apply to
 the request combine to impose a `user-data-constraint` (with a protected
 `transport-guarantee` ) on the HTTP method of the request.
 
-=== [[a2637]] Login and Logout
+=== Login and Logout
 
 The container establishes the caller identity
 of a request prior to dispatching the request to the servlet engine. The
@@ -7506,7 +7496,7 @@ object that was created prior to login occurring so that there is no
 loss of session information.
 
 
-== [[a2643]] Deployment Descriptor
+== Deployment Descriptor
 
 
 This chapter specifies the Jakarta Servlet
@@ -7523,7 +7513,7 @@ written to comply with earlier versions of the specification, must still
 be supported such that apps continue to deploy. For the actual XSD files
 please visit < `https://jakarta.ee/xml/ns/jakartaee/` >.
 
-=== [[a2648]] Deployment Descriptor Elements
+=== Deployment Descriptor Elements
 
 The following types of configuration and
 deployment information are required to be supported in the Web
@@ -7543,7 +7533,7 @@ application deployment descriptor for all servlet containers:
 `login-config`, `security-constraint`, `deny-uncovered-http-methods`,
 `security-role`, `security-role-ref` and `run-as`
 
-=== [[a2661]] Rules for Processing the Deployment Descriptor
+=== Rules for Processing the Deployment Descriptor
 
 This section lists some general rules that Web
 containers and developers must note concerning the processing of the
@@ -7603,13 +7593,13 @@ unless otherwise specified, should begin with a leading `/` .
 * In elements whose value is an enumerated type,
 the value is case sensitive.
 
-=== [[a2673]] Deployment Descriptor
+=== Deployment Descriptor
 
 The deployment descriptor for this revision
 of the specification is available at
 `https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd`
 
-=== [[a2676]] Deployment Descriptor Diagram
+=== Deployment Descriptor Diagram
 
 This section illustrates the elements in
 deployment descriptor. Attributes are not shown in the diagrams. See
@@ -7623,7 +7613,7 @@ elements.This element has a required attribute `version` to specify to
 which version of the schema the deployment descriptor conforms. All sub
 elements under this element can be in an arbitrary order.
 
-=== [[a2681]] web-app Element Structure
+=== web-app Element Structure
 
 
 description Element
@@ -8155,7 +8145,7 @@ a|
 
 image:servlet-71.png[image]
 
-[[a2788]] default-context-path
+default-context-path
 Element
 
 The `default-context-path` provides a default
@@ -8166,24 +8156,24 @@ character but not end with a “/” character. Servlet containers may
 provide vendor specific configuration options that allows specifying a
 value that overrides the value specified here.
 
-[[a2790]] request-character-encoding
+request-character-encoding
 Element
 
 The `request-character-encoding` provides a
 default request character encoding of the web application.
 
-[[a2792]] response-character-encoding
+response-character-encoding
 Element
 
 The `response-character-encoding` provides a
 default response character encoding of the web application.
 
-=== [[a2794]] Examples
+=== Examples
 
 The following examples illustrate the usage
 of the definitions listed in the deployment descriptor schema.
 
-==== [[a2796]] A Basic Example
+==== A Basic Example
 
 .Basic Deployment Descriptor Example
 
@@ -8241,7 +8231,7 @@ of the definitions listed in the deployment descriptor schema.
 ----
 
 
-==== [[a2836]] An Example of Security
+==== An Example of Security
 
 .Deployment Descriptor Example Using Security
 [source,xml]
@@ -8297,7 +8287,7 @@ of the definitions listed in the deployment descriptor schema.
 ----
 
 
-== [[a2881]] Requirements related to other Specifications
+== Requirements related to other Specifications
 
 
 This chapter lists the requirements for web
@@ -8310,22 +8300,22 @@ profile that includes support for Servlet, like the Jakarta Web Profile.
 For more information on profiles please refer to the Jakarta EE platform
 specification.
 
-=== [[a2885]] Sessions
+=== Sessions
 
 Distributed servlet containers that are part
 of a Jakarta EE Platform implementation must support the mechanism necessary for
 migrating other Jakarta objects from one JVM to another.
 
-=== [[a2887]] Web Applications
+=== Web Applications
 
-==== [[a2888]] Web Application Class Loader
+==== Web Application Class Loader
 
 Servlet containers that are part of a Jakarta EE Platform
 product should not allow the application to override Java SE or Jakarta EE
 platform classes, such as those in `java.\*`, `javax.*`, and `jakarta.*` namespaces,
 that either Java SE or Jakarta do not allow to be modified.
 
-==== [[a2890]] Web Application Environment
+==== Web Application Environment
 
 Jakarta EE Platform defines a naming environment that
 allows applications to easily access resources and external information
@@ -8368,7 +8358,7 @@ of this specification. Developers are cautioned that depending on this
 capability for application-created threads is not recommended, as it is
 non-portable.
 
-==== [[a2905]] JNDI Name for Web Module Context Root URL
+==== JNDI Name for Web Module Context Root URL
 
 The Jakarta EE Platform Specification defines a
 standardized global JNDI namespace and a series of related namespaces
@@ -8424,14 +8414,14 @@ can be used as follows:
 URL myWebApp;
 ----
 
-=== [[a2924]] Security
+=== Security
 
 This section details the additional security
 requirements for web containers when included in a product that also
 contains EJB, JACC and or JASPIC. The following sections call out the
 requirements
 
-==== [[a2926]] Propagation of Security Identity in EJB™ Calls
+==== Propagation of Security Identity in EJB™ Calls
 
 A security identity, or principal, must always
 be provided for use in a call to an enterprise bean. The default mode in
@@ -8463,7 +8453,7 @@ the use of `run-as` elements must be supported both for
 calls to EJB components within the same Jakarta application, and for
 calls to EJB components deployed in other Jakarta applications.
 
-==== [[a2933]] Container Authorization Requirements
+==== Container Authorization Requirements
 
 In a Jakarta product or in a product that
 includes support for Jakarta Authorization Contracts for Containers (JACC),
@@ -8471,7 +8461,7 @@ all Servlet containers MUST implement support for JACC.
 The JACC Specification is available for download at
 `https://jakarta.ee/specifications/authorization/`
 
-==== [[a2935]] Container Authentication Requirements
+==== Container Authentication Requirements
 
 In a Jakarta product, or a product that
 includes support for The Jakarta Authentication SPI for Containers (JASPIC),
@@ -8479,14 +8469,14 @@ all Servlet containers MUST implement the Servlet
 Container Profile of the JASPIC specification. The JASPIC Specification
 is available for download at `https://jakarta.ee/specifications/authentication/`
 
-=== [[a2937]] Deployment
+=== Deployment
 
 This section details the deployment
 descriptor, packaging and deployment descriptor processing requirements
 of a Jakarta EE Platform technology compliant container and products that include
 support for JSP and or Web Services.
 
-==== [[a2939]] Deployment Descriptor Elements
+==== Deployment Descriptor Elements
 
 The following additional elements exist in the
 Web application deployment descriptor to meet the requirements of Web
@@ -8505,7 +8495,7 @@ The syntax for these elements is now held in
 the Jakarta Server Pages specification version 3.0,
 and the Jakarta EE Platform specification.
 
-==== [[a2948]] Packaging and Deployment of JAX-WS Components
+==== Packaging and Deployment of JAX-WS Components
 
 Web containers may choose to support running
 components written to implement a Web service endpoint as defined by the
@@ -8577,9 +8567,9 @@ namespace
 
 All of the above requirements can be met
 using the pluggability mechanism defined in
-<<#a1253,Pluggability>>.
+<<Pluggability>>.
 
-==== [[a2965]] Rules for Processing the Deployment Descriptor
+==== Rules for Processing the Deployment Descriptor
 
 The containers and tools that are part of Jakarta EE Platform
 technology-compliant implementation are required to validate the
@@ -8588,7 +8578,7 @@ The validation is recommended, but not required for the web containers
 and tools that are not part of a Jakarta EE Platform technology compliant
 implementation.
 
-=== [[a2967]] Annotations and Resource Injection
+=== Annotations and Resource Injection
 
 The Java Metadata specification (JSR-175),
 which is part of J2SE 5.0 and later versions, provides a means of
@@ -8605,7 +8595,7 @@ section 5 titled “Resources, Naming, and Injection.”
 Annotations must be supported on the
 following container managed classes that implement the following
 interfaces and are declared in the web application deployment descriptor
-or using the annotations defined in <<#a1138,Annotations and pluggability>> or added programmatically.
+or using the annotations defined in <<Annotations and pluggability>> or added programmatically.
 
 .Components and Interfaces supporting Annotations and Resource Injection
 [caption="Table 15-1  "]
@@ -8649,7 +8639,7 @@ file located in `WEB-INF/lib` . Containers may optionally process
 resource injection annotations for classes found elsewhere in the
 application’s classpath.
 
-==== [[a2993]] Handling of metadata-complete
+==== Handling of metadata-complete
 
 The web application deployment descriptor
 contains a `metadata-complete` attribute on the `web-app` element. The
@@ -8681,7 +8671,7 @@ deployment tool must examine the class files for metadata.
 Following are the annotations that are
 required by a Jakarta technology compliant web container.
 
-==== [[a2997]] @DeclareRoles
+==== @DeclareRoles
 
 This annotation is used to define the security
 roles that comprise the security model of the application. This
@@ -8734,7 +8724,7 @@ For further details on the `@DeclareRoles`
 annotation refer to the Jakarta Annotations for the Jakarta EE Platform
 specification section 2.12.
 
-==== [[a3015]] @EJB Annotation
+==== @EJB Annotation
 
 Jakarta Enterprise Beans 4.0 (EJB) components
 may be referenced from a web component using the `@EJB` annotation. The
@@ -8758,7 +8748,7 @@ available.
 The behavior the `@ EJB` annotation is further
 detailed in section 11.5.1 of the EJB 3.2 specification (JSR 345).
 
-==== [[a3021]] @EJBs Annotation
+==== @EJBs Annotation
 
 The `@EJBs` annotation allows more than one
 `@EJB` annotations to be declared on a single resource.
@@ -8781,7 +8771,7 @@ The example above the EJB components
 references using JNDI but the EJBs do not need to declared in the
 web.xml file.
 
-==== [[a3030]] @Resource Annotation
+==== @Resource Annotation
 
 The `@Resource` annotation is used to declare
 a reference to a resource such as a data source, Jakarta Messaging
@@ -8825,7 +8815,7 @@ The semantics of the `@Resource` annotation
 are further detailed in the Jakarta Annotations for the Jakarta EE Platform
 specification Section 5.2.5.
 
-==== [[a3043]] @PersistenceContext Annotation
+==== @PersistenceContext Annotation
 
 This annotation specifies the container
 managed entity manager for referenced persistence units.
@@ -8843,14 +8833,14 @@ The behavior the `@PersistenceContext`
 annotation is further detailed in section 10.5.1 of the Jakarta Persistence
 API, Version 3.0.
 
-==== [[a3050]] @PersistenceContexts Annotation
+==== @PersistenceContexts Annotation
 
 The `PersistenceContexts` annotation allows
 more than one `@PersistenceContext` to be declared on a resource. The
 behavior the `@PersistenceContexts` annotation is further detailed in
 section 10.5.1 of the Jakarta Persistence API, version 3.0.
 
-==== [[a3052]] @PersistenceUnit Annotation
+==== @PersistenceUnit Annotation
 
 The `@PersistenceUnit` annotation provides
 Jakarta Enterprise Beans components declared in a servlet a reference to a
@@ -8871,14 +8861,14 @@ The behavior the `@PersistenceUnit` annotation
 is further detailed in section 10.5.2 of the Jakarta Persistence API,
 version 3.0.
 
-==== [[a3059]] @PersistenceUnits Annotation
+==== @PersistenceUnits Annotation
 
 This annotation allows for more than one
 `@PersistentUnit` annotations to be declared on a resource. The behavior
 the `@PersistenceUnits` annotation is further detailed in section 10.5.2
 of the Jakarta Persistence API, version 3.0.
 
-==== [[a3061]] @PostConstruct Annotation
+==== @PostConstruct Annotation
 
 The `@PostConstruct` annotation is declared on
 a method that does not take any arguments, and must not throw any
@@ -8911,7 +8901,7 @@ service and no method on that instance can be called.
 Refer to the Jakarta EE Platform specification section 2.5
 and the Jakarta Annotations specification section 2.5 for more details.
 
-==== [[a3072]] @PreDestroy Annotation
+==== @PreDestroy Annotation
 
 The @PreDestroy annotation is declared on a
 method of a container managed component. The method is called prior to
@@ -8940,7 +8930,7 @@ static however it may be final.
 Refer to the Jakarta Annotations specification 2.6 for more
 details.
 
-==== [[a3083]] @Resources Annotation
+==== @Resources Annotation
 
 The `@Resources` annotation acts as a
 container for multiple `@Resource` annotations because the Jakarta MetaData
@@ -8971,7 +8961,7 @@ The semantics of the `@Resources` annotation
 are further detailed in the Jakarta Annotations specification
 specification section 2.0
 
-==== [[a3096]] @RunAs Annotation
+==== @RunAs Annotation
 
 The `@RunAs` annotation is equivalent to the
 `run-as` element in the deployment descriptor. The `@RunAs` annotation
@@ -9022,12 +9012,12 @@ The example above shows how a servlet uses the
 `@RunAs` annotation to propagate the security identity “ `Admin` ” to an
 EJB component when the `myCart.getTotal()` method is called. For further
 details on propagating identities see
-<<#a2926,Propagation of Security Identity in EJB™ Calls>>.
+<<Propagation of Security Identity in EJB™ Calls>>.
 
 For further details on the `@RunAs` annotation
 refer to the Jakarta Annotations specification section 2.7.
 
-==== [[a3121]] @WebServiceRef Annotation
+==== @WebServiceRef Annotation
 
 The @WebServiceRef annotation provides a
 reference to a web service in a web component in same way as a
@@ -9045,14 +9035,14 @@ In this example a reference to the web service
 This annotation and behavior are further
 detailed in the JAX-WS Specification section 7.
 
-==== [[a3127]] @WebServiceRefs Annotation
+==== @WebServiceRefs Annotation
 
 This annotation allows for more than one
 `@WebServiceRef` annotations to be declared on a single resource. The
 behavior of this annotation is further detailed in the JAX-WS
 Specification (JSR 224) section 7.
 
-==== [[a3129]] Contexts and Dependency Injection for Jakarta EE Platform requirements
+==== Contexts and Dependency Injection for Jakarta EE Platform requirements
 
 In a product that supports Contexts and
 Dependency Injection (CDI) for Jakarta EE Platform and in which CDI is enabled,
@@ -9062,19 +9052,19 @@ and the use of interceptors as described in Section 5.24, "Support
 for Dependency Injection" of the Jakarta EE Platform 9 specification.
 
 [appendix]
-== [[a3133]] Change Log
+== Change Log
 
 
 This document is the final release of the
 Jakarta Servlet 5.0 specification developed under the Jakarta EE Working Group.
 
-=== [[a384]] Compatibility with Jakarta Servlet Specification Version 4.0
+=== Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
-(see <<#a383, Changes since Jakarta Servlet 5.0>>).
+(see <<Changes since Jakarta Servlet 5.0>>).
 Thus, migrating a Servlet 4.0 project to Servlet 5.0 and above,
 requires the replacement of the namespace `javax.\*` with `jakarta.*`.
 
-=== [[a383]] Changes since Jakarta Servlet 4.0
+=== Changes since Jakarta Servlet 4.0
 The only major change was a change of namespaces.
 The `javax.\*` namespaces have been replaced with `jakarta.*`.
 
