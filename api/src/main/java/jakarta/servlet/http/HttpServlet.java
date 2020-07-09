@@ -308,7 +308,7 @@ public abstract class HttpServlet extends GenericServlet {
         resp.sendError(getMethodNotSupportedCode(protocol), msg);
     }
 
-    private int getMethodNotSupportedCode(String protocol) throws IOException {
+    private int getMethodNotSupportedCode(String protocol) {
         switch (protocol) {
         case "HTTP/0.9":
         case "HTTP/1.0":
