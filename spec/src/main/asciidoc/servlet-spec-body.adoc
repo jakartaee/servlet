@@ -4,6 +4,17 @@
 :sectnums!:
 == Jakarta Servlet Specification, Version 5.0
 
+Copyright (c) 2020 Contributors to the Eclipse Foundation.
+
+Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
+is a trademark of the Eclipse Foundation. Oracle and Java are
+registered trademarks of Oracle and/or its affiliates. Other names
+may be trademarks of their respective owners. 
+
+The Jakarta Servlet Team - {revdate}
+
+Comments to: servlet-dev@eclipse.org
+
 :sectnums!:
 === Preface
 
