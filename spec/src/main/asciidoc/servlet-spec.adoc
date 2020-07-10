@@ -14,6 +14,7 @@
 :sectnumlevels: 4
 :sectanchors:
 ifdef::backend-pdf[]
+:media: prepress
 :pagenums:
 :numbered:
 :sectnums:
