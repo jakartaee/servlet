@@ -16,7 +16,7 @@ Run the full build:
 `mvn install`
 
 Locate the html files:
-- target/generated-docs/Servlet.html
+- `target/generated-docs/servlet-spec-<version>.html`
 
 Locate the PDF files:
-- target/generated-docs/Servlet.pdf
+- `target/generated-docs/servlet-spec-<version>.pdf`
