@@ -1,3 +1,5 @@
+:xrefstyle: full
+
 :sectnums!:
 == Jakarta Servlet Specification, Version 5.0
 
@@ -24,20 +26,20 @@ The specification is intended to be a complete
 and clear explanation of Jakarta Servlets, but if questions remain, the
 following sources may be consulted:
 
-A reference implementation (RI) has been made
+* A reference implementation (RI) has been made
 available which provides a behavioral benchmark for this specification.
 Where the specification leaves implementation of a particular feature
 open to interpretation, implementors may use the reference
 implementation as a model of how to carry out the intention of the
 specification.
 
-A compatibility test suite (CTS) has been
+* A compatibility test suite (CTS) has been
 provided for assessing whether implementations meet the compatibility
 requirements of the Jakarta Servlet API standard. The test results have
 normative value for resolving questions about whether an implementation
 is standard.
 
-If further clarification is required, the
+* If further clarification is required, the
 working group for the Jakarta Servlet API under the Jakarta EE Working Group
 should be consulted, and is the final arbiter of such issues.
 
@@ -49,13 +51,13 @@ used to improve future versions.
 The intended audience for this specification
 includes the following groups:
 
-Web server and application server vendors that
+* Web server and application server vendors that
 want to provide servlet engines that conform to this standard.
 
-Authoring tool developers that want to support
+* Authoring tool developers that want to support
 Web applications that conform to this specification.
 
-Experienced servlet authors who want to
+* Experienced servlet authors who want to
 understand the underlying mechanisms of servlet technology.
 
 We emphasize that this specification is not a
@@ -69,20 +71,20 @@ and method signatures that define the Jakarta Servlet API, as well as their
 accompanying Javadoc™ documentation, is available online at
 `https://jakarta.ee/specifications/servlet`.
 
-Other Jakarta Platform Specifications
+=== Other Jakarta Platform Specifications
 
 The following Jakarta API specifications are
 referenced throughout this specification:
 
-Jakarta EE Platform, version 9
+* Jakarta EE Platform, version 9
 
-Jakarta Server Pages™ ("JSP™"), version 3.0
+* Jakarta Server Pages™ ("JSP™"), version 3.0
 
-Java Naming and Directory Interface™ ("JNDI").
+* Java Naming and Directory Interface™ ("JNDI").
 
-Jakarta Context and Dependency Injection for the Jakarta EE Platform
+* Jakarta Context and Dependency Injection for the Jakarta EE Platform
 
-Jakarta Managed Beans specification
+* Jakarta Managed Beans specification
 
 These specifications may be found at the Jakarta EE
 Platform, Web site: `https://jakarta.ee/specifications/`.
@@ -93,81 +95,75 @@ The following Internet specifications provide
 information relevant to the development and implementation of the Jakarta
 Servlet API and standard servlet engines:
 
-RFC 1630 Uniform Resource Identifiers (URI)
+* RFC 1630 Uniform Resource Identifiers (URI)
 
-RFC 1738 Uniform Resource Locators (URL)
+* RFC 1738 Uniform Resource Locators (URL)
 
-RFC 3986 Uniform Resource Identifiers (URI):
+* RFC 3986 Uniform Resource Identifiers (URI):
 Generic Syntax
 
-RFC 1945 Hypertext Transfer Protocol (HTTP/1.0)
+* RFC 1945 Hypertext Transfer Protocol (HTTP/1.0)
 
-RFC 2045 MIME Part One: Format of Internet
-Message Bodies
+* RFC 2045 MIME Part One: Format of Internet Message Bodies
 
-RFC 2046 MIME Part Two: Media Types
+* RFC 2046 MIME Part Two: Media Types
 
-RFC 2047 MIME Part Three: Message Header
-Extensions for non-ASCII text
+* RFC 2047 MIME Part Three: Message Header Extensions for non-ASCII text
 
-RFC 2048 MIME Part Four: Registration Procedures
+* RFC 2048 MIME Part Four: Registration Procedures
 
-RFC 2049 MIME Part Five: Conformance Criteria
-and Examples
+* RFC 2049 MIME Part Five: Conformance Criteria and Examples
 
-RFC 6265 HTTP State Management Mechanism
+* RFC 6265 HTTP State Management Mechanism
 
-RFC 7258 Pervasive Monitoring Is an Attack
+* RFC 7258 Pervasive Monitoring Is an Attack
 
-RFC 7540 Hypertext Transfer Protocol Version 2
-(HTTP/2)
+* RFC 7540 Hypertext Transfer Protocol Version 2 (HTTP/2)
 
-RFC 7541 HPACK: Header Compression for HTTP/2
-(HPACK)
+* RFC 7541 HPACK: Header Compression for HTTP/2 (HPACK)
 
-RFC 7230 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7230 Hypertext Transfer Protocol (HTTP/1.1):
 Message Syntax and Routing
 
-RFC 7231 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7231 Hypertext Transfer Protocol (HTTP/1.1):
 Semantics and Content
 
-RFC 7232 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7232 Hypertext Transfer Protocol (HTTP/1.1):
 Conditional Requests
 
-RFC 7233 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7233 Hypertext Transfer Protocol (HTTP/1.1):
 Range Requests
 
-RFC 7234 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7234 Hypertext Transfer Protocol (HTTP/1.1):
 Caching
 
-RFC 7235 Hypertext Transfer Protocol (HTTP/1.1):
+* RFC 7235 Hypertext Transfer Protocol (HTTP/1.1):
 Authentication
 
-RFC 7301 Transport Layer Security (TLS)
+* RFC 7301 Transport Layer Security (TLS)
 Application-Layer Protocol Negotiation Extension (ALPN)
 
-RFC 7168 The Hyper Text Coffee Pot
+* RFC 7168 The Hyper Text Coffee Pot
 Control Protocol for Tea Ef (HTCPCP-TEA)footnote:[This reference is mostly
 tongue-in-cheek although most of the concepts described in the HTCPCP
 -TEA RFC are relevant to all well-designed Web servers.]
 
-RFC 6585 Additional HTTP Status Codes
+* RFC 6585 Additional HTTP Status Codes
 
-RFC 2617 HTTP Authentication: Basic and Digest
+* RFC 2617 HTTP Authentication: Basic and Digest
 Authentication
 
-RFC 3986 Uniform Resource Identifier (URI):
+* RFC 3986 Uniform Resource Identifier (URI):
 Generic Syntax
 
-RFC 2119 Key words for use in RFCs to Indicate
+* RFC 2119 Key words for use in RFCs to Indicate
 Requirement Levels
 
 Online versions of these RFCs are at
 `http://www.ietf.org/rfc/`.
 
-The World Wide Web Consortium (
-`http://www.w3.org/`) is a definitive source of HTTP related
-information affecting this specification and its implementations.
+The World Wide Web Consortium (`http://www.w3.org/`) is a definitive source
+of HTTP related information affecting this specification and its implementations.
 
 The eXtensible Markup Language (XML) is used for
 the specification of the Deployment Descriptors described in Chapter 13
@@ -581,26 +577,25 @@ or dispatch the request so that it may run in the context of the
 container using the `AsyncContext.dispatch` method. A typical sequence
 of events for asynchronous processing is:
 
-The request is received and passed via normal
+. The request is received and passed via normal
 filters for authentication etc. to the servlet.
 
-The servlet processes the request parameters
+. The servlet processes the request parameters
 and/or content to determine the nature of the request.
 
-The servlet issues requests for resources or
+. The servlet issues requests for resources or
 data, for example, sends a remote web service request or joins a queue
 waiting for a JDBC connection.
 
-The servlet returns without generating a
-response.
+. The servlet returns without generating a response.
 
-After some time, the requested resource
+. After some time, the requested resource
 becomes available, the thread handling that event continues processing
 either in the same thread or by dispatching to a resource in the
 container using the `AsyncContext`.
 
 Jakarta EE features such as
-<<Web Application Environment>> and
+<<_Web_Application_Environment>> and
 <<Propagation of Security Identity in EJB™ Calls>> are available only to
 threads executing the initial request or when the request is dispatched
 to the container via the `AsyncContext.dispatch` method. Jakarta EE features
@@ -664,7 +659,7 @@ the container.
 In addition to the annotation attributes we
 have the following methods / classes added:
 
-`ServletRequest`
+.ServletRequest
 
 `public AsyncContext startAsync(ServletRequest req, ServletResponse res)`::
 This method puts
@@ -679,7 +674,7 @@ isn't committed when the application exits out of the `service` method.
 It is committed when `AsyncContext.complete` is called on the returned
 `AsyncContext` or the `AsyncContext` times out and there are no
 listeners associated to handle the time out. The timer for async time
-outs will not start until the request and it’s associated response have
+outs will not start until the request and its associated response have
 returned from the container. The `AsyncContext` could be used to write
 to the response from the async thread. It can also be used to just
 notify that the response is not closed and committed.
@@ -736,9 +731,9 @@ Returns the dispatcher type of a request. The dispatcher type of a
 request is used by the container to select the filters that need to be
 applied to the request. Only filters with the matching dispatcher type
 and url patterns will be applied. Allowing a filter that has been
-configured for multiple dispatcher types to query a request for it’s
+configured for multiple dispatcher types to query a request for its
 dispatcher type allows the filter to process the request differently
-depending on it’s dispatcher type. The initial dispatcher type of a
+depending on its dispatcher type. The initial dispatcher type of a
 request is defined as `DispatcherType.REQUEST`. The dispatcher type of
 a request dispatched via `RequestDispatcher.forward(ServletRequest,
 ServletResponse)` or `RequestDispatcher.include(ServletRequest,
@@ -749,7 +744,7 @@ methods is given as `DispatcherType.ASYNC`. Finally the dispatcher type
 of a request dispatched to an error page by the container’s error
 handling mechanism is given as `DispatcherType.ERROR`.
 
-`AsyncContext`
+.AsyncContext
 
 This class represents the execution context
 for the asynchronous operation that was started on the `ServletRequest`.
@@ -924,20 +919,23 @@ If any of the dispatch methods are called before the container-initiated
 dispatch that called `startAsync` has returned to the container, the
 following conditions must hold during that time between the invocation
 of `dispatch` and the return of control to the container:
-
-	. any `dispatch` invocations invoked during
++
+--
+[lowerroman]
+. any `dispatch` invocations invoked during
 that time will not take effect until after the container-initiated
 dispatch has returned to the container.
 
-	. any _AsyncListener.onComplete(AsyncEvent),
+. any _AsyncListener.onComplete(AsyncEvent),
 AsyncListener.onTimeout(AsyncEvent)_ and
 `AsyncListener.onError(AsyncEvent)` invocations will also be delayed
 until after the container-initiated dispatch has returned to the
 container.
 
-	. any calls to `request.isAsyncStarted()` must
+. any calls to `request.isAsyncStarted()` must
 return `true` until after the container-initiated dispatch has returned
 to the container.
+--
 +
 There can be at most one asynchronous
 dispatch operation per asynchronous cycle, which is started by a call to
@@ -953,23 +951,26 @@ Any errors or exceptions
 that may occur during the execution of the `dispatch` methods MUST be
 caught and handled by the container as follows:
 +
-	.. invoke the
+--
+[lowerroman]
+. invoke the
 `AsyncListener.onError(AsyncEvent)` method for all instances of the
 `AsyncListener` registered with the `ServletRequest` for which the
 `AsyncContext` was created and make the `Throwable` available via the
 `AsyncEvent.getThrowable()`.
 
-	.. If none of the listeners called
+. If none of the listeners called
 `AsyncContext.complete` or any of the `AsyncContext.dispatch` methods,
 then perform an error dispatch with a status code equal to
 `HttpServletResponse.SC_INTERNAL_SERVER_ERROR` and make the `Throwable`
 available as the value of the `RequestDispatcher.ERROR_EXCEPTION`
 request attribute.
 
-	.. If no matching error page is found, or the
+. If no matching error page is found, or the
 error page does not call `AsyncContext.complete()` or any of the
 `AsyncContext.dispatch` methods, then the container MUST call
 `AsyncContext.complete`.
+--
 
 `public boolean hasOriginalRequestAndResponse()`::
 This method checks if the
@@ -1009,32 +1010,33 @@ the container-initiated dispatch that called `startAsync` has returned
 to the container, the following conditions must hold during that time
 between the invocation of `complete` and the return of control to the
 container:
-
-	. the behavior specified for `complete` will
++
+[lowerroman]
+. the behavior specified for `complete` will
 not take effect until after the container-initiated dispatch has
 returned to the container.
 
-	. any `AsyncListener.onComplete(AsyncEvent)`
+. any `AsyncListener.onComplete(AsyncEvent)`
 invocations will also be delayed until after the container-initiated
 dispatch has returned to the container.
 
-	. any calls to `request.isAsyncStarted()` must
+. any calls to `request.isAsyncStarted()` must
 return `true` until after the container-initiated dispatch has returned
 to the container.
 
-`ServletRequestWrapper`
+.ServletRequestWrapper
 
 `public boolean isWrapperFor(ServletRequest req)`::
 Checks recursively if this wrapper wraps the given
 `ServletRequest` and returns `true` if it does, else it returns `false`.
 
-`ServletResponseWrapper`
+.ServletResponseWrapper
 
 `public boolean isWrapperFor(ServletResponse res)`::
 Checks recursively if this wrapper wraps the given
 `ServletResponse` and returns `true` if it does, else it returns `false`.
 
-`AsyncListener`
+.AsyncListener
 
  `public void onComplete(AsyncEvent event)`::
 Is used to notify the listener of completion of the asynchronous
@@ -1054,47 +1056,41 @@ initiated via a call to one of the `ServletRequest.startAsync` methods.
 The `AsyncContext` corresponding to the asynchronous operation that is
 being reinitialized may be obtained by calling
 `AsyncEvent.getAsyncContext` on the given event.
-+
+
 In the event that an
 asynchronous operation times out, the container must run through the
 following steps:
-+
-	* Invoke the `AsyncListener.onTimeout` method
+
+* Invoke the `AsyncListener.onTimeout` method
 on all the `AsyncListener` instances registered with the
 `ServletRequest` on which the asynchronous operation was initiated.
 
-	* If none of the listeners called
+* If none of the listeners called
 `AsyncContext.complete()` or any of the `AsyncContext.dispatch` methods,
 perform an error dispatch with a status code equal to
 `HttpServletResponse.SC_INTERNAL_SERVER_ERROR`.
 
-	* If no matching error page was found, or the
+* If no matching error page was found, or the
 error page did not call `AsyncContext.complete()` or any of the
 `AsyncContext.dispatch` methods, the container MUST call
 `AsyncContext.complete()`.
 
-	* If an exception is thrown while invoking
+* If an exception is thrown while invoking
 methods in an `AsyncListener`, it is logged and will not affect the
 invocation of any other `AsyncListeners`.
 
-	* Async processing in JSP would not be
+* Async processing in JSP would not be
 supported by default as it is used for content generation and async
 processing would have to be done before the content generation. It is up
 to the container how to handle this case. Once all the async activities
 are done, a dispatch to the JSP page using the `AsyncContext.dispatch`
 can be used for generating content.
 
-	* Figure 2-1 shown below is a diagram depicting
+* Figure 2-1 shown below is a diagram depicting
 the state transitions for various asynchronous operations.
-
-
-
-
 
 .*Figure 2-1* State transition diagram for asynchronous operations
 image:servlet-12.png[image]
-
-
 
 ===== Thread Safety
 
@@ -1202,7 +1198,7 @@ headers and the message body of the request.
 
 Request parameters for the servlet are the
 strings sent by the client to a servlet container as part of its
-request. When the request is an `HttpServletRequest` object, and
+request. When the request is an `HttpServletRequest` object, and the
 conditions set out in <<When Parameters Are Available>> are met,
 the container populates the parameters from the URI query string and POST-ed data.
 
@@ -1372,25 +1368,22 @@ servicing a request is composed of many important sections. The
 following elements are obtained from the request URI path and exposed
 via the request object:
 
-Context Path::
-The path prefix associated
+* *Context Path:* The path prefix associated
 with the `ServletContext` that this servlet is a part of. If this
 context is the “default” context rooted at the base of the Web server’s
 URL name space, this path will be an empty string. Otherwise, if the
 context is not rooted at the root of the server’s name space, the path
-starts with a `/` character but does not end with a `/` character.
+starts with a `"/"` character but does not end with a `"/"` character.
 
-Servlet Path::
-The path section that
+* *Servlet Path:* The path section that
 directly corresponds to the mapping which activated this request. This
-path starts with a `/` character except in the case where the
-request is matched with the `/*` or `""` pattern, in which case it is
+path starts with a `"/"` character except in the case where the
+request is matched with the `"/*"` or `""` pattern, in which case it is
 an empty string.
 
-PathInfo::
-The part of the request path that
+* *PathInfo:* The part of the request path that
 is not part of the Context Path or the Servlet Path. It is either null
-if there is no extra path, or is a string with a leading `/`.
+if there is no extra path, or is a string with a leading `"/"`.
 
 The following methods exist in the
 `HttpServletRequest` interface to access this information:
@@ -1411,32 +1404,47 @@ To give a few examples to clarify the above
 points, consider the following:
 
 .Example Context Set Up
-[caption="Table 3-1 "]
+[caption="Table 3-1 ", cols="2"]
 |===
-| Context Path | /catalog
-| Servlet Mapping | Pattern: `/lawn/*`, Servlet: `LawnServlet`
-| Servlet Mapping | Pattern: `/garden/*`, Servlet: `GardenServlet`
-| Servlet Mapping | Pattern: `*.jsp`, Servlet: `JSPServlet`
+| Context Path
+| `/catalog`
+
+| Servlet Mapping
+| Pattern: `/lawn/*` +
+Servlet: `LawnServlet`
+
+| Servlet Mapping
+| Pattern: `/garden/*` +
+Servlet: `GardenServlet`
+
+| Servlet Mapping
+| Pattern: `*.jsp` +
+Servlet: `JSPServlet`
 |===
 
 
 The following behavior is observed:
 
 .Observed Path Element Behavior
-[caption="Table 3-2  "]
-[cols="2", options="header"]
+[caption="Table 3-2  ", cols="2", options="header"]
 |===
 |Request Path
 |Path Elements
 
 |`/catalog/lawn/index.html`
-|ContextPath: `/catalog`, ServletPath: `/lawn`, PathInfo: `/index.html`
+|ContextPath: `/catalog` +
+ServletPath: `/lawn` +
+PathInfo: `/index.html`
 
 |`/catalog/garden/implements/`
-|ContextPath: `/catalog`, ServletPath: `/garden`, PathInfo: `/implements/`
+|ContextPath: `/catalog` +
+ServletPath: `/garden` +
+PathInfo: `/implements/`
 
 |`/catalog/help/feedback.jsp`
-|ContextPath: `/catalog`, ServletPath: `/help/feedback.jsp`, PathInfo: `null`
+|ContextPath: `/catalog` +
+ServletPath: `/help/feedback.jsp` +
+PathInfo: `null`
 |===
 
 === Path Translation Methods
@@ -1598,7 +1606,7 @@ must expose the following attributes to the servlet programmer:
 
 .Protocol Attributes
 [caption="Table 3-3  "]
-[cols="3", options="header"]
+[cols="30,50,20", options="header"]
 |===
 |Attribute
 |Attribute Name
@@ -1613,7 +1621,7 @@ must expose the following attributes to the servlet programmer:
 |`Integer`
 
 |SSL session id
-|jakarta.servlet.request.ssl_session_id
+|`jakarta.servlet.request.ssl_session_id`
 |`String`
 |===
 
@@ -1674,7 +1682,7 @@ applications in the container), the default encoding of a request the
 container uses to create the request reader and parse POST data must be
 ISO-8859-1. However, in order to indicate to the developer the absence
 of a char encoding qualifier, the container must return `null` from the
-`getCharacterEncoding()` method."
+`getCharacterEncoding()` method.
 
 If the client hasn’t set character encoding
 and the request data is encoded with a different encoding than the
@@ -1704,8 +1712,8 @@ not recommended as it may have indeterminate results.
 
 In case of upgrade, the above is still true.
 
-== Servlet Context
 
+== Servlet Context
 
 === Introduction to the ServletContext Interface
 
@@ -1922,7 +1930,7 @@ interfaces:
 * `jakarta.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
-`ServletContainerInitializer’s` `onStartup` method, then the class with
+`ServletContainerInitializer`’s `onStartup` method, then the class with
 the given name MAY also implement `jakarta.servlet.ServletContextListener`
 in addition to the interfaces listed above. As part of this method call,
 the container MUST load the class with the specified class name to
@@ -1931,7 +1939,7 @@ with the given name implements a listener interface whose invocation
 order corresponds to the declaration order, that is, if it implements
 `jakarta.servlet.ServletRequestListener`,
 `jakarta.servlet.ServletContextListener` or
-`jakarta.servlet.http.HttpSessionListener,` then the new listener will be
+`jakarta.servlet.http.HttpSessionListener` then the new listener will be
 added to the end of the ordered list of listeners of that interface.
 
 ===== <T extends EventListener> void addListener(T t)
@@ -1953,7 +1961,7 @@ of the following interfaces:
 * `jakarta.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
-`ServletContainerInitializer’s` `onStartup` method, then the given
+`ServletContainerInitializer`’s `onStartup` method, then the given
 listener MAY also be an instance of
 `jakarta.servlet.ServletContextListener` in addition to the interfaces
 listed above. If the given listener is an instance of a listener
@@ -1982,7 +1990,7 @@ more of the following interfaces:
 * `jakarta.servlet.http.HttpSessionIdListener`
 
 If the `ServletContext` was passed to the
-`ServletContainerInitializer’s` `onStartup` method, then the given
+`ServletContainerInitializer`’s `onStartup` method, then the given
 listener class MAY also implement `jakarta.servlet.ServletContextListener`
 in addition to the interfaces listed above. If the given listener class
 implements a listener interface whose invocation order corresponds to
@@ -2111,7 +2119,7 @@ following methods of the `ServletContext` interface:
 * `getResourceAsStream`
 
 The `getResource` and `getResourceAsStream`
-methods take a `String` with a leading `/` as an argument that gives the
+methods take a `String` with a leading `"/"` as an argument that gives the
 path of the resource relative to the root of the context or relative to
 the `META-INF/resources` directory of a JAR file inside the web
 application’s `WEB-INF/lib` directory. If there is a `WEB-INF` entry
@@ -2324,8 +2332,7 @@ Here’s the examples of this header.
 
  X-Powered-By: Servlet/5.0
 
- X-Powered-By: Servlet/5.0 JSP/3.0 (GlassFish
-Server 6.0 Java/Oracle Corporation/1.8)
+ X-Powered-By: Servlet/5.0 JSP/3.0 (GlassFish Server 6.0 Java/Oracle Corporation/1.8)
 
 === HTTP Trailer
 
@@ -2377,7 +2384,7 @@ possible to write data. The container will subsequently invoke the
 `ServletOutputStream`, described below, returns a value of `false` and
 a write operation has subsequently become possible.
 
- `onError(Throwable t)`:: Invoked when an
+ `void onError(Throwable t)`:: Invoked when an
 error occurs processing the response.
 
 Along with the `WriteListener`, the
@@ -2458,10 +2465,10 @@ as `Content-Language` header in the case of HTTP.
 [source,xml]
 ----
 <locale-encoding-mapping-list>
- <locale-encoding-mapping>
- <locale>ja</locale>
- <encoding>Shift_JIS</encoding>
- </locale-encoding-mapping>
+  <locale-encoding-mapping>
+    <locale>ja</locale>
+    <encoding>Shift_JIS</encoding>
+  </locale-encoding-mapping>
 </locale-encoding-mapping-list>
 ----
 
@@ -2672,17 +2679,17 @@ The invocation of the next entity is effected by calling the `doFilter`
 method on the `FilterChain` object, and passing in the request and
 response with which it was called or passing in wrapped versions it may
 have created.
-
-. The filter chain’s implementation of the
++
+The filter chain’s implementation of the
 `doFilter` method, provided by the container, must locate the next
 entity in the filter chain and invoke its `doFilter` method, passing in
 the appropriate request and response objects.
-
-. Alternatively, the filter chain can block the
++
+Alternatively, the filter chain can block the
 request by not making the call to invoke the next entity, leaving the
 filter responsible for filling out the response object.
-
-. The `service` method is required to run in
++
+The `service` method is required to run in
 the same thread as all filters that apply to the servlet.
 
 . After invocation of the next filter in the
@@ -2771,8 +2778,8 @@ Here is an example of a filter declaration:
 [source,xml]
 ----
 <filter>
- <filter-name>Image Filter</filter-name>
- <filter-class>com.example.ImageServlet</filter-class>
+  <filter-name>Image Filter</filter-name>
+  <filter-class>com.example.ImageServlet</filter-class>
 </filter>
 ----
 
@@ -2787,8 +2794,8 @@ example maps the Image Filter filter to the `ImageServlet` servlet:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Image Filter</filter-name>
- <servlet-name>ImageServlet</servlet-name>
+  <filter-name>Image Filter</filter-name>
+  <servlet-name>ImageServlet</servlet-name>
 </filter-mapping>
 ----
 
@@ -2799,8 +2806,8 @@ mapping:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Logging Filter</filter-name>
- <url-pattern>/*</url-pattern>
+  <filter-name>Logging Filter</filter-name>
+  <url-pattern>/*</url-pattern>
 </filter-mapping>
 ----
 
@@ -2834,11 +2841,11 @@ mapping into multiple filter mappings (one for each <servlet-name> and
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Multiple Mappings Filter</filter-name>
- <url-pattern>/foo/*</url-pattern>
- <servlet-name>Servlet1</servlet-name>
- <servlet-name>Servlet2</servlet-name>
- <url-pattern>/bar/*</url-pattern>
+  <filter-name>Multiple Mappings Filter</filter-name>
+  <url-pattern>/foo/*</url-pattern>
+  <servlet-name>Servlet1</servlet-name>
+  <servlet-name>Servlet2</servlet-name>
+  <url-pattern>/bar/*</url-pattern>
 </filter-mapping>
 ----
 
@@ -2847,23 +2854,23 @@ is equivalent to:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Multipe Mappings Filter</filter-name>
- <url-pattern>/foo/*</url-pattern>
+  <filter-name>Multipe Mappings Filter</filter-name>
+  <url-pattern>/foo/*</url-pattern>
 </filter-mapping>
 
 <filter-mapping>
- <filter-name>Multipe Mappings Filter</filter-name>
- <servlet-name>Servlet1</servlet-name>
+  <filter-name>Multipe Mappings Filter</filter-name>
+  <servlet-name>Servlet1</servlet-name>
 </filter-mapping>
 
 <filter-mapping>
- <filter-name>Multipe Mappings Filter</filter-name>
- <servlet-name>Servlet2</servlet-name>
+  <filter-name>Multipe Mappings Filter</filter-name>
+  <servlet-name>Servlet2</servlet-name>
 </filter-mapping>
 
 <filter-mapping>
- <filter-name>Multipe Mappings Filter</filter-name>
- <url-pattern>/bar/*</url-pattern>
+  <filter-name>Multipe Mappings Filter</filter-name>
+  <url-pattern>/bar/*</url-pattern>
 </filter-mapping>
 ----
 
@@ -2898,11 +2905,10 @@ them on a per-request basis.
 
 ==== Filters and the RequestDispatcher
 
-New since version 2.4 of the Servlet
-specification is the ability to configure filters to be invoked under
-request dispatcher `forward()` and `include()` calls.
+The Servlet specification provides the ability to configure filters to be
+invoked under request dispatcher `forward()` and `include()` calls.
 
-By using the new `<dispatcher>` element in the
+By using the `<dispatcher>` element in the
 deployment descriptor, the developer can indicate for a filter-mapping
 whether he would like the filter to be applied to requests when:
 
@@ -2947,8 +2953,8 @@ For example:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Logging Filter</filter-name>
- <url-pattern>/products/*</url-pattern>
+  <filter-name>Logging Filter</filter-name>
+  <url-pattern>/products/*</url-pattern>
 </filter-mapping>
 ----
 
@@ -2962,9 +2968,9 @@ code:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Logging Filter</filter-name>
- <servlet-name>ProductServlet</servlet-name>
- <dispatcher>INCLUDE</dispatcher>
+  <filter-name>Logging Filter</filter-name>
+  <servlet-name>ProductServlet</servlet-name>
+  <dispatcher>INCLUDE</dispatcher>
 </filter-mapping>
 ----
 
@@ -2978,10 +2984,10 @@ following code:
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>Logging Filter</filter-name>
- <url-pattern>/products/*</url-pattern>
- <dispatcher>FORWARD</dispatcher>
- <dispatcher>REQUEST</dispatcher>
+  <filter-name>Logging Filter</filter-name>
+  <url-pattern>/products/*</url-pattern>
+  <dispatcher>FORWARD</dispatcher>
+  <dispatcher>REQUEST</dispatcher>
 </filter-mapping>
 ----
 
@@ -2990,15 +2996,14 @@ invoked by client requests starting `/products/...` and underneath a
 request dispatcher `forward()` call where the request dispatcher has
 path commencing `/products/...`.
 
-Finally, the following code uses the special
-servlet name ‘*’:
+Finally, the following code uses the special servlet name `*`:
 
 [source,xml]
 ----
 <filter-mapping>
- <filter-name>All Dispatch Filter</filter-name>
- <servlet-name>*</servlet-name>
- <dispatcher>FORWARD</dispatcher>
+  <filter-name>All Dispatch Filter</filter-name>
+  <servlet-name>*</servlet-name>
+  <dispatcher>FORWARD</dispatcher>
 </filter-mapping>
 ----
 
@@ -3071,7 +3076,7 @@ parameter in the URL string. The name of the parameter must be
 `jsessionid`. Here is an example of a URL containing encoded path
 information:
 
-\http://www.example.com/catalog/index.html;jsessionid=1234
+ http://www.example.com/catalog/index.html;jsessionid=1234
 
 URL rewriting exposes session identifiers in
 logs, bookmarks, referer headers, cached HTML, and the URL bar. URL
@@ -3285,6 +3290,7 @@ This chapter describes the use of annotations
 and other enhancements to enable pluggability of frameworks and
 libraries for use within a web application.
 
+[[_Annotations_and_pluggability]]
 === Annotations and pluggability
 
 In a web application, classes using
@@ -3469,7 +3475,7 @@ annotation would be used.
 @WebServlet("/foo")
 public class CalculatorServlet extends HttpServlet{
 
- //...
+    //...
 
 }
 ----
@@ -3484,9 +3490,9 @@ annotation would be used with some more of the attributes specified.
 @WebServlet(name="MyServlet", urlPatterns={"/foo", "/bar"})
 public class SampleUsingAnnotationAttributes extends HttpServlet{
 
- public void doGet(HttpServletRequest req, HttpServletResponse res) {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
 
- }
+    }
 
 }
 ----
@@ -3516,15 +3522,11 @@ annotation would be used.
 [source,java]
 ----
 @WebFilter("/foo")
-
 public class MyFilter implements Filter {
 
- public void doFilter(HttpServletRequest req, HttpServletResponse res) {
-
- ...
-
- }
-
+    public void doFilter(HttpServletRequest req, HttpServletResponse res) {
+        ...
+    }
 }
 ----
 
@@ -3562,16 +3564,12 @@ An example:
 @WebListener
 public class MyListener implements ServletContextListener{
 
- public void contextInitialized(ServletContextEvent sce) {
+    public void contextInitialized(ServletContextEvent sce) {
 
- ServletContext sc = sce.getServletContext();
-
- sc.addServlet("myServlet", "Sample servlet", "foo.bar.MyServlet", null, -1);
-
- sc.addServletMapping("myServlet", new String[] { "/urlpattern/*" });
-
- }
-
+        ServletContext sc = sce.getServletContext();
+        sc.addServlet("myServlet", "Sample servlet", "foo.bar.MyServlet", null, -1);
+        sc.addServletMapping("myServlet", new String[] { "/urlpattern/*" });
+    }
 }
 ----
 
@@ -3672,14 +3670,14 @@ include is shown below
 ----
 <web-fragment>
 
- <servlet>
-  <servlet-name>welcome</servlet-name>
-  <servlet-class>WelcomeServlet</servlet-class>
- </servlet>
+  <servlet>
+    <servlet-name>welcome</servlet-name>
+    <servlet-class>com.example.WelcomeServlet</servlet-class>
+  </servlet>
 
- <listener>
-  <listener-class>RequestListener</listener-class>
- </listener>
+  <listener>
+    <listener-class>com.example.RequestListener</listener-class>
+  </listener>
 
 </web-fragment>
 ----
@@ -3780,11 +3778,11 @@ example. 3 web-fragments: `MyFragment1`, `MyFragment2` and
 [source,xml]
 ----
 <web-fragment>
- <name>MyFragment1</name>
+  <name>MyFragment1</name>
   <ordering>
-   <after>
-    <name>MyFragment2</name>
-   </after>
+    <after>
+      <name>MyFragment2</name>
+    </after>
   </ordering>
   ...
 </web-fragment>
@@ -3794,9 +3792,8 @@ example. 3 web-fragments: `MyFragment1`, `MyFragment2` and
 [source,xml]
 ----
 <web-fragment>
- <name>MyFragment2</name>
- ..
-
+  <name>MyFragment2</name>
+  ...
 </web-fragment>
 ----
 
@@ -3804,13 +3801,13 @@ example. 3 web-fragments: `MyFragment1`, `MyFragment2` and
 [source,xml]
 ----
 <web-fragment>
- <name>MyFragment3</name>
- <ordering>
-  <before>
-   <others/>
-  </before>
- </ordering>
- ..
+  <name>MyFragment3</name>
+  <ordering>
+    <before>
+      <others/>
+    </before>
+  </ordering>
+  ...
 </web-fragment>
 ----
 
@@ -3819,7 +3816,7 @@ example. 3 web-fragments: `MyFragment1`, `MyFragment2` and
 ----
 <web-app>
 
- ...
+  ...
 
 </web-app>
 ----
@@ -3894,12 +3891,11 @@ illustrate the case when the `web.xml` contains an ordering section.
 [source,xml]
 ----
 <web-app>
-<absolute-ordering>
- <name>MyFragment3</name>
- <name>MyFragment2</name>
- </absolute-ordering>
- ...
-
+  <absolute-ordering>
+    <name>MyFragment3</name>
+    <name>MyFragment2</name>
+  </absolute-ordering>
+  ...
 </web-app>
 ----
 
@@ -3924,27 +3920,26 @@ ordering
 .Document A:
 [source,xml]
 ----
- <after>
- <others/>
- <name>C</name>
- </after>
+<after>
+  <others/>
+  <name>C</name>
+</after>
 ----
 
 .Document B:
 [source,xml]
 ----
- <before>
- <others/>
- </before>
+<before>
+  <others/>
+</before>
 ----
-
 
 .Document C:
 [source,xml]
 ----
- <after>
+<after>
   <others/>
- </after>
+</after>
 ----
 
 .Document D:
@@ -3957,8 +3952,8 @@ no ordering
 [source,xml]
 ----
 <before>
- <others/>
- <name>B</name>
+  <others/>
+  <name>B</name>
 </before>
 ----
 
@@ -3976,10 +3971,10 @@ Resulting parse order:
 [source,xml]
 ----
 <after>
- <others/>
+  <others/>
 </after>
 <before>
- <name>C</name>
+  <name>C</name>
 </before>
 ----
 
@@ -3987,7 +3982,7 @@ Resulting parse order:
 [source,xml]
 ----
 <before>
- <others/>
+  <others/>
 </before>
 ----
 
@@ -3998,7 +3993,7 @@ no ordering
 [source,xml]
 ----
 <after>
- <others/>
+  <others/>
 </after>
 ----
 
@@ -4006,7 +4001,7 @@ no ordering
 [source,xml]
 ----
 <before>
- <others/>
+  <others/>
 </before>
 ----
 
@@ -4016,17 +4011,12 @@ no ordering
 Resulting parse order can be one of the
 following:
 
- B, E, F, <no id>, C, D
-
- B, E, F, <no id>, D, C
-
- E, B, F, <no id>, C, D
-
- E, B, F, <no id>, D, C
-
- E, B, F, D, <no id>, C
-
- E, B, F, D, <no id>, D
+* B, E, F, <no id>, C, D
+* B, E, F, <no id>, D, C
+* E, B, F, <no id>, C, D
+* E, B, F, <no id>, D, C
+* E, B, F, D, <no id>, C
+* E, B, F, D, <no id>, D
 
 --
 
@@ -4037,7 +4027,7 @@ following:
 [source,xml]
 ----
 <after>
- <name>B</name>
+  <name>B</name>
 </after>
 ----
 
@@ -4048,7 +4038,7 @@ no ordering
 [source,xml]
 ----
 <before>
- <others/>
+  <others/>
 </before>
 ----
 
@@ -4059,9 +4049,9 @@ no ordering
 Resulting parse order can be one of the
 following:
 
- C, B, D, A
- C, D, B, A
- C, B, A, D
+* C, B, D, A
+* C, D, B, A
+* C, B, A, D
 
 --
 
@@ -4223,7 +4213,7 @@ specified in the `web.xml` overrides values specified in the
 considered `<distributable>` only if the `web.xml` and all the web
 fragments are marked as `<distributable>`.
 
-... The top-level `<icon>` and it’s children
+... The top-level `<icon>` and its children
 elements, `<display-name>`, and `<description>` elements of a web
 fragment are ignored.
 
@@ -4322,12 +4312,12 @@ no resource-ref definition
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
- <injection-target>
-  <injection-target-class>com.example.Bar</injection-target-class>
-  <injection-target-name>baz</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4336,13 +4326,12 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ....
-
- <injection-target>
-  <injection-target-class>com.example.Bar</injection-target-class>
-  <injection-target-name>baz</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4355,9 +4344,8 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
-
+  <resource-ref-name="foo">
+  ...
 </resource-ref>
 ----
 
@@ -4365,12 +4353,12 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
- <injection-target>
-  <injection-target-class>com.example.Bar</injection-target-class>
-  <injection-target-name>baz</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4378,13 +4366,12 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
-
- <injection-target>
-  <injection-target-class>com.example.Bar2</injection-target-class>
-  <injection-target-name>baz2</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar2</injection-target-class>
+    <injection-target-name>baz2</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4393,35 +4380,34 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
-
- ....
-
- <injection-target>
-  <injection-target-class>com.example.Bar</injection-target-class>
-  <injection-target-name>baz</injection-target-name>
- </injection-target>
- <injection-target>
-  <injection-target-class>com.example.Bar2</injection-target-class>
-  <injection-target-name>baz2</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+  </injection-target>
+  <injection-target>
+    <injection-target-class>com.example.Bar2</injection-target-class>
+    <injection-target-name>baz2</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
 --
 +
-. Example 3
+.Example 3
 --
 
 .web.xml
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- <injection-target>
- <injection-target-class>com.example.Bar3</injection-target-class>
- <injection-target-name>baz3</injection-target-name>
- ...
+  <resource-ref-name="foo">
+    <injection-target>
+      <injection-target-class>com.example.Bar3</injection-target-class>
+      <injection-target-name>baz3</injection-target-name>
+    </injection-target>
+    ...
 
 </resource-ref>
 ----
@@ -4430,13 +4416,12 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
-
- <injection-target>
-  <injection-target-class>com.example.Bar</injection-target-class>
-  <injection-target-name>baz</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4444,33 +4429,30 @@ The effective metadata would be
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- ...
-
- <injection-target>
-  <injection-target-class>com.example.Bar2</injection-target-class>
-  <injection-target-name>baz2</injection-target-name>
- </injection-target>
+  <resource-ref-name="foo">
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar2</injection-target-class>
+    <injection-target-name>baz2</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
 The effective metadata would be
 
-
 [source,xml]
 ----
 <resource-ref>
- <resource-ref-name="foo">
- <injection-target>
- <injection-target-class>com.example.Bar3</injection-target-class>
- <injection-target-name>baz3</injection-target-name>
- <injection-target-class>com.example.Bar</injection-target-class>
- <injection-target-name>baz</injection-target-name>
- <injection-target-class>com.example.Bar2</injection-target-class>
- <injection-target-name>baz2</injection-target-name>
-</injection-target>
- ...
-
+  <resource-ref-name="foo">
+  <injection-target>
+    <injection-target-class>com.example.Bar3</injection-target-class>
+    <injection-target-name>baz3</injection-target-name>
+    <injection-target-class>com.example.Bar</injection-target-class>
+    <injection-target-name>baz</injection-target-name>
+    <injection-target-class>com.example.Bar2</injection-target-class>
+    <injection-target-name>baz2</injection-target-name>
+  </injection-target>
+  ...
 </resource-ref>
 ----
 
@@ -4553,39 +4535,37 @@ packaged with the corresponding `web.xml` in the descriptor
 @WebServlet(urlPatterns="/MyPattern",
 initParams={@WebInitParam(name="ccc", value="333")})
 public class com.example.Foo extends HttpServlet {
-
- ...
-
- }
+    ...
+}
 ----
 
 .web.xml
 [source,xml]
 ----
 <servlet>
- <servlet-class>com.example.Foo</servlet-class>
- <servlet-name>Foo</servlet-name>
- <init-param>
-  <param-name>aaa</param-name>
-  <param-value>111</param-value>
- </init-param>
+  <servlet-class>com.example.Foo</servlet-class>
+  <servlet-name>Foo</servlet-name>
+  <init-param>
+    <param-name>aaa</param-name>
+    <param-value>111</param-value>
+  </init-param>
 </servlet>
 <servlet>
- <servlet-class>com.example.Foo</servlet-class>
- <servlet-name>Fum</servlet-name>
- <init-param>
-  <param-name>bbb</param-name>
-  <param-value>222</param-value>
- </init-param>
+  <servlet-class>com.example.Foo</servlet-class>
+  <servlet-name>Fum</servlet-name>
+  <init-param>
+    <param-name>bbb</param-name>
+    <param-value>222</param-value>
+  </init-param>
 </servlet>
 <servlet-mapping>
   <servlet-name>Foo</servlet-name>
   <url-pattern>/foo/*</url-pattern>
 </servlet-mapping>
- <servlet-mapping>
+<servlet-mapping>
   <servlet-name>Fum</servlet-name>
   <url-pattern>/fum/*</url-pattern>
- </servlet-mapping>
+</servlet-mapping>
 ----
 
 Since the name of the servlet declared via
@@ -4597,55 +4577,54 @@ addition to the other declarations in `web.xml` and is equivalent to:
 [source,xml]
 ----
 <servlet>
- <servlet-class>com.example.Foo</servlet-class>
- <servlet-name>com.example.Foo</servlet-name>
- <init-param>
-  <param-name>ccc</param-name>
-  <param-value>333</param-name>
+  <servlet-class>com.example.Foo</servlet-class>
+  <servlet-name>com.example.Foo</servlet-name>
+  <init-param>
+    <param-name>ccc</param-name>
+    <param-value>333</param-name>
+  </init-param>
 </servlet>
 ----
 
-If the above `web.xml` were replaced with the
-following
+If the above `web.xml` were replaced with the following
 
 .web.xml
 [source,xml]
 ----
 <servlet>
- <servlet-class>com.example.Foo</servlet-class>
- <servlet-name>com.example.Foo</servlet-name>
- <init-param>
-  <param-name>aaa</param-name>
-  <param-value>111</param-value>
- </init-param>
+  <servlet-class>com.example.Foo</servlet-class>
+  <servlet-name>com.example.Foo</servlet-name>
+  <init-param>
+    <param-name>aaa</param-name>
+    <param-value>111</param-value>
+  </init-param>
 </servlet>
 <servlet-mapping>
- <servlet-name>com.example.Foo</servlet-name>
- <url-pattern>/foo/*</url-pattern>
+  <servlet-name>com.example.Foo</servlet-name>
+  <url-pattern>/foo/*</url-pattern>
 </servlet-mapping>
 ----
 
-Then the effective descriptor would be
-equivalent to
+Then the effective descriptor would be equivalent to
 
 .web.xml
 [source,xml]
 ----
 <servlet>
- <servlet-class>com.example.Foo</servlet-class>
- <servlet-name>com.example.Foo</servlet-name>
- <init-param>
-  <param-name>aaa</param-name>
-  <param-value>111</param-value>
- </init-param>
- <init-param>
-  <param-name>ccc</param-name>
-  <param-value>333</param-value>
- </init-param>
+  <servlet-class>com.example.Foo</servlet-class>
+  <servlet-name>com.example.Foo</servlet-name>
+  <init-param>
+    <param-name>aaa</param-name>
+    <param-value>111</param-value>
+  </init-param>
+  <init-param>
+    <param-name>ccc</param-name>
+    <param-value>333</param-value>
+  </init-param>
 </servlet>
 <servlet-mapping>
- <servlet-name>com.example.Foo</servlet-name>
- <url-pattern>/foo/*</url-pattern>
+  <servlet-name>com.example.Foo</servlet-name>
+  <url-pattern>/foo/*</url-pattern>
 </servlet-mapping>
 ----
 
@@ -4677,7 +4656,7 @@ In addition to the
 the `ServletContainerInitializer` is used to express interest in classes
 that may have annotations (type, method or field level annotations)
 specified in the value of the `HandlesTypes` or if it extends /
-implements one those classes anywhere in the class’ super types. The
+implements one those classes anywhere in the class’s super types. The
 `HandlesTypes` annotation is applied irrespective of the setting of
 `metadata-complete`.
 
@@ -4724,26 +4703,26 @@ jar file will bundle in it's `META-INF/services` directory a file called
 .JAXWSServletContainerInitializer.java
 [source,java]
 ----
-
 @HandlesTypes(WebService.class)
 JAXWSServletContainerInitializer implements ServletContainerInitializer {
 
- public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
-   // JAX-WS specific code here to initialize the runtime
-   // and setup the mapping etc.
-   ServletRegistration reg = ctx.addServlet("JAXWSServlet", "com.sun.webservice.JAXWSServlet");
-   reg.addServletMapping("/foo");
- }
+    public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
+        // JAX-WS specific code here to initialize the runtime
+        // and setup the mapping etc.
+        ServletRegistration reg = ctx.addServlet("JAXWSServlet", "com.sun.webservice.JAXWSServlet");
+        reg.addServletMapping("/foo");
+    }
+
 ----
 
 The framework jar file can also be bundled in
 `WEB-INF/lib` directory of the war file. If the
 `ServletContainerInitializer` is bundled in a JAR file inside the
-`WEB-INF/lib` directory of an application, it’s `onStartup` method will
+`WEB-INF/lib` directory of an application, its `onStartup` method will
 be invoked only once during the startup of the bundling application. If,
 on the other hand, the `ServletContainerInitializer` is bundled in a JAR
 file outside of the `WEB-INF/lib` directory, but still discoverable by
-the runtime’s service provider lookup mechanism, it’s `onStartup` method
+the runtime’s service provider lookup mechanism, its `onStartup` method
 will be invoked every time an application is started.
 
 Implementations of the
@@ -4862,7 +4841,7 @@ methods:
 The `getRequestDispatcher` method takes a
 `String` argument describing a path within the scope of the
 `ServletContext`. This path must be relative to the root of the
-`ServletContext` and begin with a `/`, or be empty. The method uses
+`ServletContext` and begin with a `"/"`, or be empty. The method uses
 the path to look up a servlet, using the servlet path matching rules in
 <<Mapping Requests to Servlets>>, wraps
 it with a `RequestDispatcher` object, and returns the resulting object.
@@ -4885,7 +4864,7 @@ The behavior of this method is similar to the
 method of the same name in the `ServletContext`. The servlet container
 uses information in the request object to transform the given relative
 path against the current servlet to a complete path. For example, in a
-context rooted at `’/’` and a request to
+context rooted at `"/"` and a request to
 `/garden/tools.html`, a request dispatcher obtained via
 `ServletRequest.getRequestDispatcher("header.html")` will behave exactly like a call to
 `ServletContext.getRequestDispatcher("/garden/header.html")`.
@@ -4901,10 +4880,7 @@ following code:
 [source,java]
 ----
 String path = "/raisins.jsp?orderno=5";
-
-RequestDispatcher rd =
-context.getRequestDispatcher(path);
-
+RequestDispatcher rd = context.getRequestDispatcher(path);
 rd.include(request, response);
 ----
 
@@ -5079,14 +5055,14 @@ requests from the `AsyncContext`:
 The `dispatch` method takes a `String`
 argument describing a path within the scope of the `ServletContext`.
 This path must be relative to the root of the `ServletContext` and begin
-with a `/`.
+with a `"/"`.
 
 `dispatch(servletContext, path)`::
 
 The `dispatch` method takes a `String`
 argument describing a path within the scope of the _ServletContext
 specified_ . This path must be relative to the root of the
-`ServletContext specified` and begin with a `/`.
+`ServletContext specified` and begin with a `"/"`.
 
 `dispatch()`::
 
@@ -5350,9 +5326,7 @@ manifest entry should follow standard JAR manifest format. During
 deployment of the Web application, the Web container must make the
 correct versions of the extensions available to the application
 following the rules defined by the Optional Package Versioning mechanism
-(
-`http://docs.oracle.com/javase/8/docs/technotes/guides/extensions/versioning.html`
-).
+(`http://docs.oracle.com/javase/8/docs/technotes/guides/extensions/versioning.html`).
 
 Web containers must also be able to recognize
 declared dependencies expressed in the manifest entry of any of the
@@ -5394,6 +5368,7 @@ application with a new version without restarting the container. When an
 application is replaced, the container should provide a robust method
 for preserving session data within that application.
 
+[[_Error_Handling]]
 === Error Handling
 
 ==== Request Attributes
@@ -5412,9 +5387,7 @@ objects created by the container are passed to the servlet or JSP page.
 * The request path and attributes are set as if
 a `RequestDispatcher.forward` to the error resource had been performed.
 
-The request attributes in
-<<Request_Attributes_and_their_types>>
-must be set.
+* The request attributes in <<Request_Attributes_and_their_types>> must be set.
 
 [[Request_Attributes_and_their_types]]
 .Request Attributes and their types
@@ -5578,9 +5551,10 @@ directory listing or for others returning a `404` response.
 
 Consider a Web application where:
 
-The deployment descriptor lists the following
+* The deployment descriptor lists the following
 welcome files.
-
++
+--
 [source,xml]
 ----
 <welcome-file-list>
@@ -5588,9 +5562,11 @@ welcome files.
  <welcome-file>default.jsp</welcome-file>
 </welcome-file-list>
 ----
+--
 
-The static content in the WAR is as follows
-
+* The static content in the WAR is as follows
++
+--
 [source]
 ----
 /foo/index.html
@@ -5601,6 +5577,7 @@ The static content in the WAR is as follows
 /catalog/products/shop.jsp
 /catalog/products/register.jsp
 ----
+--
 
 * A request URI of `/foo` will be redirected to
 a URI of `/foo/`.
@@ -5714,7 +5691,7 @@ to monitor them are shown in the following tables:
 
 .Servlet Context Events
 [caption="Table 11-1  "]
-[cols="3", options="header"]
+[cols="25,35,40", options="header"]
 |===
 |Event Type
 |Description
@@ -5729,12 +5706,13 @@ about to be shut down.
 |Changes to attributes
 |Attributes on the servlet context have been
 added, removed, or replaced.
-|`jakarta.servlet.ServletContextAttributeListener`
+|`jakarta.servlet.` +
+`ServletContextAttributeListener`
 |===
 
 .HTTP Session Events
 [caption="Table 11-2  "]
-[cols="3", options="header"]
+[cols="25,35,40", options="header"]
 |===
 |Event Type
 |Description
@@ -5743,29 +5721,34 @@ added, removed, or replaced.
 |Lifecycle
 |An `HttpSession` has been created,
 invalidated, or timed out.
-|`jakarta.servlet.http.HttpSessionListener`
+|`jakarta.servlet.http.` +
+`HttpSessionListener`
 
 |Changes to attributes
 |Attributes have been added, removed, or
 replaced on an `HttpSession`.
-|`jakarta.servlet.http.HttpSessionAttributeListener`
+|`jakarta.servlet.http.` +
+`HttpSessionAttributeListener`
 
 |Changes to id
 |The id of `HttpSession` has been changed.
-|`jakarta.servlet.http.HttpSessionIdListener`
+|`jakarta.servlet.http.` +
+`HttpSessionIdListener`
 
 |Session migration
 |`HttpSession` has been activated or passivated.
-|`jakarta.servlet.http.HttpSessionActivationListener`
+|`jakarta.servlet.http.` +
+`HttpSessionActivationListener`
 
 |Object binding
 |Object has been bound to or unbound from `HttpSession`
-|`jakarta.servlet.http.HttpSessionBindingListener`
+|`jakarta.servlet.http.` +
+`HttpSessionBindingListener`
 |===
 
 .Table 11-3 Servlet Request Events
 [caption="Table 11-3  "]
-[cols="3", options="header"]
+[cols="25,35,40", options="header"]
 |===
 |Event Type
 |Description
@@ -5777,7 +5760,8 @@ replaced on an `HttpSession`.
 
 |Changes to attributes
 |Attributes have been added, removed, or replaced on a `ServletRequest`.
-|`jakarta.servlet.ServletRequestAttributeListener`
+|`jakarta.servlet.` +
+`ServletRequestAttributeListener`
 
 |Async events
 |A timeout, connection termination or completion of async processing
@@ -5863,19 +5847,19 @@ deployment descriptor for this application:
 [source,xml]
 ----
 <web-app>
- <display-name>MyListeningApplication</display-name>
- <listener>
-  <listener-class>com.example.MyConnectionManager</listener-class>
- </listener>
+  <display-name>MyListeningApplication</display-name>
+  <listener>
+    <listener-class>com.example.MyConnectionManager</listener-class>
+   </listener>
 
- <listener>
-  <listener-class>com.example.MyLoggingModule</listener-class>
- </listener>
+  <listener>
+    <listener-class>com.example.MyLoggingModule</listener-class>
+  </listener>
 
- <servlet>
-  <display-name>RegistrationServlet</display-name>
-  ...etc
- </servlet>
+  <servlet>
+    <display-name>RegistrationServlet</display-name>
+    ...
+  </servlet>
 </web-app>
 ----
 
@@ -5901,7 +5885,7 @@ the call tree of another component in the application. An example of
 this is a servlet that sets a session attribute, where the session
 listener throws an unhandled exception. The container must allow
 unhandled exceptions to be handled by the error page mechanism described
-in <<Error Handling>>. If there is no
+in <<_Error_Handling>>. If there is no
 error page specified for those exceptions, the container must ensure to
 send a response back with status 500. In this case no more listeners
 under that event are called.
@@ -5977,7 +5961,7 @@ match selects the servlet.
 
 . The container will recursively try to match
 the longest path-prefix. This is done by stepping down the path tree a
-directory at a time, using the `/` character as a path
+directory at a time, using the `"/"` character as a path
 separator. The longest match determines the servlet selected.
 
 . If the last segment in the URL path contains
@@ -5999,19 +5983,19 @@ comparisons for matching.
 In the Web application deployment descriptor,
 the following syntax is used to define mappings:
 
-* A string beginning with a `/`
-character and ending with a `/*` suffix is used for path
+* A string beginning with a `"/"`
+character and ending with a `"/*"` suffix is used for path
 mapping.
 
-* A string beginning with a `*.` prefix
+* A string beginning with a `"*."` prefix
 is used as an extension mapping.
 
 * The empty string (`""`) is a special URL pattern
 that exactly maps to the application's context root, i.e., requests of
 the form http://host:port/<context-root>/. In this case the path info is
-`/` and the servlet path and context path is empty string (`""`).
+`"/"` and the servlet path and context path is empty string (`""`).
 
-* A string containing only the `/`
+* A string containing only the `"/"`
 character indicates the "default" servlet of the application. In this
 case the servlet path is the request URI minus the context path and the
 path info is null.
@@ -6085,7 +6069,7 @@ The following behavior would result:
 |`servlet3`
 
 |`/catalog/index.html`
-|"default" servlet
+|`"default" servlet`
 
 |`/catalog/racecar.bop`
 |`servlet4`
@@ -6255,8 +6239,8 @@ would be:
 [source,xml]
 ----
 <security-role-ref>
- <role-name>FOO</role-name>
- <role-link>manager</role-link>
+  <role-name>FOO</role-name>
+  <role-link>manager</role-link>
 </security-role-ref>
 ----
 
@@ -6269,11 +6253,11 @@ a role reference used in a call to `isUserInRole`, the container must
 default to testing the user for membership in the security-role with
 `role-name` equal to the role reference used in the call.
 
-The role name `pass:[*]` should never be used as an
-argument in calling `isUserInRole`. Any call to `isUserInRole` with `pass:[*]`
+The role name `"pass:[*]"` should never be used as an
+argument in calling `isUserInRole`. Any call to `isUserInRole` with `"pass:[*]"`
 must return false. If the role-name of the security-role to be tested is
-`pass:[*]pass:[*]`, and the application has NOT declared an application security-role
-with role-name `pass:[*]pass:[*]`, `isUserInRole` must only return true if the user
+`"pass:[*]pass:[*]"`, and the application has NOT declared an application security-role
+with role-name `"pass:[*]pass:[*]"`, `isUserInRole` must only return true if the user
 has been authenticated; that is, only when `getRemoteUser` and
 `getUserPrincipal` would both return a non-null value. Otherwise, the
 container must check the user for membership in the application role.
@@ -6309,17 +6293,14 @@ package jakarta.servlet.annotation;
 @Target(value=TYPE)
 @Retention(value=RUNTIME)
 public @interface ServletSecurity {
-
- HttpConstraint value();
-
- HttpMethodConstraint[] httpMethodConstraints();
-
+    HttpConstraint value();
+    HttpMethodConstraint[] httpMethodConstraints();
 }
 ----
 
 .The ServletSecurity Interface
 [caption="TABLE 13-1   "]
-[cols="3", options="header"]
+[cols="25,50,25", options="header"]
 |===
 |Element
 |Description
@@ -6329,12 +6310,12 @@ public @interface ServletSecurity {
 |the HttpConstraint that defines the
 protection to be applied to all HTTP methods that are NOT represented in
 the array returned by httpMethodConstraints.
-|@HttpConstraint
+|`@HttpConstraint`
 
 |`httpMethodConstraints`
 |the array of HTTP method specific
 constraints.
-|{}
+|`{}`
 |===
 
 [discrete]
@@ -6365,19 +6346,15 @@ package jakarta.servlet.annotation;
 @Documented
 @Retention(value=RUNTIME)
 public @interface HttpConstraint {
-
- ServletSecurity.EmptyRoleSemantic value();
-
- java.lang.String[] rolesAllowed();
-
- ServletSecurity.TransportGuarantee transportGuarantee();
-
+    ServletSecurity.EmptyRoleSemantic value();
+    java.lang.String[] rolesAllowed();
+    ServletSecurity.TransportGuarantee transportGuarantee();
 }
 ----
 
 .The HttpConstraint Interface
 [caption="TABLE 13-2   "]
-[cols="3", options="header"]
+[cols="25,50,25", options="header"]
 |===
 |Element
 |Description
@@ -6386,17 +6363,17 @@ public @interface HttpConstraint {
 |`value`
 |The default authorization semantic that
 applies (only) when rolesAllowed returns an-empty array.
-|PERMIT
+|`PERMIT`
 
 |`rolesAllowed`
 |An array containing the names of the
 authorized roles
-|{}
+|`{}`
 
 |`transportGuarantee`
 |The data protection requirements that must be
 satisfied by the connections on which requests arrive.
-|NONE
+|`NONE`
 |===
 
 [discrete]
@@ -6413,19 +6390,15 @@ package jakarta.servlet.annotation;
 @Documented
 @Retention(value=RUNTIME)
 public @interface HttpMethodConstraint {
-
- ServletSecurity.EmptyRoleSemantic value();
-
- java.lang.String[] rolesAllowed();
-
- ServletSecurity.TransportGuarantee transportGuarantee();
-
+    ServletSecurity.EmptyRoleSemantic value();
+    java.lang.String[] rolesAllowed();
+    ServletSecurity.TransportGuarantee transportGuarantee();
 }
 ----
 
 .The HttpMethodConstraint Interface
 [caption="TABLE 13-3   "]
-[cols="3", options="header"]
+[cols="25,50,25", options="header"]
 |===
 |Element
 |Description
@@ -6439,7 +6412,7 @@ public @interface HttpMethodConstraint {
 |`emptyRoleSemantic`
 |The default authorization semantic that
 applies (only) when rolesAllowed returns an empty array.
-|PERMIT
+|`PERMIT`
 
 |`rolesAllowed`
 |An array containing the names of the
@@ -6449,7 +6422,7 @@ authorized roles
 |`transportGuarantee`
 |The data protection requirements that must be
 satisfied by the connections on which requests arrive.
-|NONE
+|`NONE`
 |===
 
 The `@ServletSecurity` annotation may be
@@ -6550,9 +6523,10 @@ public class Example4 extends HttpServlet {
 [source,java]
 ----
 @ServletSecurity((httpMethodConstraints = {
- @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
- @HttpMethodConstraint(value = "POST", rolesAllowed = "R1", transportGuarantee = TransportGuarantee.CONFIDENTIAL)
- })
+    @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
+    @HttpMethodConstraint(value = "POST", rolesAllowed = "R1",
+                          transportGuarantee = TransportGuarantee.CONFIDENTIAL)
+})
 public class Example5 extends HttpServlet {
 
 }
@@ -6561,7 +6535,8 @@ public class Example5 extends HttpServlet {
 .for all HTTP methods except GET auth-constraint requiring membership in Role R1; for GET, no constraints
 [source,java]
 ----
-@ServletSecurity(value = @HttpConstraint(rolesAllowed = "R1"), httpMethodConstraints = @HttpMethodConstraint("GET"))
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = "R1"),
+                 httpMethodConstraints = @HttpMethodConstraint("GET"))
 public class Example6 extends HttpServlet {
 
 }
@@ -6572,7 +6547,8 @@ auth-constraint requiring membership in Role R1; for TRACE, all access denied
 [source,java]
 ----
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = "R1"),
- httpMethodConstraints = @HttpMethodConstraint(value="TRACE", emptyRoleSemantic = EmptyRoleSemantic.DENY))
+                 httpMethodConstraints = @HttpMethodConstraint(value="TRACE",
+                         emptyRoleSemantic = EmptyRoleSemantic.DENY))
 public class Example7 extends HttpServlet {
 
 }
@@ -6620,12 +6596,12 @@ the `@HttpConstraint` value as defined in
 [source,xml]
 ----
 <security-constraint>
- <web-resource-collection>
-  <url-pattern>...</url-pattern>
- </web-resource-collection>
- <auth-constraint>
-  <role-name>Role1</role-name>
- </auth-constraint>
+  <web-resource-collection>
+    <url-pattern>...</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>Role1</role-name>
+  </auth-constraint>
 </security-constraint>
 ----
 
@@ -6656,25 +6632,26 @@ determined by the mapping of the associated `@HttpConstraint` and
 [source,java]
 ----
 @ServletSecurity(value=@HttpConstraint(rolesAllowed = "Role1"),
-httpMethodConstraints = @HttpMethodConstraint(value = "TRACE", emptyRoleSemantic = EmptyRoleSemantic.DENY))
+        httpMethodConstraints = @HttpMethodConstraint(value = "TRACE",
+                emptyRoleSemantic = EmptyRoleSemantic.DENY))
 ----
 
 [source,xml]
 ----
 <security-constraint>
- <web-resource-collection>
-  <url-pattern>...</url-pattern>
-  <http-method-omission>TRACE</http-method-omission>
- </web-resource-collection>
- <auth-constraint>
-  <role-name>Role1</role-name>
- </auth-constraint>
+  <web-resource-collection>
+    <url-pattern>...</url-pattern>
+    <http-method-omission>TRACE</http-method-omission>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>Role1</role-name>
+  </auth-constraint>
 </security-constraint>
 <security-constraint>
- <web-resource-collection>
-  <url-pattern>...</url-pattern>
- <http-method>TRACE</http-method>
- </web-resource-collection>
+  <web-resource-collection>
+    <url-pattern>...</url-pattern>
+    <http-method>TRACE</http-method>
+  </web-resource-collection>
   <auth-constraint/>
 </security-constraint>
 ----
@@ -6720,14 +6697,16 @@ correspondence between the `@HttpConstraint` model described above and
 `auth-constraint` and `user-data-constraint` elements in web.xml.
 
 .emptyRoleSemantic=PERMIT, rolesAllowed={}, transportGuarantee=NONE
-
-`no constraints`
+[source,xml]
+----
+<!-- no constraints -->
+----
 
 .emptyRoleSemantic=PERMIT, rolesAllowed={}, transportGuarantee=CONFIDENTIAL
 [source,xml]
 ----
 <user-data-constraint>
- <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
 ----
 
@@ -6735,7 +6714,7 @@ correspondence between the `@HttpConstraint` model described above and
 [source,xml]
 ----
 <auth-constraint>
- <security-role-name>Role1</security-role-name>
+  <security-role-name>Role1</security-role-name>
 </auth-constraint>
 ----
 
@@ -6743,10 +6722,10 @@ correspondence between the `@HttpConstraint` model described above and
 [source,xml]
 ----
 <auth-constraint>
- <security-role-name>Role1</security-role-name>
+  <security-role-name>Role1</security-role-name>
 </auth-constraint>
 <user-data-constraint>
- <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
 ----
 
@@ -6760,7 +6739,7 @@ correspondence between the `@HttpConstraint` model described above and
 [source,xml]
 ----
 <auth-constraint/>
- <user-data-constraint>
+<user-data-constraint>
   <transport-guarantee>CONFIDENTIAL</transport-guarantee>
 </user-data-constraint>
 ----
@@ -6949,7 +6928,7 @@ contains a requirement for authentication.
 
 The login method of the HttpServletRequest
 interface provides an alternative means for an application to control
-the look and feel of it’s login screens.
+the look and feel of its login screens.
 
 ===== Login Form Notes
 
@@ -6971,8 +6950,8 @@ be coded into the HTML page:
 [source,xml]
 ----
 <form method="POST" action="j_security_check">
- <input type="text" name="j_username">
- <input type="password" name="j_password" autocomplete="off">
+  <input type="text" name="j_username">
+  <input type="password" name="j_password" autocomplete="off">
 </form>
 ----
 
@@ -7050,7 +7029,7 @@ in a deployment descriptor, consists of the following elements:
 
 * authorization constraint (`auth-constraint` in deployment descriptor)
 
-*user data constraint (`user-data-constraint` in deployment descriptor)
+* user data constraint (`user-data-constraint` in deployment descriptor)
 
 The HTTP operations and web resources to which
 a security constraint applies (i.e. the constrained requests) are
@@ -7114,9 +7093,9 @@ for combining constraints in which the same pattern and method occur are
 as follows:
 
 The combination of authorization constraints
-that name roles or that imply roles via the name `pass:[*]` shall yield the
+that name roles or that imply roles via the name `"pass:[*]"` shall yield the
 union of the role names in the individual constraints as permitted
-roles. An authorization constraint that names the role `pass:[*]pass:[*]` shall
+roles. An authorization constraint that names the role `"pass:[*]pass:[*]"` shall
 combine with authorization constraints that name or imply roles to
 permit any authenticated user independent of role. A security constraint
 that does not contain an authorization constraint shall combine with
@@ -7143,56 +7122,56 @@ the following security constraints.
 [source,xml]
 ----
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>precluded methods</web-resource-name>
-  <url-pattern>/*</url-pattern>
-  <url-pattern>/acme/wholesale/*</url-pattern>
-  <url-pattern>/acme/retail/*</url-pattern>
-  <http-method-omission>GET</http-method-omission>
-  <http-method-omission>POST</http-method-omission>
- </web-resource-collection>
- <auth-constraint/>
+  <web-resource-collection>
+    <web-resource-name>precluded methods</web-resource-name>
+    <url-pattern>/*</url-pattern>
+    <url-pattern>/acme/wholesale/*</url-pattern>
+    <url-pattern>/acme/retail/*</url-pattern>
+    <http-method-omission>GET</http-method-omission>
+    <http-method-omission>POST</http-method-omission>
+  </web-resource-collection>
+  <auth-constraint/>
 </security-constraint>
 
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>wholesale</web-resource-name>
-   <url-pattern>/acme/wholesale/*</url-pattern>
-   <http-method>GET</http-method>
-   <http-method>PUT</http-method>
+  <web-resource-collection>
+    <web-resource-name>wholesale</web-resource-name>
+    <url-pattern>/acme/wholesale/*</url-pattern>
+    <http-method>GET</http-method>
+    <http-method>PUT</http-method>
   </web-resource-collection>
   <auth-constraint>
-   <role-name>SALESCLERK</role-name>
+    <role-name>SALESCLERK</role-name>
   </auth-constraint>
 </security-constraint>
 
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>wholesale 2</web-resource-name>
-  <url-pattern>/acme/wholesale/*</url-pattern>
-  <http-method>GET</http-method>
-  <http-method>POST</http-method>
- </web-resource-collection>
- <auth-constraint>
-  <role-name>CONTRACTOR</role-name>
- </auth-constraint>
- <user-data-constraint>
-  <transport-guarantee>CONFIDENTIAL</transport-guarantee>
- </user-data-constraint>
+  <web-resource-collection>
+    <web-resource-name>wholesale 2</web-resource-name>
+    <url-pattern>/acme/wholesale/*</url-pattern>
+    <http-method>GET</http-method>
+    <http-method>POST</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>CONTRACTOR</role-name>
+  </auth-constraint>
+  <user-data-constraint>
+    <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  </user-data-constraint>
 </security-constraint>
 
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>retail</web-resource-name>
-  <url-pattern>/acme/retail/*</url-pattern>
-  <http-method>GET</http-method>
-  <http-method>POST</http-method>
- </web-resource-collection>
+  <web-resource-collection>
+    <web-resource-name>retail</web-resource-name>
+    <url-pattern>/acme/retail/*</url-pattern>
+    <http-method>GET</http-method>
+    <http-method>POST</http-method>
+  </web-resource-collection>
 
- <auth-constraint>
-  <role-name>CONTRACTOR</role-name>
-  <role-name>HOMEOWNER</role-name>
- </auth-constraint>
+  <auth-constraint>
+    <role-name>CONTRACTOR</role-name>
+    <role-name>HOMEOWNER</role-name>
+  </auth-constraint>
 </security-constraint>
 ----
 
@@ -7260,7 +7239,7 @@ the constraints that apply to the HTTP method at the `url-pattern`.
 Both of the following rules must be satisfied for the request to be
 accepted and dispatched to the associated servlet.
 
-The characteristics of the connection
+. The characteristics of the connection
 on which the request was received must satisfy at least one of the
 supported connection types defined by the constraints. If this rule is
 not satisfied, the container shall reject the request and redirect it to
@@ -7270,7 +7249,7 @@ container should reject the request as forbidden and return a 403
 precluded (by an authorization constraint naming no roles).]
 
 
-The authentication characteristics of the
+. The authentication characteristics of the
 request must satisfy any authentication and role requirements defined by
 the constraints. If this rule is not satisfied because access has been
 precluded (by an authorization constraint naming no roles), the request
@@ -7314,14 +7293,14 @@ those named in the constraint are uncovered.
 [source,xml]
 ----
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>wholesale</web-resource-name>
-  <url-pattern>/acme/wholesale/*</url-pattern>
-  <http-method>GET</http-method>
- </web-resource-collection>
- <auth-constraint>
-  <role-name>SALESCLERK</role-name>
- </auth-constraint>
+  <web-resource-collection>
+    <web-resource-name>wholesale</web-resource-name>
+    <url-pattern>/acme/wholesale/*</url-pattern>
+    <http-method>GET</http-method>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>SALESCLERK</role-name>
+  </auth-constraint>
 </security-constraint>
 ----
 +
@@ -7334,12 +7313,12 @@ in the constraint are uncovered.
 [source,xml]
 ----
 <security-constraint>
- <web-resource-collection>
-  <web-resource-name>wholesale</web-resource-name>
-  <url-pattern>/acme/wholesale/*</url-pattern>
-  <http-method-omission>GET</http-method-omission>
- </web-resource-collection>
- <auth-constraint/>
+  <web-resource-collection>
+    <web-resource-name>wholesale</web-resource-name>
+    <url-pattern>/acme/wholesale/*</url-pattern>
+    <http-method-omission>GET</http-method-omission>
+  </web-resource-collection>
+  <auth-constraint/>
 </security-constraint>
 ----
 +
@@ -7358,10 +7337,10 @@ analogous result.
 [source,java]
 ----
 @ServletSecurity((httpMethodConstraints = {
-  @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
-  @HttpMethodConstraint(value = "POST", rolesAllowed = "R1",
-    transportGuarantee = TransportGuarantee.CONFIDENTIAL)
- })
+    @HttpMethodConstraint(value = "GET", rolesAllowed = "R1"),
+    @HttpMethodConstraint(value = "POST", rolesAllowed = "R1",
+            transportGuarantee = TransportGuarantee.CONFIDENTIAL)
+    })
 public class Example5 extends HttpServlet {
 
 }
@@ -7496,7 +7475,7 @@ For backwards compatibility of applications
 written to previous versions of the API, any deployment descriptors
 written to comply with earlier versions of the specification, must still
 be supported such that apps continue to deploy. For the actual XSD files
-please visit <`https://jakarta.ee/xml/ns/jakartaee/`>.
+please visit `https://jakarta.ee/xml/ns/jakartaee/`.
 
 === Deployment Descriptor Elements
 
@@ -7573,7 +7552,7 @@ begin with `../` are not valid paths in the deployment descriptor.
 
 * URI paths referring to a resource relative to
 the root of the WAR, or a path mapping relative to the root of the WAR,
-unless otherwise specified, should begin with a leading `/`.
+unless otherwise specified, should begin with a leading `"/"`.
 
 * In elements whose value is an enumerated type,
 the value is case sensitive.
@@ -7584,546 +7563,6 @@ The deployment descriptor for this revision
 of the specification is available at
 `https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd`
 
-=== Deployment Descriptor Diagram
-
-This section illustrates the elements in
-deployment descriptor. Attributes are not shown in the diagrams. See
-Deployment Descriptor Schema for the detailed information.
-
-web-app Element
-
-The `web-app` element is the root deployment
-descriptor for a Web application. This element contains the following
-elements.This element has a required attribute `version` to specify to
-which version of the schema the deployment descriptor conforms. All sub
-elements under this element can be in an arbitrary order.
-
-=== web-app Element Structure
-
-
-description Element
-
-The `description` element is to provide a
-text describing the parent element. This element occurs not only under
-the `web-app` element but also under other multiple elements. It has an
-optional attribute `xml:lang` to indicate which language is used in the
-description. The default value of this attribute is English (`en`).
-
-display-name Element
-
-The `display-name` contains a short name that
-is intended to be displayed by tools. The display name need not to be
-unique. This element has an optional attribute `xml:lang` to specify the
-language.
-
-icon Element
-
-The `icon` contains small-icon and large-icon
-elements that specify the file names for small and large GIF or JPEG
-icon images used to represent the parent element in a GUI tool.
-
-distributable Element
-
-The `distributable` indicates that this Web
-application is programmed appropriately to be deployed into a
-distributed servlet container.
-
-context-param Element
-
-The `context-param` contains the declaration
-of a Web application’s servlet context initialization parameters.
-
-filter Element
-
-The `filter` declares a filter in the Web
-application. The filter is mapped to either a servlet or a URL pattern
-in the `filter-mapping` element, using the `filter-name` value to
-reference. Filters can access the initialization parameters declared in
-the deployment descriptor at runtime via the FilterConfig interface. The
-`filter-name` element is the logical name of the filter. It must be
-unique within the Web application. The element content of `filter-name`
-element must not be empty. The `filter-class` is the fully qualified
-class name of the filter. The `init-param` element contains name-value
-pair as an initialization parameter of this filter. The optional
-`async-supported` element, when specified, indicates that the filter
-supports asynchronous request processing.
-
-=== filter Element Structure
-
-image:servlet-50.png[image]
-
-filter-mapping Element
-
-The `filter-mapping` is used by the container
-to decide which filters to apply to a request in what order. The value
-of the `filter-name` must be one of the filter declarations in the
-deployment descriptor. The matching request can be specified either
-`url-pattern` or `servlet-name`.
-
-=== filter-mapping Element Structure
-
-image:servlet-51.png[image]
-
-listener Element
-
-The `listener` indicates the deployment
-properties for an application listener bean. The sub-element
-`listener-class` declares that a class in the application must be
-registered as a Web application listener bean. The value is the fully
-qualified classname of the listener class.
-
-=== listener Element Structure
-
-image:servlet-52.png[image]
-
-servlet Element
-
-The `servlet` is used to declare a servlet.
-It contains the declarative data of a servlet. The `jsp-file` element
-contains the full path to a JSP file within the web application
-beginning with a `/`. If a `jsp-file` is specified and the
-`load-on-startup` element is present, then the JSP should be precompiled
-and loaded. The `servlet-name` element contains the canonical name of
-the servlet. Each servlet name is unique within the web application. The
-element content of `servlet-name` must not be empty. The `servlet-class`
-contains the fully qualified class name of the servlet. The `run-as`
-element specifies the identity to be used for the execution of a
-component. It contains an optional `description`, and the name of a
-security role specified by the `role-name` element. The element
-`load-on-startup` indicates that this servlet should be loaded
-(instantiated and have its init() called) on the startup of the Web
-application. The element content of this element must be an integer
-indicating the order in which the servlet should be loaded. If the value
-is a negative integer, or the element is not present, the container is
-free to load the servlet whenever it chooses. If the value is a positive
-integer or 0, the container must load and initialize the servlet as the
-application is deployed. The container must guarantee that servlets
-marked with lower integers are loaded before servlets marked with higher
-integers. The container may choose the order of loading of servlets with
-the same `load-on-startup` value. The `security-role-ref` element
-declares the security role reference in a component’s or in a deployment
-component’s code. It consists of an optional `description`, the
-security role name used in the code (`role-name`), and an optional
-link to a security role (`role-link`). If the security role is not
-specified, the deployer must choose an appropriate security role. The
-optional `async-supported` element, when specified, indicates that the
-Servlet can support asynchronous request processing. If a servlet
-supports fileupload functionality and processing of mime-multipart
-requests, the configuration for the same can be provided via the
-`multipart-config` element in the descriptor. The `multipart-config`
-element can be used to specify the location where the files can be
-stored, maximum size of the file being uploaded, maximum request size
-and the size threshold after which the file will be written to the disk.
-
-=== servlet Element Structure
-
-image:servlet-53.png[image]
-
-servlet-mapping Element
-
-The `servlet-mapping` defines a mapping
-between a servlet and a URL pattern.
-
-=== servlet-mapping Element Structure
-
-image:servlet-54.png[image]
-
-session-config Element
-
-The `session-config` defines the session
-parameters for this Web application. The sub-element `session-timeout`
-defines the default session time out interval for all sessions created
-in this Web application. The specified time out must be expressed in a
-whole number of minutes. If the time out is 0 or less, the container
-ensures the default behavior of sessions is never to time out. If this
-element is not specified, the container must set its default time out
-period.
-
-=== session-config Element Structure
-
-image:servlet-55.png[image]
-
-mime-mapping Element
-
-The `mime-mapping` defines a mapping between
-an extension and a mime type. The `extension` element contains a string
-describing an extension, such as `txt`.
-
-=== mime-mapping Element Structure
-
-image:servlet-56.png[image]
-
-welcome-file-list Element
-
-The `welcome-file-list` contains an ordered
-list of welcome files. The sub-element `welcome-file` contains a file
-name to use as a default welcome file, such as index.html
-
-=== welcome-file-list Element Structure
-
-image:servlet-57.png[image]
-
-error-page Element
-
-The `error-page` contains a mapping between
-an error code or an exception type to the path of a resource in the Web
-application. However, the `error-code` or the `exception-type` element
-can be omitted to specify a default error page. The sub-element
-`exception-type` contains a fully qualified class name of a Java
-exception type. The sub-element `location` element contains the location
-of the resource in the web application relative to the root of the web
-application. The value of the location must have a leading ‘/’.
-
-=== error-page Element Structure
-
-image:servlet-58.png[image]
-
-jsp-config Element
-
-The `jsp-config` is used to provide global
-configuration information for the JSP files in a web application. It has
-two sub-elements, `taglib` and `jsp-property-group`. The `taglib`
-element can be used to provide information on a tag library that is used
-by a JSP page within the Web application. See Jakarta Server Pages
-specification version 3.0 for detail.
-
-=== jsp-config Element Structure
-
-image:servlet-59.png[image]
-
-security-constraint Element
-
-The `security-constraint` is used to
-associate security constraints with one or more web resource
-collections. The sub-element `web-resource-collection` identifies a
-subset of the resources and HTTP methods on those resources within a Web
-application to which a security constraint applies. The
-`auth-constraint` indicates the user roles that should be permitted
-access to this resource collection. The `role-name` used here must
-either correspond to the `role-name` of one of the `security-role`
-elements defined for this Web application, or be the specially reserved
-role-name "*" that is a compact syntax for indicating all roles in the
-web application. If both "*" and role names appear, the container
-interprets this as all roles. If no roles are defined, no user is
-allowed access to the portion of the Web application described by the
-containing `security-constraint`. The container matches role names case
-sensitively when determining access. The `user-data-constraint`
-indicates how data communicated between the client and container should
-be protected by the sub-element `transport-guarantee`. The legal values
-of the `transport-guarantee` is either one of `NONE`, `INTEGRAL`, or
-`CONFIDENTIAL`.
-
-=== security-constraint Element Structure
-
-image:servlet-60.png[image]
-
-deny-uncovered-http-methods Element
-
-The `deny-uncovered-http-methods` is used to
-indicate whether the uncovered http methods are to be denied. For every
-url-pattern that is the target of a security-constraint, this element
-causes all HTTP methods that are NOT covered (by a security constraint)
-at the url-pattern to be denied.
-
-login-config Element
-
-The `login-config` is used to configure the
-authentication method that should be used, the realm name that should be
-used for this application, and the attributes that are needed by the
-form login mechanism. The sub-element `auth-method` configures the
-authentication mechanism for the Web application. The element content
-must be either `BASIC`, `DIGEST`, `FORM`, `CLIENT-CERT`, or a
-vendor-specific authentication scheme. The `realm-name` indicates the
-realm name to use for the authentication scheme chosen for the Web
-application. The `form-login-config` specifies the login and error pages
-that should be used in FORM based login. If FORM based login is not
-used, these elements are ignored.
-
-=== login-config Element Structure
-
-image:servlet-61.png[image]
-
-security-role Element
-
-The `security-role` defines a security role.
-The sub-element `role-name` designates the name of the security role.
-The name must conform to the lexical rules for `NMTOKEN`.
-
-=== security-role Element Structure
-
-image:servlet-62.png[image]
-
-env-entry Element
-
-The `env-entry` declares an application’s
-environment entry. The sub-element `env-entry-name` contains the name of
-a deployment component’s environment entry. The name is a JNDI name
-relative to the `java:comp/env` context. The name must be unique within
-a deployment component. The `env-entry-type` contains the
-fully-qualified Java type of the environment entry value that is
-expected by the application’s code. The sub-element `env-entry-value`
-designates the value of a deployment component’s environment entry. The
-value must be a `String` that is valid for the constructor of the
-specified type that takes a single `String` as a parameter, or a single
-character for `java.lang.Character`. The optional `injection-target`
-element is used to define the injection of the named resource into
-fields or JavaBeans properties. An `injection-target` specifies a class
-and a name within that class into which a resource should be injected.
-The `injection-target-class` specifies the fully qualified class name
-that is the target of the injection. The `injection-target-name`
-specifies the target within the specified class. The target is first
-looked for as a JavaBean property name. If not found, the target is
-looked for as a field name. The specified resource will be injected into
-the target during initialization of the class by either calling the set
-method for the target property or by setting a value into the name
-filed. If an `injection-target` is specified for the environment entry,
-the `env-entry-type` may be ommitted or MUST match the type of the
-injection target. If no `injection-target` is specified, the
-`env-entry-type` is required.
-
-=== env-entry Element Structure
-
-image:servlet-63.png[image]
-
-ejb-ref Element
-
-The `ejb-ref` declares the reference to an
-enterprise bean’s home. The `ejb-ref-name` specifies the name used in
-the code of the deployment component that is referencing the enterprise
-bean. The `ejb-ref-type` is the expected type of the referenced
-enterprise bean, which is either `Entity` or `Session`. The `home`
-defines the fully qualified name of the referenced enterprise bean’s
-home interface. The `remote` defines the fully qualified name of the
-referenced enterprise bean’s remote interface. The `ejb-link` specifies
-that an EJB reference is linked to the enterprise bean. See Jakarta EE
-Platform version 9 for more detail. In addition to
-these elements, the injection-target element can be used to define
-injection of the named enterprise bean into a component field or
-property.
-
-=== ejb-ref Element Structure
-
-image:servlet-64.png[image]
-
-ejb-local-ref Element
-
-The `ejb-local-ref` declares the reference to
-the enterprise bean’s local home. The `local-home` defines the fully
-qualified name of the enterprise bean’s local home interface. The
-`local` defines the fully qualified name of the enterprise bean’s local
-interface.
-
-=== ejb-local-ref Element Structure
-
-image:servlet-65.png[image]
-
-service-ref Element
-
-The `service-ref` declares the reference to a
-Web service. The `service-ref-name` declares the logical name that the
-components in the module use to look up the Web service. It is
-recommended that all service reference names start with `/service/`.
-The `service-interface` defines the fully qualified class name of the
-JAX-WS Service interface that the client depends on. In most cases, the
-value will be jakarta.xml.rpc.Service. A JAX-WS generated Service
-Interface class may also be specified. The `wsdl-file` element contains
-the URI location of a WSDL file. The location is relative to the root of
-the module. The `jaxrpc-mapping-file` contains the name of a file that
-describes the JAX-WS mapping between the Java interaces used by the
-application and the WSDL description in the `wsdl-file`. The file name
-is a relative path within the module file. The `service-qname` element
-declares the specific WSDL service element that is being referred to. It
-is not specified if no `wsdl-file` is declared. The `port-component-ref`
-element declares a client dependency on the container for resolving a
-Service Endpoint Interface to a WSDL port. It optionally associates the
-Service Endpoint Interface with a particular port-component. This is
-only used by the container for a Service.getPort(Class) method call. The
-`handler` element declares the handler for a port-component. Handlers
-can access the `init-param` name-value pairs using the `HandlerInfo`
-interface. If `port-name` is not specified, the handler is assumed to be
-associated with all ports of the service. See Jakarta Enterprise Web Services
-Specification `https://jakarta.ee/specifications/enterprise-ws/` for detail.
-The container that is not a part of a Jakarta EE implementation is not
-required to support this element.
-
-=== service-ref Element Structure
-
-image:servlet-66.png[image]
-
-resource-ref Element
-
-The `resource-ref` contains the declaration
-of a deployment component’s reference to the external resource. The
-`res-ref-name` specifies the name of a resource manager connection
-factory reference. The name is a JNDI name relative to the
-`java:comp/env` context. The name must be unique within a deployment
-file. The `res-type` element specifies the type of the data source.The
-type is the fully qualified Java language class or the interface
-expected to be implemented by the data source. The `res-auth` specifies
-whether the deployment component code signs on programmatically to the
-resource manager, or whether the container will sign on to the resource
-manager on behalf of the deployment component. In the latter case, the
-container uses the information supplied by the deployer. The
-`res-sharing-scope` specifies whether connections obtained through the
-given resource manager connection factory reference can be shared. The
-value, if specified, must be either `Shareable` or `Unshareable`. The
-optional `injection-target` element is used to define injection of the
-named resource into fields or JavaBeans properties.
-
-=== resource-ref Element Structure
-
-image:servlet-67.png[image]
-
-resource-env-ref Element
-
-The `resource-env-ref` contains the
-deployment component’s reference to the administered object associated
-with a resource in the deployment component’s environment. The
-`resource-env-ref-name` specifies the name of the resource environment
-reference. The value is the environment entry name used in the
-deployment component code and is a JNDI name relative to the
-`java:comp/env` context and must be unique within the deployment
-component. The `resource-env-ref-type` specifies the type of the
-resource environment reference. It is the fully qualified name of a Java
-language class or the interface. The optional `injection-target` element
-is used to define injection of the named resource into fields or
-JavaBeans properties. The `resource-env-ref-type` MUST be supplied
-unless an injection target is specified, in which case the type of the
-target is used. If both are specified, the type MUST be assignment
-compatible with the type of the injection target.
-
-=== resource-env-ref Element Structure
-
-image:servlet-68.png[image]
-
-message-destination-ref Element
-
-The `message-destination-ref` element
-contains a declaration of deployment component’s reference to a message
-destination associated with a resource in deployment component’s
-environment. The `message-destination-ref-name` element specifies the
-name of a message destination reference; its value is the environment
-entry name used in deployment component code. The name is a JNDI name
-relative to the `java:comp/env` context and must be unique within an
-ejb-jar for enterprise beans or a deployment file for others. The
-`message-destination-type` specifies the type of the destination. The
-type is specified by the Java interface expected to be implemented by
-the destination. The `message-destination-usage` specifies the use of
-the message destination indicated by the reference. The value indicates
-whether messages are consumed from the message destination, produced for
-the destination, or both. The Assembler makes use of this information in
-linking producers of a destination with its consumers. The
-`message-destination-link` links a message destination reference or
-message-driven bean to a message destination. The Assembler sets the
-value to reflect the flow of messages between producers and consumers in
-the application. The value must be the `message-destination-name` of a
-message destination in the same deployment file or in another deployment
-file in the same Jakarta EE application unit. Alternatively, the value may
-be composed of a path name specifying a deployment file containing the
-referenced message destination with the `message-destination-name` of
-the destination appended and separated from the path name by "#". The
-path name is relative to the deployment file containing deployment
-component that is referencing the message destination. This allows
-multiple message destinations with the same name to be uniquely
-identified. The optional `injection-target` element is used to define
-injection of the named resource into fields or JavaBeans properties. The
-message-destination-type MUST be specified unless an injection target is
-specified, in which case the type of the target is used. If both are
-specified, the type MUST be assignment compatible with the type of the
-injection target.
-
-Example:
-
-[source,xml]
-----
-<message-destination-ref>
-  <message-destination-ref-name>
-    jms/StockQueue
-  </message-destination-ref-name>
-  <message-destination-type>
-    jakarta.jms.Queue
-  </message-destination-type>
-  <message-destination-usage>
-    Consumes
-  </message-destination-usage>
-  <message-destination-link>
-    CorporateStocks
-  </message-destination-link>
-</message-destination-ref>
-----
-
-=== message-destination-ref Element Structure
-
-image:servlet-69.png[image]
-
-message-destination Element
-
-The message-destination specifies a message
-destination. The logical destination described by this element is mapped
-to a physical destination by the deployer. The message-destination-name
-element specifies a name for a message destination. This name must be
-unique among the names of message destinations within the deployment
-file.
-
-Example:
-
-[source,xml]
-----
-<message-destination>
-  <message-destination-name>
-    CorporateStocks
-  </message-destination-name>
-</message-destination>
-----
-
-=== message-destination Element Structure
-
-image:servlet-70.png[image]
-
-locale-encoding-mapping-list Element
-
-The `locale-encoding-mapping-list` contains
-the mapping between the locale and the encoding. specified by the
-sub-element `locale-encoding-mapping`.
-
-Example:
-
-[source,xml]
-----
-<locale-encoding-mapping-list>
-  <locale-encoding-mapping>
-  <locale>ja</locale>
-  <encoding>Shift_JIS</encoding>
-  </locale-encoding-mapping>
-</locale-encoding-mapping-list>
-----
-
-=== locale-encoding-mapping-list Element Structure
-
-image:servlet-71.png[image]
-
-default-context-path
-Element
-
-The `default-context-path` provides a default
-context path of the web application. An empty value for this element
-must cause the web application to be deployed at the root for the
-container. Otherwise, the default context path must start with a `/`
-character but not end with a `/` character. Servlet containers may
-provide vendor specific configuration options that allows specifying a
-value that overrides the value specified here.
-
-request-character-encoding
-Element
-
-The `request-character-encoding` provides a
-default request character encoding of the web application.
-
-response-character-encoding
-Element
-
-The `response-character-encoding` provides a
-default response character encoding of the web application.
 
 === Examples
 
@@ -8143,46 +7582,46 @@ of the definitions listed in the deployment descriptor schema.
          web-app_5_0.xsd"
          version="5.0">
 
- <display-name>A Simple Application</display-name>
+  <display-name>A Simple Application</display-name>
 
- <context-param>
-  <param-name>Webmaster</param-name>
-  <param-value>webmaster@example.com</param-value>
- </context-param>
+  <context-param>
+    <param-name>Webmaster</param-name>
+    <param-value>webmaster@example.com</param-value>
+  </context-param>
 
- <servlet>
-  <servlet-name>catalog</servlet-name>
-  <servlet-class>com.example.CatalogServlet</servlet-class>
-  <init-param>
-   <param-name>catalog</param-name>
-   <param-value>Spring</param-value>
-  </init-param>
- </servlet>
+  <servlet>
+    <servlet-name>catalog</servlet-name>
+    <servlet-class>com.example.CatalogServlet</servlet-class>
+    <init-param>
+      <param-name>catalog</param-name>
+      <param-value>Spring</param-value>
+    </init-param>
+  </servlet>
 
- <servlet-mapping>
-  <servlet-name>catalog</servlet-name>
-  <url-pattern>/catalog/*</url-pattern>
- </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>catalog</servlet-name>
+    <url-pattern>/catalog/*</url-pattern>
+  </servlet-mapping>
 
- <session-config>
-  <session-timeout>30</session-timeout>
- </session-config>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
 
- <mime-mapping>
-  <extension>pdf</extension>
-  <mime-type>application/pdf</mime-type>
- </mime-mapping>
+  <mime-mapping>
+    <extension>pdf</extension>
+    <mime-type>application/pdf</mime-type>
+  </mime-mapping>
 
- <welcome-file-list>
-  <welcome-file>index.jsp</welcome-file>
-  <welcome-file>index.html</welcome-file>
-  <welcome-file>index.html</welcome-file>
- </welcome-file-list>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
 
- <error-page>
-  <error-code>404</error-code>
-  <location>/404.html</location>
- </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.html</location>
+  </error-page>
 
 </web-app>
 ----
@@ -8201,45 +7640,45 @@ of the definitions listed in the deployment descriptor schema.
          web-app_5_0.xsd"
          version="5.0">
 
- <display-name>A Secure Application</display-name>
+  <display-name>A Secure Application</display-name>
 
- <servlet>
-  <servlet-name>catalog</servlet-name>
-  <servlet-class>com.example.CatalogServlet</servlet-class>
-  <init-param>
-   <param-name>catalog</param-name>
-   <param-value>Spring</param-value>
-  </init-param>
-  <security-role-ref>
-   <role-name>MGR</role-name>
-   <!-- role name used in code -->
-   <role-link>manager</role-link>
-  </security-role-ref>
- </servlet>
+  <servlet>
+    <servlet-name>catalog</servlet-name>
+    <servlet-class>com.example.CatalogServlet</servlet-class>
+    <init-param>
+      <param-name>catalog</param-name>
+      <param-value>Spring</param-value>
+    </init-param>
+    <security-role-ref>
+      <role-name>MGR</role-name>
+      <!-- role name used in code -->
+      <role-link>manager</role-link>
+    </security-role-ref>
+  </servlet>
 
- <security-role>
-  <role-name>manager</role-name>
- </security-role>
+  <security-role>
+    <role-name>manager</role-name>
+  </security-role>
 
- <servlet-mapping>
-  <servlet-name>catalog</servlet-name>
-  <url-pattern>/catalog/*</url-pattern>
- </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>catalog</servlet-name>
+    <url-pattern>/catalog/*</url-pattern>
+  </servlet-mapping>
 
- <security-constraint>
-  <web-resource-collection>
-   <web-resource-name>SalesInfo</web-resource-name>
-   <url-pattern>/salesinfo/*</url-pattern>
-   <http-method>GET</http-method>
-   <http-method>POST</http-method>
-  </web-resource-collection>
-  <auth-constraint>
-   <role-name>manager</role-name>
-  </auth-constraint>
-  <user-data-constraint>
-   <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-  </user-data-constraint>
- </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>SalesInfo</web-resource-name>
+      <url-pattern>/salesinfo/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>manager</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
 </web-app>
 ----
 
@@ -8269,7 +7708,7 @@ migrating other Jakarta objects from one JVM to another.
 Servlet containers that are part of a Jakarta EE Platform
 product should not allow the application to override Java SE or Jakarta EE
 platform classes, such as those in `java.\*`, `javax.*`, and `jakarta.*` namespaces,
-that either Java SE or Jakarta do not allow to be modified.
+that either Java SE or Jakarta EE do not allow to be modified.
 
 [[_Web_Application_Environment]]
 ==== Web Application Environment
@@ -8549,14 +7988,14 @@ annotations and resource injection in Jakarta technology compliant
 Servlet containers. This section expands on the Jakarta EE Platform specification
 section 5 titled “Resources, Naming, and Injection”.
 
-Annotations must be supported on the
-following container managed classes that implement the following
-interfaces and are declared in the web application deployment descriptor
-or using the annotations defined in <<Annotations and pluggability>> or added programmatically.
+Annotations must be supported on the following container managed classes
+that implement the following interfaces and are declared in the web
+application deployment descriptor or using the annotations defined in
+<<_Annotations_and_pluggability>> or added programmatically.
 
 .Components and Interfaces supporting Annotations and Resource Injection
 [caption="Table 15-1  "]
-[cols="2", options="header"]
+[cols="20,80", options="header"]
 |===
 |Component Type
 |Classes implementing the following interfaces
@@ -8648,8 +8087,8 @@ annotation would be used.
 ----
 @DeclareRoles("BusinessAdmin")
 public class CalculatorServlet {
- //...
- }
+    ...
+}
 ----
 
 Declaring `@DeclareRoles` ("BusinessAdmin")
@@ -8659,9 +8098,9 @@ is equivalent to defining the following in the web.xml.
 [source,xml]
 ----
 <web-app>
- <security-role>
- <role-name>BusinessAdmin</role-name>
- </security-role>
+  <security-role>
+    <role-name>BusinessAdmin</role-name>
+  </security-role>
 </web-app>
 ----
 
@@ -8717,7 +8156,7 @@ An example:
 ----
 @EJBs({@EJB(Calculator),@EJB(ShoppingCart)})
 public class ShoppingCartServlet {
-//...
+    ...
 }
 ----
 
@@ -8751,11 +8190,9 @@ private jakarta.sql.DataSource catalogDS;
 
 public getProductsByCategory() {
 
- // get a connection and execute the query
- Connection conn = catalogDS.getConnection();
-
-..
-
+    // get a connection and execute the query
+    Connection conn = catalogDS.getConnection();
+    ...
 }
 ----
 
@@ -8839,9 +8276,7 @@ An example:
 ----
 @PostConstruct
 public void postConstruct() {
-
- ...
-
+    ...
 }
 ----
 
@@ -8870,11 +8305,8 @@ An example:
 ----
 @PreDestroy
 public void cleanup() {
-
- // clean up any open resources
-
- ...
-
+    // clean up any open resources
+    ...
 }
 ----
 
@@ -8883,7 +8315,7 @@ return void and must not throw a checked exception. The method may be
 public, protected, package private or private. The method must not be
 static however it may be final.
 
-Refer to the Jakarta Annotations specification 2.6 for more
+Refer to the Jakarta Annotations specification section 2.6 for more
 details.
 
 ==== @Resources Annotation
@@ -8899,13 +8331,11 @@ An example:
 [source,java]
 ----
 @Resources ({
-@Resource(name="myDB" type=javax.sql.DataSource),
-@Resource(name="myMQ" type=jakarta.jms.ConnectionFactory)
+    @Resource(name="myDB" type=javax.sql.DataSource),
+    @Resource(name="myMQ" type=jakarta.jms.ConnectionFactory)
 })
 public class CalculatorServlet {
-
-//...
-
+    ...
 }
 ----
 
@@ -8932,23 +8362,15 @@ An example:
 @RunAs("Admin")
 public class CalculatorServlet {
 
-@EJB private ShoppingCart myCart;
+    @EJB private ShoppingCart myCart;
 
- public void doGet(HttpServletRequest, req,
-HttpServletResponse res) {
+    public void doGet(HttpServletRequest, req, HttpServletResponse res) {
+        ...
+        myCart.getTotal();
+        ...
+    }
 
- //....
-
- myCart.getTotal();
-
- //....
-
- }
-
-}
-
- //....
-
+    ...
 }
 ----
 
@@ -8959,8 +8381,8 @@ equivalent to defining the following in the web.xml.
 [source,xml]
 ----
 <servlet>
- <servlet-name>CalculatorServlet</servlet-name>
- <run-as>Admin</run-as>
+  <servlet-name>CalculatorServlet</servlet-name>
+  <run-as>Admin</run-as>
 </servlet>
 ----
 
@@ -8996,7 +8418,7 @@ detailed in the JAX-WS Specification section 7.
 This annotation allows for more than one
 `@WebServiceRef` annotations to be declared on a single resource. The
 behavior of this annotation is further detailed in the JAX-WS
-Specification (JSR 224) section 7.
+Specification section 7.
 
 ==== Contexts and Dependency Injection for Jakarta EE Platform requirements
 
@@ -9057,7 +8479,7 @@ environment. The operational environment includes a specific servlet
 container and web server. The Deployer must resolve all the external
 dependencies declared by the developer. To perform his role, the
 deployer uses tools provided by the Servlet Container Provider.
-
++
 The Deployer is an expert in a specific
 operational environment. For example, the Deployer is responsible for
 mapping the security roles defined by the Application Developer to the
@@ -9105,7 +8527,7 @@ A vendor that provides the runtime
 environment, namely the servlet container and possibly the web server,
 in which a web application runs as well as the tools necessary to deploy
 web applications.
-
++
 The expertise of the Container Provider is in
 HTTP-level programming. Since this specification does not specify the
 interface between the web server and the servlet container, it is left
@@ -9132,7 +8554,7 @@ The person responsible for the configuration
 and administration of the servlet container and web server. The
 administrator is also responsible for overseeing the well-being of the
 deployed web applications at run time.
-
++
 This specification does not define the
 contracts for system management and administration. The administrator
 typically uses runtime monitoring and management tools provided by the
@@ -9160,7 +8582,7 @@ For example:
 +
 `https://example.com/purchase`
 +
-In HTTP-based URLs, the `‘/’` character is
+In HTTP-based URLs, the `"/"` character is
 reserved to separate a hierarchical path structure in the URL-path
 portion of the URL. The server is responsible for determining the
 meaning of the hierarchical structure. There is no correspondence
@@ -9172,7 +8594,7 @@ A collection of servlets, JSP pages , HTML
 documents, and other web resources which might include image files,
 compressed archives, and other data. A web application may be packaged
 into an archive or exist in an open directory structure.
-
++
 All compatible servlet containers must accept
 a web application and perform a deployment of its contents into their
 runtime. This may mean that a container can run the application directly
@@ -9186,7 +8608,7 @@ A single file that contains all of the
 components of a web application. This archive file is created by using
 standard JAR tools which allow any or all of the web components to be
 signed.
-
++
 Web application archive files are identified
 by the `.war` extension. A new extension is used instead of `.jar`
 because that extension is reserved for files which contain a set of
