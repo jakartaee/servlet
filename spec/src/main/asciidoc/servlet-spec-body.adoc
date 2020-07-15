@@ -8438,7 +8438,7 @@ Jakarta Servlet 5.0 specification developed under the Jakarta EE Working Group.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
-(see <<Changes since Jakarta Servlet 5.0>>).
+(see <<Changes since Jakarta Servlet 4.0>>).
 Thus, migrating a Servlet 4.0 project to Servlet 5.0 and above,
 requires the replacement of the namespace `javax.\*` with `jakarta.*`.
 
