@@ -384,9 +384,7 @@ to a particular instance.
 In the case where a servlet was deployed as
 part of an application marked in the deployment descriptor as
 distributable, a container may have only one instance per servlet
-declaration per Java Virtual Machine (JVM™)footnote:[The terms "Java
-virtual machine" and "JVM" mean a virtual machine for the Jakarta EE
-platform.]
+declaration per Java Virtual Machine (JVM™).
 However, if the servlet in a distributable application implements the
 `SingleThreadModel` interface, the container may instantiate multiple
 instances of that servlet in each JVM of the container.
@@ -406,7 +404,7 @@ It is recommended that a developer take other
 means to resolve those issues instead of implementing this interface,
 such as avoiding the usage of an instance variable or synchronizing the
 block of the code accessing those resources. The `SingleThreadModel`
-Interface is deprecated in this version of the specification.
+Interface has been deprecated since version 2.4 of this specification.
 
 === Servlet Life Cycle
 
@@ -481,7 +479,7 @@ have been invoked.
 After a servlet is properly initialized, the
 servlet container may use it to handle client requests. Requests are
 represented by request objects of type `ServletRequest`. The servlet
-fills out response to requests by calling methods of a provided object
+fills out responses to requests by calling methods of a provided object
 of type `ServletResponse`. These objects are passed as parameters to
 the `service` method of the `Servlet` interface.
 
@@ -500,9 +498,9 @@ requests through the `service` method of the servlet. To handle the
 requests, the Servlet Developer must make adequate provisions for
 concurrent processing with multiple threads in the `service` method.
 
-Although it is not recommended, an alternative
-for the Developer is to implement the `SingleThreadModel` interface
-which requires the container to guarantee that there is only one request
+An alternative for the Developer was to implement the `SingleThreadModel`
+interface but this is now deprecated. The `SingleThreadModel` interface
+requires the container to guarantee that there is only one request
 thread at a time in the `service` method. A servlet container may
 satisfy this requirement by serializing requests on a servlet, or by
 maintaining a pool of servlet instances. If the servlet is part of a web
@@ -552,7 +550,7 @@ that throws any `UnavailableException` from service.
 
 ===== Asynchronous processing
 
-Some times a filter and/or servlet is unable
+Sometimes a filter and/or servlet is unable
 to complete the processing of a request without waiting for a resource
 or event before generating a response. For example, a servlet may need
 to wait for an available JDBC connection, for a response from a remote
@@ -607,7 +605,7 @@ exit from the container on the original thread. This means that the
 response will traverse (in reverse order) the same filters (or filter
 chain) that were traversed on the way in. The response isn't committed
 till `complete` (see below) is called on the `AsyncContext`. The
-application is responsible to handle concurrent access to the request
+application is responsible for handling concurrent access to the request
 and response objects if the async task is executing before the
 container-initiated dispatch that called `startAsync` has returned to
 the container.
@@ -619,7 +617,7 @@ method of the servlet that does not support async is exited, and it is
 the container's responsibility to call `complete` on the `AsyncContext`
 so that any interested `AsyncListener` instances will be notified. The
 `AsyncListener.onComplete` notification should also be used by filters
-as a mechanism to clear up resources that it has been holding on to for
+as a mechanism to clear up resources that they have been holding on to for
 the async task to complete.
 
 Dispatching from a synchronous servlet to an
@@ -648,11 +646,11 @@ occur.
 Alternately if the application chooses to do
 so it can use the `AsyncContext` to `dispatch` the request from the new
 thread to a resource in the container. This would enable using content
-generation technologies like Jakarta Serve Pages within the scope of
+generation technologies like Jakarta Server Pages within the scope of
 the container.
 
-In addition to the annotation attributes we
-have the following methods / classes added:
+In addition to the annotation attributes, the following methods / classes
+are provided:
 
 .ServletRequest
 
@@ -682,8 +680,8 @@ closed, or is called again during the same `dispatch`. The
 further asynchronous processing. Calling the
 `AsyncContext.hasOriginalRequestResponse()` on the returned
 `AsyncContext` will return `false`, unless the passed `ServletRequest`
-and `ServletResponse` arguments are the original ones or do not carry
-application provided wrappers. Any filters invoked in the outboud
+and `ServletResponse` arguments are the original ones and do not carry
+application provided wrappers. Any filters invoked in the outbound
 direction after this request was put into asynchronous mode MAY use this
 as an indication that some of the request and / or response wrappers
 that they added during their inbound invocation MAY need to stay in
@@ -748,27 +746,27 @@ An `AsyncContext` is created and initialized by a call to
 are in the `AsyncContext`:
 
 `public ServletRequest getRequest()`::
-returns the request that was used to initialize the `AsyncContext` by
+Returns the request that was used to initialize the `AsyncContext` by
 calling one of the `startAsync` methods. Calling `getRequest` when
 complete or any of the dispatch methods has been previously called in
 the asynchronous cycle will result in an `IllegalStateException`.
 
 `public ServletResponse getResponse()`::
-returns the response that was used to initialize the `AsyncContext` by
+Returns the response that was used to initialize the `AsyncContext` by
 calling one of the `startAsync` methods. Calling `getResponse` when
 complete or any of the dispatch methods has been previously called in
 the asynchronous cycle will result in an `IllegalStateException`.
 
 `public void setTimeout(long timeoutMilliseconds)`::
 Sets the time out for the asynchronous
-processing to occur in milliseconds. A call to this method overrides the
+processing in milliseconds. A call to this method overrides the
 time out set by the container. If the time out is not specified via the
 call to `setTimeout`, 30000 is used as the default. A value of 0 or
 less indicates that the asynchronous operation will never time out. The
 time out applies to the `AsyncContext` once the container-initiated
-dispatch during which one of the `ServletRequest.startAsync` methods was
-called has returned to the container. It is illegal to set the time out
-if this method is called after the container-initiated dispatch on which
+dispatch, during which one of the `ServletRequest.startAsync` methods was
+called, has returned to the container. It is illegal to call
+this method after the container-initiated dispatch on which
 the asynchronous cycle was started has returned to the container and
 will result in an `IllegalStateException`.
 
@@ -824,7 +822,7 @@ a new asynchronous cycle was started and will result in an
 `IllegalStateException`.
 
 `public void dispatch(String path)`::
-Dispatches the re quest and response that were used to initialize the
+Dispatches the request and response that were used to initialize the
 `AsyncContext` to the resource with the given path. The given path is
 interpreted as relative to the `ServletContext` that initialized the
 `AsyncContext`. All path related query methods of the request MUST
@@ -866,8 +864,7 @@ ac.dispatch(); // ASYNC dispatch to /url/A
 
 request.getRequestDispatcher("/url/B").forward(request, response);
 
-// Start async operation from within the
-target of the FORWARD
+// Start async operation from within the target of the FORWARD
 
 AsyncContext ac = request.startAsync();
 
@@ -884,11 +881,9 @@ ac.dispatch(); // ASYNC dispatch to /url/A
 
 request.getRequestDispatcher("/url/B").forward(request, response);
 
-// Start async operation from within the
-target of the FORWARD
+// Start async operation from within the target of the FORWARD
 
-AsyncContext ac =
-request.startAsync(request, response);
+AsyncContext ac = request.startAsync(request, response);
 
 ac.dispatch(); // ASYNC dispatch to /url/B
 ----
@@ -902,7 +897,7 @@ For all the 3 variations of the `dispatch`
 methods defined above, calls to the methods returns immediately after
 passing the request and response objects to a container managed thread,
 on which the dispatch operation will be performed. The dispatcher type
-of the request is set to `ASYNC`.Unlike
+of the request is set to `ASYNC`. Unlike
 `RequestDispatcher.forward(ServletRequest, ServletResponse)` dispatches,
 the response buffer and headers will not be reset, and it is legal to
 dispatch even if the response has already been committed. Control over
@@ -921,8 +916,8 @@ of `dispatch` and the return of control to the container:
 that time will not take effect until after the container-initiated
 dispatch has returned to the container.
 
-. any _AsyncListener.onComplete(AsyncEvent),
-AsyncListener.onTimeout(AsyncEvent)_ and
+. any `AsyncListener.onComplete(AsyncEvent)`,
+`AsyncListener.onTimeout(AsyncEvent)` and
 `AsyncListener.onError(AsyncEvent)` invocations will also be delayed
 until after the container-initiated dispatch has returned to the
 container.
@@ -935,7 +930,7 @@ to the container.
 There can be at most one asynchronous
 dispatch operation per asynchronous cycle, which is started by a call to
 one of the `ServletRequest.startAsync` methods. Any attempt to perform
-additional asynchronous dispatch operation within the same asynchronous
+additional asynchronous dispatch operations within the same asynchronous
 cycle is illegal and will result in an `IllegalStateException`. If
 `startAsync` is subsequently called on the dispatched request, then any
 of the `dispatch` methods may be called with the same restriction as
@@ -1111,7 +1106,7 @@ response object within a thread.
 
 ===== Upgrade Processing
 
-In HTTP/1.1, the Upgrade general-header
+In HTTP/1.1, the Upgrade header
 allows the client to specify the additional communication protocols that
 it supports and would like to use. If the server finds it appropriate to
 switch protocols, then new protocols will be used in subsequent
@@ -1132,7 +1127,7 @@ may be further customized. The application prepares and sends an
 appropriate response to the client. After exiting the `service` method
 of the servlet, the servlet container completes the processing of all
 filters and marks the connection to be handled by the
-`HttpUpgradeHandler`. It then calls the `HttpUpgradeHandler`'s `init`
+`HttpUpgradeHandler`. It then calls the ``HttpUpgradeHandler``'s `init`
 method, passing a `WebConnection` to allow the protocol handler access
 to the data streams.
 
