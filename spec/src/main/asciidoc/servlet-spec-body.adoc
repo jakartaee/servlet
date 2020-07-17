@@ -373,7 +373,7 @@ resources.
 === Number of Instances
 
 The servlet declaration which is either via
-the annotation as described in <<Annotations and pluggability>> or
+the annotation as described in <<Annotations and Pluggability>> or
 part of the deployment descriptor of
 the Web application containing the servlet, as described in
 <<Deployment Descriptor>>, controls how
@@ -1254,7 +1254,7 @@ be available to the servlet via the request object’s input stream. If
 the conditions are met, post form data will no longer be available for
 reading directly from the request object’s input stream.
 
-=== File upload
+=== File Upload
 
 Servlet container allows files to be uploaded
 when data is sent as `multipart/form-data`.
@@ -1667,7 +1667,7 @@ default locale for the servlet container and the `getLocales` method
 must contain an enumeration of a single `Locale` element of the default
 locale.
 
-=== Request data encoding
+=== Request Data Encoding
 
 Currently, many browsers do not send a char
 encoding qualifier with the Content-Type header, leaving open the
@@ -1761,7 +1761,7 @@ Application Developer to convey setup information. Typical examples are
 a Webmaster’s e-mail address, or the name of a system that holds
 critical data.
 
-=== Configuration methods
+=== Configuration Methods
 
 The following methods are added to
 `ServletContext` since Servlet 3.0 to enable programmatic definition of
@@ -1780,7 +1780,7 @@ neither declared in `web.xml` or `web-fragment.xml` nor annotated with
 for all the methods defined in `ServletContext` for programmatic
 configuration of servlets, filters and listeners.
 
-==== Programmatically adding and configuring Servlets
+==== Programmatically Adding and Configuring Servlets
 
 The ability to programmatically add a servlet
 to a context is useful for framework developers. For example a framework
@@ -1850,7 +1850,7 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-==== Programmatically adding and configuring Filters
+==== Programmatically Adding and Configuring Filters
 
 ===== addFilter(String filterName, String className)
 
@@ -1906,7 +1906,7 @@ passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
 annotated with `jakarta.servlet.annotation.WebListener.`
 
-==== Programmatically adding and configuring Listeners
+==== Programmatically Adding and Configuring Listeners
 
 ===== void addListener(String className)
 
@@ -2044,9 +2044,9 @@ Resource injection on all components
 programmatically, other than the ones added via the methods that takes
 an instance, will only be supported when the component is a CDI Managed
 Bean. For details please refer to
-<<Contexts and Dependency Injection for Jakarta EE Platform requirements>>.
+<<Contexts and Dependency Injection for Jakarta EE Platform Requirements>>.
 
-==== Programmatically configuring session time out
+==== Programmatically Configuring Session Time Out
 
 The following methods of the `ServletContext`
 interface allow the web application to access and configure the default
@@ -2059,7 +2059,7 @@ of sessions is never to time out.
 
 * `setSessionTimeout(int timeout)`
 
-==== Programmatically configuring character encoding
+==== Programmatically Configuring Character Encoding
 
 The following methods of the `ServletContext`
 interface allow the web application to access and configure request and
@@ -2561,7 +2561,7 @@ deployment descriptor schema in <<Deployment Descriptor>>.
 The reader should use these sources as
 references when reading this chapter.
 
-=== What is a filter?
+=== What is a Filter?
 
 A filter is a reusable piece of code that can
 transform the content of HTTP requests, responses, and header
@@ -3284,14 +3284,14 @@ always assume that all windows of a client are participating in the same
 session.
 
 
-== Annotations and pluggability
+== Annotations and Pluggability
 
 This chapter describes the use of annotations
 and other enhancements to enable pluggability of frameworks and
 libraries for use within a web application.
 
 [[_Annotations_and_pluggability]]
-=== Annotations and pluggability
+=== Annotations and Pluggability
 
 In a web application, classes using
 annotations will have their annotations processed only if they are
@@ -3312,7 +3312,7 @@ If the value of the `metadata-complete`
 attribute is specified as `true`, the deployment tool must ignore any
 annotations that specify such deployment information in the class files
 packaged in the web application. Please see
-<<Assembling_the_descriptor>>, <<Processing annotations and fragments>> and
+<<Assembling_the_descriptor>>, <<Processing Annotations and Fragments>> and
 <<Handling of metadata-complete>> for additional details on the handling
 of `metadata-complete`.
 
@@ -3458,7 +3458,7 @@ specify at least one url pattern to be deployed. If the same servlet
 class is declared in the deployment descriptor under a different name, a
 new instance of the servlet MUST be instantiated. If the same servlet
 class is added with a different name to the `ServletContext` via the
-programmatic API defined in <<Programmatically adding and configuring Servlets>>,
+programmatic API defined in <<Programmatically Adding and Configuring Servlets>>,
 the attribute values
 declared via the `@WebServlet` annotation MUST be ignored and a new
 instance of the servlet with the name specified MUST be created.
@@ -3589,7 +3589,7 @@ relative path is specified, it will be relative to the `tempdir`
 location. The test for absolute path vs relative path MUST be done via
 `java.io.File.isAbsolute`.
 
-==== Other annotations / conventions
+==== Other Annotations / Conventions
 
 In addition to these annotations all the
 annotations defined in <<Annotations and Resource Injection>> will continue
@@ -4056,7 +4056,7 @@ following:
 --
 
 [[Assembling_the_descriptor]]
-==== Assembling the descriptor from web.xml, web-fragment.xml and annotations
+==== Assembling the Descriptor from web.xml, web-fragment.xml and Annotations
 
 If the order in which the listeners,
 servlets, filters are invoked is important to an application then a
@@ -4630,7 +4630,7 @@ Then the effective descriptor would be equivalent to
 
 --
 
-==== Shared libraries / runtimes pluggability
+==== Shared Libraries / Runtimes Pluggability
 
 In addition to supporting fragments and use
 of annotations one of the requirements is that not only we be able to
@@ -4734,7 +4734,7 @@ are excluded from an absolute ordering MUST be ignored, and the order in
 which these services are discovered MUST follow the application’s class
 loading delegation model.
 
-=== JSP container pluggability
+=== JSP Container Pluggability
 
 The `ServletContainerInitializer` and
 programmatic registration features make it possible to provide a clear
@@ -4776,7 +4776,7 @@ names (with possible exclusions if fragment JAR files have been excluded
 from `absolute-ordering`), or `null` if the application does not
 specify any absolute or relative ordering.
 
-=== Processing annotations and fragments
+=== Processing Annotations and Fragments
 
 Web applications can include both annotations
 and the `web.xml` / `web-fragment.xml` deployment descriptors.
@@ -5945,7 +5945,7 @@ configuration to change this encoding or enable more fine-grained
 encoding such as using a different encoding for the path and query
 string portions of the URL. Note that the encoding used to process the
 remainder of the request, after the URL, can be configured as specified
-in <<Request data encoding>>.
+in <<Request Data Encoding>>.
 
 The Web container next must locate the servlet
 to process the request using the path mapping procedure described below.
@@ -8420,7 +8420,7 @@ This annotation allows for more than one
 behavior of this annotation is further detailed in the JAX-WS
 Specification section 7.
 
-==== Contexts and Dependency Injection for Jakarta EE Platform requirements
+==== Contexts and Dependency Injection for Jakarta EE Platform Requirements
 
 In a product that supports Contexts and
 Dependency Injection (CDI) for Jakarta EE Platform and in which CDI is enabled,
@@ -8438,11 +8438,11 @@ Jakarta Servlet 5.0 specification developed under the Jakarta EE Working Group.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
-(see <<Changes since Jakarta Servlet 4.0>>).
+(see <<Changes Since Jakarta Servlet 4.0>>).
 Thus, migrating a Servlet 4.0 project to Servlet 5.0 and above,
 requires the replacement of the namespace `javax.\*` with `jakarta.*`.
 
-=== Changes since Jakarta Servlet 4.0
+=== Changes Since Jakarta Servlet 4.0
 The only major change was a change of namespaces.
 The `javax.\*` namespaces have been replaced with `jakarta.*`.
 
