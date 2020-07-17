@@ -1787,7 +1787,7 @@ to a context is useful for framework developers. For example a framework
 could declare a controller servlet using this method. The return value
 of this method is a `ServletRegistration` or a
 `ServletRegistration.Dynamic` object which further allows you to setup
-the other parameters of the servlet like `init-params`, `url-mappings`
+the other parameters of the servlet like `init-param`, `url-mappings`
 etc. There are three overloaded versions of the method as described
 below.
 
@@ -2741,7 +2741,7 @@ objects that were passed in by the calling servlet or filter.
 ==== Filter Environment
 
 A set of initialization parameters can be
-associated with a filter using the `<init-params>` element in the
+associated with a filter using the `<init-param>` element in the
 deployment descriptor. The names and values of these parameters are
 available to the filter at runtime via the `getInitParameter` and
 `getInitParameterNames` methods on the filter’s `FilterConfig` object.
@@ -2763,7 +2763,7 @@ element, the programmer declares the following:
 
 * `filter-class`: used by the container to identify the filter type
 
-* `init-params`: initialization parameters for a filter
+* `init-param`: initialization parameters for a filter
 
 Optionally, the programmer can specify icons,
 a textual description, and a display name for tool manipulation. The
