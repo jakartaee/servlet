@@ -78,9 +78,9 @@ referenced throughout this specification:
 
 * Jakarta EE Platform, version 9
 
-* Jakarta Server Pages™ ("JSP™"), version 3.0
+* Jakarta Server Pages™ (JSP), version 3.0
 
-* Java Naming and Directory Interface™ ("JNDI").
+* Java Naming and Directory Interface™ (JNDI).
 
 * Jakarta Context and Dependency Injection for the Jakarta EE Platform
 
@@ -148,13 +148,8 @@ Control Protocol for Tea Ef (HTCPCP-TEA)footnote:[This reference is mostly
 tongue-in-cheek although most of the concepts described in the HTCPCP
 -TEA RFC are relevant to all well-designed web servers.]
 
-* RFC 6585 Additional HTTP Status Codes
-
 * RFC 2617 HTTP Authentication: Basic and Digest
 Authentication
-
-* RFC 3986 Uniform Resource Identifier (URI):
-Generic Syntax
 
 * RFC 2119 Key words for use in RFCs to Indicate
 Requirement Levels
@@ -286,7 +281,7 @@ available for the Java platform.
 === Relationship to Jakarta EE Platform
 
 The Jakarta Servlet API v.5.0 is a required API
-of the Jakarta EE Platform, 9 footnote:[Please see the Jakarta EE
+of the Jakarta EE Platform, 9footnote:[Please see the Jakarta EE
 Platform, specification available at
 `https://jakarta.ee/specifications/platform/9/`].
 Servlet containers and servlets deployed into them must meet additional
@@ -1474,9 +1469,9 @@ return the unpacked location.
 === Non Blocking IO
 
 Non-blocking request processing in the web
-Container helps improve the ever increasing demand for improved web
-Container scalability, increase the number of connections that can
-simultaneously be handled by the web Container. Non-blocking IO in the
+container helps improve the ever increasing demand for improved web
+container scalability, increase the number of connections that can
+simultaneously be handled by the web container. Non-blocking IO in the
 Servlet container allows developers to read data as it becomes available
 or write data when possible to do so. Non-blocking IO only works with
 async request processing in Servlets and Filters (as defined in
@@ -2624,7 +2619,7 @@ described in this section.
 The application developer creates a filter by
 implementing the `jakarta.servlet.Filter` interface and providing a public
 constructor taking no arguments. The class is packaged in the web
-Archive along with the static content and servlets that make up the web
+archive along with the static content and servlets that make up the web
 application. A filter is declared using the `<filter>` element in the
 deployment descriptor. A filter or collection of filters can be
 configured for invocation by defining `<filter-mapping>` elements in the
