@@ -363,7 +363,7 @@ it applies to proxies and the Servlet API is targeted at endpoints.
 
 ==== Conditional GET Support
 
-The `HttpServlet` interface defines the
+The `HttpServlet` class defines the
 `getLastModified` method to support conditional `GET` operations. A
 conditional `GET` operation requests a resource be sent only if it has
 been modified since a specified time. In appropriate situations,
