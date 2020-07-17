@@ -14,7 +14,7 @@ endif::[]
 Release: {revdate}
 ....
 
-Copyright (c) 2019. {revyear} Eclipse Foundation.
+Copyright (c) 2019, {revyear} Eclipse Foundation.
 
 === Eclipse Foundation Specification License
 
