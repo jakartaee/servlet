@@ -8086,7 +8086,7 @@ annotation would be used.
 [source,java]
 ----
 @DeclareRoles("BusinessAdmin")
-public class CalculatorServlet {
+public class CalculatorServlet extends HttpServlet {
     ...
 }
 ----
@@ -8155,7 +8155,7 @@ An example:
 [source,java]
 ----
 @EJBs({@EJB(Calculator),@EJB(ShoppingCart)})
-public class ShoppingCartServlet {
+public class ShoppingCartServlet extends HttpServlet {
     ...
 }
 ----
@@ -8334,7 +8334,7 @@ An example:
     @Resource(name="myDB" type=javax.sql.DataSource),
     @Resource(name="myMQ" type=jakarta.jms.ConnectionFactory)
 })
-public class CalculatorServlet {
+public class CalculatorServlet extends HttpServlet {
     ...
 }
 ----
@@ -8360,7 +8360,7 @@ An example:
 [source,java]
 ----
 @RunAs("Admin")
-public class CalculatorServlet {
+public class CalculatorServlet extends HttpServlet {
 
     @EJB private ShoppingCart myCart;
 
