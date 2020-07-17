@@ -5440,7 +5440,7 @@ generates an exception or error that propagates to the container.
 
 If the `sendError` method is called on the
 response, the container consults the list of error page declarations for
-the Web application that use the status-code syntax and attempts a
+the Web application that use the error-code syntax and attempts a
 match. If there is a match, the container returns the resource as
 indicated by the location entry.
 
@@ -5471,7 +5471,7 @@ page declarations, but using the wrapped exception instead.
 Error-page declarations using the
 `exception-type` element in the deployment descriptor must be unique up
 to the class name of the exception-type. Similarly, error-page
-declarations using the `status-code` element must be unique in the
+declarations using the `error-code` element must be unique in the
 deployment descriptor up to the status code.
 
 If an `error-page` element in the deployment
