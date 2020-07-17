@@ -55,7 +55,7 @@ includes the following groups:
 want to provide servlet engines that conform to this standard.
 
 * Authoring tool developers that want to support
-Web applications that conform to this specification.
+web applications that conform to this specification.
 
 * Experienced servlet authors who want to
 understand the underlying mechanisms of servlet technology.
@@ -87,7 +87,7 @@ referenced throughout this specification:
 * Jakarta Managed Beans specification
 
 These specifications may be found at the Jakarta EE
-Platform, Web site: `https://jakarta.ee/specifications/`.
+Platform, web site: `https://jakarta.ee/specifications/`.
 
 === Other Important References
 
@@ -146,7 +146,7 @@ Application-Layer Protocol Negotiation Extension (ALPN)
 * RFC 7168 The Hyper Text Coffee Pot
 Control Protocol for Tea Ef (HTCPCP-TEA)footnote:[This reference is mostly
 tongue-in-cheek although most of the concepts described in the HTCPCP
--TEA RFC are relevant to all well-designed Web servers.]
+-TEA RFC are relevant to all well-designed web servers.]
 
 * RFC 6585 Additional HTTP Status Codes
 
@@ -185,28 +185,28 @@ specification. Please e-mail your comments to
 
 === What is a Servlet?
 
-A servlet is a Jakarta technology-based Web
+A servlet is a Jakarta technology-based web
 component, managed by a container, that generates dynamic content. Like
 other Jakarta technology-based components, servlets are
 platform-independent Java classes that are compiled to platform-neutral
 byte code that can be loaded dynamically into and run by a Jakarta
-technology-enabled Web server. Containers, sometimes called servlet
-engines, are Web server extensions that provide servlet functionality.
-Servlets interact with Web clients via a request/response paradigm
+technology-enabled web server. Containers, sometimes called servlet
+engines, are web server extensions that provide servlet functionality.
+Servlets interact with web clients via a request/response paradigm
 implemented by the servlet container.
 
 === What is a Servlet Container?
 
-The servlet container is a part of a Web
+The servlet container is a part of a web
 server or application server that provides the network services over
 which requests and responses are sent, decodes MIME-based requests, and
 formats MIME-based responses. A servlet container also contains and
 manages servlets through their lifecycle.
 
 A servlet container can be built into a host
-Web server, or installed as an add-on component to a Web Server via that
+web server, or installed as an add-on component to a web server via that
 server’s native extension API. Servlet containers can also be built into
-or possibly installed into Web-enabled application servers.
+or possibly installed into web-enabled application servers.
 
 All servlet containers must support HTTP as a
 protocol for requests and responses, but additional
@@ -236,13 +236,13 @@ underlying Java platform with which servlet containers must be built.
 
 The following is a typical sequence of events:
 
-. A client (e.g., a Web browser) accesses a Web
+. A client (e.g., a web browser) accesses a web
 server and makes an HTTP request.
 
-. The request is received by the Web server and
+. The request is received by the web server and
 handed off to the servlet container. The servlet container can be
-running in the same process as the host Web server, in a different
-process on the same host, or on a different host from the Web server for
+running in the same process as the host web server, in a different
+process on the same host, or on a different host from the web server for
 which it processes requests.
 
 . The servlet container determines which servlet
@@ -258,7 +258,7 @@ response object.
 
 . Once the servlet has finished processing the
 request, the servlet container ensures that the response is properly
-flushed, and returns control back to the host Web server.
+flushed, and returns control back to the host web server.
 
 === Comparing Servlets with Other Technologies
 
@@ -274,7 +274,7 @@ other server extension mechanisms:
 scripts because a different process model is used.
 
 * They use a standard API that is supported by
-many Web servers.
+many web servers.
 
 * They have all the advantages of the Java
 programming language, including ease of development and platform
@@ -313,12 +313,12 @@ The basic `Servlet` interface defines a
 each request that the servlet container routes to an instance of a
 servlet.
 
-The handling of concurrent requests to a Web
-application generally requires that the Web Developer design servlets
+The handling of concurrent requests to a web
+application generally requires that the web Developer design servlets
 that can deal with multiple threads executing within the `service`
 method at a particular time.
 
-Generally the Web container handles concurrent
+Generally the web container handles concurrent
 requests to the same servlet by concurrent execution of the `service`
 method on different threads.
 
@@ -375,7 +375,7 @@ resources.
 The servlet declaration which is either via
 the annotation as described in <<Annotations and Pluggability>> or
 part of the deployment descriptor of
-the Web application containing the servlet, as described in
+the web application containing the servlet, as described in
 <<Deployment Descriptor>>, controls how
 the servlet container provides instances of the servlet.
 
@@ -450,7 +450,7 @@ container initializes the servlet instance by calling the `init` method
 of the `Servlet` interface with a unique (per servlet declaration)
 object implementing the `ServletConfig` interface. This configuration
 object allows the servlet to access name-value initialization parameters
-from the Web application’s configuration information. The configuration
+from the web application’s configuration information. The configuration
 object also gives the servlet access to an object (implementing the
 `ServletContext` interface) that describes the servlet’s runtime
 environment. See <<Servlet Context>>
@@ -473,7 +473,7 @@ period to pass before creating and initializing a new servlet instance.
 ===== Tool Considerations
 
 The triggering of static initialization
-methods when a tool loads and introspects a Web application is to be
+methods when a tool loads and introspects a web application is to be
 distinguished from the calling of the `init` method. Developers should
 not assume a servlet is in an active container runtime until the `init`
 method of the `Servlet` interface is called. For example, a servlet
@@ -510,7 +510,7 @@ for the Developer is to implement the `SingleThreadModel` interface
 which requires the container to guarantee that there is only one request
 thread at a time in the `service` method. A servlet container may
 satisfy this requirement by serializing requests on a servlet, or by
-maintaining a pool of servlet instances. If the servlet is part of a Web
+maintaining a pool of servlet instances. If the servlet is part of a web
 application that has been marked as distributable, the container may
 maintain a pool of servlet instances in each JVM that the application is
 distributed across.
@@ -1370,7 +1370,7 @@ via the request object:
 
 * *Context Path:* The path prefix associated
 with the `ServletContext` that this servlet is a part of. If this
-context is the “default” context rooted at the base of the Web server’s
+context is the “default” context rooted at the base of the web server’s
 URL name space, this path will be an empty string. Otherwise, if the
 context is not rooted at the root of the server’s name space, the path
 starts with a `"/"` character but does not end with a `"/"` character.
@@ -1464,7 +1464,7 @@ computes the real path of the `pathInfo` of the request.
 
 In situations where the servlet container
 cannot determine a valid file path for these methods, such as when the
-Web application is executed from an archive, on a remote file system not
+web application is executed from an archive, on a remote file system not
 accessible locally, or in a database, these methods must return null.
 Resources inside the `META-INF/resources` directory of JAR file must be
 considered only if the container has unpacked them from their containing
@@ -1473,10 +1473,10 @@ return the unpacked location.
 
 === Non Blocking IO
 
-Non-blocking request processing in the Web
-Container helps improve the ever increasing demand for improved Web
+Non-blocking request processing in the web
+Container helps improve the ever increasing demand for improved web
 Container scalability, increase the number of connections that can
-simultaneously be handled by the Web Container. Non-blocking IO in the
+simultaneously be handled by the web Container. Non-blocking IO in the
 Servlet container allows developers to read data as it becomes available
 or write data when possible to do so. Non-blocking IO only works with
 async request processing in Servlets and Filters (as defined in
@@ -1601,7 +1601,7 @@ cookies helps mitigate certain kinds of cross-site scripting attacks.
 
 If a request has been transmitted over a
 secure protocol, such as HTTPS, this information must be exposed via the
-`isSecure` method of the `ServletRequest` interface. The Web container
+`isSecure` method of the `ServletRequest` interface. The web container
 must expose the following attributes to the servlet programmer:
 
 .Protocol Attributes
@@ -1638,7 +1638,7 @@ and so on.
 
 === Internationalization
 
-Clients may optionally indicate to a Web
+Clients may optionally indicate to a web
 server what language they would prefer the response be given in. This
 information can be communicated from the client using the
 `Accept-Language` header along with other mechanisms described in the
@@ -1718,7 +1718,7 @@ In case of upgrade, the above is still true.
 === Introduction to the ServletContext Interface
 
 The `ServletContext` interface defines a
-servlet’s view of the Web application within which the servlet is
+servlet’s view of the web application within which the servlet is
 running. The Container Provider is responsible for providing an
 implementation of the `ServletContext` interface in the servlet
 container. Using the `ServletContext` object, a servlet can log events,
@@ -1726,21 +1726,21 @@ obtain URL references to resources, and set and store attributes that
 other servlets in the context can access.
 
 A `ServletContext` is rooted at a known path
-within a Web server. For example, a servlet context could be located at
+within a web server. For example, a servlet context could be located at
 `\http://example.com/catalog`. All requests that begin with the
 `/catalog` request path, known as the context path, are routed to the
-Web application associated with the `ServletContext`.
+web application associated with the `ServletContext`.
 
 === Scope of a ServletContext Interface
 
 There is one instance object of the
-`ServletContext` interface associated with each Web application deployed
+`ServletContext` interface associated with each web application deployed
 into a container. In cases where the container is distributed over many
-virtual machines, a Web application will have an instance of the
+virtual machines, a web application will have an instance of the
 `ServletContext` for each JVM.
 
 Servlets in a container that were not deployed
-as part of a Web application are implicitly part of a “default” Web
+as part of a web application are implicitly part of a “default” web
 application and have a default `ServletContext`. In a distributed
 container, the default `ServletContext` is non-distributable and must
 only exist in one JVM.
@@ -1749,7 +1749,7 @@ only exist in one JVM.
 
 The following methods of the `ServletContext`
 interface allow the servlet access to context initialization parameters
-associated with a Web application as specified by the Application
+associated with a web application as specified by the Application
 Developer in the deployment descriptor:
 
 * `getInitParameter`
@@ -1758,7 +1758,7 @@ Developer in the deployment descriptor:
 
 Initialization parameters are used by an
 Application Developer to convey setup information. Typical examples are
-a Webmaster’s e-mail address, or the name of a system that holds
+a webmaster’s e-mail address, or the name of a system that holds
 critical data.
 
 === Configuration Methods
@@ -2085,7 +2085,7 @@ null.
 
 A servlet can bind an object attribute into
 the context by name. Any attribute bound into a context is available to
-any other servlet that is part of the same Web application. The
+any other servlet that is part of the same web application. The
 following methods of `ServletContext` interface allow access to this
 functionality:
 
@@ -2111,7 +2111,7 @@ or set in an Jakarta Enterprise Beans component.
 
 The `ServletContext` interface provides direct
 access only to the hierarchy of static content documents that are part
-of the Web application, including HTML, GIF, and JPEG files, via the
+of the web application, including HTML, GIF, and JPEG files, via the
 following methods of the `ServletContext` interface:
 
 * `getResource`
@@ -2131,7 +2131,7 @@ These methods will first search the root of the web application context
 for the requested resource before looking at any of the JAR files in the
 `WEB-INF/lib` directory. The order in which the JAR files in the
 `WEB-INF/lib` directory are scanned is undefined. This hierarchy of
-documents may exist in the server’s file system, in a Web application
+documents may exist in the server’s file system, in a web application
 archive file, on a remote server, or at some other location.
 
 These methods are not used to obtain dynamic
@@ -2143,7 +2143,7 @@ a method call of the form
 processed output. See <<Dispatching Requests>> for more
 information about accessing dynamic content.
 
-The full listing of the resources in the Web
+The full listing of the resources in the web
 application can be accessed using the `getResourcePaths(String path)`
 method. The full details on the semantics of this method may be found in
 the API documentation in this specification.
@@ -2199,7 +2199,7 @@ convenience provided in many servlet engine implementations. The
 container is not required to maintain the contents of the temporary
 directory when the servlet container restarts, but is required to ensure
 that the contents of the temporary directory of one servlet context is
-not visible to the servlet contexts of other Web applications running on
+not visible to the servlet contexts of other web applications running on
 the servlet container.
 
 
@@ -2365,7 +2365,7 @@ upgrade processing (as defined in <<Upgrade Processing>>).
 Otherwise, an `IllegalStateException` must be
 thrown when `ServletInputStream.setReadListener` or
 `ServletOutputStream.setWriteListener` is invoked. To support
-non-blocking writes in the Web container, in addition to the changes
+non-blocking writes in the web container, in addition to the changes
 made in the `ServletRequest` as described in
 <<Non Blocking IO>>,
 the following changes have been made to handle response related classes
@@ -2552,7 +2552,7 @@ request into a resource and the response from a resource
 
 The Jakarta Servlet API classes and methods that
 provide a lightweight framework for filtering active and static content.
-It describes how filters are configured in a Web application, and
+It describes how filters are configured in a web application, and
 conventions and semantics for their implementation.
 
 API documentation for servlet filters is
@@ -2571,7 +2571,7 @@ resource, and modify or adapt responses from a resource.
 
 Filters can act on dynamic or static content.
 For the purposes of this chapter, dynamic and static content are
-referred to as Web resources.
+referred to as web resources.
 
 Among the types of functionality available to
 the developer needing to use filters are the following:
@@ -2623,8 +2623,8 @@ described in this section.
 
 The application developer creates a filter by
 implementing the `jakarta.servlet.Filter` interface and providing a public
-constructor taking no arguments. The class is packaged in the Web
-Archive along with the static content and servlets that make up the Web
+constructor taking no arguments. The class is packaged in the web
+Archive along with the static content and servlets that make up the web
 application. A filter is declared using the `<filter>` element in the
 deployment descriptor. A filter or collection of filters can be
 configured for invocation by defining `<filter-mapping>` elements in the
@@ -2634,10 +2634,10 @@ and static content resources by mapping a filter to a URL pattern.
 
 ==== Filter Lifecycle
 
-After deployment of the Web application, and
-before a request causes the container to access a Web resource, the
+After deployment of the web application, and
+before a request causes the container to access a web resource, the
 container must locate the list of filters that must be applied to the
-Web resource as described below. The container must ensure that it has
+web resource as described below. The container must ensure that it has
 instantiated a filter of the appropriate class for each filter in the
 list, and called its `init(FilterConfig config)` method. The filter may
 throw an exception to indicate that it cannot function properly. If the
@@ -2648,7 +2648,7 @@ filter at some later time.
 Only one instance per `<filter>` declaration
 in the deployment descriptor is instantiated per JVM of the container.
 The container provides the filter `config` as declared in the filter’s
-deployment descriptor, the reference to the `ServletContext` for the Web
+deployment descriptor, the reference to the `ServletContext` for the web
 application, and the set of initialization parameters.
 
 When the container receives an incoming
@@ -2674,7 +2674,7 @@ data.
 . The filter may invoke the next entity in the
 filter chain. The next entity may be another filter, or if the filter
 making the invocation is the last filter configured in the deployment
-descriptor for this chain, the next entity is the target Web resource.
+descriptor for this chain, the next entity is the target web resource.
 The invocation of the next entity is effected by calling the `doFilter`
 method on the `FilterChain` object, and passing in the request and
 response with which it was called or passing in wrapped versions it may
@@ -2746,7 +2746,7 @@ deployment descriptor. The names and values of these parameters are
 available to the filter at runtime via the `getInitParameter` and
 `getInitParameterNames` methods on the filter’s `FilterConfig` object.
 Additionally, the `FilterConfig` affords access to the `ServletContext`
-of the Web application for the loading of resources, for logging
+of the web application for the loading of resources, for logging
 functionality, and for storage of state in the `ServletContext`’s
 attribute list. A Filter and the target servlet or resource at the end
 of the filter chain must execute in the same invocation thread.
@@ -2785,7 +2785,7 @@ Here is an example of a filter declaration:
 
 Once a filter has been declared in the
 deployment descriptor, the assembler uses the `<filter-mapping>` element
-to define servlets and static resources in the Web application to which
+to define servlets and static resources in the web application to which
 the filter is to be applied. Filters can be associated with a servlet
 using the `<servlet-name>` element. For example, the following code
 example maps the Image Filter filter to the `ImageServlet` servlet:
@@ -2812,7 +2812,7 @@ mapping:
 ----
 
 Here the Logging Filter is applied to all the
-servlets and static content pages in the Web application, because every
+servlets and static content pages in the web application, because every
 request URI matches the `/*` URL pattern.
 
 When processing a `<filter-mapping>` element
@@ -2878,15 +2878,15 @@ The requirement about the order of the filter
 chain means that the container, when receiving an incoming request,
 processes the request as follows:
 
-* Identifies the target Web resource according
+* Identifies the target web resource according
 to the rules of <<Specification of Mappings>>.
 
 * If there are filters matched by servlet name
-and the Web resource has a `<servlet-name>`, the container builds the
+and the web resource has a `<servlet-name>`, the container builds the
 chain of filters matching in the order declared in the deployment
 descriptor. The last filter in this chain corresponds to the last
 `<servlet-name>` matching filter and is the filter that invokes the
-target Web resource.
+target web resource.
 
 * If there are filters using `<url-pattern>`
 matching and the `<url-pattern>` matches the request URI according to
@@ -2896,10 +2896,10 @@ filters in the same order as declared in the deployment descriptor. The
 last filter in this chain is the last `<url-pattern>` matching filter in
 the deployment descriptor for this request URI. The last filter in this
 chain is the filter that invokes the first filter in the
-`<servlet-name>` matching chain, or invokes the target Web resource if
+`<servlet-name>` matching chain, or invokes the target web resource if
 there are none.
 
-It is expected that high performance Web
+It is expected that high performance web
 containers will cache filter chains so that they do not need to compute
 them on a per-request basis.
 
@@ -2918,14 +2918,14 @@ This is indicated by a `<dispatcher>` element
 with value `REQUEST`, or by the absence of any `<dispatcher>` elements.
 
 . The request is being processed under a request
-dispatcher representing the Web component matching the `<url-pattern>`
+dispatcher representing the web component matching the `<url-pattern>`
 or `<servlet-name>` using a `forward()` call.
 +
 This is indicated by a `<dispatcher>` element
 with value `FORWARD`.
 
 . The request is being processed under a request
-dispatcher representing the Web component matching the `<url-pattern>`
+dispatcher representing the web component matching the `<url-pattern>`
 or `<servlet-name>` using an `include()` call.
 +
 This is indicated by a `<dispatcher>` element
@@ -3016,7 +3016,7 @@ request dispatchers obtained by name or by path.
 
 
 The Hypertext Transfer Protocol (HTTP) is by
-design a stateless protocol. To build effective Web applications, it is
+design a stateless protocol. To build effective web applications, it is
 imperative that requests from a particular client be associated with
 each other. Many strategies for session tracking have evolved over time,
 but all are difficult or troublesome for the programmer to use directly.
@@ -3087,7 +3087,7 @@ cookies or SSL sessions are supported and suitable.
 
 Web containers must be able to support the
 HTTP session while servicing HTTP requests from clients that do not
-support the use of cookies. To fulfill this requirement, Web containers
+support the use of cookies. To fulfill this requirement, web containers
 commonly support the URL rewriting mechanism.
 
 === Creating a Session
@@ -3133,7 +3133,7 @@ in that object, must never be shared between contexts by the container.
 
 To illustrate this requirement with an
 example: if a servlet uses the `RequestDispatcher` to call a servlet in
-another Web application, any sessions created for and visible to the
+another web application, any sessions created for and visible to the
 servlet being called must be different from those visible to the calling
 servlet.
 
@@ -3276,7 +3276,7 @@ states using an enterprise bean or a database.
 ==== Client Semantics
 
 Due to the fact that cookies or SSL
-certificates are typically controlled by the Web browser process and are
+certificates are typically controlled by the web browser process and are
 not associated with any particular window of the browser, requests from
 all windows of a client application to a servlet container might be part
 of the same session. For maximum portability, the Developer should
@@ -3339,7 +3339,7 @@ to annotations for EJBs.
 
 The following are the annotations in
 jakarta.servlet. All of these have corresponding deployment descriptor
-metadata covered by the Web xsd.
+metadata covered by the web xsd.
 
 From `jakarta.servlet.annotation`:
 
@@ -4819,7 +4819,7 @@ fragments.
 == Dispatching Requests
 
 
-When building a Web application, it is often
+When building a web application, it is often
 useful to forward processing of a request to another servlet, or to
 include the output of another servlet in the response. The
 `RequestDispatcher` interface provides a mechanism to accomplish this.
@@ -5124,41 +5124,41 @@ called.
 == Web Applications
 
 
-A Web application is a collection of servlets,
+A web application is a collection of servlets,
 HTML pages, classes, and other resources that make up a complete
-application on a Web server. The Web application can be bundled and run
+application on a web server. The web application can be bundled and run
 on multiple containers from multiple vendors.
 
 === Web Applications Within Web Servers
 
-A Web application is rooted at a specific path
-within a Web server. For example, a catalog application could be located
+A web application is rooted at a specific path
+within a web server. For example, a catalog application could be located
 at `\http://www.example.com/catalog`. All requests that start with this
 prefix will be routed to the `ServletContext` which represents the
 catalog application.
 
 A servlet container can establish rules for
-automatic generation of Web applications. For example a `/~user/` mapping
-could be used to map to a Web application based at
+automatic generation of web applications. For example a `/~user/` mapping
+could be used to map to a web application based at
 `/home/user/public_html/`.
 
-By default, an instance of a Web application
+By default, an instance of a web application
 must run on one VM at any one time. This behavior can be overridden if
 the application is marked as “distributable” via its deployment
 descriptor. An application marked as distributable must obey a more
-restrictive set of rules than is required of a normal Web application.
+restrictive set of rules than is required of a normal web application.
 These rules are set out throughout this specification.
 
 === Relationship to ServletContext
 
 The servlet container must enforce a one to
-one correspondence between a Web application and a `ServletContext`. A
+one correspondence between a web application and a `ServletContext`. A
 `ServletContext` object provides a servlet with its view of the
 application.
 
 === Elements of a Web Application
 
-A Web application may consist of the following
+A web application may consist of the following
 items:
 
 * Servlets
@@ -5179,11 +5179,11 @@ structure as a runtime representation.
 
 === Directory Structure
 
-A Web application exists as a structured
+A web application exists as a structured
 hierarchy of directories. The root of this hierarchy serves as the
 document root for files that are part of the application. For example,
-for a Web application with the context path `/catalog` in a Web
-container, the `index.html` file at the base of the Web application
+for a web application with the context path `/catalog` in a web
+container, the `index.html` file at the base of the web application
 hierarchy or in a JAR file inside WEB-INF/lib that includes the
 `index.html` under `META-INF/resources` directory can be served to
 satisfy a request from `/catalog/index.html`. If an `index.html` is
@@ -5193,10 +5193,10 @@ application, then the file that is available in the root context MUST be
 used. The rules for matching URLs to context path are laid out in
 <<Mapping Requests to Servlets>>. Since
 the context path of an application determines the URL namespace of the
-contents of the Web application, Web containers must reject Web
+contents of the web application, web containers must reject web
 applications defining a context path that could cause potential
 conflicts in this URL namespace. This may occur, for example, by
-attempting to deploy a second Web application with the same context
+attempting to deploy a second web application with the same context
 path. Since requests are matched to resources in a case-sensitive
 manner, this determination of potential conflict must be performed in a
 case-sensitive manner as well.
@@ -5214,10 +5214,10 @@ using the `getResource` and `getResourceAsStream` method calls on the
 `ServletContext`, and may be exposed using the `RequestDispatcher`
 calls. Hence, if the Application Developer needs access, from servlet
 code, to application specific configuration information that he does not
-wish to be exposed directly to the Web client, he may place it under
+wish to be exposed directly to the web client, he may place it under
 this directory. Since requests are matched to resource mappings in a
 case-sensitive manner, client requests for `/WEB-INF/foo`,
-`/WEb-iNf/foo`, for example, should not result in contents of the Web
+`/WEb-iNf/foo`, for example, should not result in contents of the web
 application located under `/WEB-INF` being returned, nor any form of
 directory listing thereof.
 
@@ -5231,11 +5231,11 @@ available to the application class loader.
 
 * The `/WEB-INF/lib/*.jar` area for Java
 ARchive files. These files contain servlets, beans, static resources and
-JSPs packaged in a JAR file and other utility classes useful to the Web
-application. The Web application class loader must be able to load
+JSPs packaged in a JAR file and other utility classes useful to the web
+application. The web application class loader must be able to load
 classes from any of these archive files.
 
-The Web application class loader must load
+The web application class loader must load
 classes from the `WEB-INF/classes` directory first, and then from
 library JARs in the `WEB-INF/lib` directory. Also, except for the case
 where static resources are packaged in JAR files, any requests from the
@@ -5245,7 +5245,7 @@ with a `SC_NOT_FOUND` (404) response.
 ==== Example of Application Directory Structure
 
 The following is a listing of all the files in
-a sample Web application:
+a sample web application:
 
 [source]
 ----
@@ -5271,7 +5271,7 @@ distributed in an archive file called `issuetrack.war`.
 When packaged into such a form, a `META-INF`
 directory will be present which contains information useful to Java
 archive tools. This directory must not be directly served as content by
-the container in response to a Web client’s request, though its contents
+the container in response to a web client’s request, though its contents
 are visible to servlet code via the `getResource` and
 `getResourceAsStream` calls on the `ServletContext`. Also, any requests
 to access the resources in `META-INF` directory must be returned with a
@@ -5279,7 +5279,7 @@ to access the resources in `META-INF` directory must be returned with a
 
 === Web Application Deployment Descriptor
 
-The Web application deployment descriptor (see
+The web application deployment descriptor (see
 <<Deployment Descriptor>>) includes
 the following types of configuration and deployment information:
 
@@ -5306,16 +5306,16 @@ same code or resources, they will typically be installed as library
 files in the container. These files are often common or standard APIs
 that can be used without sacrificing portability. Files used only by one
 or a few applications will be made available for access as part of the
-Web application. The container must provide a directory for these
+web application. The container must provide a directory for these
 libraries. The files placed within this directory must be available
-across all Web applications. The location of this directory is
+across all web applications. The location of this directory is
 container-specific. The class loader the servlet container uses for
-loading these library files must be the same for all Web applications
+loading these library files must be the same for all web applications
 within the same JVM. This class loader instance must be somewhere in the
-chain of parent class loaders of the Web application class loader.
+chain of parent class loaders of the web application class loader.
 
 Application developers need to know what
-extensions are installed on a Web container, and containers need to know
+extensions are installed on a web container, and containers need to know
 what dependencies servlets in a WAR have on such libraries in order to
 preserve portability.
 
@@ -5323,7 +5323,7 @@ The application developer depending on such an
 extension or extensions must provide a `META-INF/MANIFEST.MF` entry in
 the WAR file listing all extensions needed by the WAR. The format of the
 manifest entry should follow standard JAR manifest format. During
-deployment of the Web application, the Web container must make the
+deployment of the web application, the web container must make the
 correct versions of the extensions available to the application
 following the rules defined by the Optional Package Versioning mechanism
 (`http://docs.oracle.com/javase/8/docs/technotes/guides/extensions/versioning.html`).
@@ -5332,7 +5332,7 @@ Web containers must also be able to recognize
 declared dependencies expressed in the manifest entry of any of the
 library JARs under the `WEB-INF/lib` entry in a WAR.
 
-If a Web container is not able to satisfy the
+If a web container is not able to satisfy the
 dependencies declared in this manner, it should reject the application
 with an informative error message.
 
@@ -5373,7 +5373,7 @@ for preserving session data within that application.
 
 ==== Request Attributes
 
-A Web application must be able to specify that
+A web application must be able to specify that
 when errors occur, other resources in the application are used to
 provide the content body of the error response. The specification of
 these resources is done in the deployment descriptor.
@@ -5431,7 +5431,7 @@ retained for backwards compatibility with earlier versions of the API.
 ==== Error Pages
 
 To allow developers to customize the
-appearance of content returned to a Web client when a servlet generates
+appearance of content returned to a web client when a servlet generates
 an error, the deployment descriptor defines a list of error page
 descriptions. The syntax allows the configuration of resources to be
 returned by the container either when a servlet or filter calls
@@ -5440,7 +5440,7 @@ generates an exception or error that propagates to the container.
 
 If the `sendError` method is called on the
 response, the container consults the list of error page declarations for
-the Web application that use the error-code syntax and attempts a
+the web application that use the error-code syntax and attempts a
 match. If there is a match, the container returns the resource as
 indicated by the location entry.
 
@@ -5453,7 +5453,7 @@ exceptions during processing of a request:
 
 * `IOExceptions` or subclasses thereof
 
-The Web application may have declared error
+The web application may have declared error
 pages using the `exception-type` element. In this case the container
 matches the exception type by comparing the exception thrown with the
 list of error-page definitions that use the `exception-type` element. A
@@ -5513,14 +5513,14 @@ is generated.
 === Welcome Files
 
 Web Application developers can define an
-ordered list of partial URIs called welcome files in the Web application
+ordered list of partial URIs called welcome files in the web application
 deployment descriptor. The deployment descriptor syntax for the list is
-described in the Web application deployment descriptor schema.
+described in the web application deployment descriptor schema.
 
 The purpose of this mechanism is to allow the
 deployer to specify an ordered list of partial URIs for the container to
 use for appending to URIs when there is a request for a URI that
-corresponds to a directory entry in the WAR not mapped to a Web
+corresponds to a directory entry in the WAR not mapped to a web
 component. This kind of request is known as a valid partial request.
 
 The use for this facility is made clear by the
@@ -5530,16 +5530,16 @@ where `directory` is an entry in the WAR that is not mapped to a
 servlet or JSP page, is returned to the client as
 `host:port/webapp/directory/index.html`.
 
-If a Web container receives a valid partial
-request, the Web container must examine the welcome file list defined in
+If a web container receives a valid partial
+request, the web container must examine the welcome file list defined in
 the deployment descriptor. The welcome file list is an ordered list of
-partial URLs with no trailing or leading /. The Web server must append
+partial URLs with no trailing or leading /. The web server must append
 each welcome file in the order specified in the deployment descriptor to
 the partial request and check whether a static resource in the WAR is
-mapped to that request URI. If no match is found, the Web server MUST
+mapped to that request URI. If no match is found, the web server MUST
 again append each welcome file in the order specified in the deployment
 descriptor to the partial request and check if a servlet is mapped to
-that request URI. The Web container must send the request to the first
+that request URI. The web container must send the request to the first
 resource in the WAR that matches. The container may send the request to
 the welcome resource with a forward, a redirect, or a container specific
 mechanism that is indistinguishable from a direct request.
@@ -5549,7 +5549,7 @@ manner described, the container may handle the request in a manner it
 finds suitable. For some configurations this may mean returning a
 directory listing or for others returning a `404` response.
 
-Consider a Web application where:
+Consider a web application where:
 
 * The deployment descriptor lists the following
 welcome files.
@@ -5656,18 +5656,18 @@ require a web.xml to be present.
 
 === Introduction
 
-The application events facility gives the Web
+The application events facility gives the web
 Application Developer greater control over the lifecycle of the
 `ServletContext` and `HttpSession` and `ServletRequest`, allows for
 better code factorization, and increases efficiency in managing the
-resources that the Web application uses.
+resources that the web application uses.
 
 === Event Listeners
 
 Application event listeners are classes that
 implement one or more of the servlet event listener interfaces. They are
-instantiated and registered in the Web container at the time of the
-deployment of the Web application. They are provided by the Developer in
+instantiated and registered in the web container at the time of the
+deployment of the web application. They are provided by the Developer in
 the WAR.
 
 Servlet event listeners support event
@@ -5675,7 +5675,7 @@ notifications for state changes in the `ServletContext`, `HttpSession`
 and `ServletRequest` objects. Servlet context listeners are used to
 manage resources or state held at a JVM level for the application. HTTP
 session listeners are used to manage state or resources associated with
-a series of requests made into a Web application from the same client or
+a series of requests made into a web application from the same client or
 user. Servlet request listeners are used to manage state across the
 lifecycle of servlet requests. Async listeners are used to manage async
 events such as time outs and completion of async processing.
@@ -5755,7 +5755,7 @@ replaced on an `HttpSession`.
 |Listener Interface
 
 |Lifecycle
-|A servlet request has started being processed by Web components.
+|A servlet request has started being processed by web components.
 |`jakarta.servlet.ServletRequestListener`
 
 |Changes to attributes
@@ -5774,7 +5774,7 @@ reference.
 ==== An Example of Listener Use
 
 To illustrate a use of the event scheme,
-consider a simple Web application containing a number of servlets that
+consider a simple web application containing a number of servlets that
 make use of a database. The Developer has provided a servlet context
 listener class for management of the database connection.
 
@@ -5783,17 +5783,17 @@ class is notified. The application logs on to the database, and stores
 the connection in the servlet context.
 
 . Servlets in the application access the
-connection as needed during activity in the Web application.
+connection as needed during activity in the web application.
 
-. When the Web server is shut down, or the
-application is removed from the Web server, the listener class is
+. When the web server is shut down, or the
+application is removed from the web server, the listener class is
 notified and the database connection is closed.
 
 === Listener Class Configuration
 
 ==== Provision of Listener Classes
 
-The Developer of the Web application provides
+The Developer of the web application provides
 listener classes implementing one or more of the listener interfaces in
 the `jakarta.servlet` API. Each listener class must have a public
 constructor taking no arguments. The listener classes are packaged into
@@ -5802,7 +5802,7 @@ JAR in the `WEB-INF/lib` directory.
 
 ==== Deployment Declarations
 
-Listener classes are declared in the Web
+Listener classes are declared in the web
 application deployment descriptor using the `listener` element. They are
 listed by class name in the order in which they are to be invoked.
 Unlike other listeners, listeners of type `AsyncListener` may only be
@@ -5810,9 +5810,9 @@ registered (with a `ServletRequest`) programmatically.
 
 ==== Listener Registration
 
-The Web container creates an instance of each
+The web container creates an instance of each
 listener class and registers it for event notifications prior to the
-processing of the first request by the application. The Web container
+processing of the first request by the application. The web container
 registers the listener instances according to the interfaces they
 implement and the order in which they appear in the deployment
 descriptor. During web application execution, listeners for the given
@@ -5866,10 +5866,10 @@ deployment descriptor for this application:
 === Listener Instances and Threading
 
 The container is required to complete
-instantiation of the listener classes in a Web application prior to the
+instantiation of the listener classes in a web application prior to the
 start of execution of the first request into the application. The
 container must maintain a reference to each listener instance until the
-last request is serviced for the Web application.
+last request is serviced for the web application.
 
 Attribute changes to `ServletContext` and
 `HttpSession` objects may occur concurrently. The container is not
@@ -5899,7 +5899,7 @@ context initialization, or of a `ServletRequestListener` that throws an
 unhandled exception during a notification of the initialization or the
 destruction of the request object. In this case, the Developer has no
 opportunity to handle the exception. The container may respond to all
-subsequent requests to the Web application with an HTTP status code 500
+subsequent requests to the web application with an HTTP status code 500
 to indicate an application error.
 
 Developers wishing normal processing to occur
@@ -5908,9 +5908,9 @@ within the notification methods.
 
 === Distributed Containers
 
-In distributed Web containers, `HttpSession`
+In distributed web containers, `HttpSession`
 instances are scoped to the particular JVM servicing session requests,
-and the `ServletContext` object is scoped to the Web container’s JVM.
+and the `ServletContext` object is scoped to the web container’s JVM.
 Distributed containers are not required to propagate either servlet
 context events or `HttpSession` events to other JVMs. Listener class
 instances are scoped to one per deployment descriptor declaration per
@@ -5919,9 +5919,9 @@ JVM.
 === Session Events
 
 Listener classes provide the Developer with a
-way of tracking sessions within a Web application. It is often useful in
+way of tracking sessions within a web application. It is often useful in
 tracking sessions to know whether a session became invalid because the
-container timed out the session, or because a Web component within the
+container timed out the session, or because a web component within the
 application called the `invalidate` method. The distinction may be
 determined indirectly using listeners and the `HttpSession` API methods.
 
@@ -5930,13 +5930,13 @@ determined indirectly using listeners and the `HttpSession` API methods.
 
 
 The mapping techniques described in
-this chapter are required for Web containers mapping client requests to
+this chapter are required for web containers mapping client requests to
 servlets.
 
 === Use of URL Paths
 
-Upon receipt of a client request, the Web
-container determines the Web application to which to forward it. The Web
+Upon receipt of a client request, the web
+container determines the web application to which to forward it. The web
 application selected must have the longest context path that matches the
 start of the request URL. The matched part of the URL is the context
 path when mapping to servlets. The request URL is decoded as a UTF-8
@@ -5947,7 +5947,7 @@ string portions of the URL. Note that the encoding used to process the
 remainder of the request, after the URL, can be configured as specified
 in <<Request Data Encoding>>.
 
-The Web container next must locate the servlet
+The web container next must locate the servlet
 to process the request using the path mapping procedure described below.
 
 The path used for mapping to a servlet is the
@@ -5980,7 +5980,7 @@ comparisons for matching.
 
 === Specification of Mappings
 
-In the Web application deployment descriptor,
+In the web application deployment descriptor,
 the following syntax is used to define mappings:
 
 * A string beginning with a `"/"`
@@ -6012,7 +6012,7 @@ that are mapped to multiple servlets then the deployment must fail.
 If the container has an internal JSP
 container, the `\*.jsp` extension is mapped to it, allowing JSP pages to
 be executed on demand. This mapping is termed an _implicit_ mapping. If
-a `*.jsp` mapping is defined by the Web application, its mapping takes
+a `*.jsp` mapping is defined by the web application, its mapping takes
 precedence over the implicit mapping.
 
 A servlet container is allowed to make other
@@ -7464,9 +7464,9 @@ loss of session information.
 
 
 This chapter specifies the Jakarta Servlet
-Specification requirements for Web container support of deployment
+Specification requirements for web container support of deployment
 descriptors. The deployment descriptor conveys the elements and
-configuration information of a Web application between Application
+configuration information of a web application between Application
 Developers, Application Assemblers, and Deployers.
 
 For Servlet 5.0, the deployment descriptor is defined in terms of an XML schema document.
@@ -7480,7 +7480,7 @@ please visit `https://jakarta.ee/xml/ns/jakartaee/`.
 === Deployment Descriptor Elements
 
 The following types of configuration and
-deployment information are required to be supported in the Web
+deployment information are required to be supported in the web
 application deployment descriptor for all servlet containers:
 
 * `ServletContext` Init Parameters
@@ -7499,9 +7499,9 @@ application deployment descriptor for all servlet containers:
 
 === Rules for Processing the Deployment Descriptor
 
-This section lists some general rules that Web
+This section lists some general rules that web
 containers and developers must note concerning the processing of the
-deployment descriptor for a Web application.
+deployment descriptor for a web application.
 
 * Web containers must remove all leading and
 trailing whitespace, which is defined as `S(white space)` in XML 1.0
@@ -7509,18 +7509,18 @@ trailing whitespace, which is defined as `S(white space)` in XML 1.0
 content of the text nodes of a deployment descriptor.
 
 * The deployment descriptor must be valid
-against the schema. Web containers and tools that manipulate Web
+against the schema. Web containers and tools that manipulate web
 applications have a wide range of options for checking the validity of a
 WAR. This includes checking the validity of the deployment descriptor
 document held within.
 +
-Additionally, it is recommended that Web
-containers and tools that manipulate Web applications provide a level of
+Additionally, it is recommended that web
+containers and tools that manipulate web applications provide a level of
 semantic checking. For example, it should be checked that a role
 referenced in a security constraint has the same name as one of the
 security roles defined in the deployment descriptor.
 +
-In cases of non-conformant Web applications,
+In cases of non-conformant web applications,
 tools and containers should inform the developer with descriptive error
 messages. High-end application server vendors are encouraged to supply
 this kind of validity checking in the form of a tool separate from the
@@ -7719,7 +7719,7 @@ without explicit knowledge of how the external information is named or
 organized.
 
 As servlets are an integral component type of
-Jakarta technology, provision has been made in the Web application
+Jakarta technology, provision has been made in the web application
 deployment descriptor for specifying information allowing a servlet to
 obtain references to resources and enterprise beans. The deployment
 elements that contain this information are:
@@ -7735,8 +7735,8 @@ elements that contain this information are:
 * `persistence-unit-ref`
 
 The developer uses these elements to describe
-certain objects that the Web application requires to be registered in
-the JNDI namespace in the Web container at runtime.
+certain objects that the web application requires to be registered in
+the JNDI namespace in the web container at runtime.
 
 The requirements of the Jakarta environment
 with regard to setting up the environment are described in Chapter 5 of
@@ -7870,12 +7870,12 @@ is available for download at `https://jakarta.ee/specifications/authentication/`
 This section details the deployment
 descriptor, packaging and deployment descriptor processing requirements
 of a Jakarta EE Platform technology compliant container and products that include
-support for JSP and or Web Services.
+support for JSP and or web services.
 
 ==== Deployment Descriptor Elements
 
 The following additional elements exist in the
-Web application deployment descriptor to meet the requirements of Web
+web application deployment descriptor to meet the requirements of web
 containers that are JSP pages enabled or part of a Jakarta application
 server. They are not required to be supported by containers wishing to
 support only the servlet specification:
@@ -7883,7 +7883,7 @@ support only the servlet specification:
 * `jsp-config`
 * Syntax for declaring resource references (`env-entry`, `ejb-ref`, `ejb-local-ref`, `resource-ref`, `resource-env-ref`)
 * Syntax for specifying the message destination(`message-destination`, `message-destination-ref`)
-* Reference to a Web service (`service-ref`)
+* Reference to a web service (`service-ref`)
 * Reference to a Persistence context (`persistence-context-ref`)
 * Reference to a Persistence Unit (`persistence-unit-ref`)
 
@@ -7894,7 +7894,7 @@ and the Jakarta EE Platform specification.
 ==== Packaging and Deployment of JAX-WS Components
 
 Web containers may choose to support running
-components written to implement a Web service endpoint as defined by the
+components written to implement a web service endpoint as defined by the
 JAX-RPC and/or JAX-WS specifications. Web containers embedded in a Jakarta
 conformant implementation are required to support JAX-RPC and JAX-WS
 web service components. This section describes the packaging and
@@ -7902,18 +7902,18 @@ deployment model for web containers when included in a product which
 also supports JAX-RPC and JAX-WS.
 
 Jakarta Enterprise Web Services specification `https://jakarta.ee/specifications/enterprise-ws/`
-defines the model for packaging a Web service interface with its
+defines the model for packaging a web service interface with its
 associated WSDL description and associated classes. It defines a
-mechanism for JAX-WS and JAX-RPC enabled Web containers to link to a
-component that implements this Web service. A JAX-WS or JAX-RPC Web
+mechanism for JAX-WS and JAX-RPC enabled web containers to link to a
+component that implements this web service. A JAX-WS or JAX-RPC web
 service implementation component uses the APIs defined by the JAX-WS
 and/or JAX-RPC specifications, which defines its contract with the
-JAX-WS and/or JAX-RPC enabled Web containers. It is packaged into the
-WAR file. The Web service developer makes a declaration of this
+JAX-WS and/or JAX-RPC enabled web containers. It is packaged into the
+WAR file. The web service developer makes a declaration of this
 component using the usual `<servlet>` declaration.
 
-JAX-WS and JAX-RPC enabled Web containers must
-support the developer in using the Web deployment descriptor to define
+JAX-WS and JAX-RPC enabled web containers must
+support the developer in using the web deployment descriptor to define
 the following information for the endpoint implementation component,
 using the same syntax as for HTTP Servlet components using the `servlet`
 element. The child elements are used to specify endpoint information in
@@ -7921,7 +7921,7 @@ the following way:
 
 * the `servlet-name` element defines a logical
 name which may be used to locate this endpoint description among the
-other Web components in the WAR
+other web components in the WAR
 
 * the `servlet-class` element provides the fully
 qualified Java class name of this endpoint implementation
@@ -7930,8 +7930,8 @@ qualified Java class name of this endpoint implementation
 describe the component and may be displayed in a tool
 
 * the `load-on-startup` element specifies the
-order in which the component is initialized relative to other Web
-components in the Web container
+order in which the component is initialized relative to other web
+components in the web container
 
 * the `security-role-ref` element may be used to
 test whether the authenticated user is in a logical security role
@@ -7940,15 +7940,15 @@ test whether the authenticated user is in a logical security role
 the identity propagated to EJBs called by this component
 
 Any servlet initialization parameters defined
-by the developer for this Web component may be ignored by the container.
-Additionally, the JAX-WS and JAX-RPC enabled Web component inherits the
-traditional Web component mechanisms for defining the following
+by the developer for this web component may be ignored by the container.
+Additionally, the JAX-WS and JAX-RPC enabled web component inherits the
+traditional web component mechanisms for defining the following
 information:
 
-* mapping of the component to the Web
+* mapping of the component to the web
 container’s URL namespace using the servlet mapping technique
 
-* authorization constraints on Web components
+* authorization constraints on web components
 using security constraints
 
 * the ability to use servlet filters to provide
