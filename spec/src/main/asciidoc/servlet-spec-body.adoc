@@ -339,7 +339,7 @@ to aid in processing HTTP-based requests. These methods are:
 * `doTrace` for handling HTTP `TRACE` requests
 
 Typically when developing HTTP-based servlets,
-a Servlet Developer will only concern himself with the `doGet` and
+a Servlet Developer is concerned with the `doGet` and
 `doPost` methods. The other methods are considered to be methods for use
 by programmers very familiar with HTTP programming.
 
@@ -2905,7 +2905,7 @@ invoked under request dispatcher `forward()` and `include()` calls.
 
 By using the `<dispatcher>` element in the
 deployment descriptor, the developer can indicate for a filter-mapping
-whether he would like the filter to be applied to requests when:
+whether the filter should be applied to requests when:
 
 . The request comes directly from the client.
 +
@@ -3107,7 +3107,7 @@ These conditions define the situation where
 the servlet container has no mechanism by which to associate a request
 with a previous request.
 
-A Servlet Developer must design his
+A Servlet Developer must design the
 application to handle a situation where a client has not, can not, or
 will not join a session.
 
@@ -5208,8 +5208,8 @@ the contents of the `WEB-INF` directory are visible to servlet code
 using the `getResource` and `getResourceAsStream` method calls on the
 `ServletContext`, and may be exposed using the `RequestDispatcher`
 calls. Hence, if the Application Developer needs access, from servlet
-code, to application specific configuration information that he does not
-wish to be exposed directly to the web client, he may place it under
+code, to application specific configuration information that should not
+be exposed directly to the web client, it may be placed under
 this directory. Since requests are matched to resource mappings in a
 case-sensitive manner, client requests for `/WEB-INF/foo`,
 `/WEb-iNf/foo`, for example, should not result in contents of the web
@@ -8472,7 +8472,7 @@ archive files or other directory structures provided by an Application
 Developer and deploys the application into a specific operational
 environment. The operational environment includes a specific servlet
 container and web server. The Deployer must resolve all the external
-dependencies declared by the developer. To perform his role, the
+dependencies declared by the developer. To perform this role, the
 deployer uses tools provided by the Servlet Container Provider.
 +
 The Deployer is an expert in a specific
