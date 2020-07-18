@@ -5044,9 +5044,9 @@ with a `"/"`.
 `dispatch(servletContext, path)`::
 
 The `dispatch` method takes a `String`
-argument describing a path within the scope of the _ServletContext
-specified_ . This path must be relative to the root of the
-`ServletContext specified` and begin with a `"/"`.
+argument describing a path within the scope of the `ServletContext`
+specified. This path must be relative to the root of the
+`ServletContext` specified and begin with a `"/"`.
 
 `dispatch()`::
 
