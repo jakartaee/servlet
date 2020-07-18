@@ -3290,7 +3290,7 @@ jar file located in `WEB-INF/lib` within the application.
 
 The web application deployment descriptor
 contains a `metadata-complete` attribute on the `web-app` element.
-This attribute defines whether this deployment descriptor and any web
+This attribute defines whether this deployment descriptor and associated web
 fragments, if any, are complete, or whether the class files available to
 this module and packaged with this application should be examined for
 annotations that specify deployment information. Deployment information,
@@ -3464,9 +3464,7 @@ annotation would be used.
 ----
 @WebServlet("/foo")
 public class CalculatorServlet extends HttpServlet{
-
-    //...
-
+    ...
 }
 ----
 
@@ -3481,9 +3479,8 @@ annotation would be used with some more of the attributes specified.
 public class SampleUsingAnnotationAttributes extends HttpServlet{
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
-
+        ...
     }
-
 }
 ----
 
@@ -3555,7 +3552,6 @@ An example:
 public class MyListener implements ServletContextListener{
 
     public void contextInitialized(ServletContextEvent sce) {
-
         ServletContext sc = sce.getServletContext();
         sc.addServlet("myServlet", "Sample servlet", "foo.bar.MyServlet", null, -1);
         sc.addServletMapping("myServlet", new String[] { "/urlpattern/*" });
@@ -3586,7 +3582,7 @@ annotations defined in <<Annotations and Resource Injection>> will continue
 to work in the context of these new annotations.
 
 By default all applications will have
-`index.htm[l]` and `index.jsp` in the list of `welcome-file-list`. The
+`index.htm[l]` and `index.jsp` in the `welcome-file-list`. The
 descriptor may to be used to override these default settings.
 
 The order in which the listeners, servlets
@@ -3644,11 +3640,11 @@ web application, it is sufficient for the framework to be present
 anywhere in the classloader delegation chain of the web application. In
 other words, only JAR files bundled in a web application's `WEB-INF/lib`
 directory, but not those higher up in the class loading delegation
-chain, need to be scanned for `web-fragment.xml`
+chain, need to be scanned for `web-fragment.xml`.
 
 During deployment the container is
 responsible for scanning the location specified above and discovering
-the web-fragment.xml and processing them. The requirements about name
+the `web-fragment.xml` files and processing them. The requirements about name
 uniqueness that exist currently for a single web.xml also apply to the
 union of a web.xml and all applicable web-fragment.xml files.
 
@@ -3805,13 +3801,11 @@ example. 3 web-fragments: `MyFragment1`, `MyFragment2` and
 [source,xml]
 ----
 <web-app>
-
   ...
-
 </web-app>
 ----
 
-In this example the processing order will be
+In this example the processing order will be:
 
 . `web.xml`
 
@@ -3890,7 +3884,7 @@ illustrate the case when the `web.xml` contains an ordering section.
 ----
 
 In this example, the ordering for the various
-elements will be
+elements will be:
 
 . `web.xml`
 
@@ -3902,7 +3896,7 @@ elements will be
 
 Some additional example scenarios are
 included below. All of these apply to relative ordering and not absolute
-ordering
+ordering.
 
 .Example 1
 --
@@ -4111,7 +4105,7 @@ highest precedence when resolving conflicts between the `web.xml`,
 the descriptors, or is set to `false` in the deployment descriptor, then
 the effective metadata for the application is derived by combining the
 metadata present in the annotations and the descriptors. The rules for
-merging are specified below -
+merging are specified below:
 
 .. Configuration settings in web fragments are
 used to augment those specified in the main web.xml in such a way as if
@@ -4269,7 +4263,7 @@ the `web.xml`. However if there is no `injection-target` element in the
 descriptor then the `injection-target` from the fragments will still be
 merged into the `web.xml` as defined above.
 +
-If on the other hand there is an
+If, on the other hand, there is an
 `injection-target` in the main `web.xml` and there is a resource
 reference `annotation` with the same resource name, then it is
 considered an override for the resource reference annotation. In this
@@ -4311,7 +4305,7 @@ no resource-ref definition
 </resource-ref>
 ----
 
-The effective metadata would be
+The effective metadata would be:
 
 [source,xml]
 ----
@@ -4365,7 +4359,7 @@ The effective metadata would be
 </resource-ref>
 ----
 
-The effective metadata would be
+The effective metadata would be:
 
 [source,xml]
 ----
@@ -4393,12 +4387,11 @@ The effective metadata would be
 ----
 <resource-ref>
   <resource-ref-name="foo">
-    <injection-target>
-      <injection-target-class>com.example.Bar3</injection-target-class>
-      <injection-target-name>baz3</injection-target-name>
-    </injection-target>
-    ...
-
+  ...
+  <injection-target>
+    <injection-target-class>com.example.Bar3</injection-target-class>
+    <injection-target-name>baz3</injection-target-name>
+  </injection-target>
 </resource-ref>
 ----
 
@@ -4428,12 +4421,13 @@ The effective metadata would be
 </resource-ref>
 ----
 
-The effective metadata would be
+The effective metadata would be:
 
 [source,xml]
 ----
 <resource-ref>
   <resource-ref-name="foo">
+  ...
   <injection-target>
     <injection-target-class>com.example.Bar3</injection-target-class>
     <injection-target-name>baz3</injection-target-name>
@@ -4442,13 +4436,12 @@ The effective metadata would be
     <injection-target-class>com.example.Bar2</injection-target-class>
     <injection-target-name>baz2</injection-target-name>
   </injection-target>
-  ...
 </resource-ref>
 ----
 
 
 The `<injection-target>` from fragment 1 and
-2 will be merged into the main web.xml
+2 will be merged into the main web.xml.
 
 --
 
@@ -4475,7 +4468,7 @@ annotations from the corresponding fragment are processed to complete
 the effective metadata for the fragment before processing the next
 fragment. The following rules are used for processing annotations:
 
-.. Any metadata specified via an annotation that
+... Any metadata specified via an annotation that
 isn’t already present in the descriptor will be used to augment the
 effective descriptor.
 
@@ -4518,12 +4511,12 @@ the above rules:
 --
 
 A servlet declared via an annotation and
-packaged with the corresponding `web.xml` in the descriptor
+packaged with the corresponding `web.xml` in the descriptor:
 
 [source,java]
 ----
 @WebServlet(urlPatterns="/MyPattern",
-initParams={@WebInitParam(name="ccc", value="333")})
+        initParams={@WebInitParam(name="ccc", value="333")})
 public class com.example.Foo extends HttpServlet {
     ...
 }
@@ -4576,7 +4569,7 @@ addition to the other declarations in `web.xml` and is equivalent to:
 </servlet>
 ----
 
-If the above `web.xml` were replaced with the following
+If the above `web.xml` were replaced with the following:
 
 .web.xml
 [source,xml]
@@ -4595,7 +4588,7 @@ If the above `web.xml` were replaced with the following
 </servlet-mapping>
 ----
 
-Then the effective descriptor would be equivalent to
+Then the effective descriptor would be equivalent to:
 
 .web.xml
 [source,xml]
@@ -4623,7 +4616,7 @@ Then the effective descriptor would be equivalent to
 ==== Shared Libraries / Runtimes Pluggability
 
 In addition to supporting fragments and use
-of annotations one of the requirements is that not only we be able to
+of annotations, one of the requirements is that not only we be able to
 plug-in things that are bundled in the `WEB-INF/lib` but also plugin
 shared copies of frameworks - including being able to plug-in to the web
 container things like JAX-WS, JAX-RS and JSF that build on top of the
@@ -4688,7 +4681,7 @@ bundle an implementation of the `ServletContainerInitializer` (shown
 below) and the container would look that up using the services API (the
 jar file will bundle in it's `META-INF/services` directory a file called
 `jakarta.servlet.ServletContainerInitializer` that will point to the
-`JAXWSServletContainerInitializer` shown below).
+`JAXWSServletContainerInitializer` (shown below).
 
 .JAXWSServletContainerInitializer.java
 [source,java]
@@ -4699,7 +4692,8 @@ JAXWSServletContainerInitializer implements ServletContainerInitializer {
     public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
         // JAX-WS specific code here to initialize the runtime
         // and setup the mapping etc.
-        ServletRegistration reg = ctx.addServlet("JAXWSServlet", "com.sun.webservice.JAXWSServlet");
+        ServletRegistration reg = ctx.addServlet("JAXWSServlet",
+                "com.sun.webservice.JAXWSServlet");
         reg.addServletMapping("/foo");
     }
 
@@ -4776,7 +4770,7 @@ particular version of the specification MUST scan for all annotations
 supported in that configuration, unless `metadata-complete` is specified.
 If there is no deployment descriptor, or there is one but does not have the
 `metadata-complete` set to true, `web.xml`, `web-fragment.xml` and
-annotations if used in the application must be processed. The following
+annotations, if used, in the application must be processed. The following
 table describes whether or not to process annotations and `web.xml`
 fragments.
 
