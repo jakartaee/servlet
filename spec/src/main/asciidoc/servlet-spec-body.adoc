@@ -8475,7 +8475,7 @@ principal::
 
 A principal is an entity that can be
 authenticated by an authentication protocol. A principal is identified
-by a `principal name` and authenticated by using `authentication data`.
+by a _principal name_ and authenticated by using _authentication data_.
 The content and format of the principal name and the authentication data
 depend on the authentication protocol.
 
@@ -8497,7 +8497,7 @@ security policy domain::
 The scope over which security policies are
 defined and enforced by a security administrator of the security
 service. A security policy domain is also sometimes referred to as a
-`realm`.
+_realm_.
 
 security technology domain::
 
@@ -8554,18 +8554,24 @@ resource. footnote:[See RFC 1738]
  A URL is a type of uniform resource
 identifier (URI). URLs are typically of the form:
 +
- `<protocol>//<servername>/<resource>`
+--
+ <protocol>//<servername>/<resource>
+--
 +
 For the purposes of this specification, we are
-primarily interested in HTT- based URLs which are of the form:
+primarily interested in HTTP based URLs which are of the form:
 +
-`http[s]://<servername>[:port]/<url-path>[?<query-string>]`
+--
+ http[s]://<servername>[:port]/<url-path>[?<query-string>]
+--
 +
 For example:
 +
-`http://www.example.com/products/servlet/index.html`
-+
-`https://example.com/purchase`
+--
+ http://www.example.com/products/servlet/index.html
+
+ https://example.com/purchase
+--
 +
 In HTTP-based URLs, the `"/"` character is
 reserved to separate a hierarchical path structure in the URL-path
@@ -8608,4 +8614,4 @@ A web application that is written so that it
 can be deployed in a web container distributed across multiple Java
 virtual machines running on the same host or different hosts. The
 deployment descriptor for such an application uses the `distributable`
-`element.`
+element.
