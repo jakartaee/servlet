@@ -2540,16 +2540,16 @@ above may lead to non-deterministic behavior.
 
 Filters are Java components that allow on the
 fly transformations of payload and header information in both the
-request into a resource and the response from a resource
+request into a resource and the response from a resource.
 
-The Jakarta Servlet API classes and methods that
-provide a lightweight framework for filtering active and static content.
+The Jakarta Servlet API provides a lightweight framework for filtering
+active and static content.
 It describes how filters are configured in a web application, and
 conventions and semantics for their implementation.
 
 API documentation for servlet filters is
 provided online. The configuration syntax for filters is given by the
-deployment descriptor schema in <<Deployment Descriptor>>.
+deployment descriptor schema described in <<Deployment Descriptor>>.
 The reader should use these sources as
 references when reading this chapter.
 
@@ -2712,7 +2712,7 @@ only has the ability to override existing methods on the request and
 response objects, but to provide new API suited to a particular
 filtering task to a filter or target web resource down the chain. For
 example, the developer may wish to extend the response object with
-higher level output objects that the output stream or the writer, such
+higher level output objects than the output stream or the writer, such
 as API that allows DOM objects to be written back to the client.
 
 In order to support this style of filter the
@@ -2953,9 +2953,7 @@ For example:
 would result in the `Logging Filter` being
 invoked by client requests starting `/products/...` but not underneath a
 request dispatcher call where the request dispatcher has path commencing
-`/products/...`. The `LoggingFilter` would be invoked both on the
-initial dispatch of the request and on resumed request. The following
-code:
+`/products/...`. The following code:
 
 [source,xml]
 ----
