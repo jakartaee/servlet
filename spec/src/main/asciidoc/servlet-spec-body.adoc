@@ -7676,8 +7676,8 @@ technologies.
 In the following sections any reference to
 Jakarta applies to not only the full Jakarta EE profile but also any
 profile that includes support for servlet, like the Jakarta Web Profile.
-For more information on profiles please refer to the Jakarta EE platform
-specification.
+For more information on profiles please refer to the Jakarta EE Platform
+Specification.
 
 === Sessions
 
@@ -7697,7 +7697,7 @@ that either Java SE or Jakarta EE do not allow to be modified.
 [[_Web_Application_Environment]]
 ==== Web Application Environment
 
-Jakarta EE Platform defines a naming environment that
+The Jakarta EE Platform defines a naming environment that
 allows applications to easily access resources and external information
 without explicit knowledge of how the external information is named or
 organized.
@@ -7733,7 +7733,7 @@ container must support lookups of such objects and calls made to those
 objects when performed on a thread managed by the servlet container.
 This type of servlet container should support this behavior when
 performed on threads created by the developer, but are not currently
-required to do so. Such a requirement will be added in the next version
+required to do so. Such a requirement may be added to a future version
 of this specification. Developers are cautioned that depending on this
 capability for application-created threads is not recommended, as it is
 non-portable.
@@ -7963,7 +7963,7 @@ implementation.
 The Java Metadata specification (JSR-175),
 which is part of J2SE 5.0 and later versions, provides a means of
 specifying configuration data in Java code. Metadata in Java code is
-also referred to as annotations. In Jakarta EE Platform, annotations are used to
+also referred to as annotations. In the Jakarta EE Platform, annotations are used to
 declare dependencies on external resources and configuration data in
 Java code without the need to define that data in a configuration file.
 
@@ -7972,7 +7972,7 @@ annotations and resource injection in Jakarta technology compliant
 servlet containers. This section expands on the Jakarta EE Platform specification
 section 5 titled “Resources, Naming, and Injection”.
 
-Annotations must be supported on the following container managed classes
+Annotations must be supported on container managed classes
 that implement the following interfaces and are declared in the web
 application deployment descriptor or using the annotations defined in
 <<_Annotations_and_pluggability>> or added programmatically.
@@ -8035,12 +8035,12 @@ present in the class files of the application, and must also ignore any
 `web-fragment.xml` descriptor packaged in a jar file in `WEB-INF/lib`.
 If the `metadata-complete` attribute is not specified or is set to
 `false`, the deployment tool must examine the class files and
-`web-fragment.xml` files for metadata,as previously specified.
+`web-fragment.xml` files for metadata, as previously specified.
 
 The `web-fragment.xml` also contains the
 `metadata-complete` attribute on the `web-fragment` element. The
 attribute defines whether the `web-fragment.xml` descriptor is complete
-for the given fragment, or whether it should scan for annotations in the
+for the given fragment, or whether the deployment tool should scan for annotations in the
 classes in the associated jar file. If `metadata-complete` is set to
 `true` the deployment tool only examines the `web-fragment.xml` and
 must ignore annotations such as `@WebServlet`, `@WebFilter` and
@@ -8388,7 +8388,8 @@ reference to a web service in a web component in same way as a
 An example:
 [source,java]
 ----
-@WebServiceRef private MyService service;
+@WebServiceRef
+private MyService service;
 ----
 
 In this example a reference to the web service
