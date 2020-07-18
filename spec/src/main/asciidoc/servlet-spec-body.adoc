@@ -7458,7 +7458,7 @@ For Servlet 5.0, the deployment descriptor is defined in terms of an XML schema 
 For backwards compatibility of applications
 written to previous versions of the API, any deployment descriptors
 written to comply with earlier versions of the specification, must still
-be supported such that apps continue to deploy. For the actual XSD files
+be supported such that applications continue to deploy. For the actual XSD files
 please visit `https://jakarta.ee/xml/ns/jakartaee/`.
 
 === Deployment Descriptor Elements
@@ -7756,12 +7756,12 @@ and
 
 `java:app/<module-name>!ROOT` in the application-specific namespace.
 
-Plese see section EE 8.1.1 (Component
+Please see section EE 8.1.1 (Component
 creation) and EE 8.1.2 (Application assembly) for the rules to determine
-the app name and module name
+the `app-name` and `module-name`.
 
 The `<app-name>` is applicable only when the
-webapp is packaged within a `.ear` file.
+web application is packaged within a `.ear` file.
 
 The `java:app` prefix allows a component
 executing within a Jakarta application to access an application-specific
