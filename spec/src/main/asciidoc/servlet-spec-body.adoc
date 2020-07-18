@@ -5127,7 +5127,7 @@ could be used to map to a web application based at
 `/home/user/public_html/`.
 
 By default, an instance of a web application
-must run on one VM at any one time. This behavior can be overridden if
+must run on one JVM at any one time. This behavior can be overridden if
 the application is marked as “distributable” via its deployment
 descriptor. An application marked as distributable must obey a more
 restrictive set of rules than is required of a normal web application.
@@ -5325,8 +5325,8 @@ with an informative error message.
 The class loader that a container uses to load
 a servlet in a WAR must allow the developer to load any resources
 contained in library JARs within the WAR following normal Java SE
-semantics using `getResource`. As described in the Jakarta EE license
-agreement, servlet containers that are not part of a Jakarta EE product
+semantics using `getResource`.
+Servlet containers that are not part of a Jakarta EE product
 should not allow the application to override Jakarta EE platform classes,
 such as those in the jakarta.* namespaces, that Jakarta EE does
 not allow to be modified. The container should not allow applications to
@@ -5496,7 +5496,7 @@ is generated.
 
 === Welcome Files
 
-Web Application developers can define an
+Application Developers can define an
 ordered list of partial URIs called welcome files in the web application
 deployment descriptor. The deployment descriptor syntax for the list is
 described in the web application deployment descriptor schema.
@@ -5517,7 +5517,7 @@ servlet or JSP page, is returned to the client as
 If a web container receives a valid partial
 request, the web container must examine the welcome file list defined in
 the deployment descriptor. The welcome file list is an ordered list of
-partial URLs with no trailing or leading /. The web server must append
+partial URLs with no trailing or leading `"/"`. The web server must append
 each welcome file in the order specified in the deployment descriptor to
 the partial request and check whether a static resource in the WAR is
 mapped to that request URI. If no match is found, the web server MUST
@@ -5640,7 +5640,7 @@ require a web.xml to be present.
 
 === Introduction
 
-The application events facility gives the web
+The application events facility gives the
 Application Developer greater control over the lifecycle of the
 `ServletContext` and `HttpSession` and `ServletRequest`, allows for
 better code factorization, and increases efficiency in managing the
