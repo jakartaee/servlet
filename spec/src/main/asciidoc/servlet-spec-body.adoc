@@ -23,7 +23,7 @@ described herein.
 === Additional Sources
 
 The specification is intended to be a complete
-and clear explanation of Jakarta Servlets, but if questions remain, the
+and clear explanation of the Jakarta Servlet API, but if questions remain, the
 following sources may be consulted:
 
 * A reference implementation (RI) has been made
@@ -353,8 +353,8 @@ method. The `doOptions` method responds with which HTTP methods are
 supported by the servlet. The `doTrace` method generates a response
 containing all instances of the headers sent in the `TRACE` request.
 
-The `CONNECT` method is not supported because
-it applies to proxies and the Servlet API is targeted at endpoints.
+The `CONNECT` method is not supported because it applies to proxies and
+the Jakarta Servlet API is targeted at endpoints.
 
 ==== Conditional GET Support
 
@@ -1467,9 +1467,9 @@ Non-blocking request processing in the web
 container helps improve the ever increasing demand for improved web
 container scalability, increase the number of connections that can
 simultaneously be handled by the web container. Non-blocking IO in the
-Servlet container allows developers to read data as it becomes available
+servlet container allows developers to read data as it becomes available
 or write data when possible to do so. Non-blocking IO only works with
-async request processing in Servlets and Filters (as defined in
+async request processing in servlets and filters (as defined in
 <<Asynchronous processing>>), and
 upgrade processing (as defined in <<Upgrade Processing>>).
 Otherwise, an `IllegalStateException` must be
@@ -1500,7 +1500,7 @@ The `onError`
 method is invoked if there is any error or exception that occurs while
 processing the request.
 
-The Servlet container must access methods in
+The servlet container must access methods in
 `ReadListener` in a thread safe manner.
 
 In addition to the `ReadListener` defined
@@ -1753,17 +1753,17 @@ critical data.
 
 === Configuration Methods
 
-The following methods are added to
-`ServletContext` since Servlet 3.0 to enable programmatic definition of
-servlets, filters and the url pattern that they map to. These methods
+The following methods are provided on the
+`ServletContext` interface to enable programmatic definition of
+servlets, filters and the url pattern(s) that they map to. These methods
 can only be called during the initialization of the application either
 from the `contexInitialized` method of a `ServletContextListener`
 implementation or from the `onStartup` method of a
 `ServletContainerInitializer` implementation. In addition to adding
-Servlets and Filters, one can also look up an instance of a
-`Registration` object corresponding to a Servlet or Filter or a map of
-all the Registration objects for the Servlets or Filters. If the
-`ServletContext` passed to the ServletContextListener’s
+servlets and filters, one can also look up an instance of a
+`Registration` object corresponding to a servlet or filter or a map of
+all the Registration objects for the servlets or filters. If a
+`ServletContext` is passed to the ServletContextListener’s
 `contextInitialized` method where the `ServletContextListener` was
 neither declared in `web.xml` or `web-fragment.xml` nor annotated with
 `@WebListener` then an `UnsupportedOperationException` MUST be thrown
@@ -1776,27 +1776,27 @@ The ability to programmatically add a servlet
 to a context is useful for framework developers. For example a framework
 could declare a controller servlet using this method. The return value
 of this method is a `ServletRegistration` or a
-`ServletRegistration.Dynamic` object which further allows you to setup
-the other parameters of the servlet like `init-param`, `url-mappings`
+`ServletRegistration.Dynamic` object which further allows the setup
+of the other parameters of the servlet like `init-param`, `url-mappings`
 etc. There are three overloaded versions of the method as described
 below.
 
 ===== addServlet(String servletName, String className)
 
 This method allows the application to declare
-a servlet programmatically. It adds the servlet with the given name, and
+a servlet programmatically. It adds a servlet with the given name, and
 class name to the servlet context.
 
 ===== addServlet(String servletName, Servlet servlet)
 
 This method allows the application to declare
-a servlet programmatically. It adds the servlet with the given name, and
+a servlet programmatically. It adds a servlet with the given name, and
 servlet instance to the servlet context.
 
 ===== addServlet(String servletName, Class <? extends Servlet> servletClass)
 
 This method allows the application to declare
-a servlet programmatically. It adds the servlet with the given name, and
+a servlet programmatically. It adds a servlet with the given name, and
 an instance of the servlet class to the servlet context.
 
 ===== addJspFile(String servletName, String jspfile)
@@ -1810,9 +1810,11 @@ servlet context.
 
 This method instantiates the given `Servlet`
 class. The method must support all the annotations applicable to
-Servlets except `@WebServlet`. The returned `Servlet` instance may be
+servlets except `@WebServlet`. The returned `Servlet` instance may be
 further customized before it is registered with the `ServletContext` via
-a call to `addServlet(String, Servlet)` as defined above.
+a call to `addServlet(String, Servlet)` as defined above. The given
+`Servlet` class must define a zero argument constructor, which is used 
+to instantiate it.
 
 ===== ServletRegistration getServletRegistration(String servletName)
 
@@ -1827,13 +1829,13 @@ annotated with `jakarta.servlet.annotation.WebListener.`
 ===== Map<String, ? extends ServletRegistration> getServletRegistrations()
 
 This method returns a map of
-ServletRegistration objects, keyed by name corresponding to all servlets
-registered with the ServletContext. If there are no servlets registered
-with the ServletContext an empty map is returned. The returned Map
-includes the ServletRegistration objects corresponding to all declared
-and annotated servlets, as well as the ServletRegistration objects
+`ServletRegistration` objects, keyed by name corresponding to all servlets
+registered with the `ServletContext`. If there are no servlets registered
+with the `ServletContext` an empty map is returned. The returned `Map`
+includes the `ServletRegistration` objects corresponding to all declared
+and annotated servlets, as well as the `ServletRegistration` objects
 corresponding to all servlets that have been added via one of the
-`addServlet` and `addJspFile` methods. Any changes to the returned Map
+`addServlet` and `addJspFile` methods. Any changes to the returned `Map`
 MUST not affect the `ServletContext`. An
 `UnsupportedOperationException` is thrown if the `ServletContext` was
 passed to the `contextInitialized` method of a `ServletContextListener`
@@ -1845,26 +1847,26 @@ annotated with `jakarta.servlet.annotation.WebListener.`
 ===== addFilter(String filterName, String className)
 
 This method allows the application to declare
-a filter programmatically. It adds the filter with the given name, and
+a filter programmatically. It adds a filter with the given name, and
 class name to the web application.
 
 ===== addFilter(String filterName, Filter filter)
 
 This method allows the application to declare
-a filter programmatically. It adds the filter with the given name, and
+a filter programmatically. It adds a filter with the given name, and
 filter instance to the web application.
 
 ===== addFilter(String filterName, Class <? extends Filter> filterClass)
 
 This method allows the application to declare
-a filter programmatically. It adds the filter with the given name, and
+a filter programmatically. It adds a filter with the given name, and
 an instance of the filter class to the web application.
 
 ===== <T extends Filter> T createFilter(Class<T> clazz)
 
 This method instantiates the given `Filter`
 class. The method must support all the annotations applicable to
-Filters. The returned `Filter` instance may be further customized before
+filters. The returned `Filter` instance may be further customized before
 it is registered with the `ServletContext` via a call to
 `addFilter(String, Filter)` as defined above. The given `Filter` class
 must define a zero argument constructor, which is used to instantiate
@@ -1894,7 +1896,7 @@ added via one of the `addFilter` methods. Any changes to the returned
 `UnsupportedOperationException` is thrown if the `ServletContext` was
 passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
-annotated with `jakarta.servlet.annotation.WebListener.`
+annotated with `jakarta.servlet.annotation.WebListener`.
 
 ==== Programmatically Adding and Configuring Listeners
 
@@ -1956,9 +1958,9 @@ listener MAY also be an instance of
 `jakarta.servlet.ServletContextListener` in addition to the interfaces
 listed above. If the given listener is an instance of a listener
 interface whose invocation order corresponds to the declaration order,
-that is, if it implements _jakarta.servlet.ServletRequestListener,
-jakarta.servlet.ServletContextListener_ or
-`jakarta.servlet.http.HttpSessionListener,` then the new listener will be
+that is, if it implements `jakarta.servlet.ServletRequestListener`,
+`jakarta.servlet.ServletContextListener` or
+`jakarta.servlet.http.HttpSessionListener`, then the new listener will be
 added to the end of the ordered list of listeners of that interface.
 
 ===== void addListener(Class <? extends EventListener> listenerClass)
@@ -2026,11 +2028,11 @@ overridden by calls to the API in the `ServletRegistration.Dynamic` /
 
 `@ServletSecurity`, `@RunAs`, `@DeclareRoles`, `@MultipartConfig`.
 
-For Filters and Listeners no annotations need
+For filters and listeners no annotations need
 to be introspected.
 
 Resource injection on all components
-(Servlets, Filters and Listeners) added programmatically or created
+(servlets, filters and listeners) added programmatically or created
 programmatically, other than the ones added via the methods that takes
 an instance, will only be supported when the component is a CDI Managed
 Bean. For details please refer to
@@ -2116,7 +2118,7 @@ application’s `WEB-INF/lib` directory. If there is a `WEB-INF` entry
 inside the `META-INF/resources` entry of a JAR file in `WEB-INF/lib`,
 then it and all child entries are available only as static resources. No
 classes or jars will be placed on the context classpath from such a
-`WEB-INF` entry, and no Servlet specific descriptors will be processed.
+`WEB-INF` entry, and no servlet specific descriptors will be processed.
 These methods will first search the root of the web application context
 for the requested resource before looking at any of the JAR files in the
 `WEB-INF/lib` directory. The order in which the JAR files in the
@@ -2349,7 +2351,7 @@ for the normative specification.
 === Non-Blocking IO
 
 Non-blocking IO only works with async request
-processing in Servlets and Filters (as defined in
+processing in servlets and filters (as defined in
 <<Asynchronous processing>>), and
 upgrade processing (as defined in <<Upgrade Processing>>).
 Otherwise, an `IllegalStateException` must be
@@ -2403,7 +2405,7 @@ the traditional blocking IO at that point. The use of IO related method
 calls after this illegal switch to traditional blocking IO produces
 unspecified behavior.
 
-The Servlet container must access methods in
+The servlet container must access methods in
 `WriteListener` in a thread safe manner.
 
 === Convenience Methods
@@ -2738,7 +2740,7 @@ available to the filter at runtime via the `getInitParameter` and
 Additionally, the `FilterConfig` affords access to the `ServletContext`
 of the web application for the loading of resources, for logging
 functionality, and for storage of state in the `ServletContext`’s
-attribute list. A Filter and the target servlet or resource at the end
+attribute list. A filter and the target servlet or resource at the end
 of the filter chain must execute in the same invocation thread.
 
 ==== Configuration of Filters in a Web Application
@@ -2778,7 +2780,7 @@ deployment descriptor, the assembler uses the `<filter-mapping>` element
 to define servlets and static resources in the web application to which
 the filter is to be applied. Filters can be associated with a servlet
 using the `<servlet-name>` element. For example, the following code
-example maps the Image Filter filter to the `ImageServlet` servlet:
+example maps the `Image Filter` filter to the `ImageServlet` servlet:
 
 
 [source,xml]
@@ -2801,7 +2803,7 @@ mapping:
 </filter-mapping>
 ----
 
-Here the Logging Filter is applied to all the
+Here the `Logging Filter` is applied to all the
 servlets and static content pages in the web application, because every
 request URI matches the `/*` URL pattern.
 
@@ -2895,7 +2897,7 @@ them on a per-request basis.
 
 ==== Filters and the RequestDispatcher
 
-The Servlet specification provides the ability to configure filters to be
+The servlet specification provides the ability to configure filters to be
 invoked under request dispatcher `forward()` and `include()` calls.
 
 By using the `<dispatcher>` element in the
@@ -2948,7 +2950,7 @@ For example:
 </filter-mapping>
 ----
 
-would result in the Logging Filter being
+would result in the `Logging Filter` being
 invoked by client requests starting `/products/...` but not underneath a
 request dispatcher call where the request dispatcher has path commencing
 `/products/...`. The `LoggingFilter` would be invoked both on the
@@ -2964,7 +2966,7 @@ code:
 </filter-mapping>
 ----
 
-would result in the Logging Filter not being
+would result in the `Logging Filter` not being
 invoked by client requests to the `ProductServlet`, nor underneath a
 request dispatcher `forward()` call to the `ProductServlet`, but would
 be invoked underneath a request dispatcher `include()` call where the
@@ -2981,7 +2983,7 @@ following code:
 </filter-mapping>
 ----
 
-would result in the Logging Filter being
+would result in the `Logging Filter` being
 invoked by client requests starting `/products/...` and underneath a
 request dispatcher `forward()` call where the request dispatcher has
 path commencing `/products/...`.
@@ -2997,8 +2999,8 @@ Finally, the following code uses the special servlet name `*`:
 </filter-mapping>
 ----
 
-This code would result in the All Dispatch
-Filter being invoked on request dispatcher forward() calls for all
+This code would result in the `All Dispatch Filter` being invoked on
+request dispatcher forward() calls for all
 request dispatchers obtained by name or by path.
 
 
@@ -3429,7 +3431,7 @@ All annotations in the following packages:
 * `jakarta.xml.ws.spi`
 
 Following are the annotations that MUST be
-supported by a Servlet compliant web container.
+supported by a servlet compliant web container.
 
 ==== @WebServlet
 
@@ -3589,7 +3591,7 @@ By default all applications will have
 `index.htm[l]` and `index.jsp` in the list of `welcome-file-list`. The
 descriptor may to be used to override these default settings.
 
-The order in which the Listeners, Servlets
+The order in which the listeners, servlets
 are loaded from the various framework jars / classes in the
 `WEB-INF/classes` or `WEB-INF/lib` is unspecified when using
 annotations. If ordering is important then look at the section for
@@ -4517,7 +4519,7 @@ the above rules:
 +
 --
 
-A Servlet declared via an annotation and
+A servlet declared via an annotation and
 packaged with the corresponding `web.xml` in the descriptor
 
 [source,java]
@@ -4728,15 +4730,15 @@ loading delegation model.
 
 The `ServletContainerInitializer` and
 programmatic registration features make it possible to provide a clear
-separation of responsibilities between the Servlet and JSP containers,
-by making the Servlet container responsible for parsing only `web.xml`
+separation of responsibilities between the servlet and JSP containers,
+by making the servlet container responsible for parsing only `web.xml`
 and `web-fragment.xml` resources, and delegating the parsing of Tag
 Library Descriptor (TLD) resources to the JSP container.
 
 Previously, a web container had to scan TLD
 resources for any listener declarations. With Servlet 3.0 and later
 versions, this responsibility may be delegated to the JSP container. A
-JSP container that is embedded in a Servlet container may provide its
+JSP container that is embedded in a servlet container may provide its
 own `ServletContainerInitializer` implementation, search the
 `ServletContext` passed to its `onStartup` method for any TLD resources,
 scan those resources for listener declarations, and register the
@@ -4745,7 +4747,7 @@ corresponding listeners with the `ServletContext`.
 In addition, prior to Servlet 3.0, a JSP
 container used to have to scan an application's deployment descriptor
 for any `jsp-config` related configuration. With Servlet 3.0 and later
-versions, the Servlet container must make available, via the
+versions, the servlet container must make available, via the
 `ServletContext.getJspConfigDescriptor` method, any `jsp-config` related
 configuration from the application's `web.xml` and `web-fragment.xml`
 deployment descriptors.
@@ -4756,7 +4758,7 @@ functionality they provide. Any attempt to call a `ServletContext` API
 methods on them that was added since Servlet 3.0 will result in an
 `UnsupportedOperationException`.
 
-In addition, a Servlet container compliant
+In addition, a servlet container compliant
 with Servlet 3.0 or later versions must provide a `ServletContext`
 attribute with name `jakarta.servlet.context.orderedLibs`, whose value
 (of type `java.util.List<java.lang.String>`) contains the list of names
@@ -5635,7 +5637,7 @@ call each servlet instance’s `init()` method.
 === Inclusion of a web.xml Deployment Descriptor
 
 A web application is NOT required to contain a
-web.xml if it does NOT contain any Servlet, Filter, or Listener
+web.xml if it does NOT contain any servlet, filter, or listener
 components or is using annotations to declare the same. In other words
 an application containing only static files or JSP pages does not
 require a web.xml to be present.
@@ -6074,9 +6076,9 @@ used because the match is not exact.
 
 === Runtime Discovery of Mappings
 
-Every mapping that causes a Servlet to be
-activated, regardless of whether or not Servlet Filters are involved, is
-discoverable at runtime via the Servlet Mapping API.
+Every mapping that causes a servlet to be
+activated, regardless of whether or not servlet filters are involved, is
+discoverable at runtime via the servlet mapping API.
 
 ==== Runtime Discovery of Servlet Mappings
 
@@ -6103,7 +6105,7 @@ via the application’s deployment descriptor, by using annotations within
 the application code, or programmatically via the `setServletSecurity`
 method of the `ServletRegistration.Dynamic` interface.
 
-This chapter describes the Servlet container
+This chapter describes the servlet container
 security mechanisms and interfaces and the deployment descriptor,
 annotation, and programmatic mechanisms for conveying the security
 requirements of applications.
@@ -6258,9 +6260,9 @@ application and for which mappings must be defined.
 
 === Programmatic Security Policy Configuration
 
-This section defines the annotations and apis
-provided to configure the security constraints enforced by the Servlet
-Container.
+This section defines the annotations and APIs
+provided to configure the security constraints enforced by the servlet
+container.
 
 ==== @ServletSecurity Annotation
 
@@ -6419,7 +6421,7 @@ The `@ServletSecurity` annotation may be
 specified on (that is, targeted to) a `Servlet` implementation class,
 and its value is inherited by subclasses according to the rules defined
 for the `@Inherited` meta-annotation. At most one instance of the
-`@ServletSecurity` annotation may occur on a Servlet implementation
+`@ServletSecurity` annotation may occur on a servlet implementation
 class, and the `@ServletSecurity` annotation MUST NOT be specified on
 (that is, targeted to) a Java method.
 
@@ -6442,7 +6444,7 @@ When a `security-constraint` in the portable
 deployment descriptor includes a `url-pattern` that is an exact match
 for a pattern mapped to a class annotated with `@ServletSecurity`, the
 annotation must have no effect on the constraints enforced by the
-Servlet container on the pattern.
+servlet container on the pattern.
 
 When `metadata-complete=true` is defined for
 a portable deployment descriptor, the `@ServletSecurity` annotation does
@@ -6456,9 +6458,9 @@ interface, unless the `Servlet` was constructed by the `createServlet`
 method of the `ServletContext` interface.
 
 With the exceptions listed above, when a
-Servlet class is annotated with `@ServletSecurity`, the annotation
+servlet class is annotated with `@ServletSecurity`, the annotation
 defines the security constraints that apply to all the `url-patterns`
-mapped to all the Servlets mapped to the class.
+mapped to all the servlets mapped to the class.
 
 When a class has not been annotated with the
 `@ServletSecurity` annotation, the access policy that is applied to a
@@ -6550,7 +6552,7 @@ This section describes the mapping of the
 `@ServletSecurity` annotation to its equivalent representation as
 `security-constraint` elements. It is provided to facilitate enforcement
 using the existing `security-constraint` enforcement mechanism of the
-container. The enforcement by Servlet containers, of the
+container. The enforcement by servlet containers, of the
 `@ServletSecurity` annotation must be equivalent in effect to
 enforcement, by the container, of the `security-constraint` elements
 resulting from the mapping defined in this section.
@@ -6763,10 +6765,10 @@ When a `security-constraint` in the portable
 deployment descriptor includes a `url-pattern` that is an exact match
 for a pattern mapped by a `ServletRegistration`, calls to
 `setServletSecurity` on the `ServletRegistration` must have no effect on
-the constraints enforced by the Servlet container on the pattern.
+the constraints enforced by the servlet container on the pattern.
 
 With the exceptions listed above and
-including when the Servlet class is annotated with `@ServletSecurity`,
+including when the servlet class is annotated with `@ServletSecurity`,
 when `setServletSecurity` is called on a `ServletRegistration` it
 establishes the security constraints that apply to the `url-patterns` of
 the registration.
@@ -6978,7 +6980,7 @@ developers, system administrators, and system integrators).
 
 To facilitate portable implementation and
 integration of additional container authentication mechanisms, it is
-recommended that all Servlet containers implement the Servlet Container
+recommended that all servlet containers implement the servlet Container
 Profile of The Jakarta Authentication SPI for Containers.
 The SPI is available for download at:
 https://jakarta.ee/specifications/authentication/
@@ -7217,7 +7219,7 @@ deployment descriptor would yield the constraints defined in
 
 ==== Processing Requests
 
-When a Servlet container receives a request,
+When a servlet container receives a request,
 it shall use the algorithm described in
 <<Use of URL Paths>> to select the
 constraints (if any) defined on the `url-pattern` that is the best match
@@ -7405,7 +7407,7 @@ should set the `deny-uncovered-http-methods` flag to ensure that their
 applications do not become dependent on being accessible via uncovered
 methods.
 
-A Servlet container may provide a
+A servlet container may provide a
 configurable option to select whether the default behavior for uncovered
 methods is ALLOW or DENY. This option may be configured on a
 per-application granularity or larger. Note that setting this default to
@@ -7681,7 +7683,7 @@ technologies.
 
 In the following sections any reference to
 Jakarta applies to not only the full Jakarta EE profile but also any
-profile that includes support for Servlet, like the Jakarta Web Profile.
+profile that includes support for servlet, like the Jakarta Web Profile.
 For more information on profiles please refer to the Jakarta EE platform
 specification.
 
@@ -7828,9 +7830,9 @@ signon and customization of data based on caller identity.
 
 In these scenarios, a web application
 deployment descriptor may specify a `run-as` element. When a `run-as`
-role is specified for a Servlet, the Servlet container must propagate a
+role is specified for a servlet, the servlet container must propagate a
 principal mapped to the role as the security identity in any call from
-the Servlet to an EJBs, including calls originating from the Servlet’s
+the servlet to an EJBs, including calls originating from the servlet’s
 `init` and `destroy` methods. The security role name must be one of the
 security role names defined for the web application.
 
@@ -7843,7 +7845,7 @@ calls to EJB components deployed in other Jakarta applications.
 
 In a Jakarta product or in a product that
 includes support for Jakarta Authorization Contracts for Containers (JACC),
-all Servlet containers MUST implement support for JACC.
+all servlet containers MUST implement support for JACC.
 The JACC Specification is available for download at
 `https://jakarta.ee/specifications/authorization/`
 
@@ -7851,7 +7853,7 @@ The JACC Specification is available for download at
 
 In a Jakarta product, or a product that
 includes support for The Jakarta Authentication SPI for Containers (JASPIC),
-all Servlet containers MUST implement the Servlet
+all servlet containers MUST implement the Servlet
 Container Profile of the JASPIC specification. The JASPIC Specification
 is available for download at `https://jakarta.ee/specifications/authentication/`
 
@@ -7905,7 +7907,7 @@ component using the usual `<servlet>` declaration.
 JAX-WS and JAX-RPC enabled web containers must
 support the developer in using the web deployment descriptor to define
 the following information for the endpoint implementation component,
-using the same syntax as for HTTP Servlet components using the `servlet`
+using the same syntax as for HTTP servlet components using the `servlet`
 element. The child elements are used to specify endpoint information in
 the following way:
 
@@ -7975,7 +7977,7 @@ Java code without the need to define that data in a configuration file.
 
 This section describes the behavior of
 annotations and resource injection in Jakarta technology compliant
-Servlet containers. This section expands on the Jakarta EE Platform specification
+servlet containers. This section expands on the Jakarta EE Platform specification
 section 5 titled “Resources, Naming, and Injection”.
 
 Annotations must be supported on the following container managed classes
@@ -8415,7 +8417,7 @@ Specification section 7.
 In a product that supports Contexts and
 Dependency Injection (CDI) for Jakarta EE Platform and in which CDI is enabled,
 implementations MUST support the use of CDI managed beans. Servlets,
-Filters, Listeners and HttpUpgradeHandlers MUST support CDI injection
+filters, listeners and HttpUpgradeHandlers MUST support CDI injection
 and the use of interceptors as described in Section 5.24, "Support
 for Dependency Injection" of the Jakarta EE Platform 9 specification.
 
