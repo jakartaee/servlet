@@ -1136,7 +1136,7 @@ HTTP request and response. They are not involved in subsequent
 communications. In other words, they are not invoked once the request
 has been upgraded.
 
-The `HttpUpgradeHandler` may use non blocking
+The `HttpUpgradeHandler` may use non-blocking
 IO to consume and produce messages.
 
 The Developer has the responsibility for
@@ -1227,7 +1227,7 @@ or the `getPathInfo` method.
 ==== When Parameters Are Available
 
 The following are the conditions that must be
-met before post form data will be populated to the parameter set:
+met before form data will be populated to the parameter set:
 
 . The request is an HTTP or HTTPS request.
 
@@ -1238,10 +1238,10 @@ met before post form data will be populated to the parameter set:
 . The servlet has made an initial call of any of
 the `getParameter` family of methods on the request object.
 
-If the conditions are not met and the post
-form data is not included in the parameter set, the post data must still
+If the conditions are not met and the
+form data is not included in the parameter set, the form data must still
 be available to the servlet via the request object’s input stream. If
-the conditions are met, post form data will no longer be available for
+the conditions are met, form data will no longer be available for
 reading directly from the request object’s input stream.
 
 === File Upload
@@ -1288,7 +1288,7 @@ the part.
 
 * If the servlet container does not provide the
 `multi-part/form-data` processing, the data will be available through
-the `HttpServletReuqest.getInputStream`.
+`HttpServletReuqest.getInputStream`.
 
 === Attributes
 
@@ -1329,11 +1329,11 @@ interface:
 
 * `getHeaderNames`
 
-The `getHeader` method returns a header given
+The `getHeader` method returns a header value given
 the name of the header. There can be multiple headers with the same
 name, e.g. `Cache-Control` headers, in an HTTP request. If there are
 multiple headers with the same name, the `getHeader` method returns the
-first header in the request. The `getHeaders` method allows access to
+value of first header in the request. The `getHeaders` method allows access to
 all the header values associated with a particular header name,
 returning an `Enumeration` of `String` objects.
 
@@ -1393,7 +1393,7 @@ following equation is always true:
 To give a few examples to clarify the above
 points, consider the following:
 
-.Example Context Set Up
+.Example Context Configuration
 [caption="Table 3-1 ", cols="2"]
 |===
 | Context Path
@@ -1461,7 +1461,7 @@ considered only if the container has unpacked them from their containing
 JAR file when a call to `getRealPath()` is made, and in this case MUST
 return the unpacked location.
 
-=== Non Blocking IO
+=== Non-Blocking IO
 
 Non-blocking request processing in the web
 container helps improve the ever increasing demand for improved web
@@ -1477,7 +1477,7 @@ thrown when `ServletInputStream.setReadListener` or
 `ServletOutputStream.setWriteListener` is invoked.
 
 The `ReadListener` provides the following
-callback methods for non blocking IO:
+callback methods for non-blocking IO:
 
 .ReadListener
 `onDataAvailable()`::
@@ -1492,8 +1492,8 @@ available to read.
 
 `onAllDataRead()`::
 The `onAllDataRead`
-method is invoked when you have finished reading all the data for the
-`ServletRequest` for which the listener was registered.
+method is invoked when all the data for the `ServletRequest` for which the
+listener was registered has been read.
 
 `onError(Throwable t)`::
 The `onError`
@@ -1516,14 +1516,14 @@ the `ServletInputStream` has been read. Otherwise it returns `false`.
 `boolean isReady()`::
 The `isReady` method
 returns `true` if data can be read without blocking. If no data can be
-read without blocking it returns `false`. If isReady returns false it
+read without blocking it returns `false`. If `isReady` returns `false` it
 is illegal to call the read method and an `IllegalStateException` MUST
 be thrown.
 
 `void setReadListener(ReadListener listener)`::
-Sets the `ReadListener` defined above to get invoked to
-read data in a non-blocking fashion. Once the listener is associated for
-the given `ServletInputStream`, the container invokes the methods on
+Sets the `ReadListener` defined above to be invoked to
+read data in a non-blocking fashion. Once a listener is associated with
+the `ServletInputStream`, the container invokes the methods on
 the `ReadListener` when data is available to read, all the data has been
 read or if there was an error processing the request. Registering a
 `ReadListener` will start non-blocking IO. It is illegal to switch to
@@ -1560,7 +1560,7 @@ Unless explicitly excluded, Servlet 5.0
 containers must support server push as specified in the HTTP/2
 specification section “Server Push”. Containers must enable server push
 if the client is capable of speaking HTTP/2, unless the client has
-explicitly disabled server push by sending a SETTINGS_ENABLE_PUSH
+explicitly disabled server push by sending a `SETTINGS_ENABLE_PUSH`
 setting value of 0 (zero) for the current connection. In that case, for
 that connection only, server push must not be enabled.
 
@@ -1583,7 +1583,7 @@ name and the cookie value. Other cookie attributes that can be set when
 the cookie is sent to the browser, such as comments, are not typically
 returned. The specification also allows for the cookies to be `HttpOnly`
 cookies. `HttpOnly` cookies indicate to the client that they should not
-be exposed to client-side scripting code (It’s not filtered out unless
+be exposed to client-side scripting code (it’s not filtered out unless
 the client knows to look for this attribute). The use of `HttpOnly`
 cookies helps mitigate certain kinds of cross-site scripting attacks.
 
@@ -2346,7 +2346,7 @@ the `HttpServletResponse` interface.
 Please see the javadoc for these two methods
 for the normative specification.
 
-=== Non Blocking IO
+=== Non-Blocking IO
 
 Non-blocking IO only works with async request
 processing in Servlets and Filters (as defined in
@@ -2357,7 +2357,7 @@ thrown when `ServletInputStream.setReadListener` or
 `ServletOutputStream.setWriteListener` is invoked. To support
 non-blocking writes in the web container, in addition to the changes
 made in the `ServletRequest` as described in
-<<Non Blocking IO>>,
+<<Non-Blocking IO>>,
 the following changes have been made to handle response related classes
 / interfaces.
 
