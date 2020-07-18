@@ -6806,8 +6806,8 @@ server using one of the following mechanisms:
 ==== HTTP Basic Authentication
 
 HTTP Basic Authentication, which is based on a
-username and password, is the authentication mechanism defined in the
-HTTP/1.0 specification. A web server requests a web client to
+username and password, is the authentication mechanism defined in RFC 7617.
+A web server requests a web client to
 authenticate the user. As part of the request, the web server passes the
 `realm` (a string) in which the user is to be authenticated. The web
 client obtains the username and the password from the user and transmits
@@ -7005,7 +7005,7 @@ to the same security identity.
 
 Security constraints are a declarative way of
 defining the protection of web content. A security constraint associates
-authorization and or user data constraints with HTTP operations on web
+authorization and/or user data constraints with HTTP operations on web
 resources. A security constraint, represented as a `security-constraint`
 in a deployment descriptor, consists of the following elements:
 
@@ -7028,10 +7028,10 @@ An authorization constraint establishes a
 requirement for authentication and names the authorization roles
 permitted to perform the constrained requests. A user must be a member
 of at least one of the named roles to be permitted to perform the
-constrained requests. The special role name `pass:[*]` is a shorthand for all
+constrained requests. The special role name `"pass:[*]"` is a shorthand for all
 role names defined in the deployment descriptor. The special role name
-`pass:[*]pass:[*]` is a shorthand for any authenticated user independent of role. When
-the special role name `pass:[*]pass:[*]` appears in an authorization constraint, it
+`"pass:[*]pass:[*]"` is a shorthand for any authenticated user independent of role. When
+the special role name `"pass:[*]pass:[*]"` appears in an authorization constraint, it
 indicates that any authenticated user, independent of role, is
 authorized to perform the constrained requests. An authorization
 constraint that names no roles indicates that access to the constrained
