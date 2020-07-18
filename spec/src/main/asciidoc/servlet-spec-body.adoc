@@ -1220,7 +1220,7 @@ a query string of `a=hello` and a post body of `a=goodbye&a=world`, the
 resulting parameter set would be ordered `a=(hello, goodbye, world)`.
 
 Path parameters that are part of a GET request
-(as defined by HTTP 1.1) are not exposed by these APIs. They must be
+(as defined by HTTP/1.1) are not exposed by these APIs. They must be
 parsed from the `String` values returned by the `getRequestURI` method
 or the `getPathInfo` method.
 
@@ -2201,7 +2201,7 @@ the servlet container.
 The response object encapsulates all
 information to be returned from the server to the client. In the HTTP
 protocol, this information is transmitted from the server to the client
-either by HTTP headers or the message body of the request.
+either by HTTP headers or the message body of the response.
 
 === Buffering
 
@@ -2297,17 +2297,17 @@ the correct formatting for the appropriate data type:
 * `addDateHeader`
 
 To be successfully transmitted back to the
-client, headers (not trailer) must be set before the response is
-committed. Headers (not trailer) set after the response is committed
-will be ignored by the servlet container. If HTTP trailer, as specified
-in RFC 7230, are to be sent in the response, they must be provided using
+client, headers (other than those in a trailer) must be set before the response is
+committed. Headers (other than those in a trailer) set after the response is committed
+will be ignored by the servlet container. If an HTTP trailer, as specified
+in RFC 7230, is to be sent in the response, the fields must be provided using
 the `setTrailerFields()` method on `HttpServletResponse`. This method
 must have been called before the last chunk in the chunked response has
 been written.
 
 Servlet programmers are responsible for
 ensuring that the `Content-Type` header is appropriately set in the
-response object for the content the servlet is generating. The HTTP 1.1
+response object for the content the servlet is generating. The HTTP/1.1
 specification does not require that this header be set in an HTTP
 response. Servlet containers must not set a default content type when
 the servlet programmer does not set the type.
@@ -2328,9 +2328,9 @@ Here’s the examples of this header.
 
 === HTTP Trailer
 
-HTTP trailer is a collection of special kind
-of HTTP headers that comes after the response body. Trailer is specified
-in RFC 7230. They are useful in the context of chunked transfer encoding
+An HTTP trailer is a collection of HTTP headers that comes after the
+response body. It is specified
+in RFC 7230. It is useful in the context of chunked transfer encoding
 and also in the implementation of additional communication protocols.
 Servlet containers provide support for trailers.
 
@@ -2398,7 +2398,7 @@ container will invoke the `onWritePossible` method of the
 
 `void setWriteListener(WriteListener listener)`::
 Associates the `WriteListener` with this
-`ServletOutputStream`. for the container to invoke the callback methods
+`ServletOutputStream` for the container to invoke the callback methods
 on the `WriteListener` when it is possible to write data. Registering a
 `WriteListener` will start non-blocking IO. It is illegal to switch to
 the traditional blocking IO at that point. The use of IO related method
@@ -6900,7 +6900,7 @@ redirected request even if authentication is not required for the HTTP
 method with which the request arrives. To improve the predictability of
 the HTTP method of the redirected request, containers should redirect
 (in step 6) using the 303 (`SC_SEE_OTHER`) status code, except where
-interoperability with HTTP 1.0 user agents is required; in which cases
+interoperability with HTTP/1.0 user agents is required; in which cases
 the 302 status code should be used.
 
 When conducted over an unprotected transport,
