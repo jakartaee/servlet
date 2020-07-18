@@ -309,7 +309,7 @@ each request that the servlet container routes to an instance of a
 servlet.
 
 The handling of concurrent requests to a web
-application generally requires that the web Developer design servlets
+application generally requires that the web developer design servlets
 that can deal with multiple threads executing within the `service`
 method at a particular time.
 
@@ -339,7 +339,7 @@ to aid in processing HTTP-based requests. These methods are:
 * `doTrace` for handling HTTP `TRACE` requests
 
 Typically when developing HTTP-based servlets,
-a Servlet Developer is concerned with the `doGet` and
+an Application Developer is concerned with the `doGet` and
 `doPost` methods. The other methods are considered to be methods for use
 by programmers very familiar with HTTP programming.
 
@@ -495,10 +495,10 @@ lifetime.
 
 A servlet container may send concurrent
 requests through the `service` method of the servlet. To handle the
-requests, the Servlet Developer must make adequate provisions for
+requests, the Application Developer must make adequate provisions for
 concurrent processing with multiple threads in the `service` method.
 
-An alternative for the Developer was to implement the `SingleThreadModel`
+An alternative for the Application Developer was to implement the `SingleThreadModel`
 interface but this is now deprecated. The `SingleThreadModel` interface
 requires the container to guarantee that there is only one request
 thread at a time in the `service` method. A servlet container may
@@ -1139,7 +1139,7 @@ has been upgraded.
 The `HttpUpgradeHandler` may use non-blocking
 IO to consume and produce messages.
 
-The Developer has the responsibility for
+The Application Developer has the responsibility for
 thread safe access to the `ServletInputStream` and `ServletOutputStream`
 while processing HTTP upgrade.
 
@@ -1440,7 +1440,7 @@ PathInfo: `null`
 === Path Translation Methods
 
 There are two convenience methods in the API
-which allow the Developer to obtain the file system path equivalent to a
+which allow the Application Developer to obtain the file system path equivalent to a
 particular path. These methods are:
 
 * `ServletContext.getRealPath`
@@ -2165,7 +2165,7 @@ such implementation must ensure that all servlets, and classes that they
 may use footnote:[An exception is system classes that the servlet may use
 in a different class loader.], are loaded in the scope of a single class
 loader. This requirement is needed to guarantee that the application
-will behave as expected by the Developer. As a development aid, the full
+will behave as expected by the Application Developer. As a development aid, the full
 semantics of notification to session binding listeners should be
 supported by containers for use in the monitoring of session termination
 upon class reloading.
@@ -3102,7 +3102,7 @@ These conditions define the situation where
 the servlet container has no mechanism by which to associate a request
 with a previous request.
 
-A Servlet Developer must design the
+An Application Developer must design the
 application to handle a situation where a client has not, can not, or
 will not join a session.
 
@@ -3167,7 +3167,7 @@ The default time out period for sessions is
 defined by the servlet container and can be obtained via the
 `getSessionTimeout` method of the `ServletContext` interface or the
 `getMaxInactiveInterval` method of the `HttpSession` interface. This
-time out can be changed by the Developer using the `setSessionTimeout`
+time out can be changed by the Application Developer using the `setSessionTimeout`
 method of the `ServletContext` interface or the `setMaxInactiveInterval`
 method of the `HttpSession` interface. The time out periods used by
 session timeout methods are defined in minutes. The time out periods
@@ -3195,7 +3195,7 @@ Multiple servlets executing request threads
 may have active access to the same session object at the same time. The
 container must ensure that manipulation of internal data structures
 representing the session attributes is performed in a thread safe
-manner. The Developer has the responsibility for thread safe access to
+manner. The Application Developer has the responsibility for thread safe access to
 the attribute objects themselves. This will protect the attribute
 collection inside the `HttpSession` object from concurrent access,
 eliminating the opportunity for an application to cause that collection
@@ -3234,7 +3234,7 @@ The distributed servlet container must support
 the mechanism necessary for migrating objects that implement
 `Serializable`.
 
-These restrictions mean that the Developer is
+These restrictions mean that the Application Developer is
 ensured that there are no additional concurrency issues beyond those
 encountered in a non-distributed container.
 
@@ -3269,7 +3269,7 @@ Due to the fact that cookies or SSL
 certificates are typically controlled by the web browser process and are
 not associated with any particular window of the browser, requests from
 all windows of a client application to a servlet container might be part
-of the same session. For maximum portability, the Developer should
+of the same session. For maximum portability, the Application Developer should
 always assume that all windows of a client are participating in the same
 session.
 
@@ -4864,7 +4864,7 @@ context rooted at `"/"` and a request to
 The `ServletContext` and `ServletRequest`
 methods that create `RequestDispatcher` objects using path information
 allow the optional attachment of query string information to the path.
-For example, a Developer may obtain a `RequestDispatcher` by using the
+For example, an Application Developer may obtain a `RequestDispatcher` by using the
 following code:
 
 [source,java]
@@ -5657,7 +5657,7 @@ resources that the web application uses.
 Application event listeners are classes that
 implement one or more of the servlet event listener interfaces. They are
 instantiated and registered in the web container at the time of the
-deployment of the web application. They are provided by the Developer in
+deployment of the web application. They are provided by the Application Developer in
 the WAR.
 
 Servlet event listeners support event
@@ -5671,7 +5671,7 @@ lifecycle of servlet requests. Async listeners are used to manage async
 events such as time outs and completion of async processing.
 
 There may be multiple listener classes
-listening to each event type, and the Developer may specify the order in
+listening to each event type, and the Application Developer may specify the order in
 which the container invokes the listener beans for each event type.
 
 ==== Event Types and Listener Interfaces
@@ -5765,7 +5765,7 @@ reference.
 
 To illustrate a use of the event scheme,
 consider a simple web application containing a number of servlets that
-make use of a database. The Developer has provided a servlet context
+make use of a database. The Application Developer has provided a servlet context
 listener class for management of the database connection.
 
 . When the application starts up, the listener
@@ -5783,7 +5783,7 @@ notified and the database connection is closed.
 
 ==== Provision of Listener Classes
 
-The Developer of the web application provides
+The Application Developer of the web application provides
 listener classes implementing one or more of the listener interfaces in
 the `jakarta.servlet` API. Each listener class must have a public
 constructor taking no arguments. The listener classes are packaged into
@@ -5828,7 +5828,7 @@ Suppose that `com.example.MyConnectionManager`
 and `com.example.MyLoggingModule` both implement
 `jakarta.servlet.ServletContextListener`, and that
 `com.example.MyLoggingModule` additionally implements
-`jakarta.servlet.http.HttpSessionListener`. Also, the Developer wants
+`jakarta.servlet.http.HttpSessionListener`. Also, the Application Developer wants
 `com.example.MyConnectionManager` to be notified of servlet context
 lifecycle events before `com.example.MyLoggingModule`. Here is the
 deployment descriptor for this application:
@@ -5887,7 +5887,7 @@ out and throws an unhandled exception, or of a `ServletContextListener`
 that throws an unhandled exception during a notification of servlet
 context initialization, or of a `ServletRequestListener` that throws an
 unhandled exception during a notification of the initialization or the
-destruction of the request object. In this case, the Developer has no
+destruction of the request object. In this case, the Application Developer has no
 opportunity to handle the exception. The container may respond to all
 subsequent requests to the web application with an HTTP status code 500
 to indicate an application error.
@@ -5908,7 +5908,7 @@ JVM.
 
 === Session Events
 
-Listener classes provide the Developer with a
+Listener classes provide the Application Developer with a
 way of tracking sessions within a web application. It is often useful in
 tracking sessions to know whether a session became invalid because the
 container timed out the session, or because a web component within the
@@ -6848,7 +6848,7 @@ authentication.
 The look and feel of the “login screen” cannot
 be varied using the web browser’s built-in authentication mechanisms.
 This specification introduces a required form based authentication
-mechanism which allows a Developer to control the look and feel of the
+mechanism which allows an Application Developer to control the look and feel of the
 login screens.
 
 The web application deployment descriptor
