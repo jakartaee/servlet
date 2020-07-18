@@ -5951,7 +5951,7 @@ separator. The longest match determines the servlet selected.
 . If the last segment in the URL path contains
 an extension (e.g. `.jsp`), the servlet container will try to match a
 servlet that handles requests for the extension. An extension is defined
-as the part of the last segment after the last `.` character.
+as the part of the last segment after the last `"."` character.
 
 . If neither of the previous three rules result
 in a servlet match, the container will attempt to serve content
@@ -5974,10 +5974,10 @@ mapping.
 * A string beginning with a `"*."` prefix
 is used as an extension mapping.
 
-* The empty string (`""`) is a special URL pattern
+* The empty string (`+""+`) is a special URL pattern
 that exactly maps to the application's context root, i.e., requests of
-the form http://host:port/<context-root>/. In this case the path info is
-`"/"` and the servlet path and context path is empty string (`""`).
+the form `http://host:port/<context-root>/`. In this case the path info is
+`"/"` and the servlet path and context path is empty string (`+""+`).
 
 * A string containing only the `"/"`
 character indicates the "default" servlet of the application. In this
