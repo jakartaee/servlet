@@ -6972,9 +6972,9 @@ developers, system administrators, and system integrators).
 
 To facilitate portable implementation and
 integration of additional container authentication mechanisms, it is
-recommended that all servlet containers implement the servlet Container
-Profile of The Jakarta Authentication SPI for Containers.
-The SPI is available for download at:
+recommended that all servlet containers implement the Servlet Container
+Profile of The Jakarta Authentication Specification.
+The specification is available for download at:
 https://jakarta.ee/specifications/authentication/
 
 
@@ -7850,7 +7850,7 @@ available for download at
 In a Jakarta product, or a product that includes support for Jakarta
 Authentication, all servlet containers MUST implement the Servlet
 Container Profile of the Jakarta Authentication specification. The
-Jakarta Authentication Specification is available for download at
+Jakarta Authentication specification is available for download at
 `https://jakarta.ee/specifications/authentication/`
 
 === Deployment
