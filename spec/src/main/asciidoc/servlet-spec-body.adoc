@@ -1729,12 +1729,6 @@ into a container. In cases where the container is distributed over many
 virtual machines, a web application will have an instance of the
 `ServletContext` for each JVM.
 
-Servlets in a container that were not deployed
-as part of a web application are implicitly part of a “default” web
-application and have a default `ServletContext`. In a distributed
-container, the default `ServletContext` is non-distributable and must
-only exist in one JVM.
-
 === Initialization Parameters
 
 The following methods of the `ServletContext`
