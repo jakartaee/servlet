@@ -587,13 +587,13 @@ becomes available, the thread handling that event continues processing
 either in the same thread or by dispatching to a resource in the
 container using the `AsyncContext`.
 
-Jakarta EE features such as
-<<_Web_Application_Environment>> and
-<<Propagation of Security Identity in EJB™ Calls>> are available only to
-threads executing the initial request or when the request is dispatched
-to the container via the `AsyncContext.dispatch` method. Jakarta EE features
-may be available to other threads operating directly on
-the response object via the `AsyncContext.start(Runnable)` method.
+Jakarta EE features such as <<_Web_Application_Environment>> and
+<<Propagation of Security Identity in Jakarta Enterprise Bean Calls>>
+are available only to threads executing the initial request or when
+the request is dispatched to the container via the
+`AsyncContext.dispatch` method. Jakarta EE features may be available
+to other threads operating directly on the response object via the
+`AsyncContext.start(Runnable)` method.
 
 The `@WebServlet` and `@WebFilter`
 annotations described in Chapter 8 have an attribute `asyncSupported`
@@ -1728,12 +1728,6 @@ There is one instance object of the
 into a container. In cases where the container is distributed over many
 virtual machines, a web application will have an instance of the
 `ServletContext` for each JVM.
-
-Servlets in a container that were not deployed
-as part of a web application are implicitly part of a “default” web
-application and have a default `ServletContext`. In a distributed
-container, the default `ServletContext` is non-distributable and must
-only exist in one JVM.
 
 === Initialization Parameters
 
@@ -3317,7 +3311,7 @@ the deployment XSD include `jakarta.servlet.annotation.HandlesTypes` and
 all of the CDI-related annotations. These annotations must be processed
 during annotation scanning, regardless of the value of `metadata-complete`.
 
-When EJBs are packaged in a `.war` file, and
+When Jakarta Enterprise Beans are packaged in a `.war` file, and
 the `.war` file contains an `ejb-jar.xml` file, the `metadata-complete`
 attribute of the `ejb-jar.xml` file determines the processing of the
 annotations for enterprise beans. If there is no `ejb-jar.xml` file, and
@@ -3325,7 +3319,7 @@ the `web.xml` specifies the `metadata-complete` attribute as `true`,
 these annotations are processed as though there were an `ejb-jar.xml`
 file whose `metadata-complete` attribute was specified as `true`.
 See the Jakarta Enterprise Beans specification for requirements pertaining
-to annotations for EJBs.
+to annotations for Jakarta Enterprise Beans.
 
 The following are the annotations in
 jakarta.servlet. All of these have corresponding deployment descriptor
@@ -6972,9 +6966,9 @@ developers, system administrators, and system integrators).
 
 To facilitate portable implementation and
 integration of additional container authentication mechanisms, it is
-recommended that all servlet containers implement the servlet Container
-Profile of The Jakarta Authentication SPI for Containers.
-The SPI is available for download at:
+recommended that all servlet containers implement the Servlet Container
+Profile of The Jakarta Authentication Specification.
+The specification is available for download at:
 https://jakarta.ee/specifications/authentication/
 
 
@@ -7798,19 +7792,21 @@ URL myWebApp;
 
 This section details the additional security
 requirements for web containers when included in a product that also
-contains EJB, JACC and or JASPIC. The following sections call out the
+contains Jakarta Enterprise Beans, Jakarta Authorisation and/or
+Jakarta Authentication. The following sections call out the
 requirements
 
-==== Propagation of Security Identity in EJB™ Calls
+==== Propagation of Security Identity in Jakarta Enterprise Bean Calls
 
 A security identity, or principal, must always
 be provided for use in a call to an enterprise bean. The default mode in
 calls to enterprise beans from web applications is for the security
-identity of a web user to be propagated to the EJB container.
+identity of a web user to be propagated to the Jakarta Enterprise Bea
+container.
 
 In other scenarios, web containers are
 required to allow web users that are not known to the web container or
-to the EJB container to make calls:
+to the Jakarta Enterprise Bean container to make calls:
 
 * Web containers are required to support access
 to web resources by clients that have not authenticated themselves to
@@ -7824,30 +7820,32 @@ In these scenarios, a web application
 deployment descriptor may specify a `run-as` element. When a `run-as`
 role is specified for a servlet, the servlet container must propagate a
 principal mapped to the role as the security identity in any call from
-the servlet to an EJBs, including calls originating from the servlet’s
-`init` and `destroy` methods. The security role name must be one of the
-security role names defined for the web application.
+the servlet to an Jakarta Enterprise Beans, including calls
+originating from the servlet’s `init` and `destroy` methods. The
+security role name must be one of the security role names defined for
+the web application.
 
 For web containers running as part of a Jakarta EE platform,
 the use of `run-as` elements must be supported both for
-calls to EJB components within the same Jakarta application, and for
-calls to EJB components deployed in other Jakarta applications.
+calls to Jakarta Enterprise Bean components within the same Jakarta
+application, and for calls to Jakarta Enterprise Bean components
+deployed in other Jakarta applications.
 
 ==== Container Authorization Requirements
 
-In a Jakarta product or in a product that
-includes support for Jakarta Authorization Contracts for Containers (JACC),
-all servlet containers MUST implement support for JACC.
-The JACC Specification is available for download at
+In a Jakarta product or in a product that includes support for Jakarta
+Authorization, all servlet containers MUST implement support for
+Jakarta Authorization. The Jakarta Authorization Specification is
+available for download at
 `https://jakarta.ee/specifications/authorization/`
 
 ==== Container Authentication Requirements
 
-In a Jakarta product, or a product that
-includes support for The Jakarta Authentication SPI for Containers (JASPIC),
-all servlet containers MUST implement the Servlet
-Container Profile of the JASPIC specification. The JASPIC Specification
-is available for download at `https://jakarta.ee/specifications/authentication/`
+In a Jakarta product, or a product that includes support for Jakarta
+Authentication, all servlet containers MUST implement the Servlet
+Container Profile of the Jakarta Authentication specification. The
+Jakarta Authentication specification is available for download at
+`https://jakarta.ee/specifications/authentication/`
 
 === Deployment
 
@@ -7920,8 +7918,8 @@ components in the web container
 * the `security-role-ref` element may be used to
 test whether the authenticated user is in a logical security role
 
-* the `run-as` element may be used to override
-the identity propagated to EJBs called by this component
+* the `run-as` element may be used to override the identity propagated
+to Jakarta Enterprise Beans called by this component
 
 Any servlet initialization parameters defined
 by the developer for this web component may be ignored by the container.
@@ -8106,12 +8104,12 @@ specification section 2.12.
 
 ==== @EJB Annotation
 
-Jakarta Enterprise Beans 4.0 (EJB) components
+Jakarta Enterprise Beans 4.0 components
 may be referenced from a web component using the `@EJB` annotation. The
 `@EJB` annotation provides the equivalent functionality of declaring the
 `ejb-ref` or `ejb-local-ref` elements in the deployment descriptor.
 Fields that have a corresponding `@EJB` annotation are injected with the
-a reference to the corresponding EJB component.
+a reference to the corresponding Jakarta Enterprise Bean component.
 
 An example:
 
@@ -8120,13 +8118,13 @@ An example:
 @EJB private ShoppingCart myCart;
 ----
 
-In the case above a reference to the EJB
+In the case above a reference to the Jakarta Enterprise Bean
 component `myCart` is injected as the value of the private field
 `myCart` prior to the classs declaring the injection being made
 available.
 
-The behavior the `@EJB` annotation is further
-detailed in section 11.5.1 of the EJB 3.2 specification (JSR 345).
+The behavior the `@EJB` annotation is further detailed in section
+11.5.1 of the Jakarta Enterprise Bean 4.0 specification.
 
 ==== @EJBs Annotation
 
@@ -8144,11 +8142,11 @@ public class ShoppingCartServlet extends HttpServlet {
 }
 ----
 
-The example above the EJB components
+The example above the Jakarta Enterprise Bean components
 `ShoppingCart` and `Calculator` are made available to
-`ShoppingCartServlet`. The `ShoppingCartServlet` must still look up the
-references using JNDI but the EJBs do not need to declared in the
-web.xml file.
+`ShoppingCartServlet`. The `ShoppingCartServlet` must still look up
+the references using JNDI but the Jakarta Enterprise Beans do not
+need to declared in the web.xml file.
 
 ==== @Resource Annotation
 
@@ -8223,7 +8221,7 @@ The `@PersistenceUnit` annotation provides
 Jakarta Enterprise Beans components declared in a servlet a reference to a
 entity manager factory. The entity manager factory is bound to a
 separate persistence.xml configuration file as described in section
-11.10 of the EJB 3.2 specification.
+11.10 of the Jakarta Enterprise Bean 4.0 specification.
 
 An example:
 
@@ -8372,9 +8370,9 @@ equivalent to defining the following in the web.xml.
 
 The example above shows how a servlet uses the
 `@RunAs` annotation to propagate the security identity `Admin` to an
-EJB component when the `myCart.getTotal()` method is called. For further
-details on propagating identities see
-<<Propagation of Security Identity in EJB™ Calls>>.
+Jakarta Enterprise Bean component when the `myCart.getTotal()` method
+is called. For further details on propagating identities see
+<<Propagation of Security Identity in Jakarta Enterprise Bean Calls>>.
 
 For further details on the `@RunAs` annotation
 refer to the Jakarta Annotations specification section 2.7.
