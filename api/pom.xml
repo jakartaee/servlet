@@ -224,7 +224,7 @@
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                         <manifestEntries>
-                            <Automatic-Module-Name>java.servlet</Automatic-Module-Name>
+                            <Automatic-Module-Name>jakarta.servlet</Automatic-Module-Name>
                         </manifestEntries>
                     </archive>
                     <excludes>
@@ -273,7 +273,7 @@
                             <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:servlet-dev@eclipse.org">servlet-dev@eclipse.org</a>.<br>
-Copyright &#169; 2019 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2019, 2020 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>
