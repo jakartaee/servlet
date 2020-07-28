@@ -4,17 +4,15 @@ Specification: {doctitle}
 
 Version: {revnumber}
 
-ifeval::["{revremark}" != ""]
 Status: {revremark}
-endif::[]
-ifeval::["{revremark}" == ""]
-Status: Final Release
-endif::[]
 
 Release: {revdate}
 ....
 
-Copyright (c) 2019, {revyear} Eclipse Foundation.
+== Copyright
+
+Copyright (C) 2018, 2020 Eclipse Foundation. 
+https://www.eclipse.org/legal/efsl.php[]
 
 === Eclipse Foundation Specification License
 
@@ -32,8 +30,8 @@ document, or portions thereof, that you use:
 * link or URL to the original Eclipse Foundation document.
 * All existing copyright notices, or if one does not exist, a notice
   (hypertext is preferred, but a textual representation is permitted)
-  of the form: "Copyright © [$date-of-document] Eclipse Foundation, Inc.
-  \<<url to this license>>"
+  of the form: "Copyright (C) [$date-of-document]
+  Eclipse Foundation, Inc. https://www.eclipse.org/legal/efsl.php[]"
 
 Inclusion of the full text of this NOTICE must be provided. We
 request that authorship attribution be provided in any software,
@@ -52,10 +50,10 @@ specification is expressly prohibited.
 
 The notice is:
 
-"Copyright © 2018, 2020 Eclipse Foundation. This software or document
-includes material copied from or derived from
-Jakarta ® Servlet
-\https://jakarta.ee/specifications/servlet/5.0/"
+"Copyright (C) 2018, 2020 Eclipse Foundation. This software or
+document includes material copied from or derived from 
+Jakarta(R) Servlet
+https://jakarta.ee/specifications/servlet/5.0/[]"
 
 ==== Disclaimers
 
