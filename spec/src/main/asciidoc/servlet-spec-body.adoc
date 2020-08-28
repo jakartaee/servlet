@@ -4232,7 +4232,7 @@ and the attributes and child elements are not identical in the two
 fragments. An error must be reported and the application MUST fail to
 deploy. For example, if two web fragments declare a `<resource-ref>`
 with the same `<resource-ref-name>` element but the type in one is
-specified as `jakarta.sql.DataSource` while the type in the other is that
+specified as `javax.sql.DataSource` while the type in the other is that
 of a Jakarta Mail resource, it is an error and the application will fail to
 deploy.
 
@@ -8168,7 +8168,7 @@ An example of a @Resource annotation follows:
 [source,java]
 ----
 @Resource
-private jakarta.sql.DataSource catalogDS;
+private javax.sql.DataSource catalogDS;
 
 public getProductsByCategory() {
 
@@ -8179,7 +8179,7 @@ public getProductsByCategory() {
 ----
 
 In the example code above, a servlet, filter,
-or listener declares a field `catalogDS` of type `jakarta.sql.DataSource`
+or listener declares a field `catalogDS` of type `javax.sql.DataSource`
 for which the reference to the data source is injected by the container
 prior to the component being made available to the application. The data
 source JNDI mapping is inferred from the field name `catalogDS` and
