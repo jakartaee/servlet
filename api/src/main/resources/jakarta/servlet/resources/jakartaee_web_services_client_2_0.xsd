@@ -73,7 +73,7 @@
 
             The service-interface element declares the fully qualified class
             name of the Jakarta XML RPC Service interface the client depends on. 
-            In most cases the value will be jakarta.xml.rpc.Service.  A Jakarta XML 
+            In most cases the value will be javax.xml.rpc.Service.  A Jakarta XML 
             RPC generated Service Interface class may also be specified.
             
           </xsd:documentation>

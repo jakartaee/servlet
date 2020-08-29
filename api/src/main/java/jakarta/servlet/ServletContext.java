@@ -621,7 +621,7 @@ public interface ServletContext {
      * <p>
      * This method introspects the class with the given <tt>className</tt> for the
      * {@link jakarta.servlet.annotation.ServletSecurity}, {@link jakarta.servlet.annotation.MultipartConfig},
-     * <tt>javax.annotation.security.RunAs</tt>, and <tt>javax.annotation.security.DeclareRoles</tt> annotations. In
+     * <tt>jakarta.annotation.security.RunAs</tt>, and <tt>jakarta.annotation.security.DeclareRoles</tt> annotations. In
      * addition, this method supports resource injection if the class with the given <tt>className</tt> represents a Managed
      * Bean. See the Jakarta EE platform and CDI specifications for additional details about Managed Beans and resource
      * injection.
@@ -691,8 +691,8 @@ public interface ServletContext {
      *
      * <p>
      * This method introspects the given <tt>servletClass</tt> for the {@link jakarta.servlet.annotation.ServletSecurity},
-     * {@link jakarta.servlet.annotation.MultipartConfig}, <tt>javax.annotation.security.RunAs</tt>, and
-     * <tt>javax.annotation.security.DeclareRoles</tt> annotations. In addition, this method supports resource injection if
+     * {@link jakarta.servlet.annotation.MultipartConfig}, <tt>jakarta.annotation.security.RunAs</tt>, and
+     * <tt>jakarta.annotation.security.DeclareRoles</tt> annotations. In addition, this method supports resource injection if
      * the given <tt>servletClass</tt> represents a Managed Bean. See the Jakarta EE platform and CDI specifications for
      * additional details about Managed Beans and resource injection.
      *
@@ -758,7 +758,7 @@ public interface ServletContext {
      * <p>
      * This method introspects the given <tt>clazz</tt> for the following annotations:
      * {@link jakarta.servlet.annotation.ServletSecurity}, {@link jakarta.servlet.annotation.MultipartConfig},
-     * <tt>javax.annotation.security.RunAs</tt>, and <tt>javax.annotation.security.DeclareRoles</tt>. In addition, this
+     * <tt>jakarta.annotation.security.RunAs</tt>, and <tt>jakarta.annotation.security.DeclareRoles</tt>. In addition, this
      * method supports resource injection if the given <tt>clazz</tt> represents a Managed Bean. See the Jakarta EE platform
      * and CDI specifications for additional details about Managed Beans and resource injection.
      *
