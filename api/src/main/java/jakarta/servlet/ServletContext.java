@@ -692,8 +692,8 @@ public interface ServletContext {
      * <p>
      * This method introspects the given <tt>servletClass</tt> for the {@link jakarta.servlet.annotation.ServletSecurity},
      * {@link jakarta.servlet.annotation.MultipartConfig}, <tt>jakarta.annotation.security.RunAs</tt>, and
-     * <tt>jakarta.annotation.security.DeclareRoles</tt> annotations. In addition, this method supports resource injection if
-     * the given <tt>servletClass</tt> represents a Managed Bean. See the Jakarta EE platform and CDI specifications for
+     * <tt>jakarta.annotation.security.DeclareRoles</tt> annotations. In addition, this method supports resource injection
+     * if the given <tt>servletClass</tt> represents a Managed Bean. See the Jakarta EE platform and CDI specifications for
      * additional details about Managed Beans and resource injection.
      *
      * @param servletName the name of the servlet
