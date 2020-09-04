@@ -899,8 +899,8 @@ public interface ServletContext {
      * returned.
      *
      * <p>
-     * This method supports resource injection if the given <tt>filterClass</tt> represents a Managed Bean. See the Java EE
-     * platform and CDI specifications for additional details about Managed Beans and resource injection.
+     * This method supports resource injection if the given <tt>filterClass</tt> represents a Managed Bean. See the Jakarta
+     * EE platform and CDI specifications for additional details about Managed Beans and resource injection.
      *
      * @param filterName the name of the filter
      * @param filterClass the class object from which the filter will be instantiated
