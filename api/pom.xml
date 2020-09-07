@@ -30,7 +30,7 @@
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1-SNAPSHOT</version>
 
     <name>Jakarta Servlet</name>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
