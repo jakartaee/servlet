@@ -10,3 +10,4 @@ nbactions.xml
 .project
 .settings/
 downloads/
+.DS_Store
