@@ -1080,7 +1080,7 @@ can be used for generating content.
 the state transitions for various asynchronous operations.
 
 .*Figure 2-1* State transition diagram for asynchronous operations
-image:servlet-12.png[image]
+image:state-transition.png[image]
 
 ===== Thread Safety
 
