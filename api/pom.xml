@@ -96,9 +96,6 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>META-INF/README</exclude>
-                </excludes>
             </resource>
         </resources>
         <pluginManagement>
