@@ -606,16 +606,22 @@ class NoBodyResponse extends HttpServletResponseWrapper {
     // file private
     NoBodyResponse(HttpServletResponse r) {
         super(r);
-        noBody = new NoBodyOutputStream();
     }
 
     // file private
-    void setContentLength() {
+    void setContentLength() throws IOException {
         if (!didSetContentLength) {
             if (writer != null) {
                 writer.flush();
             }
-            setContentLength(noBody.getContentLength());
+            if (noBody != null) {
+                long contentLength = noBody.getContentLength();
+                if (contentLength > getBufferSize() && !isCommitted()) {
+                    flushBuffer(); // commit without content-length
+                } else {
+                    setContentLengthLong(noBody.getContentLength());
+                }
+            }
         }
     }
 
@@ -667,6 +673,9 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         if (writer != null) {
             throw new IllegalStateException(lStrings.getString("err.ise.getOutputStream"));
         }
+        if (noBody == null) {
+            noBody = new NoBodyOutputStream(this);
+        }
         usingOutputStream = true;
 
         return noBody;
@@ -697,14 +706,18 @@ class NoBodyOutputStream extends ServletOutputStream {
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
-    private int contentLength = 0;
+    private final NoBodyResponse response;
+    private final ServletOutputStream wrapped;
+    private long contentLength = 0;
 
     // file private
-    NoBodyOutputStream() {
+    NoBodyOutputStream(NoBodyResponse response) throws IOException {
+        this.response = response;
+        this.wrapped = response.getResponse().getOutputStream();
     }
 
     // file private
-    int getContentLength() {
+    long getContentLength() {
         return contentLength;
     }
 
@@ -733,12 +746,23 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
+    public void flush() throws IOException {
+        wrapped.flush();
+    }
+
+    @Override
+    public void close() throws IOException {
+        response.setContentLength();
+        super.close();
+    }
+
+    @Override
     public boolean isReady() {
-        return false;
+        return wrapped.isReady();
     }
 
     @Override
     public void setWriteListener(WriteListener writeListener) {
-
+        wrapped.setWriteListener(writeListener);
     }
 }
