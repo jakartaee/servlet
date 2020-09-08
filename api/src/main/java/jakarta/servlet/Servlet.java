@@ -59,7 +59,10 @@ public interface Servlet {
      *
      * <p>
      * The servlet container calls the <code>init</code> method exactly once after instantiating the servlet. The
-     * <code>init</code> method must complete successfully before the servlet can receive any requests.
+     * <code>init</code> method must complete successfully before the servlet can receive any requests. The container will
+     * ensure that actions performed in the <code>init</code> method will be visible to any threads that subsequently call
+     * the <code>service</code> method according to the rules in JSR-133 (i.e. there is a 'happens before' relationship
+     * between <code>init</code> and <code>service</code>).
      *
      * <p>
      * The servlet container cannot place the servlet into service if the <code>init</code> method
