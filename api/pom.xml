@@ -30,7 +30,7 @@
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.1.0-SNAPSHOT</version>
 
     <name>Jakarta Servlet</name>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
@@ -187,13 +187,13 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Version>5.0.0</Bundle-Version>
+                        <Bundle-Version>5.1.0</Bundle-Version>
                         <Bundle-SymbolicName>jakarta.servlet-api</Bundle-SymbolicName>
                         <Bundle-Description>
-                            Jakarta Servlet 5.0
+                            Jakarta Servlet 5.1
                         </Bundle-Description>
                         <Extension-Name>jakarta.servlet</Extension-Name>
-                        <Specification-Version>5.0</Specification-Version>
+                        <Specification-Version>5.1</Specification-Version>
                         <Specification-Vendor>Eclipse Foundation</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
