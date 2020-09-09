@@ -610,17 +610,16 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 
     // file private
     void setContentLength() throws IOException {
-        if (!didSetContentLength) {
+        // Set the content length IFF it is not already set and the app the output stream
+        // has been created.
+        if (!didSetContentLength && noBody != null) {
             if (writer != null) {
-                writer.flush();
+                noBody.flush(writer);
             }
-            if (noBody != null) {
-                long contentLength = noBody.getContentLength();
-                if (contentLength > getBufferSize() && !isCommitted()) {
-                    flushBuffer(); // commit without content-length
-                } else {
-                    setContentLengthLong(noBody.getContentLength());
-                }
+
+            // If the response has not been committed, the content length can be set.
+            if (!isCommitted()) {
+                setContentLength(noBody.getContentLength());
             }
         }
     }
@@ -708,7 +707,11 @@ class NoBodyOutputStream extends ServletOutputStream {
 
     private final NoBodyResponse response;
     private final ServletOutputStream wrapped;
-    private long contentLength = 0;
+
+    // The real contentLength can a long, but this class tracks it only whilst less than
+    // the buffer size, which is an int
+    private int contentLength = 0;
+    private boolean writerFlush = false;
 
     // file private
     NoBodyOutputStream(NoBodyResponse response) throws IOException {
@@ -717,13 +720,13 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     // file private
-    long getContentLength() {
+    int getContentLength() {
         return contentLength;
     }
 
     @Override
-    public void write(int b) {
-        contentLength++;
+    public void write(int b) throws IOException {
+        incrementContentLength(1);
     }
 
     @Override
@@ -742,12 +745,34 @@ class NoBodyOutputStream extends ServletOutputStream {
             throw new IndexOutOfBoundsException(msg);
         }
 
-        contentLength += len;
+        incrementContentLength(len);
+    }
+
+    private void incrementContentLength(int delta) throws IOException {
+        // Only count contentLength whilst uncommitted.
+        if (!response.isCommitted()) {
+            contentLength += delta;
+
+            // If the response buffer would have been overflown, commit the response.
+            if (contentLength > response.getBufferSize())
+                response.flushBuffer();
+        }
     }
 
     @Override
     public void flush() throws IOException {
-        wrapped.flush();
+        if (!writerFlush) {
+            response.flushBuffer();
+        }
+    }
+
+    public void flush(PrintWriter writer) {
+        try {
+            writerFlush = true;
+            writer.flush();
+        } finally {
+            writerFlush = false;
+        }
     }
 
     @Override
