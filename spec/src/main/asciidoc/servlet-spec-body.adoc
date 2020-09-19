@@ -8,9 +8,9 @@ Copyright (c) 2020 Contributors to the Eclipse Foundation.
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
 registered trademarks of Oracle and/or its affiliates. Other names
-may be trademarks of their respective owners. 
+may be trademarks of their respective owners.
 
-The Jakarta Servlet Team - {revdate}
+The Jakarta Servlet Team
 
 Comments to: servlet-dev@eclipse.org
 
@@ -26,14 +26,14 @@ The specification is intended to be a complete
 and clear explanation of the Jakarta Servlet API, but if questions remain, the
 following sources may be consulted:
 
-* A reference implementation (RI) has been made
+* A compatible implementation (CI) has been made
 available which provides a behavioral benchmark for this specification.
 Where the specification leaves implementation of a particular feature
 open to interpretation, implementors may use the reference
 implementation as a model of how to carry out the intention of the
 specification.
 
-* A compatibility test suite (CTS) has been
+* The Jakarta EE Platform TCK has been
 provided for assessing whether implementations meet the compatibility
 requirements of the Jakarta Servlet API standard. The test results have
 normative value for resolving questions about whether an implementation
@@ -88,6 +88,9 @@ referenced throughout this specification:
 
 These specifications may be found at the Jakarta EE
 Platform, web site: `https://jakarta.ee/specifications/`.
+
+References to other specifications that are part of the Jakarta EE platform exclude the versions of
+those specifications that target Jakarta EE 8 due to the different name-space used.
 
 === Other Important References
 
@@ -1807,7 +1810,7 @@ class. The method must support all the annotations applicable to
 servlets except `@WebServlet`. The returned `Servlet` instance may be
 further customized before it is registered with the `ServletContext` via
 a call to `addServlet(String, Servlet)` as defined above. The given
-`Servlet` class must define a zero argument constructor, which is used 
+`Servlet` class must define a zero argument constructor, which is used
 to instantiate it.
 
 ===== ServletRegistration getServletRegistration(String servletName)
@@ -4613,7 +4616,8 @@ In addition to supporting fragments and use
 of annotations, one of the requirements is that not only we be able to
 plug-in things that are bundled in the `WEB-INF/lib` but also plugin
 shared copies of frameworks - including being able to plug-in to the web
-container things like JAX-WS, JAX-RS and JSF that build on top of the
+container things like Jakarta XML Web Services, Jakarta Restful Web Services and Jakarta
+Server Faces that build on top of the
 web container. The `ServletContainerInitializer` allows handling such a
 use case as described below.
 
@@ -4667,9 +4671,9 @@ the `@HandlesTypes` annotation.
 A concrete example below showcases how this
 would work.
 
-Let's take the JAX-WS web services runtime.
+Let's take the Jakarta XML Web Services web services runtime.
 
-The implementation of JAX-WS runtime isn't
+The implementation of Jakarta XML Web Services runtime isn't
 typically bundled in each and every war file. The implementation would
 bundle an implementation of the `ServletContainerInitializer` (shown
 below) and the container would look that up using the services API (the
@@ -4684,7 +4688,7 @@ jar file will bundle in it's `META-INF/services` directory a file called
 JAXWSServletContainerInitializer implements ServletContainerInitializer {
 
     public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
-        // JAX-WS specific code here to initialize the runtime
+        // Jakarta XML Web Services specific code here to initialize the runtime
         // and setup the mapping etc.
         ServletRegistration reg = ctx.addServlet("JAXWSServlet",
                 "com.sun.webservice.JAXWSServlet");
@@ -7873,28 +7877,28 @@ The syntax for these elements is now held in
 the Jakarta Server Pages specification version 3.0,
 and the Jakarta EE Platform specification.
 
-==== Packaging and Deployment of JAX-WS Components
+==== Packaging and Deployment of Jakarta XML Web Services Components
 
 Web containers may choose to support running
 components written to implement a web service endpoint as defined by the
-JAX-RPC and/or JAX-WS specifications. Web containers embedded in a Jakarta
-conformant implementation are required to support JAX-RPC and JAX-WS
+Jakarta XML Web Services specifications. Web containers embedded in a Jakarta
+conformant implementation are required to support Jakarta XML Web Services
 web service components. This section describes the packaging and
 deployment model for web containers when included in a product which
-also supports JAX-RPC and JAX-WS.
+also supports Jakarta XML Web Services.
 
-Jakarta Enterprise Web Services specification `https://jakarta.ee/specifications/enterprise-ws/`
+Jakarta XML Web Services specification `https://jakarta.ee/specifications/enterprise-ws/`
 defines the model for packaging a web service interface with its
 associated WSDL description and associated classes. It defines a
-mechanism for JAX-WS and JAX-RPC enabled web containers to link to a
-component that implements this web service. A JAX-WS or JAX-RPC web
-service implementation component uses the APIs defined by the JAX-WS
-and/or JAX-RPC specifications, which defines its contract with the
-JAX-WS and/or JAX-RPC enabled web containers. It is packaged into the
+mechanism for Jakarta XML Web Services enabled web containers to link to a
+component that implements this web service. A Jakarta XML Web Services
+implementation component uses the APIs defined by the Jakarta XML Web Services
+specification, which defines its contract with the
+Jakarta XML Web Services enabled web containers. It is packaged into the
 WAR file. The web service developer makes a declaration of this
 component using the usual `<servlet>` declaration.
 
-JAX-WS and JAX-RPC enabled web containers must
+Jakarta XML Web Services enabled web containers must
 support the developer in using the web deployment descriptor to define
 the following information for the endpoint implementation component,
 using the same syntax as for HTTP servlet components using the `servlet`
@@ -7923,7 +7927,7 @@ to Jakarta Enterprise Beans called by this component
 
 Any servlet initialization parameters defined
 by the developer for this web component may be ignored by the container.
-Additionally, the JAX-WS and JAX-RPC enabled web component inherits the
+Additionally, the Jakarta XML Web Services enabled web component inherits the
 traditional web component mechanisms for defining the following
 information:
 
@@ -7934,7 +7938,7 @@ container’s URL namespace using the servlet mapping technique
 using security constraints
 
 * the ability to use servlet filters to provide
-low-level byte stream support for manipulating JAX-WS and/or JAX-RPC
+low-level byte stream support for manipulating Jakarta XML Web Services
 messages using the filter mapping technique
 
 * the time out characteristics of any HTTP
@@ -8394,14 +8398,14 @@ In this example a reference to the web service
 `MyService` will be injected to the class declaring the annotation.
 
 This annotation and behavior are further
-detailed in the JAX-WS Specification section 7.
+detailed in the Jakarta XML Web Services Specification section 7.
 
 ==== @WebServiceRefs Annotation
 
 This annotation allows for more than one
 `@WebServiceRef` annotations to be declared on a single resource. The
-behavior of this annotation is further detailed in the JAX-WS
-Specification section 7.
+behavior of this annotation is further detailed in the Jakarta XML Web Services
+Specification.
 
 ==== Contexts and Dependency Injection for Jakarta EE Platform Requirements
 
