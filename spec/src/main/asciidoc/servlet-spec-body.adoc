@@ -3994,7 +3994,7 @@ following:
 * E, B, F, <no id>, C, D
 * E, B, F, <no id>, D, C
 * E, B, F, D, <no id>, C
-* E, B, F, D, <no id>, D
+* B, E, F, D, <no id>, C
 
 --
 
