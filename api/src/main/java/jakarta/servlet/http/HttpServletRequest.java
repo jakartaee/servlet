@@ -62,9 +62,6 @@ public interface HttpServletRequest extends ServletRequest {
      * and client certificate authentication, and may additionally support digest authentication. If the servlet is not
      * authenticated <code>null</code> is returned.
      *
-     * <p>
-     * Same as the value of the CGI variable AUTH_TYPE.
-     *
      * @return one of the static members BASIC_AUTH, FORM_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH (suitable for == comparison)
      * or the container-specific string indicating the authentication scheme, or <code>null</code> if the request was not
      * authenticated.
@@ -239,8 +236,7 @@ public interface HttpServletRequest extends ServletRequest {
     }
 
     /**
-     * Returns the name of the HTTP method with which this request was made, for example, GET, POST, or PUT. Same as the
-     * value of the CGI variable REQUEST_METHOD.
+     * Returns the name of the HTTP method with which this request was made, for example, GET, POST, or PUT.
      *
      * @return a <code>String</code> specifying the name of the method with which this request was made
      */
@@ -253,9 +249,6 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * This method returns <code>null</code> if there was no extra path information.
      *
-     * <p>
-     * Same as the value of the CGI variable PATH_INFO.
-     *
      * @return a <code>String</code>, decoded by the web container, specifying extra path information that comes after the
      * servlet path but before the query string in the request URL; or <code>null</code> if the URL does not have any extra
      * path information
@@ -264,7 +257,7 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns any extra path information after the servlet name but before the query string, and translates it to a real
-     * path. Same as the value of the CGI variable PATH_TRANSLATED.
+     * path.
      *
      * <p>
      * If the URL does not have any extra path information, this method returns <code>null</code> or the servlet container
@@ -314,7 +307,7 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the query string that is contained in the request URL after the path. This method returns <code>null</code>
-     * if the URL does not have a query string. Same as the value of the CGI variable QUERY_STRING.
+     * if the URL does not have a query string.
      *
      * @return a <code>String</code> containing the query string or <code>null</code> if the URL contains no query string.
      * The value is not decoded by the container.
@@ -324,7 +317,7 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the login of the user making this request, if the user has been authenticated, or <code>null</code> if the
      * user has not been authenticated. Whether the user name is sent with each subsequent request depends on the browser
-     * and type of authentication. Same as the value of the CGI variable REMOTE_USER.
+     * and type of authentication.
      *
      * @return a <code>String</code> specifying the login of the user making this request, or <code>null</code> if the user
      * login is not known
@@ -425,7 +418,6 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the part of this request's URL that calls the servlet. This path starts with a "/" character and includes
      * either the servlet name or a path to the servlet, but does not include any extra path information or a query string.
-     * Same as the value of the CGI variable SCRIPT_NAME.
      *
      * <p>
      * This method will return an empty string ("") if the servlet used to process this request was matched using the "/*"
