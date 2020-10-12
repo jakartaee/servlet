@@ -208,9 +208,9 @@ public interface ServletRequest {
 
     /**
      * Returns the host name of the server to which the request was sent. It may be derived from a protocol specific
-     * mechanism, such as the <code>Host</code> header, or the HTTP/2 authority,
-     * or <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, otherwise the
-     * resolved server name or the server IP address.
+     * mechanism, such as the <code>Host</code> header, or the HTTP/2 authority, or
+     * <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, otherwise the resolved server name or the server IP
+     * address.
      *
      * @return a <code>String</code> containing the name of the server
      */
