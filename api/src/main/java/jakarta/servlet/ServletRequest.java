@@ -92,7 +92,7 @@ public interface ServletRequest {
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not
-     * known or is greater than Integer.MAX_VALUE. For HTTP servlets, same as the value of the CGI variable CONTENT_LENGTH.
+     * known or is greater than Integer.MAX_VALUE.
      *
      * @return an integer containing the length of the request body or -1 if the length is not known or is greater than
      * Integer.MAX_VALUE.
@@ -101,7 +101,7 @@ public interface ServletRequest {
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not
-     * known. For HTTP servlets, same as the value of the CGI variable CONTENT_LENGTH.
+     * known.
      *
      * @return a long containing the length of the request body or -1L if the length is not known
      *
@@ -110,8 +110,7 @@ public interface ServletRequest {
     public long getContentLengthLong();
 
     /**
-     * Returns the MIME type of the body of the request, or <code>null</code> if the type is not known. For HTTP servlets,
-     * same as the value of the CGI variable CONTENT_TYPE.
+     * Returns the MIME type of the body of the request, or <code>null</code> if the type is not known.
      *
      * @return a <code>String</code> containing the name of the MIME type of the request, or null if the type is not known
      */
@@ -193,8 +192,7 @@ public interface ServletRequest {
 
     /**
      * Returns the name and version of the protocol the request uses in the form <i>protocol/majorVersion.minorVersion</i>,
-     * for example, HTTP/1.1. For HTTP servlets, the value returned is the same as the value of the CGI variable
-     * <code>SERVER_PROTOCOL</code>.
+     * for example, HTTP/1.1.
      *
      * @return a <code>String</code> containing the protocol name and version number
      */
@@ -209,16 +207,19 @@ public interface ServletRequest {
     public String getScheme();
 
     /**
-     * Returns the host name of the server to which the request was sent. It is the value of the part before ":" in the
-     * <code>Host</code> header value, if any, or the resolved server name, or the server IP address.
+     * Returns the host name of the server to which the request was sent. It may be derived from a protocol specific
+     * mechanism, such as the <code>Host</code> header, or the HTTP/2 authority, or
+     * <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, otherwise the resolved server name or the server IP
+     * address.
      *
      * @return a <code>String</code> containing the name of the server
      */
     public String getServerName();
 
     /**
-     * Returns the port number to which the request was sent. It is the value of the part after ":" in the <code>Host</code>
-     * header value, if any, or the server port where the client connection was accepted on.
+     * Returns the port number to which the request was sent. It may be derived from a protocol specific mechanism, such as
+     * the <code>Host</code> header, or HTTP authority, or <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>,
+     * otherwise the server port where the client connection was accepted on.
      *
      * @return an integer specifying the port number
      */
@@ -243,19 +244,20 @@ public interface ServletRequest {
     public BufferedReader getReader() throws IOException;
 
     /**
-     * Returns the Internet Protocol (IP) address of the client or last proxy that sent the request. For HTTP servlets, same
-     * as the value of the CGI variable <code>REMOTE_ADDR</code>.
+     * Returns the Internet Protocol (IP) of the remote end of the connection on which the request was received. By default
+     * this is either the address of the client or last proxy that sent the request. In some cases a protocol specific
+     * mechanism, such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, may be used to obtain an address
+     * different to that of the actual TCP/IP connection.
      *
-     * @return a <code>String</code> containing the IP address of the client that sent the request
+     * @return a <code>String</code> containing an IP address
      */
     public String getRemoteAddr();
 
     /**
-     * Returns the fully qualified name of the client or the last proxy that sent the request. If the engine cannot or
-     * chooses not to resolve the hostname (to improve performance), this method returns the dotted-string form of the IP
-     * address. For HTTP servlets, same as the value of the CGI variable <code>REMOTE_HOST</code>.
+     * Returns the fully qualified name of the address returned by {@link #getRemoteAddr()}. If the engine cannot or chooses
+     * not to resolve the hostname (to improve performance), this method returns the IP address.
      *
-     * @return a <code>String</code> containing the fully qualified name of the client
+     * @return a <code>String</code> containing a fully qualified name or IP address.
      */
     public String getRemoteHost();
 
@@ -359,7 +361,10 @@ public interface ServletRequest {
     public String getRealPath(String path);
 
     /**
-     * Returns the Internet Protocol (IP) source port of the client or last proxy that sent the request.
+     * Returns the Internet Protocol (IP) source port the remote end of the connection on which the request was received. By
+     * default this is either the port of the client or last proxy that sent the request. In some cases, protocol specific
+     * mechanisms such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a> may be used to obtain a port different
+     * to that of the actual TCP/IP connection.
      *
      * @return an integer specifying the port number
      *
@@ -368,8 +373,9 @@ public interface ServletRequest {
     public int getRemotePort();
 
     /**
-     * Returns the host name of the Internet Protocol (IP) interface on which the request was received.
-     *
+     * Returns the fully qualified name of the address returned by {@link #getLocalAddr()}. If the engine cannot or chooses
+     * not to resolve the hostname (to improve performance), this method returns the IP address.
+     * 
      * @return a <code>String</code> containing the host name of the IP on which the request was received.
      *
      * @since Servlet 2.4
@@ -377,18 +383,22 @@ public interface ServletRequest {
     public String getLocalName();
 
     /**
-     * Returns the Internet Protocol (IP) address of the interface on which the request was received.
-     *
-     * @return a <code>String</code> containing the IP address on which the request was received.
+     * Returns the Internet Protocol (IP) address representing the interface on which the request was received. In some
+     * cases a protocol specific mechanism, such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, may be used
+     * to obtain an address different to that of the actual TCP/IP connection.
+     * 
+     * @return a <code>String</code> containing an IP address.
      *
      * @since Servlet 2.4
      */
     public String getLocalAddr();
 
     /**
-     * Returns the Internet Protocol (IP) port number of the interface on which the request was received.
+     * Returns the Internet Protocol (IP) port number representing the interface on which the request was received. In some
+     * cases, a protocol specific mechanism such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a> may be used
+     * to obtain an address different to that of the actual TCP/IP connection.
      *
-     * @return an integer specifying the port number
+     * @return an integer specifying a port number
      *
      * @since Servlet 2.4
      */
