@@ -1,7 +1,9 @@
 :xrefstyle: full
+:spec-version: 5.1
+:spec-version-underscore: 5_1
 
 :sectnums!:
-== Jakarta Servlet Specification, Version 5.0
+== Jakarta Servlet Specification, Version {spec-version}
 
 Copyright (c) 2020 Contributors to the Eclipse Foundation.
 
@@ -17,7 +19,7 @@ Comments to: servlet-dev@eclipse.org
 === Preface
 
 This document is the Jakarta Servlet
-Specification, version 5.0. The standard for the Jakarta Servlet API is
+Specification, version {spec-version}. The standard for the Jakarta Servlet API is
 described herein.
 
 === Additional Sources
@@ -277,18 +279,6 @@ independence.
 
 * They can access the large set of APIs
 available for the Java platform.
-
-=== Relationship to Jakarta EE Platform
-
-The Jakarta Servlet API v.5.0 is a required API
-of the Jakarta EE Platform, 9footnote:[Please see the Jakarta EE
-Platform, specification available at
-`https://jakarta.ee/specifications/platform/9/`].
-Servlet containers and servlets deployed into them must meet additional
-requirements, described in the Jakarta EE specification, for executing in a
-Jakarta EE environment.
-
-
 
 == The Servlet Interface
 
@@ -1556,7 +1546,7 @@ remainder of this section calls out implementation requirements with
 respect to the section titled “Server Push” in the HTTP/2 specification
 version referenced in <<Other Important References>>.
 
-Unless explicitly excluded, Servlet 5.0
+Unless explicitly excluded, Servlet {spec-version}
 containers must support server push as specified in the HTTP/2
 specification section “Server Push”. Containers must enable server push
 if the client is capable of speaking HTTP/2, unless the client has
@@ -2309,16 +2299,16 @@ the servlet programmer does not set the type.
 It is recommended that containers use the
 `X-Powered-By` HTTP header to publish its implementation information.
 The field value should consist of one or more implementation types, such
-as `Servlet/5.0`. Optionally, the supplementary information of the
+as `Servlet/{spec-version}`. Optionally, the supplementary information of the
 container and the underlying Java platform can be added after the
 implementation type within parentheses. The container should be
 configurable to suppress this header.
 
 Here’s the examples of this header.
 
- X-Powered-By: Servlet/5.0
+ X-Powered-By: Servlet/{spec-version}
 
- X-Powered-By: Servlet/5.0 JSP/3.0 (GlassFish Server 6.0 Java/Oracle Corporation/1.8)
+ X-Powered-By: Servlet/{spec-version} JSP/3.0 (GlassFish Server 6.0 Java/Oracle Corporation/1.8)
 
 === HTTP Trailer
 
@@ -7447,7 +7437,7 @@ descriptors. The deployment descriptor conveys the elements and
 configuration information of a web application between Application
 Developers, Application Assemblers, and Deployers.
 
-For Servlet 5.0, the deployment descriptor is defined in terms of an XML schema document.
+For Servlet {spec-version}, the deployment descriptor is defined in terms of an XML schema document.
 
 For backwards compatibility of applications
 written to previous versions of the API, any deployment descriptors
@@ -7539,7 +7529,7 @@ the value is case sensitive.
 
 The deployment descriptor for this revision
 of the specification is available at
-`https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd`
+`https://jakarta.ee/xml/ns/jakartaee/web-app_{spec-version-underscore}.xsd`
 
 
 === Examples
@@ -7557,8 +7547,8 @@ of the definitions listed in the deployment descriptor schema.
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-         web-app_5_0.xsd"
-         version="5.0">
+         web-app_{spec-version-underscore}.xsd"
+         version="{spec-version}">
 
   <display-name>A Simple Application</display-name>
 
@@ -7615,8 +7605,8 @@ of the definitions listed in the deployment descriptor schema.
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-         web-app_5_0.xsd"
-         version="5.0">
+         web-app_{spec-version-underscore}.xsd"
+         version="{spec-version}">
 
   <display-name>A Secure Application</display-name>
 
@@ -8417,7 +8407,9 @@ for Dependency Injection" of the Jakarta EE Platform 9 specification.
 
 
 This document is the final release of the
-Jakarta Servlet 5.0 specification developed under the Jakarta EE Working Group.
+Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
+
+=== Changes Since Jakarta Servlet 5.0
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
