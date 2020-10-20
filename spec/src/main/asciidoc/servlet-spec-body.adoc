@@ -2299,20 +2299,6 @@ specification does not require that this header be set in an HTTP
 response. Servlet containers must not set a default content type when
 the servlet programmer does not set the type.
 
-It is recommended that containers use the
-`X-Powered-By` HTTP header to publish its implementation information.
-The field value should consist of one or more implementation types, such
-as `Servlet/{spec-version}`. Optionally, the supplementary information of the
-container and the underlying Java platform can be added after the
-implementation type within parentheses. The container should be
-configurable to suppress this header.
-
-Here’s the examples of this header.
-
- X-Powered-By: Servlet/{spec-version}
-
- X-Powered-By: Servlet/{spec-version} JSP/3.0 (GlassFish Server 6.0 Java/Oracle Corporation/1.8)
-
 === HTTP Trailer
 
 An HTTP trailer is a collection of HTTP headers that comes after the
@@ -8409,11 +8395,13 @@ for Dependency Injection" of the Jakarta EE Platform 9 specification.
 [appendix]
 == Change Log
 
-
 This document is the final release of the
 Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
 
 === Changes Since Jakarta Servlet 5.0
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
+Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
