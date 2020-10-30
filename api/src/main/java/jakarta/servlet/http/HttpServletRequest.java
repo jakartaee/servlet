@@ -482,7 +482,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #getRequestedSessionId
      * @see #getSession
-     * @see HttpSessionContext
      */
     public boolean isRequestedSessionIdValid();
 

@@ -63,7 +63,6 @@ import java.util.Enumeration;
  * @author Various
  *
  * @see HttpSessionBindingListener
- * @see HttpSessionContext
  */
 public interface HttpSession {
 
@@ -132,16 +131,6 @@ public interface HttpSession {
      * @see #setMaxInactiveInterval
      */
     public int getMaxInactiveInterval();
-
-    /**
-     *
-     * @deprecated As of Version 2.1, this method is deprecated and has no replacement. It will be removed in a future
-     * version of Jakarta Servlets.
-     *
-     * @return the {@link HttpSessionContext} for this session.
-     */
-    @Deprecated
-    public HttpSessionContext getSessionContext();
 
     /**
      * Returns the object bound with the specified name in this session, or <code>null</code> if no object is bound under
