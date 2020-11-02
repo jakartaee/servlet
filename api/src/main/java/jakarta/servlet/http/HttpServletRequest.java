@@ -2,6 +2,7 @@
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -517,7 +518,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>false</code>
      */
     @Deprecated
-    public boolean isRequestedSessionIdFromUrl();
+    default public boolean isRequestedSessionIdFromUrl() { return isRequestedSessionIdFromURL(); }
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this

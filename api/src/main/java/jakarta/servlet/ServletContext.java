@@ -2,6 +2,7 @@
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +27,7 @@ import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 /**
  * Defines a set of methods that a servlet uses to communicate with its servlet container, for example, to get the MIME
@@ -361,11 +363,11 @@ public interface ServletContext {
      * shared business logic by invoking methods on common non-servlet classes.
      *
      * @param name the servlet name
-     * @return the {@code jakarta.servlet.Servlet Servlet} with the given name
+     * @return {@code null}
      * @throws ServletException if an exception has occurred that interfaces with servlet's normal operation
      */
     @Deprecated
-    public Servlet getServlet(String name) throws ServletException;
+    default public Servlet getServlet(String name) throws ServletException {return null;}
 
     /**
      * @deprecated As of Java Servlet API 2.0, with no replacement.
@@ -378,7 +380,7 @@ public interface ServletContext {
      * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet}
      */
     @Deprecated
-    public Enumeration<Servlet> getServlets();
+    default public Enumeration<Servlet> getServlets() { return new Vector<Servlet>().elements();}
 
     /**
      * @deprecated As of Java Servlet API 2.1, with no replacement.
@@ -391,7 +393,7 @@ public interface ServletContext {
      * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet} names
      */
     @Deprecated
-    public Enumeration<String> getServletNames();
+    default public Enumeration<String> getServletNames() { return new Vector<String>().elements();}
 
     /**
      *
@@ -413,7 +415,7 @@ public interface ServletContext {
      * @param msg a <code>String</code> that describes the exception
      */
     @Deprecated
-    public void log(Exception exception, String msg);
+    default public void log(Exception exception, String msg) { log (msg, exception); }
 
     /**
      * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file.

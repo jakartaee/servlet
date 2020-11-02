@@ -2,6 +2,7 @@
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
+ * Copyright (c) 2020 Payara Services Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +45,7 @@ public interface HttpSessionContext {
      * @return null in all cases
      */
     @Deprecated
-    public HttpSession getSession(String sessionId);
+    default public HttpSession getSession(String sessionId) {return null; }
 
     /**
      *
@@ -55,5 +56,5 @@ public interface HttpSessionContext {
      *
      */
     @Deprecated
-    public Enumeration<String> getIds();
+    default public Enumeration<String> getIds() {return null; }
 }
