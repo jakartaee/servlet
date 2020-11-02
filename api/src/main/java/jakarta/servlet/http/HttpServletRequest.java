@@ -518,7 +518,9 @@ public interface HttpServletRequest extends ServletRequest {
      * <code>false</code>
      */
     @Deprecated
-    default public boolean isRequestedSessionIdFromUrl() { return isRequestedSessionIdFromURL(); }
+    default public boolean isRequestedSessionIdFromUrl() {
+        return isRequestedSessionIdFromURL();
+    }
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this
