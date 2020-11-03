@@ -19,6 +19,7 @@
 
 package jakarta.servlet.http;
 
+import java.util.Collections;
 import java.util.Enumeration;
 
 /**
@@ -54,11 +55,11 @@ public interface HttpSessionContext {
      * @deprecated As of Java Servlet API 2.1 with no replacement. This method must return an empty <code>Enumeration</code>
      * and will be removed in a future version of this API.
      *
-     * @return null
+     * @return an empty {@link Enumeration}
      *
      */
     @Deprecated
     default public Enumeration<String> getIds() {
-        return null;
+        return Collections.emptyEnumeration();
     }
 }
