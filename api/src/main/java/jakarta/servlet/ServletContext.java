@@ -427,6 +427,11 @@ public interface ServletContext {
 
     /**
      * Gets the <i>real</i> path corresponding to the given <i>virtual</i> path.
+     * 
+     * <p>
+     * The path should begin with a <tt>/</tt> and is interpreted as relative to the current context root. If the path does
+     * not begin with a <tt>/</tt>, the container will behave as if the method was called with <tt>/</tt> appended to the
+     * beginning of the provided path.
      *
      * <p>
      * For example, if <tt>path</tt> is equal to <tt>/index.html</tt>, this method will return the absolute file path on the
