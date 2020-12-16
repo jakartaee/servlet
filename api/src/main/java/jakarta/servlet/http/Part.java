@@ -60,7 +60,7 @@ public interface Part {
     public String getSubmittedFileName();
 
     /**
-     * Returns the size of this fille.
+     * Returns the size of this file.
      *
      * @return a <code>long</code> specifying the size of this part, in bytes.
      */
