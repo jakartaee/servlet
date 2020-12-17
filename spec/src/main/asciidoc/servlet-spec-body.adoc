@@ -8403,6 +8403,10 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
 Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
 
+link:https://github.com/eclipse-ee4j/servlet-api/pull/372[PR 373]::
+Provide defaults for deprecated methods, to return either `null` or an empty `Enumeration`.
+`HttpServletRequest#isRequestedSessionIdFromUrl` calls `isRequestedSessionIdFromURL` by default.
+
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
 (see <<Changes Since Jakarta Servlet 4.0>>).
