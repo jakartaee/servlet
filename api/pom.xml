@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+    Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -84,6 +84,10 @@
         <system>github</system>
         <url>https://github.com/eclipse-ee4j/servlet-api/issues</url>
     </issueManagement>
+
+    <properties>
+        <project.build.outputTimestamp>2020-12-19T17:27:00Z</project.build.outputTimestamp>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -228,6 +232,8 @@
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>org.eclipse</Implementation-Vendor-Id>
                         <Export-Package>jakarta.servlet.*</Export-Package>
+                        <_removeheaders>Bnd-LastModified</_removeheaders>
+                        <_reproducible>true</_reproducible>
                     </instructions>
                 </configuration>
                 <executions>
@@ -260,7 +266,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2.1</version>
                 <configuration>
                     <includePom>true</includePom>
                 </configuration>
