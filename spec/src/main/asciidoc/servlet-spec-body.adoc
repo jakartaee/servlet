@@ -1281,7 +1281,7 @@ the part.
 
 * If the servlet container does not provide the
 `multi-part/form-data` processing, the data will be available through
-`HttpServletReuqest.getInputStream`.
+`HttpServletRequest.getInputStream`.
 
 === Attributes
 
