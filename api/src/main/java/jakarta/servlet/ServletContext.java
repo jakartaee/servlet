@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -111,18 +111,18 @@ public interface ServletContext {
     public ServletContext getContext(String uripath);
 
     /**
-     * Returns the major version of Jakarta Servlet that this container supports. All implementations that comply with
-     * Version 4.0 must have this method return the integer 4.
+     * Returns the major version of Jakarta Servlet specification that this container supports. All implementations that
+     * comply with version X.Y of the specification, must return the integer X.
      *
-     * @return 4
+     * @return The major version of Jakarta Servlet specification that this container supports
      */
     public int getMajorVersion();
 
     /**
-     * Returns the minor version of Jakarta Servlet that this container supports. All implementations that comply with
-     * Version 4.0 must have this method return the integer 0.
+     * Returns the minor version of Jakarta Servlet specification that this container supports. All implementations that
+     * comply with version X.Y of the specification, must return the integer Y.
      *
-     * @return 0
+     * @return The minor version of Jakarta Servlet specification that this container supports
      */
     public int getMinorVersion();
 
