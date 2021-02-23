@@ -202,7 +202,7 @@ public interface ServletResponse {
      * <p>
      * If calling this method has an effect (as per the previous paragraph), calling this method with {@code null} clears
      * any content type set via a previous call to this method and clears any character encoding set via a previous call to
-     * this method, {@link #setContentType} or {@link #setLocale} but does not affect any default character encoding
+     * this method, {@link #setCharacterEncoding} or {@link #setLocale} but does not affect any default character encoding
      * configured via {@link ServletContext#setResponseCharacterEncoding} or the deployment descriptor.
      * <p>
      * If this method is called with an invalid or unrecognised character encoding, then a subsequent call to
