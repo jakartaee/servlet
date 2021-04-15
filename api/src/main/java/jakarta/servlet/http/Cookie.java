@@ -421,4 +421,86 @@ public class Cookie implements Cloneable, Serializable {
     public boolean isHttpOnly() {
         return isHttpOnly;
     }
+
+    /**
+     * Return a hash code for this Cookie.
+     *
+     * @return A hash code for this Cookie.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getValue(), getVersion(), getPath(), getDomain());
+    }
+
+    /**
+     * Return a String representation of this Cookie.
+     *
+     * @return A String representation of this Cookie.
+     */
+    @Override
+    public String toString() {
+        return getName() + "=" + getValue()
+            + ", ver=" + getVersion()
+            + ", path=" + getPath()
+            + ", domain=" + this.getDomain()
+            + ", maxAge=" + this.getMaxAge()
+            + ", secure=" + this.getSecure()
+            + ", comment=" + this.getComment()
+            ;
+    }
+
+    /**
+     * Performs case-insensitive equality checking for two Strings.
+     * 
+     * @param a The first String to test.
+     * @param b The second String to test.
+     * 
+     * @return <code>true</code> if both Strings are <code>null</code> or if
+     *         they are both equal to each other without regard to letter-case,
+     *         <code>false</code> otherwise.
+     */
+    private static boolean nullSafeEqualsIgnoreCase(String a, String b) {
+        if(null == a && null == b) {
+            return true;
+        } else if(null != a) {
+            return a.equalsIgnoreCase(b);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Tests the object <code>o</code> for equality with this Cookie.
+     *
+     * <p>
+     * The object <code>o</code> is considered equal to this Cookie if it is
+     * the same class as this Cookie, and the Name, Value, Path, Domain, and
+     * Version properties are all equal to each other. The Domain property
+     * will be checked without regard to letter-case.
+     *
+     * @param o The object to test for equality.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if(null == o) {
+            return false;
+        }
+
+        if(super.equals(o)) {
+            return true;
+        }
+
+        if(!(getClass().equals(o.getClass()))) {
+            return false;
+        }
+
+        Cookie c = (Cookie)o;
+
+        return Objects.equals(getName(), c.getName())
+                && Objects.equals(getValue(), c.getValue())
+                && getVersion() == c.getVersion()
+                && Objects.equals(getPath(), c.getPath())
+                && nullSafeEqualsIgnoreCase(getDomain(), c.getDomain())
+                ;
+    }
 }
