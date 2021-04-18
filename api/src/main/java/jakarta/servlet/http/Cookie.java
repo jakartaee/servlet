@@ -429,7 +429,7 @@ public class Cookie implements Cloneable, Serializable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getValue(), getVersion(), getPath(), getDomain());
+        return Objects.hash(getName(), getValue(), getVersion(), getPath(), null == getDomain() ? null : getDomain().toLowerCase());
     }
 
     /**
