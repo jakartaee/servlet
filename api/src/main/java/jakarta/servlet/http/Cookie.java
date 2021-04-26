@@ -20,8 +20,11 @@ package jakarta.servlet.http;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
+import java.util.Collections;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 /**
  *
@@ -56,7 +59,7 @@ import java.util.ResourceBundle;
  */
 public class Cookie implements Cloneable, Serializable {
 
-    private static final long serialVersionUID = -6454587001725327448L;
+    private static final long serialVersionUID = 4901306390139828294L;
 
     private static final String TSPECIALS;
 
@@ -93,6 +96,9 @@ public class Cookie implements Cloneable, Serializable {
     private int version = 0; // ;Version=1 ... means RFC 2109++ style
     private boolean isHttpOnly = false;
 
+    private Map<String, String> attributes = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
+    private Map<String, String> unmodifiableAttributes = Collections.unmodifiableMap(attributes);
+
     /**
      * Constructs a cookie with the specified name and value.
      *
@@ -122,20 +128,22 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setVersion
      */
     public Cookie(String name, String value) {
-        if (name == null || name.length() == 0) {
-            throw new IllegalArgumentException(lStrings.getString("err.cookie_name_blank"));
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_name_blank"));
         }
-        if (!isToken(name) || name.equalsIgnoreCase("Comment") || // rfc2019
-                name.equalsIgnoreCase("Discard") || // 2019++
-                name.equalsIgnoreCase("Domain") || name.equalsIgnoreCase("Expires") || // (old cookies)
-                name.equalsIgnoreCase("Max-Age") || // rfc2019
-                name.equalsIgnoreCase("Path") || name.equalsIgnoreCase("Secure") || name.equalsIgnoreCase("Version")
-                || name.startsWith("$")) {
-            String errMsg = lStrings.getString("err.cookie_name_is_token");
-            Object[] errArgs = new Object[1];
-            errArgs[0] = name;
-            errMsg = MessageFormat.format(errMsg, errArgs);
-            throw new IllegalArgumentException(errMsg);
+
+        if (containsReservedToken(name) || name.startsWith("$")
+            || name.equalsIgnoreCase("Comment") // rfc2109
+            || name.equalsIgnoreCase("Discard") // 2109++
+            || name.equalsIgnoreCase("Domain")
+            || name.equalsIgnoreCase("Expires") // (old cookies)
+            || name.equalsIgnoreCase("Max-Age") // rfc2109
+            || name.equalsIgnoreCase("Path")
+            || name.equalsIgnoreCase("Secure")
+            || name.equalsIgnoreCase("Version")
+            || name.equalsIgnoreCase("HttpOnly")
+        ) {
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_name_is_token", name));
         }
 
         this.name = name;
@@ -349,9 +357,6 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * Version 0 complies with the original Netscape cookie specification. Version 1 complies with RFC 2109.
      *
-     * <p>
-     * Since RFC 2109 is still somewhat new, consider version 1 as experimental; do not use it yet on production sites.
-     *
      * @param v 0 if the cookie should comply with the original Netscape specification; 1 if the cookie should comply with
      * RFC 2109
      *
@@ -362,24 +367,32 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /*
-     * Tests a string and returns true if the string counts as a reserved token in the Java language.
+     * Tests a string and returns true if the string contains a reserved token for the Set-Cookie header.
      * 
      * @param value the <code>String</code> to be tested
      *
-     * @return <code>true</code> if the <code>String</code> is a reserved token; <code>false</code> otherwise
+     * @return <code>true</code> if the <code>String</code> contains a reserved token for the Set-Cookie header; <code>false</code> otherwise
      */
-    private boolean isToken(String value) {
+    private static boolean containsReservedToken(String value) {
         int len = value.length();
         for (int i = 0; i < len; i++) {
             char c = value.charAt(i);
             if (c < 0x20 || c >= 0x7f || TSPECIALS.indexOf(c) != -1) {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
+    /*
+     * Create error message to be set as exception detail message.
+     */
+    private static String createErrorMessage(String key, Object... arguments) {
+        String errMsg = lStrings.getString(key);
+        return MessageFormat.format(errMsg, arguments);
+    }
+    
     /**
      * Overrides the standard <code>java.lang.Object.clone</code> method to return a copy of this Cookie.
      */
@@ -421,4 +434,56 @@ public class Cookie implements Cloneable, Serializable {
     public boolean isHttpOnly() {
         return isHttpOnly;
     }
+    
+    /**
+     * Sets the value of the cookie attribute associated with the given name.
+     * 
+     * <p>
+     * This should override any predefined attribute for which already a getter/setter pair exist in the current version.
+     * E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
+     * then any entry in the mapping returned by {@link #getAttributes()} associated with key "domain", case insensitive,
+     * should take precedence over <code>cookie.getDomain()</code>.
+     * 
+     * @param name the name of the cookie attribute to set the value for, case insensitive
+     * 
+     * @param value the value of the cookie attribute associated with the given name, can be {@code null}
+     *
+     * @throws IllegalArgumentException if the cookie attribute name is null or empty, or if either the cookie attribute name or value
+     * contains any illegal characters (for example, a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol
+     * 
+     * @since Servlet 5.1
+     */
+    public void setAttribute(String name, String value) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_blank"));
+        }
+
+        if (containsReservedToken(name)) {
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
+        }
+
+        if (containsReservedToken(value)) {
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_value_is_token", value));
+        }
+
+        attributes.put(name, value);
+    }
+
+    /**
+     * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)}.
+     * 
+     * <p>
+     * This should override any predefined attribute for which already a getter/setter pair exist in the current version.
+     * E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
+     * then any entry in this mapping associated with key "domain", case insensitive,
+     * should take precedence over <code>cookie.getDomain()</code>.
+     * 
+     * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code>
+     * 
+     * @since Servlet 5.1
+     */
+    public Map<String, String> getAttributes() {
+        return unmodifiableAttributes;
+    }
+
 }
