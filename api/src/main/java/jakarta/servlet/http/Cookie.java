@@ -469,7 +469,7 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
         }
 
-        if (containsReservedToken(value)) {
+        if (value != null && containsReservedToken(value)) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_value_is_token", value));
         }
 
