@@ -19,6 +19,8 @@
 package jakarta.servlet.http;
 
 import java.io.Serializable;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Locale;
@@ -68,8 +70,13 @@ public class Cookie implements Cloneable, Serializable {
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     static {
-        if (Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"))
-                .booleanValue()) {
+        boolean enforced = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+            @Override
+            public Boolean run() {
+                return Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"));
+            }
+        });
+        if (enforced) {
             TSPECIALS = "/()<>@,;:\\\"[]?={} \t";
         } else {
             TSPECIALS = ",; ";
