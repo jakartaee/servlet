@@ -67,12 +67,12 @@ public class Cookie implements Cloneable, Serializable {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
 
-    private static final String COMMENT = "comment"; // ;Comment=VALUE ... describes cookie's use
-    private static final String DOMAIN = "domain"; // ;Domain=VALUE ... domain that sees cookie
-    private static final String MAX_AGE = "max-age"; // ;Max-Age=VALUE ... cookies auto-expire
-    private static final String PATH = "path"; // ;Path=VALUE ... URLs that see the cookie
-    private static final String SECURE = "secure"; // ;Secure ... e.g. use SSL
-    private static final String HTTP_ONLY = "httponly";
+    private static final String COMMENT = "Comment"; // ;Comment=VALUE ... describes cookie's use
+    private static final String DOMAIN = "Domain"; // ;Domain=VALUE ... domain that sees cookie
+    private static final String MAX_AGE = "Max-Age"; // ;Max-Age=VALUE ... cookies auto-expire
+    private static final String PATH = "Path"; // ;Path=VALUE ... URLs that see the cookie
+    private static final String SECURE = "Secure"; // ;Secure ... e.g. use SSL
+    private static final String HTTP_ONLY = "HttpOnly";
 
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
