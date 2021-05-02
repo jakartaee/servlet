@@ -455,8 +455,8 @@ public class Cookie implements Cloneable, Serializable {
      * 
      * @param value the value of the cookie attribute associated with the given name, can be {@code null}
      *
-     * @throws IllegalArgumentException if the cookie attribute name is null or empty, or if either the cookie attribute name or value
-     * contains any illegal characters (for example, a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol
+     * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for example,
+     * a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol
      * 
      * @since Servlet 5.1
      */
@@ -467,10 +467,6 @@ public class Cookie implements Cloneable, Serializable {
 
         if (containsReservedToken(name)) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
-        }
-
-        if (value != null && containsReservedToken(value)) {
-            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_value_is_token", value));
         }
 
         attributes.put(name, value);
