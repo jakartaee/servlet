@@ -61,11 +61,18 @@ import java.util.TreeMap;
  */
 public class Cookie implements Cloneable, Serializable {
 
-    private static final long serialVersionUID = 4901306390139828294L;
+    private static final long serialVersionUID = -5433071011125749022L;
 
     private static final String TSPECIALS;
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
+
+    private static final String COMMENT = "comment"; // ;Comment=VALUE ... describes cookie's use
+    private static final String DOMAIN = "domain"; // ;Domain=VALUE ... domain that sees cookie
+    private static final String MAX_AGE = "max-age"; // ;Max-Age=VALUE ... cookies auto-expire
+    private static final String PATH = "path"; // ;Path=VALUE ... URLs that see the cookie
+    private static final String SECURE = "secure"; // ;Secure ... e.g. use SSL
+    private static final String HTTP_ONLY = "httponly";
 
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
@@ -94,14 +101,7 @@ public class Cookie implements Cloneable, Serializable {
     // Attributes encoded in the header's cookie fields.
     //
 
-    private String comment; // ;Comment=VALUE ... describes cookie's use
-    // ;Discard ... implied by maxAge < 0
-    private String domain; // ;Domain=VALUE ... domain that sees cookie
-    private int maxAge = -1; // ;Max-Age=VALUE ... cookies auto-expire
-    private String path; // ;Path=VALUE ... URLs that see the cookie
-    private boolean secure; // ;Secure ... e.g. use SSL
     private int version = 0; // ;Version=1 ... means RFC 2109++ style
-    private boolean isHttpOnly = false;
 
     private Map<String, String> attributes = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
     private Map<String, String> unmodifiableAttributes = Collections.unmodifiableMap(attributes);
@@ -140,15 +140,15 @@ public class Cookie implements Cloneable, Serializable {
         }
 
         if (containsReservedToken(name) || name.startsWith("$")
-            || name.equalsIgnoreCase("Comment") // rfc2109
-            || name.equalsIgnoreCase("Discard") // 2109++
-            || name.equalsIgnoreCase("Domain")
-            || name.equalsIgnoreCase("Expires") // (old cookies)
-            || name.equalsIgnoreCase("Max-Age") // rfc2109
-            || name.equalsIgnoreCase("Path")
-            || name.equalsIgnoreCase("Secure")
-            || name.equalsIgnoreCase("Version")
-            || name.equalsIgnoreCase("HttpOnly")
+                || name.equalsIgnoreCase(COMMENT) // rfc2109
+                || name.equalsIgnoreCase("Discard") // 2109++
+                || name.equalsIgnoreCase(DOMAIN)
+                || name.equalsIgnoreCase("Expires") // (old cookies)
+                || name.equalsIgnoreCase(MAX_AGE) // rfc2109
+                || name.equalsIgnoreCase(PATH)
+                || name.equalsIgnoreCase(SECURE)
+                || name.equalsIgnoreCase("Version")
+                || name.equalsIgnoreCase(HTTP_ONLY)
         ) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_name_is_token", name));
         }
@@ -166,7 +166,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getComment
      */
     public void setComment(String purpose) {
-        comment = purpose;
+        attributes.put(COMMENT, purpose);
     }
 
     /**
@@ -177,7 +177,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setComment
      */
     public String getComment() {
-        return comment;
+        return attributes.get(COMMENT);
     }
 
     /**
@@ -195,7 +195,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getDomain
      */
     public void setDomain(String domain) {
-        this.domain = domain != null ? domain.toLowerCase(Locale.ENGLISH) : null; // IE allegedly needs this
+        attributes.put(DOMAIN, domain != null ? domain.toLowerCase(Locale.ENGLISH) : null); // IE allegedly needs this
     }
 
     /**
@@ -209,7 +209,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setDomain
      */
     public String getDomain() {
-        return domain;
+        return attributes.get(DOMAIN);
     }
 
     /**
@@ -229,7 +229,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getMaxAge
      */
     public void setMaxAge(int expiry) {
-        maxAge = expiry;
+        attributes.put(MAX_AGE, String.valueOf(expiry));
     }
 
     /**
@@ -242,9 +242,12 @@ public class Cookie implements Cloneable, Serializable {
      * browser shutdown
      *
      * @see #setMaxAge
+     * 
+     * @throws NumberFormatException when this attribute is set via {@link #setAttribute(String, String)} with a value which is not in number format
      */
     public int getMaxAge() {
-        return maxAge;
+        String maxAge = attributes.get(MAX_AGE);
+        return maxAge != null ? Integer.parseInt(maxAge) : -1;
     }
 
     /**
@@ -264,7 +267,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getPath
      */
     public void setPath(String uri) {
-        path = uri;
+        attributes.put("path", uri);
     }
 
     /**
@@ -276,7 +279,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setPath
      */
     public String getPath() {
-        return path;
+        return attributes.get("path");
     }
 
     /**
@@ -291,7 +294,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getSecure
      */
     public void setSecure(boolean flag) {
-        secure = flag;
+        attributes.put(SECURE, String.valueOf(flag));
     }
 
     /**
@@ -303,7 +306,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setSecure
      */
     public boolean getSecure() {
-        return secure;
+        return Boolean.parseBoolean(attributes.get(SECURE));
     }
 
     /**
@@ -416,19 +419,19 @@ public class Cookie implements Cloneable, Serializable {
      * Marks or unmarks this Cookie as <i>HttpOnly</i>.
      *
      * <p>
-     * If <tt>isHttpOnly</tt> is set to <tt>true</tt>, this cookie is marked as <i>HttpOnly</i>, by adding the
+     * If <tt>httpOnly</tt> is set to <tt>true</tt>, this cookie is marked as <i>HttpOnly</i>, by adding the
      * <tt>HttpOnly</tt> attribute to it.
      *
      * <p>
      * <i>HttpOnly</i> cookies are not supposed to be exposed to client-side scripting code, and may therefore help mitigate
      * certain kinds of cross-site scripting attacks.
      *
-     * @param isHttpOnly true if this cookie is to be marked as <i>HttpOnly</i>, false otherwise
+     * @param httpOnly true if this cookie is to be marked as <i>HttpOnly</i>, false otherwise
      *
      * @since Servlet 3.0
      */
-    public void setHttpOnly(boolean isHttpOnly) {
-        this.isHttpOnly = isHttpOnly;
+    public void setHttpOnly(boolean httpOnly) {
+        attributes.put(HTTP_ONLY, String.valueOf(httpOnly));
     }
 
     /**
@@ -439,17 +442,16 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 3.0
      */
     public boolean isHttpOnly() {
-        return isHttpOnly;
+        return Boolean.parseBoolean(attributes.get(HTTP_ONLY));
     }
     
     /**
      * Sets the value of the cookie attribute associated with the given name.
      * 
      * <p>
-     * This should override any predefined attribute for which already a getter/setter pair exist in the current version.
-     * E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
-     * then any entry in the mapping returned by {@link #getAttributes()} associated with key "domain", case insensitive,
-     * should take precedence over <code>cookie.getDomain()</code>.
+     * This should sync to any predefined attribute for which already a getter/setter pair exist in the current version,
+     * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
+     * then <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
      * 
      * @param name the name of the cookie attribute to set the value for, case insensitive
      * 
@@ -469,28 +471,20 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
         }
 
-        if (value != null && containsReservedToken(value)) {
-            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_value_is_token", value));
-        }
-
         attributes.put(name, value);
     }
-
+    
     /**
-     * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)}.
-     * 
-     * <p>
-     * This should override any predefined attribute for which already a getter/setter pair exist in the current version.
-     * E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
-     * then any entry in this mapping associated with key "domain", case insensitive,
-     * should take precedence over <code>cookie.getDomain()</code>.
+     * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)}
+     * as well as any predefined setter method, except for <code>version</code>.
      * 
      * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code>
+     * as well as any predefined setter method, except for <code>version</code>
      * 
      * @since Servlet 5.1
      */
     public Map<String, String> getAttributes() {
         return unmodifiableAttributes;
     }
-
+    
 }
