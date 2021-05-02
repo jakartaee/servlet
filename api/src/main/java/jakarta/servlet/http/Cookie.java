@@ -267,7 +267,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getPath
      */
     public void setPath(String uri) {
-        attributes.put("path", uri);
+        attributes.put(PATH, uri);
     }
 
     /**
@@ -279,7 +279,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setPath
      */
     public String getPath() {
-        return attributes.get("path");
+        return attributes.get(PATH);
     }
 
     /**
