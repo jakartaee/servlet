@@ -25,6 +25,7 @@ import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
@@ -47,7 +48,7 @@ import java.util.TreeMap;
  * <p>
  * The browser returns cookies to the servlet by adding fields to HTTP request headers. Cookies can be retrieved from a
  * request by using the {@link HttpServletRequest#getCookies} method. Several cookies might have the same name but
- * different path attributes.
+ * different path attributes().
  * 
  * <p>
  * Cookies affect the caching of the Web pages that use them. HTTP 1.0 does not cache pages that use cookies created
@@ -74,7 +75,7 @@ public class Cookie implements Cloneable, Serializable {
     private static final String SECURE = "Secure"; // ;Secure ... e.g. use SSL
     private static final String HTTP_ONLY = "HttpOnly";
 
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     static {
         boolean enforced = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
@@ -93,18 +94,20 @@ public class Cookie implements Cloneable, Serializable {
     //
     // The value of the cookie itself.
     //
-
-    private String name; // NAME= ... "$Name" style is reserved
+    private final String name; // NAME= ... "$Name" style is reserved
     private String value; // value of NAME
+    private int version = 0; // ;Version=1 ... means RFC 2109++ style
 
     //
     // Attributes encoded in the header's cookie fields.
     //
+    private Map<String, String> attributes = null;
 
-    private int version = 0; // ;Version=1 ... means RFC 2109++ style
-
-    private Map<String, String> attributes = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
-    private Map<String, String> unmodifiableAttributes = Collections.unmodifiableMap(attributes);
+    private void putAttribute(String name, String value) {
+        if (attributes == null)
+            attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        attributes.put(name, value);
+    }
 
     /**
      * Constructs a cookie with the specified name and value.
@@ -148,8 +151,7 @@ public class Cookie implements Cloneable, Serializable {
                 || name.equalsIgnoreCase(PATH)
                 || name.equalsIgnoreCase(SECURE)
                 || name.equalsIgnoreCase("Version")
-                || name.equalsIgnoreCase(HTTP_ONLY)
-        ) {
+                || name.equalsIgnoreCase(HTTP_ONLY)) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_name_is_token", name));
         }
 
@@ -166,7 +168,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getComment
      */
     public void setComment(String purpose) {
-        attributes.put(COMMENT, purpose);
+        putAttribute(COMMENT, purpose);
     }
 
     /**
@@ -177,7 +179,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setComment
      */
     public String getComment() {
-        return attributes.get(COMMENT);
+        return getAttribute(COMMENT);
     }
 
     /**
@@ -195,7 +197,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getDomain
      */
     public void setDomain(String domain) {
-        attributes.put(DOMAIN, domain != null ? domain.toLowerCase(Locale.ENGLISH) : null); // IE allegedly needs this
+        putAttribute(DOMAIN, domain != null ? domain.toLowerCase(Locale.ENGLISH) : null); // IE allegedly needs this
     }
 
     /**
@@ -209,7 +211,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setDomain
      */
     public String getDomain() {
-        return attributes.get(DOMAIN);
+        return getAttribute(DOMAIN);
     }
 
     /**
@@ -229,7 +231,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getMaxAge
      */
     public void setMaxAge(int expiry) {
-        attributes.put(MAX_AGE, String.valueOf(expiry));
+        putAttribute(MAX_AGE, String.valueOf(expiry));
     }
 
     /**
@@ -243,10 +245,11 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @see #setMaxAge
      * 
-     * @throws NumberFormatException when this attribute is set via {@link #setAttribute(String, String)} with a value which is not in number format
+     * @throws NumberFormatException when this attribute is set via {@link #setAttribute(String, String)} with a value which
+     * is not in number format
      */
     public int getMaxAge() {
-        String maxAge = attributes.get(MAX_AGE);
+        String maxAge = getAttribute(MAX_AGE);
         return maxAge != null ? Integer.parseInt(maxAge) : -1;
     }
 
@@ -267,7 +270,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getPath
      */
     public void setPath(String uri) {
-        attributes.put(PATH, uri);
+        putAttribute(PATH, uri);
     }
 
     /**
@@ -279,7 +282,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setPath
      */
     public String getPath() {
-        return attributes.get(PATH);
+        return getAttribute(PATH);
     }
 
     /**
@@ -294,7 +297,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getSecure
      */
     public void setSecure(boolean flag) {
-        attributes.put(SECURE, String.valueOf(flag));
+        putAttribute(SECURE, String.valueOf(flag));
     }
 
     /**
@@ -306,7 +309,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setSecure
      */
     public boolean getSecure() {
-        return Boolean.parseBoolean(attributes.get(SECURE));
+        return Boolean.parseBoolean(getAttribute(SECURE));
     }
 
     /**
@@ -381,7 +384,8 @@ public class Cookie implements Cloneable, Serializable {
      * 
      * @param value the <code>String</code> to be tested
      *
-     * @return <code>true</code> if the <code>String</code> contains a reserved token for the Set-Cookie header; <code>false</code> otherwise
+     * @return <code>true</code> if the <code>String</code> contains a reserved token for the Set-Cookie header;
+     * <code>false</code> otherwise
      */
     private static boolean containsReservedToken(String value) {
         int len = value.length();
@@ -402,7 +406,7 @@ public class Cookie implements Cloneable, Serializable {
         String errMsg = lStrings.getString(key);
         return MessageFormat.format(errMsg, arguments);
     }
-    
+
     /**
      * Overrides the standard <code>java.lang.Object.clone</code> method to return a copy of this Cookie.
      */
@@ -431,7 +435,7 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 3.0
      */
     public void setHttpOnly(boolean httpOnly) {
-        attributes.put(HTTP_ONLY, String.valueOf(httpOnly));
+        putAttribute(HTTP_ONLY, String.valueOf(httpOnly));
     }
 
     /**
@@ -442,16 +446,16 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 3.0
      */
     public boolean isHttpOnly() {
-        return Boolean.parseBoolean(attributes.get(HTTP_ONLY));
+        return Boolean.parseBoolean(getAttribute(HTTP_ONLY));
     }
-    
+
     /**
      * Sets the value of the cookie attribute associated with the given name.
      * 
      * <p>
      * This should sync to any predefined attribute for which already a getter/setter pair exist in the current version,
-     * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked,
-     * then <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
+     * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked, then
+     * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
      * 
      * @param name the name of the cookie attribute to set the value for, case insensitive
      * 
@@ -471,20 +475,57 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
         }
 
-        attributes.put(name, value);
+        putAttribute(name, value);
     }
-    
+
     /**
-     * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)}
-     * as well as any predefined setter method, except for <code>version</code>.
+     * Gets the value of the cookie attribute associated with the given name.
+     *
+     * <p>
+     * This should sync to any predefined attribute for which already a getter/setter pair exist in the current version,
+     * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked, then
+     * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
+     *
+     * @param name the name of the cookie attribute to set the value for, case insensitive
+     *
+     * @since Servlet 5.1
+     */
+    public String getAttribute(String name) {
+        return attributes == null ? null : attributes.get(name);
+    }
+
+    /**
+     * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)} as well as any
+     * predefined setter method, except for <code>version</code>.
      * 
-     * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code>
-     * as well as any predefined setter method, except for <code>version</code>
+     * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code> as well as
+     * any predefined setter method, except for <code>version</code>
      * 
      * @since Servlet 5.1
      */
     public Map<String, String> getAttributes() {
-        return unmodifiableAttributes;
+        return Collections.unmodifiableMap(attributes == null ? Collections.emptyMap() : attributes);
     }
-    
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, value, attributes) + version;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Cookie) {
+            Cookie c = (Cookie) obj;
+            return Objects.equals(getName(), c.getName()) &&
+                    Objects.equals(getValue(), c.getValue()) &&
+                    getVersion() == c.getVersion() &&
+                    Objects.equals(getAttributes(), c.getAttributes());
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s{%s=%s,%d,%s}", super.toString(), name, value, version, attributes);
+    }
 }
