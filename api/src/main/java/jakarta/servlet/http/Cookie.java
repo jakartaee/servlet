@@ -146,7 +146,7 @@ public class Cookie implements Cloneable, Serializable {
                 || name.equalsIgnoreCase(SECURE)
                 || name.equalsIgnoreCase("Version")
                 || name.equalsIgnoreCase(HTTP_ONLY)) {
-            throw new IllegalArgumentException(createErrorMessage("err.cookie_name_is_token", name));
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_name_invalid", name));
         }
 
         this.name = name;
@@ -471,19 +471,21 @@ public class Cookie implements Cloneable, Serializable {
         }
 
         if (hasReservedCharacters(name)) {
-            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
+            throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_invalid", name));
         }
 
         if (MAX_AGE.equalsIgnoreCase(name) && value != null) {
-            Long.parseLong(value);
+            setMaxAge(Integer.parseInt(value));
+        } else {
+            putAttribute(name, value);
         }
-
-        putAttribute(name, value);
     }
 
     private void putAttribute(String name, String value) {
-        if (attributes == null)
+        if (attributes == null) {
             attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        }
+
         if (value == null) {
             attributes.remove(name);
         } else {
