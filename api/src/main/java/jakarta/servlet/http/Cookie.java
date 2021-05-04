@@ -48,7 +48,7 @@ import java.util.TreeMap;
  * <p>
  * The browser returns cookies to the servlet by adding fields to HTTP request headers. Cookies can be retrieved from a
  * request by using the {@link HttpServletRequest#getCookies} method. Several cookies might have the same name but
- * different path attributes().
+ * different path attributes.
  * 
  * <p>
  * Cookies affect the caching of the Web pages that use them. HTTP 1.0 does not cache pages that use cookies created
@@ -103,15 +103,6 @@ public class Cookie implements Cloneable, Serializable {
     //
     private Map<String, String> attributes = null;
 
-    private void putAttribute(String name, String value) {
-        if (attributes == null)
-            attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        if (value == null)
-            attributes.remove(name);
-        else
-            attributes.put(name, value);
-    }
-
     /**
      * Constructs a cookie with the specified name and value.
      *
@@ -145,7 +136,7 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_name_blank"));
         }
 
-        if (containsReservedToken(name) || name.startsWith("$")
+        if (hasReservedCharacters(name) || name.startsWith("$")
                 || name.equalsIgnoreCase(COMMENT) // rfc2109
                 || name.equalsIgnoreCase("Discard") // 2109++
                 || name.equalsIgnoreCase(DOMAIN)
@@ -253,7 +244,7 @@ public class Cookie implements Cloneable, Serializable {
      */
     public int getMaxAge() {
         String maxAge = getAttribute(MAX_AGE);
-        return maxAge != null ? Integer.parseInt(maxAge) : -1;
+        return maxAge == null ? -1 : Integer.parseInt(maxAge);
     }
 
     /**
@@ -383,14 +374,14 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /*
-     * Tests a string and returns true if the string contains a reserved token for the Set-Cookie header.
+     * Tests a string and returns true if the string contains a reserved characters for the Set-Cookie header.
      * 
      * @param value the <code>String</code> to be tested
      *
-     * @return <code>true</code> if the <code>String</code> contains a reserved token for the Set-Cookie header;
+     * @return <code>true</code> if the <code>String</code> contains a reserved character for the Set-Cookie header;
      * <code>false</code> otherwise
      */
-    private static boolean containsReservedToken(String value) {
+    private static boolean hasReservedCharacters(String value) {
         int len = value.length();
         for (int i = 0; i < len; i++) {
             char c = value.charAt(i);
@@ -479,13 +470,25 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_blank"));
         }
 
-        if (containsReservedToken(name)) {
+        if (hasReservedCharacters(name)) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
         }
 
-        if (MAX_AGE.equalsIgnoreCase(name) && value != null)
+        if (MAX_AGE.equalsIgnoreCase(name) && value != null) {
             Long.parseLong(value);
+        }
+
         putAttribute(name, value);
+    }
+
+    private void putAttribute(String name, String value) {
+        if (attributes == null)
+            attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        if (value == null) {
+            attributes.remove(name);
+        } else {
+            attributes.put(name, value);
+        }
     }
 
     /**
@@ -514,7 +517,7 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 5.1
      */
     public Map<String, String> getAttributes() {
-        return Collections.unmodifiableMap(attributes == null ? Collections.emptyMap() : attributes);
+        return attributes == null ? Collections.emptyMap() : Collections.unmodifiableMap(attributes);
     }
 
     @Override
