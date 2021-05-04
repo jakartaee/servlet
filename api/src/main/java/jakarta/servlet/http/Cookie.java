@@ -106,7 +106,10 @@ public class Cookie implements Cloneable, Serializable {
     private void putAttribute(String name, String value) {
         if (attributes == null)
             attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        attributes.put(name, value);
+        if (value == null)
+            attributes.remove(name);
+        else
+            attributes.put(name, value);
     }
 
     /**
@@ -231,7 +234,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getMaxAge
      */
     public void setMaxAge(int expiry) {
-        putAttribute(MAX_AGE, String.valueOf(expiry));
+        putAttribute(MAX_AGE, expiry < 0 ? null : String.valueOf(expiry));
     }
 
     /**
@@ -413,7 +416,12 @@ public class Cookie implements Cloneable, Serializable {
     @Override
     public Object clone() {
         try {
-            return super.clone();
+            Cookie clone = (Cookie) super.clone();
+            if (attributes != null) {
+                clone.attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+                clone.attributes.putAll(attributes);
+            }
+            return clone;
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -475,6 +483,8 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_is_token", name));
         }
 
+        if (MAX_AGE.equalsIgnoreCase(name) && value != null)
+            Long.parseLong(value);
         putAttribute(name, value);
     }
 
