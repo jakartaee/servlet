@@ -169,7 +169,14 @@
                     <compilerArgument>-Xlint:all</compilerArgument>
                 </configuration>
             </plugin>
-            
+
+            <!-- Execute unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+
             <!-- Checks copyright / license headers -->        
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
