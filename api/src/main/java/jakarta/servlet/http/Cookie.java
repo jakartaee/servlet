@@ -238,9 +238,6 @@ public class Cookie implements Cloneable, Serializable {
      * browser shutdown
      *
      * @see #setMaxAge
-     * 
-     * @throws NumberFormatException when this attribute is set via {@link #setAttribute(String, String)} with a value which
-     * is not in number format
      */
     public int getMaxAge() {
         String maxAge = getAttribute(MAX_AGE);
@@ -461,8 +458,11 @@ public class Cookie implements Cloneable, Serializable {
      * @param value the value of the cookie attribute associated with the given name, can be {@code null}
      *
      * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for example,
-     * a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol
-     * 
+     * a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol.
+     *
+     * @throws NumberFormatException if the cookie is a known field with a numerical value (eg Max-Age), but the value is
+     * not able to be parsed.
+     *
      * @since Servlet 5.1
      */
     public void setAttribute(String name, String value) {
