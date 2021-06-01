@@ -614,12 +614,19 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         // has been created.
         if (!didSetContentLength && noBody != null) {
             if (writer != null) {
-                noBody.flush(writer);
+                try {
+                    // Flush the writer with flushing on the wrapped OutputStream disabled
+                    // so that the bytes actually written can be counted.
+                    noBody.setFlushable(false);
+                    writer.flush();
+                } finally {
+                    noBody.setFlushable(true);
+                }
             }
 
             // If the response has not been committed, the content length can be set.
             if (!isCommitted()) {
-                setContentLength(noBody.getContentLength());
+                setContentLength(noBody.getUncommitted());
             }
         }
     }
@@ -708,10 +715,15 @@ class NoBodyOutputStream extends ServletOutputStream {
     private final NoBodyResponse response;
     private final ServletOutputStream wrapped;
 
-    // The real contentLength can a long, but this class tracks it only whilst less than
-    // the buffer size, which is an int
-    private int contentLength = 0;
-    private boolean writerFlush = false;
+    /**
+     * A count of content written prior to committing the response
+     */
+    private int uncommitted = 0;
+
+    /**
+     * Explicit flushing of this stream is disable when this field is set to false.
+     */
+    private boolean flushable = true;
 
     // file private
     NoBodyOutputStream(NoBodyResponse response) throws IOException {
@@ -720,8 +732,8 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     // file private
-    int getContentLength() {
-        return contentLength;
+    int getUncommitted() {
+        return uncommitted;
     }
 
     @Override
@@ -749,30 +761,28 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     private void incrementContentLength(int delta) throws IOException {
-        // Only count contentLength whilst uncommitted.
+        // Only count content whilst uncommitted.
         if (!response.isCommitted()) {
-            contentLength += delta;
+            uncommitted += delta;
 
             // If the response buffer would have been overflown, commit the response.
-            if (contentLength > response.getBufferSize())
+            if (uncommitted > response.getBufferSize())
                 response.flushBuffer();
         }
     }
 
     @Override
     public void flush() throws IOException {
-        if (!writerFlush) {
+        if (flushable) {
             response.flushBuffer();
         }
     }
 
-    public void flush(PrintWriter writer) {
-        try {
-            writerFlush = true;
-            writer.flush();
-        } finally {
-            writerFlush = false;
-        }
+    /**
+     * @param flushable False if explicit flushing of this stream is disabled
+     */
+    void setFlushable(boolean flushable) {
+        this.flushable = flushable;
     }
 
     @Override
