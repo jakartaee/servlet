@@ -192,7 +192,7 @@ public abstract class HttpServlet extends GenericServlet {
         NoBodyResponse response = new NoBodyResponse(resp);
 
         doGet(req, response);
-        response.setContentLength();
+        response.checkContentLength();
     }
 
     /**
@@ -598,9 +598,9 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
 
-    private NoBodyOutputStream noBody;
+    private NoBodyOutputStream noBodyOutputStream;
     private PrintWriter writer;
-    private boolean didSetContentLength;
+    private long setContentLength = -1;
     private boolean usingOutputStream;
 
     // file private
@@ -608,25 +608,43 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         super(r);
     }
 
+    public long getSetContentLength() {
+        return setContentLength;
+    }
+
     // file private
-    void setContentLength() throws IOException {
+    void checkContentLength() throws IOException {
         // Set the content length IFF it is not already set and the app the output stream
         // has been created.
-        if (!didSetContentLength && noBody != null) {
-            if (writer != null) {
-                try {
-                    // Flush the writer with flushing on the wrapped OutputStream disabled
-                    // so that the bytes actually written can be counted.
-                    noBody.setFlushable(false);
-                    writer.flush();
-                } finally {
-                    noBody.setFlushable(true);
-                }
-            }
 
-            // If the response has not been committed, the content length can be set.
-            if (!isCommitted()) {
-                setContentLength(noBody.getUncommitted());
+        if (!isCommitted()) {
+            if (setContentLength == -1) {
+                if (noBodyOutputStream == null) {
+                    setContentLength(0);
+                } else {
+                    flushWriter();
+
+                    int unCommitted = noBodyOutputStream.getUncommitted();
+                    if (unCommitted <= getBufferSize())
+                        setContentLength(unCommitted);
+                }
+            } else {
+                flushWriter();
+                if (noBodyOutputStream.getUncommitted() >= getSetContentLength())
+                    flushBuffer();
+            }
+        }
+    }
+
+    private void flushWriter() {
+        if (writer != null) {
+            try {
+                // Flush the writer with flushing on the wrapped OutputStream disabled
+                // so that the bytes actually written can be counted.
+                noBodyOutputStream.setFlushable(false);
+                writer.flush();
+            } finally {
+                noBodyOutputStream.setFlushable(true);
             }
         }
     }
@@ -634,43 +652,67 @@ class NoBodyResponse extends HttpServletResponseWrapper {
     @Override
     public void setContentLength(int len) {
         super.setContentLength(len);
-        didSetContentLength = true;
+        setContentLength = len;
     }
 
     @Override
     public void setContentLengthLong(long len) {
         super.setContentLengthLong(len);
-        didSetContentLength = true;
+        setContentLength = len;
     }
 
     @Override
     public void setHeader(String name, String value) {
         super.setHeader(name, value);
-        checkHeader(name);
+        checkHeader(name, value);
     }
 
     @Override
     public void addHeader(String name, String value) {
         super.addHeader(name, value);
-        checkHeader(name);
+        checkHeader(name, value);
     }
 
     @Override
     public void setIntHeader(String name, int value) {
         super.setIntHeader(name, value);
-        checkHeader(name);
+        checkHeader(name, value);
     }
 
     @Override
     public void addIntHeader(String name, int value) {
         super.addIntHeader(name, value);
-        checkHeader(name);
+        checkHeader(name, value);
     }
 
-    private void checkHeader(String name) {
+    private void checkHeader(String name, String value) {
         if ("content-length".equalsIgnoreCase(name)) {
-            didSetContentLength = true;
+            setContentLength = Long.valueOf(value);
         }
+    }
+
+    private void checkHeader(String name, int value) {
+        if ("content-length".equalsIgnoreCase(name)) {
+            setContentLength = value;
+        }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        noBodyOutputStream = null;
+        writer = null;
+        usingOutputStream = false;
+        setContentLength = -1;
+    }
+
+    @Override
+    public void resetBuffer() {
+        super.resetBuffer();
+        flushWriter();
+        setContentLength = -1;
+        if (noBodyOutputStream != null)
+            noBodyOutputStream.reset();
     }
 
     @Override
@@ -679,12 +721,12 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         if (writer != null) {
             throw new IllegalStateException(lStrings.getString("err.ise.getOutputStream"));
         }
-        if (noBody == null) {
-            noBody = new NoBodyOutputStream(this);
+        if (noBodyOutputStream == null) {
+            noBodyOutputStream = new NoBodyOutputStream(this);
         }
         usingOutputStream = true;
 
-        return noBody;
+        return noBodyOutputStream;
     }
 
     @Override
@@ -695,7 +737,8 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         }
 
         if (writer == null) {
-            OutputStreamWriter w = new OutputStreamWriter(noBody, getCharacterEncoding());
+            noBodyOutputStream = new NoBodyOutputStream(this);
+            OutputStreamWriter w = new OutputStreamWriter(noBodyOutputStream, getCharacterEncoding());
             writer = new PrintWriter(w);
         }
 
@@ -713,7 +756,6 @@ class NoBodyOutputStream extends ServletOutputStream {
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private final NoBodyResponse response;
-    private final ServletOutputStream wrapped;
 
     /**
      * A count of content written prior to committing the response
@@ -726,9 +768,12 @@ class NoBodyOutputStream extends ServletOutputStream {
     private boolean flushable = true;
 
     // file private
-    NoBodyOutputStream(NoBodyResponse response) throws IOException {
+    NoBodyOutputStream(NoBodyResponse response) {
         this.response = response;
-        this.wrapped = response.getResponse().getOutputStream();
+    }
+
+    void reset() {
+        uncommitted = 0;
     }
 
     // file private
@@ -765,8 +810,10 @@ class NoBodyOutputStream extends ServletOutputStream {
         if (!response.isCommitted()) {
             uncommitted += delta;
 
-            // If the response buffer would have been overflown, commit the response.
-            if (uncommitted > response.getBufferSize())
+            // If the response buffer would have been overflown, or is
+            // exactly a known content length, then commit the response.
+            if (uncommitted > response.getBufferSize() ||
+                    response.getSetContentLength() >= 0 && uncommitted >= response.getSetContentLength())
                 response.flushBuffer();
         }
     }
@@ -787,17 +834,25 @@ class NoBodyOutputStream extends ServletOutputStream {
 
     @Override
     public void close() throws IOException {
-        response.setContentLength();
+        response.checkContentLength();
         super.close();
     }
 
     @Override
     public boolean isReady() {
-        return wrapped.isReady();
+        try {
+            return response.getResponse().getOutputStream().isReady();
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     @Override
     public void setWriteListener(WriteListener writeListener) {
-        wrapped.setWriteListener(writeListener);
+        try {
+            response.getResponse().getOutputStream().setWriteListener(writeListener);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
