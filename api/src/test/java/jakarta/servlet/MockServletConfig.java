@@ -20,6 +20,7 @@ package jakarta.servlet;
 
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MockServletConfig implements ServletConfig {
@@ -38,7 +39,7 @@ public class MockServletConfig implements ServletConfig {
     public MockServletConfig(String name, ServletContext servletContext, Map<String, String> params) {
         this.name = name == null ? "Servlet" : name;
         this.servletContext = servletContext == null ? new MockServletContext() : servletContext;
-        this.params = params == null ? Collections.emptyMap() : params;
+        this.params = params == null ? new HashMap<>() : params;
     }
 
     @Override
@@ -59,5 +60,9 @@ public class MockServletConfig implements ServletConfig {
     @Override
     public Enumeration<String> getInitParameterNames() {
         return Collections.enumeration(params.keySet());
+    }
+
+    public void setInitParameter(String name, String value) {
+        params.put(name, value);
     }
 }

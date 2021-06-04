@@ -82,12 +82,20 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
+    private boolean legacyHeadHandling;
+
     /**
      * Does nothing, because this is an abstract class.
      * 
      */
 
     public HttpServlet() {
+    }
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        legacyHeadHandling = Boolean.parseBoolean(config.getInitParameter("jakarta.servlet.http.legacyDoHead"));
     }
 
     /**
@@ -179,6 +187,11 @@ public abstract class HttpServlet extends GenericServlet {
      * protects itself from being called multiple times for one HTTP HEAD request).
      *
      * <p>
+     * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}. If the
+     * {@link ServletConfig} init parameter "jakarta.servlet.http.legacyDoHead" is set to "TRUE", then the response instance
+     * is wrapped so that the response body is discarded.
+     *
+     * <p>
      * If the HTTP HEAD request is incorrectly formatted, <code>doHead</code> returns an HTTP "Bad Request" message.
      *
      * @param req the request object that is passed to the servlet
@@ -190,12 +203,12 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the request for the HEAD could not be handled
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (getServletConfig() instanceof HttpServlet.HeadHandledByContainer) {
-            doGet(req, resp);
-        } else {
+        if (legacyHeadHandling) {
             NoBodyResponse response = new NoBodyResponse(resp);
             doGet(req, response);
             response.setContentLength();
+        } else {
+            doGet(req, resp);
         }
     }
 
@@ -590,9 +603,6 @@ public abstract class HttpServlet extends GenericServlet {
 
         service(request, response);
     }
-
-    public interface HeadHandledByContainer extends ServletConfig {
-    }
 }
 
 /*
@@ -601,6 +611,7 @@ public abstract class HttpServlet extends GenericServlet {
  * Response object.
  */
 // file private
+@Deprecated
 class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
@@ -722,6 +733,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
  * Servlet output stream that gobbles up all its data.
  */
 // file private
+@Deprecated
 class NoBodyOutputStream extends ServletOutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
@@ -769,7 +781,7 @@ class NoBodyOutputStream extends ServletOutputStream {
 
     @Override
     public void flush() throws IOException {
-        if (disableFlush.get() != Boolean.TRUE)
+        if (Boolean.TRUE.equals(disableFlush.get()))
             super.flush();
     }
 

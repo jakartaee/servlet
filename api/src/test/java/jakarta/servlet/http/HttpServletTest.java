@@ -37,14 +37,13 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class HttpServletTest {
-
     public interface Handler {
         void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     }
 
     @ParameterizedTest
     @MethodSource("headTest")
-    public void testDefaultHead(String test, Handler doGet, boolean expectedFlushed, long expectedContentLength)
+    public void testLegacyHead(String test, Handler doGet, boolean expectedFlushed, long expectedContentLength)
             throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
             @Override
@@ -53,7 +52,8 @@ public class HttpServletTest {
             }
         };
 
-        ServletConfig servletConfig = new MockServletConfig();
+        MockServletConfig servletConfig = new MockServletConfig();
+        servletConfig.setInitParameter("jakarta.servlet.http.legacyDoHead", "true");
         servlet.init(servletConfig);
 
         MockHttpServletRequest request = new MockHttpServletRequest(servletConfig.getServletContext()) {
@@ -194,7 +194,7 @@ public class HttpServletTest {
             }
         };
 
-        ServletConfig servletConfig = new ContainerServletConfig();
+        ServletConfig servletConfig = new MockServletConfig();
         servlet.init(servletConfig);
 
         MockHttpServletRequest request = new MockHttpServletRequest(servletConfig.getServletContext()) {
@@ -212,8 +212,5 @@ public class HttpServletTest {
 
         // Check output makes it to container (which should then consume it)
         assertThat(actual, is("Hello World"));
-    }
-
-    static class ContainerServletConfig extends MockServletConfig implements HttpServlet.HeadHandledByContainer {
     }
 }
