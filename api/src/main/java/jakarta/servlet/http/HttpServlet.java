@@ -19,6 +19,7 @@
 package jakarta.servlet.http;
 
 import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
@@ -189,10 +190,13 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the request for the HEAD could not be handled
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        NoBodyResponse response = new NoBodyResponse(resp);
-
-        doGet(req, response);
-        response.checkContentLength();
+        if (getServletConfig() instanceof HttpServlet.HeadHandledByContainer) {
+            doGet(req, resp);
+        } else {
+            NoBodyResponse response = new NoBodyResponse(resp);
+            doGet(req, response);
+            response.setContentLength();
+        }
     }
 
     /**
@@ -586,6 +590,9 @@ public abstract class HttpServlet extends GenericServlet {
 
         service(request, response);
     }
+
+    public interface HeadHandledByContainer extends ServletConfig {
+    }
 }
 
 /*
@@ -598,121 +605,90 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
 
-    private NoBodyOutputStream noBodyOutputStream;
+    private NoBodyOutputStream noBody;
     private PrintWriter writer;
-    private long setContentLength = -1;
+    private boolean didSetContentLength;
     private boolean usingOutputStream;
 
     // file private
     NoBodyResponse(HttpServletResponse r) {
         super(r);
-    }
-
-    public long getSetContentLength() {
-        return setContentLength;
+        noBody = new NoBodyOutputStream();
     }
 
     // file private
-    void checkContentLength() throws IOException {
-        // Set the content length IFF it is not already set and the app the output stream
-        // has been created.
-
-        if (!isCommitted()) {
-            if (setContentLength == -1) {
-                if (noBodyOutputStream == null) {
-                    setContentLength(0);
-                } else {
-                    flushWriter();
-
-                    int unCommitted = noBodyOutputStream.getUncommitted();
-                    if (unCommitted <= getBufferSize())
-                        setContentLength(unCommitted);
-                }
-            } else {
-                flushWriter();
-                if (noBodyOutputStream.getUncommitted() >= getSetContentLength())
-                    flushBuffer();
-            }
-        }
-    }
-
-    private void flushWriter() {
-        if (writer != null) {
-            try {
-                // Flush the writer with flushing on the wrapped OutputStream disabled
-                // so that the bytes actually written can be counted.
-                noBodyOutputStream.setFlushable(false);
+    void setContentLength() {
+        if (!didSetContentLength) {
+            if (writer != null) {
                 writer.flush();
-            } finally {
-                noBodyOutputStream.setFlushable(true);
             }
+            setContentLength(noBody.getContentLength());
         }
     }
 
     @Override
     public void setContentLength(int len) {
         super.setContentLength(len);
-        setContentLength = len;
+        didSetContentLength = true;
     }
 
     @Override
     public void setContentLengthLong(long len) {
         super.setContentLengthLong(len);
-        setContentLength = len;
+        didSetContentLength = true;
     }
 
     @Override
     public void setHeader(String name, String value) {
         super.setHeader(name, value);
-        checkHeader(name, value);
+        checkHeader(name);
     }
 
     @Override
     public void addHeader(String name, String value) {
         super.addHeader(name, value);
-        checkHeader(name, value);
+        checkHeader(name);
     }
 
     @Override
     public void setIntHeader(String name, int value) {
         super.setIntHeader(name, value);
-        checkHeader(name, value);
+        checkHeader(name);
     }
 
     @Override
     public void addIntHeader(String name, int value) {
         super.addIntHeader(name, value);
-        checkHeader(name, value);
+        checkHeader(name);
     }
 
-    private void checkHeader(String name, String value) {
+    private void checkHeader(String name) {
         if ("content-length".equalsIgnoreCase(name)) {
-            setContentLength = Long.valueOf(value);
-        }
-    }
-
-    private void checkHeader(String name, int value) {
-        if ("content-length".equalsIgnoreCase(name)) {
-            setContentLength = value;
+            didSetContentLength = true;
         }
     }
 
     @Override
     public void reset() {
         super.reset();
-        noBodyOutputStream = null;
-        writer = null;
+        noBody.reset();
         usingOutputStream = false;
-        setContentLength = -1;
+        writer = null;
+        didSetContentLength = false;
     }
 
     @Override
     public void resetBuffer() {
         super.resetBuffer();
-        flushWriter();
-        setContentLength = -1;
-        if (noBodyOutputStream != null)
-            noBodyOutputStream.reset();
+        if (writer != null) {
+            try {
+                NoBodyOutputStream.disableFlush.set(Boolean.TRUE);
+                writer.flush();
+            } finally {
+                NoBodyOutputStream.disableFlush.remove();
+            }
+        }
+        noBody.reset();
     }
 
     @Override
@@ -721,12 +697,9 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         if (writer != null) {
             throw new IllegalStateException(lStrings.getString("err.ise.getOutputStream"));
         }
-        if (noBodyOutputStream == null) {
-            noBodyOutputStream = new NoBodyOutputStream(this);
-        }
         usingOutputStream = true;
 
-        return noBodyOutputStream;
+        return noBody;
     }
 
     @Override
@@ -737,8 +710,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
         }
 
         if (writer == null) {
-            noBodyOutputStream = new NoBodyOutputStream(this);
-            OutputStreamWriter w = new OutputStreamWriter(noBodyOutputStream, getCharacterEncoding());
+            OutputStreamWriter w = new OutputStreamWriter(noBody, getCharacterEncoding());
             writer = new PrintWriter(w);
         }
 
@@ -754,36 +726,26 @@ class NoBodyOutputStream extends ServletOutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    static ThreadLocal<Boolean> disableFlush = new ThreadLocal<>();
 
-    private final NoBodyResponse response;
-
-    /**
-     * A count of content written prior to committing the response
-     */
-    private int uncommitted = 0;
-
-    /**
-     * Explicit flushing of this stream is disable when this field is set to false.
-     */
-    private boolean flushable = true;
+    private int contentLength = 0;
 
     // file private
-    NoBodyOutputStream(NoBodyResponse response) {
-        this.response = response;
+    NoBodyOutputStream() {
     }
 
     void reset() {
-        uncommitted = 0;
+        contentLength = 0;
     }
 
     // file private
-    int getUncommitted() {
-        return uncommitted;
+    int getContentLength() {
+        return contentLength;
     }
 
     @Override
-    public void write(int b) throws IOException {
-        incrementContentLength(1);
+    public void write(int b) {
+        contentLength++;
     }
 
     @Override
@@ -802,57 +764,22 @@ class NoBodyOutputStream extends ServletOutputStream {
             throw new IndexOutOfBoundsException(msg);
         }
 
-        incrementContentLength(len);
-    }
-
-    private void incrementContentLength(int delta) throws IOException {
-        // Only count content whilst uncommitted.
-        if (!response.isCommitted()) {
-            uncommitted += delta;
-
-            // If the response buffer would have been overflown, or is
-            // exactly a known content length, then commit the response.
-            if (uncommitted > response.getBufferSize() ||
-                    response.getSetContentLength() >= 0 && uncommitted >= response.getSetContentLength())
-                response.flushBuffer();
-        }
+        contentLength += len;
     }
 
     @Override
     public void flush() throws IOException {
-        if (flushable) {
-            response.flushBuffer();
-        }
-    }
-
-    /**
-     * @param flushable False if explicit flushing of this stream is disabled
-     */
-    void setFlushable(boolean flushable) {
-        this.flushable = flushable;
-    }
-
-    @Override
-    public void close() throws IOException {
-        response.checkContentLength();
-        super.close();
+        if (disableFlush.get() != Boolean.TRUE)
+            super.flush();
     }
 
     @Override
     public boolean isReady() {
-        try {
-            return response.getResponse().getOutputStream().isReady();
-        } catch (IOException e) {
-            return false;
-        }
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void setWriteListener(WriteListener writeListener) {
-        try {
-            response.getResponse().getOutputStream().setWriteListener(writeListener);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        throw new UnsupportedOperationException();
     }
 }

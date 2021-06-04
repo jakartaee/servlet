@@ -93,7 +93,8 @@ public class MockServletResponse implements ServletResponse {
 
     @Override
     public void resetBuffer() {
-
+        if (servletOutputStream instanceof MockServletOutputStream)
+            ((MockServletOutputStream) servletOutputStream).reset();
     }
 
     @Override
@@ -103,7 +104,8 @@ public class MockServletResponse implements ServletResponse {
 
     @Override
     public void reset() {
-
+        printWriter = null;
+        servletOutputStream = null;
     }
 
     @Override

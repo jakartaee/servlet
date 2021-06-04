@@ -27,8 +27,6 @@ import java.util.Collection;
 import java.util.Enumeration;
 
 public class MockHttpServletRequest extends MockServletRequest implements HttpServletRequest {
-    public MockHttpServletRequest() {
-    }
 
     public MockHttpServletRequest(ServletContext context) {
         super(context);

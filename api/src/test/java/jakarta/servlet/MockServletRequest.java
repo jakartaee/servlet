@@ -28,10 +28,6 @@ import java.util.Map;
 public class MockServletRequest implements ServletRequest {
     private final ServletContext context;
 
-    public MockServletRequest() {
-        this(new MockServletContext());
-    }
-
     public MockServletRequest(ServletContext context) {
         this.context = context;
     }

@@ -32,6 +32,11 @@ public class MockServletOutputStream extends ServletOutputStream {
         return false;
     }
 
+    public void reset() {
+        if (out instanceof ByteArrayOutputStream)
+            ((ByteArrayOutputStream) out).reset();
+    }
+
     @Override
     public void setWriteListener(WriteListener writeListener) {
         throw new UnsupportedOperationException();
