@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -503,6 +503,8 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @param name the name of the cookie attribute to set the value for, case insensitive
      *
+     * @return the value of the cookie attribute associated with the given name
+     * 
      * @since Servlet 5.1
      */
     public String getAttribute(String name) {
