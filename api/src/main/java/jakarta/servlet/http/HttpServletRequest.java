@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -171,15 +171,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
      * <dd>Return the mapping as prior to the current dispatch. i.e the mapping returned is unchanged by a call to</dd>
-     * {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
+     * {@link RequestDispatcher#include(ServletRequest, jakarta.servlet.ServletResponse)}.
      *
      * <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
      * <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
      * {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was obtained via
      * {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)}, in which case return the mapping as prior to the
      * current dispatch. i.e the mapping returned is changed during a call to
-     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if the dispatcher is not a named
-     * dispatcher.</dd>
+     * {@link RequestDispatcher#forward(ServletRequest, jakarta.servlet.ServletResponse)} only if the dispatcher is not a
+     * named dispatcher.</dd>
      * </dl>
      * </p>
      * <p>
