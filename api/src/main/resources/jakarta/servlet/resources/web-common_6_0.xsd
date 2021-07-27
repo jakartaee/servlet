@@ -5,11 +5,12 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="5.1">
+            version="6.0">
   <xsd:annotation>
     <xsd:documentation>
 
-      Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+      Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+      All rights reserved.
       
       This program and the accompanying materials are made available under the
       terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,7 +30,7 @@
   <xsd:annotation>
     <xsd:documentation>
       <![CDATA[
-      This is the common XML Schema for the Servlet 5.1 deployment descriptor.
+      This is the common XML Schema for the Servlet 6.0 deployment descriptor.
       This file is in turn used by web.xml and web-fragment.xml
       web application's war file.  All Servlet deployment descriptors
       must indicate the web common schema by using the Jakarta EE
@@ -43,7 +44,7 @@
       <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="..."
-      version="5.1">
+      version="6.0">
       ...
       </web-app>
       
@@ -51,7 +52,7 @@
       the schema using the xsi:schemaLocation attribute for Jakarta EE
       namespace with the following location:
       
-      https://jakarta.ee/xml/ns/jakartaee/web-common_5_1.xsd
+      https://jakarta.ee/xml/ns/jakartaee/web-common_6_0.xsd
       
       ]]>
     </xsd:documentation>
@@ -1181,7 +1182,7 @@
       </xsd:documentation>
     </xsd:annotation>
     <xsd:restriction base="xsd:token">
-      <xsd:enumeration value="5.1"/>
+      <xsd:enumeration value="6.0"/>
     </xsd:restriction>
   </xsd:simpleType>
 

@@ -1,11 +1,11 @@
 :xrefstyle: full
-:spec-version: 5.1
-:spec-version-underscore: 5_1
+:spec-version: 6.0
+:spec-version-underscore: 6_0
 
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2020 Contributors to the Eclipse Foundation.
+Copyright (c) 2021 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
