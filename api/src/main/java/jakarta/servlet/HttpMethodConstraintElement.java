@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,7 +20,7 @@ package jakarta.servlet;
 import jakarta.servlet.annotation.HttpMethodConstraint;
 
 /**
- * Java Class represntation of an {@link HttpMethodConstraint} annotation value.
+ * Java Class representation of an {@link HttpMethodConstraint} annotation value.
  *
  * @since Servlet 3.0
  */
