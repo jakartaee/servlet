@@ -40,12 +40,12 @@ import java.util.concurrent.Executor;
  * </ol>
  *
  * <p>
- * An AsyncContext is an {@link Executor} that provides mutual exclusion between container managed threads for the
- * same request.  Specifically container managed threads are used for calls to
+ * An AsyncContext is an {@link Executor} that provides mutual exclusion between container managed threads for the same
+ * request. Specifically container managed threads are used for calls to
  * {@link Servlet#service(ServletRequest, ServletResponse)},
- * {@link Filter#doFilter(ServletRequest, ServletResponse, FilterChain)},
- * {@link ReadListener#onDataAvailable()}, {@link WriteListener#onWritePossible()}
- * and to call the {@link Runnable}s passed to {@link AsyncContext#execute(Runnable)} and {@link AsyncContext#run(Runnable)}.
+ * {@link Filter#doFilter(ServletRequest, ServletResponse, FilterChain)}, {@link ReadListener#onDataAvailable()},
+ * {@link WriteListener#onWritePossible()} and to call the {@link Runnable}s passed to
+ * {@link AsyncContext#execute(Runnable)} and {@link AsyncContext#run(Runnable)}.
  *
  * @since Servlet 3.0
  */
@@ -200,9 +200,9 @@ public interface AsyncContext extends Executor {
      * the dispatched request, then any of the dispatch or {@link #complete} methods may be called.
      *
      * <p>
-     * This method should be called from a container managed thread associated with the same request.
-     * A container may log a warning the first time this method is called from a non container managed thread and
-     * future versions of the specification may prohibit such calls.
+     * This method should be called from a container managed thread associated with the same request. A container may log a
+     * warning the first time this method is called from a non container managed thread and future versions of the
+     * specification may prohibit such calls.
      *
      * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
      * called during the resulting dispatch, or if {@link #complete} was called
@@ -235,9 +235,9 @@ public interface AsyncContext extends Executor {
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * <p>
-     * This method should be called from a container managed thread associated with the same request.
-     * A container may log a warning the first time this method is called from a non container managed thread and
-     * future versions of the specification may prohibit such calls.
+     * This method should be called from a container managed thread associated with the same request. A container may log a
+     * warning the first time this method is called from a non container managed thread and future versions of the
+     * specification may prohibit such calls.
      *
      * @param path the path of the dispatch target, scoped to the ServletContext from which this AsyncContext was
      * initialized
@@ -274,9 +274,9 @@ public interface AsyncContext extends Executor {
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * <p>
-     * This method should be called from a container managed thread associated with the same request.
-     * A container may log a warning the first time this method is called from a non container managed thread and
-     * future versions of the specification may prohibit such calls.
+     * This method should be called from a container managed thread associated with the same request. A container may log a
+     * warning the first time this method is called from a non container managed thread and future versions of the
+     * specification may prohibit such calls.
      *
      * @param context the ServletContext of the dispatch target
      * @param path the path of the dispatch target, scoped to the given ServletContext
@@ -305,9 +305,9 @@ public interface AsyncContext extends Executor {
      * returned to the container.
      *
      * <p>
-     * This method should be called from a container managed thread associated with the same request.
-     * A container may log a warning the first time this method is called from a non container managed thread and
-     * future versions of the specification may prohibit such calls.
+     * This method should be called from a container managed thread associated with the same request. A container may log a
+     * warning the first time this method is called from a non container managed thread and future versions of the
+     * specification may prohibit such calls.
      */
     public void complete();
 
@@ -322,12 +322,12 @@ public interface AsyncContext extends Executor {
     public void start(Runnable run);
 
     /**
-     * Causes the container to dispatch a container managed thread, possibly from a managed thread pool,
-     * to run the passed <tt>Runnable</tt>. The execution will be mutually excluded from all other container
-     * managed threads for the same request.
+     * Causes the container to dispatch a container managed thread, possibly from a managed thread pool, to run the passed
+     * <tt>Runnable</tt>. The execution will be mutually excluded from all other container managed threads for the same
+     * request.
      * <p>
-     * If {@link AsyncContext#complete()} is called, or the request lifecycle completes via a dispatch
-     * prior to the runnable being run, then it will never be run.
+     * If {@link AsyncContext#complete()} is called, or the request lifecycle completes via a dispatch prior to the runnable
+     * being run, then it will never be run.
      * <p>
      * The container may propagate appropriate contextual information to the <tt>Runnable</tt>.
      *
@@ -341,16 +341,16 @@ public interface AsyncContext extends Executor {
     }
 
     /**
-     * Executes the given command in the calling thread, mutually excluded from all other container
-     * managed threads for the same request.
+     * Executes the given command in the calling thread, mutually excluded from all other container managed threads for the
+     * same request.
      * <p>
      * The container may propagate appropriate contextual information to the <tt>Runnable</tt>.
      *
      * @see #start(Runnable)
      * @see #execute(Runnable)
      * @param run the asynchronous handler
-     * @throws CancellationException If {@link AsyncContext#complete()} is called, or the request
-     * lifecycle completes via a dispatch prior to the runnable being run
+     * @throws CancellationException If {@link AsyncContext#complete()} is called, or the request lifecycle completes via a
+     * dispatch prior to the runnable being run
      */
     public void run(Runnable run) throws CancellationException;
 
