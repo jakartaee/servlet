@@ -491,4 +491,15 @@ public class ServletRequestWrapper implements ServletRequest {
         return request.getDispatcherType();
     }
 
+    /**
+     * Gets the connection information for the wrapped request.
+     * 
+     * @return the connection information for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public ServletConnection getServletConnection() {
+        return request.getServletConnection();
+    }
 }

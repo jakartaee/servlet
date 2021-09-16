@@ -576,4 +576,14 @@ public interface ServletRequest {
      */
     public DispatcherType getDispatcherType();
 
+    /**
+     * Obtain details of the network connection to the Servlet container that is being used by this request. The information
+     * presented may differ from information presented elsewhere in the Servlet API as raw information is presented without
+     * adjustments for, example, use of reverse proxies that may be applied elsewhere in the Servlet API.
+     * 
+     * @return The network connection details.
+     * 
+     * @since Servlet 6.0
+     */
+    ServletConnection getServletConnection();
 }
