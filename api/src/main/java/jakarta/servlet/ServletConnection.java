@@ -36,19 +36,9 @@ public interface ServletConnection {
     String getConnectionId();
 
     /**
-     * Obtain a unique (within the lifetime of the JVM) identifier string for the {@code ServletRequest} from which this
-     * {@code ServletConnection} was obtained.
-     * <p>
-     * There is no defined format for this string. The format is implementation dependent.
-     * 
-     * @return A unique identifier for the servlet request
-     */
-    String getRequestId();
-
-    /**
-     * Obtain the name of the protocol as presented to the JVM after the removal, if present, of any TLS encryption. This
-     * may not be the same as the protocol seen by the application. For example, a reverse proxy may present AJP whereas the
-     * application will see HTTP 1.1.
+     * Obtain the name of the protocol as presented to the server after the removal, if present, of any TLS or similar
+     * encryption. This may not be the same as the protocol seen by the application. For example, a reverse proxy may
+     * present AJP whereas the application will see HTTP 1.1.
      * <p>
      * If the protocol has an entry in the <a href=
      * "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">IANA
@@ -56,33 +46,37 @@ public interface ServletConnection {
      * sequences MUST only be used for the associated protocol. Return values for other protocols are implementation
      * dependent. Unknown protocols should return the string "unknown".
      * 
-     * @return The name of the protocol presented to the JVM after decryption of TLS, if any.
+     * @return The name of the protocol presented to the server after decryption of TLS, or similar encryption, if any.
      */
     String getProtocol();
 
     /**
-     * Obtain the connection identifier for the network connection to the JVM that is being used for the
+     * Obtain the connection identifier for the network connection to the server that is being used for the
      * {@code ServletRequest} from which this {@code ServletConnection} was obtained as defined by the protocol in use. Note
      * that some protocols do not define such an identifier.
+     * <p>
+     * Examples of protocol provided connection identifiers include:
+     * <dl>
+     * <dt>HTTP 1.x</dt>
+     * <dd>None, so the empty string should be returned</dd>
+     * <dt>HTTP 2</dt>
+     * <dd>None, so the empty string should be returned</dd>
+     * <dt>HTTP 3</dt>
+     * <dd>The QUIC connection ID</dd>
+     * <dt>AJP</dt>
+     * <dd>None, so the empty string should be returned</dd>
+     * </dl>
      * 
      * @return The connection identifier if one is defined, otherwise an empty string
      */
     String getProtocolConnectionId();
 
     /**
-     * Obtain the request identifier for the {@code ServletRequest} from which this {@code ServletConnection} was obtained
-     * as defined by the protocol in use. Note that some protocols do not define such an identifier.
+     * Determine whether or not the incoming network connection to the server used encryption or not. Note that where a
+     * reverse proxy is used, the application may have a different view as to whether encryption is being used due to the
+     * use of headers like {@code X-Forwarded-Proto}.
      * 
-     * @return The request identifier if one is defined, otherwise an empty string
+     * @return {@code true} if the incoming network connection used encryption, otherwise {@code false}
      */
-    String getProtocolRequestId();
-
-    /**
-     * Determine whether or not the incoming network connection to the JVM used TLS or not. Note that where a reverse proxy
-     * is used, the application may have a different view as to whether TLS is being used due to the use of headers like
-     * {@code X-Forwarded-Proto}
-     * 
-     * @return {@code true} if the incoming network connection used TLS, otherwise {@code false}
-     */
-    boolean getTLS();
+    boolean isSecure();
 }
