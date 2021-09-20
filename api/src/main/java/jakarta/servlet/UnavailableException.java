@@ -45,48 +45,8 @@ public class UnavailableException extends ServletException {
 
     private static final long serialVersionUID = 5622686609215003468L;
 
-    private Servlet servlet; // what's unavailable
     private boolean permanent; // needs admin action?
     private int seconds; // unavailability estimate
-
-    /**
-     * 
-     * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String)} instead.
-     *
-     * @param servlet the <code>Servlet</code> instance that is unavailable
-     *
-     * @param msg a <code>String</code> specifying the descriptive message
-     *
-     */
-    @Deprecated
-    public UnavailableException(Servlet servlet, String msg) {
-        super(msg);
-        this.servlet = servlet;
-        permanent = true;
-    }
-
-    /**
-     * @deprecated As of Java Servlet API 2.2, use {@link #UnavailableException(String, int)} instead.
-     *
-     * @param seconds an integer specifying the number of seconds the servlet expects to be unavailable; if zero or
-     * negative, indicates that the servlet can't make an estimate
-     *
-     * @param servlet the <code>Servlet</code> that is unavailable
-     * 
-     * @param msg a <code>String</code> specifying the descriptive message, which can be written to a log file or displayed
-     * for the user.
-     *
-     */
-    @Deprecated
-    public UnavailableException(int seconds, Servlet servlet, String msg) {
-        super(msg);
-        this.servlet = servlet;
-        if (seconds <= 0)
-            this.seconds = -1;
-        else
-            this.seconds = seconds;
-        permanent = false;
-    }
 
     /**
      * 
@@ -139,19 +99,6 @@ public class UnavailableException extends ServletException {
      */
     public boolean isPermanent() {
         return permanent;
-    }
-
-    /**
-     * @deprecated As of Java Servlet API 2.2, with no replacement.
-     *
-     * Returns the servlet that is reporting its unavailability.
-     * 
-     * @return the <code>Servlet</code> object that is throwing the <code>UnavailableException</code>
-     *
-     */
-    @Deprecated
-    public Servlet getServlet() {
-        return servlet;
     }
 
     /**

@@ -279,17 +279,6 @@ public class ServletRequestWrapper implements ServletRequest {
     }
 
     /**
-     * The default behavior of this method is to return getRealPath(String path) on the wrapped request object.
-     *
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead
-     */
-    @Override
-    @Deprecated
-    public String getRealPath(String path) {
-        return this.request.getRealPath(path);
-    }
-
-    /**
      * The default behavior of this method is to return getRemotePort() on the wrapped request object.
      *
      * @since Servlet 2.4

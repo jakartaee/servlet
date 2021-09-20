@@ -85,28 +85,6 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call encodeUrl(String url) on the wrapped response object.
-     *
-     * @deprecated As of version 2.1, use {@link #encodeURL(String url)} instead
-     */
-    @Deprecated
-    @Override
-    public String encodeUrl(String url) {
-        return this._getHttpServletResponse().encodeUrl(url);
-    }
-
-    /**
-     * The default behavior of this method is to return encodeRedirectUrl(String url) on the wrapped response object.
-     *
-     * @deprecated As of version 2.1, use {@link #encodeRedirectURL(String url)} instead
-     */
-    @Deprecated
-    @Override
-    public String encodeRedirectUrl(String url) {
-        return this._getHttpServletResponse().encodeRedirectUrl(url);
-    }
-
-    /**
      * The default behavior of this method is to call sendError(int sc, String msg) on the wrapped response object.
      */
     @Override
@@ -184,18 +162,6 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     @Override
     public void setStatus(int sc) {
         this._getHttpServletResponse().setStatus(sc);
-    }
-
-    /**
-     * The default behavior of this method is to call setStatus(int sc, String sm) on the wrapped response object.
-     *
-     * @deprecated As of version 2.1, due to ambiguous meaning of the message parameter. To set a status code use
-     * {@link #setStatus(int)}, to send an error with a description use {@link #sendError(int, String)}
-     */
-    @Deprecated
-    @Override
-    public void setStatus(int sc, String sm) {
-        this._getHttpServletResponse().setStatus(sc, sm);
     }
 
     /**

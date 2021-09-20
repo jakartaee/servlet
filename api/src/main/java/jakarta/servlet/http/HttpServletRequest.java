@@ -386,12 +386,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <td>/xyz
      * </table>
      *
-     * <p>
-     * To reconstruct an URL with a scheme and host, use {@link HttpUtils#getRequestURL}.
-     *
      * @return a <code>String</code> containing the part of the URL from the protocol name up to the query string
-     *
-     * @see HttpUtils#getRequestURL
      */
     public String getRequestURI();
 
@@ -482,7 +477,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #getRequestedSessionId
      * @see #getSession
-     * @see HttpSessionContext
      */
     public boolean isRequestedSessionIdValid();
 
@@ -509,15 +503,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @see #getSession
      */
     public boolean isRequestedSessionIdFromURL();
-
-    /**
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
-     *
-     * @return <code>true</code> if the session ID was conveyed to the server as part of a URL; otherwise,
-     * <code>false</code>
-     */
-    @Deprecated
-    public boolean isRequestedSessionIdFromUrl();
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this

@@ -94,29 +94,8 @@ public interface HttpServletResponse extends ServletResponse {
      * @exception IllegalArgumentException if the url is not valid
      *
      * @see #sendRedirect
-     * @see #encodeUrl
      */
     public String encodeRedirectURL(String url);
-
-    /**
-     * @deprecated As of version 2.1, use encodeURL(String url) instead
-     *
-     * @param url the url to be encoded.
-     * @return the encoded URL if encoding is needed; the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
-     */
-    @Deprecated
-    public String encodeUrl(String url);
-
-    /**
-     * @deprecated As of version 2.1, use encodeRedirectURL(String url) instead
-     *
-     * @param url the url to be encoded.
-     * @return the encoded URL if encoding is needed; the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
-     */
-    @Deprecated
-    public String encodeRedirectUrl(String url);
 
     /**
      * <p>
@@ -284,18 +263,6 @@ public interface HttpServletResponse extends ServletResponse {
      * @see #sendError
      */
     public void setStatus(int sc);
-
-    /**
-     * @deprecated As of version 2.1, due to ambiguous meaning of the message parameter. To set a status code use
-     * <code>setStatus(int)</code>, to send an error with a description use <code>sendError(int, String)</code>.
-     *
-     * Sets the status code and message for this response.
-     * 
-     * @param sc the status code
-     * @param sm the status message
-     */
-    @Deprecated
-    public void setStatus(int sc, String sm);
 
     /**
      * Gets the current status code of this response.

@@ -351,16 +351,6 @@ public interface ServletRequest {
     public RequestDispatcher getRequestDispatcher(String path);
 
     /**
-     * @param path the path for which the real path is to be returned.
-     * 
-     * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed.
-     * 
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead.
-     */
-    @Deprecated
-    public String getRealPath(String path);
-
-    /**
      * Returns the Internet Protocol (IP) source port the remote end of the connection on which the request was received. By
      * default this is either the port of the client or last proxy that sent the request. In some cases, protocol specific
      * mechanisms such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a> may be used to obtain a port different
