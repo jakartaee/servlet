@@ -272,10 +272,11 @@ public interface ServletContext {
     public URL getResource(String path) throws MalformedURLException;
 
     /**
-     * TODO
+     * TODO Unlike {@link #getPath(String)}, returns only existing resources.
      * 
      * @param path a <code>String</code> specifying the path to the resource
-     * @return Path to the resource... which may be a temporary file extracted from a jar.
+     * @return Path to the resource or null if it does not exist. Path may be to real file, a temporary file extracted from
+     * a jar or to Path within a special {@link java.nio.file.FileSystem} such as ZIP.
      * @throws MalformedURLException
      */
     Path getResourceAsPath(String path) throws MalformedURLException;
@@ -472,10 +473,11 @@ public interface ServletContext {
 
     /**
      * TODO
-     *
+     * 
      * @param path the path relative to the context
      * @return The Path of the resource or null if a translation cannot be performed. The path may represent a non-existent
      * resource.
+     * @see #getResourceAsPath(String)
      */
     Path getPath(String path);
 
@@ -1471,8 +1473,10 @@ public interface ServletContext {
      * <li>{@link ServletContext#getContext(String)}</li>
      * <li>{@link ServletContext#getRequestDispatcher(String)}</li>
      * <li>{@link ServletContext#getRealPath(String)}</li>
+     * <li>{@link ServletContext#getPath(String)}</li>
      * <li>{@link ServletContext#getResource(String)}</li>
      * <li>{@link ServletContext#getResourceAsStream(String)}</li>
+     * <li>{@link ServletContext#getResourceAsPath(String)}</li>
      * <li>{@link ServletContext#getResourcePaths(String)}</li>
      * <li>{@link AsyncContext#dispatch(String)}</li>
      * <li>{@link AsyncContext#dispatch(ServletContext, String)}</li>
