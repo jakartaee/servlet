@@ -416,6 +416,19 @@ public interface HttpServletRequest extends ServletRequest {
     public StringBuffer getRequestURL();
 
     /**
+     * A convenience method that returns the part of this request's URL that is scoped to this context. This path is
+     * equivalent to {@link #getServletPath()} + {@link #getPathInfo()} with null values interpreted as the empty string.
+     *
+     * @return a <code>String</code> containing the URI path after the context path.
+     */
+    default String getPath() {
+        String servletPath = getServletPath();
+        String pathInfo = getPathInfo();
+
+        return servletPath == null ? pathInfo : pathInfo == null ? servletPath : servletPath + pathInfo;
+    }
+
+    /**
      * Returns the part of this request's URL that calls the servlet. This path starts with a "/" character and includes
      * either the servlet name or a path to the servlet, but does not include any extra path information or a query string.
      *

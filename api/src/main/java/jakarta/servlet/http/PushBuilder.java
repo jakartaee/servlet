@@ -163,10 +163,10 @@ public interface PushBuilder {
      * argument {@code path}, its contents must be merged with the contents previously passed to {@link #queryString},
      * preserving duplicates.
      *
-     * @param path the URI path to be used for the push, which may include a query string.
+     * @param uriPath the URI path to be used for the push, which may include a query string.
      * @return this builder.
      */
-    public PushBuilder path(String path);
+    public PushBuilder path(String uriPath);
 
     /**
      * Push a resource given the current state of the builder, the method must be non-blocking.

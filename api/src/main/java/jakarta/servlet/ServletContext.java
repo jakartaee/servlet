@@ -19,9 +19,12 @@
 package jakarta.servlet;
 
 import jakarta.servlet.descriptor.JspConfigDescriptor;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.Map;
@@ -78,13 +81,13 @@ public interface ServletContext {
      *
      * <p>
      * It is possible that a servlet container may match a context by more than one context path. In such cases the
-     * {@link jakarta.servlet.http.HttpServletRequest#getContextPath()} will return the actual context path used by the
-     * request and it may differ from the path returned by this method. The context path returned by this method should be
-     * considered as the prime or preferred context path of the application.
+     * {@link HttpServletRequest#getContextPath()} will return the actual context path used by the request and it may differ
+     * from the path returned by this method. The context path returned by this method should be considered as the prime or
+     * preferred context path of the application.
      *
      * @return The context path of the web application, or "" for the root context
      *
-     * @see jakarta.servlet.http.HttpServletRequest#getContextPath()
+     * @see HttpServletRequest#getContextPath()
      *
      * @since Servlet 2.5
      */
@@ -267,6 +270,15 @@ public interface ServletContext {
      * @exception MalformedURLException if the pathname is not given in the correct form
      */
     public URL getResource(String path) throws MalformedURLException;
+
+    /**
+     * TODO
+     * 
+     * @param path a <code>String</code> specifying the path to the resource
+     * @return Path to the resource... which may be a temporary file extracted from a jar.
+     * @throws MalformedURLException
+     */
+    Path getResourceAsPath(String path) throws MalformedURLException;
 
     /**
      * Returns the resource located at the named path as an <code>InputStream</code> object.
@@ -457,6 +469,15 @@ public interface ServletContext {
      * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed
      */
     public String getRealPath(String path);
+
+    /**
+     * TODO
+     *
+     * @param path the path relative to the context
+     * @return The Path of the resource or null if a translation cannot be performed. The path may represent a non-existent
+     * resource.
+     */
+    Path getPath(String path);
 
     /**
      * Returns the name and version of the servlet container on which the servlet is running.
@@ -1436,4 +1457,85 @@ public interface ServletContext {
      * @since Servlet 4.0
      */
     public void setResponseCharacterEncoding(String encoding);
+
+    /**
+     * The mode in which this context handles the encoding and decoding of URI paths. This mode affects the behavior of:
+     * <ul>
+     * <li>{@link HttpServletRequest#getContextPath()}</li>
+     * <li>{@link HttpServletRequest#getServletPath()}</li>
+     * <li>{@link HttpServletRequest#getPathInfo()}</li>
+     * <li>{@link HttpServletRequest#getPath()}</li>
+     * <li>{@link HttpServletRequest#getRealPath(String)}</li>
+     * <li>{@link HttpServletRequest#getRequestDispatcher(String)}</li>
+     * <li>{@link ServletContext#getContextPath()}</li>
+     * <li>{@link ServletContext#getContext(String)}</li>
+     * <li>{@link ServletContext#getRequestDispatcher(String)}</li>
+     * <li>{@link ServletContext#getRealPath(String)}</li>
+     * <li>{@link ServletContext#getResource(String)}</li>
+     * <li>{@link ServletContext#getResourceAsStream(String)}</li>
+     * <li>{@link ServletContext#getResourcePaths(String)}</li>
+     * <li>{@link AsyncContext#dispatch(String)}</li>
+     * <li>{@link AsyncContext#dispatch(ServletContext, String)}</li>
+     * </ul>
+     * for the purposes of these modes:
+     * <ul>
+     * <li>a 'reserved character' is a character defined as <code>reserved</code> by
+     * <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.2">RFC3986 Section 2.2</a> or the ';'
+     * character.</li>
+     * <li>a 'path parameter' is the part of a URI segment as defined by the obsoleted
+     * <a href="https://datatracker.ietf.org/doc/html/rfc2396#section-3.3">RFC2396 Section 3.3</a>.</li>
+     * </ul>
+     */
+    public enum PathCodingMode {
+        /**
+         * Effected methods will return/accept paths as was done prior to the introduction of the PathCodingMode in Servlet 6.0.
+         * The path returned by {@link HttpServletRequest#getContextPath()} is not decoded. Paths returned by the methods
+         * {@link HttpServletRequest#getServletPath()} and {@link HttpServletRequest#getPathInfo()} are fully decoded and all
+         * path parameters removed. Decoding may include ambiguous characters such as a decoded <code>%2F</code>, which is
+         * indistinguishable from a segment separator '/' in the request URI. Methods accepting paths may accept encoded
+         * characters. A '?' character in a path will be treated as indicating a query string and will not be encoded. Some
+         * implementation specific behavioural differences may be apparent in this mode.
+         */
+        LEGACY,
+
+        /**
+         * Effected methods will only return/accept paths that do not contain any encoded reserved characters and with all path
+         * parameters removed. If the requested URI contains encoded reserved characters, then a call to a method that returns
+         * such a path will throw {@link IllegalStateException}. If a path with encoded reserve characters is passed to a method
+         * taking a path as a parameter, then it will throw {@link MalformedURLException} if declared. otherwise a
+         * {@link IllegalArgumentException}.
+         */
+        DECODED,
+
+        /**
+         * Effected methods will return/accept paths in which only reserved characters are encoded. Methods returning paths will
+         * decode all non-reserved characters and remove only the <code>jsessionid</code> path parameter. All other path
+         * parameters will be returned and considered part of the path for the purposes of path matching. Methods that take
+         * paths expect the reserved characters to be encoded if they are to be considered part of a path segment, otherwise
+         * they will not be encoded and will have their reserved interpretation if possible. If a valid interpretation of a non
+         * encoded reserved character is not possible, then the method will throw {@link MalformedURLException} if declared,
+         * otherwise a {@link IllegalArgumentException}.
+         */
+        ENCODED,
+    }
+
+    /**
+     * Return the path coding mode for the context. By default, this will be {@link PathCodingMode#LEGACY} if the
+     * {@link #getEffectiveMajorVersion()} less that or equal to 5, otherwise it will be {@link PathCodingMode#DECODED}. The
+     * default may be changed by container specific mechanisms or overridden by a call to
+     * {@link #setPathCodingMode(PathCodingMode)}
+     *
+     * @return The path coding mode for this context.
+     */
+    PathCodingMode getPathCodingMode();
+
+    /**
+     * Set the path coding mode for the context. This method may only be called
+     * 
+     * @param mode The mode to apply to the path coding behaviour of this context.
+     * @throws IllegalArgumentException if this method has been called more than once with different values.
+     * @throws IllegalStateException if this ServletContext has is initialized (i.e. after the return of the ultimate call
+     * to {@link ServletContextListener#contextInitialized}.
+     */
+    void setPathCodingMode(PathCodingMode mode);
 }
