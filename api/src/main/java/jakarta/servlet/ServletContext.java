@@ -1494,8 +1494,8 @@ public interface ServletContext {
         /**
          * Effected methods will return/accept paths as was done prior to the introduction of the PathCodingMode in Servlet 6.0.
          * The path returned by {@link HttpServletRequest#getContextPath()} is not decoded. Paths returned by the methods
-         * {@link HttpServletRequest#getServletPath()} and {@link HttpServletRequest#getPathInfo()} are fully decoded and all
-         * path parameters removed. Decoding may include ambiguous characters such as a decoded <code>%2F</code>, which is
+         * {@link HttpServletRequest#getServletPath()} and {@link HttpServletRequest#getPathInfo()} are fully decoded and have
+         * all path parameters removed. Decoding may include ambiguous characters such as a decoded <code>%2F</code>, which is
          * indistinguishable from a segment separator '/' in the request URI. Methods accepting paths may accept encoded
          * characters. A '?' character in a path will be treated as indicating a query string and will not be encoded. Some
          * implementation specific behavioural differences may be apparent in this mode.
@@ -1516,8 +1516,8 @@ public interface ServletContext {
          * decode all non-reserved characters and remove only the <code>jsessionid</code> path parameter. All other path
          * parameters will be returned and considered part of the path for the purposes of path matching. Methods that take
          * paths expect the reserved characters to be encoded if they are to be considered part of a path segment, otherwise
-         * they will not be encoded and will have their reserved interpretation if possible. If a valid interpretation of a non
-         * encoded reserved character is not possible, then the method will throw {@link MalformedURLException} if declared,
+         * they will not be encoded and will have their reserved interpretation if possible. If a valid interpretation of a
+         * non-encoded reserved character is not possible, then the method will throw {@link MalformedURLException} if declared,
          * otherwise a {@link IllegalArgumentException}.
          */
         ENCODED,
