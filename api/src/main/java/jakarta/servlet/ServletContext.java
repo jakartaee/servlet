@@ -275,21 +275,20 @@ public interface ServletContext {
      * Returns a Path to the resource that is mapped to the given path String.
      *
      * <p>
-     * The path String must begin with a <tt>/</tt> and is interpreted as relative to the
-     * current context root, or relative to the <tt>/META-INF/resources</tt> directory of
-     * a JAR file inside the web application's <tt>/WEB-INF/lib</tt> directory.
-     * This method will first search the document root of the web application for the requested
-     * resource, before searching any of the JAR files inside <tt>/WEB-INF/lib</tt>.
-     * The order in which the JAR files inside <tt>/WEB-INF/lib</tt> are searched is undefined.
+     * The path String must begin with a <tt>/</tt> and is interpreted as relative to the current context root, or relative
+     * to the <tt>/META-INF/resources</tt> directory of a JAR file inside the web application's <tt>/WEB-INF/lib</tt>
+     * directory. This method will first search the document root of the web application for the requested resource, before
+     * searching any of the JAR files inside <tt>/WEB-INF/lib</tt>. The order in which the JAR files inside
+     * <tt>/WEB-INF/lib</tt> are searched is undefined.
      *
      * <p>
-     * This method allows the servlet container to make a resource available to servlets from any source.
-     * Resources can be located on a local or remote file system, in a database, or in a <code>.war</code> file.
-     * Resources may also be copied/extracted to a temporary or alternative location.
+     * This method allows the servlet container to make a resource available to servlets from any source. Resources can be
+     * located on a local or remote file system, in a database, or in a <code>.war</code> file. Resources may also be
+     * copied/extracted to a temporary or alternative location.
      *
      * <p>
-     * The servlet container or JVM must provide the {@link java.nio.file.FileSystem}s that are necessary to
-     * access the resource.
+     * The servlet container or JVM must provide the {@link java.nio.file.FileSystem}s that are necessary to access the
+     * resource.
      *
      * <p>
      * This method returns <code>null</code> if no resource is mapped to the pathname.
@@ -302,12 +301,12 @@ public interface ServletContext {
      * source code. Use a <code>RequestDispatcher</code> instead to include results of an execution.
      *
      * <p>
-     * This method has a different purpose than <code>java.lang.Class.getResource</code>,
-     * which looks up resources based on a class loader. This method does not use class loaders.
+     * This method has a different purpose than <code>java.lang.Class.getResource</code>, which looks up resources based on
+     * a class loader. This method does not use class loaders.
      *
      * <p>
-     * This method has a different purpose than {@link #getRealPath(String)} and {@link #getPath(String)},
-     * which can return non-existent resource.
+     * This method has a different purpose than {@link #getRealPath(String)} and {@link #getPath(String)}, which can return
+     * non-existent resource.
      *
      * <p>
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
@@ -315,8 +314,7 @@ public interface ServletContext {
      * provided data) and when using the result not to create a security vulnerability in the application.
      * 
      * @param path a <code>String</code> specifying the path to the resource
-     * @return Path to the resource or null if it does not exist.
-     * Path may be to real file, a temporary file extracted from
+     * @return Path to the resource or null if it does not exist. Path may be to real file, a temporary file extracted from
      * a jar or to Path within a special {@link java.nio.file.FileSystem} such as ZIP.
      * @throws MalformedURLException if the path is not given in the correct form.
      * @see #getPath(String)
@@ -514,32 +512,29 @@ public interface ServletContext {
     public String getRealPath(String path);
 
     /**
-     * Gets the {@link Path} of the given path string, within the document root of the web application
-     * or <tt>/META-INF/resources</tt> directories of JAR files bundled in the application's
-     * <tt>/WEB-INF/lib</tt> directory.
+     * Gets the {@link Path} of the given path string, within the document root of the web application or
+     * <tt>/META-INF/resources</tt> directories of JAR files bundled in the application's <tt>/WEB-INF/lib</tt> directory.
      *
      * <p>
-     * The path string must begin with a <tt>/</tt> and is interpreted as relative to the current
-     * context root.
+     * The path string must begin with a <tt>/</tt> and is interpreted as relative to the current context root.
      *
      * <p>
-     * For example, if <tt>path</tt> is equal to <tt>/index.html</tt>, this method will return the
-     * absolute Path on the server's filesystem to which a request of the form
+     * For example, if <tt>path</tt> is equal to <tt>/index.html</tt>, this method will return the absolute Path on the
+     * server's filesystem to which a request of the form
      * <tt>http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/index.html</tt> would be mapped, where
      * <tt>&lt;contextPath&gt;</tt> corresponds to the context path of this ServletContext.
      *
      * <p>
-     * The {@link Path} returned will be in a form appropriate to the {@link java.nio.file.FileSystem}
-     * in which the resource is located. This may be within a ZIP'd JAR file or a file extracted
-     * to a temporary location.
+     * The {@link Path} returned will be in a form appropriate to the {@link java.nio.file.FileSystem} in which the resource
+     * is located. This may be within a ZIP'd JAR file or a file extracted to a temporary location.
      *
      * <p>
-     * This method returns <code>null</code> if the servlet container is unable to translate the given
-     * path string to a {@link Path}.
+     * This method returns <code>null</code> if the servlet container is unable to translate the given path string to a
+     * {@link Path}.
      * 
      * @param path the path relative to the context
-     * @return The {@link Path} of the resource or null if a translation cannot be performed.
-     * The {@link Path} may represent a non-existent resource.
+     * @return The {@link Path} of the resource or null if a translation cannot be performed. The {@link Path} may represent
+     * a non-existent resource.
      * @see #getResourceAsPath(String)
      */
     Path getPath(String path);
