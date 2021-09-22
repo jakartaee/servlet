@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -276,17 +276,6 @@ public class ServletRequestWrapper implements ServletRequest {
     @Override
     public RequestDispatcher getRequestDispatcher(String path) {
         return this.request.getRequestDispatcher(path);
-    }
-
-    /**
-     * The default behavior of this method is to return getRealPath(String path) on the wrapped request object.
-     *
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead
-     */
-    @Override
-    @Deprecated
-    public String getRealPath(String path) {
-        return this.request.getRealPath(path);
     }
 
     /**

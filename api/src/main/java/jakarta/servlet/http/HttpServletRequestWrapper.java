@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -261,17 +261,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     @Override
     public boolean isRequestedSessionIdFromURL() {
         return this._getHttpServletRequest().isRequestedSessionIdFromURL();
-    }
-
-    /**
-     * The default behavior of this method is to return isRequestedSessionIdFromUrl() on the wrapped request object.
-     *
-     * @deprecated As of Version 4.0 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
-     */
-    @Deprecated
-    @Override
-    public boolean isRequestedSessionIdFromUrl() {
-        return this._getHttpServletRequest().isRequestedSessionIdFromUrl();
     }
 
     /**

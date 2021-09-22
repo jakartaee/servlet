@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -349,16 +349,6 @@ public interface ServletRequest {
      * @see ServletContext#getRequestDispatcher
      */
     public RequestDispatcher getRequestDispatcher(String path);
-
-    /**
-     * @param path the path for which the real path is to be returned.
-     * 
-     * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed.
-     * 
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead.
-     */
-    @Deprecated
-    public String getRealPath(String path);
 
     /**
      * Returns the Internet Protocol (IP) source port the remote end of the connection on which the request was received. By
