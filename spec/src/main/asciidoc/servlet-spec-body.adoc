@@ -302,13 +302,9 @@ each request that the servlet container routes to an instance of a
 servlet.
 
 The handling of concurrent requests to a web
-application generally requires that the web developer design servlets
+application requires that the web developer design servlets
 that can deal with multiple threads executing within the `service`
 method at a particular time.
-
-Generally the web container handles concurrent
-requests to the same servlet by concurrent execution of the `service`
-method on different threads.
 
 ==== HTTP Specific Request Handling Methods
 
@@ -369,35 +365,12 @@ the servlet container provides instances of the servlet.
 
 For a servlet not hosted in a distributed
 environment (the default), the servlet container must use only one
-instance per servlet declaration. However, for a servlet implementing
-the `SingleThreadModel` interface, the servlet container may instantiate
-multiple instances to handle a heavy request load and serialize requests
-to a particular instance.
+instance per servlet declaration.
 
 In the case where a servlet was deployed as
 part of an application marked in the deployment descriptor as
 distributable, a container may have only one instance per servlet
 declaration per Java Virtual Machine (JVM™).
-However, if the servlet in a distributable application implements the
-`SingleThreadModel` interface, the container may instantiate multiple
-instances of that servlet in each JVM of the container.
-
-==== Note About The Single Thread Model
-
-The use of the `SingleThreadModel` interface
-guarantees that only one thread at a time will execute in a given
-servlet instance’s `service` method. It is important to note that this
-guarantee only applies to each servlet instance, since the container may
-choose to pool such objects. Objects that are accessible to more than
-one servlet instance at a time, such as instances of `HttpSession`, may
-be available at any particular time to multiple servlets, including
-those that implement `SingleThreadModel`.
-
-It is recommended that a developer take other
-means to resolve those issues instead of implementing this interface,
-such as avoiding the usage of an instance variable or synchronizing the
-block of the code accessing those resources. The `SingleThreadModel`
-Interface has been deprecated since version 2.4 of this specification.
 
 === Servlet Life Cycle
 
@@ -491,25 +464,8 @@ requests through the `service` method of the servlet. To handle the
 requests, the Application Developer must make adequate provisions for
 concurrent processing with multiple threads in the `service` method.
 
-An alternative for the Application Developer was to implement the `SingleThreadModel`
-interface but this is now deprecated. The `SingleThreadModel` interface
-requires the container to guarantee that there is only one request
-thread at a time in the `service` method. A servlet container may
-satisfy this requirement by serializing requests on a servlet, or by
-maintaining a pool of servlet instances. If the servlet is part of a web
-application that has been marked as distributable, the container may
-maintain a pool of servlet instances in each JVM that the application is
-distributed across.
-
-For servlets not implementing the
-`SingleThreadModel` interface, if the `service` method (or methods such
-as `doGet` or `doPost` to which the `service` method of the
-`HttpServlet` abstract class is dispatched) has been defined with the
-`synchronized` keyword, the servlet container cannot use the instance
-pool approach, but must serialize requests through it. It is strongly
-recommended that Developers not synchronize the `service` method (or
-methods dispatched to it) in these circumstances because of detrimental
-effects on performance.
+It is strongly recommended that Developers not synchronize the `service` method
+(or methods dispatched to it) because of the detrimental effects on performance.
 
 ===== Exceptions During Request Handling
 
@@ -8402,6 +8358,11 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
 Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/418[Issue 418]::
+Remove API classes and methods that were deprecated in Servlet 5.0 and earlier.
+This includes removing the `SingleThreadModel` and `HttpSessionContext`
+interfaces and the `HttpUtils` class as well as various deprecated methods.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
