@@ -19,6 +19,7 @@
 package jakarta.servlet.http;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import java.io.IOException;
@@ -249,9 +250,9 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * This method returns <code>null</code> if there was no extra path information.
      *
-     * @return a <code>String</code>, decoded by the web container, specifying extra path information that comes after the
-     * servlet path but before the query string in the request URL; or <code>null</code> if the URL does not have any extra
-     * path information
+     * @return a <code>String</code> specifying extra path information that comes after the servlet path but before the
+     * query string in the request URL; or <code>null</code> if the URL does not have any extra path information. The string
+     * is decoded according to the {@link ServletContext#getPathCodingMode()}.
      */
     public String getPathInfo();
 
@@ -290,7 +291,8 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the portion of the request URI that indicates the context of the request. The context path always comes first
      * in a request URI. The path starts with a "/" character but does not end with a "/" character. For servlets in the
-     * default (root) context, this method returns "". The container does not decode this string.
+     * default (root) context, this method returns "". The string is decoded according to the
+     * {@link ServletContext#getPathCodingMode()}.
      *
      * <p>
      * It is possible that a servlet container may match a context by more than one context path. In such cases this method
@@ -419,7 +421,9 @@ public interface HttpServletRequest extends ServletRequest {
      * A convenience method that returns the part of this request's URL that is scoped to this context. This path is
      * equivalent to {@link #getServletPath()} + {@link #getPathInfo()} with null values interpreted as the empty string.
      *
-     * @return a <code>String</code> containing the URI path after the context path.
+     * @return a <code>String</code> containing the URI path after the context path. The string is decoded according to the
+     * {@link ServletContext#getPathCodingMode()}.
+     * @since Servlet 6.0
      */
     default String getPath() {
         String servletPath = getServletPath();
@@ -437,7 +441,8 @@ public interface HttpServletRequest extends ServletRequest {
      * pattern.
      *
      * @return a <code>String</code> containing the name or path of the servlet being called, as specified in the request
-     * URL, decoded, or an empty string if the servlet used to process the request is matched using the "/*" pattern.
+     * URL, or an empty string if the servlet used to process the request is matched using the "/*" pattern. The string is
+     * decoded according to the {@link ServletContext#getPathCodingMode()}.
      */
     public String getServletPath();
 

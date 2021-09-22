@@ -219,7 +219,7 @@ public interface AsyncContext {
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * @param path the path of the dispatch target, scoped to the ServletContext from which this AsyncContext was
-     * initialized
+     * initialized. The string must be encoded according to the {@link ServletContext#getPathCodingMode()}.
      *
      * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
      * called during the resulting dispatch, or if {@link #complete} was called
@@ -253,7 +253,8 @@ public interface AsyncContext {
      * See {@link #dispatch()} for additional details, including error handling.
      *
      * @param context the ServletContext of the dispatch target
-     * @param path the path of the dispatch target, scoped to the given ServletContext
+     * @param path the path of the dispatch target, scoped to the given ServletContext. The string must be encoded according
+     * to the {@link ServletContext#getPathCodingMode()}.
      *
      * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
      * called during the resulting dispatch, or if {@link #complete} was called

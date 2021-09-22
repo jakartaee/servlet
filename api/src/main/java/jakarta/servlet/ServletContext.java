@@ -85,7 +85,8 @@ public interface ServletContext {
      * from the path returned by this method. The context path returned by this method should be considered as the prime or
      * preferred context path of the application.
      *
-     * @return The context path of the web application, or "" for the root context
+     * @return The context path of the web application, or "" for the root context. The string is encoded according to the
+     * {@link ServletContext#getPathCodingMode()}.
      *
      * @see HttpServletRequest#getContextPath()
      *
@@ -218,7 +219,8 @@ public interface ServletContext {
      * <tt>getResourcePaths("/catalog/")</tt> would return <tt>{"/catalog/index.html", "/catalog/products.html",
      * "/catalog/offers/", "/catalog/moreOffers/"}</tt>.
      *
-     * @param path the partial path used to match the resources, which must start with a <tt>/</tt>
+     * @param path the partial path used to match the resources, which must start with a <tt>/</tt>. The string must be
+     * encoded according to the {@link ServletContext#getPathCodingMode()}.
      * @return a Set containing the directory listing, or null if there are no resources in the web application whose path
      * begins with the supplied path.
      *
@@ -313,11 +315,13 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      * 
-     * @param path a <code>String</code> specifying the path to the resource
+     * @param path a <code>String</code> specifying the path to the resource. The string must be encoded according to the
+     * {@link ServletContext#getPathCodingMode()}.
      * @return Path to the resource or null if it does not exist. Path may be to real file, a temporary file extracted from
      * a jar or to Path within a special {@link java.nio.file.FileSystem} such as ZIP.
      * @throws MalformedURLException if the path is not given in the correct form.
      * @see #getPath(String)
+     * @since Servlet 6.0
      */
     Path getResourceAsPath(String path) throws MalformedURLException;
 
@@ -369,7 +373,8 @@ public interface ServletContext {
      * This method returns <code>null</code> if the <code>ServletContext</code> cannot return a
      * <code>RequestDispatcher</code>.
      *
-     * @param path a <code>String</code> specifying the pathname to the resource
+     * @param path a <code>String</code> specifying the pathname to the resource. The string must be encoded according to
+     * the {@link ServletContext#getPathCodingMode()}.
      *
      * @return a <code>RequestDispatcher</code> object that acts as a wrapper for the resource at the specified path, or
      * <code>null</code> if the <code>ServletContext</code> cannot return a <code>RequestDispatcher</code>
@@ -534,8 +539,9 @@ public interface ServletContext {
      * 
      * @param path the path relative to the context
      * @return The {@link Path} of the resource or null if a translation cannot be performed. The {@link Path} may represent
-     * a non-existent resource.
+     * a non-existent resource. The string must be encoded according to the {@link ServletContext#getPathCodingMode()}.
      * @see #getResourceAsPath(String)
+     * @since Servlet 6.0
      */
     Path getPath(String path);
 
@@ -1547,6 +1553,8 @@ public interface ServletContext {
      * <li>a 'path parameter' is the part of a URI segment as defined by the obsoleted
      * <a href="https://datatracker.ietf.org/doc/html/rfc2396#section-3.3">RFC2396 Section 3.3</a>.</li>
      * </ul>
+     * 
+     * @since Servlet 6.0
      */
     public enum PathCodingMode {
         /**
@@ -1586,8 +1594,9 @@ public interface ServletContext {
      * {@link #getEffectiveMajorVersion()} less that or equal to 5, otherwise it will be {@link PathCodingMode#DECODED}. The
      * default may be changed by container specific mechanisms or overridden by a call to
      * {@link #setPathCodingMode(PathCodingMode)}
-     *
+     * 
      * @return The path coding mode for this context.
+     * @since Servlet 6.0
      */
     PathCodingMode getPathCodingMode();
 
@@ -1598,6 +1607,7 @@ public interface ServletContext {
      * @throws IllegalArgumentException if this method has been called more than once with different values.
      * @throws IllegalStateException if this ServletContext has is initialized (i.e. after the return of the ultimate call
      * to {@link ServletContextListener#contextInitialized}.
+     * @since Servlet 6.0
      */
     void setPathCodingMode(PathCodingMode mode);
 }
