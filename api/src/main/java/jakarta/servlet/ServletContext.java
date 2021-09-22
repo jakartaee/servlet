@@ -1574,12 +1574,8 @@ public interface ServletContext {
          * such a path will throw {@link IllegalStateException}.
          *
          * <p>
-         * TODO pick between this: If a path with encoded reserve characters is passed to a method taking a path as a parameter,
-         * then it will throw {@link MalformedURLException} if declared. otherwise a {@link IllegalArgumentException}.
-         *
-         * <p>
-         * TODO or this: If a path with encoded reserve characters is received, then the request will be rejected by the servlet
-         * container with a 400 BAD REQUEST response.
+         * If request contains a path with encoded reserve characters is received, then the request will be rejected by the
+         * servlet container with a 400 BAD REQUEST response.
          */
         DECODED,
 
