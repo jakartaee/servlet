@@ -52,6 +52,13 @@ public interface JspPropertyGroupDescriptor {
     public String getElIgnored();
 
     /**
+     * Will the use of an unknown identifier in EL within a JSP page trigger an error for this group?
+     *
+     * @return {@code true} if an error will be triggered, otherwise {@code false}
+     */
+    public String getErrorOnELNotFound();
+
+    /**
      * Gets the value of the <code>page-encoding</code> configuration, which specifies the default page encoding for any JSP
      * pages mapped to the JSP property group represented by this <code>JspPropertyGroupDescriptor</code>.
      *
