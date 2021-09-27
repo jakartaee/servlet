@@ -42,9 +42,9 @@ public interface ServletConnection {
      * <p>
      * If the protocol has an entry in the <a href=
      * "https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids">IANA
-     * registry for ALPN names then the identification sequence, in string form, must be returned. Registered identification
-     * sequences MUST only be used for the associated protocol. Return values for other protocols are implementation
-     * dependent. Unknown protocols should return the string "unknown".
+     * registry for ALPN names</a> then the identification sequence, in string form, must be returned. Registered
+     * identification sequences MUST only be used for the associated protocol. Return values for other protocols are
+     * implementation dependent. Unknown protocols should return the string "unknown".
      * 
      * @return The name of the protocol presented to the server after decryption of TLS, or similar encryption, if any.
      */
