@@ -8359,6 +8359,10 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 5.0
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
+Provide generic attribute support to cookies, including session cookies, to
+provide support for additional attributes such as the `SameSite` attribute.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/225[Issue 225]::
 Deprecated wrapped response handling in the `doHead` method in favour of container implementation of `HEAD` method behavior.
 
