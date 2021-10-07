@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -171,15 +171,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
      * <dd>Return the mapping as prior to the current dispatch. i.e the mapping returned is unchanged by a call to</dd>
-     * {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
+     * {@link RequestDispatcher#include(ServletRequest, jakarta.servlet.ServletResponse)}.
      *
      * <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
      * <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
      * {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was obtained via
      * {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)}, in which case return the mapping as prior to the
      * current dispatch. i.e the mapping returned is changed during a call to
-     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if the dispatcher is not a named
-     * dispatcher.</dd>
+     * {@link RequestDispatcher#forward(ServletRequest, jakarta.servlet.ServletResponse)} only if the dispatcher is not a
+     * named dispatcher.</dd>
      * </dl>
      * </p>
      * <p>
@@ -386,12 +386,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <td>/xyz
      * </table>
      *
-     * <p>
-     * To reconstruct an URL with a scheme and host, use {@link HttpUtils#getRequestURL}.
-     *
      * @return a <code>String</code> containing the part of the URL from the protocol name up to the query string
-     *
-     * @see HttpUtils#getRequestURL
      */
     public String getRequestURI();
 
@@ -482,7 +477,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #getRequestedSessionId
      * @see #getSession
-     * @see HttpSessionContext
      */
     public boolean isRequestedSessionIdValid();
 
@@ -509,15 +503,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @see #getSession
      */
     public boolean isRequestedSessionIdFromURL();
-
-    /**
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
-     *
-     * @return <code>true</code> if the session ID was conveyed to the server as part of a URL; otherwise,
-     * <code>false</code>
-     */
-    @Deprecated
-    public boolean isRequestedSessionIdFromUrl();
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this

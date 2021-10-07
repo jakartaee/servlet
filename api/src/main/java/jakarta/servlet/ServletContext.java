@@ -349,51 +349,6 @@ public interface ServletContext {
     public RequestDispatcher getNamedDispatcher(String name);
 
     /**
-     * @deprecated As of Java Servlet API 2.1, with no direct replacement.
-     *
-     * <p>
-     * This method was originally defined to retrieve a servlet from a <code>ServletContext</code>. In this version, this
-     * method always returns <code>null</code> and remains only to preserve binary compatibility. This method will be
-     * permanently removed in a future version of Jakarta Servlets.
-     *
-     * <p>
-     * In lieu of this method, servlets can share information using the <code>ServletContext</code> class and can perform
-     * shared business logic by invoking methods on common non-servlet classes.
-     *
-     * @param name the servlet name
-     * @return the {@code jakarta.servlet.Servlet Servlet} with the given name
-     * @throws ServletException if an exception has occurred that interfaces with servlet's normal operation
-     */
-    @Deprecated
-    public Servlet getServlet(String name) throws ServletException;
-
-    /**
-     * @deprecated As of Java Servlet API 2.0, with no replacement.
-     *
-     * <p>
-     * This method was originally defined to return an <code>Enumeration</code> of all the servlets known to this servlet
-     * context. In this version, this method always returns an empty enumeration and remains only to preserve binary
-     * compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
-     *
-     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet}
-     */
-    @Deprecated
-    public Enumeration<Servlet> getServlets();
-
-    /**
-     * @deprecated As of Java Servlet API 2.1, with no replacement.
-     *
-     * <p>
-     * This method was originally defined to return an <code>Enumeration</code> of all the servlet names known to this
-     * context. In this version, this method always returns an empty <code>Enumeration</code> and remains only to preserve
-     * binary compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
-     *
-     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet} names
-     */
-    @Deprecated
-    public Enumeration<String> getServletNames();
-
-    /**
      *
      * Writes the specified message to a servlet log file, usually an event log. The name and type of the servlet log file
      * is specific to the servlet container.
@@ -401,19 +356,6 @@ public interface ServletContext {
      * @param msg a <code>String</code> specifying the message to be written to the log file
      */
     public void log(String msg);
-
-    /**
-     * @deprecated As of Java Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
-     *
-     * <p>
-     * This method was originally defined to write an exception's stack trace and an explanatory error message to the
-     * servlet log file.
-     *
-     * @param exception the <code>Exception</code> error
-     * @param msg a <code>String</code> that describes the exception
-     */
-    @Deprecated
-    public void log(Exception exception, String msg);
 
     /**
      * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file.
@@ -676,8 +618,7 @@ public interface ServletContext {
      * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      * {@link jakarta.servlet.annotation.WebListener}
      *
-     * @throws IllegalArgumentException if the given servlet instance implements {@link SingleThreadModel}, or
-     * <code>servletName</code> is null or an empty String
+     * @throws IllegalArgumentException if <code>servletName</code> is null or an empty String
      *
      * @since Servlet 3.0
      */
