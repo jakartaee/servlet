@@ -1331,10 +1331,8 @@ Characters other than `/`, `;` and `%` that are encoded in `%nn` form are decode
 Any sequence of more than one `"/"` character in the URI must be replaced with a single `"/"`.
 
 ==== Remove dot-segments+
-* A path not starting with "/" must be rejected with a 400 response.
 * Sequences of the form `"/./"` must be replaced with `"/"`.
 * Sequences of the form `"/" + segment + "/../"` must be replaced with `"/"`.
-* If there is no preceding segment for a `".."` segment then return a 400 response.
 
 ==== Removal of path parameters
 A path segment containing the `";"` character is split at the first occurence of `";"`. The segment is replaced by the character sequence preceeding the `";"`. The characters following the `";"` are considered a path parameters and may be preserved by the container for later processing (eg `jsessionid`).
@@ -1346,11 +1344,14 @@ Any remaining `%nn` sequences in the path should be decoded. Some containers may
 The decoded path is used to map the request to a context and resource within the context. This form of the URI path is used for all subsequent mapping (web applications, servlet, filters and security constraints).
 
 ==== Rejecting Suspicious Sequences
-If suspicious sequences are discovered during the prior steps, the request must be rejected with a 400 bad request using the error handling of the matched context.  By default the set of suspicious sequences includes:
+If suspicious sequences are discovered during the prior steps, the request must be rejected with a 400 bad request. If a context is matched the the error handling of the context may be used to generate the response. By default the set of suspicious sequences includes:
 
+ * Any path not starting with the `"/"` character
+ * Any path starting with an initial segment of `".."`
  * The encoded `"/"` character
  * Any `"."` or `".."` segment that had a path parameter
  * Any `"."` or `".."` segment with any encoded characters
+ * Any `".."` segment preceeded by an empty segment
  * The `"\"` character encoded or not.
  * Any control characters either encoded or not.
 
