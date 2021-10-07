@@ -158,11 +158,6 @@ public class MockHttpServletRequest extends MockServletRequest implements HttpSe
     }
 
     @Override
-    public boolean isRequestedSessionIdFromUrl() {
-        return false;
-    }
-
-    @Override
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
         return false;
     }

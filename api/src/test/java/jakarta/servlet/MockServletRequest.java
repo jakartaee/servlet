@@ -158,11 +158,6 @@ public class MockServletRequest implements ServletRequest {
     }
 
     @Override
-    public String getRealPath(String path) {
-        return null;
-    }
-
-    @Override
     public int getRemotePort() {
         return 0;
     }
@@ -215,5 +210,20 @@ public class MockServletRequest implements ServletRequest {
     @Override
     public DispatcherType getDispatcherType() {
         return DispatcherType.REQUEST;
+    }
+
+    @Override
+    public String getRequestId() {
+        return null;
+    }
+
+    @Override
+    public String getProtocolRequestId() {
+        return null;
+    }
+
+    @Override
+    public ServletConnection getServletConnection() {
+        return null;
     }
 }
