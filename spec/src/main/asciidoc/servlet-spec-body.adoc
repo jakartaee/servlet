@@ -1324,15 +1324,7 @@ A fragment in the path is indicated by the first occurrence of a `\#` character.
 ==== Decoding of non-special characters
 Characters other than `/`, `;` and `%` that are encoded in `%nn` form are decoded and the resulting octet sequences is treated as UTF-8 and converted to a character sequence.
 
-> Note that special characters cannot be part of a UTF-8 character sequence as all such sequences are comprised of negative octets.
-
-> Note this is not reserved characters as defined by RFC3986, as that does not include `%` and includes many characters we don't care about. Avoiding a second decoding is worthwhile.
-
 ==== Collapse sequences of multiple `"/"` characters
-> **WARNING** Swapping the order of stage 3 and stage 4 may be significant. Consider `"/aaa/bbb//../"`.
-
-> **TODO** Are we sure we don't want to do this in the other order?
-
 Any sequence of more than one `"/"` character in the URI must be replaced with a single `"/"`.
 
 ==== Remove dot-segments+
@@ -1343,8 +1335,6 @@ Any sequence of more than one `"/"` character in the URI must be replaced with a
 
 ==== Removal of path parameters
 A path segment containing the `";"` character is split at the first occurence of `";"`. The segment is replaced by the character sequence preceeding the `";"`. The characters following the `";"` are considered a path parameters and may be preserved by the container for later processing (eg `jsessionid`).
-
-> TODO How do we handle URIs like `/foo/;/bar`?  I think as currently written we end up with `/foo//bar` ?
 
 ==== Decoding of remaining `%nn` sequences
 Any remaining `%nn` sequences in the path should be decoded. Some containers may be configured to leave some specific characters encoded (eg. the characters '/' and '%' may be left decoded by some container configuration).
@@ -1362,19 +1352,6 @@ If suspicious sequences are discovered during the prior steps, the request must 
  * Any control characters either encoded or not.
 
 A container or context may be configured to have a different set of rejected sequences.
-
-> TODO how do we define control characters? < 0x20? Is 0x7F (DEL) OK?
-
-> TODO should we also by default reject '\' and '%5c' ?
-
-> TODO should we also by default reject non visible and/or control characters ?
-
-> TODO if %2F is allowed, we may now have double '/', '/./' and '/../' segments in the URL, should stage 3 and 4 be re-run if this is allowed?
-
-
-
-
-
 
 === Request Path Elements
 
