@@ -1324,8 +1324,8 @@ The URI is split by the first occurrence of any '?' character to path and query.
 ==== Discard fragment
 A fragment in the path is indicated by the first occurrence of a `\#` character.  Any `#` character and following fragment is removed from the path and discarded.
 
-==== Decoding of non-special characters
-Characters other than `/`, `;` and `%` that are encoded in `%nn` form are decoded and the resulting octet sequences is treated as UTF-8 and converted to a character sequence.
+==== Decoding of characters as UTF-8
+Characters other than `/`, `;` and `%` that are encoded in `%nn` form are decoded. The resulting octet sequences is treated as UTF-8 and converted to a character sequence.
 
 ==== Collapse sequences of multiple `"/"` characters
 Any sequence of more than one `"/"` character in the URI must be replaced with a single `"/"`.
