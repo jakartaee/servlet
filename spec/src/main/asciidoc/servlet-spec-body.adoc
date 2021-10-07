@@ -1357,6 +1357,65 @@ If suspicious sequences are discovered during the prior steps, the request must 
 
 A container or context may be configured to have a different set of rejected sequences.
 
+==== Example URIs
+
+. Example URIs
+|===
+| Encoded URI path  | Decoded Path | Rejected  
+
+| /public/file.txt | /public/file.txt |
+| /public//file.txt | /public/file.txt |
+| /public/;/file.txt | /public/file.txt |
+| /PUBLIC/file.txt | /PUBLIC/file.txt |
+| /public%2Ffile.txt | /public%2Ffile.txt | 400 
+| /public%5Cfile.txt | /public\file.txt | 400
+| /public%00/file.txt | /public␀/file.txt | 400?
+| /public/./file.txt | /public/file.txt | 
+| /public/.;/file.txt | /public/file.txt | 400
+| /public/%2e/file.txt | /public/file.txt | 400
+| /public/%2e;/file.txt | /public/file.txt | 400
+| /../docroot/public/file.txt | /../docroot/public/file.txt | 400
+| /public/dir/../file.txt | /public/file.txt |  
+| /public//../file.txt | /public/file.txt |  
+| /public/dir/..;/file.txt | /public/file.txt | 400
+| /public/dir/%2e%2e/file.txt | /public/file.txt | 400
+| /public/dir/%2e%2e;/file.txt | /public/file.txt | 400
+| /WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
+| /web-inf/web.xml | /web-inf/web.xml | 404 or 403?
+| /WEB-IN~1.DIR/web.xml | ? | ?
+| /WEB-INF;/web.xml | /WEB-INF/web.xml | 404
+| /WEB-INF%2Fweb.xml | /WEB-INF%2Fweb.xml| 400
+| /WEB-INF%5Cweb.xml | /WEB-INF\web.xml | 400 
+| /WEB-INF%00/web.xml | /WEB-INF␀/web.xml | 400?
+| /WEB-INF/./web.xml | /WEB-INF/web.xml | 404
+| /public/../WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
+| /public/..;/WEB-INF/web.xml | | 404 
+| /public/%2e%2e/WEB-INF/web.xml | /public/../WEB-INF/web.xml |  
+| /public/%2e%2e;/WEB-INF/web.xml | /public/../WEB-INF/web.xml |  
+| /secret/private.xml | | 403 
+| /SeCreT/private.xml | /SeCreT/private.xml | 
+| /SECRET~1.DIR/private.xml  |  |  
+| /secret;/private.xml | | 403 
+| /secret%2Fprivate.xml | /secret/private.xml | 403? [2] or 400? 
+| /secret%5Cprivate.xml | /secret\private.xml | 403? [2] 
+| /secret%00/private.xml | /secret␀/private.xml | 400? 
+| /./secret/private.xml | | 403 
+| /.;/secret/private.xml | | 403 
+| /%2e/secret/private.xml | /./secret/private.xml or throw? | 400? 
+| /%2e;/secret/private.xml | /./secret/private.xml or throw? | 400? 
+| /public/../secret/private.xml | | 403 
+| /public/..;/secret/private.xml | | 403 
+| /public/%2e%2e/secret/private.xml | /public/../secret/private.xml or throw?| 400? 
+| /public/%2e%2e;/secret/private.xml | /public/../secret/private.xml or throw?| 400? 
+| /dispatch/public/file.txt | /public/file.txt | 
+| /dispatch/public%2Ffile.txt | /public/file.txt | 400? 
+| /dispatch/public%5Cfile.txt | /public\file.txt | 400? 
+| /dispatch/public%252Ffile.txt | /public%2Ffile.txt | 400? 
+| /dispatch/WEB-INF/web.xml | /WEB-INF/web.xml | 
+| /dispatch/secret/private.xml | /secret/private/xml | 
+| /dispatch/%2E%2E/%2E%2E/etc/password | /../../etc/password | 400? 
+
+
 === Request Path Elements
 
 The request path that leads to a servlet
@@ -6373,11 +6432,10 @@ public @interface HttpMethodConstraint {
 |===
 |Element
 |Description
+|value
 |Default
 
-|value
-|The HTTP protocol method name
-|
+
 
 
 |`emptyRoleSemantic`
