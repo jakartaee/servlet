@@ -79,6 +79,15 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
 
+    /**
+     * The parameter obtained {@link ServletConfig#getInitParameter(String)}
+     * to determine if legacy processing of {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
+     * @deprecated may be removed in future releases
+     * @since 6.0
+     */
+    @Deprecated
+    public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
+
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
@@ -95,7 +104,7 @@ public abstract class HttpServlet extends GenericServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        legacyHeadHandling = Boolean.parseBoolean(config.getInitParameter("jakarta.servlet.http.legacyDoHead"));
+        legacyHeadHandling = Boolean.parseBoolean(config.getInitParameter(LEGACY_DO_HEAD));
     }
 
     /**
@@ -188,7 +197,7 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * <p>
      * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}. If the
-     * {@link ServletConfig} init parameter "jakarta.servlet.http.legacyDoHead" is set to "TRUE", then the response instance
+     * {@link ServletConfig} init parameter {@link #LEGACY_DO_HEAD} is set to "TRUE", then the response instance
      * is wrapped so that the response body is discarded.
      *
      * <p>
