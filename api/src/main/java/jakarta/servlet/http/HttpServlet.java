@@ -80,8 +80,9 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String HEADER_LASTMOD = "Last-Modified";
 
     /**
-     * The parameter obtained {@link ServletConfig#getInitParameter(String)}
-     * to determine if legacy processing of {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
+     * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
+     * {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
+     * 
      * @deprecated may be removed in future releases
      * @since 6.0
      */
@@ -197,8 +198,8 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * <p>
      * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}. If the
-     * {@link ServletConfig} init parameter {@link #LEGACY_DO_HEAD} is set to "TRUE", then the response instance
-     * is wrapped so that the response body is discarded.
+     * {@link ServletConfig} init parameter {@link #LEGACY_DO_HEAD} is set to "TRUE", then the response instance is wrapped
+     * so that the response body is discarded.
      *
      * <p>
      * If the HTTP HEAD request is incorrectly formatted, <code>doHead</code> returns an HTTP "Bad Request" message.
