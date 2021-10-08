@@ -332,13 +332,16 @@ an Application Developer is concerned with the `doGet` and
 `doPost` methods. The other methods are considered to be methods for use
 by programmers very familiar with HTTP programming.
 
+==== HEAD Method
+The `doHead` method in `HttpServlet`, by default, directly calls the `doGet` method and relies on the container to implement HEAD behaviour of the HTTP protocol.
+However, if the "jakarta.servlet.http.legacyDoHead" `ServletConfig` init parameter is set to "TRUE" then the `doGet` method is called with the `ServletResponse` wrapped to provide  only the headers produced by the `doGet` method.
+The legacy mode is deprecated as it may not be accurate in producing the same heads as `GET` method would have returned and may be removed in a future release.
+
 ==== Additional Methods
 
 The `doPut` and `doDelete` methods allow
 Servlet Developers to support HTTP/1.1 clients that employ these
-features. The `doHead` method in `HttpServlet` is a specialized form of
-the `doGet` method that returns only the headers produced by the `doGet`
-method. The `doOptions` method responds with which HTTP methods are
+features.  The `doOptions` method responds with which HTTP methods are
 supported by the servlet. The `doTrace` method generates a response
 containing all instances of the headers sent in the `TRACE` request.
 
@@ -8355,6 +8358,9 @@ This document is the final release of the
 Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
 
 === Changes Since Jakarta Servlet 5.0
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/225[Issue 225]::
+Deprecated wrapped response handling in the `doHead` method in favour of container implementation of `HEAD` method behavior.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
 Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
