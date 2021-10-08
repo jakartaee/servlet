@@ -412,14 +412,20 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the part of this request's URL that calls the servlet. This path starts with a "/" character and includes
-     * either the servlet name or a path to the servlet, but does not include any extra path information or a query string.
+     * the path to the servlet, but does not include any extra path information or a query string.
      *
      * <p>
      * This method will return an empty string ("") if the servlet used to process this request was matched using the "/*"
      * pattern.
      *
-     * @return a <code>String</code> containing the name or path of the servlet being called, as specified in the request
-     * URL, decoded, or an empty string if the servlet used to process the request is matched using the "/*" pattern.
+     * @return a <code>String</code> containing the path of the servlet being called, as specified in the request
+     * URL, or an empty string if the servlet used to process the request is matched using the "/*" pattern.
+     * The path will be canonicalized as per section 3.5 of the specification. This method will not return any encoded
+     * characters unless the container is configured specifically to allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container
+     * may be configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be
+     * configured to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
+     * IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getServletPath();
 
