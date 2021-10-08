@@ -1366,14 +1366,15 @@ The decoded path is used to map the request to a context and resource within the
 +
 If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences below, but may be configured differently by a container:
 
-  * Any path not starting with the `"/"` character
-  * Any path starting with an initial segment of `".."`
-  * The encoded `"/"` character
-  * Any `"."` or `".."` segment that had a path parameter
-  * Any `"."` or `".."` segment with any encoded characters
-  * Any `".."` segment preceded by an empty segment
-  * The `"\"` character encoded or not.
-  * Any control characters either encoded or not.
+  * Any path not starting with the `"/"` character (e.g. `path/info`)
+  * Any path starting with an initial segment of `".."` (e.g. `/../path/info`)
+  * The encoded `"/"` character (e.g. `/path%2Finfo`)
+  * Any `"."` or `".."` segment that had a path parameter (e.g. `/path/..;/info`)
+  * Any `"."` or `".."` segment with any encoded characters (e.g. `/path/%2e%2e/info`)
+  * Any `".."` segment preceded by an empty segment (e.g. `/path//../info`)
+  * Any empty segment with parameters (e.g. `/path/;param/info` )
+  * The `"\"` character encoded or not. (e.g. `/path\info`)
+  * Any control characters either encoded or not.  (e.g. `/path%00/info`)
 
 ==== Example URIs
 > TODO more work needed on this section. Perhaps some parts need to be moved to other sections.
@@ -1387,16 +1388,18 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/public/file.txt` | `/public/file.txt` |
 | `/public/dir/` | `/public/dir/` |
 | `/public//file.txt` | `/public/file.txt` |
+| `/public/;/file.txt` | `/public/file.txt` | 400 empty segment with parameters
 | `/PUBLIC/file.txt` | `/PUBLIC/file.txt` |
 | `/public%2Ffile.txt` | `/public/file.txt` | 400 encoded /
 | `/public%5Cfile.txt` | `/public\file.txt` | 400 backslash character
 | `/public%00/file.txt` | `/public /file.txt` | 400 control character
-| `/public/.;/file.txt` | `/public/file.txt` | 400 dot segment with parameter
+| `/public/./file.txt` | `/public/file.txt` |
 | `/public/%2e/file.txt` | `/public/file.txt` | 400 encoded dot segment
 | `/public/%2e;/file.txt` | `/public/file.txt` | 400 encoded dot segment
 | `/../docroot/public/file.txt` | `/../docroot/public/file.txt` | 400 leading dot-dot-segment
 | `/public/dir/../file.txt` | `/public/file.txt` |
 | `/public//../file.txt` | `/file.txt` |
+| `/public/;param/../file.txt` | `/file.txt` | 400 empty segment with parameters
 | `/public/dir/..;/file.txt` | `/public/file.txt` | 400 dot segment with parameter
 | `/public/dir/%2e%2E/file.txt` | `/public/file.txt` | 400 encoded dot segment
 | `/public/dir/.%2e/file.txt` | `/public/file.txt` | 400 encoded dot segment

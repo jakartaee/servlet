@@ -132,6 +132,9 @@ public class CanonicalUriPathTest {
         // Any `".."` segment preceded by an empty segment
         else if (emptySegmentBeforeDotDot)
             reject = "empty segment before dot dot";
+        // Any empty segment with parameters
+        else if (uriPath.contains("/;"))
+            reject = "empty segment with parameters";
         // The `"\"` character encoded or not.
         else if (path.contains("\\"))
             reject = "backslash character";
