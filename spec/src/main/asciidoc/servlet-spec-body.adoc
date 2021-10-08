@@ -1351,7 +1351,7 @@ Empty segments are removed.  Containers may be configured to retain empty segmen
 
 . **Remove dot-segments.**
 +
-All segments that are exactly `"."` are removed from the segment series. Segments that are exactly `".."` and that are preceded by a non `".."` segment are removed together with the preceding segment.     This normalization differs from RFC3986 in that segments with `%` encoded dots and/or parameters may be treated as dot segments.
+All segments that are exactly `"."` are removed from the segment series. Segments that are exactly `".."` and that are preceded by a non `".."` segment are removed together with the preceding segment.     This normalization differs from RFC3986 in that segments with parameters may be treated as dot segments.
 
 . **Concatenate segments.**
 +
