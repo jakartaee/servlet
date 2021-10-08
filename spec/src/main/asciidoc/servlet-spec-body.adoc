@@ -1356,7 +1356,7 @@ All segments that are exactly `"."` are removed from the segment series. Segment
 . **Concatenate segments.**
 +
 The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If the original path after stripping query and fragment ends with a `"/"` then append a final `"/"` character.
- If a segment contains the `"/"` or `"%"` characters, and the request will not be rejected below, then the container may configured re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+ If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
 
 . **Mapping URI to context and resource.**
 +
