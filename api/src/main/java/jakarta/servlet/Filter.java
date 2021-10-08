@@ -59,7 +59,10 @@ public interface Filter {
      *
      * <p>
      * The servlet container calls the init method exactly once after instantiating the filter. The init method must
-     * complete successfully before the filter is asked to do any filtering work.
+     * complete successfully before the filter is asked to do any filtering work. The container will ensure that actions
+     * performed in the <code>init</code> method will be visible to any threads that subsequently call the
+     * <code>doFilter</code> method according to the rules in JSR-133 (i.e. there is a 'happens before' relationship between
+     * <code>init</code> and <code>doFilter</code>).
      * </p>
      * 
      * <p>
