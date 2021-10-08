@@ -1354,13 +1354,16 @@ If suspicious sequences are discovered during the prior steps, the request must 
  * The encoded `"/"` character
  * Any `"."` or `".."` segment that had a path parameter
  * Any `"."` or `".."` segment with any encoded characters
- * Any `".."` segment preceeded by an empty segment
+ * Any `".."` segment preceded by an empty segment
  * The `"\"` character encoded or not.
  * Any control characters either encoded or not.
 
 A container or context may be configured to have a different set of rejected sequences.
 
 ==== Example URIs
+> TODO more work needed on this section. Perhaps some parts need to be moved to other sections.
+
+Consider the following URIs with a forbidden security constraint at `/secret/*` and a servlet registered at /dispatch/* that forwards request to the string return from pathInfo()
 
 . Example URIs
 |===
@@ -1379,7 +1382,8 @@ A container or context may be configured to have a different set of rejected seq
 | /public/%2e;/file.txt | /public/file.txt | 400
 | /../docroot/public/file.txt | /../docroot/public/file.txt | 400
 | /public/dir/../file.txt | /public/file.txt |  
-| /public//../file.txt | /public/file.txt |  
+| /public//../file.txt | /file.txt | 400?
+| /public/;param/../file.txt | /file.txt | 400?
 | /public/dir/..;/file.txt | /public/file.txt | 400
 | /public/dir/%2e%2e/file.txt | /public/file.txt | 400
 | /public/dir/%2e%2e;/file.txt | /public/file.txt | 400
@@ -1392,32 +1396,31 @@ A container or context may be configured to have a different set of rejected seq
 | /WEB-INF%00/web.xml | /WEB-INF␀/web.xml | 400?
 | /WEB-INF/./web.xml | /WEB-INF/web.xml | 404
 | /public/../WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
-| /public/..;/WEB-INF/web.xml | | 404 
-| /public/%2e%2e/WEB-INF/web.xml | /public/../WEB-INF/web.xml |  
-| /public/%2e%2e;/WEB-INF/web.xml | /public/../WEB-INF/web.xml |  
-| /secret/private.xml | | 403 
-| /SeCreT/private.xml | /SeCreT/private.xml | 
-| /SECRET~1.DIR/private.xml  |  |  
+| /public/..;/WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
+| /public/%2e%2e/WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
+| /public/%2e%2e;/WEB-INF/web.xml | /WEB-INF/web.xml | 404 or 403?
+| /secret/private.xml | /secret/private.xml | 403
+| /SeCreT/private.xml | /SeCreT/private.xml | TODO move to another section an 404 due to non-canonical
+| /SECRET~1.DIR/private.xml  |  | TODO move to another section an 404 due to non-canonical
 | /secret;/private.xml | | 403 
-| /secret%2Fprivate.xml | /secret/private.xml | 403? [2] or 400? 
-| /secret%5Cprivate.xml | /secret\private.xml | 403? [2] 
+| /secret%2Fprivate.xml | /secret%2Fprivate.xml | 400
+| /secret%5Cprivate.xml | /secret\private.xml | 400
 | /secret%00/private.xml | /secret␀/private.xml | 400? 
-| /./secret/private.xml | | 403 
-| /.;/secret/private.xml | | 403 
-| /%2e/secret/private.xml | /./secret/private.xml or throw? | 400? 
-| /%2e;/secret/private.xml | /./secret/private.xml or throw? | 400? 
-| /public/../secret/private.xml | | 403 
-| /public/..;/secret/private.xml | | 403 
-| /public/%2e%2e/secret/private.xml | /public/../secret/private.xml or throw?| 400? 
-| /public/%2e%2e;/secret/private.xml | /public/../secret/private.xml or throw?| 400? 
+| /./secret/private.xml | /secret/private.xml| 403
+| /.;/secret/private.xml | /secret/private.xml| 403
+| /%2e/secret/private.xml | /secret/private.xml | 400
+| /%2e;/secret/private.xml | /secret/private.xml  | 400
+| /public/../secret/private.xml | /secret/private.xml | 403
+| /public/..;/secret/private.xml | /secret/private.xml | 403
+| /public/%2e%2e/secret/private.xml | /secret/private.xml | 400
+| /public/%2e%2e;/secret/private.xml | /secret/private.xml | 400
 | /dispatch/public/file.txt | /public/file.txt | 
 | /dispatch/public%2Ffile.txt | /public/file.txt | 400? 
 | /dispatch/public%5Cfile.txt | /public\file.txt | 400? 
 | /dispatch/public%252Ffile.txt | /public%2Ffile.txt | 400? 
 | /dispatch/WEB-INF/web.xml | /WEB-INF/web.xml | 
 | /dispatch/secret/private.xml | /secret/private/xml | 
-| /dispatch/%2E%2E/%2E%2E/etc/password | /../../etc/password | 400? 
-
+| /dispatch/%2E%2E/%2E%2E/etc/password | /../../etc/password | 400?
 
 === Request Path Elements
 
