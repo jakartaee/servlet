@@ -1303,62 +1303,76 @@ the header value to an `int`, a `NumberFormatException` is thrown. If
 the `getDateHeader` method cannot translate the header to a `Date`
 object, an `IllegalArgumentException` is thrown.
 
-=== Request URI Processing
+=== Request URI Path Processing
+The path portion of the URI of an HTTP identifies the resource to be processed. As URI paths may have various non-canonical forms, it is important that all containers process URI paths in the same way so that matching to security constraints and resources is identical.
+
 The process described here adapts and extends the URI canonicalization process described in [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) to create a standard Servlet URI path canonicalization process that ensures that URIs can be mapped to Servlets, Filters and security constraints in an unambiguous manner. It is also intended to provide information to reverse proxy implementations so they are aware of how requests they pass to servlet containers will be processed.
+
+==== Obtaining the URI Path
+HTTP/0.9:: The URI path is the `document address` as defined by the W3C [Original HTTP](https://www.w3.org/Protocols/HTTP/AsImplemented.html) document.
+
+HTTP/1.0:: The URI path is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are the URI path. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path.
+
+HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
+
+HTTP/2:: The URI path is the `:path` pseudo header as defined by [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540#section-8.1.2.3) and is passed unchanged to stage 2.
+
+HTTP/3:: The URI path is the `:path` pseudo header as currently defined by the [draft RFC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34).
+
+Other protocols:: Containers may support other protocols. Containers should extract an appropriate URI path for the request from the protocol and pass it to stage 2.
+
+==== URI Path Canonicalization
 
 Servlet containers may implement the standard Servlet URI path canonicalization in any manner they see fit as long as the end result is identical to the end result of the process described here. Servlet containers may provide container specific configuration options to vary the standard canonicalization process. Any such variations may have security implications and both Servlet container implementors and users are advised to be sure that they understand the implications of any such container specific canonicalization options.
 
-==== URI Transport
-HTTP/0.9:: The URI is the `document address` as defined by the W3C [Original HTTP](https://www.w3.org/Protocols/HTTP/AsImplemented.html) document.
+. **Separation of path and query.**
++
+The URI is split by the first occurrence of any '"?"' character to path and query.  The query is preserved for later handling and the following steps applied to the path.
 
-HTTP/1.0:: The URI is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are passed unchanged to subsequent steps. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and are then passed the subsequent steps.
+. **Discard fragment.**
++
+The path is split by the first occurrence of any `"\#"` character. The `"#"` and following fragment are discarded and the path is replaced with the character sequence preceding the `"#"` character.
 
-HTTP/1.1:: The URI is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are passed unchanged to subsequent steps. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and are then passed the subsequent steps. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
+. **Split path into segments.**
++
+The path is split into multiple segments divided by the `"/"` character. A leading `"/"` does not indicate an initial empty segment.
 
-HTTP/2:: The URI is the `:path` pseudo header as defined by [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540#section-8.1.2.3) and is passed unchanged to stage 2.
+. **Remove path parameters.**
++
+Any segment containing the `";"` character is split at the first occurrence of `";"`. The segment is replaced by the character sequence preceding the `";"`. The characters following the `";"` are considered path parameters and may be preserved by the container for later decoding and/or processing (eg `jsessionid`).
 
-HTTP/3:: The URI is the `:path` pseudo header as currently defined by the [draft RFC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34).
+. **Decode characters.**
++
+Characters that are encoded in `%nn` form are decoded in each segment. The resulting octet sequences is treated as UTF-8 and converted to a character sequence that replaces the segment.
 
-Other protocols:: Containers may support other protocols. Containers should extract an appropriate URI for the request from the protocol and pass it to stage 2.
+. **Remove Empty Segments.**
++
+Empty segments are removed.  Containers may be configured to retain empty segments.
 
-==== Separation of path and query
-The URI is split by the first occurrence of any '?' character to path and query.  The query is preserved for later handling and the following steps applied to the path.
+. **Remove dot-segments.**
++
+All segments that are exactly `"."` are removed from the segment series. Segments that are exactly `".."` and that are preceded by a non `".."` segment are removed together with the preceding segment.     This normalization differs from RFC3986 in that segments with `%` encoded dots and/or parameters may be treated as dot segments.
 
-==== Discard fragment
-A fragment in the path is indicated by the first occurrence of a `\#` character.  Any `#` character and following fragment is removed from the path and discarded.
+. **Concatenate segments.**
++
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character.  If a segment contains the `"/"` or `"%"` characters, and the request will not be rejected below, then the container may configured re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
 
-==== Decoding of characters as UTF-8
-Characters other than `/`, `;` and `%` that are encoded in `%nn` form are decoded. The resulting octet sequences is treated as UTF-8 and converted to a character sequence.
-
-==== Collapse sequences of multiple `"/"` characters
-Any sequence of more than one `"/"` character in the URI must be replaced with a single `"/"`.
-
-==== Remove dot-segments+
-* Sequences of the form `"/./"` must be replaced with `"/"`.
-* Sequences of the form `"/" + segment + "/../"` must be replaced with `"/"`.
-
-==== Removal of path parameters
-A path segment containing the `";"` character is split at the first occurence of `";"`. The segment is replaced by the character sequence preceeding the `";"`. The characters following the `";"` are considered a path parameters and may be preserved by the container for later processing (eg `jsessionid`).
-
-==== Decoding of remaining `%nn` sequences
-Any remaining `%nn` sequences in the path should be decoded. Some containers may be configured to leave some specific characters encoded (eg. the characters '/' and '%' may be left decoded by some container configuration).
-
-==== Mapping URI to context and resource
+. **Mapping URI to context and resource.**
++
 The decoded path is used to map the request to a context and resource within the context. This form of the URI path is used for all subsequent mapping (web applications, servlet, filters and security constraints).
 
-==== Rejecting Suspicious Sequences
-If suspicious sequences are discovered during the prior steps, the request must be rejected with a 400 bad request. If a context is matched the the error handling of the context may be used to generate the response. By default the set of suspicious sequences includes:
+. **Rejecting Suspicious Sequences.**
++
+If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences below, but may be configured differently by a container:
 
- * Any path not starting with the `"/"` character
- * Any path starting with an initial segment of `".."`
- * The encoded `"/"` character
- * Any `"."` or `".."` segment that had a path parameter
- * Any `"."` or `".."` segment with any encoded characters
- * Any `".."` segment preceded by an empty segment
- * The `"\"` character encoded or not.
- * Any control characters either encoded or not.
-
-A container or context may be configured to have a different set of rejected sequences.
+  * Any path not starting with the `"/"` character
+  * Any path starting with an initial segment of `".."`
+  * The encoded `"/"` character
+  * Any `"."` or `".."` segment that had a path parameter
+  * Any `"."` or `".."` segment with any encoded characters
+  * Any `".."` segment preceded by an empty segment
+  * The `"\"` character encoded or not.
+  * Any control characters either encoded or not.
 
 ==== Example URIs
 > TODO more work needed on this section. Perhaps some parts need to be moved to other sections.
