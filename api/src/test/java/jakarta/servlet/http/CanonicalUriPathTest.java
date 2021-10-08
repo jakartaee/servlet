@@ -27,7 +27,7 @@ public class CanonicalUriPathTest {
 
         // Remember start/end conditions
         boolean startsWithSlash = path.startsWith("/");
-        boolean endsWithSlash = path.startsWith("/");
+        boolean endsWithSlash = path.endsWith("/");
         boolean dotSegmentWithParam = false;
         boolean encodedDotSegment = false;
         boolean emptySegmentBeforeDotDot = false;
@@ -156,6 +156,7 @@ public class CanonicalUriPathTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "/public/file.txt",
+            "/public/dir/",
             "/public//file.txt",
             "/public/;/file.txt",
             "/PUBLIC/file.txt",
