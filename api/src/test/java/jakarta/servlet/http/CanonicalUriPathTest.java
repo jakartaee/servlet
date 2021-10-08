@@ -30,6 +30,7 @@ public class CanonicalUriPathTest {
         boolean endsWithSlash = path.startsWith("/");
         boolean dotSegmentWithParam = false;
         boolean encodedDotSegment = false;
+        boolean emptySegmentBeforeDotDot = false;
 
         // Split path into segments.
         List<String> segments = new ArrayList<>(Arrays.asList(path.substring(1).split("/")));
@@ -58,12 +59,16 @@ public class CanonicalUriPathTest {
                         i += 2;
                     } else {
                         if (utf8.size() > 0) {
-                            buf.append(utf8.toString(StandardCharsets.UTF_8));
+                            buf.append(new String(utf8.toByteArray(), StandardCharsets.UTF_8));
                             utf8.reset();
                         }
 
                         buf.append(c);
                     }
+                }
+                if (utf8.size() > 0) {
+                    buf.append(new String(utf8.toByteArray(), StandardCharsets.UTF_8));
+                    utf8.reset();
                 }
                 segment = buf.toString();
                 s.set(segment);
@@ -84,9 +89,10 @@ public class CanonicalUriPathTest {
             } else if (segment.equals("..")) {
                 if (count > 0) {
                     s.remove();
-                    s.previous();
+                    String previous = s.previous();
                     s.remove();
                     count--;
+                    emptySegmentBeforeDotDot |= previous.length() == 0;
                 }
             } else {
                 count++;
@@ -124,11 +130,20 @@ public class CanonicalUriPathTest {
         else if (encodedDotSegment)
             reject = "encoded dot segment";
         // Any `".."` segment preceded by an empty segment
-        // TODO
+        else if (emptySegmentBeforeDotDot)
+            reject = "empty segment before dot dot";
         // The `"\"` character encoded or not.
-        // TODO
+        else if (path.contains("\\"))
+            reject = "backslash character";
         // Any control characters either encoded or not.
-        // TODO
+        else {
+            for (char c : path.toCharArray()) {
+                if (c < 0x20 || c == 0x7f) {
+                    reject = "control character";
+                    break;
+                }
+            }
+        }
 
         System.err.printf("| `%s` | `%s` | %s %n",
                 uriPath,
@@ -156,7 +171,9 @@ public class CanonicalUriPathTest {
             "/public//../file.txt",
             "/public/;param/../file.txt",
             "/public/dir/..;/file.txt",
-            "/public/dir/%2e%2e/file.txt",
+            "/public/dir/%2e%2E/file.txt",
+            "/public/dir/.%2e/file.txt",
+            "/public/dir/%2E./file.txt",
             "/public/dir/%2e%2e;/file.txt",
             "/WEB-INF/web.xml",
             "/web-inf/web.xml",
