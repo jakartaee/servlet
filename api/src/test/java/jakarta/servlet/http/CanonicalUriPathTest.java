@@ -17,13 +17,13 @@ public class CanonicalUriPathTest {
 
         String path = uriPath;
 
-        // Separation of path and query.
-        if (path.contains("?"))
-            path = path.substring(0, path.indexOf('?'));
-
         // Discard fragment.
         if (path.contains("#"))
             path = path.substring(0, path.indexOf('#'));
+
+        // Separation of path and query.
+        if (path.contains("?"))
+            path = path.substring(0, path.indexOf('?'));
 
         // Remember start/end conditions
         boolean startsWithSlash = path.startsWith("/");

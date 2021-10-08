@@ -1325,13 +1325,13 @@ Other protocols:: Containers may support other protocols. Containers should extr
 
 Servlet containers may implement the standard Servlet URI path canonicalization in any manner they see fit as long as the end result is identical to the end result of the process described here. Servlet containers may provide container specific configuration options to vary the standard canonicalization process. Any such variations may have security implications and both Servlet container implementors and users are advised to be sure that they understand the implications of any such container specific canonicalization options.
 
-. **Separation of path and query.**
-+
-The URI is split by the first occurrence of any '"?"' character to path and query.  The query is preserved for later handling and the following steps applied to the path.
-
 . **Discard fragment.**
 +
 The path is split by the first occurrence of any `"\#"` character. The `"#"` and following fragment are discarded and the path is replaced with the character sequence preceding the `"#"` character.
+
+. **Separation of path and query.**
++
+The URI is split by the first occurrence of any '"?"' character to path and query.  The query is preserved for later handling and the following steps applied to the path.
 
 . **Split path into segments.**
 +
