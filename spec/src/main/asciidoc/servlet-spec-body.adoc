@@ -1385,59 +1385,71 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 |===
 | Encoded URI path  | Decoded Path | Rejected
 
-| `/public/file.txt` | `/public/file.txt` |
-| `/public/dir/` | `/public/dir/` |
-| `/public//file.txt` | `/public/file.txt` |
-| `/public/;/file.txt` | `/public/file.txt` | 400 empty segment with parameters
-| `/PUBLIC/file.txt` | `/PUBLIC/file.txt` |
-| `/public%2Ffile.txt` | `/public/file.txt` | 400 encoded /
-| `/public%5Cfile.txt` | `/public\file.txt` | 400 backslash character
-| `/public%00/file.txt` | `/public /file.txt` | 400 control character
-| `/public/./file.txt` | `/public/file.txt` |
-| `/public/%2e/file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/public/%2e;/file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/../docroot/public/file.txt` | `/../docroot/public/file.txt` | 400 leading dot-dot-segment
-| `/public/dir/../file.txt` | `/public/file.txt` |
-| `/public//../file.txt` | `/file.txt` |
-| `/public/;param/../file.txt` | `/file.txt` | 400 empty segment with parameters
-| `/public/dir/..;/file.txt` | `/public/file.txt` | 400 dot segment with parameter
-| `/public/dir/%2e%2E/file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/public/dir/.%2e/file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/public/dir/%2E./file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/public/dir/%2e%2e;/file.txt` | `/public/file.txt` | 400 encoded dot segment
-| `/WEB-INF/web.xml` | `/WEB-INF/web.xml` |
-| `/web-inf/web.xml` | `/web-inf/web.xml` |
-| `/WEB-IN~1.DIR/web.xml` | `/WEB-IN~1.DIR/web.xml` |
-| `/WEB-INF;/web.xml` | `/WEB-INF/web.xml` |
-| `/WEB-INF%2Fweb.xml` | `/WEB-INF/web.xml` | 400 encoded /
-| `/WEB-INF%5Cweb.xml` | `/WEB-INF\web.xml` | 400 backslash character
-| `/WEB-INF%00/web.xml` | `/WEB-INF /web.xml` | 400 control character
-| `/WEB-INF/./web.xml` | `/WEB-INF/web.xml` |
-| `/public/../WEB-INF/web.xml` | `/WEB-INF/web.xml` |
-| `/public/..;/WEB-INF/web.xml` | `/WEB-INF/web.xml` | 400 dot segment with parameter
-| `/public/%2e%2e/WEB-INF/web.xml` | `/WEB-INF/web.xml` | 400 encoded dot segment
-| `/public/%2e%2e;/WEB-INF/web.xml` | `/WEB-INF/web.xml` | 400 encoded dot segment
-| `/secret/private.xml` | `/secret/private.xml` |
-| `/SeCreT/private.xml` | `/SeCreT/private.xml` |
-| `/SECRET~1.DIR/private.xml` | `/SECRET~1.DIR/private.xml` |
-| `/secret;/private.xml` | `/secret/private.xml` |
-| `/secret%2Fprivate.xml` | `/secret/private.xml` | 400 encoded /
-| `/secret%5Cprivate.xml` | `/secret\private.xml` | 400 backslash character
-| `/secret%00/private.xml` | `/secret /private.xml` | 400 control character
-| `/./secret/private.xml` | `/secret/private.xml` |
-| `/.;/secret/private.xml` | `/secret/private.xml` | 400 dot segment with parameter
-| `/%2e/secret/private.xml` | `/secret/private.xml` | 400 encoded dot segment
-| `/%2e;/secret/private.xml` | `/secret/private.xml` | 400 encoded dot segment
-| `/public/../secret/private.xml` | `/secret/private.xml` |
-| `/public/..;/secret/private.xml` | `/secret/private.xml` | 400 dot segment with parameter
-| `/public/%2e%2e/secret/private.xml` | `/secret/private.xml` | 400 encoded dot segment
-| `/public/%2e%2e;/secret/private.xml` | `/secret/private.xml` | 400 encoded dot segment
-| `/dispatch/public/file.txt` | `/dispatch/public/file.txt` |
-| `/dispatch/public%2Ffile.txt` | `/dispatch/public/file.txt` | 400 encoded /
-| `/dispatch/public%5Cfile.txt` | `/dispatch/public\file.txt` | 400 backslash character
-| `/dispatch/public%252Ffile.txt` | `/dispatch/public%2Ffile.txt` |
-| `/dispatch/WEB-INF/web.xml` | `/dispatch/WEB-INF/web.xml` |
-| `/dispatch/secret/private.xml` | `/dispatch/secret/private.xml` |
+| `foo/bar` | `/foo/bar` | 400 must start with /
+| `/foo/bar` | `/foo/bar` |
+| `/foo/bar/` | `/foo/bar/` |
+| `/foo;/bar;` | `/foo/bar` |
+| `/foo;/bar;/;` | `/foo/bar` | 400 empty segment with parameters
+| `/foo%00/bar/` | `/foo/bar/` | 400 control character
+| `/foo%7F/bar/` | `/foo/bar/` | 400 control character
+| `/foo%2Fbar` | `/foo/bar` | 400 encoded /
+| `/foo\bar` | `/foo\bar` | 400 backslash character
+| `/foo%5Cbar` | `/foo\bar` | 400 backslash character
+| `/foo;%2E/bar` | `/foo/bar` |
+| `/foo;%2F/bar` | `/foo/bar` | 400 encoded /
+| `/foo/./bar` | `/foo/bar` |
+| `/foo/././bar` | `/foo/bar` |
+| `/./foo/bar` | `/foo/bar` |
+| `/foo/%2e/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.;/bar` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/%2e;/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.%2Fbar` | `/foo/./bar` | 400 encoded /
+| `/foo/.%5Cbar` | `/foo/.\bar` | 400 backslash character
+| `/foo/bar/.` | `/foo/bar` |
+| `/foo/bar/./` | `/foo/bar/` |
+| `/foo/bar/.;` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/bar/./;` | `/foo/bar` | 400 empty segment with parameters
+| `/foo/.bar` | `/foo/.bar` |
+| `/foo/../bar` | `/bar` |
+| `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
+| `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
+| `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
+| `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment; encoded dot segment
+| `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
+| `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
+| `/foo/..%2Fbar` | `/foo/../bar` | 400 encoded /
+| `/foo/..%5Cbar` | `/foo/..\bar` | 400 backslash character
+| `/foo/bar/..` | `/foo` |
+| `/foo/bar/../` | `/foo/` |
+| `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
+| `/foo/bar/../;` | `/foo` | 400 empty segment with parameters
+| `/foo/..bar` | `/foo/..bar` |
+| `/foo/.../bar` | `/foo/.../bar` |
+| `/foo//bar` | `/foo/bar` |
+| `//foo//bar//` | `/foo/bar/` |
+| `/;/foo;/;/bar/;/;` | `/foo/bar` | 400 empty segment with parameters
+| `/foo//../bar` | `/bar` |
+| `/foo/;/../bar` | `/bar` | 400 empty segment with parameters
+| `/foo%E2%82%ACbar` | `/foo€bar` |
+| `/foo%20bar` | `/foo bar` |
+| `/foo%-1bar` | `/foo%-1bar` | 400 decode error
+| `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
+| `/foo%/bar` | `/foo%/bar` | 400 decode error
+| `/foo/bar%0` | `/foo/bar%0` | 400 decode error
+| `/` | `/` |
+| `//` | `/` |
+| `/;/` | `/` | 400 empty segment with parameters
+| `/.` | `` |
+| `/..` | `/..` | 400 leading dot-dot-segment
+| `/./` | `/` |
+| `/../` | `/../` | 400 leading dot-dot-segment
+| `foo/bar/` | `/foo/bar/` | 400 must start with /
+| `./foo/bar/` | `/foo/bar/` | 400 must start with /
+| `%2e/foo/bar/` | `/foo/bar/` | 400 must start with /; encoded dot segment
+| `../foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment
+| `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment; encoded dot segment
+| `;/foo/bar/` | `/foo/bar/` | 400 must start with /
+
 |===
 
 
