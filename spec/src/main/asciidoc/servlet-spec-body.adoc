@@ -1416,7 +1416,7 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
 | `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
 | `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
-| `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment; encoded dot segment
+| `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment & encoded dot segment
 | `/foo/./../bar` | `/bar` |
 | `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
 | `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
@@ -1436,11 +1436,12 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo%E2%82%ACbar` | `/foo€bar` |
 | `/foo%20bar` | `/foo bar` |
 | `/foo%E2%82` | `/foo%E2%82` | 400 decode error
-| `/foo%E2%82%AC/%E2%82%ACfoo%E2%820bar` | `/foo€/%E2%82%ACfoo%E2%820bar` | 400 decode error
+| `/foo%E2%82bar` | `/foo%E2%82bar` | 400 decode error
 | `/foo%-1bar` | `/foo%-1bar` | 400 decode error
 | `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
 | `/foo%/bar` | `/foo%/bar` | 400 decode error
 | `/foo/bar%0` | `/foo/bar%0` | 400 decode error
+| `/good%20/bad%/%20mix%` | `/good /bad%/%20mix%` | 400 decode error
 | `/foo/bar?q` | `/foo/bar` |
 | `/foo/bar#f` | `/foo/bar` |
 | `/foo/bar?q#f` | `/foo/bar` |
@@ -1459,10 +1460,10 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/../` | `/../` | 400 leading dot-dot-segment
 | `foo/bar/` | `/foo/bar/` | 400 must start with /
 | `./foo/bar/` | `/foo/bar/` | 400 must start with /
-| `%2e/foo/bar/` | `/foo/bar/` | 400 must start with /; encoded dot segment
-| `../foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment
-| `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment; encoded dot segment
-| `;/foo/bar/` | `/foo/bar/` | 400 must start with /; empty segment with parameters
+| `%2e/foo/bar/` | `/foo/bar/` | 400 must start with / & encoded dot segment
+| `../foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment
+| `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment & encoded dot segment
+| `;/foo/bar/` | `/foo/bar/` | 400 must start with / & empty segment with parameters
 
 |===
 

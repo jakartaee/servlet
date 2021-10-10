@@ -12,23 +12,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Consumer;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CanonicalUriPathTest {
-    private static final Set<String> ENCODED_DOT_SEGMENT = Collections.unmodifiableSet(Set.of(
-            "%2e",
-            "%2E",
-            "%2e%2e",
-            "%2e%2E",
-            "%2E%2e",
-            "%2E%2E",
-            ".%2e",
-            ".%2E",
-            "%2e.",
-            "%2E."));
 
-    public static String canonicalUriPath(String uriPath) {
+    private static final Set<String> ENCODED_DOT_SEGMENT;
+    static {
+        Set<String> set = Collections.newSetFromMap(new TreeMap<>(String.CASE_INSENSITIVE_ORDER));
+        set.add("%2e");
+        set.add("%2e%2e");
+        set.add("%2e.");
+        set.add(".%2e");
+        ENCODED_DOT_SEGMENT = Collections.unmodifiableSet(set);
+    }
+
+    public static String canonicalUriPath(String uriPath, Consumer<String> rejection) {
         if (uriPath == null)
             throw new IllegalArgumentException("null path");
 
@@ -96,46 +97,39 @@ public class CanonicalUriPathTest {
         path = buf.toString();
 
         // Rejecting Errors and Suspicious Sequences
-        String reject = "";
         if (decodeError)
-            reject += "decode error; ";
+            rejection.accept("decode error");
         // Any path not starting with the `"/"` character
         if (!startsWithSlash)
-            reject += "must start with /; ";
+            rejection.accept("must start with /");
         // Any path starting with an initial segment of `".."`
         if (!segments.isEmpty() && segments.get(0).equals(".."))
-            reject += "leading dot-dot-segment; ";
+            rejection.accept("leading dot-dot-segment");
         // The encoded `"/"` character
         if (uriPath.contains("%2f") || uriPath.contains("%2F"))
-            reject += "encoded /; ";
+            rejection.accept("encoded /");
         // Any `"."` or `".."` segment that had a path parameter
         if (dotSegmentWithParam)
-            reject += "dot segment with parameter; ";
+            rejection.accept("dot segment with parameter");
         // Any `"."` or `".."` segment with any encoded characters
         if (encodedDotSegment)
-            reject += "encoded dot segment; ";
+            rejection.accept("encoded dot segment");
         // Any `".."` segment preceded by an empty segment
         if (emptySegmentBeforeDotDot)
-            reject += "empty segment before dot dot; ";
+            rejection.accept("empty segment before dot dot");
         // Any empty segment with parameters
         if (emptySegmentWithParam)
-            reject += "empty segment with parameters; ";
+            rejection.accept("empty segment with parameters");
         // The `"\"` character encoded or not.
         if (path.contains("\\"))
-            reject += "backslash character; ";
+            rejection.accept("backslash character");
         // Any control characters either encoded or not.
-
         for (char c : path.toCharArray()) {
             if (c < 0x20 || c == 0x7f) {
-                reject = "control character; ";
+                rejection.accept("control character");
                 break;
             }
         }
-
-        System.err.printf("| `%s` | `%s` | %s %n",
-                uriPath,
-                path,
-                reject.length() == 0 ? "" : ("400 " + reject.substring(0, reject.length() - 2)));
 
         return path;
     }
@@ -235,12 +229,12 @@ public class CanonicalUriPathTest {
             "/foo%E2%82%ACbar",
             "/foo%20bar",
             "/foo%E2%82",
-            "/foo%E2%82%AC/%E2%82%ACfoo%E2%820bar",
+            "/foo%E2%82bar",
             "/foo%-1bar",
             "/foo%XX/bar",
             "/foo%/bar",
             "/foo/bar%0",
-
+            "/good%20/bad%/%20mix%",
             "/foo/bar?q",
             "/foo/bar#f",
             "/foo/bar?q#f",
@@ -268,6 +262,16 @@ public class CanonicalUriPathTest {
     })
 
     public void testCanonicalUriPath(String path) {
-        canonicalUriPath(path);
+        List<String> rejections = new ArrayList<>();
+        String canonical = canonicalUriPath(path, rejections::add);
+
+        System.err.printf("| `%s` | `%s` | ", path, canonical);
+        if (!rejections.isEmpty()) {
+            for (int i = 0; i < rejections.size(); i++) {
+                System.err.print(i == 0 ? "400 " : " & ");
+                System.err.print(rejections.get(i));
+            }
+        }
+        System.err.println();
     }
 }
