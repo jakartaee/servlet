@@ -1,6 +1,10 @@
 package jakarta.servlet.http;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,7 +154,7 @@ public class CanonicalUriPathTest {
                     i += 2;
                 } else {
                     if (utf8.size() > 0) {
-                        buf.append(new String(utf8.toByteArray(), StandardCharsets.UTF_8));
+                        buf.append(fromUtf8(utf8.toByteArray()));
                         utf8.reset();
                     }
 
@@ -158,12 +162,20 @@ public class CanonicalUriPathTest {
                 }
             }
             if (utf8.size() > 0) {
-                buf.append(new String(utf8.toByteArray(), StandardCharsets.UTF_8));
+                buf.append(fromUtf8(utf8.toByteArray()));
                 utf8.reset();
             }
             segment = buf.toString();
         }
         return segment;
+    }
+
+    private static CharBuffer fromUtf8(byte[] bytes) {
+        try {
+            return StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes));
+        } catch (CharacterCodingException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @ParameterizedTest
@@ -222,6 +234,8 @@ public class CanonicalUriPathTest {
 
             "/foo%E2%82%ACbar",
             "/foo%20bar",
+            "/foo%E2%82",
+            "/foo%E2%82%AC/%E2%82%ACfoo%E2%820bar",
             "/foo%-1bar",
             "/foo%XX/bar",
             "/foo%/bar",
