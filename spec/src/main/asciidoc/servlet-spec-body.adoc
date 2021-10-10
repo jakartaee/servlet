@@ -1355,7 +1355,7 @@ All segments that are exactly `"."` are removed from the segment series. Segment
 
 . **Concatenate segments.**
 +
-The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If the original path after stripping query and fragment ends with a `"/"` then append a final `"/"` character.
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If the original path after stripping query and fragment ends with a `"/"` or all segmentes have been removed, then append a final `"/"` character.
  If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
 
 . **Mapping URI to context and resource.**
@@ -1415,6 +1415,7 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
 | `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
 | `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment; encoded dot segment
+| `/foo/./../bar` | `/bar` |
 | `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
 | `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
 | `/foo/..%2Fbar` | `/foo/../bar` | 400 encoded /
@@ -1436,10 +1437,19 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
 | `/foo%/bar` | `/foo%/bar` | 400 decode error
 | `/foo/bar%0` | `/foo/bar%0` | 400 decode error
+| `/foo/bar?q` | `/foo/bar` |
+| `/foo/bar#f` | `/foo/bar` |
+| `/foo/bar?q#f` | `/foo/bar` |
+| `/foo/bar/?q` | `/foo/bar` |
+| `/foo/bar/#f` | `/foo/bar` |
+| `/foo/bar/?q#f` | `/foo/bar` |
+| `/foo/bar;?q` | `/foo/bar` |
+| `/foo/bar;#f` | `/foo/bar` |
+| `/foo/bar;?q#f` | `/foo/bar` |
 | `/` | `/` |
 | `//` | `/` |
 | `/;/` | `/` | 400 empty segment with parameters
-| `/.` | `` |
+| `/.` | `/` |
 | `/..` | `/..` | 400 leading dot-dot-segment
 | `/./` | `/` |
 | `/../` | `/../` | 400 leading dot-dot-segment
@@ -1448,7 +1458,7 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `%2e/foo/bar/` | `/foo/bar/` | 400 must start with /; encoded dot segment
 | `../foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment
 | `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with /; leading dot-dot-segment; encoded dot segment
-| `;/foo/bar/` | `/foo/bar/` | 400 must start with /
+| `;/foo/bar/` | `/foo/bar/` | 400 must start with /; empty segment with parameters
 
 |===
 

@@ -34,6 +34,7 @@ public class CanonicalUriPathTest {
         boolean endsWithSlash = path.endsWith("/");
         boolean dotSegmentWithParam;
         boolean encodedDotSegment;
+        boolean emptySegmentWithParam;
         boolean emptySegmentBeforeDotDot = false;
         boolean decodeError = false;
 
@@ -49,6 +50,7 @@ public class CanonicalUriPathTest {
         List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/")));
 
         // Remove path parameters.
+        emptySegmentWithParam = segments.stream().anyMatch(s -> s.startsWith(";"));
         dotSegmentWithParam = segments.stream().anyMatch(s -> s.startsWith(".;") || s.startsWith("..;"));
         segments.replaceAll(s -> (s.contains(";")) ? s.substring(0, s.indexOf(';')) : s);
 
@@ -85,7 +87,7 @@ public class CanonicalUriPathTest {
         // Concatenate segments
         StringBuilder buf = new StringBuilder();
         segments.forEach(s -> buf.append("/").append(s));
-        if (endsWithSlash)
+        if (endsWithSlash || segments.size() == 0)
             buf.append("/");
         path = buf.toString();
 
@@ -112,7 +114,7 @@ public class CanonicalUriPathTest {
         if (emptySegmentBeforeDotDot)
             reject += "empty segment before dot dot; ";
         // Any empty segment with parameters
-        if (uriPath.contains("/;"))
+        if (emptySegmentWithParam)
             reject += "empty segment with parameters; ";
         // The `"\"` character encoded or not.
         if (path.contains("\\"))
@@ -168,6 +170,7 @@ public class CanonicalUriPathTest {
     @ValueSource(strings = {
             "foo/bar",
             "/foo/bar",
+
             "/foo/bar/",
             "/foo;/bar;",
             "/foo;/bar;/;",
@@ -198,6 +201,7 @@ public class CanonicalUriPathTest {
             "/../foo/bar",
             "/foo/%2e%2E/bar",
             "/foo/%2e%2e/%2E%2E/bar",
+            "/foo/./../bar",
             "/foo/..;/bar",
             "/foo/%2e%2E;/bar",
             "/foo/..%2Fbar",
@@ -222,6 +226,16 @@ public class CanonicalUriPathTest {
             "/foo%XX/bar",
             "/foo%/bar",
             "/foo/bar%0",
+
+            "/foo/bar?q",
+            "/foo/bar#f",
+            "/foo/bar?q#f",
+            "/foo/bar/?q",
+            "/foo/bar/#f",
+            "/foo/bar/?q#f",
+            "/foo/bar;?q",
+            "/foo/bar;#f",
+            "/foo/bar;?q#f",
 
             "/",
             "//",
