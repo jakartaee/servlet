@@ -51,7 +51,7 @@ public class CanonicalUriPathTest {
         boolean emptySegmentWithParam;
         boolean emptySegmentBeforeDotDot = false;
         boolean decodeError = false;
-        
+
         // Split path into segments.
         List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/")));
 
