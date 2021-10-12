@@ -14,8 +14,11 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class CanonicalUriPathTest {
 
@@ -173,99 +176,93 @@ public class CanonicalUriPathTest {
         }
     }
 
+    public static Stream<Arguments> data() {
+        List<Object[]> data = new ArrayList<>();
+        data.add(new Object[] { "foo/bar", "/foo/bar", true });
+        data.add(new Object[] { "/foo/bar", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar;jsessionid=1234", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/bar/;jsessionid=1234", "/foo/bar/", false });
+        data.add(new Object[] { "/foo;/bar;", "/foo/bar", false });
+        data.add(new Object[] { "/foo;/bar;/;", "/foo/bar/", false });
+        data.add(new Object[] { "/foo%00/bar/", "/foo\00/bar/", true });
+        data.add(new Object[] { "/foo%2Fbar", "/foo/bar", true });
+        data.add(new Object[] { "/foo\\bar", "/foo\\bar", true });
+        data.add(new Object[] { "/foo%5Cbar", "/foo\\bar", true });
+        data.add(new Object[] { "/foo;%2F/bar", "/foo/bar", true });
+        data.add(new Object[] { "/foo/./bar", "/foo/bar", false });
+        data.add(new Object[] { "/foo/././bar", "/foo/bar", false });
+        data.add(new Object[] { "/./foo/bar", "/foo/bar", false });
+        data.add(new Object[] { "/foo/%2e/bar", "/foo/bar", true });
+        data.add(new Object[] { "/foo/.;/bar", "/foo/bar", true });
+        data.add(new Object[] { "/foo/%2e;/bar", "/foo/bar", true });
+        data.add(new Object[] { "/foo/.%2Fbar", "/foo/./bar", true });
+        data.add(new Object[] { "/foo/.%5Cbar", "/foo/.\\bar", true });
+        data.add(new Object[] { "/foo/bar/.", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/./", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/bar/.;", "/foo/bar", true });
+        data.add(new Object[] { "/foo/bar/./;", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/.bar", "/foo/.bar", false });
+        data.add(new Object[] { "/foo/../bar", "/bar", false });
+        data.add(new Object[] { "/foo/../../bar", "/../bar", true });
+        data.add(new Object[] { "/../foo/bar", "/../foo/bar", true });
+        data.add(new Object[] { "/foo/%2e%2E/bar", "/bar", true });
+        data.add(new Object[] { "/foo/%2e%2e/%2E%2E/bar", "/../bar", true });
+        data.add(new Object[] { "/foo/./../bar", "/bar", false });
+        data.add(new Object[] { "/foo/..;/bar", "/bar", true });
+        data.add(new Object[] { "/foo/%2e%2E;/bar", "/bar", true });
+        data.add(new Object[] { "/foo/..%2Fbar", "/foo/../bar", true });
+        data.add(new Object[] { "/foo/..%5Cbar", "/foo/..\\bar", true });
+        data.add(new Object[] { "/foo/bar/..", "/foo", false });
+        data.add(new Object[] { "/foo/bar/../", "/foo/", false });
+        data.add(new Object[] { "/foo/bar/..;", "/foo", true });
+        data.add(new Object[] { "/foo/bar/../;", "/foo/", false });
+        data.add(new Object[] { "/foo/..bar", "/foo/..bar", false });
+        data.add(new Object[] { "/foo/.../bar", "/foo/.../bar", false });
+        data.add(new Object[] { "/foo//bar", "/foo/bar", false });
+        data.add(new Object[] { "//foo//bar//", "/foo/bar/", false });
+        data.add(new Object[] { "/;/foo;/;/bar/;/;", "/foo/bar/", true });
+        data.add(new Object[] { "/foo//../bar", "/bar", false });
+        data.add(new Object[] { "/foo/;/../bar", "/bar", true });
+        data.add(new Object[] { "/foo%E2%82%ACbar", "/foo€bar", false });
+        data.add(new Object[] { "/foo%20bar", "/foo bar", false });
+        data.add(new Object[] { "/foo%E2%82", "/foo%E2%82", true });
+        data.add(new Object[] { "/foo%E2%82bar", "/foo%E2%82bar", true });
+        data.add(new Object[] { "/foo%XX/bar", "/foo%XX/bar", true });
+        data.add(new Object[] { "/foo%/bar", "/foo%/bar", true });
+        data.add(new Object[] { "/foo/bar%0", "/foo/bar%0", true });
+        data.add(new Object[] { "/good%20/bad%/%20mix%", "/good /bad%/%20mix%", true });
+        data.add(new Object[] { "/foo/bar#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/?q", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar;?q", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar;#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar;?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/", "/", false });
+        data.add(new Object[] { "//", "/", false });
+        data.add(new Object[] { "/;/", "/", true });
+        data.add(new Object[] { "/.", "/", false });
+        data.add(new Object[] { "/..", "/..", true });
+        data.add(new Object[] { "/./", "/", false });
+        data.add(new Object[] { "/../", "/../", true });
+        data.add(new Object[] { "foo/bar/", "/foo/bar/", true });
+        data.add(new Object[] { ";/foo/bar/", "/foo/bar/", true });
+
+        return data.stream().map(Arguments::of);
+    }
+
     @ParameterizedTest
-    @ValueSource(strings = {
-            "foo/bar",
-            "/foo/bar",
-
-            "/foo/bar/",
-            "/foo;/bar;",
-            "/foo;/bar;/;",
-            "/foo%00/bar/",
-            "/foo%7F/bar/",
-            "/foo%2Fbar",
-            "/foo\\bar",
-            "/foo%5Cbar",
-            "/foo;%2E/bar",
-            "/foo;%2F/bar",
-
-            "/foo/./bar",
-            "/foo/././bar",
-            "/./foo/bar",
-            "/foo/%2e/bar",
-            "/foo/.;/bar",
-            "/foo/%2e;/bar",
-            "/foo/.%2Fbar",
-            "/foo/.%5Cbar",
-            "/foo/bar/.",
-            "/foo/bar/./",
-            "/foo/bar/.;",
-            "/foo/bar/./;",
-            "/foo/.bar",
-
-            "/foo/../bar",
-            "/foo/../../bar",
-            "/../foo/bar",
-            "/foo/%2e%2E/bar",
-            "/foo/%2e%2e/%2E%2E/bar",
-            "/foo/./../bar",
-            "/foo/..;/bar",
-            "/foo/%2e%2E;/bar",
-            "/foo/..%2Fbar",
-            "/foo/..%5Cbar",
-            "/foo/bar/..",
-            "/foo/bar/../",
-            "/foo/bar/..;",
-            "/foo/bar/../;",
-            "/foo/..bar",
-
-            "/foo/.../bar",
-
-            "/foo//bar",
-            "//foo//bar//",
-            "/;/foo;/;/bar/;/;",
-            "/foo//../bar",
-            "/foo/;/../bar",
-
-            "/foo%E2%82%ACbar",
-            "/foo%20bar",
-            "/foo%E2%82",
-            "/foo%E2%82bar",
-            "/foo%-1bar",
-            "/foo%XX/bar",
-            "/foo%/bar",
-            "/foo/bar%0",
-            "/good%20/bad%/%20mix%",
-            "/foo/bar?q",
-            "/foo/bar#f",
-            "/foo/bar?q#f",
-            "/foo/bar/?q",
-            "/foo/bar/#f",
-            "/foo/bar/?q#f",
-            "/foo/bar;?q",
-            "/foo/bar;#f",
-            "/foo/bar;?q#f",
-
-            "/",
-            "//",
-            "/;/",
-            "/.",
-            "/..",
-            "/./",
-            "/../",
-
-            "foo/bar/",
-            "./foo/bar/",
-            "%2e/foo/bar/",
-            "../foo/bar/",
-            ".%2e/foo/bar/",
-            ";/foo/bar/",
-    })
-
-    public void testCanonicalUriPath(String path) {
+    @MethodSource("data")
+    public void testCanonicalUriPath(String path, String expected, boolean rejected) {
         List<String> rejections = new ArrayList<>();
         String canonical = canonicalUriPath(path, rejections::add);
 
+        Assertions.assertEquals(expected, canonical);
+        Assertions.assertEquals(rejected, !rejections.isEmpty());
+
+        // print for inclusion in adoc
         System.err.printf("| `%s` | `%s` | ", path, canonical);
         if (!rejections.isEmpty()) {
             for (int i = 0; i < rejections.size(); i++) {
