@@ -1333,7 +1333,7 @@ The URI is split by the first occurrence of any `"?"` character to path and quer
 
 . **Split path into segments.**
 +
-The path is split into multiple segments divided by the `"/"` character. A leading `"/"` does not indicate an initial empty segment.
+The path is split into segments using the `"/"` character as a separator. The separating `"/"` does not form part of the resulting segments 
 
 . **Remove path parameters.**
 +
