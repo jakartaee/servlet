@@ -1443,9 +1443,9 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo/bar?q` | `/foo/bar` |
 | `/foo/bar#f` | `/foo/bar` |
 | `/foo/bar?q#f` | `/foo/bar` |
-| `/foo/bar/?q` | `/foo/bar` |
-| `/foo/bar/#f` | `/foo/bar` |
-| `/foo/bar/?q#f` | `/foo/bar` |
+| `/foo/bar/?q` | `/foo/bar/` |
+| `/foo/bar/#f` | `/foo/bar/` |
+| `/foo/bar/?q#f` | `/foo/bar/` |
 | `/foo/bar;?q` | `/foo/bar` |
 | `/foo/bar;#f` | `/foo/bar` |
 | `/foo/bar;?q#f` | `/foo/bar` |

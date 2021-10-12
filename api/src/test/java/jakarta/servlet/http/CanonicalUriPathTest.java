@@ -33,15 +33,7 @@ public class CanonicalUriPathTest {
         if (uriPath == null)
             throw new IllegalArgumentException("null path");
 
-        // Remember start/end conditions
         String path = uriPath;
-        boolean startsWithSlash = path.startsWith("/");
-        boolean endsWithSlash = path.endsWith("/");
-        boolean dotSegmentWithParam;
-        boolean encodedDotSegment;
-        boolean emptySegmentWithParam;
-        boolean emptySegmentBeforeDotDot = false;
-        boolean decodeError = false;
 
         // Discard fragment.
         if (path.contains("#"))
@@ -51,6 +43,15 @@ public class CanonicalUriPathTest {
         if (path.contains("?"))
             path = path.substring(0, path.indexOf('?'));
 
+        // Remember start/end conditions
+        boolean startsWithSlash = path.startsWith("/");
+        boolean endsWithSlash = path.endsWith("/");
+        boolean dotSegmentWithParam;
+        boolean encodedDotSegment;
+        boolean emptySegmentWithParam;
+        boolean emptySegmentBeforeDotDot = false;
+        boolean decodeError = false;
+        
         // Split path into segments.
         List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/")));
 
