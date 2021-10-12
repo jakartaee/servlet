@@ -1309,8 +1309,6 @@ The path portion of the URI of an HTTP identifies the resource to be processed. 
 The process described here adapts and extends the URI canonicalization process described in [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) to create a standard Servlet URI path canonicalization process that ensures that URIs can be mapped to Servlets, Filters and security constraints in an unambiguous manner. It is also intended to provide information to reverse proxy implementations so they are aware of how requests they pass to servlet containers will be processed.
 
 ==== Obtaining the URI Path
-HTTP/0.9:: The URI path is the `document address` as defined by the W3C [Original HTTP](https://www.w3.org/Protocols/HTTP/AsImplemented.html) document.
-
 HTTP/1.0:: The URI path is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are the URI path. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path.
 
 HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
