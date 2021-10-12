@@ -1329,7 +1329,7 @@ The path is split by the first occurrence of any `"\#"` character. The `"#"` and
 
 . **Separation of path and query.**
 +
-The URI is split by the first occurrence of any '"?"' character to path and query.  The query is preserved for later handling and the following steps applied to the path.
+The URI is split by the first occurrence of any `"?"` character to path and query.  The query is preserved for later handling and the following steps applied to the path.
 
 . **Split path into segments.**
 +
