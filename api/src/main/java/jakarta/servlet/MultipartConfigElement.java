@@ -106,7 +106,8 @@ public class MultipartConfigElement {
     }
 
     /**
-     * Gets the size threshold after which files will be written to disk.
+     * Gets the size threshold after which files will be written to disk. A value of zero means files must always be written
+     * to disk.
      *
      * @return the size threshold after which files will be written to disk
      */
