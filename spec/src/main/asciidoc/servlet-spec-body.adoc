@@ -1333,7 +1333,7 @@ The URI is split by the first occurrence of any `"?"` character to path and quer
 
 . **Split path into segments.**
 +
-The path is split into segments using the `"/"` character as a separator. The separating `"/"` does not form part of the resulting segments 
+The path is split into segments using the `"/"` character as a prefix to each segment. The separating `"/"` does not form part of the resulting segments.   For example, the path `"/foo/bar/"` is split into 3 segments: `"foo"`, `"bar"` and `""`. The prefix `"/"` for the fist segment is optional, but URIs without a leading `"/"` should be rejected below.
 
 . **Remove path parameters.**
 +
@@ -1345,7 +1345,7 @@ Octets that are encoded in `%nn` form are decoded in each segment. The resulting
 
 . **Remove Empty Segments.**
 +
-Empty segments are removed.  Containers may be configured to retain empty segments.
+Empty segments, other than the last segment, are removed.  Containers may be configured to retain all empty segments.
 
 . **Remove dot-segments.**
 +
@@ -1353,8 +1353,7 @@ All segments that are exactly `"."` are removed from the segment series. Segment
 
 . **Concatenate segments.**
 +
-The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If the original path after stripping query and fragment ends with a `"/"` or all segments have been removed, then append a final `"/"` character.
- If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`. If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
 
 . **Mapping URI to context and resource.**
 +
@@ -1370,7 +1369,7 @@ If suspicious sequences are discovered during the prior processing steps, the re
   * Any `"."` or `".."` segment that had a path parameter (e.g. `/path/..;/info`)
   * Any `"."` or `".."` segment with any encoded characters (e.g. `/path/%2e%2e/info`)
   * Any `".."` segment preceded by an empty segment (e.g. `/path//../info`)
-  * Any empty segment with parameters (e.g. `/path/;param/info` )
+  * Any empty segment other than the last segment, with parameters (e.g. `/path/;param/info` )
   * The `"\"` character encoded or not. (e.g. `/path\info`)
   * Any control characters either encoded or not.  (e.g. `/path%00/info`)
   * Any illegal hex sequences following a % character
@@ -1387,15 +1386,16 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 
 | `foo/bar` | `/foo/bar` | 400 must start with /
 | `/foo/bar` | `/foo/bar` |
+| `/foo/bar;jsessionid=1234` | `/foo/bar` |
 | `/foo/bar/` | `/foo/bar/` |
+| `/foo/bar/;jsessionid=1234` | `/foo/bar/` |
 | `/foo;/bar;` | `/foo/bar` |
-| `/foo;/bar;/;` | `/foo/bar` | 400 empty segment with parameters
+| `/foo;/bar;/;` | `/foo/bar/` |
 | `/foo%00/bar/` | `/foo/bar/` | 400 control character
-| `/foo%7F/bar/` | `/foo/bar/` | 400 control character
+| `/foo%7Fbar` | `/foobar` | 400 control character
 | `/foo%2Fbar` | `/foo/bar` | 400 encoded /
 | `/foo\bar` | `/foo\bar` | 400 backslash character
 | `/foo%5Cbar` | `/foo\bar` | 400 backslash character
-| `/foo;%2E/bar` | `/foo/bar` |
 | `/foo;%2F/bar` | `/foo/bar` | 400 encoded /
 | `/foo/./bar` | `/foo/bar` |
 | `/foo/././bar` | `/foo/bar` |
@@ -1408,7 +1408,7 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo/bar/.` | `/foo/bar` |
 | `/foo/bar/./` | `/foo/bar/` |
 | `/foo/bar/.;` | `/foo/bar` | 400 dot segment with parameter
-| `/foo/bar/./;` | `/foo/bar` | 400 empty segment with parameters
+| `/foo/bar/./;` | `/foo/bar/` |
 | `/foo/.bar` | `/foo/.bar` |
 | `/foo/../bar` | `/bar` |
 | `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
@@ -1423,19 +1423,19 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo/bar/..` | `/foo` |
 | `/foo/bar/../` | `/foo/` |
 | `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
-| `/foo/bar/../;` | `/foo` | 400 empty segment with parameters
+| `/foo/bar/../;` | `/foo/` |
 | `/foo/..bar` | `/foo/..bar` |
 | `/foo/.../bar` | `/foo/.../bar` |
 | `/foo//bar` | `/foo/bar` |
 | `//foo//bar//` | `/foo/bar/` |
-| `/;/foo;/;/bar/;/;` | `/foo/bar` | 400 empty segment with parameters
+| `/;/foo;/;/bar/;/;` | `/foo/bar/` | 400 empty segment with parameters
 | `/foo//../bar` | `/bar` |
 | `/foo/;/../bar` | `/bar` | 400 empty segment with parameters
 | `/foo%E2%82%ACbar` | `/foo€bar` |
 | `/foo%20bar` | `/foo bar` |
 | `/foo%E2%82` | `/foo%E2%82` | 400 decode error
 | `/foo%E2%82bar` | `/foo%E2%82bar` | 400 decode error
-| `/foo%-1bar` | `/foo%-1bar` | 400 decode error
+| `/foo%-1/bar` | `/foo%-1/bar` | 400 decode error
 | `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
 | `/foo%/bar` | `/foo%/bar` | 400 decode error
 | `/foo/bar%0` | `/foo/bar%0` | 400 decode error

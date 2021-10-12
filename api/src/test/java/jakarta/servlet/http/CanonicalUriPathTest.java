@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
@@ -48,18 +49,17 @@ public class CanonicalUriPathTest {
 
         // Remember start/end conditions
         boolean startsWithSlash = path.startsWith("/");
-        boolean endsWithSlash = path.endsWith("/");
         boolean dotSegmentWithParam;
         boolean encodedDotSegment;
-        boolean emptySegmentWithParam;
+        boolean emptyNonLastSegmentWithParam;
         boolean emptySegmentBeforeDotDot = false;
         boolean decodeError = false;
 
         // Split path into segments.
-        List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/")));
+        List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/", -1)));
 
         // Remove path parameters.
-        emptySegmentWithParam = segments.stream().anyMatch(s -> s.startsWith(";"));
+        emptyNonLastSegmentWithParam = segments.stream().limit(segments.size() - 1).anyMatch(s -> s.startsWith(";"));
         dotSegmentWithParam = segments.stream().anyMatch(s -> s.startsWith(".;") || s.startsWith("..;"));
         segments.replaceAll(s -> (s.contains(";")) ? s.substring(0, s.indexOf(';')) : s);
 
@@ -71,8 +71,9 @@ public class CanonicalUriPathTest {
             decodeError = true;
         }
 
-        // Remove Empty Segments
-        segments.removeIf(s -> s.length() == 0);
+        // Remove Empty Segments other than the last
+        AtomicInteger last = new AtomicInteger(segments.size());
+        segments.removeIf(s -> last.decrementAndGet() != 0 && s.length() == 0);
 
         // Remove dot-segments
         int count = 0;
@@ -94,11 +95,13 @@ public class CanonicalUriPathTest {
         }
 
         // Concatenate segments
-        StringBuilder buf = new StringBuilder();
-        segments.forEach(s -> buf.append("/").append(s));
-        if (endsWithSlash || segments.size() == 0)
-            buf.append("/");
-        path = buf.toString();
+        if (segments.size() == 0)
+            path = "/";
+        else {
+            StringBuilder buf = new StringBuilder();
+            segments.forEach(s -> buf.append("/").append(s));
+            path = buf.toString();
+        }
 
         // Rejecting Errors and Suspicious Sequences
         if (decodeError)
@@ -122,7 +125,7 @@ public class CanonicalUriPathTest {
         if (emptySegmentBeforeDotDot)
             rejection.accept("empty segment before dot dot");
         // Any empty segment with parameters
-        if (emptySegmentWithParam)
+        if (emptyNonLastSegmentWithParam)
             rejection.accept("empty segment with parameters");
         // The `"\"` character encoded or not.
         if (path.contains("\\"))
@@ -185,7 +188,8 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo/bar/;jsessionid=1234", "/foo/bar/", false });
         data.add(new Object[] { "/foo;/bar;", "/foo/bar", false });
         data.add(new Object[] { "/foo;/bar;/;", "/foo/bar/", false });
-        data.add(new Object[] { "/foo%00/bar/", "/foo\00/bar/", true });
+        data.add(new Object[] { "/foo%00/bar/", "/foo\000/bar/", true });
+        data.add(new Object[] { "/foo%7Fbar", "/foo\177bar", true });
         data.add(new Object[] { "/foo%2Fbar", "/foo/bar", true });
         data.add(new Object[] { "/foo\\bar", "/foo\\bar", true });
         data.add(new Object[] { "/foo%5Cbar", "/foo\\bar", true });
@@ -228,15 +232,17 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo%20bar", "/foo bar", false });
         data.add(new Object[] { "/foo%E2%82", "/foo%E2%82", true });
         data.add(new Object[] { "/foo%E2%82bar", "/foo%E2%82bar", true });
+        data.add(new Object[] { "/foo%-1/bar", "/foo%-1/bar", true });
         data.add(new Object[] { "/foo%XX/bar", "/foo%XX/bar", true });
         data.add(new Object[] { "/foo%/bar", "/foo%/bar", true });
         data.add(new Object[] { "/foo/bar%0", "/foo/bar%0", true });
         data.add(new Object[] { "/good%20/bad%/%20mix%", "/good /bad%/%20mix%", true });
+        data.add(new Object[] { "/foo/bar?q", "/foo/bar", false });
         data.add(new Object[] { "/foo/bar#f", "/foo/bar", false });
         data.add(new Object[] { "/foo/bar?q#f", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar/?q", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar/#f", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar/?q", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/bar/#f", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar/", false });
         data.add(new Object[] { "/foo/bar;?q", "/foo/bar", false });
         data.add(new Object[] { "/foo/bar;#f", "/foo/bar", false });
         data.add(new Object[] { "/foo/bar;?q#f", "/foo/bar", false });
@@ -248,6 +254,10 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/./", "/", false });
         data.add(new Object[] { "/../", "/../", true });
         data.add(new Object[] { "foo/bar/", "/foo/bar/", true });
+        data.add(new Object[] { "./foo/bar/", "/foo/bar/", true });
+        data.add(new Object[] { "%2e/foo/bar/", "/foo/bar/", true });
+        data.add(new Object[] { "../foo/bar/", "/../foo/bar/", true });
+        data.add(new Object[] { ".%2e/foo/bar/", "/../foo/bar/", true });
         data.add(new Object[] { ";/foo/bar/", "/foo/bar/", true });
 
         return data.stream().map(Arguments::of);
