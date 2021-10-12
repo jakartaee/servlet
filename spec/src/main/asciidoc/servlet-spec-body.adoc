@@ -1362,7 +1362,7 @@ The decoded path is used to map the request to a context and resource within the
 
 . **Rejecting Suspicious Sequences.**
 +
-If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences below, but may be configured differently by a container:
+If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences is defined below, but may be configured differently by a container:
 
   * Any path not starting with the `"/"` character (e.g. `path/info`)
   * Any path starting with an initial segment of `".."` (e.g. `/../path/info`)
