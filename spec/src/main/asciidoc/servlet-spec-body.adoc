@@ -1339,9 +1339,9 @@ The path is split into segments using the `"/"` character as a separator. The se
 +
 Any segment containing the `";"` character is split at the first occurrence of `";"`. The segment is replaced by the character sequence preceding the `";"`. The characters following the `";"` are considered path parameters and may be preserved by the container for later decoding and/or processing (eg `jsessionid`).
 
-. **Decode characters.**
+. **Decode.**
 +
-Characters that are encoded in `%nn` form are decoded in each segment. The resulting octet sequences is treated as UTF-8 and converted to a character sequence that replaces the segment.
+Octets that are encoded in `%nn` form are decoded in each segment. The resulting octet sequence is treated as UTF-8 and converted to a character sequence that replaces the segment.
 
 . **Remove Empty Segments.**
 +
