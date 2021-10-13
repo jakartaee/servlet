@@ -1368,7 +1368,7 @@ If suspicious sequences are discovered during the prior processing steps, the re
   * The encoded `"/"` character (e.g. `/path%2Finfo`)
   * Any `"."` or `".."` segment that had a path parameter (e.g. `/path/..;/info`)
   * Any `"."` or `".."` segment with any encoded characters (e.g. `/path/%2e%2e/info`)
-  * Any `".."` segment preceded by an empty segment (e.g. `/path//../info`)
+  * If empty segments are not removed, then `".."` segment preceded by an empty segment (e.g. `/path//../info`)
   * Any empty segment other than the last segment, with parameters (e.g. `/path/;param/info` )
   * The `"\"` character encoded or not. (e.g. `/path\info`)
   * Any control characters either encoded or not.  (e.g. `/path%00/info`)
