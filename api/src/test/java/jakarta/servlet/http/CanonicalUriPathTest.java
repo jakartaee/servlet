@@ -39,21 +39,27 @@ public class CanonicalUriPathTest {
 
         String path = uriPath;
 
-        // Discard fragment.
-        if (path.contains("#"))
-            path = path.substring(0, path.indexOf('#'));
-
-        // Separation of path and query.
-        if (path.contains("?"))
-            path = path.substring(0, path.indexOf('?'));
-
         // Remember start/end conditions
-        boolean startsWithSlash = path.startsWith("/");
+        boolean fragment = false;
+        boolean startsWithSlash;
         boolean dotSegmentWithParam;
         boolean encodedDotSegment;
         boolean emptyNonLastSegmentWithParam;
         boolean emptySegmentBeforeDotDot = false;
         boolean decodeError = false;
+
+        // Discard fragment.
+        if (path.contains("#")) {
+            path = path.substring(0, path.indexOf('#'));
+            fragment = true;
+        }
+
+        // Separation of path and query.
+        if (path.contains("?"))
+            path = path.substring(0, path.indexOf('?'));
+
+        // This needs to be checked after removal ot
+        startsWithSlash = path.startsWith("/");
 
         // Split path into segments.
         List<String> segments = new ArrayList<>(Arrays.asList(path.substring(startsWithSlash ? 1 : 0).split("/", -1)));
@@ -104,6 +110,8 @@ public class CanonicalUriPathTest {
         }
 
         // Rejecting Errors and Suspicious Sequences
+        if (fragment)
+            rejection.accept("fragment");
         if (decodeError)
             rejection.accept("decode error");
         // Any path not starting with the `"/"` character
@@ -238,14 +246,14 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo/bar%0", "/foo/bar%0", true });
         data.add(new Object[] { "/good%20/bad%/%20mix%", "/good /bad%/%20mix%", true });
         data.add(new Object[] { "/foo/bar?q", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar#f", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar#f", "/foo/bar", true });
+        data.add(new Object[] { "/foo/bar?q#f", "/foo/bar", true });
         data.add(new Object[] { "/foo/bar/?q", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/bar/#f", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar/", false });
+        data.add(new Object[] { "/foo/bar/#f", "/foo/bar/", true });
+        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar/", true });
         data.add(new Object[] { "/foo/bar;?q", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar;#f", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar;?q#f", "/foo/bar", false });
+        data.add(new Object[] { "/foo/bar;#f", "/foo/bar", true });
+        data.add(new Object[] { "/foo/bar;?q#f", "/foo/bar", true });
         data.add(new Object[] { "/", "/", false });
         data.add(new Object[] { "//", "/", false });
         data.add(new Object[] { "/;/", "/", true });
@@ -259,6 +267,10 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "../foo/bar/", "/../foo/bar/", true });
         data.add(new Object[] { ".%2e/foo/bar/", "/../foo/bar/", true });
         data.add(new Object[] { ";/foo/bar/", "/foo/bar/", true });
+        data.add(new Object[] { "/#f", "/", true });
+        data.add(new Object[] { "#f", "/", true });
+        data.add(new Object[] { "/?q", "/", false });
+        data.add(new Object[] { "?q", "/", true });
 
         return data.stream().map(Arguments::of);
     }
