@@ -106,7 +106,7 @@ public class CanonicalUriPathTest {
         else {
             StringBuilder buf = new StringBuilder();
             if (!decodeError) {
-                segments.replaceAll(CanonicalUriPathTest::encode);                
+                segments.replaceAll(CanonicalUriPathTest::encode);
             }
             segments.forEach(s -> buf.append("/").append(s));
             path = buf.toString();
@@ -189,7 +189,7 @@ public class CanonicalUriPathTest {
         }
         return segment;
     }
-    
+
     private static CharBuffer fromUtf8(byte[] bytes) {
         try {
             return StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes));

@@ -1386,54 +1386,54 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | Encoded URI path  | Decoded Path | Rejected
 
 | `foo/bar` | `/foo/bar` | 400 must start with /
-| `/foo/bar` | `/foo/bar` |
-| `/foo/bar;jsessionid=1234` | `/foo/bar` |
-| `/foo/bar/` | `/foo/bar/` |
-| `/foo/bar/;jsessionid=1234` | `/foo/bar/` |
-| `/foo;/bar;` | `/foo/bar` |
-| `/foo;/bar;/;` | `/foo/bar/` |
-| `/foo%00/bar/` | `/foo/bar/` | 400 control character
+| `/foo/bar` | `/foo/bar` | 
+| `/foo/bar;jsessionid=1234` | `/foo/bar` | 
+| `/foo/bar/` | `/foo/bar/` | 
+| `/foo/bar/;jsessionid=1234` | `/foo/bar/` | 
+| `/foo;/bar;` | `/foo/bar` | 
+| `/foo;/bar;/;` | `/foo/bar/` | 
+| `/foo%00/bar/` | `/foo
 | `/foo%7Fbar` | `/foobar` | 400 control character
-| `/foo%2Fbar` | `/foo/bar` | 400 encoded /
+| `/foo%2Fbar` | `/foo%2Fbar` | 400 encoded /
 | `/foo\bar` | `/foo\bar` | 400 backslash character
 | `/foo%5Cbar` | `/foo\bar` | 400 backslash character
 | `/foo;%2F/bar` | `/foo/bar` | 400 encoded /
-| `/foo/./bar` | `/foo/bar` |
-| `/foo/././bar` | `/foo/bar` |
-| `/./foo/bar` | `/foo/bar` |
+| `/foo/./bar` | `/foo/bar` | 
+| `/foo/././bar` | `/foo/bar` | 
+| `/./foo/bar` | `/foo/bar` | 
 | `/foo/%2e/bar` | `/foo/bar` | 400 encoded dot segment
 | `/foo/.;/bar` | `/foo/bar` | 400 dot segment with parameter
 | `/foo/%2e;/bar` | `/foo/bar` | 400 encoded dot segment
-| `/foo/.%2Fbar` | `/foo/./bar` | 400 encoded /
+| `/foo/.%2Fbar` | `/foo/.%2Fbar` | 400 encoded /
 | `/foo/.%5Cbar` | `/foo/.\bar` | 400 backslash character
-| `/foo/bar/.` | `/foo/bar` |
-| `/foo/bar/./` | `/foo/bar/` |
+| `/foo/bar/.` | `/foo/bar` | 
+| `/foo/bar/./` | `/foo/bar/` | 
 | `/foo/bar/.;` | `/foo/bar` | 400 dot segment with parameter
-| `/foo/bar/./;` | `/foo/bar/` |
-| `/foo/.bar` | `/foo/.bar` |
-| `/foo/../bar` | `/bar` |
+| `/foo/bar/./;` | `/foo/bar/` | 
+| `/foo/.bar` | `/foo/.bar` | 
+| `/foo/../bar` | `/bar` | 
 | `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
 | `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
 | `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
 | `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment & encoded dot segment
-| `/foo/./../bar` | `/bar` |
+| `/foo/./../bar` | `/bar` | 
 | `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
 | `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
-| `/foo/..%2Fbar` | `/foo/../bar` | 400 encoded /
+| `/foo/..%2Fbar` | `/foo/..%2Fbar` | 400 encoded /
 | `/foo/..%5Cbar` | `/foo/..\bar` | 400 backslash character
-| `/foo/bar/..` | `/foo` |
-| `/foo/bar/../` | `/foo/` |
+| `/foo/bar/..` | `/foo` | 
+| `/foo/bar/../` | `/foo/` | 
 | `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
-| `/foo/bar/../;` | `/foo/` |
-| `/foo/..bar` | `/foo/..bar` |
-| `/foo/.../bar` | `/foo/.../bar` |
-| `/foo//bar` | `/foo/bar` |
-| `//foo//bar//` | `/foo/bar/` |
+| `/foo/bar/../;` | `/foo/` | 
+| `/foo/..bar` | `/foo/..bar` | 
+| `/foo/.../bar` | `/foo/.../bar` | 
+| `/foo//bar` | `/foo/bar` | 
+| `//foo//bar//` | `/foo/bar/` | 
 | `/;/foo;/;/bar/;/;` | `/foo/bar/` | 400 empty segment with parameters
-| `/foo//../bar` | `/bar` |
+| `/foo//../bar` | `/bar` | 
 | `/foo/;/../bar` | `/bar` | 400 empty segment with parameters
-| `/foo%E2%82%ACbar` | `/foo€bar` |
-| `/foo%20bar` | `/foo bar` |
+| `/foo%E2%82%ACbar` | `/foo€bar` | 
+| `/foo%20bar` | `/foo bar` | 
 | `/foo%E2%82` | `/foo%E2%82` | 400 decode error
 | `/foo%E2%82bar` | `/foo%E2%82bar` | 400 decode error
 | `/foo%-1/bar` | `/foo%-1/bar` | 400 decode error
@@ -1441,21 +1441,21 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo%/bar` | `/foo%/bar` | 400 decode error
 | `/foo/bar%0` | `/foo/bar%0` | 400 decode error
 | `/good%20/bad%/%20mix%` | `/good /bad%/%20mix%` | 400 decode error
-| `/foo/bar?q` | `/foo/bar` |
-| `/foo/bar#f` | `/foo/bar` |
-| `/foo/bar?q#f` | `/foo/bar` |
-| `/foo/bar/?q` | `/foo/bar/` |
-| `/foo/bar/#f` | `/foo/bar/` |
-| `/foo/bar/?q#f` | `/foo/bar/` |
-| `/foo/bar;?q` | `/foo/bar` |
-| `/foo/bar;#f` | `/foo/bar` |
-| `/foo/bar;?q#f` | `/foo/bar` |
-| `/` | `/` |
-| `//` | `/` |
+| `/foo/bar?q` | `/foo/bar` | 
+| `/foo/bar#f` | `/foo/bar` | 400 fragment
+| `/foo/bar?q#f` | `/foo/bar` | 400 fragment
+| `/foo/bar/?q` | `/foo/bar/` | 
+| `/foo/bar/#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar/?q#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar;?q` | `/foo/bar` | 
+| `/foo/bar;#f` | `/foo/bar` | 400 fragment
+| `/foo/bar;?q#f` | `/foo/bar` | 400 fragment
+| `/` | `/` | 
+| `//` | `/` | 
 | `/;/` | `/` | 400 empty segment with parameters
-| `/.` | `/` |
+| `/.` | `/` | 
 | `/..` | `/..` | 400 leading dot-dot-segment
-| `/./` | `/` |
+| `/./` | `/` | 
 | `/../` | `/../` | 400 leading dot-dot-segment
 | `foo/bar/` | `/foo/bar/` | 400 must start with /
 | `./foo/bar/` | `/foo/bar/` | 400 must start with /
@@ -1463,6 +1463,10 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `../foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment
 | `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment & encoded dot segment
 | `;/foo/bar/` | `/foo/bar/` | 400 must start with / & empty segment with parameters
+| `/#f` | `/` | 400 fragment
+| `#f` | `/` | 400 fragment & must start with /
+| `/?q` | `/` | 
+| `?q` | `/` | 400 must start with /
 
 |===
 
