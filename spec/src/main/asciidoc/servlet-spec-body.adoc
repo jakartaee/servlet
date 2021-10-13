@@ -2810,20 +2810,26 @@ example, the developer may wish to extend the response object with
 higher level output objects than the output stream or the writer, such
 as API that allows DOM objects to be written back to the client.
 
-In order to support this style of filter the
-container must support the following requirement. When a filter invokes
-the `doFilter` method on the container’s filter chain implementation,
-the container must ensure that the request and response object that it
+In order to support this style of filter the container must support
+the following requirements:
+
+ * When a filter invokes the `doFilter` method on the container’s
+filter chain implementation, the container must ensure that
+the request and response objects that it
 passes to the next entity in the filter chain, or to the target web
 resource if the filter was the last in the chain, is the same object
 that was passed into the `doFilter` method by the calling filter.
-
-The same requirement of wrapper object
-identity applies to the calls from a servlet or a filter to
-`RequestDispatcher.forward` or `RequestDispatcher.include`, when the
-caller wraps the request or response objects. In this case, the request
-and response objects seen by the called servlet must be the same wrapper
-objects that were passed in by the calling servlet or filter.
+ * When a filter or servlet calls `RequestDispatcher.forward` or
+`RequestDispatcher.include`, then the request and response objects
+seen by the called filter(s) and/or servlet must either:
+be the same wrapper objects that were passed; or wrappers of the
+objects that were passed.
+ * When `startAsync(ServletRequest, ServletResponse)`
+is used to commence an asynchronous cycle then the request and response objects
+seen by any filter(s) and/or servlet subsequent to an `AsyncContext.dispatch()`
+(or overloaded variant) must either:
+be the same wrapper objects that were passed; or wrappers of the
+objects that were passed.
 
 ==== Filter Environment
 
@@ -4923,14 +4929,14 @@ The `getRequestDispatcher` method takes a
 `ServletContext`. This path must be relative to the root of the
 `ServletContext` and begin with a `"/"`, or be empty. The method uses
 the path to look up a servlet, using the servlet path matching rules in
-<<Mapping Requests to Servlets>>, wraps
+<<Mapping Requests to Servlets>>, associates
 it with a `RequestDispatcher` object, and returns the resulting object.
 If no servlet can be resolved based on the given path, a
 `RequestDispatcher` is provided that returns the content for that path.
 
 The `getNamedDispatcher` method takes a
 `String` argument indicating the name of a servlet known to the
-`ServletContext`. If a servlet is found, it is wrapped with a
+`ServletContext`. If a servlet is found, it is associated with a
 `RequestDispatcher` object and the object is returned. If no servlet is
 associated with the given name, the method must return `null`.
 
@@ -5013,6 +5019,14 @@ then the default servlet MUST throw `FileNotFoundException`. If the
 exception isn't caught and handled, and the response hasn’t been
 committed, the status code MUST be set to 500.
 
+Any references to the request or response objects taken by filter(s)
+and/or servlets invoked by the `include` call must continue to act as
+the included request/response even after the dispatch has returned.
+Specifically any references to the request or response held by
+asynchronous processing commenced by the included resource will
+continue to act as the included request or response, even after
+the dispatch to the include has returned.
+
 ==== Included Request Parameters
 
 Except for servlets obtained by using the
@@ -5068,7 +5082,15 @@ occurs in the target of the `RequestDispatcher.forward()` the exception
 may be propagated back through all the calling filters and servlets and
 eventually back to the container
 
-==== Query String
+Any references to the request or response objects taken by filter(s)
+and/or servlets invoked by the `forward` call must continue to act as
+the forwarded request/response even after the dispatch has returned.
+Specifically any references to the request or response held by
+asynchronous processing commenced by the forwarded resource will
+continue to act as the forwarded request or response, even after
+the dispatch to the include has returned.
+
+==== Forwarded Query String
 
 The request dispatching mechanism is
 responsible for aggregating query string parameters when forwarding or
@@ -8523,6 +8545,10 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
 Clarify the decoding and normalization of URI paths.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
+Provide generic attribute support to cookies, including session cookies, to
+provide support for additional attributes such as the `SameSite` attribute.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/225[Issue 225]::
 Deprecated wrapped response handling in the `doHead` method in favour of container implementation of `HEAD` method behavior.
