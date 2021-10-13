@@ -58,7 +58,7 @@ public class CanonicalUriPathTest {
         if (path.contains("?"))
             path = path.substring(0, path.indexOf('?'));
 
-        // This needs to be checked after removal ot
+        // This needs to be checked after removal of path and query
         startsWithSlash = path.startsWith("/");
 
         // Split path into segments.
@@ -105,6 +105,9 @@ public class CanonicalUriPathTest {
             path = "/";
         else {
             StringBuilder buf = new StringBuilder();
+            if (!decodeError) {
+                segments.replaceAll(CanonicalUriPathTest::encode);                
+            }
             segments.forEach(s -> buf.append("/").append(s));
             path = buf.toString();
         }
@@ -179,6 +182,14 @@ public class CanonicalUriPathTest {
         return segment;
     }
 
+    private static String encode(String segment) {
+        if (segment.contains("%") || segment.contains("/")) {
+            segment = segment.replace("%", "%25");
+            segment = segment.replace("/", "%2F");
+        }
+        return segment;
+    }
+    
     private static CharBuffer fromUtf8(byte[] bytes) {
         try {
             return StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(bytes));
@@ -198,7 +209,7 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo;/bar;/;", "/foo/bar/", false });
         data.add(new Object[] { "/foo%00/bar/", "/foo\000/bar/", true });
         data.add(new Object[] { "/foo%7Fbar", "/foo\177bar", true });
-        data.add(new Object[] { "/foo%2Fbar", "/foo/bar", true });
+        data.add(new Object[] { "/foo%2Fbar", "/foo%2Fbar", true });
         data.add(new Object[] { "/foo\\bar", "/foo\\bar", true });
         data.add(new Object[] { "/foo%5Cbar", "/foo\\bar", true });
         data.add(new Object[] { "/foo;%2F/bar", "/foo/bar", true });
@@ -208,7 +219,7 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo/%2e/bar", "/foo/bar", true });
         data.add(new Object[] { "/foo/.;/bar", "/foo/bar", true });
         data.add(new Object[] { "/foo/%2e;/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/.%2Fbar", "/foo/./bar", true });
+        data.add(new Object[] { "/foo/.%2Fbar", "/foo/.%2Fbar", true });
         data.add(new Object[] { "/foo/.%5Cbar", "/foo/.\\bar", true });
         data.add(new Object[] { "/foo/bar/.", "/foo/bar", false });
         data.add(new Object[] { "/foo/bar/./", "/foo/bar/", false });
@@ -223,7 +234,7 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo/./../bar", "/bar", false });
         data.add(new Object[] { "/foo/..;/bar", "/bar", true });
         data.add(new Object[] { "/foo/%2e%2E;/bar", "/bar", true });
-        data.add(new Object[] { "/foo/..%2Fbar", "/foo/../bar", true });
+        data.add(new Object[] { "/foo/..%2Fbar", "/foo/..%2Fbar", true });
         data.add(new Object[] { "/foo/..%5Cbar", "/foo/..\\bar", true });
         data.add(new Object[] { "/foo/bar/..", "/foo", false });
         data.add(new Object[] { "/foo/bar/../", "/foo/", false });
