@@ -1353,7 +1353,11 @@ All segments that are exactly `"."` are removed from the segment series. Segment
 
 . **Concatenate segments.**
 +
-The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`. If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`.
+
+If a segment contains the "/" or "%" characters, and the container is configured to not reject the request for containing an encoded `"/"`, then the container should re-encode those characters to the %nn form.
+
+If a segment contains the `"/"` or `"%"` characters, and the container is configured to not reject the request, then the container should re-encode those characters to the `%nn` form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
 
 . **Mapping URI to context and resource.**
 +
@@ -1377,10 +1381,6 @@ If suspicious sequences are discovered during the prior processing steps, the re
   * Any illegal UTF-8 code sequences.
 
 ==== Example URIs
-> TODO more work needed on this section. Perhaps some parts need to be moved to other sections.
-
-Consider the following URIs with a forbidden security constraint at `/secret/*` and a servlet registered at /dispatch/* that forwards request to the string return from pathInfo()
-
 . Example URIs
 |===
 | Encoded URI path  | Decoded Path | Rejected
@@ -1395,6 +1395,8 @@ Consider the following URIs with a forbidden security constraint at `/secret/*` 
 | `/foo%00/bar/` | `/foo
 | `/foo%7Fbar` | `/foobar` | 400 control character
 | `/foo%2Fbar` | `/foo%2Fbar` | 400 encoded /
+| `/foo%2Fb%25r` | `/foo%2Fb%25r` | 400 encoded /
+| `/foo/b%25r` | `/foo/b%r` |
 | `/foo\bar` | `/foo\bar` | 400 backslash character
 | `/foo%5Cbar` | `/foo\bar` | 400 backslash character
 | `/foo;%2F/bar` | `/foo/bar` | 400 encoded /

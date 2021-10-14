@@ -34,6 +34,10 @@ public class CanonicalUriPathTest {
     }
 
     public static String canonicalUriPath(String uriPath, Consumer<String> rejection) {
+
+        // The code presented here is a non-normative implementation of the algorithm
+        // from section 3.5 of the specification.
+
         if (uriPath == null)
             throw new IllegalArgumentException("null path");
 
@@ -105,7 +109,7 @@ public class CanonicalUriPathTest {
             path = "/";
         else {
             StringBuilder buf = new StringBuilder();
-            if (!decodeError) {
+            if (!decodeError && uriPath.toLowerCase().contains("%2f")) {
                 segments.replaceAll(CanonicalUriPathTest::encode);
             }
             segments.forEach(s -> buf.append("/").append(s));
@@ -124,7 +128,7 @@ public class CanonicalUriPathTest {
         if (!segments.isEmpty() && segments.get(0).equals(".."))
             rejection.accept("leading dot-dot-segment");
         // The encoded `"/"` character
-        if (uriPath.contains("%2f") || uriPath.contains("%2F"))
+        if (uriPath.toLowerCase().contains("%2f"))
             rejection.accept("encoded /");
         // Any `"."` or `".."` segment that had a path parameter
         if (dotSegmentWithParam)
@@ -169,7 +173,6 @@ public class CanonicalUriPathTest {
                         buf.append(fromUtf8(utf8.toByteArray()));
                         utf8.reset();
                     }
-
                     buf.append(c);
                 }
             }
@@ -210,6 +213,8 @@ public class CanonicalUriPathTest {
         data.add(new Object[] { "/foo%00/bar/", "/foo\000/bar/", true });
         data.add(new Object[] { "/foo%7Fbar", "/foo\177bar", true });
         data.add(new Object[] { "/foo%2Fbar", "/foo%2Fbar", true });
+        data.add(new Object[] { "/foo%2Fb%25r", "/foo%2Fb%25r", true });
+        data.add(new Object[] { "/foo/b%25r", "/foo/b%r", false });
         data.add(new Object[] { "/foo\\bar", "/foo\\bar", true });
         data.add(new Object[] { "/foo%5Cbar", "/foo\\bar", true });
         data.add(new Object[] { "/foo;%2F/bar", "/foo/bar", true });
