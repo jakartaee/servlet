@@ -249,9 +249,14 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * This method returns <code>null</code> if there was no extra path information.
      *
-     * @return a <code>String</code>, decoded by the web container, specifying extra path information that comes after the
-     * servlet path but before the query string in the request URL; or <code>null</code> if the URL does not have any extra
-     * path information
+     * @return a <code>String</code> specifying extra path information that comes after the servlet path but before the
+     * query string in the request URL; or <code>null</code> if the URL does not have any extra path information. The path
+     * will be canonicalized as per section 3.5 of the specification. This method will not return any encoded characters
+     * unless the container is configured specifically to allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
+     * configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be configured
+     * to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
+     * IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getPathInfo();
 
@@ -299,8 +304,13 @@ public interface HttpServletRequest extends ServletRequest {
      * {@link jakarta.servlet.ServletContext#getContextPath()} should be considered as the prime or preferred context path
      * of the application.
      *
-     * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request
-     *
+     * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request.
+     * The path will be canonicalized as per section 3.5 of the specification. This method will not return any encoded
+     * characters unless the container is configured specifically to allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
+     * configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be configured
+     * to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
+     * IllegalArgumentException if this method is called for such suspicious paths.
      * @see jakarta.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
