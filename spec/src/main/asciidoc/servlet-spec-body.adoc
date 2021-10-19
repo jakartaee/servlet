@@ -1303,6 +1303,172 @@ the header value to an `int`, a `NumberFormatException` is thrown. If
 the `getDateHeader` method cannot translate the header to a `Date`
 object, an `IllegalArgumentException` is thrown.
 
+=== Request URI Path Processing
+The path portion of the URI of an HTTP identifies the resource to be processed. As URI paths may have various non-canonical forms, it is important that all containers process URI paths in the same way so that matching to security constraints and resources is identical.
+
+The process described here adapts and extends the URI canonicalization process described in [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) to create a standard Servlet URI path canonicalization process that ensures that URIs can be mapped to Servlets, Filters and security constraints in an unambiguous manner. It is also intended to provide information to reverse proxy implementations so they are aware of how requests they pass to servlet containers will be processed.
+
+==== Obtaining the URI Path
+HTTP/1.0:: The URI path is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are the URI path. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path.
+
+HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
+
+HTTP/2:: The URI path is the `:path` pseudo header as defined by [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540#section-8.1.2.3) and is passed unchanged to stage 2.
+
+HTTP/3:: The URI path is the `:path` pseudo header as currently defined by the [draft RFC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34).
+
+Other protocols:: Containers may support other protocols. Containers should extract an appropriate URI path for the request from the protocol and pass it to stage 2.
+
+==== URI Path Canonicalization
+
+Servlet containers may implement the standard Servlet URI path canonicalization in any manner they see fit as long as the end result is identical to the end result of the process described here. Servlet containers may provide container specific configuration options to vary the standard canonicalization process. Any such variations may have security implications and both Servlet container implementors and users are advised to be sure that they understand the implications of any such container specific canonicalization options.
+
+. **Discard fragment.**
++
+The path is split by the first occurrence of any `"\#"` character. The `"#"` and following fragment are discarded and the path is replaced with the character sequence preceding the `"#"` character.
+
+. **Separation of path and query.**
++
+The URI is split by the first occurrence of any `"?"` character to path and query.  The query is preserved for later handling and the following steps applied to the path.
+
+. **Split path into segments.**
++
+The path is split into segments using the `"/"` character as a prefix to each segment. The separating `"/"` does not form part of the resulting segments.   For example, the path `"/foo/bar/"` is split into 3 segments: `"foo"`, `"bar"` and `""`. The prefix `"/"` for the fist segment is optional, but URIs without a leading `"/"` should be rejected below.
+
+. **Remove path parameters.**
++
+Any segment containing the `";"` character is split at the first occurrence of `";"`. The segment is replaced by the character sequence preceding the `";"`. The characters following the `";"` are considered path parameters and may be preserved by the container for later decoding and/or processing (eg `jsessionid`).
+
+. **Decode.**
++
+Octets that are encoded in `%nn` form are decoded in each segment. The resulting octet sequence is treated as UTF-8 and converted to a character sequence that replaces the segment.
+
+. **Remove Empty Segments.**
++
+Empty segments, other than the last segment, are removed.  Containers may be configured to retain all empty segments.
+
+. **Remove dot-segments.**
++
+All segments that are exactly `"."` are removed from the segment series. Segments that are exactly `".."` and that are preceded by a non `".."` segment are removed together with the preceding segment. This normalization differs from RFC3986 in that segments with parameters may be treated as dot segments.
+
+. **Concatenate segments.**
++
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`. If a segment contains the "/" or "%" characters, and the container is configured to not reject the request for containing an encoded `"/"`, then the container should re-encode those characters to the %nn form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+
+. **Mapping URI to context and resource.**
++
+The decoded path is used to map the request to a context and resource within the context. This form of the URI path is used for all subsequent mapping (web applications, servlet, filters and security constraints).
+
+. **Rejecting Suspicious Sequences.**
++
+If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences is defined below, but may be configured differently by a container:
+
+  * The presence of a fragment in the URI
+  * Any path not starting with the `"/"` character (e.g. `path/info`)
+  * Any path starting with an initial segment of `".."` (e.g. `/../path/info`)
+  * The encoded `"/"` character (e.g. `/path%2Finfo`)
+  * Any `"."` or `".."` segment that had a path parameter (e.g. `/path/..;/info`)
+  * Any `"."` or `".."` segment with any encoded characters (e.g. `/path/%2e%2e/info`)
+  * If empty segments are not removed, then `".."` segment preceded by an empty segment (e.g. `/path//../info`)
+  * Any empty segment other than the last segment, with parameters (e.g. `/path/;param/info` )
+  * The `"\"` character encoded or not. (e.g. `/path\info`)
+  * Any control characters either encoded or not.  (e.g. `/path%00/info`)
+  * Any illegal hex sequences following a % character
+  * Any illegal UTF-8 code sequences.
+
+==== Example URIs
+. Example URIs
+|===
+| Encoded URI path  | Decoded Path | Rejected
+
+| `foo/bar` | `/foo/bar` | 400 must start with /
+| `/foo/bar` | `/foo/bar` | 
+| `/foo/bar;jsessionid=1234` | `/foo/bar` | 
+| `/foo/bar/` | `/foo/bar/` | 
+| `/foo/bar/;jsessionid=1234` | `/foo/bar/` | 
+| `/foo;/bar;` | `/foo/bar` | 
+| `/foo;/bar;/;` | `/foo/bar/` | 
+| `/foo%00/bar/` | `/foo
+| `/foo%7Fbar` | `/foobar` | 400 control character
+| `/foo%2Fbar` | `/foo%2Fbar` | 400 encoded /
+| `/foo%2Fb%25r` | `/foo%2Fb%25r` | 400 encoded /
+| `/foo/b%25r` | `/foo/b%r` |
+| `/foo\bar` | `/foo\bar` | 400 backslash character
+| `/foo%5Cbar` | `/foo\bar` | 400 backslash character
+| `/foo;%2F/bar` | `/foo/bar` | 400 encoded /
+| `/foo/./bar` | `/foo/bar` | 
+| `/foo/././bar` | `/foo/bar` | 
+| `/./foo/bar` | `/foo/bar` | 
+| `/foo/%2e/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.;/bar` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/%2e;/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.%2Fbar` | `/foo/.%2Fbar` | 400 encoded /
+| `/foo/.%5Cbar` | `/foo/.\bar` | 400 backslash character
+| `/foo/bar/.` | `/foo/bar` | 
+| `/foo/bar/./` | `/foo/bar/` | 
+| `/foo/bar/.;` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/bar/./;` | `/foo/bar/` | 
+| `/foo/.bar` | `/foo/.bar` | 
+| `/foo/../bar` | `/bar` | 
+| `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
+| `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
+| `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
+| `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment & encoded dot segment
+| `/foo/./../bar` | `/bar` | 
+| `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
+| `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
+| `/foo/..%2Fbar` | `/foo/..%2Fbar` | 400 encoded /
+| `/foo/..%5Cbar` | `/foo/..\bar` | 400 backslash character
+| `/foo/bar/..` | `/foo` | 
+| `/foo/bar/../` | `/foo/` | 
+| `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
+| `/foo/bar/../;` | `/foo/` | 
+| `/foo/..bar` | `/foo/..bar` | 
+| `/foo/.../bar` | `/foo/.../bar` | 
+| `/foo//bar` | `/foo/bar` | 
+| `//foo//bar//` | `/foo/bar/` | 
+| `/;/foo;/;/bar/;/;` | `/foo/bar/` | 400 empty segment with parameters
+| `/foo//../bar` | `/bar` | 
+| `/foo/;/../bar` | `/bar` | 400 empty segment with parameters
+| `/foo%E2%82%ACbar` | `/foo€bar` | 
+| `/foo%20bar` | `/foo bar` | 
+| `/foo%E2%82` | `/foo%E2%82` | 400 decode error
+| `/foo%E2%82bar` | `/foo%E2%82bar` | 400 decode error
+| `/foo%-1/bar` | `/foo%-1/bar` | 400 decode error
+| `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
+| `/foo%/bar` | `/foo%/bar` | 400 decode error
+| `/foo/bar%0` | `/foo/bar%0` | 400 decode error
+| `/good%20/bad%/%20mix%` | `/good /bad%/%20mix%` | 400 decode error
+| `/foo/bar?q` | `/foo/bar` | 
+| `/foo/bar#f` | `/foo/bar` | 400 fragment
+| `/foo/bar?q#f` | `/foo/bar` | 400 fragment
+| `/foo/bar/?q` | `/foo/bar/` | 
+| `/foo/bar/#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar/?q#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar;?q` | `/foo/bar` | 
+| `/foo/bar;#f` | `/foo/bar` | 400 fragment
+| `/foo/bar;?q#f` | `/foo/bar` | 400 fragment
+| `/` | `/` | 
+| `//` | `/` | 
+| `/;/` | `/` | 400 empty segment with parameters
+| `/.` | `/` | 
+| `/..` | `/..` | 400 leading dot-dot-segment
+| `/./` | `/` | 
+| `/../` | `/../` | 400 leading dot-dot-segment
+| `foo/bar/` | `/foo/bar/` | 400 must start with /
+| `./foo/bar/` | `/foo/bar/` | 400 must start with /
+| `%2e/foo/bar/` | `/foo/bar/` | 400 must start with / & encoded dot segment
+| `../foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment
+| `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment & encoded dot segment
+| `;/foo/bar/` | `/foo/bar/` | 400 must start with / & empty segment with parameters
+| `/#f` | `/` | 400 fragment
+| `#f` | `/` | 400 fragment & must start with /
+| `/?q` | `/` | 
+| `?q` | `/` | 400 must start with /
+
+|===
+
+
 === Request Path Elements
 
 The request path that leads to a servlet
@@ -6341,11 +6507,10 @@ public @interface HttpMethodConstraint {
 |===
 |Element
 |Description
+|value
 |Default
 
-|value
-|The HTTP protocol method name
-|
+
 
 
 |`emptyRoleSemantic`
@@ -8380,6 +8545,9 @@ This document is the final release of the
 Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
 
 === Changes Since Jakarta Servlet 5.0
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
+Clarify the decoding and normalization of URI paths.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
 Provide generic attribute support to cookies, including session cookies, to
