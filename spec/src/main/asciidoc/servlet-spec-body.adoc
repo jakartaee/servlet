@@ -1388,8 +1388,8 @@ If suspicious sequences are discovered during the prior processing steps, the re
 | `/foo/bar/;jsessionid=1234` | `/foo/bar/` | 
 | `/foo;/bar;` | `/foo/bar` | 
 | `/foo;/bar;/;` | `/foo/bar/` | 
-| `/foo%00/bar/` | `/foo
-| `/foo%7Fbar` | `/foobar` | 400 control character
+| `/foo%00/bar/` | `/foo[NUL]/bar/` | 400 control character
+| `/foo%7Fbar` | `/foo[DEL]bar` | 400 control character
 | `/foo%2Fbar` | `/foo%2Fbar` | 400 encoded /
 | `/foo%2Fb%25r` | `/foo%2Fb%25r` | 400 encoded /
 | `/foo/b%25r` | `/foo/b%r` |
@@ -1424,7 +1424,7 @@ If suspicious sequences are discovered during the prior processing steps, the re
 | `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
 | `/foo/bar/../;` | `/foo/` | 
 | `/foo/..bar` | `/foo/..bar` | 
-| `/foo/.../bar` | `/foo/.../bar` | 
+| `/foo/pass:[...]/bar` | `/foo/pass:[...]/bar` |
 | `/foo//bar` | `/foo/bar` | 
 | `//foo//bar//` | `/foo/bar/` | 
 | `/;/foo;/;/bar/;/;` | `/foo/bar/` | 400 empty segment with parameters
