@@ -229,7 +229,7 @@ by the Java platform. For example some application servers may limit the
 creation of a `Thread` object to insure that other components of the
 container are not negatively impacted.
 
-Java SE 8 is the minimum version of the
+Java SE 11 is the minimum version of the
 underlying Java platform with which servlet containers must be built.
 
 === An Example
