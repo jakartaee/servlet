@@ -89,13 +89,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.7.0</version>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>5.7.0</version>
+            <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -141,7 +141,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -181,7 +181,7 @@
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
                     <!--svn|mercurial|git - defaults to svn-->
@@ -209,7 +209,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.1</version>
+                <version>5.1.2</version>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
@@ -282,7 +282,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>attach-api-javadocs</id>
@@ -290,6 +290,7 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
+                            <quiet>true</quiet>
                             <source>1.8</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Servlet API documentation</description>
@@ -298,7 +299,7 @@
                             <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:servlet-dev@eclipse.org">servlet-dev@eclipse.org</a>.<br>
-Copyright &#169; 2019, 2020 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2019, 2021 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>
