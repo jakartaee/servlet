@@ -463,7 +463,7 @@ public class Cookie implements Cloneable, Serializable {
      * @throws NumberFormatException if the cookie is a known field with a numerical value (eg Max-Age), but the value is
      * not able to be parsed.
      *
-     * @since Servlet 5.1
+     * @since Servlet 6.0
      */
     public void setAttribute(String name, String value) {
         if (name == null || name.isEmpty()) {
@@ -501,11 +501,11 @@ public class Cookie implements Cloneable, Serializable {
      * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked, then
      * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
      *
-     * @param name the name of the cookie attribute to set the value for, case insensitive
+     * @param name the name of the cookie attribute to get the value of, case insensitive
      *
      * @return the value of the cookie attribute associated with the given name
      * 
-     * @since Servlet 5.1
+     * @since Servlet 6.0
      */
     public String getAttribute(String name) {
         return attributes == null ? null : attributes.get(name);
@@ -518,7 +518,7 @@ public class Cookie implements Cloneable, Serializable {
      * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code> as well as
      * any predefined setter method, except for <code>version</code>
      * 
-     * @since Servlet 5.1
+     * @since Servlet 6.0
      */
     public Map<String, String> getAttributes() {
         return attributes == null ? Collections.emptyMap() : Collections.unmodifiableMap(attributes);

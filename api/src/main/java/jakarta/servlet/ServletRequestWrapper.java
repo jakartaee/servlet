@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -279,17 +279,6 @@ public class ServletRequestWrapper implements ServletRequest {
     }
 
     /**
-     * The default behavior of this method is to return getRealPath(String path) on the wrapped request object.
-     *
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead
-     */
-    @Override
-    @Deprecated
-    public String getRealPath(String path) {
-        return this.request.getRealPath(path);
-    }
-
-    /**
      * The default behavior of this method is to return getRemotePort() on the wrapped request object.
      *
      * @since Servlet 2.4
@@ -491,4 +480,39 @@ public class ServletRequestWrapper implements ServletRequest {
         return request.getDispatcherType();
     }
 
+    /**
+     * Gets the request ID for the wrapped request.
+     * 
+     * @return the request ID for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public String getRequestId() {
+        return request.getRequestId();
+    }
+
+    /**
+     * Gets the protocol defined request ID, if any, for the wrapped request.
+     * 
+     * @return the protocol defined request ID, if any, for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public String getProtocolRequestId() {
+        return request.getProtocolRequestId();
+    }
+
+    /**
+     * Gets the connection information for the wrapped request.
+     * 
+     * @return the connection information for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public ServletConnection getServletConnection() {
+        return request.getServletConnection();
+    }
 }
