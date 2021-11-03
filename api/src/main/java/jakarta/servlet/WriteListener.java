@@ -40,7 +40,19 @@ public interface WriteListener extends EventListener {
     void onWritePossible() throws IOException;
 
     /**
-     * Invoked when an error occurs writing data using the non-blocking APIs.
+     * Invoked when an error occurs writing data using the non-blocking APIs. This listener will be invoked if there is a
+     * problem with the underlying connection while data is being written to the stream. We consider data to be being
+     * written when any of the following conditions are met:
+     *
+     * <ul>
+     * <li>{@link ServletOutputStream#isReady()} has been invoked and returned false</li>
+     * <li>{@link ServletOutputStream#close()} has been called, and the failure occurred before the response could be fully
+     * written to the client</li>
+     * </ul>
+     *
+     * If these conditions are not met and the stream is still open then any failure notification will not be delivered
+     * until {@link ServletOutputStream#isReady()} is invoked. {@code isReady} must return false in this situation, and then
+     * the failure will be delivered to the {@link #onError(Throwable)} method.
      *
      * @param t the throwable to indicate why the write operation failed
      */

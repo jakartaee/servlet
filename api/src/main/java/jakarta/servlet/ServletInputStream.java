@@ -175,6 +175,15 @@ public abstract class ServletInputStream extends InputStream {
      * available. Other than the initial call, {@link ReadListener#onDataAvailable()} will only be called if and only if
      * this method is called and returns false.
      *
+     * If an attempt is made to read from the stream when the stream is in async mode and this method has not returned
+     * {@code true} the method will throw an {@link IllegalStateException}.
+     * <p>
+     * If an error occurs and {@link ReadListener#onError(Throwable)} is invoked then this method will always return false,
+     * as no further IO operations are allowed after {@code onError} notification.
+     * <p>
+     * Note that due to the requirement for {@code read} to never throw in async mode, this method must return false if a
+     * call to {@code read} would result in an exception.
+     *
      * @return {@code true} if data can be obtained without blocking, otherwise returns {@code false}.
      * @see ReadListener
      * @since Servlet 3.1
@@ -182,7 +191,14 @@ public abstract class ServletInputStream extends InputStream {
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to read
+     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to
+     * read.
+     * <p>
+     * Note that after this method has been called methods on this stream that are documented to throw {@link IOException}
+     * will no longer throw these exceptions directly, instead any exception that occurs will be reported via
+     * {@link ReadListener#onError(Throwable)}. Please refer to this method for more information. This only applies to
+     * {@code IOException}, other exception types may still be thrown (e.g. methods can throw {@link IllegalStateException}
+     * if {@link #isReady()} has not returned true).
      *
      * @param readListener the {@link ReadListener} that should be notified when it's possible to read.
      *

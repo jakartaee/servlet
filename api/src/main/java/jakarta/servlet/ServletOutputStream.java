@@ -336,6 +336,15 @@ public abstract class ServletOutputStream extends OutputStream {
      * {@link WriteListener#onWritePossible()} once a write operation becomes possible without blocking. Other than the
      * initial call, {@link WriteListener#onWritePossible()} will only be called if and only if this method is called and
      * returns false.
+     * <p>
+     * If an attempt is made to write to the stream when the stream is in async mode and this method has not returned
+     * {@code true} the method will throw an {@link IllegalStateException}.
+     * <p>
+     * If an error occurs and {@link WriteListener#onError(Throwable)} is invoked then this method will always return false,
+     * as no further IO operations are allowed after {@code onError} notification.
+     * <p>
+     * Note that due to the requirement for {@code write} to never throw in async mode, this method must return false if a
+     * call to {@code write} would result in an exception.
      *
      * @return {@code true} if data can be written without blocking, otherwise returns {@code false}.
      * @see WriteListener
@@ -345,8 +354,17 @@ public abstract class ServletOutputStream extends OutputStream {
 
     /**
      * Instructs the <code>ServletOutputStream</code> to invoke the provided {@link WriteListener} when it is possible to
-     * write
-     *
+     * write.
+     * <p>
+     * Note that after this method has been called methods on this stream that are documented to throw {@link IOException}
+     * will no longer throw these exceptions directly, instead any exception that occurs will be reported via
+     * {@link WriteListener#onError(Throwable)}. Please refer to this method for more information. This only applies to
+     * {@code IOException}, other exception types may still be thrown (e.g. methods can throw {@link IllegalStateException}
+     * if {@link #isReady()} has not returned true).
+     * <p>
+     * Once this method has been called {@link #flush()} and {@link #close()} become asynchronous operations, they will be
+     * performed in the background and any problems will be reported through the {@link WriteListener#onError(Throwable)}
+     * method.
      *
      * @param writeListener the {@link WriteListener} that should be notified when it's possible to write
      *
