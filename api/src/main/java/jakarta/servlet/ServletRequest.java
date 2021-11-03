@@ -609,4 +609,18 @@ public interface ServletRequest {
      * @since Servlet 6.0
      */
     ServletConnection getServletConnection();
+
+    /**
+     * Adds a listener to be eagerly notified of any underlying connection failure. Delivery to this listener is on a best
+     * effort basis, depending on the implementation and the underlying protocol in use some containers may never be able to
+     * warn of underlying connection failure.
+     *
+     * This listener is intended to allow long running tasks to potentially be cancelled if the underlying connection has
+     * gone away. Failures will still be reported at the IO level if an attempt is made to read or write to the request or
+     * response, and if async IO is in use failures may also be delivered to these listeners.
+     *
+     * @since Servlet 6.0
+     * @param listener The listener to be notified.
+     */
+    void addConnectionFailureListener(ConnectionFailureListener listener);
 }
