@@ -62,7 +62,7 @@ public class MockServletResponse implements ServletResponse {
 
     @Override
     public void setContentLength(int len) {
-        setContentLengthLong((long) len);
+        setContentLengthLong(len);
     }
 
     @Override
