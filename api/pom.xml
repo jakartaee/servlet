@@ -196,7 +196,8 @@
                     <update>false</update>
                     <!-- check that year is correct -->
                     <ignoreYear>false</ignoreYear>
-                    <templateFile>etc/config/copyright.txt</templateFile>
+                    <templateFile>etc/config/copyright-eclipse.txt</templateFile>
+                    <alternateTemplateFile>etc/config/copyright-oracle.txt</alternateTemplateFile>
                 </configuration>
             </plugin>
 
