@@ -1,4 +1,6 @@
+.dtd
 .png
-speclicense.html
+.xsd
 /etc/config/copyright-exclude
-/etc/config/copyright.txt
+/etc/config/copyright-eclipse.txt
+/etc/config/copyright-oracle.txt
