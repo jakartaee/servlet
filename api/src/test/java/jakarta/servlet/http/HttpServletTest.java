@@ -44,6 +44,8 @@ public class HttpServletTest {
     public void testLegacyHead(String test, Handler doGet, boolean expectedFlushed, long expectedContentLength)
             throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
+            private static final long serialVersionUID = 20214996986006168L;
+
             @Override
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 doGet.handle(request, response);
@@ -185,6 +187,8 @@ public class HttpServletTest {
     public void testContainerHead()
             throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
+            private static final long serialVersionUID = -7111162937549196282L;
+
             @Override
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 response.setBufferSize(2048);
