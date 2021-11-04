@@ -42,7 +42,7 @@ public class MockServletConfig implements ServletConfig {
 
     @Override
     public String getServletName() {
-        return null;
+        return name;
     }
 
     @Override
