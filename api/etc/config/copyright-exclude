@@ -1,6 +1,7 @@
 .dtd
 .png
 .xsd
+ee4j-eclipse-formatting.xml
 speclicense.html
 /etc/config/copyright-exclude
 /etc/config/copyright-eclipse.txt
