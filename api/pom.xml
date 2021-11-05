@@ -292,7 +292,7 @@
                         </goals>
                         <configuration>
                             <quiet>true</quiet>
-                            <source>1.8</source>
+                            <source>11</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Servlet API documentation</description>
                             <doctitle>Jakarta Servlet API documentation</doctitle>
