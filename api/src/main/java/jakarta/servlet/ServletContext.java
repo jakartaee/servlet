@@ -137,11 +137,6 @@ public interface ServletContext {
      * @return the major version of the Servlet specification that the application represented by this ServletContext is
      * based on
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.0
      */
     public int getEffectiveMajorVersion();
@@ -156,11 +151,6 @@ public interface ServletContext {
      *
      * @return the minor version of the Servlet specification that the application represented by this ServletContext is
      * based on
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -990,11 +980,6 @@ public interface ServletContext {
      *
      * @return set of the session tracking modes supported by default for this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
@@ -1011,11 +996,6 @@ public interface ServletContext {
      * </p>
      *
      * @return set of the session tracking modes in effect for this <tt>ServletContext</tt>
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1207,11 +1187,6 @@ public interface ServletContext {
      * and <code>web-fragment.xml</code> descriptor files of the web application represented by this ServletContext, or null
      * if no such configuration exists
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @see jakarta.servlet.descriptor.JspConfigDescriptor
      *
      * @since Servlet 3.0
@@ -1228,11 +1203,6 @@ public interface ServletContext {
      * should be granted.
      *
      * @return the class loader of the web application represented by this ServletContext
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @throws SecurityException if a security manager denies access to the requested class loader
      *
@@ -1275,11 +1245,6 @@ public interface ServletContext {
      * @return a <code>String</code> containing the configuration name of the logical host on which the servlet context is
      * deployed.
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.1
      */
     public String getVirtualServerName();
@@ -1288,11 +1253,6 @@ public interface ServletContext {
      * Gets the session timeout in minutes that are supported by default for this <tt>ServletContext</tt>.
      *
      * @return the session timeout in minutes that are supported by default for this <tt>ServletContext</tt>
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 4.0
      */
@@ -1321,11 +1281,6 @@ public interface ServletContext {
      *
      * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 4.0
      */
     public String getRequestCharacterEncoding();
@@ -1352,11 +1307,6 @@ public interface ServletContext {
      * specific configuration (for all web applications in the container).
      *
      * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 4.0
      */

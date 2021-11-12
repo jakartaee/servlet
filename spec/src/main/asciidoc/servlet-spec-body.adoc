@@ -8546,6 +8546,9 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 5.0
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/416[Issue 416]::
+Remove the restriction on programatically added listeners calling some `ServletContext` getter methods.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
 Clarify the decoding and normalization of URI paths.
 
