@@ -29,9 +29,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class CookieTest {
+public class CookieTest {
     @Test
-    void testCookie() {
+    public void testCookie() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getName(), is("name"));
         assertThat(cookie.getValue(), is("value"));
@@ -56,12 +56,12 @@ class CookieTest {
             "domain",
             "\377",
     })
-    void testBadCookie(String name) {
+    public void testBadCookie(String name) {
         assertThrows(IllegalArgumentException.class, () -> new Cookie(name, "value"));
     }
 
     @Test
-    void testComment() {
+    public void testComment() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setComment("comment");
         assertThat(cookie.getComment(), is("comment"));
@@ -77,7 +77,7 @@ class CookieTest {
     }
 
     @Test
-    void testDomain() {
+    public void testDomain() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setDomain("domain");
         assertThat(cookie.getDomain(), is("domain"));
@@ -93,7 +93,7 @@ class CookieTest {
     }
 
     @Test
-    void testMaxAge() {
+    public void testMaxAge() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setMaxAge(100);
         assertThat(cookie.getMaxAge(), is(100));
@@ -112,7 +112,7 @@ class CookieTest {
     }
 
     @Test
-    void testPath() {
+    public void testPath() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setPath("path");
         assertThat(cookie.getPath(), is("path"));
@@ -128,7 +128,7 @@ class CookieTest {
     }
 
     @Test
-    void testSecure() {
+    public void testSecure() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setSecure(true);
         assertThat(cookie.getSecure(), is(true));
@@ -150,7 +150,7 @@ class CookieTest {
     }
 
     @Test
-    void testValue() {
+    public void testValue() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getName(), is("name"));
         assertThat(cookie.getValue(), is("value"));
@@ -161,7 +161,7 @@ class CookieTest {
     }
 
     @Test
-    void testVersion() {
+    public void testVersion() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getVersion(), is(0));
         cookie.setVersion(1);
@@ -173,7 +173,7 @@ class CookieTest {
     }
 
     @Test
-    void testHttpOnly() {
+    public void testHttpOnly() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setHttpOnly(true);
         assertThat(cookie.isHttpOnly(), is(true));
@@ -195,7 +195,7 @@ class CookieTest {
     }
 
     @Test
-    void testAttribute() {
+    public void testAttribute() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getAttributes().size(), is(0));
         assertThat(cookie.getAttribute("A0"), nullValue());
@@ -225,13 +225,13 @@ class CookieTest {
             " ",
             "\377",
     })
-    void testBadAttribute(String name) {
+    public void testBadAttribute(String name) {
         Cookie cookie = new Cookie("name", "value");
         assertThrows(IllegalArgumentException.class, () -> cookie.setAttribute(name, "value"));
     }
 
     @Test
-    void testCloneHashEquals() {
+    public void testCloneHashEquals() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setComment("comment");
         cookie.setDomain("domain");

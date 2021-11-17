@@ -19,8 +19,5 @@ module jakarta.servlet {
     exports jakarta.servlet.descriptor;
     exports jakarta.servlet.http;
     
-    opens jakarta.servlet;
-    opens jakarta.servlet.annotation;
-    opens jakarta.servlet.descriptor;
-    opens jakarta.servlet.http;
+    opens jakarta.servlet.resources;
 }
