@@ -30,6 +30,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CookieTest {
+    @SuppressWarnings("removal")
     @Test
     public void testCookie() {
         Cookie cookie = new Cookie("name", "value");
@@ -51,9 +52,6 @@ public class CookieTest {
             "=",
             " ",
             "name=value",
-            "$name",
-            "comment",
-            "domain",
             "\377",
     })
     public void testBadCookie(String name) {
@@ -160,15 +158,16 @@ public class CookieTest {
         assertThat(cookie.getValue(), nullValue());
     }
 
+    @SuppressWarnings("removal")
     @Test
     public void testVersion() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getVersion(), is(0));
         cookie.setVersion(1);
-        assertThat(cookie.getVersion(), is(1));
+        assertThat(cookie.getVersion(), is(0));
         assertThat(cookie.getAttributes().size(), is(0));
         cookie.setVersion(Integer.MAX_VALUE);
-        assertThat(cookie.getVersion(), is(Integer.MAX_VALUE));
+        assertThat(cookie.getVersion(), is(0));
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
@@ -239,7 +238,6 @@ public class CookieTest {
         cookie.setMaxAge(10);
         cookie.setPath("/path");
         cookie.setSecure(false);
-        cookie.setVersion(2);
         cookie.setAttribute("A0", "V0");
 
         Cookie clone = (Cookie) cookie.clone();
@@ -253,7 +251,6 @@ public class CookieTest {
         assertThat(clone.getPath(), is("/path"));
         assertThat(clone.getSecure(), is(false));
         assertThat(clone.isHttpOnly(), is(true));
-        assertThat(clone.getVersion(), is(2));
         assertThat(clone.getAttributes().size(), is(cookie.getAttributes().size()));
 
         assertEquals(cookie, clone);
