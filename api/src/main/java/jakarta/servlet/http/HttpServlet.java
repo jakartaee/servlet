@@ -283,8 +283,8 @@ public abstract class HttpServlet extends GenericServlet {
      * When overriding this method, leave intact any content headers sent with the request (including Content-Length,
      * Content-Type, Content-Transfer-Encoding, Content-Encoding, Content-Base, Content-Language, Content-Location,
      * Content-MD5, and Content-Range). If your method cannot handle a content header, it must issue an error message (HTTP
-     * 501 - Not Implemented) and discard the request. For more information on HTTP 1.1, see RFC 2616
-     * <a href="http://www.ietf.org/rfc/rfc2616.txt"></a>.
+     * 501 - Not Implemented) and discard the request. For more information on HTTP 1.1 and the PUT method, see RFC 7231
+     * <a href="http://www.ietf.org/rfc/rfc7231.txt"></a>.
      *
      * <p>
      * This method does not need to be either safe or idempotent. Operations that <code>doPut</code> performs can have side
