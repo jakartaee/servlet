@@ -8546,11 +8546,13 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 5.0
 
-link:https://github.com/eclipse-ee4j/servlet-api/issues/416[Issue 416]::
-Remove the restriction on programatically added listeners calling some `ServletContext` getter methods.
+The minimum Java version has been increased to Java 11.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
 Clarify the decoding and normalization of URI paths.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/105[Issue 105]::
+Clarify the behaviour of `getRealPath(String)`
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
 Provide generic attribute support to cookies, including session cookies, to
@@ -8562,10 +8564,34 @@ Deprecated wrapped response handling in the `doHead` method in favour of contain
 link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
 Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/365[Issue 365]::
+Correct the list of valid orderings for example 2 in <<Ordering of web.xml and web-fragment.xml>>.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/370[Issue 370]::
+Clarify the behaviour of `getRemoteAddress()`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/377[Issue 377]::
+Clarify the behaviour of `setCharacterEncoding(null)` and similar calls.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/407[Issue 407]::
+Add new methods to obtain unique identifiers for the current request and/or
+associated connection. 
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/411[Issue 411]::
+Relax the requirements set out in <<Wrapping Requests and Responses>> and allow
+the container to wrap Requests and Responses to meet the requirements of
+implementing the `RequestDispatcher` functionality.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/416[Issue 416]::
+Remove the restriction on programatically added listeners calling some `ServletContext` getter methods.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/418[Issue 418]::
 Remove API classes and methods that were deprecated in Servlet 5.0 and earlier.
 This includes removing the `SingleThreadModel` and `HttpSessionContext`
 interfaces and the `HttpUtils` class as well as various deprecated methods.
+
+Add a new method `getErrorOnELNotFound()` to `JspPropertyGroupDescriptor` to
+align with changes in the Jakarta Pages 3.1 specification.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
