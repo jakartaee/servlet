@@ -8590,6 +8590,11 @@ Remove API classes and methods that were deprecated in Servlet 5.0 and earlier.
 This includes removing the `SingleThreadModel` and `HttpSessionContext`
 interfaces and the `HttpUtils` class as well as various deprecated methods.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/201[Issue 201]::
+Add a `module-info.java` to support using the Servlet API in a modular
+environment as per the Java module system and the Jakarta EE 10 
+link:https://github.com/jakartaee/specification-committee/blob/master/names.adoc[recommendations] 
+
 Add a new method `getErrorOnELNotFound()` to `JspPropertyGroupDescriptor` to
 align with changes in the Jakarta Pages 3.1 specification.
 
