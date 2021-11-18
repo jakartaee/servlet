@@ -55,8 +55,7 @@ import java.util.TreeMap;
  * with this class. This class does not support the cache control defined with HTTP 1.1.
  *
  * <p>
- * This class supports both the Version 0 (by Netscape) and Version 1 (by RFC 2109) cookie specifications. By default,
- * cookies are created using Version 0 to ensure the best interoperability.
+ * This class supports cookies as defined by <a href="http://www.ietf.org/rfc/rfc6265.txt">RFC 6265</a>.
  *
  * @author Various
  */
@@ -96,7 +95,6 @@ public class Cookie implements Cloneable, Serializable {
     //
     private final String name; // NAME= ... "$Name" style is reserved
     private String value; // value of NAME
-    private int version = 0; // ;Version=1 ... means RFC 2109++ style
 
     //
     // Attributes encoded in the header's cookie fields.
@@ -107,7 +105,7 @@ public class Cookie implements Cloneable, Serializable {
      * Constructs a cookie with the specified name and value.
      *
      * <p>
-     * The name must conform to RFC 2109. However, vendors may provide a configuration option that allows cookie names
+     * The name must conform to RFC 6265. However, vendors may provide a configuration option that allows cookie names
      * conforming to the original Netscape Cookie Specification to be accepted.
      *
      * <p>
@@ -116,10 +114,6 @@ public class Cookie implements Cloneable, Serializable {
      * <p>
      * The value can be anything the server chooses to send. Its value is probably of interest only to the server. The
      * cookie's value can be changed after creation with the <code>setValue</code> method.
-     *
-     * <p>
-     * By default, cookies are created according to the Netscape cookie specification. The version can be changed with the
-     * <code>setVersion</code> method.
      *
      * @param name the name of the cookie
      *
@@ -136,16 +130,7 @@ public class Cookie implements Cloneable, Serializable {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_name_blank"));
         }
 
-        if (hasReservedCharacters(name) || name.startsWith("$")
-                || name.equalsIgnoreCase(COMMENT) // rfc2109
-                || name.equalsIgnoreCase("Discard") // 2109++
-                || name.equalsIgnoreCase(DOMAIN)
-                || name.equalsIgnoreCase("Expires") // (old cookies)
-                || name.equalsIgnoreCase(MAX_AGE) // rfc2109
-                || name.equalsIgnoreCase(PATH)
-                || name.equalsIgnoreCase(SECURE)
-                || name.equalsIgnoreCase("Version")
-                || name.equalsIgnoreCase(HTTP_ONLY)) {
+        if (hasReservedCharacters(name)) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_name_invalid", name));
         }
 
@@ -181,12 +166,12 @@ public class Cookie implements Cloneable, Serializable {
      * Specifies the domain within which this cookie should be presented.
      *
      * <p>
-     * The form of the domain name is specified by RFC 2109. A domain name begins with a dot (<code>.foo.com</code>) and
+     * The form of the domain name is specified by RFC 6265. A domain name begins with a dot (<code>.foo.com</code>) and
      * means that the cookie is visible to servers in a specified Domain Name System (DNS) zone (for example,
      * <code>www.foo.com</code>, but not <code>a.b.foo.com</code>). By default, cookies are only returned to the server that
      * sent them.
      *
-     * @param domain the domain name within which this cookie is visible; form is according to RFC 2109
+     * @param domain the domain name within which this cookie is visible; form is according to RFC 6265
      *
      * @see #getDomain
      */
@@ -198,7 +183,7 @@ public class Cookie implements Cloneable, Serializable {
      * Gets the domain name of this Cookie.
      *
      * <p>
-     * Domain names are formatted according to RFC 2109.
+     * Domain names are formatted according to RFC 6265.
      *
      * @return the domain name of this Cookie
      *
@@ -253,7 +238,8 @@ public class Cookie implements Cloneable, Serializable {
      * makes the cookie visible to all directories on the server under <i>/catalog</i>.
      *
      * <p>
-     * Consult RFC 2109 (available on the Internet) for more information on setting path names for cookies.
+     * Consult <a href="http://www.ietf.org/rfc/rfc6265.txt">RFC 6265</a> for more information on setting path names for
+     * cookies.
      *
      *
      * @param uri a <code>String</code> specifying a path
@@ -343,31 +329,33 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the version of the protocol this cookie complies with. Version 1 complies with RFC 2109, and version 0
-     * complies with the original cookie specification drafted by Netscape. Cookies provided by a browser use and identify
-     * the browser's cookie version.
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      * 
-     * @return 0 if the cookie complies with the original Netscape specification; 1 if the cookie complies with RFC 2109
+     * @return Always 0
      *
      * @see #setVersion
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public int getVersion() {
-        return version;
+        return 0;
     }
 
     /**
-     * Sets the version of the cookie protocol that this Cookie complies with.
-     *
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      * <p>
-     * Version 0 complies with the original Netscape cookie specification. Version 1 complies with RFC 2109.
+     * If called, this method has no effect.
      *
-     * @param v 0 if the cookie should comply with the original Netscape specification; 1 if the cookie should comply with
-     * RFC 2109
+     * @param v This parameter is ignored
      *
      * @see #getVersion
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public void setVersion(int v) {
-        version = v;
+        // NO-OP
     }
 
     /*
@@ -526,7 +514,7 @@ public class Cookie implements Cloneable, Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, value, attributes) + version;
+        return Objects.hash(name, value, attributes);
     }
 
     @Override
@@ -543,6 +531,6 @@ public class Cookie implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s{%s=%s,%d,%s}", super.toString(), name, value, version, attributes);
+        return String.format("%s{%s=%s,%s}", super.toString(), name, value, attributes);
     }
 }
