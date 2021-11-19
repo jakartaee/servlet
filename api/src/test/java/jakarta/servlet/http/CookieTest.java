@@ -58,18 +58,18 @@ public class CookieTest {
         assertThrows(IllegalArgumentException.class, () -> new Cookie(name, "value"));
     }
 
+    @SuppressWarnings("removal")
     @Test
     public void testComment() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setComment("comment");
-        assertThat(cookie.getComment(), is("comment"));
-        assertThat(cookie.getAttributes().keySet(), contains("Comment"));
-        assertThat(cookie.getAttributes().values(), contains("comment"));
+        assertThat(cookie.getComment(), nullValue());
+        assertThat(cookie.getAttributes().size(), is(0));
         cookie.setAttribute("COMMENT", "Comment!");
-        assertThat(cookie.getComment(), is("Comment!"));
-        assertThat(cookie.getAttributes().keySet(), contains("Comment"));
+        assertThat(cookie.getComment(), nullValue());
+        assertThat(cookie.getAttributes().keySet(), contains("COMMENT"));
         assertThat(cookie.getAttributes().values(), contains("Comment!"));
-        cookie.setComment(null);
+        cookie.setAttribute("COMMENT", null);
         assertThat(cookie.getComment(), nullValue());
         assertThat(cookie.getAttributes().size(), is(0));
     }
@@ -232,7 +232,6 @@ public class CookieTest {
     @Test
     public void testCloneHashEquals() {
         Cookie cookie = new Cookie("name", "value");
-        cookie.setComment("comment");
         cookie.setDomain("domain");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(10);
@@ -245,7 +244,6 @@ public class CookieTest {
 
         assertThat(clone.getName(), is("name"));
         assertThat(clone.getValue(), is("value"));
-        assertThat(clone.getComment(), is("comment"));
         assertThat(clone.getDomain(), is("domain"));
         assertThat(clone.getMaxAge(), is(10));
         assertThat(clone.getPath(), is("/path"));

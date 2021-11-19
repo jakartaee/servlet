@@ -67,7 +67,6 @@ public class Cookie implements Cloneable, Serializable {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
 
-    private static final String COMMENT = "Comment"; // ;Comment=VALUE ... describes cookie's use
     private static final String DOMAIN = "Domain"; // ;Domain=VALUE ... domain that sees cookie
     private static final String MAX_AGE = "Max-Age"; // ;Max-Age=VALUE ... cookies auto-expire
     private static final String PATH = "Path"; // ;Path=VALUE ... URLs that see the cookie
@@ -139,26 +138,33 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Specifies a comment that describes a cookie's purpose. The comment is useful if the browser presents the cookie to
-     * the user. Comments are not supported by Netscape Version 0 cookies.
+     * With the adoption of support for RFC 6265, this method should no longer be used.
+     * <p>
+     * If called, this method has no effect.
      *
-     * @param purpose a <code>String</code> specifying the comment to display to the user
+     * @param purpose This parameter is ignored
      *
      * @see #getComment
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public void setComment(String purpose) {
-        putAttribute(COMMENT, purpose);
+        // NO-OP
     }
 
     /**
-     * Returns the comment describing the purpose of this cookie, or <code>null</code> if the cookie has no comment.
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      *
-     * @return the comment of the cookie, or <code>null</code> if unspecified
+     * @return Always {@code null}
      *
      * @see #setComment
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public String getComment() {
-        return getAttribute(COMMENT);
+        return null;
     }
 
     /**
