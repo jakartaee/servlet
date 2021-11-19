@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -117,6 +117,8 @@ public class ServletResponseWrapper implements ServletResponse {
 
     /**
      * The default behavior of this method is to call setContentLengthLong(long len) on the wrapped response object.
+     *
+     * @since Servlet 3.1
      */
     @Override
     public void setContentLengthLong(long len) {

@@ -64,6 +64,8 @@ public interface ServletContext {
      * <code>WEB-INF/lib</code> ordered by their web fragment names (with possible exclusions if
      * <code>&lt;absolute-ordering&gt;</code> without any <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
+     *
+     * @since Servlet 3.0
      */
     public static final String ORDERED_LIBS = "jakarta.servlet.context.orderedLibs";
 

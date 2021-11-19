@@ -108,9 +108,9 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * <p>
      * The default behavior of this method is to return getServletMapping() on the wrapped request object.
-     * </p>
+     *
+     * @since Servlet 4.0
      */
     @Override
     public HttpServletMapping getHttpServletMapping() {
@@ -314,7 +314,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     @Override
     public Part getPart(String name) throws IOException, ServletException {
         return this._getHttpServletRequest().getPart(name);
-
     }
 
     /**
