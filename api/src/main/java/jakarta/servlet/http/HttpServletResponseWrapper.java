@@ -168,6 +168,8 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * The default behaviour of this method is to call {@link HttpServletResponse#getStatus} on the wrapped response object.
      *
      * @return the current status code of the wrapped response
+     *
+     * @since Servlet 3.0
      */
     @Override
     public int getStatus() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -21,7 +21,7 @@ package jakarta.servlet.http;
 /**
  *
  * Events of this type are either sent to an object that implements {@link HttpSessionBindingListener} when it is bound
- * or unbound from a session, or to a {@link HttpSessionAttributeListener} that has been configured in the deployment
+ * or unbound from a session, or to an {@link HttpSessionAttributeListener} that has been configured in the deployment
  * descriptor when any attribute is bound, unbound or replaced in a session.
  *
  * <p>
