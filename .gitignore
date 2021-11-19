@@ -11,3 +11,4 @@ nbactions.xml
 .settings/
 downloads/
 .DS_Store
+/target-test/
