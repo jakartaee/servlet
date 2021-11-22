@@ -8598,6 +8598,9 @@ link:https://github.com/jakartaee/specification-committee/blob/master/names.adoc
 Add a new method `getErrorOnELNotFound()` to `JspPropertyGroupDescriptor` to
 align with changes in the Jakarta Pages 3.1 specification.
 
+Clarify the Javadoc for `ServletRequest.isAsyncStarted()` to align it with the
+specification text.
+
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
 (see <<Changes Since Jakarta Servlet 4.0>>).

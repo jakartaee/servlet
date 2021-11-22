@@ -503,7 +503,10 @@ public interface ServletRequest {
      * <p>
      * This method returns <tt>false</tt> if this request was put into asynchronous mode, but has since been dispatched
      * using one of the {@link AsyncContext#dispatch} methods or released from asynchronous mode via a call to
-     * {@link AsyncContext#complete}.
+     * {@link AsyncContext#complete}. If {@link AsyncContext#dispatch} or {@link AsyncContext#complete} is called before the
+     * container-initiated dispatch that called {@link ServletRequest#startAsync()} has returned to the container then this
+     * method must return {@code true} until the container-initiated dispatch that called
+     * {@link ServletRequest#startAsync()} has returned to the container.
      *
      * @return true if this request has been put into asynchronous mode, false otherwise
      *
