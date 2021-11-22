@@ -109,31 +109,33 @@ public interface SessionCookieConfig {
     public String getPath();
 
     /**
-     * Sets the comment that will be assigned to any session tracking cookies created on behalf of the application
-     * represented by the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired.
-     *
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      * <p>
-     * As a side effect of this call, the session tracking cookies will be marked with a <code>Version</code> attribute
-     * equal to <code>1</code>.
+     * If called, this method has no effect.
      * 
-     * @param comment the cookie comment to use
+     * @param comment ignore
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      * acquired has already been initialized
      *
      * @see jakarta.servlet.http.Cookie#setComment(String)
      * @see jakarta.servlet.http.Cookie#getVersion
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public void setComment(String comment);
 
     /**
-     * Gets the comment that will be assigned to any session tracking cookies created on behalf of the application
-     * represented by the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired.
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      *
-     * @return the cookie comment set via {@link #setComment}, or <tt>null</tt> if {@link #setComment} was never called
+     * @return Always {@code null}
      *
      * @see jakarta.servlet.http.Cookie#getComment()
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public String getComment();
 
     /**
