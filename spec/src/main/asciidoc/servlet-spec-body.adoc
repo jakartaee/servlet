@@ -80,7 +80,7 @@ referenced throughout this specification:
 
 * Jakarta EE Platform, version 9
 
-* Jakarta Server Pages™ (JSP), version 3.0
+* Jakarta Server Pages™ (JSP), version 3.1
 
 * Java Naming and Directory Interface™ (JNDI).
 
@@ -1695,11 +1695,9 @@ cache.
 The `HttpServletRequest` interface provides
 the `getCookies` method to obtain an array of cookies that are present
 in the request. These cookies are data sent from the client to the
-server on every request that the client makes. Typically, the only
-information that the client sends back as part of a cookie is the cookie
-name and the cookie value. Other cookie attributes that can be set when
-the cookie is sent to the browser, such as comments, are not typically
-returned. The specification also allows for the cookies to be `HttpOnly`
+server on every request that the client makes. The only information that
+the client sends back as part of a cookie is the cookie name and the cookie
+value. The specification also allows for the cookies to be `HttpOnly`
 cookies. `HttpOnly` cookies indicate to the client that they should not
 be exposed to client-side scripting code (it’s not filtered out unless
 the client knows to look for this attribute). The use of `HttpOnly`
@@ -8551,8 +8549,12 @@ The minimum Java version has been increased to Java 11.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
 Clarify the decoding and normalization of URI paths.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/37[Issue 37]::
+Update Cookie class, related classes and the specification to remove references
+to RFC 2109 and to replace them with RFC 6265.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/105[Issue 105]::
-Clarify the behaviour of `getRealPath(String)`
+Clarify the behaviour of `getRealPath(String)`.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
 Provide generic attribute support to cookies, including session cookies, to
@@ -8593,7 +8595,7 @@ interfaces and the `HttpUtils` class as well as various deprecated methods.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/201[Issue 201]::
 Add a `module-info.java` to support using the Servlet API in a modular
 environment as per the Java module system and the Jakarta EE 10 
-link:https://github.com/jakartaee/specification-committee/blob/master/names.adoc[recommendations] 
+link:https://github.com/jakartaee/specification-committee/blob/master/names.adoc[recommendations].
 
 Add a new method `getErrorOnELNotFound()` to `JspPropertyGroupDescriptor` to
 align with changes in the Jakarta Pages 3.1 specification.
