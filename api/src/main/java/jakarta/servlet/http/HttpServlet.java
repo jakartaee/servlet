@@ -86,7 +86,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @deprecated may be removed in future releases
      * @since 6.0
      */
-    @Deprecated
+    @Deprecated(forRemoval = true, since = "Servlet 6.0")
     public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
@@ -621,7 +621,7 @@ public abstract class HttpServlet extends GenericServlet {
  * Response object.
  */
 // file private
-@Deprecated
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
 class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
@@ -743,7 +743,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
  * Servlet output stream that gobbles up all its data.
  */
 // file private
-@Deprecated
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
 class NoBodyOutputStream extends ServletOutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
