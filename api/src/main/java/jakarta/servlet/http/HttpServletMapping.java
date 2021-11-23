@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -91,7 +91,7 @@ package jakarta.servlet.http;
  * 
  * </table>
  * 
- * @since 4.0
+ * @since Servlet 4.0
  */
 public interface HttpServletMapping {
 
@@ -107,8 +107,6 @@ public interface HttpServletMapping {
      * </p>
      * 
      * @return the match.
-     * 
-     * @since 4.0
      */
     public String getMatchValue();
 
@@ -122,8 +120,6 @@ public interface HttpServletMapping {
      * </p>
      * 
      * @return the String representation for the {@code url-pattern} for this mapping.
-     * 
-     * @since 4.0
      */
     public String getPattern();
 
@@ -134,8 +130,6 @@ public interface HttpServletMapping {
      * </p>
      * 
      * @return the String representation for the {@code servlet-name} for this mapping.
-     * 
-     * @since 4.0
      */
     public String getServletName();
 
@@ -145,8 +139,6 @@ public interface HttpServletMapping {
      * </p>
      * 
      * @return the {@code MappingMatch} for this instance.
-     * 
-     * @since 4.0
      */
     public MappingMatch getMappingMatch();
 

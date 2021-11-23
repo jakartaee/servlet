@@ -201,7 +201,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return An instance of {@code HttpServletMapping} describing the manner in which the current request was invoked.
      * 
-     * @since 4.0
+     * @since Servlet 4.0
      */
     default public HttpServletMapping getHttpServletMapping() {
         return new HttpServletMapping() {
