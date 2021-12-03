@@ -8569,7 +8569,7 @@ Remove the recommendation that Servlet containers should include an `X-Powered-B
 link:https://github.com/eclipse-ee4j/servlet-api/issues/365[Issue 365]::
 Correct the list of valid orderings for example 2 in <<Ordering of web.xml and web-fragment.xml>>.
 
-link:https://github.com/eclipse-ee4j/servlet-api/issues/370[Issue 370]::
+link:https://github.com/eclipse-ee4j/servlet-api/issues/368[Issue 368]::
 Clarify the behaviour of `getRemoteAddress()`.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/377[Issue 377]::
