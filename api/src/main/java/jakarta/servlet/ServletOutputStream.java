@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -272,10 +272,9 @@ public abstract class ServletOutputStream extends OutputStream {
     }
 
     /**
-     * This method can be used to determine if data can be written without blocking.
+     * Returns true if data can be written without blocking else returns false.
      *
-     * @return <code>true</code> if a write to this <code>ServletOutputStream</code> will succeed, otherwise returns
-     * <code>false</code>.
+     * @return <code>true</code> if data can be written without blocking, otherwise returns <code>false</code>.
      *
      * @since Servlet 3.1
      */
