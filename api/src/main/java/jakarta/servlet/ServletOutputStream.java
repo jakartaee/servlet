@@ -273,9 +273,14 @@ public abstract class ServletOutputStream extends OutputStream {
 
     /**
      * Returns true if data can be written without blocking else returns false.
+     * <p>
+     * If this method returns false and a {@link WriteListener} has been set with {@link #setWriteListener(WriteListener)},
+     * then container will subsequently invoke {@link WriteListener#onWritePossible()} once a write operation becomes
+     * possible without blocking. Other than the initial call, {@link WriteListener#onWritePossible()} will only be called
+     * if and only if this method is called and returns false.
      *
      * @return <code>true</code> if data can be written without blocking, otherwise returns <code>false</code>.
-     *
+     * @see WriteListener
      * @since Servlet 3.1
      */
     public abstract boolean isReady();

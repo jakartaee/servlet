@@ -100,9 +100,14 @@ public abstract class ServletInputStream extends InputStream {
 
     /**
      * Returns true if data can be read without blocking else returns false.
+     * <p>
+     * If this method returns false and a {@link ReadListener} has been set via {@link #setReadListener(ReadListener)}, then
+     * the container will subsequently invoke {@link ReadListener#onDataAvailable()} (or
+     * {@link ReadListener#onAllDataRead()}) once data (or EOF) has become available. Other than the initial call,
+     * {@link ReadListener#onDataAvailable()} will only be called if and only if this method is called and returns false.
      *
      * @return <code>true</code> if data can be obtained without blocking, otherwise returns <code>false</code>.
-     *
+     * @see ReadListener
      * @since Servlet 3.1
      */
     public abstract boolean isReady();
