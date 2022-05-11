@@ -9,8 +9,7 @@
   <xsd:annotation>
     <xsd:documentation>
 
-      Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
-      All rights reserved.
+      Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
       
       This program and the accompanying materials are made available under the
       terms of the Eclipse Public License v. 2.0, which is available at
@@ -76,9 +75,9 @@
     </xsd:documentation>
   </xsd:annotation>
 
-  <xsd:include schemaLocation="jakartaee_9.xsd"/>
+  <xsd:include schemaLocation="jakartaee_10.xsd"/>
 
-  <xsd:include schemaLocation="jsp_3_0.xsd"/>
+  <xsd:include schemaLocation="jsp_3_1.xsd"/>
 
   <xsd:group name="web-commonType">
     <xsd:choice>
@@ -164,6 +163,50 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:attributeGroup>
+
+
+<!-- **************************************************** -->
+
+  <xsd:complexType name="attribute-valueType">
+    <xsd:annotation>
+      <xsd:documentation>
+
+        This type is a general type that can be used to declare
+        attribute/value lists.
+        
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="description"
+                   type="jakartaee:descriptionType"
+                   minOccurs="0"
+                   maxOccurs="unbounded"/>
+      <xsd:element name="attribute-name"
+                   type="jakartaee:string">
+        <xsd:annotation>
+          <xsd:documentation>
+
+            The attribute-name element contains the name of an
+            attribute.
+            
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="attribute-value"
+                   type="jakartaee:xsdStringType">
+        <xsd:annotation>
+          <xsd:documentation>
+
+            The attribute-value element contains the value of a
+            attribute.
+            
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="id"
+                   type="xsd:ID"/>
+  </xsd:complexType>
 
 
 <!-- **************************************************** -->
@@ -982,6 +1025,19 @@
             The lifetime (in seconds) that will be assigned to any
             session tracking cookies created by this web application.
             Default is -1
+            
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="attribute"
+                   type="jakartaee:attribute-valueType"
+                   minOccurs="0"
+                   maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>
+
+            The attribute-param element contains a name/value pair to
+            be added as an attribute to every session cookie.
             
           </xsd:documentation>
         </xsd:annotation>
