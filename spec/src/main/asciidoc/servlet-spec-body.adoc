@@ -5,7 +5,7 @@
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2021 Contributors to the Eclipse Foundation.
+Copyright (c) 2022 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
@@ -8602,6 +8602,9 @@ align with changes in the Jakarta Pages 3.1 specification.
 
 Clarify the Javadoc for `ServletRequest.isAsyncStarted()` to align it with the
 specification text.
+
+Update the Javadoc to clarify the scheduling implications when `ServletInputStream.isReady()`
+or `ServletOutputStream.isReady()` return `false`.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
