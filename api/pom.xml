@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+    Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -297,7 +297,7 @@
                             <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:servlet-dev@eclipse.org">servlet-dev@eclipse.org</a>.<br>
-Copyright &#169; 2019, 2021 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2019, 2022 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>
