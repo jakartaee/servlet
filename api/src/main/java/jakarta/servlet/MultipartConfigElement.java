@@ -20,7 +20,7 @@ package jakarta.servlet;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
- * Java Class represntation of an {@link MultipartConfig} annotation value.
+ * Java Class representation of an {@link MultipartConfig} annotation value.
  *
  * @since Servlet 3.0
  */
@@ -34,7 +34,7 @@ public class MultipartConfigElement {
     /**
      * Constructs an instance with defaults for all but location.
      *
-     * @param location defualts to "" if values is null.
+     * @param location defaults to "" if values is null.
      */
     public MultipartConfigElement(String location) {
         if (location == null) {
