@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -174,6 +174,9 @@ public interface ServletResponse {
     /**
      * Sets the length of the content body in the response In HTTP servlets, this method sets the HTTP Content-Length
      * header.
+     * <p>
+     * This method may be called repeatedly to change the content length. This method has no effect if called after the
+     * response has been committed.
      *
      * @param len an integer specifying the length of the content being returned to the client; sets the Content-Length
      * header
@@ -183,6 +186,9 @@ public interface ServletResponse {
     /**
      * Sets the length of the content body in the response In HTTP servlets, this method sets the HTTP Content-Length
      * header.
+     * <p>
+     * This method may be called repeatedly to change the content length. This method has no effect if called after the
+     * response has been committed.
      *
      * @param len a long specifying the length of the content being returned to the client; sets the Content-Length header
      *
