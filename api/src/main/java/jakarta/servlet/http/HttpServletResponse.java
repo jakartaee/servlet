@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -43,6 +43,8 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Adds the specified cookie to the response. This method can be called multiple times to set more than one cookie.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param cookie the Cookie to return to the client
      *
@@ -168,6 +170,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and date-value. The date is specified in terms of milliseconds since the
      * epoch. If the header had already been set, the new value overwrites the previous one. The <code>containsHeader</code>
      * method can be used to test for the presence of a header before setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header to set
      * @param date the assigned date value
@@ -181,6 +185,8 @@ public interface HttpServletResponse extends ServletResponse {
      * 
      * Adds a response header with the given name and date-value. The date is specified in terms of milliseconds since the
      * epoch. This method allows response headers to have multiple values.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header to set
      * @param date the additional date value
@@ -194,6 +200,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and value. If the header had already been set, the new value overwrites
      * the previous one. The <code>containsHeader</code> method can be used to test for the presence of a header before
      * setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header
      * @param value the header value If it contains octet string, it should be encoded according to RFC 2047
@@ -219,6 +227,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and integer value. If the header had already been set, the new value
      * overwrites the previous one. The <code>containsHeader</code> method can be used to test for the presence of a header
      * before setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param name the name of the header
      * @param value the assigned integer value
@@ -231,6 +241,8 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Adds a response header with the given name and integer value. This method allows response headers to have multiple
      * values.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param name the name of the header
      * @param value the assigned integer value
@@ -257,6 +269,9 @@ public interface HttpServletResponse extends ServletResponse {
      * <p>
      * Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges. Other status codes are treated as container
      * specific.
+     * 
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param sc the status code
      *
