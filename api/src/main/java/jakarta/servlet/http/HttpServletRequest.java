@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -85,8 +85,9 @@ public interface HttpServletRequest extends ServletRequest {
      * The date is returned as the number of milliseconds since January 1, 1970 GMT. The header name is case insensitive.
      *
      * <p>
-     * If the request did not have a header of the specified name, this method returns -1. If the header can't be converted
-     * to a date, the method throws an <code>IllegalArgumentException</code>.
+     * If the request did not have a header of the specified name, this method returns -1. If there are multiple headers
+     * with the same name, this method returns the value of the first header in the request. If the header can't be
+     * converted to a date, the method throws an <code>IllegalArgumentException</code>.
      *
      * @param name a <code>String</code> specifying the name of the header
      *
@@ -100,8 +101,8 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the value of the specified request header as a <code>String</code>. If the request did not include a header
      * of the specified name, this method returns <code>null</code>. If there are multiple headers with the same name, this
-     * method returns the first head in the request. The header name is case insensitive. You can use this method with any
-     * request header.
+     * method returns the value of the first header in the request. The header name is case insensitive. You can use this
+     * method with any request header.
      *
      * @param name a <code>String</code> specifying the header name
      *
@@ -144,7 +145,8 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the value of the specified request header as an <code>int</code>. If the request does not have a header of
-     * the specified name, this method returns -1. If the header cannot be converted to an integer, this method throws a
+     * the specified name, this method returns -1. If there are multiple headers with the same name, this method returns the
+     * value of the first header in the request. If the header cannot be converted to an integer, this method throws a
      * <code>NumberFormatException</code>.
      *
      * <p>
