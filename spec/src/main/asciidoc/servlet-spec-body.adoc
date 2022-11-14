@@ -8545,12 +8545,12 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 === Changes Since Jakarta Servlet 6.0
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/164[Issue 164]::
-Clarify Javadoc for ServletResponse and HttpServletResponse methods that are
+Clarify Javadoc for `ServletResponse` and `HttpServletResponse` methods that are
 NO-OPs once the response has been committed.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/463[Issue 463]::
-Clarify Javadoc for MultipartConfigElement and MultipartConfig that sizes are in
-bytes.
+Clarify Javadoc for `MultipartConfigElement` and `MultipartConfig` that sizes
+are in bytes.
 
 === Changes Since Jakarta Servlet 5.0
 
