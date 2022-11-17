@@ -693,7 +693,7 @@ public interface HttpServletRequest extends ServletRequest {
      * no trailer fields.
      * </ol>
      *
-     * @implSpec The default implementation returns false.
+     * @implSpec The default implementation returns {@code true}.
      *
      * @return a boolean whether trailer fields are ready to read
      *
