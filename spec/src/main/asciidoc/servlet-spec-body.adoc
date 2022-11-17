@@ -1,6 +1,6 @@
 :xrefstyle: full
-:spec-version: 6.0
-:spec-version-underscore: 6_0
+:spec-version: 6.1
+:spec-version-underscore: 6_1
 
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
