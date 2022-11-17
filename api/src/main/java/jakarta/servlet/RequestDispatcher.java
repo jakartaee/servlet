@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -161,6 +161,14 @@ public interface RequestDispatcher {
      * @since Servlet 3.0
      */
     public static final String ERROR_REQUEST_URI = "jakarta.servlet.error.request_uri";
+
+    /**
+     * The name of the request attribute under which the query string for request whose processing caused the error is
+     * propagated during an error dispatch
+     *
+     * @since Servlet 6.1
+     */
+    static final String ERROR_QUERY_STRING = "jakarta.servlet.error.query_string";
 
     /**
      * The name of the request attribute under which the name of the servlet in which the error occurred is propagated
