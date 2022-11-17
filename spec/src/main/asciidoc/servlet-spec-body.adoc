@@ -5515,15 +5515,20 @@ a `RequestDispatcher.forward` to the error resource had been performed.
 |`jakarta.servlet.error.request_uri`
 |`java.lang.String`
 
+|`jakarta.servlet.error.query_string`
+|`java.lang.String`
+
 |`jakarta.servlet.error.servlet_name`
 |`java.lang.String`
 |===
 
 These attributes allow the servlet to generate
 specialized content depending on the status code, the exception type,
-the error message, the exception object propagated, and the URI of the
+the error message, the exception object propagated, the URI of the
 request processed by the servlet in which the error occurred (as
-determined by the `getRequestURI` call), and the logical name of the
+determined by the `getRequestURI` call), the query string of the
+request processed by the servlet in which the error occurred (as
+determined by the `getQueryString` call) and the logical name of the
 servlet in which the error occurred.
 
 With the introduction of the exception object
