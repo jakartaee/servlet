@@ -208,9 +208,8 @@ web server, or installed as an add-on component to a web server via that
 server’s native extension API. Servlet containers can also be built into
 or possibly installed into web-enabled application servers.
 
-All servlet containers must support HTTP as a
-protocol for requests and responses, but additional
-request/response-based protocols such as HTTPS (HTTP over SSL) may be
+All servlet containers must support HTTP and HTTPS as protocols for requests
+and responses, but additional request/response-based protocols may be
 supported. The required versions of the HTTP specification that a
 container must implement are HTTP/1.1 and HTTP/2. When supporting
 HTTP/2, servlet containers must support the “h2” and “h2c” protocol
@@ -8553,6 +8552,9 @@ link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
 A new attribute, `jakarta.servlet.error.query_string`, has been added to the
 attributes that must be set on the request as part of an error dispatch.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/95[Issue 95]::
+Clarify that Servlet containers are required to support HTTPS.
+ 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/164[Issue 164]::
 Clarify Javadoc for `ServletResponse` and `HttpServletResponse` methods that are
 NO-OPs once the response has been committed.
