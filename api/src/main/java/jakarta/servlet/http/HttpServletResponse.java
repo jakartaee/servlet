@@ -147,12 +147,21 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Sends a temporary redirect response to the client using the specified redirect location URL and clears the buffer.
      * The buffer will be replaced with the data set by this method. Calling this method sets the status code to
-     * {@link #SC_FOUND} 302 (Found). This method can accept relative URLs;the servlet container must convert the relative
-     * URL to an absolute URL before sending the response to the client. If the location is relative without a leading '/'
-     * the container interprets it as relative to the current request URI. If the location is relative with a leading '/'
-     * the container interprets it as relative to the servlet container root. If the location is relative with two leading
-     * '/' the container interprets it as a network-path reference (see <a href="http://www.ietf.org/rfc/rfc3986.txt"> RFC
-     * 3986: Uniform Resource Identifier (URI): Generic Syntax</a>, section 4.2 &quot;Relative Reference&quot;).
+     * {@link #SC_FOUND} 302 (Found).
+     * <p>
+     * This method accepts both relative and absolute URLs. Absolute URLs passed to this method are used as provided as the
+     * redirect location URL. Relative URLs are converted to absolute URLs unless a container specific feature/option is
+     * provided that controls whether relative URLs passed to this method are converted to absolute URLs or used as provided
+     * for the redirect location URL. If converting a relative URL to an absolute URL then:
+     * <ul>
+     * <li>If the location is relative without a leading '/' the container interprets it as relative to the current request
+     * URI.</li>
+     * <li>If the location is relative with a leading '/' the container interprets it as relative to the servlet container
+     * root.</li>
+     * <li>If the location is relative with two leading '/' the container interprets it as a network-path reference (see
+     * <a href="http://www.ietf.org/rfc/rfc3986.txt"> RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>,
+     * section 4.2 &quot;Relative Reference&quot;).</li>
+     * </ul>
      *
      * <p>
      * If the response has already been committed, this method throws an IllegalStateException. After using this method, the
