@@ -8577,6 +8577,9 @@ link:https://github.com/eclipse-ee4j/servlet-api/issues/473[Issue 473]::
 The Javadoc for `HttpServletRequest.isTrailerFieldsReady()` has been corrected
 to correctly describe the default implementation.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/484[Issue 484]::
+Add ByteBuffer support to `ServletInputStream` and `ServletOutputStream`.
+
 === Changes Since Jakarta Servlet 5.0
 
 The minimum Java version has been increased to Java 11.
