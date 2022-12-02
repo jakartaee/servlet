@@ -212,6 +212,11 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path the partial path used to match the resources, which must start with a <tt>/</tt>
      * @return a Set containing the directory listing, or null if there are no resources in the web application whose path
      * begins with the supplied path.
@@ -257,6 +262,11 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      *
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the resource located at the named path, or <code>null</code> if there is no resource at that path
@@ -291,6 +301,11 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      *
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the <code>InputStream</code> returned to the servlet, or <code>null</code> if no resource exists at the
@@ -316,6 +331,11 @@ public interface ServletContext {
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
+     * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
      * 
      * @param path a <code>String</code> specifying the pathname to the resource
      *
@@ -399,6 +419,11 @@ public interface ServletContext {
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
+     * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
      * 
      * @param path the <i>virtual</i> path to be translated to a <i>real</i> path
      *
