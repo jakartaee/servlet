@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -21,6 +21,7 @@ package jakarta.servlet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
@@ -104,8 +105,16 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to set the character encoding on the wrapped request object.
      */
     @Override
-    public void setCharacterEncoding(String enc) throws UnsupportedEncodingException {
-        this.request.setCharacterEncoding(enc);
+    public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException {
+        this.request.setCharacterEncoding(encoding);
+    }
+
+    /**
+     * The default behavior of this method is to set the character encoding on the wrapped request object.
+     */
+    @Override
+    public void setCharacterEncoding(Charset encoding) {
+        this.request.setCharacterEncoding(encoding);
     }
 
     /**
