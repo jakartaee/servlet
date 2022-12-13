@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -19,6 +19,7 @@
 package jakarta.servlet;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -83,12 +84,30 @@ public interface ServletRequest {
      * Overrides the name of the character encoding used in the body of this request. This method must be called prior to
      * reading request parameters or reading input using getReader(). Otherwise, it has no effect.
      * 
-     * @param env <code>String</code> containing the name of the character encoding.
+     * @param encoding <code>String</code> containing the name of the character encoding.
      *
      * @throws UnsupportedEncodingException if this ServletRequest is still in a state where a character encoding may be
      * set, but the specified encoding is invalid
      */
-    public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
+    public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException;
+
+    /**
+     * Overrides the character encoding used in the body of this request. This method must be called prior to reading
+     * request parameters or reading input using getReader(). Otherwise, it has no effect.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
+     * 
+     * @param encoding <code>Charset</code> representing the character encoding.
+     * 
+     * @since Servlet 6.1
+     */
+    default public void setCharacterEncoding(Charset encoding) {
+        try {
+            setCharacterEncoding(encoding.name());
+        } catch (UnsupportedEncodingException e) {
+            // Unreachable code
+        }
+    }
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not

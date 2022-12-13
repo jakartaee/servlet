@@ -8569,6 +8569,9 @@ Clarify the behaviour of `getDateHeader()` and `getIntHeader()` when multiple
 headers with the same name are present in the `HttpServletRequest`. The expected
 behaviour is aligned with `getHeader()`. 
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/415[Issue 415]::
+Add overloaded `setCharacterEncoding()` methods that support `Charset`.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/453[Issue 453]::
 Add a security warning and a clarification of canonicalization requirements to
 all `ServletContext` methods that accept a path parameter.

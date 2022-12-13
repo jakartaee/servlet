@@ -22,6 +22,7 @@ import jakarta.servlet.descriptor.JspConfigDescriptor;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.Map;
@@ -1343,6 +1344,26 @@ public interface ServletContext {
     public void setRequestCharacterEncoding(String encoding);
 
     /**
+     * Sets the request character encoding for this ServletContext.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
+     *
+     * @param encoding request character encoding
+     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
+     *
+     * @throws UnsupportedOperationException if this ServletContext was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
+     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
+     * {@link jakarta.servlet.annotation.WebListener}
+     *
+     * @since Servlet 6.1
+     */
+    default public void setRequestCharacterEncoding(Charset encoding) {
+        setRequestCharacterEncoding(encoding.name());
+    }
+
+    /**
      * Gets the response character encoding that are supported by default for this <tt>ServletContext</tt>. This method
      * returns null if no response encoding character encoding has been specified in deployment descriptor or container
      * specific configuration (for all web applications in the container).
@@ -1368,4 +1389,24 @@ public interface ServletContext {
      * @since Servlet 4.0
      */
     public void setResponseCharacterEncoding(String encoding);
+
+    /**
+     * Sets the response character encoding for this ServletContext.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
+     *
+     * @param encoding response character encoding
+     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
+     *
+     * @throws UnsupportedOperationException if this ServletContext was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
+     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
+     * {@link jakarta.servlet.annotation.WebListener}
+     *
+     * @since Servlet 6.1
+     */
+    default public void setResponseCharacterEncoding(Charset encoding) {
+        setResponseCharacterEncoding(encoding.name());
+    }
 }

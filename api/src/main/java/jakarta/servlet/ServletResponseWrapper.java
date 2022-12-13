@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -20,6 +20,7 @@ package jakarta.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.Locale;
 
 /**
@@ -74,13 +75,23 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to call setCharacterEncoding(String charset) on the wrapped response object.
+     * The default behavior of this method is to call setCharacterEncoding(String encoding) on the wrapped response object.
      *
      * @since Servlet 2.4
      */
     @Override
-    public void setCharacterEncoding(String charset) {
-        this.response.setCharacterEncoding(charset);
+    public void setCharacterEncoding(String encoding) {
+        this.response.setCharacterEncoding(encoding);
+    }
+
+    /**
+     * The default behavior of this method is to call setCharacterEncoding(Charset encoding) on the wrapped response object.
+     *
+     * @since Servlet 6.1
+     */
+    @Override
+    public void setCharacterEncoding(Charset encoding) {
+        this.response.setCharacterEncoding(encoding);
     }
 
     /**
