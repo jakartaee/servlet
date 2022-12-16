@@ -194,7 +194,7 @@ public interface HttpServletRequest extends ServletRequest {
      * </ul>
      * </p>
      * <p>
-     * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
+     * The returned object is immutable. Servlet 4.0 onwards compliant implementations must override this method.
      * </p>
      * 
      * @implSpec The default implementation returns a {@code
@@ -253,12 +253,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return a <code>String</code> specifying extra path information that comes after the servlet path but before the
      * query string in the request URL; or <code>null</code> if the URL does not have any extra path information. The path
-     * will be canonicalized as per section 3.5 of the specification. This method will not return any encoded characters
-     * unless the container is configured specifically to allow them.
+     * will be canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
      * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
-     * configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be configured
-     * to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
-     * IllegalArgumentException if this method is called for such suspicious paths.
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getPathInfo();
 
@@ -307,12 +310,15 @@ public interface HttpServletRequest extends ServletRequest {
      * of the application.
      *
      * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request.
-     * The path will be canonicalized as per section 3.5 of the specification. This method will not return any encoded
-     * characters unless the container is configured specifically to allow them.
+     * The path will be canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
      * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
-     * configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be configured
-     * to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
-     * IllegalArgumentException if this method is called for such suspicious paths.
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      * @see jakarta.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
@@ -432,12 +438,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return a <code>String</code> containing the path of the servlet being called, as specified in the request URL, or an
      * empty string if the servlet used to process the request is matched using the "/*" pattern. The path will be
-     * canonicalized as per section 3.5 of the specification. This method will not return any encoded characters unless the
-     * container is configured specifically to allow them.
+     * canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
      * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
-     * configured to not reject some suspicious sequences identified by 3.5.2, furthermore the container may be configured
-     * to allow such paths to only be accessed via safer methods like {@link #getRequestURI()} and to throw
-     * IllegalArgumentException if this method is called for such suspicious paths.
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getServletPath();
 
