@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -1245,8 +1245,6 @@ public interface ServletContext {
      * should be granted.
      *
      * @return the class loader of the web application represented by this ServletContext
-     *
-     * @throws SecurityException if a security manager denies access to the requested class loader
      *
      * @since Servlet 3.0
      */

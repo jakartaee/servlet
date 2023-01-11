@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -19,8 +19,6 @@
 package jakarta.servlet.http;
 
 import java.io.Serializable;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Locale;
@@ -76,12 +74,8 @@ public class Cookie implements Cloneable, Serializable {
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     static {
-        boolean enforced = AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
-            @Override
-            public Boolean run() {
-                return Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"));
-            }
-        });
+        boolean enforced = Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"));
+
         if (enforced) {
             TSPECIALS = "/()<>@,;:\\\"[]?={} \t";
         } else {
