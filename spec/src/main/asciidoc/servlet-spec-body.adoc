@@ -5,7 +5,7 @@
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2022 Contributors to the Eclipse Foundation.
+Copyright (c) 2023 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
@@ -221,12 +221,8 @@ servlet, may modify responses produced by servlets before sending them
 to the clients, or may respond to requests without delivering them to
 the servlet under the compliance with RFC 7234.
 
-A servlet container may place security
-restrictions on the environment in which a servlet executes. These
-restrictions may be placed using the permission architecture defined
-by the Java platform. For example some application servers may limit the
-creation of a `Thread` object to insure that other components of the
-container are not negatively impacted.
+A servlet container may place security restrictions on the environment in which
+a servlet executes.
 
 Java SE 11 is the minimum version of the
 underlying Java platform with which servlet containers must be built.
@@ -8571,6 +8567,9 @@ behaviour is aligned with `getHeader()`.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/415[Issue 415]::
 Add overloaded `setCharacterEncoding()` methods that support `Charset`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/443[Issue 443]::
+Remove references to the SecurityManager and associated APIs.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/453[Issue 453]::
 Add a security warning and a clarification of canonicalization requirements to
