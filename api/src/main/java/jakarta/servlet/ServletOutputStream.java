@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -325,10 +325,10 @@ public abstract class ServletOutputStream extends OutputStream {
     }
 
     /**
-     * Returns {@code true} if it is allowable to call any method that may write data (e.g. {@code write()}, {@code print()}
-     * or {@code flush}). In blocking mode, this method will always return {@code true}, but a subsequent call to a method
-     * that writes data may block. In non-blocking mode this method may return {@code false}, in which case it is illegal to
-     * call a method that writes data and an {@link IllegalStateException} MUST be thrown. When
+     * Returns {@code true} if it is allowable to call any method that may write data (i.e. {@code write()}, {@code print()}
+     * {@code println()} or {@code flush}). In blocking mode, this method will always return {@code true}, but a subsequent
+     * call to a method that writes data may block. In non-blocking mode this method may return {@code false}, in which case
+     * it is illegal to call a method that writes data and an {@link IllegalStateException} MUST be thrown. When
      * {@link WriteListener#onWritePossible()} is called, a call to this method that returned {@code true} is implicit.
      * <p>
      * If this method returns {@code false} and a {@link WriteListener} has been set via

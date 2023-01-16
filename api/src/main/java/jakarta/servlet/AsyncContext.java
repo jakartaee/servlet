@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -156,7 +156,9 @@ public interface AsyncContext {
      * This method returns immediately after passing the request and response objects to a container managed thread, on
      * which the dispatch operation will be performed. If this method is called before the container-initiated dispatch that
      * called <tt>startAsync</tt> has returned to the container, the dispatch operation will be delayed until after the
-     * container-initiated dispatch has returned to the container.
+     * container-initiated dispatch has returned to the container. If the output stream is in non-blocking mode when this
+     * method is called, the output stream will be closed as described by {@code ServletOutputStream#close} and the dispatch
+     * operation will be delayed until after the non-blocking write has completed.
      *
      * <p>
      * The dispatcher type of the request is set to <tt>DispatcherType.ASYNC</tt>. Unlike
@@ -277,6 +279,11 @@ public interface AsyncContext {
      * <tt>startAsync</tt> has returned to the container, then the call will not take effect (and any invocations of
      * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the container-initiated dispatch has
      * returned to the container.
+     *
+     * <p>
+     * If the output stream is in non-blocking mode when this method is called, the output stream will be closed as
+     * described by {@code ServletOutputStream#close} and this call to complete will not take effect (and any invocations of
+     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the non-blocking write has completed.
      */
     public void complete();
 

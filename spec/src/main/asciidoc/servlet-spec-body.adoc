@@ -2486,7 +2486,7 @@ This method returns
 `true` if a write to the `ServletOutputStream` will succeed, otherwise
 it will return `false`. If this method returns `true`, a write
 operation can be performed on the `ServletOutputStream`. If no further
-data can be written to the `ServletOutputStream`. then this method will
+data can be written to the `ServletOutputStream` then this method will
 return `false` till the underlying data is flushed at which point the
 container will invoke the `onWritePossible` method of the
 `WriteListener.` A subsequent call to this method will return `true`.
@@ -8559,6 +8559,12 @@ Clarify that Servlet containers are required to support HTTPS.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/164[Issue 164]::
 Clarify Javadoc for `ServletResponse` and `HttpServletResponse` methods that are
 NO-OPs once the response has been committed.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/273[Issue 273]::
+Clarify the meaning of "write operation" in the Javadoc for
+`ServletOutputStream.isReady()` and, in particular, that this does not include
+`ServletOutputStream.close()`, `AsyncContext.complete()` nor any of the
+`AsyncContext.dispatch()` methods.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/275[Issue 275]::
 Containers may provide an option to send redirects using a location header with
