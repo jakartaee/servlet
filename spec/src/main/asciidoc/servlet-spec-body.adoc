@@ -6094,10 +6094,11 @@ mapping.
 * A string beginning with a `"*."` prefix
 is used as an extension mapping.
 
-* The empty string (`+""+`) is a special URL pattern
-that exactly maps to the application's context root, i.e., requests of
-the form `http://host:port/<context-root>/`. In this case the path info is
-`"/"` and the servlet path is empty string (`+""+`).
+* The empty string (`+""+`) is a special URL pattern that exactly maps
+to the application's context root, i.e., requests of the form
+`http://host:port/<context-root>` or `http://host:port/<context-root>/`.
+In this case the path info is `"/"` and the servlet path is empty string
+(`+""+`).
 
 * A string containing only the `"/"`
 character indicates the "default" servlet of the application. In this
@@ -8559,6 +8560,12 @@ NO-OPs once the response has been committed.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/275[Issue 275]::
 Containers may provide an option to send redirects using a location header with
 a relative URL.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/300[Issue 300]::
+Correct the wording in section 12.2 since the context path is not always
+the empty string when a servlet is mapped using context root mapping.
+Also clarify that context root mapping occurs for URIs with or without the
+trailing `/`.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/316[Issue 316]::
 Clarify the behaviour of `HttpServletMapping.getMatchValue()`.
