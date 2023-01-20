@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -71,10 +71,22 @@ package jakarta.servlet.http;
  * <td>DEFAULT</td>
  * </tr>
  * <tr>
+ * <td>"MyServlet/index.html"</td>
+ * <td>""</td>
+ * <td>/</td>
+ * <td>DEFAULT</td>
+ * </tr>
+ * <tr>
  * <td>"/MyServlet"</td>
  * <td>MyServlet</td>
  * <td>/MyServlet</td>
  * <td>EXACT</td>
+ * </tr>
+ * <tr>
+ * <td>"MyServlet/foo"</td>
+ * <td>""</td>
+ * <td>/</td>
+ * <td>DEFAULT</td>
  * </tr>
  * <tr>
  * <td>"/foo.extension"</td>
@@ -83,8 +95,20 @@ package jakarta.servlet.http;
  * <td>EXTENSION</td>
  * </tr>
  * <tr>
+ * <td>"/bar/foo.extension"</td>
+ * <td>bar/foo</td>
+ * <td>*.extension</td>
+ * <td>EXTENSION</td>
+ * </tr>
+ * <tr>
  * <td>"/path/foo"</td>
  * <td>foo</td>
+ * <td>/path/*</td>
+ * <td>PATH</td>
+ * </tr>
+ * <tr>
+ * <td>"/path/foo/bar"</td>
+ * <td>foo/bar</td>
  * <td>/path/*</td>
  * <td>PATH</td>
  * </tr>
@@ -98,12 +122,10 @@ public interface HttpServletMapping {
     /**
      * <p>
      * Return the portion of the URI path that caused this request to be matched. If the {@link #getMappingMatch} value is
-     * {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch} value is
-     * {@code
-     * EXACT}, this method must return the portion of the path that matched the servlet, omitting any leading slash. If the
-     * {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return the value that matched
-     * the '*'. See the class javadoc for examples.
+     * {@code CONTEXT_ROOT} or {@code DEFAULT}, this method must return the empty string. If the {@link #getMappingMatch}
+     * value is {@code EXACT}, this method must return the portion of the path that matched the servlet, omitting any
+     * leading slash. If the {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return
+     * the value that matched the '*' excluding any leading '/'. See the class javadoc for examples.
      * </p>
      * 
      * @return the match.
@@ -112,11 +134,8 @@ public interface HttpServletMapping {
 
     /**
      * <p>
-     * Return the String representation for the {@code url-pattern} for this mapping. If the {@link #getMappingMatch} value
-     * is {@code
-     * CONTEXT_ROOT}, this method must return the empty string. If the {@link #getMappingMatch} value is {@code
-     * EXTENSION}, this method must return the pattern, without any leading slash. Otherwise, this method returns the
-     * pattern exactly as specified in the descriptor or Java configuration.
+     * Return the String representation for the {@code url-pattern} for this mapping. This method returns the pattern
+     * exactly as specified in the descriptor or Java configuration.
      * </p>
      * 
      * @return the String representation for the {@code url-pattern} for this mapping.
@@ -135,7 +154,7 @@ public interface HttpServletMapping {
 
     /**
      * <p>
-     * Return the {@link MappingMatch} for this instance
+     * Return the {@link MappingMatch} for this instance.
      * </p>
      * 
      * @return the {@code MappingMatch} for this instance.
