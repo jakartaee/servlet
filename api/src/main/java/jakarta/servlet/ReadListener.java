@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -34,14 +34,16 @@ public interface ReadListener extends EventListener {
      * When an instance of the <code>ReadListener</code> is registered with a {@link ServletInputStream}, this method will
      * be invoked by the container the first time when it is possible to read data. Subsequently the container will invoke
      * this method if and only if the {@link jakarta.servlet.ServletInputStream#isReady()} method has been called and has
-     * returned a value of <code>false</code> <em>and</em> data has subsequently become available to read.
+     * returned a value of <code>false</code>, data has subsequently become available to read and any previous call to this
+     * method has returned to the container.
      *
      * @throws IOException if an I/O related error has occurred during processing
      */
     public void onDataAvailable() throws IOException;
 
     /**
-     * Invoked when all data for the current request has been read.
+     * Invoked when all data for the current request has been read and any previous call to {@link #onDataAvailable()} has
+     * returned to the container.
      *
      * @throws IOException if an I/O related error has occurred during processing
      */
