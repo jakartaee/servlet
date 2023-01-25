@@ -8561,7 +8561,8 @@ link:https://github.com/eclipse-ee4j/servlet-api/issues/273[Issue 273]::
 Clarify the meaning of "write operation" in the Javadoc for
 `ServletOutputStream.isReady()` and, in particular, that this does not include
 `ServletOutputStream.close()`, `AsyncContext.complete()` nor any of the
-`AsyncContext.dispatch()` methods.
+`AsyncContext.dispatch()` methods. Further clarify the Javadoc regarding the
+serialization of asynchronous dispatches.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/275[Issue 275]::
 Containers may provide an option to send redirects using a location header with

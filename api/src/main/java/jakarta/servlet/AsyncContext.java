@@ -154,12 +154,22 @@ public interface AsyncContext {
      *
      * <p>
      * This method returns immediately after passing the request and response objects to a container managed thread, on
-     * which the dispatch operation will be performed. If this method is called before the container-initiated dispatch that
-     * called <tt>startAsync</tt> has returned to the container, the dispatch operation will be delayed until after the
-     * container-initiated dispatch has returned to the container. If the output stream is in non-blocking mode when this
-     * method is called, the output stream will be closed as described by {@code ServletOutputStream#close} and the dispatch
-     * operation will be delayed until after the non-blocking write has completed.
-     *
+     * which the dispatch operation will be performed. If this method is called during a container-initiated dispatch, the
+     * dispatch operation will be delayed until after the container-initiated dispatch has returned to the container. <br>
+     * Note: Container initiated dispatches include calls to:
+     * <ul>
+     * <li>{@link Servlet#service(ServletRequest, ServletResponse)} where {@link ServletRequest#startAsync()} or
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} is called</li>
+     * <li>{@link ReadListener#onDataAvailable()}</li>
+     * <li>{@link ReadListener#onAllDataRead()}</li>
+     * <li>{@link WriteListener#onWritePossible()}</li>
+     * </ul>
+     * 
+     * <p>
+     * If the output stream is in non-blocking mode when this method is called, the output stream will be closed as
+     * described by {@code ServletOutputStream#close} and the dispatch operation will be delayed until after any in progress
+     * non-blocking write has completed.
+     * 
      * <p>
      * The dispatcher type of the request is set to <tt>DispatcherType.ASYNC</tt>. Unlike
      * {@link RequestDispatcher#forward(ServletRequest, ServletResponse) forward dispatches}, the response buffer and
@@ -275,15 +285,23 @@ public interface AsyncContext {
      * <p>
      * It is legal to call this method any time after a call to {@link ServletRequest#startAsync()} or
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}, and before a call to one of the <tt>dispatch</tt>
-     * methods of this class. If this method is called before the container-initiated dispatch that called
-     * <tt>startAsync</tt> has returned to the container, then the call will not take effect (and any invocations of
-     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the container-initiated dispatch has
-     * returned to the container.
+     * methods of this class. If this method is called during a container-initiated dispatch, then the call will not take
+     * effect (including required listener invocations) until after the container-initiated dispatch has returned to the
+     * container. <br>
+     * Note: Container initiated dispatches include calls to:
+     * <ul>
+     * <li>{@link Servlet#service(ServletRequest, ServletResponse)} where {@link ServletRequest#startAsync()} or
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)} is called</li>
+     * <li>{@link ReadListener#onDataAvailable()}</li>
+     * <li>{@link ReadListener#onAllDataRead()}</li>
+     * <li>{@link WriteListener#onWritePossible()}</li>
+     * </ul>
      *
      * <p>
      * If the output stream is in non-blocking mode when this method is called, the output stream will be closed as
      * described by {@code ServletOutputStream#close} and this call to complete will not take effect (and any invocations of
-     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after the non-blocking write has completed.
+     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after any in progress non-blocking write has
+     * completed.
      */
     public void complete();
 

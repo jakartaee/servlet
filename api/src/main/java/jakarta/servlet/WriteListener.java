@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -32,7 +32,8 @@ public interface WriteListener extends EventListener {
      * When an instance of the WriteListener is registered with a {@link ServletOutputStream}, this method will be invoked
      * by the container the first time when it is possible to write data. Subsequently the container will invoke this method
      * if and only if the {@link jakarta.servlet.ServletOutputStream#isReady()} method has been called and has returned a
-     * value of <code>false</code> and a write operation has subsequently become possible.
+     * value of <code>false</code>. a write operation has subsequently become possible and any previous call to this method
+     * has returned to the container.
      *
      * @throws IOException if an I/O related error has occurred during processing
      */
