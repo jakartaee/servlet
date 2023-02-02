@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -20,7 +20,7 @@ package jakarta.servlet;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
- * Java Class represntation of an {@link MultipartConfig} annotation value.
+ * Java Class representation of an {@link MultipartConfig} annotation value.
  *
  * @since Servlet 3.0
  */
@@ -34,7 +34,7 @@ public class MultipartConfigElement {
     /**
      * Constructs an instance with defaults for all but location.
      *
-     * @param location defualts to "" if values is null.
+     * @param location defaults to "" if values is null.
      */
     public MultipartConfigElement(String location) {
         if (location == null) {
@@ -51,9 +51,9 @@ public class MultipartConfigElement {
      * Constructs an instance with all values specified.
      *
      * @param location the directory location where files will be stored
-     * @param maxFileSize the maximum size allowed for uploaded files
-     * @param maxRequestSize the maximum size allowed for multipart/form-data requests
-     * @param fileSizeThreshold the size threshold after which files will be written to disk
+     * @param maxFileSize the maximum size allowed (in bytes) for uploaded files
+     * @param maxRequestSize the maximum size allowed (in bytes) for multipart/form-data requests
+     * @param fileSizeThreshold the size threshold (in bytes) after which files will be written to disk
      */
     public MultipartConfigElement(String location, long maxFileSize, long maxRequestSize, int fileSizeThreshold) {
         if (location == null) {
@@ -88,27 +88,28 @@ public class MultipartConfigElement {
     }
 
     /**
-     * Gets the maximum size allowed for uploaded files.
+     * Gets the maximum size allowed (in bytes) for uploaded files.
      *
-     * @return the maximum size allowed for uploaded files
+     * @return the maximum size allowed (in bytes) for uploaded files
      */
     public long getMaxFileSize() {
         return this.maxFileSize;
     }
 
     /**
-     * Gets the maximum size allowed for multipart/form-data requests.
+     * Gets the maximum size allowed (in bytes) for multipart/form-data requests.
      *
-     * @return the maximum size allowed for multipart/form-data requests
+     * @return the maximum size allowed (in bytes) for multipart/form-data requests
      */
     public long getMaxRequestSize() {
         return this.maxRequestSize;
     }
 
     /**
-     * Gets the size threshold after which files will be written to disk.
+     * Gets the size threshold (in bytes) after which files will be written to disk. A value of zero means files must always
+     * be written to disk.
      *
-     * @return the size threshold after which files will be written to disk
+     * @return the size threshold (in bytes) after which files will be written to disk
      */
     public int getFileSizeThreshold() {
         return this.fileSizeThreshold;

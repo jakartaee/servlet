@@ -5,11 +5,11 @@
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="5.1">
+            version="6.0">
   <xsd:annotation>
     <xsd:documentation>
 
-      Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+      Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
       
       This program and the accompanying materials are made available under the
       terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,9 +29,9 @@
   <xsd:annotation>
     <xsd:documentation>
       <![CDATA[
-      This is the XML Schema for the Servlet 5.1 deployment descriptor.
-      The deployment descriptor must be named "WEB-INF/web.xml" in the
-      web application's war file.  All Servlet deployment descriptors
+      This is the XML Schema for the Servlet 6.0 deployment descriptor.
+      The deployment descriptor must be named "META-INF/web-fragment.xml"
+      in the web fragment's jar file.  All Servlet deployment descriptors
       must indicate the web application schema by using the Jakarta EE
       namespace:
       
@@ -40,18 +40,18 @@
       and by indicating the version of the schema by
       using the version element as shown below:
       
-      <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+      <web-fragment xmlns="https://jakarta.ee/xml/ns/jakartaee"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="..."
-      version="5.1">
+      version="6.0">
       ...
-      </web-app>
+      </web-fragment>
       
       The instance documents may indicate the published version of
       the schema using the xsi:schemaLocation attribute for Jakarta EE
       namespace with the following location:
       
-      https://jakarta.ee/xml/ns/jakartaee/web-app_5_1.xsd
+      https://jakarta.ee/xml/ns/jakartaee/web-fragment_6_0.xsd
       
       ]]>
     </xsd:documentation>
@@ -75,18 +75,18 @@
     </xsd:documentation>
   </xsd:annotation>
 
-  <xsd:include schemaLocation="web-common_5_1.xsd"/>
+  <xsd:include schemaLocation="web-common_6_0.xsd"/>
 
 
 <!-- **************************************************** -->
 
-  <xsd:element name="web-app"
-               type="jakartaee:web-appType">
+  <xsd:element name="web-fragment"
+               type="jakartaee:web-fragmentType">
     <xsd:annotation>
       <xsd:documentation>
 
-        The web-app element is the root of the deployment
-        descriptor for a web application.  Note that the sub-elements
+        The web-fragment element is the root of the deployment
+        descriptor for a web fragment.  Note that the sub-elements
         of this element can be in the arbitrary order. Because of
         that, the multiplicity of the elements of distributable,
         session-config, welcome-file-list, jsp-config, login-config,
@@ -131,10 +131,9 @@
         <xsd:documentation>
 
           The ejb-local-ref-name element contains the name of an 
-          enterprise bean reference. The enterprise 
-          bean reference is an entry in the web
-          application's environment and is relative to the
-          java:comp/env context.  The name must be unique within
+          enterprise bean reference. The enterprise bean reference
+          is an entry in the web application's environment and is relative
+          to the java:comp/env context.  The name must be unique within
           the web application.
           
           It is recommended that name is prefixed with "ejb/".
@@ -148,11 +147,11 @@
       <xsd:annotation>
         <xsd:documentation>
 
-          The ejb-ref-name element contains the name of an 
-          enterprise bean reference. The enterprise bean 
-          reference is an entry in the web application's environment 
-          and is relative to the java:comp/env context.  
-          The name must be unique within the web application.
+          The ejb-ref-name element contains the name of an  
+          enterprise bean reference. The enterprise bean reference 
+          is an entry in the web application's environment and is relative 
+          to the java:comp/env context.  The name must be unique within
+          the web application.
           
           It is recommended that name is prefixed with "ejb/".
           
@@ -249,68 +248,14 @@
 
 <!-- **************************************************** -->
 
-  <xsd:complexType name="web-appType">
+  <xsd:complexType name="web-fragmentType">
     <xsd:choice minOccurs="0"
                 maxOccurs="unbounded">
-      <xsd:element name="module-name"
-                   type="jakartaee:string"
-                   minOccurs="0"/>
+      <xsd:element name="name"
+                   type="jakartaee:java-identifierType"/>
       <xsd:group ref="jakartaee:web-commonType"/>
-      <xsd:element name="default-context-path"
-                   type="jakartaee:string">
-        <xsd:annotation>
-          <xsd:documentation>
-
-            When specified, this element provides a default context path
-            of the web application. An empty value for this element must cause
-            the web application to be deployed at the root for the container.
-            Otherwise, the default context path must start with
-            a "/" character but not end with a "/" character.
-            Servlet containers may provide vendor specific configuration
-            options that allows specifying a value that overrides the value
-            specified here.
-            
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="request-character-encoding"
-                   type="jakartaee:string">
-        <xsd:annotation>
-          <xsd:documentation>
-
-            When specified, this element provides a default request
-            character encoding of the web application.
-            
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="response-character-encoding"
-                   type="jakartaee:string">
-        <xsd:annotation>
-          <xsd:documentation>
-
-            When specified, this element provides a default response
-            character encoding of the web application.
-            
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="deny-uncovered-http-methods"
-                   type="jakartaee:emptyType">
-        <xsd:annotation>
-          <xsd:documentation>
-
-            When specified, this element causes uncovered http methods
-            to be denied. For every url-pattern that is the target of a
-            security-constrant, this element causes all HTTP methods that
-            are NOT covered (by a security constraint) at the url-pattern
-            to be denied.
-            
-          </xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-      <xsd:element name="absolute-ordering"
-                   type="jakartaee:absoluteOrderingType"/>
+      <xsd:element name="ordering"
+                   type="jakartaee:orderingType"/>
     </xsd:choice>
     <xsd:attributeGroup ref="jakartaee:web-common-attributes"/>
   </xsd:complexType>
@@ -318,7 +263,7 @@
 
 <!-- **************************************************** -->
 
-  <xsd:complexType name="absoluteOrderingType">
+  <xsd:complexType name="orderingType">
     <xsd:annotation>
       <xsd:documentation>
 
@@ -326,8 +271,37 @@
         
       </xsd:documentation>
     </xsd:annotation>
-    <xsd:choice minOccurs="0"
-                maxOccurs="unbounded">
+    <xsd:sequence>
+      <xsd:element name="after"
+                   type="jakartaee:ordering-orderingType"
+                   minOccurs="0"
+                   maxOccurs="1"/>
+      <xsd:element name="before"
+                   type="jakartaee:ordering-orderingType"
+                   minOccurs="0"
+                   maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+<!-- **************************************************** -->
+
+  <xsd:complexType name="ordering-orderingType">
+    <xsd:annotation>
+      <xsd:documentation>
+
+        This element contains a sequence of "name" elements, each of
+        which
+        refers to an application configuration resource by the "name"
+        declared on its web.xml fragment.  This element can also contain
+        a single "others" element which specifies that this document
+        comes
+        before or after other documents within the application.
+        See section 8.2.2 of the specification for details.
+        
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
       <xsd:element name="name"
                    type="jakartaee:java-identifierType"
                    minOccurs="0"
@@ -336,7 +310,7 @@
                    type="jakartaee:ordering-othersType"
                    minOccurs="0"
                    maxOccurs="1"/>
-    </xsd:choice>
+    </xsd:sequence>
   </xsd:complexType>
 
 </xsd:schema>

@@ -1,11 +1,11 @@
 :xrefstyle: full
-:spec-version: 5.1
-:spec-version-underscore: 5_1
+:spec-version: 6.1
+:spec-version-underscore: 6_1
 
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2020 Contributors to the Eclipse Foundation.
+Copyright (c) 2023 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
@@ -80,7 +80,7 @@ referenced throughout this specification:
 
 * Jakarta EE Platform, version 9
 
-* Jakarta Server Pages™ (JSP), version 3.0
+* Jakarta Server Pages™ (JSP), version 3.1
 
 * Java Naming and Directory Interface™ (JNDI).
 
@@ -208,9 +208,8 @@ web server, or installed as an add-on component to a web server via that
 server’s native extension API. Servlet containers can also be built into
 or possibly installed into web-enabled application servers.
 
-All servlet containers must support HTTP as a
-protocol for requests and responses, but additional
-request/response-based protocols such as HTTPS (HTTP over SSL) may be
+All servlet containers must support HTTP and HTTPS as protocols for requests
+and responses, but additional request/response-based protocols may be
 supported. The required versions of the HTTP specification that a
 container must implement are HTTP/1.1 and HTTP/2. When supporting
 HTTP/2, servlet containers must support the “h2” and “h2c” protocol
@@ -222,14 +221,10 @@ servlet, may modify responses produced by servlets before sending them
 to the clients, or may respond to requests without delivering them to
 the servlet under the compliance with RFC 7234.
 
-A servlet container may place security
-restrictions on the environment in which a servlet executes. These
-restrictions may be placed using the permission architecture defined
-by the Java platform. For example some application servers may limit the
-creation of a `Thread` object to insure that other components of the
-container are not negatively impacted.
+A servlet container may place security restrictions on the environment in which
+a servlet executes.
 
-Java SE 8 is the minimum version of the
+Java SE 11 is the minimum version of the
 underlying Java platform with which servlet containers must be built.
 
 === An Example
@@ -302,13 +297,9 @@ each request that the servlet container routes to an instance of a
 servlet.
 
 The handling of concurrent requests to a web
-application generally requires that the web developer design servlets
+application requires that the web developer design servlets
 that can deal with multiple threads executing within the `service`
 method at a particular time.
-
-Generally the web container handles concurrent
-requests to the same servlet by concurrent execution of the `service`
-method on different threads.
 
 ==== HTTP Specific Request Handling Methods
 
@@ -336,13 +327,16 @@ an Application Developer is concerned with the `doGet` and
 `doPost` methods. The other methods are considered to be methods for use
 by programmers very familiar with HTTP programming.
 
+==== HEAD Method
+The `doHead` method in `HttpServlet`, by default, directly calls the `doGet` method and relies on the container to implement HEAD behaviour of the HTTP protocol.
+However, if the "jakarta.servlet.http.legacyDoHead" `ServletConfig` init parameter is set to "TRUE" then the `doGet` method is called with the `ServletResponse` wrapped to provide  only the headers produced by the `doGet` method.
+The legacy mode is deprecated as it may not be accurate in producing the same heads as `GET` method would have returned and may be removed in a future release.
+
 ==== Additional Methods
 
 The `doPut` and `doDelete` methods allow
 Servlet Developers to support HTTP/1.1 clients that employ these
-features. The `doHead` method in `HttpServlet` is a specialized form of
-the `doGet` method that returns only the headers produced by the `doGet`
-method. The `doOptions` method responds with which HTTP methods are
+features.  The `doOptions` method responds with which HTTP methods are
 supported by the servlet. The `doTrace` method generates a response
 containing all instances of the headers sent in the `TRACE` request.
 
@@ -369,35 +363,12 @@ the servlet container provides instances of the servlet.
 
 For a servlet not hosted in a distributed
 environment (the default), the servlet container must use only one
-instance per servlet declaration. However, for a servlet implementing
-the `SingleThreadModel` interface, the servlet container may instantiate
-multiple instances to handle a heavy request load and serialize requests
-to a particular instance.
+instance per servlet declaration.
 
 In the case where a servlet was deployed as
 part of an application marked in the deployment descriptor as
 distributable, a container may have only one instance per servlet
 declaration per Java Virtual Machine (JVM™).
-However, if the servlet in a distributable application implements the
-`SingleThreadModel` interface, the container may instantiate multiple
-instances of that servlet in each JVM of the container.
-
-==== Note About The Single Thread Model
-
-The use of the `SingleThreadModel` interface
-guarantees that only one thread at a time will execute in a given
-servlet instance’s `service` method. It is important to note that this
-guarantee only applies to each servlet instance, since the container may
-choose to pool such objects. Objects that are accessible to more than
-one servlet instance at a time, such as instances of `HttpSession`, may
-be available at any particular time to multiple servlets, including
-those that implement `SingleThreadModel`.
-
-It is recommended that a developer take other
-means to resolve those issues instead of implementing this interface,
-such as avoiding the usage of an instance variable or synchronizing the
-block of the code accessing those resources. The `SingleThreadModel`
-Interface has been deprecated since version 2.4 of this specification.
 
 === Servlet Life Cycle
 
@@ -491,25 +462,8 @@ requests through the `service` method of the servlet. To handle the
 requests, the Application Developer must make adequate provisions for
 concurrent processing with multiple threads in the `service` method.
 
-An alternative for the Application Developer was to implement the `SingleThreadModel`
-interface but this is now deprecated. The `SingleThreadModel` interface
-requires the container to guarantee that there is only one request
-thread at a time in the `service` method. A servlet container may
-satisfy this requirement by serializing requests on a servlet, or by
-maintaining a pool of servlet instances. If the servlet is part of a web
-application that has been marked as distributable, the container may
-maintain a pool of servlet instances in each JVM that the application is
-distributed across.
-
-For servlets not implementing the
-`SingleThreadModel` interface, if the `service` method (or methods such
-as `doGet` or `doPost` to which the `service` method of the
-`HttpServlet` abstract class is dispatched) has been defined with the
-`synchronized` keyword, the servlet container cannot use the instance
-pool approach, but must serialize requests through it. It is strongly
-recommended that Developers not synchronize the `service` method (or
-methods dispatched to it) in these circumstances because of detrimental
-effects on performance.
+It is strongly recommended that Developers not synchronize the `service` method
+(or methods dispatched to it) because of the detrimental effects on performance.
 
 ===== Exceptions During Request Handling
 
@@ -1281,7 +1235,7 @@ the part.
 
 * If the servlet container does not provide the
 `multi-part/form-data` processing, the data will be available through
-`HttpServletReuqest.getInputStream`.
+`HttpServletRequest.getInputStream`.
 
 === Attributes
 
@@ -1343,6 +1297,172 @@ If the `getIntHeader` method cannot translate
 the header value to an `int`, a `NumberFormatException` is thrown. If
 the `getDateHeader` method cannot translate the header to a `Date`
 object, an `IllegalArgumentException` is thrown.
+
+=== Request URI Path Processing
+The path portion of the URI of an HTTP identifies the resource to be processed. As URI paths may have various non-canonical forms, it is important that all containers process URI paths in the same way so that matching to security constraints and resources is identical.
+
+The process described here adapts and extends the URI canonicalization process described in [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986) to create a standard Servlet URI path canonicalization process that ensures that URIs can be mapped to Servlets, Filters and security constraints in an unambiguous manner. It is also intended to provide information to reverse proxy implementations so they are aware of how requests they pass to servlet containers will be processed.
+
+==== Obtaining the URI Path
+HTTP/1.0:: The URI path is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are the URI path. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path.
+
+HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
+
+HTTP/2:: The URI path is the `:path` pseudo header as defined by [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540#section-8.1.2.3) and is passed unchanged to stage 2.
+
+HTTP/3:: The URI path is the `:path` pseudo header as currently defined by the [draft RFC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34).
+
+Other protocols:: Containers may support other protocols. Containers should extract an appropriate URI path for the request from the protocol and pass it to stage 2.
+
+==== URI Path Canonicalization
+
+Servlet containers may implement the standard Servlet URI path canonicalization in any manner they see fit as long as the end result is identical to the end result of the process described here. Servlet containers may provide container specific configuration options to vary the standard canonicalization process. Any such variations may have security implications and both Servlet container implementors and users are advised to be sure that they understand the implications of any such container specific canonicalization options.
+
+. **Discard fragment.**
++
+The path is split by the first occurrence of any `"\#"` character. The `"#"` and following fragment are discarded and the path is replaced with the character sequence preceding the `"#"` character.
+
+. **Separation of path and query.**
++
+The URI is split by the first occurrence of any `"?"` character to path and query.  The query is preserved for later handling and the following steps applied to the path.
+
+. **Split path into segments.**
++
+The path is split into segments using the `"/"` character as a prefix to each segment. The separating `"/"` does not form part of the resulting segments.   For example, the path `"/foo/bar/"` is split into 3 segments: `"foo"`, `"bar"` and `""`. The prefix `"/"` for the fist segment is optional, but URIs without a leading `"/"` should be rejected below.
+
+. **Remove path parameters.**
++
+Any segment containing the `";"` character is split at the first occurrence of `";"`. The segment is replaced by the character sequence preceding the `";"`. The characters following the `";"` are considered path parameters and may be preserved by the container for later decoding and/or processing (eg `jsessionid`).
+
+. **Decode.**
++
+Octets that are encoded in `%nn` form are decoded in each segment. The resulting octet sequence is treated as UTF-8 and converted to a character sequence that replaces the segment.
+
+. **Remove Empty Segments.**
++
+Empty segments, other than the last segment, are removed.  Containers may be configured to retain all empty segments.
+
+. **Remove dot-segments.**
++
+All segments that are exactly `"."` are removed from the segment series. Segments that are exactly `".."` and that are preceded by a non `".."` segment are removed together with the preceding segment. This normalization differs from RFC3986 in that segments with parameters may be treated as dot segments.
+
+. **Concatenate segments.**
++
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`. If a segment contains the "/" or "%" characters, and the container is configured to not reject the request for containing an encoded `"/"`, then the container should re-encode those characters to the %nn form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+
+. **Mapping URI to context and resource.**
++
+The decoded path is used to map the request to a context and resource within the context. This form of the URI path is used for all subsequent mapping (web applications, servlet, filters and security constraints).
+
+. **Rejecting Suspicious Sequences.**
++
+If suspicious sequences are discovered during the prior processing steps, the request must be rejected with a 400 bad request rather than dispatched to the target servlet. If a context is matched then the error handling of the context may be used to generate the 400 response. By default, the set of suspicious sequences is defined below, but may be configured differently by a container:
+
+  * The presence of a fragment in the URI
+  * Any path not starting with the `"/"` character (e.g. `path/info`)
+  * Any path starting with an initial segment of `".."` (e.g. `/../path/info`)
+  * The encoded `"/"` character (e.g. `/path%2Finfo`)
+  * Any `"."` or `".."` segment that had a path parameter (e.g. `/path/..;/info`)
+  * Any `"."` or `".."` segment with any encoded characters (e.g. `/path/%2e%2e/info`)
+  * If empty segments are not removed, then `".."` segment preceded by an empty segment (e.g. `/path//../info`)
+  * Any empty segment other than the last segment, with parameters (e.g. `/path/;param/info` )
+  * The `"\"` character encoded or not. (e.g. `/path\info`)
+  * Any control characters either encoded or not.  (e.g. `/path%00/info`)
+  * Any illegal hex sequences following a % character
+  * Any illegal UTF-8 code sequences.
+
+==== Example URIs
+. Example URIs
+|===
+| Encoded URI path  | Decoded Path | Rejected
+
+| `foo/bar` | `/foo/bar` | 400 must start with /
+| `/foo/bar` | `/foo/bar` | 
+| `/foo/bar;jsessionid=1234` | `/foo/bar` | 
+| `/foo/bar/` | `/foo/bar/` | 
+| `/foo/bar/;jsessionid=1234` | `/foo/bar/` | 
+| `/foo;/bar;` | `/foo/bar` | 
+| `/foo;/bar;/;` | `/foo/bar/` | 
+| `/foo%00/bar/` | `/foo[NUL]/bar/` | 400 control character
+| `/foo%7Fbar` | `/foo[DEL]bar` | 400 control character
+| `/foo%2Fbar` | `/foo%2Fbar` | 400 encoded /
+| `/foo%2Fb%25r` | `/foo%2Fb%25r` | 400 encoded /
+| `/foo/b%25r` | `/foo/b%r` |
+| `/foo\bar` | `/foo\bar` | 400 backslash character
+| `/foo%5Cbar` | `/foo\bar` | 400 backslash character
+| `/foo;%2F/bar` | `/foo/bar` | 400 encoded /
+| `/foo/./bar` | `/foo/bar` | 
+| `/foo/././bar` | `/foo/bar` | 
+| `/./foo/bar` | `/foo/bar` | 
+| `/foo/%2e/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.;/bar` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/%2e;/bar` | `/foo/bar` | 400 encoded dot segment
+| `/foo/.%2Fbar` | `/foo/.%2Fbar` | 400 encoded /
+| `/foo/.%5Cbar` | `/foo/.\bar` | 400 backslash character
+| `/foo/bar/.` | `/foo/bar` | 
+| `/foo/bar/./` | `/foo/bar/` | 
+| `/foo/bar/.;` | `/foo/bar` | 400 dot segment with parameter
+| `/foo/bar/./;` | `/foo/bar/` | 
+| `/foo/.bar` | `/foo/.bar` | 
+| `/foo/../bar` | `/bar` | 
+| `/foo/../../bar` | `/../bar` | 400 leading dot-dot-segment
+| `/../foo/bar` | `/../foo/bar` | 400 leading dot-dot-segment
+| `/foo/%2e%2E/bar` | `/bar` | 400 encoded dot segment
+| `/foo/%2e%2e/%2E%2E/bar` | `/../bar` | 400 leading dot-dot-segment & encoded dot segment
+| `/foo/./../bar` | `/bar` | 
+| `/foo/..;/bar` | `/bar` | 400 dot segment with parameter
+| `/foo/%2e%2E;/bar` | `/bar` | 400 encoded dot segment
+| `/foo/..%2Fbar` | `/foo/..%2Fbar` | 400 encoded /
+| `/foo/..%5Cbar` | `/foo/..\bar` | 400 backslash character
+| `/foo/bar/..` | `/foo` | 
+| `/foo/bar/../` | `/foo/` | 
+| `/foo/bar/..;` | `/foo` | 400 dot segment with parameter
+| `/foo/bar/../;` | `/foo/` | 
+| `/foo/..bar` | `/foo/..bar` | 
+| `/foo/pass:[...]/bar` | `/foo/pass:[...]/bar` |
+| `/foo//bar` | `/foo/bar` | 
+| `//foo//bar//` | `/foo/bar/` | 
+| `/;/foo;/;/bar/;/;` | `/foo/bar/` | 400 empty segment with parameters
+| `/foo//../bar` | `/bar` | 
+| `/foo/;/../bar` | `/bar` | 400 empty segment with parameters
+| `/foo%E2%82%ACbar` | `/foo€bar` | 
+| `/foo%20bar` | `/foo bar` | 
+| `/foo%E2%82` | `/foo%E2%82` | 400 decode error
+| `/foo%E2%82bar` | `/foo%E2%82bar` | 400 decode error
+| `/foo%-1/bar` | `/foo%-1/bar` | 400 decode error
+| `/foo%XX/bar` | `/foo%XX/bar` | 400 decode error
+| `/foo%/bar` | `/foo%/bar` | 400 decode error
+| `/foo/bar%0` | `/foo/bar%0` | 400 decode error
+| `/good%20/bad%/%20mix%` | `/good /bad%/%20mix%` | 400 decode error
+| `/foo/bar?q` | `/foo/bar` | 
+| `/foo/bar#f` | `/foo/bar` | 400 fragment
+| `/foo/bar?q#f` | `/foo/bar` | 400 fragment
+| `/foo/bar/?q` | `/foo/bar/` | 
+| `/foo/bar/#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar/?q#f` | `/foo/bar/` | 400 fragment
+| `/foo/bar;?q` | `/foo/bar` | 
+| `/foo/bar;#f` | `/foo/bar` | 400 fragment
+| `/foo/bar;?q#f` | `/foo/bar` | 400 fragment
+| `/` | `/` | 
+| `//` | `/` | 
+| `/;/` | `/` | 400 empty segment with parameters
+| `/.` | `/` | 
+| `/..` | `/..` | 400 leading dot-dot-segment
+| `/./` | `/` | 
+| `/../` | `/../` | 400 leading dot-dot-segment
+| `foo/bar/` | `/foo/bar/` | 400 must start with /
+| `./foo/bar/` | `/foo/bar/` | 400 must start with /
+| `%2e/foo/bar/` | `/foo/bar/` | 400 must start with / & encoded dot segment
+| `../foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment
+| `.%2e/foo/bar/` | `/../foo/bar/` | 400 must start with / & leading dot-dot-segment & encoded dot segment
+| `;/foo/bar/` | `/foo/bar/` | 400 must start with / & empty segment with parameters
+| `/#f` | `/` | 400 fragment
+| `#f` | `/` | 400 fragment & must start with /
+| `/?q` | `/` | 
+| `?q` | `/` | 400 must start with /
+
+|===
+
 
 === Request Path Elements
 
@@ -1570,11 +1690,9 @@ cache.
 The `HttpServletRequest` interface provides
 the `getCookies` method to obtain an array of cookies that are present
 in the request. These cookies are data sent from the client to the
-server on every request that the client makes. Typically, the only
-information that the client sends back as part of a cookie is the cookie
-name and the cookie value. Other cookie attributes that can be set when
-the cookie is sent to the browser, such as comments, are not typically
-returned. The specification also allows for the cookies to be `HttpOnly`
+server on every request that the client makes. The only information that
+the client sends back as part of a cookie is the cookie name and the cookie
+value. The specification also allows for the cookies to be `HttpOnly`
 cookies. `HttpOnly` cookies indicate to the client that they should not
 be exposed to client-side scripting code (it’s not filtered out unless
 the client knows to look for this attribute). The use of `HttpOnly`
@@ -2364,7 +2482,7 @@ This method returns
 `true` if a write to the `ServletOutputStream` will succeed, otherwise
 it will return `false`. If this method returns `true`, a write
 operation can be performed on the `ServletOutputStream`. If no further
-data can be written to the `ServletOutputStream`. then this method will
+data can be written to the `ServletOutputStream` then this method will
 return `false` till the underlying data is flushed at which point the
 container will invoke the `onWritePossible` method of the
 `WriteListener.` A subsequent call to this method will return `true`.
@@ -2390,13 +2508,14 @@ The following convenience methods exist in the
 
 * `sendError`
 
-The `sendRedirect` method will set the
-appropriate headers and content body to redirect the client to a
-different URL. It is legal to call this method with a relative URL path,
-however the underlying container must translate the relative path to a
-fully qualified URL for transmission back to the client. If a partial
-URL is given and, for whatever reason, cannot be converted into a valid
-URL, then this method must throw an `IllegalArgumentException`.
+The `sendRedirect` method will set the appropriate headers and content body to
+redirect the client to a different URL.
+It is legal to call this method with a relative URL path.
+The underlying container may provide an option to use the relative URL path as
+provided but if no such option is provided it must translate the relative path
+to a fully qualified URL for transmission back to the client.
+If a partial URL is given and, for whatever reason, cannot be converted into a
+valid URL, then this method must throw an `IllegalArgumentException`.
 
 The `sendError` method will set the
 appropriate headers and content body for an error message to return to
@@ -2688,20 +2807,26 @@ example, the developer may wish to extend the response object with
 higher level output objects than the output stream or the writer, such
 as API that allows DOM objects to be written back to the client.
 
-In order to support this style of filter the
-container must support the following requirement. When a filter invokes
-the `doFilter` method on the container’s filter chain implementation,
-the container must ensure that the request and response object that it
+In order to support this style of filter the container must support
+the following requirements:
+
+ * When a filter invokes the `doFilter` method on the container’s
+filter chain implementation, the container must ensure that
+the request and response objects that it
 passes to the next entity in the filter chain, or to the target web
 resource if the filter was the last in the chain, is the same object
 that was passed into the `doFilter` method by the calling filter.
-
-The same requirement of wrapper object
-identity applies to the calls from a servlet or a filter to
-`RequestDispatcher.forward` or `RequestDispatcher.include`, when the
-caller wraps the request or response objects. In this case, the request
-and response objects seen by the called servlet must be the same wrapper
-objects that were passed in by the calling servlet or filter.
+ * When a filter or servlet calls `RequestDispatcher.forward` or
+`RequestDispatcher.include`, then the request and response objects
+seen by the called filter(s) and/or servlet must either:
+be the same wrapper objects that were passed; or wrappers of the
+objects that were passed.
+ * When `startAsync(ServletRequest, ServletResponse)`
+is used to commence an asynchronous cycle then the request and response objects
+seen by any filter(s) and/or servlet subsequent to an `AsyncContext.dispatch()`
+(or overloaded variant) must either:
+be the same wrapper objects that were passed; or wrappers of the
+objects that were passed.
 
 ==== Filter Environment
 
@@ -3973,7 +4098,7 @@ following:
 * E, B, F, <no id>, C, D
 * E, B, F, <no id>, D, C
 * E, B, F, D, <no id>, C
-* E, B, F, D, <no id>, D
+* B, E, F, D, <no id>, C
 
 --
 
@@ -4801,14 +4926,14 @@ The `getRequestDispatcher` method takes a
 `ServletContext`. This path must be relative to the root of the
 `ServletContext` and begin with a `"/"`, or be empty. The method uses
 the path to look up a servlet, using the servlet path matching rules in
-<<Mapping Requests to Servlets>>, wraps
+<<Mapping Requests to Servlets>>, associates
 it with a `RequestDispatcher` object, and returns the resulting object.
 If no servlet can be resolved based on the given path, a
 `RequestDispatcher` is provided that returns the content for that path.
 
 The `getNamedDispatcher` method takes a
 `String` argument indicating the name of a servlet known to the
-`ServletContext`. If a servlet is found, it is wrapped with a
+`ServletContext`. If a servlet is found, it is associated with a
 `RequestDispatcher` object and the object is returned. If no servlet is
 associated with the given name, the method must return `null`.
 
@@ -4891,6 +5016,14 @@ then the default servlet MUST throw `FileNotFoundException`. If the
 exception isn't caught and handled, and the response hasn’t been
 committed, the status code MUST be set to 500.
 
+Any references to the request or response objects taken by filter(s)
+and/or servlets invoked by the `include` call must continue to act as
+the included request/response even after the dispatch has returned.
+Specifically any references to the request or response held by
+asynchronous processing commenced by the included resource will
+continue to act as the included request or response, even after
+the dispatch to the include has returned.
+
 ==== Included Request Parameters
 
 Except for servlets obtained by using the
@@ -4946,7 +5079,15 @@ occurs in the target of the `RequestDispatcher.forward()` the exception
 may be propagated back through all the calling filters and servlets and
 eventually back to the container
 
-==== Query String
+Any references to the request or response objects taken by filter(s)
+and/or servlets invoked by the `forward` call must continue to act as
+the forwarded request/response even after the dispatch has returned.
+Specifically any references to the request or response held by
+asynchronous processing commenced by the forwarded resource will
+continue to act as the forwarded request or response, even after
+the dispatch to the include has returned.
+
+==== Forwarded Query String
 
 The request dispatching mechanism is
 responsible for aggregating query string parameters when forwarding or
@@ -5370,15 +5511,20 @@ a `RequestDispatcher.forward` to the error resource had been performed.
 |`jakarta.servlet.error.request_uri`
 |`java.lang.String`
 
+|`jakarta.servlet.error.query_string`
+|`java.lang.String`
+
 |`jakarta.servlet.error.servlet_name`
 |`java.lang.String`
 |===
 
 These attributes allow the servlet to generate
 specialized content depending on the status code, the exception type,
-the error message, the exception object propagated, and the URI of the
+the error message, the exception object propagated, the URI of the
 request processed by the servlet in which the error occurred (as
-determined by the `getRequestURI` call), and the logical name of the
+determined by the `getRequestURI` call), the query string of the
+request processed by the servlet in which the error occurred (as
+determined by the `getQueryString` call) and the logical name of the
 servlet in which the error occurred.
 
 With the introduction of the exception object
@@ -5948,10 +6094,11 @@ mapping.
 * A string beginning with a `"*."` prefix
 is used as an extension mapping.
 
-* The empty string (`+""+`) is a special URL pattern
-that exactly maps to the application's context root, i.e., requests of
-the form `http://host:port/<context-root>/`. In this case the path info is
-`"/"` and the servlet path and context path is empty string (`+""+`).
+* The empty string (`+""+`) is a special URL pattern that exactly maps
+to the application's context root, i.e., requests of the form
+`http://host:port/<context-root>` or `http://host:port/<context-root>/`.
+In this case the path info is `"/"` and the servlet path is empty string
+(`+""+`).
 
 * A string containing only the `"/"`
 character indicates the "default" servlet of the application. In this
@@ -6360,11 +6507,10 @@ public @interface HttpMethodConstraint {
 |===
 |Element
 |Description
+|value
 |Default
 
-|value
-|The HTTP protocol method name
-|
+
 
 
 |`emptyRoleSemantic`
@@ -8398,10 +8544,128 @@ for Dependency Injection" of the Jakarta EE Platform 9 specification.
 This document is the final release of the
 Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
 
+=== Changes Since Jakarta Servlet 6.0
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
+A new attribute, `jakarta.servlet.error.query_string`, has been added to the
+attributes that must be set on the request as part of an error dispatch.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/95[Issue 95]::
+Clarify that Servlet containers are required to support HTTPS.
+ 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/164[Issue 164]::
+Clarify Javadoc for `ServletResponse` and `HttpServletResponse` methods that are
+NO-OPs once the response has been committed.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/273[Issue 273]::
+Clarify the meaning of "write operation" in the Javadoc for
+`ServletOutputStream.isReady()` and, in particular, that this does not include
+`ServletOutputStream.close()`, `AsyncContext.complete()` nor any of the
+`AsyncContext.dispatch()` methods. Further clarify the Javadoc regarding the
+serialization of asynchronous dispatches.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/275[Issue 275]::
+Containers may provide an option to send redirects using a location header with
+a relative URL.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/300[Issue 300]::
+Correct the wording in section 12.2 since the context path is not always
+the empty string when a servlet is mapped using context root mapping.
+Also clarify that context root mapping occurs for URIs with or without the
+trailing `/`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/316[Issue 316]::
+Clarify the behaviour of `HttpServletMapping.getMatchValue()`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/325[Issue 325]::
+Clarify the behaviour of `getDateHeader()` and `getIntHeader()` when multiple
+headers with the same name are present in the `HttpServletRequest`. The expected
+behaviour is aligned with `getHeader()`. 
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/415[Issue 415]::
+Add overloaded `setCharacterEncoding()` methods that support `Charset`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/443[Issue 443]::
+Remove references to the SecurityManager and associated APIs.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/453[Issue 453]::
+Add a security warning and a clarification of canonicalization requirements to
+all `ServletContext` methods that accept a path parameter.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/463[Issue 463]::
+Clarify Javadoc for `MultipartConfigElement` and `MultipartConfig` that sizes
+are in bytes.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/473[Issue 473]::
+The Javadoc for `HttpServletRequest.isTrailerFieldsReady()` has been corrected
+to correctly describe the default implementation.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/484[Issue 484]::
+Add ByteBuffer support to `ServletInputStream` and `ServletOutputStream`.
+
 === Changes Since Jakarta Servlet 5.0
+
+The minimum Java version has been increased to Java 11.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/18[Issue 18]::
+Clarify the decoding and normalization of URI paths.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/37[Issue 37]::
+Update Cookie class, related classes and the specification to remove references
+to RFC 2109 and to replace them with RFC 6265.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/105[Issue 105]::
+Clarify the behaviour of `getRealPath(String)`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
+Provide generic attribute support to cookies, including session cookies, to
+provide support for additional attributes such as the `SameSite` attribute.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/201[Issue 201]::
+Add a `module-info.java` to support using the Servlet API in a modular
+environment as per the Java module system and the Jakarta EE 10 
+link:https://github.com/jakartaee/specification-committee/blob/master/names.adoc[recommendations].
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/225[Issue 225]::
+Deprecated wrapped response handling in the `doHead` method in favour of container implementation of `HEAD` method behavior.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/272[Issue 272]::
 Remove the recommendation that Servlet containers should include an `X-Powered-By`header.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/365[Issue 365]::
+Correct the list of valid orderings for example 2 in <<Ordering of web.xml and web-fragment.xml>>.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/368[Issue 368]::
+Clarify the behaviour of `getRemoteAddress()`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/377[Issue 377]::
+Clarify the behaviour of `setCharacterEncoding(null)` and similar calls.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/407[Issue 407]::
+Add new methods to obtain unique identifiers for the current request and/or
+associated connection. 
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/411[Issue 411]::
+Relax the requirements set out in <<Wrapping Requests and Responses>> and allow
+the container to wrap Requests and Responses to meet the requirements of
+implementing the `RequestDispatcher` functionality.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/416[Issue 416]::
+Remove the restriction on programatically added listeners calling some `ServletContext` getter methods.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/418[Issue 418]::
+Remove API classes and methods that were deprecated in Servlet 5.0 and earlier.
+This includes removing the `SingleThreadModel` and `HttpSessionContext`
+interfaces and the `HttpUtils` class as well as various deprecated methods.
+
+Add a new method `getErrorOnELNotFound()` to `JspPropertyGroupDescriptor` to
+align with changes in the Jakarta Pages 3.1 specification.
+
+Clarify the Javadoc for `ServletRequest.isAsyncStarted()` to align it with the
+specification text.
+
+Update the Javadoc to clarify the scheduling implications when `ServletInputStream.isReady()`
+or `ServletOutputStream.isReady()` return `false`.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces

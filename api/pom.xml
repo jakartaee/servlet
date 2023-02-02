@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+    Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -30,7 +30,7 @@
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>5.1.0-SNAPSHOT</version>
+    <version>6.1.0-SNAPSHOT</version>
 
     <name>Jakarta Servlet</name>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
@@ -89,6 +89,27 @@
         <project.build.outputTimestamp>2020-12-19T17:27:00Z</project.build.outputTimestamp>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -124,7 +145,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>enforce-maven</id>
@@ -142,22 +163,29 @@
                 </executions>
             </plugin>
             
-            <!-- Restricts the Java version to 1.8 -->
+            <!-- Restricts the Java version to 11 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                 </configuration>
             </plugin>
-            
+
+            <!-- Execute unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+
             <!-- Checks copyright / license headers -->        
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
                     <!--svn|mercurial|git - defaults to svn-->
@@ -172,7 +200,8 @@
                     <update>false</update>
                     <!-- check that year is correct -->
                     <ignoreYear>false</ignoreYear>
-                    <templateFile>etc/config/copyright.txt</templateFile>
+                    <templateFile>etc/config/copyright-eclipse.txt</templateFile>
+                    <alternateTemplateFile>etc/config/copyright-oracle.txt</alternateTemplateFile>
                 </configuration>
             </plugin>
 
@@ -185,19 +214,19 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>5.1.1</version>
+                <version>5.1.2</version>
                 <configuration>
                     <supportedProjectTypes>
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Version>5.1.0</Bundle-Version>
+                        <Bundle-Version>6.1.0</Bundle-Version>
                         <Bundle-SymbolicName>jakarta.servlet-api</Bundle-SymbolicName>
                         <Bundle-Description>
-                            Jakarta Servlet 5.1
+                            Jakarta Servlet 6.1
                         </Bundle-Description>
                         <Extension-Name>jakarta.servlet</Extension-Name>
-                        <Specification-Version>5.1</Specification-Version>
+                        <Specification-Version>6.1</Specification-Version>
                         <Specification-Vendor>Eclipse Foundation</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
@@ -226,9 +255,6 @@
                 <configuration>
                     <archive>
                         <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <Automatic-Module-Name>jakarta.servlet</Automatic-Module-Name>
-                        </manifestEntries>
                     </archive>
                     <excludes>
                         <exclude>**/*.java</exclude>
@@ -260,7 +286,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>attach-api-javadocs</id>
@@ -268,7 +294,8 @@
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <source>1.8</source>
+                            <quiet>true</quiet>
+                            <source>11</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                             <description>Jakarta Servlet API documentation</description>
                             <doctitle>Jakarta Servlet API documentation</doctitle>
@@ -276,7 +303,7 @@
                             <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
                             <bottom><![CDATA[
 Comments to: <a href="mailto:servlet-dev@eclipse.org">servlet-dev@eclipse.org</a>.<br>
-Copyright &#169; 2019, 2020 Eclipse Foundation. All rights reserved.<br>
+Copyright &#169; 2019, 2022 Eclipse Foundation. All rights reserved.<br>
 Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">license terms</a>.]]>
                             </bottom>
                             <docfilessubdirs>true</docfilessubdirs>

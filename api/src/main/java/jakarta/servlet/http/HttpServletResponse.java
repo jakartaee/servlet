@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -43,6 +43,8 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Adds the specified cookie to the response. This method can be called multiple times to set more than one cookie.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param cookie the Cookie to return to the client
      *
@@ -94,29 +96,8 @@ public interface HttpServletResponse extends ServletResponse {
      * @exception IllegalArgumentException if the url is not valid
      *
      * @see #sendRedirect
-     * @see #encodeUrl
      */
     public String encodeRedirectURL(String url);
-
-    /**
-     * @deprecated As of version 2.1, use encodeURL(String url) instead
-     *
-     * @param url the url to be encoded.
-     * @return the encoded URL if encoding is needed; the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
-     */
-    @Deprecated
-    public String encodeUrl(String url);
-
-    /**
-     * @deprecated As of version 2.1, use encodeRedirectURL(String url) instead
-     *
-     * @param url the url to be encoded.
-     * @return the encoded URL if encoding is needed; the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
-     */
-    @Deprecated
-    public String encodeRedirectUrl(String url);
 
     /**
      * <p>
@@ -166,12 +147,21 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Sends a temporary redirect response to the client using the specified redirect location URL and clears the buffer.
      * The buffer will be replaced with the data set by this method. Calling this method sets the status code to
-     * {@link #SC_FOUND} 302 (Found). This method can accept relative URLs;the servlet container must convert the relative
-     * URL to an absolute URL before sending the response to the client. If the location is relative without a leading '/'
-     * the container interprets it as relative to the current request URI. If the location is relative with a leading '/'
-     * the container interprets it as relative to the servlet container root. If the location is relative with two leading
-     * '/' the container interprets it as a network-path reference (see <a href="http://www.ietf.org/rfc/rfc3986.txt"> RFC
-     * 3986: Uniform Resource Identifier (URI): Generic Syntax</a>, section 4.2 &quot;Relative Reference&quot;).
+     * {@link #SC_FOUND} 302 (Found).
+     * <p>
+     * This method accepts both relative and absolute URLs. Absolute URLs passed to this method are used as provided as the
+     * redirect location URL. Relative URLs are converted to absolute URLs unless a container specific feature/option is
+     * provided that controls whether relative URLs passed to this method are converted to absolute URLs or used as provided
+     * for the redirect location URL. If converting a relative URL to an absolute URL then:
+     * <ul>
+     * <li>If the location is relative without a leading '/' the container interprets it as relative to the current request
+     * URI.</li>
+     * <li>If the location is relative with a leading '/' the container interprets it as relative to the servlet container
+     * root.</li>
+     * <li>If the location is relative with two leading '/' the container interprets it as a network-path reference (see
+     * <a href="http://www.ietf.org/rfc/rfc3986.txt"> RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>,
+     * section 4.2 &quot;Relative Reference&quot;).</li>
+     * </ul>
      *
      * <p>
      * If the response has already been committed, this method throws an IllegalStateException. After using this method, the
@@ -189,6 +179,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and date-value. The date is specified in terms of milliseconds since the
      * epoch. If the header had already been set, the new value overwrites the previous one. The <code>containsHeader</code>
      * method can be used to test for the presence of a header before setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header to set
      * @param date the assigned date value
@@ -202,6 +194,8 @@ public interface HttpServletResponse extends ServletResponse {
      * 
      * Adds a response header with the given name and date-value. The date is specified in terms of milliseconds since the
      * epoch. This method allows response headers to have multiple values.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header to set
      * @param date the additional date value
@@ -215,6 +209,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and value. If the header had already been set, the new value overwrites
      * the previous one. The <code>containsHeader</code> method can be used to test for the presence of a header before
      * setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      * 
      * @param name the name of the header
      * @param value the header value If it contains octet string, it should be encoded according to RFC 2047
@@ -240,6 +236,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Sets a response header with the given name and integer value. If the header had already been set, the new value
      * overwrites the previous one. The <code>containsHeader</code> method can be used to test for the presence of a header
      * before setting its value.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param name the name of the header
      * @param value the assigned integer value
@@ -252,6 +250,8 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Adds a response header with the given name and integer value. This method allows response headers to have multiple
      * values.
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param name the name of the header
      * @param value the assigned integer value
@@ -278,24 +278,15 @@ public interface HttpServletResponse extends ServletResponse {
      * <p>
      * Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges. Other status codes are treated as container
      * specific.
+     * 
+     * <p>
+     * This method has no effect if called after the response has been committed.
      *
      * @param sc the status code
      *
      * @see #sendError
      */
     public void setStatus(int sc);
-
-    /**
-     * @deprecated As of version 2.1, due to ambiguous meaning of the message parameter. To set a status code use
-     * <code>setStatus(int)</code>, to send an error with a description use <code>sendError(int, String)</code>.
-     *
-     * Sets the status code and message for this response.
-     * 
-     * @param sc the status code
-     * @param sm the status message
-     */
-    @Deprecated
-    public void setStatus(int sc, String sm);
 
     /**
      * Gets the current status code of this response.
@@ -410,7 +401,7 @@ public interface HttpServletResponse extends ServletResponse {
     }
 
     /*
-     * Server status codes; see RFC 2068.
+     * Server status codes; see RFC 7231.
      */
 
     /**

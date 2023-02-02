@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -16,6 +16,8 @@
  */
 
 package jakarta.servlet;
+
+import java.util.Map;
 
 /**
  * Class that may be used to configure various properties of cookies used for session tracking purposes.
@@ -107,31 +109,33 @@ public interface SessionCookieConfig {
     public String getPath();
 
     /**
-     * Sets the comment that will be assigned to any session tracking cookies created on behalf of the application
-     * represented by the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired.
-     *
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      * <p>
-     * As a side effect of this call, the session tracking cookies will be marked with a <code>Version</code> attribute
-     * equal to <code>1</code>.
+     * If called, this method has no effect.
      * 
-     * @param comment the cookie comment to use
+     * @param comment ignore
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      * acquired has already been initialized
      *
      * @see jakarta.servlet.http.Cookie#setComment(String)
      * @see jakarta.servlet.http.Cookie#getVersion
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public void setComment(String comment);
 
     /**
-     * Gets the comment that will be assigned to any session tracking cookies created on behalf of the application
-     * represented by the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired.
+     * With the adoption of support for RFC 6265, this method should no longer be used.
      *
-     * @return the cookie comment set via {@link #setComment}, or <tt>null</tt> if {@link #setComment} was never called
+     * @return Always {@code null}
      *
      * @see jakarta.servlet.http.Cookie#getComment()
+     * 
+     * @deprecated This is no longer required with RFC 6265
      */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public String getComment();
 
     /**
@@ -231,4 +235,45 @@ public interface SessionCookieConfig {
      * @see jakarta.servlet.http.Cookie#getMaxAge
      */
     public int getMaxAge();
+
+    /**
+     * Sets the value for the given session cookie attribute. When a value is set via this method, the value returned by the
+     * attribute specific getter (if any) must be consistent with the value set via this method.
+     *
+     * @param name Name of attribute to set, case insensitive
+     * @param value Value of attribute
+     *
+     * @throws IllegalStateException if the associated ServletContext has already been initialised
+     *
+     * @throws IllegalArgumentException If the attribute name is null or contains any characters not permitted for use in
+     * Cookie names.
+     *
+     * @throws NumberFormatException If the attribute is known to be numerical but the provided value cannot be parsed to a
+     * number.
+     *
+     * @since Servlet 6.0
+     */
+    public void setAttribute(String name, String value);
+
+    /**
+     * Obtain the value for a given session cookie attribute. Values returned from this method must be consistent with the
+     * values set and returned by the attribute specific getters and setters in this class.
+     *
+     * @param name Name of attribute to return, case insensitive
+     *
+     * @return Value of specified attribute
+     *
+     * @since Servlet 6.0
+     */
+    public String getAttribute(String name);
+
+    /**
+     * Obtain the Map (keys are case insensitive) of all attributes and values, including those set via the attribute
+     * specific setters, (excluding version) for this <tt>SessionCookieConfig</tt>.
+     *
+     * @return A read-only Map of attributes to values, excluding version.
+     *
+     * @since Servlet 6.0
+     */
+    public Map<String, String> getAttributes();
 }

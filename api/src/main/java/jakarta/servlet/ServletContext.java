@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -22,6 +22,7 @@ import jakarta.servlet.descriptor.JspConfigDescriptor;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.EventListener;
 import java.util.Map;
@@ -64,6 +65,8 @@ public interface ServletContext {
      * <code>WEB-INF/lib</code> ordered by their web fragment names (with possible exclusions if
      * <code>&lt;absolute-ordering&gt;</code> without any <code>&lt;others/&gt;</code> is being used), or null if no
      * absolute or relative ordering has been specified
+     *
+     * @since Servlet 3.0
      */
     public static final String ORDERED_LIBS = "jakarta.servlet.context.orderedLibs";
 
@@ -111,18 +114,18 @@ public interface ServletContext {
     public ServletContext getContext(String uripath);
 
     /**
-     * Returns the major version of Jakarta Servlet that this container supports. All implementations that comply with
-     * Version 4.0 must have this method return the integer 4.
+     * Returns the major version of Jakarta Servlet specification that this container supports. All implementations that
+     * comply with version X.Y of the specification, must return the integer X.
      *
-     * @return 4
+     * @return The major version of Jakarta Servlet specification that this container supports
      */
     public int getMajorVersion();
 
     /**
-     * Returns the minor version of Jakarta Servlet that this container supports. All implementations that comply with
-     * Version 4.0 must have this method return the integer 0.
+     * Returns the minor version of Jakarta Servlet specification that this container supports. All implementations that
+     * comply with version X.Y of the specification, must return the integer Y.
      *
-     * @return 0
+     * @return The minor version of Jakarta Servlet specification that this container supports
      */
     public int getMinorVersion();
 
@@ -136,11 +139,6 @@ public interface ServletContext {
      *
      * @return the major version of the Servlet specification that the application represented by this ServletContext is
      * based on
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -156,11 +154,6 @@ public interface ServletContext {
      *
      * @return the minor version of the Servlet specification that the application represented by this ServletContext is
      * based on
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -215,6 +208,16 @@ public interface ServletContext {
      * <tt>getResourcePaths("/catalog/")</tt> would return <tt>{"/catalog/index.html", "/catalog/products.html",
      * "/catalog/offers/", "/catalog/moreOffers/"}</tt>.
      *
+     * <p>
+     * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
+     * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
+     * provided data) and when using the result not to create a security vulnerability in the application.
+     * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path the partial path used to match the resources, which must start with a <tt>/</tt>
      * @return a Set containing the directory listing, or null if there are no resources in the web application whose path
      * begins with the supplied path.
@@ -260,6 +263,11 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      *
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the resource located at the named path, or <code>null</code> if there is no resource at that path
@@ -294,7 +302,11 @@ public interface ServletContext {
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
      *
-     *
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the <code>InputStream</code> returned to the servlet, or <code>null</code> if no resource exists at the
@@ -316,6 +328,16 @@ public interface ServletContext {
      * This method returns <code>null</code> if the <code>ServletContext</code> cannot return a
      * <code>RequestDispatcher</code>.
      *
+     * <p>
+     * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
+     * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
+     * provided data) and when using the result not to create a security vulnerability in the application.
+     * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path a <code>String</code> specifying the pathname to the resource
      *
      * @return a <code>RequestDispatcher</code> object that acts as a wrapper for the resource at the specified path, or
@@ -349,51 +371,6 @@ public interface ServletContext {
     public RequestDispatcher getNamedDispatcher(String name);
 
     /**
-     * @deprecated As of Java Servlet API 2.1, with no direct replacement.
-     *
-     * <p>
-     * This method was originally defined to retrieve a servlet from a <code>ServletContext</code>. In this version, this
-     * method always returns <code>null</code> and remains only to preserve binary compatibility. This method will be
-     * permanently removed in a future version of Jakarta Servlets.
-     *
-     * <p>
-     * In lieu of this method, servlets can share information using the <code>ServletContext</code> class and can perform
-     * shared business logic by invoking methods on common non-servlet classes.
-     *
-     * @param name the servlet name
-     * @return the {@code jakarta.servlet.Servlet Servlet} with the given name
-     * @throws ServletException if an exception has occurred that interfaces with servlet's normal operation
-     */
-    @Deprecated
-    public Servlet getServlet(String name) throws ServletException;
-
-    /**
-     * @deprecated As of Java Servlet API 2.0, with no replacement.
-     *
-     * <p>
-     * This method was originally defined to return an <code>Enumeration</code> of all the servlets known to this servlet
-     * context. In this version, this method always returns an empty enumeration and remains only to preserve binary
-     * compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
-     *
-     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet}
-     */
-    @Deprecated
-    public Enumeration<Servlet> getServlets();
-
-    /**
-     * @deprecated As of Java Servlet API 2.1, with no replacement.
-     *
-     * <p>
-     * This method was originally defined to return an <code>Enumeration</code> of all the servlet names known to this
-     * context. In this version, this method always returns an empty <code>Enumeration</code> and remains only to preserve
-     * binary compatibility. This method will be permanently removed in a future version of Jakarta Servlets.
-     *
-     * @return an <code>Enumeration</code> of {@code jakarta.servlet.Servlet Servlet} names
-     */
-    @Deprecated
-    public Enumeration<String> getServletNames();
-
-    /**
      *
      * Writes the specified message to a servlet log file, usually an event log. The name and type of the servlet log file
      * is specific to the servlet container.
@@ -401,19 +378,6 @@ public interface ServletContext {
      * @param msg a <code>String</code> specifying the message to be written to the log file
      */
     public void log(String msg);
-
-    /**
-     * @deprecated As of Java Servlet API 2.1, use {@link #log(String message, Throwable throwable)} instead.
-     *
-     * <p>
-     * This method was originally defined to write an exception's stack trace and an explanatory error message to the
-     * servlet log file.
-     *
-     * @param exception the <code>Exception</code> error
-     * @param msg a <code>String</code> that describes the exception
-     */
-    @Deprecated
-    public void log(Exception exception, String msg);
 
     /**
      * Writes an explanatory message and a stack trace for a given <code>Throwable</code> exception to the servlet log file.
@@ -427,6 +391,11 @@ public interface ServletContext {
 
     /**
      * Gets the <i>real</i> path corresponding to the given <i>virtual</i> path.
+     * 
+     * <p>
+     * The path should begin with a <tt>/</tt> and is interpreted as relative to the current context root. If the path does
+     * not begin with a <tt>/</tt>, the container will behave as if the method was called with <tt>/</tt> appended to the
+     * beginning of the provided path.
      *
      * <p>
      * For example, if <tt>path</tt> is equal to <tt>/index.html</tt>, this method will return the absolute file path on the
@@ -447,6 +416,16 @@ public interface ServletContext {
      * This method returns <code>null</code> if the servlet container is unable to translate the given <i>virtual</i> path
      * to a <i>real</i> path.
      *
+     * <p>
+     * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
+     * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
+     * provided data) and when using the result not to create a security vulnerability in the application.
+     * 
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
+     * 
      * @param path the <i>virtual</i> path to be translated to a <i>real</i> path
      *
      * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed
@@ -671,8 +650,7 @@ public interface ServletContext {
      * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      * {@link jakarta.servlet.annotation.WebListener}
      *
-     * @throws IllegalArgumentException if the given servlet instance implements {@link SingleThreadModel}, or
-     * <code>servletName</code> is null or an empty String
+     * @throws IllegalArgumentException if <code>servletName</code> is null or an empty String
      *
      * @since Servlet 3.0
      */
@@ -1044,11 +1022,6 @@ public interface ServletContext {
      *
      * @return set of the session tracking modes supported by default for this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.0
      */
     public Set<SessionTrackingMode> getDefaultSessionTrackingModes();
@@ -1065,11 +1038,6 @@ public interface ServletContext {
      * </p>
      *
      * @return set of the session tracking modes in effect for this <tt>ServletContext</tt>
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 3.0
      */
@@ -1261,11 +1229,6 @@ public interface ServletContext {
      * and <code>web-fragment.xml</code> descriptor files of the web application represented by this ServletContext, or null
      * if no such configuration exists
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @see jakarta.servlet.descriptor.JspConfigDescriptor
      *
      * @since Servlet 3.0
@@ -1282,13 +1245,6 @@ public interface ServletContext {
      * should be granted.
      *
      * @return the class loader of the web application represented by this ServletContext
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
-     * @throws SecurityException if a security manager denies access to the requested class loader
      *
      * @since Servlet 3.0
      */
@@ -1329,11 +1285,6 @@ public interface ServletContext {
      * @return a <code>String</code> containing the configuration name of the logical host on which the servlet context is
      * deployed.
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 3.1
      */
     public String getVirtualServerName();
@@ -1342,11 +1293,6 @@ public interface ServletContext {
      * Gets the session timeout in minutes that are supported by default for this <tt>ServletContext</tt>.
      *
      * @return the session timeout in minutes that are supported by default for this <tt>ServletContext</tt>
-     *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
      *
      * @since Servlet 4.0
      */
@@ -1375,11 +1321,6 @@ public interface ServletContext {
      *
      * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was passed to the
-     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
-     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
-     * {@link jakarta.servlet.annotation.WebListener}
-     *
      * @since Servlet 4.0
      */
     public String getRequestCharacterEncoding();
@@ -1401,16 +1342,31 @@ public interface ServletContext {
     public void setRequestCharacterEncoding(String encoding);
 
     /**
-     * Gets the response character encoding that are supported by default for this <tt>ServletContext</tt>. This method
-     * returns null if no response encoding character encoding has been specified in deployment descriptor or container
-     * specific configuration (for all web applications in the container).
+     * Sets the request character encoding for this ServletContext.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
      *
-     * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
+     * @param encoding request character encoding
+     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
      *
      * @throws UnsupportedOperationException if this ServletContext was passed to the
      * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
      * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
      * {@link jakarta.servlet.annotation.WebListener}
+     *
+     * @since Servlet 6.1
+     */
+    default public void setRequestCharacterEncoding(Charset encoding) {
+        setRequestCharacterEncoding(encoding.name());
+    }
+
+    /**
+     * Gets the response character encoding that are supported by default for this <tt>ServletContext</tt>. This method
+     * returns null if no response encoding character encoding has been specified in deployment descriptor or container
+     * specific configuration (for all web applications in the container).
+     *
+     * @return the request character encoding that are supported by default for this <tt>ServletContext</tt>
      *
      * @since Servlet 4.0
      */
@@ -1431,4 +1387,24 @@ public interface ServletContext {
      * @since Servlet 4.0
      */
     public void setResponseCharacterEncoding(String encoding);
+
+    /**
+     * Sets the response character encoding for this ServletContext.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
+     *
+     * @param encoding response character encoding
+     *
+     * @throws IllegalStateException if this ServletContext has already been initialized
+     *
+     * @throws UnsupportedOperationException if this ServletContext was passed to the
+     * {@link ServletContextListener#contextInitialized} method of a {@link ServletContextListener} that was neither
+     * declared in <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated with
+     * {@link jakarta.servlet.annotation.WebListener}
+     *
+     * @since Servlet 6.1
+     */
+    default public void setResponseCharacterEncoding(Charset encoding) {
+        setResponseCharacterEncoding(encoding.name());
+    }
 }

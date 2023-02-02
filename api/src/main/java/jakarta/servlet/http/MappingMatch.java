@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,7 +22,7 @@ package jakarta.servlet.http;
  * Enumeration of Servlet mapping types.
  * </p>
  *
- * @since 4.0
+ * @since Servlet 4.0
  */
 public enum MappingMatch {
     /**

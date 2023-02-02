@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -50,6 +50,15 @@ public interface JspPropertyGroupDescriptor {
      * @return the value of the <code>el-ignored</code> configuration, or null if unspecified
      */
     public String getElIgnored();
+
+    /**
+     * Will the use of an unknown identifier in EL within a JSP page trigger an error for this group?
+     *
+     * @return {@code true} if an error will be triggered, otherwise {@code false}
+     *
+     * @since Servlet 6.0
+     */
+    public String getErrorOnELNotFound();
 
     /**
      * Gets the value of the <code>page-encoding</code> configuration, which specifies the default page encoding for any JSP

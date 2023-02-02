@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2019, 2020 Contributors to the Eclipse Foundation.
+    Copyright (c) 2019, 2022 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,10 +22,11 @@
     <parent>
         <groupId>jakarta.servlet</groupId>
         <artifactId>servlet-parent</artifactId>
-        <version>5.1.0-SNAPSHOT</version>
+        <version>6.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>servlet-spec</artifactId>
+    <version>6.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Servlet Specification</name>
@@ -33,9 +34,9 @@
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
-        <asciidoctorj.version>2.4.0</asciidoctorj.version>
-        <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
-        <jruby.version>9.2.12.0</jruby.version>
+        <asciidoctorj.version>2.5.2</asciidoctorj.version>
+        <asciidoctorj.pdf.version>1.6.0</asciidoctorj.pdf.version>
+        <jruby.version>9.3.1.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
@@ -49,7 +50,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -91,7 +92,7 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
-                <version>2.0.0-RC.1</version>
+                <version>2.2.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.jruby</groupId>
@@ -118,8 +119,11 @@
                         </goals>
                         <configuration>
                             <backend>html5</backend>
+                            <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${spec.version}.html</outputFile>
                             <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                                <imagesdir>images</imagesdir>
                                 <doctype>book</doctype>
                                 <status>${status}</status>
                                 <data-uri />
@@ -141,8 +145,11 @@
                         </goals>
                         <configuration>
                             <backend>pdf</backend>
+                            <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
                             <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${spec.version}.pdf</outputFile>
                             <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                                <imagesdir>images</imagesdir>
                                 <pdf-stylesdir>${project.basedir}/src/main/theme</pdf-stylesdir>
                                 <pdf-style>jakartaee</pdf-style>
                                 <doctype>book</doctype>
@@ -163,7 +170,6 @@
                 </executions>
                 <configuration>
                     <sourceDocumentName>servlet-spec.adoc</sourceDocumentName>
-                    <sourceHighlighter>coderay</sourceHighlighter>
                     <attributes>
                         <revnumber>${spec.version}</revnumber>
                         <revremark>${status}</revremark>

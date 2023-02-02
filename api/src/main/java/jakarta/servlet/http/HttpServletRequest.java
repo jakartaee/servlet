@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -85,8 +85,9 @@ public interface HttpServletRequest extends ServletRequest {
      * The date is returned as the number of milliseconds since January 1, 1970 GMT. The header name is case insensitive.
      *
      * <p>
-     * If the request did not have a header of the specified name, this method returns -1. If the header can't be converted
-     * to a date, the method throws an <code>IllegalArgumentException</code>.
+     * If the request did not have a header of the specified name, this method returns -1. If there are multiple headers
+     * with the same name, this method returns the value of the first header in the request. If the header can't be
+     * converted to a date, the method throws an <code>IllegalArgumentException</code>.
      *
      * @param name a <code>String</code> specifying the name of the header
      *
@@ -100,8 +101,8 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the value of the specified request header as a <code>String</code>. If the request did not include a header
      * of the specified name, this method returns <code>null</code>. If there are multiple headers with the same name, this
-     * method returns the first head in the request. The header name is case insensitive. You can use this method with any
-     * request header.
+     * method returns the value of the first header in the request. The header name is case insensitive. You can use this
+     * method with any request header.
      *
      * @param name a <code>String</code> specifying the header name
      *
@@ -144,7 +145,8 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Returns the value of the specified request header as an <code>int</code>. If the request does not have a header of
-     * the specified name, this method returns -1. If the header cannot be converted to an integer, this method throws a
+     * the specified name, this method returns -1. If there are multiple headers with the same name, this method returns the
+     * value of the first header in the request. If the header cannot be converted to an integer, this method throws a
      * <code>NumberFormatException</code>.
      *
      * <p>
@@ -171,15 +173,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * <dt>{@link jakarta.servlet.DispatcherType#INCLUDE}</dt>
      * <dd>Return the mapping as prior to the current dispatch. i.e the mapping returned is unchanged by a call to</dd>
-     * {@link RequestDispatcher#include(ServletRequest, ServletResponse)}.
+     * {@link RequestDispatcher#include(ServletRequest, jakarta.servlet.ServletResponse)}.
      *
      * <dt>{@link jakarta.servlet.DispatcherType#FORWARD}</dt>
      * <dd>Return the mapping for the target of the dispatch i.e. the mapping for the current
      * {@link jakarta.servlet.Servlet}, unless the {@link jakarta.servlet.RequestDispatcher} was obtained via
      * {@link jakarta.servlet.ServletContext#getNamedDispatcher(String)}, in which case return the mapping as prior to the
      * current dispatch. i.e the mapping returned is changed during a call to
-     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)} only if the dispatcher is not a named
-     * dispatcher.</dd>
+     * {@link RequestDispatcher#forward(ServletRequest, jakarta.servlet.ServletResponse)} only if the dispatcher is not a
+     * named dispatcher.</dd>
      * </dl>
      * </p>
      * <p>
@@ -192,7 +194,7 @@ public interface HttpServletRequest extends ServletRequest {
      * </ul>
      * </p>
      * <p>
-     * The returned object is immutable. Servlet 4.0 compliant implementations must override this method.
+     * The returned object is immutable. Servlet 4.0 onwards compliant implementations must override this method.
      * </p>
      * 
      * @implSpec The default implementation returns a {@code
@@ -201,7 +203,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @return An instance of {@code HttpServletMapping} describing the manner in which the current request was invoked.
      * 
-     * @since 4.0
+     * @since Servlet 4.0
      */
     default public HttpServletMapping getHttpServletMapping() {
         return new HttpServletMapping() {
@@ -249,9 +251,17 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * This method returns <code>null</code> if there was no extra path information.
      *
-     * @return a <code>String</code>, decoded by the web container, specifying extra path information that comes after the
-     * servlet path but before the query string in the request URL; or <code>null</code> if the URL does not have any extra
-     * path information
+     * @return a <code>String</code> specifying extra path information that comes after the servlet path but before the
+     * query string in the request URL; or <code>null</code> if the URL does not have any extra path information. The path
+     * will be canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getPathInfo();
 
@@ -299,8 +309,16 @@ public interface HttpServletRequest extends ServletRequest {
      * {@link jakarta.servlet.ServletContext#getContextPath()} should be considered as the prime or preferred context path
      * of the application.
      *
-     * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request
-     *
+     * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request.
+     * The path will be canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      * @see jakarta.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
@@ -386,12 +404,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <td>/xyz
      * </table>
      *
-     * <p>
-     * To reconstruct an URL with a scheme and host, use {@link HttpUtils#getRequestURL}.
-     *
      * @return a <code>String</code> containing the part of the URL from the protocol name up to the query string
-     *
-     * @see HttpUtils#getRequestURL
      */
     public String getRequestURI();
 
@@ -416,15 +429,24 @@ public interface HttpServletRequest extends ServletRequest {
     public StringBuffer getRequestURL();
 
     /**
-     * Returns the part of this request's URL that calls the servlet. This path starts with a "/" character and includes
-     * either the servlet name or a path to the servlet, but does not include any extra path information or a query string.
+     * Returns the part of this request's URL that calls the servlet. This path starts with a "/" character and includes the
+     * path to the servlet, but does not include any extra path information or a query string.
      *
      * <p>
      * This method will return an empty string ("") if the servlet used to process this request was matched using the "/*"
      * pattern.
      *
-     * @return a <code>String</code> containing the name or path of the servlet being called, as specified in the request
-     * URL, decoded, or an empty string if the servlet used to process the request is matched using the "/*" pattern.
+     * @return a <code>String</code> containing the path of the servlet being called, as specified in the request URL, or an
+     * empty string if the servlet used to process the request is matched using the "/*" pattern. The path will be
+     * canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
+     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
+     * allow them.
+     * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
+     * configured to not reject some suspicious sequences identified by <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
+     * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      */
     public String getServletPath();
 
@@ -482,7 +504,6 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #getRequestedSessionId
      * @see #getSession
-     * @see HttpSessionContext
      */
     public boolean isRequestedSessionIdValid();
 
@@ -509,15 +530,6 @@ public interface HttpServletRequest extends ServletRequest {
      * @see #getSession
      */
     public boolean isRequestedSessionIdFromURL();
-
-    /**
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
-     *
-     * @return <code>true</code> if the session ID was conveyed to the server as part of a URL; otherwise,
-     * <code>false</code>
-     */
-    @Deprecated
-    public boolean isRequestedSessionIdFromUrl();
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this
@@ -690,7 +702,7 @@ public interface HttpServletRequest extends ServletRequest {
      * no trailer fields.
      * </ol>
      *
-     * @implSpec The default implementation returns false.
+     * @implSpec The default implementation returns {@code true}.
      *
      * @return a boolean whether trailer fields are ready to read
      *

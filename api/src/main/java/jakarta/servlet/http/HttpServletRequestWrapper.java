@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -108,9 +108,9 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * <p>
      * The default behavior of this method is to return getServletMapping() on the wrapped request object.
-     * </p>
+     *
+     * @since Servlet 4.0
      */
     @Override
     public HttpServletMapping getHttpServletMapping() {
@@ -264,17 +264,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return isRequestedSessionIdFromUrl() on the wrapped request object.
-     *
-     * @deprecated As of Version 4.0 of the Java Servlet API, use {@link #isRequestedSessionIdFromURL} instead.
-     */
-    @Deprecated
-    @Override
-    public boolean isRequestedSessionIdFromUrl() {
-        return this._getHttpServletRequest().isRequestedSessionIdFromUrl();
-    }
-
-    /**
      * The default behavior of this method is to call authenticate on the wrapped request object.
      *
      * @since Servlet 3.0
@@ -325,7 +314,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     @Override
     public Part getPart(String name) throws IOException, ServletException {
         return this._getHttpServletRequest().getPart(name);
-
     }
 
     /**

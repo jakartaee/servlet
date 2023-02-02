@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -19,6 +19,7 @@
 package jakarta.servlet;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -83,12 +84,30 @@ public interface ServletRequest {
      * Overrides the name of the character encoding used in the body of this request. This method must be called prior to
      * reading request parameters or reading input using getReader(). Otherwise, it has no effect.
      * 
-     * @param env <code>String</code> containing the name of the character encoding.
+     * @param encoding <code>String</code> containing the name of the character encoding.
      *
      * @throws UnsupportedEncodingException if this ServletRequest is still in a state where a character encoding may be
      * set, but the specified encoding is invalid
      */
-    public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
+    public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException;
+
+    /**
+     * Overrides the character encoding used in the body of this request. This method must be called prior to reading
+     * request parameters or reading input using getReader(). Otherwise, it has no effect.
+     * <p>
+     * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
+     * 
+     * @param encoding <code>Charset</code> representing the character encoding.
+     * 
+     * @since Servlet 6.1
+     */
+    default public void setCharacterEncoding(Charset encoding) {
+        try {
+            setCharacterEncoding(encoding.name());
+        } catch (UnsupportedEncodingException e) {
+            // Unreachable code
+        }
+    }
 
     /**
      * Returns the length, in bytes, of the request body and made available by the input stream, or -1 if the length is not
@@ -351,16 +370,6 @@ public interface ServletRequest {
     public RequestDispatcher getRequestDispatcher(String path);
 
     /**
-     * @param path the path for which the real path is to be returned.
-     * 
-     * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed.
-     * 
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead.
-     */
-    @Deprecated
-    public String getRealPath(String path);
-
-    /**
      * Returns the Internet Protocol (IP) source port the remote end of the connection on which the request was received. By
      * default this is either the port of the client or last proxy that sent the request. In some cases, protocol specific
      * mechanisms such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a> may be used to obtain a port different
@@ -513,7 +522,10 @@ public interface ServletRequest {
      * <p>
      * This method returns <tt>false</tt> if this request was put into asynchronous mode, but has since been dispatched
      * using one of the {@link AsyncContext#dispatch} methods or released from asynchronous mode via a call to
-     * {@link AsyncContext#complete}.
+     * {@link AsyncContext#complete}. If {@link AsyncContext#dispatch} or {@link AsyncContext#complete} is called before the
+     * container-initiated dispatch that called {@link ServletRequest#startAsync()} has returned to the container then this
+     * method must return {@code true} until the container-initiated dispatch that called
+     * {@link ServletRequest#startAsync()} has returned to the container.
      *
      * @return true if this request has been put into asynchronous mode, false otherwise
      *
@@ -576,4 +588,47 @@ public interface ServletRequest {
      */
     public DispatcherType getDispatcherType();
 
+    /**
+     * Obtain a unique (within the lifetime of the Servlet container) identifier string for this request.
+     * <p>
+     * There is no defined format for this string. The format is implementation dependent.
+     * 
+     * @return A unique identifier for the request
+     * 
+     * @since Servlet 6.0
+     */
+    String getRequestId();
+
+    /**
+     * Obtain the request identifier for this request as defined by the protocol in use. Note that some protocols do not
+     * define such an identifier.
+     * <p>
+     * Examples of protocol provided request identifiers include:
+     * <dl>
+     * <dt>HTTP 1.x</dt>
+     * <dd>None, so the empty string should be returned</dd>
+     * <dt>HTTP 2</dt>
+     * <dd>The stream identifier</dd>
+     * <dt>HTTP 3</dt>
+     * <dd>The stream identifier</dd>
+     * <dt>AJP</dt>
+     * <dd>None, so the empty string should be returned</dd>
+     * </dl>
+     *
+     * @return The request identifier if one is defined, otherwise an empty string
+     * 
+     * @since Servlet 6.0
+     */
+    String getProtocolRequestId();
+
+    /**
+     * Obtain details of the network connection to the Servlet container that is being used by this request. The information
+     * presented may differ from information presented elsewhere in the Servlet API as raw information is presented without
+     * adjustments for, example, use of reverse proxies that may be applied elsewhere in the Servlet API.
+     * 
+     * @return The network connection details.
+     * 
+     * @since Servlet 6.0
+     */
+    ServletConnection getServletConnection();
 }

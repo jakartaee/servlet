@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -21,6 +21,7 @@ package jakarta.servlet;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
@@ -104,8 +105,16 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to set the character encoding on the wrapped request object.
      */
     @Override
-    public void setCharacterEncoding(String enc) throws UnsupportedEncodingException {
-        this.request.setCharacterEncoding(enc);
+    public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException {
+        this.request.setCharacterEncoding(encoding);
+    }
+
+    /**
+     * The default behavior of this method is to set the character encoding on the wrapped request object.
+     */
+    @Override
+    public void setCharacterEncoding(Charset encoding) {
+        this.request.setCharacterEncoding(encoding);
     }
 
     /**
@@ -276,17 +285,6 @@ public class ServletRequestWrapper implements ServletRequest {
     @Override
     public RequestDispatcher getRequestDispatcher(String path) {
         return this.request.getRequestDispatcher(path);
-    }
-
-    /**
-     * The default behavior of this method is to return getRealPath(String path) on the wrapped request object.
-     *
-     * @deprecated As of Version 2.1 of the Java Servlet API, use {@link ServletContext#getRealPath} instead
-     */
-    @Override
-    @Deprecated
-    public String getRealPath(String path) {
-        return this.request.getRealPath(path);
     }
 
     /**
@@ -491,4 +489,39 @@ public class ServletRequestWrapper implements ServletRequest {
         return request.getDispatcherType();
     }
 
+    /**
+     * Gets the request ID for the wrapped request.
+     * 
+     * @return the request ID for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public String getRequestId() {
+        return request.getRequestId();
+    }
+
+    /**
+     * Gets the protocol defined request ID, if any, for the wrapped request.
+     * 
+     * @return the protocol defined request ID, if any, for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public String getProtocolRequestId() {
+        return request.getProtocolRequestId();
+    }
+
+    /**
+     * Gets the connection information for the wrapped request.
+     * 
+     * @return the connection information for the wrapped request
+     * 
+     * @since Servlet 6.0
+     */
+    @Override
+    public ServletConnection getServletConnection() {
+        return request.getServletConnection();
+    }
 }

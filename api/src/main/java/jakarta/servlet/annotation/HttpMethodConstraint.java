@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -37,7 +37,7 @@ public @interface HttpMethodConstraint {
      * Http protocol method name
      *
      * @return the name of an HTTP protocol method. <code>value</code> may not be null, or the empty string, and must be a
-     * legitimate HTTP Method name as defined by RFC 2616.
+     * legitimate HTTP Method name as defined by RFC 7231.
      */
     String value();
 

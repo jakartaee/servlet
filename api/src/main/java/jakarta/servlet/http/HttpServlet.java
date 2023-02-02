@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -19,6 +19,7 @@
 package jakarta.servlet.http;
 
 import jakarta.servlet.GenericServlet;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
@@ -78,8 +79,20 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
 
+    /**
+     * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
+     * {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
+     * 
+     * @deprecated may be removed in future releases
+     * @since Servlet 6.0
+     */
+    @Deprecated(forRemoval = true, since = "Servlet 6.0")
+    public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
+
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+
+    private boolean legacyHeadHandling;
 
     /**
      * Does nothing, because this is an abstract class.
@@ -87,6 +100,12 @@ public abstract class HttpServlet extends GenericServlet {
      */
 
     public HttpServlet() {
+    }
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        legacyHeadHandling = Boolean.parseBoolean(config.getInitParameter(LEGACY_DO_HEAD));
     }
 
     /**
@@ -178,6 +197,11 @@ public abstract class HttpServlet extends GenericServlet {
      * protects itself from being called multiple times for one HTTP HEAD request).
      *
      * <p>
+     * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}. If the
+     * {@link ServletConfig} init parameter {@link #LEGACY_DO_HEAD} is set to "TRUE", then the response instance is wrapped
+     * so that the response body is discarded.
+     *
+     * <p>
      * If the HTTP HEAD request is incorrectly formatted, <code>doHead</code> returns an HTTP "Bad Request" message.
      *
      * @param req the request object that is passed to the servlet
@@ -189,10 +213,13 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the request for the HEAD could not be handled
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        NoBodyResponse response = new NoBodyResponse(resp);
-
-        doGet(req, response);
-        response.setContentLength();
+        if (legacyHeadHandling) {
+            NoBodyResponse response = new NoBodyResponse(resp);
+            doGet(req, response);
+            response.setContentLength();
+        } else {
+            doGet(req, resp);
+        }
     }
 
     /**
@@ -256,8 +283,8 @@ public abstract class HttpServlet extends GenericServlet {
      * When overriding this method, leave intact any content headers sent with the request (including Content-Length,
      * Content-Type, Content-Transfer-Encoding, Content-Encoding, Content-Base, Content-Language, Content-Location,
      * Content-MD5, and Content-Range). If your method cannot handle a content header, it must issue an error message (HTTP
-     * 501 - Not Implemented) and discard the request. For more information on HTTP 1.1, see RFC 2616
-     * <a href="http://www.ietf.org/rfc/rfc2616.txt"></a>.
+     * 501 - Not Implemented) and discard the request. For more information on HTTP 1.1 and the PUT method, see RFC 7231
+     * <a href="http://www.ietf.org/rfc/rfc7231.txt"></a>.
      *
      * <p>
      * This method does not need to be either safe or idempotent. Operations that <code>doPut</code> performs can have side
@@ -594,6 +621,7 @@ public abstract class HttpServlet extends GenericServlet {
  * Response object.
  */
 // file private
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
 class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
@@ -662,6 +690,29 @@ class NoBodyResponse extends HttpServletResponseWrapper {
     }
 
     @Override
+    public void reset() {
+        super.reset();
+        noBody.reset();
+        usingOutputStream = false;
+        writer = null;
+        didSetContentLength = false;
+    }
+
+    @Override
+    public void resetBuffer() {
+        super.resetBuffer();
+        if (writer != null) {
+            try {
+                NoBodyOutputStream.disableFlush.set(Boolean.TRUE);
+                writer.flush();
+            } finally {
+                NoBodyOutputStream.disableFlush.remove();
+            }
+        }
+        noBody.reset();
+    }
+
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
 
         if (writer != null) {
@@ -692,15 +743,21 @@ class NoBodyResponse extends HttpServletResponseWrapper {
  * Servlet output stream that gobbles up all its data.
  */
 // file private
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
 class NoBodyOutputStream extends ServletOutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    static ThreadLocal<Boolean> disableFlush = new ThreadLocal<>();
 
     private int contentLength = 0;
 
     // file private
     NoBodyOutputStream() {
+    }
+
+    void reset() {
+        contentLength = 0;
     }
 
     // file private
@@ -733,12 +790,18 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
+    public void flush() throws IOException {
+        if (Boolean.TRUE.equals(disableFlush.get()))
+            super.flush();
+    }
+
+    @Override
     public boolean isReady() {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void setWriteListener(WriteListener writeListener) {
-
+        throw new UnsupportedOperationException();
     }
 }
