@@ -123,27 +123,7 @@ Generic Syntax
 
 * RFC 7258 Pervasive Monitoring Is an Attack
 
-* RFC 7540 Hypertext Transfer Protocol Version 2 (HTTP/2)
-
 * RFC 7541 HPACK: Header Compression for HTTP/2 (HPACK)
-
-* RFC 7230 Hypertext Transfer Protocol (HTTP/1.1):
-Message Syntax and Routing
-
-* RFC 7231 Hypertext Transfer Protocol (HTTP/1.1):
-Semantics and Content
-
-* RFC 7232 Hypertext Transfer Protocol (HTTP/1.1):
-Conditional Requests
-
-* RFC 7233 Hypertext Transfer Protocol (HTTP/1.1):
-Range Requests
-
-* RFC 7234 Hypertext Transfer Protocol (HTTP/1.1):
-Caching
-
-* RFC 7235 Hypertext Transfer Protocol (HTTP/1.1):
-Authentication
 
 * RFC 7301 Transport Layer Security (TLS)
 Application-Layer Protocol Negotiation Extension (ALPN)
@@ -153,11 +133,22 @@ Control Protocol for Tea Ef (HTCPCP-TEA)footnote:[This reference is mostly
 tongue-in-cheek although most of the concepts described in the HTCPCP
 -TEA RFC are relevant to all well-designed web servers.]
 
-* RFC 2617 HTTP Authentication: Basic and Digest
-Authentication
-
 * RFC 2119 Key words for use in RFCs to Indicate
 Requirement Levels
+
+* RFC 7616 HTTP Digest Access Authentication
+
+* RFC 7617 The 'Basic' HTTP Authentication Scheme
+
+* RFC 9110 HTTP Semantics
+
+* RFC 9111 HTTP Caching
+
+* RFC 9112 HTTP/1.1
+
+* RFC 9113 HTTP/2
+
+* RFC 9114 HTTP/3
 
 Online versions of these RFCs are at
 `http://www.ietf.org/rfc/`.
@@ -215,11 +206,11 @@ container must implement are HTTP/1.1 and HTTP/2. When supporting
 HTTP/2, servlet containers must support the “h2” and “h2c” protocol
 identifiers (as specified in section 3.1 of the HTTP/2 RFC). This
 implies all servlet containers must support ALPN. Because the container
-may have a caching mechanism described in RFC 7234 (HTTP/1.1 Caching),
+may have a caching mechanism described in RFC 9111 (HTTP Caching),
 it may modify requests from the clients before delivering them to the
 servlet, may modify responses produced by servlets before sending them
 to the clients, or may respond to requests without delivering them to
-the servlet under the compliance with RFC 7234.
+the servlet under the compliance with RFC 9111.
 
 A servlet container may place security restrictions on the environment in which
 a servlet executes.
@@ -1306,11 +1297,11 @@ The process described here adapts and extends the URI canonicalization process d
 ==== Obtaining the URI Path
 HTTP/1.0:: The URI path is extracted from the `Request-URI` in the `Request-Line` as defined by [RFC 1945](https://datatracker.ietf.org/doc/html/rfc1945#section-5.1). URIs in `abs_path` form are the URI path. URIs in `absoluteURI` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path.
 
-HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 7230](https://datatracker.ietf.org/doc/html/rfc7230#section-3.1.1). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
+HTTP/1.1:: The URI path is extracted from the `request-target` as defined by [RFC 9112](https://www.rfc-editor.org/rfc/rfc9112.html#name-request-target). URIs in `origin-form` are the URI path. URIs in `absolute-form` have the protocol and authority removed to convert them to `origin-form` and thus obtain the URI path. URIs in `authority-form` or `asterisk-form` are outside of the scope of this specification.
 
-HTTP/2:: The URI path is the `:path` pseudo header as defined by [RFC 7540](https://datatracker.ietf.org/doc/html/rfc7540#section-8.1.2.3) and is passed unchanged to stage 2.
+HTTP/2:: The URI path is the `:path` pseudo header as defined by [RFC 9113](https://www.rfc-editor.org/rfc/rfc9113.html#name-request-pseudo-header-field) and is passed unchanged to stage 2.
 
-HTTP/3:: The URI path is the `:path` pseudo header as currently defined by the [draft RFC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-http-34).
+HTTP/3:: The URI path is the `:path` pseudo header as currently defined by the [RFC 9114](https://www.rfc-editor.org/rfc/rfc9114.html#name-request-pseudo-header-field).
 
 Other protocols:: Containers may support other protocols. Containers should extract an appropriate URI path for the request from the protocol and pass it to stage 2.
 
@@ -1753,7 +1744,7 @@ sender:
 
 The `getLocale` method will return the
 preferred locale for which the client wants to accept content. See
-section 14.4 of RFC 7231 (HTTP/1.1) for more information about how the
+section 12.5.4 of RFC 9110 (HTTP Semantics) for more information about how the
 `Accept-Language` header must be interpreted to determine the preferred
 language of the client.
 
@@ -2405,7 +2396,7 @@ To be successfully transmitted back to the
 client, headers (other than those in a trailer) must be set before the response is
 committed. Headers (other than those in a trailer) set after the response is committed
 will be ignored by the servlet container. If an HTTP trailer, as specified
-in RFC 7230, is to be sent in the response, the fields must be provided using
+in RFC 9110, is to be sent in the response, the fields must be provided using
 the `setTrailerFields()` method on `HttpServletResponse`. This method
 must have been called before the last chunk in the chunked response has
 been written.
@@ -2421,7 +2412,7 @@ the servlet programmer does not set the type.
 
 An HTTP trailer is a collection of HTTP headers that comes after the
 response body. It is specified
-in RFC 7230. It is useful in the context of chunked transfer encoding
+in RFC 9110. It is useful in the context of chunked transfer encoding
 and also in the implementation of additional communication protocols.
 Servlet containers provide support for trailers.
 
@@ -8595,6 +8586,9 @@ all `ServletContext` methods that accept a path parameter.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/463[Issue 463]::
 Clarify Javadoc for `MultipartConfigElement` and `MultipartConfig` that sizes
 are in bytes.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/468[Issue 468]::
+Update references to the HTTP RFCs to use the current versions.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/473[Issue 473]::
 The Javadoc for `HttpServletRequest.isTrailerFieldsReady()` has been corrected
