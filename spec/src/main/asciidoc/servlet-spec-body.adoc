@@ -8573,6 +8573,10 @@ Clarify the behaviour of `getDateHeader()` and `getIntHeader()` when multiple
 headers with the same name are present in the `HttpServletRequest`. The expected
 behaviour is aligned with `getHeader()`. 
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/336[Issue 336]::
+Add new constants to `HttpServletResponse` for the HTTP response codes 308, 421,
+422 and 426.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/415[Issue 415]::
 Add overloaded `setCharacterEncoding()` methods that support `Charset`.
 
