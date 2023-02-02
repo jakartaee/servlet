@@ -8553,6 +8553,10 @@ attributes that must be set on the request as part of an error dispatch.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/95[Issue 95]::
 Clarify that Servlet containers are required to support HTTPS.
  
+link:https://github.com/eclipse-ee4j/servlet-api/issues/159[Issue 159]::
+Clarify the behaviour of the various methods for adding headers when passed
+`null` or the empty string.
+ 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/164[Issue 164]::
 Clarify Javadoc for `ServletResponse` and `HttpServletResponse` methods that are
 NO-OPs once the response has been committed.
