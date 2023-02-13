@@ -361,7 +361,7 @@
     </xsd:annotation>
 
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="[^\s]+"/>
+      <xsd:pattern value="\\S+"/>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -610,7 +610,7 @@
     </xsd:annotation>
 
      <xsd:restriction base="xsd:token">
-      <xsd:pattern value="[&#33;-&#126;-[\(\)&#60;&#62;@,;:&#34;/\[\]?=\{\}\\\p{Z}]]+"/>
+      <xsd:pattern value="[&#33;-&#126;-[()&#60;&#62;@,;:&#34;/\[\]?={}\\\p{Z}]]+"/>
      </xsd:restriction>
 
   </xsd:simpleType>
@@ -677,7 +677,7 @@
     </xsd:annotation>
 
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="[a-z]{2}(_|-)?([\p{L}\-\p{Nd}]{2})?"/>
+      <xsd:pattern value="[a-z]{2}[_-]?([\p{L}\-\p{Nd}]{2})?"/>
     </xsd:restriction>
   </xsd:simpleType>
 

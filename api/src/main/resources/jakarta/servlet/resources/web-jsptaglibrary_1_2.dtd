@@ -84,7 +84,7 @@ listener        optional event listener specification
 <!--
 Describes this version (number) of the taglibrary (dewey decimal)
 
-#PCDATA ::= [0-9]*{ "."[0-9] }0..3
+#PCDATA ::= \d*{ "."\d }0..3
 -->
 
 <!ELEMENT tlib-version (#PCDATA) >
@@ -95,7 +95,7 @@ order to function (dewey decimal)
 
 The default is 1.2
 
-#PCDATA ::= [0-9]*{ "."[0-9] }0..3
+#PCDATA ::= \d*{ "."\d }0..3
 -->
 
 <!ELEMENT jsp-version  (#PCDATA) >

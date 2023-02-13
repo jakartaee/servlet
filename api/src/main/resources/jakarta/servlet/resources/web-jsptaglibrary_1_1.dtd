@@ -52,7 +52,7 @@ info		a simple string describing the "use" of this taglib,
 <!--
 Describes this version (number) of the taglibrary (dewey decimal)
 
-#PCDATA ::= [0-9]*{ "."[0-9] }0..3
+#PCDATA ::= \d*{ "."\d }0..3
 -->
 
 <!ELEMENT tlibversion (#PCDATA) >
@@ -63,7 +63,7 @@ order to function (dewey decimal)
 
 The default is 1.1
 
-#PCDATA ::= [0-9]*{ "."[0-9] }0..3
+#PCDATA ::= \d*{ "."\d }0..3
 -->
 
 <!ELEMENT jspversion  (#PCDATA) >
