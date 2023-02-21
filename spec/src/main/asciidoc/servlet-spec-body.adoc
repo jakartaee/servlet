@@ -2504,14 +2504,14 @@ The following convenience methods exist in the
 
 * `sendError`
 
-The `sendRedirect` method will set the appropriate headers and content body to
+The `sendRedirect` methods will set the appropriate headers and content body to
 redirect the client to a different URL.
-It is legal to call this method with a relative URL path.
+It is legal to call these methods with a relative URL path.
 The underlying container may provide an option to use the relative URL path as
 provided but if no such option is provided it must translate the relative path
 to a fully qualified URL for transmission back to the client.
 If a partial URL is given and, for whatever reason, cannot be converted into a
-valid URL, then this method must throw an `IllegalArgumentException`.
+valid URL, then these methods must throw an `IllegalArgumentException`.
 
 The `sendError` method will set the
 appropriate headers and content body for an error message to return to
@@ -8553,6 +8553,11 @@ link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
 A new attribute, `jakarta.servlet.error.query_string`, has been added to the
 attributes that must be set on the request as part of an error dispatch.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/74[Issue 74]::
+Add additional methods to `HttpServeltResponse` to allow the status code used
+with the redirect to be chosen and/or the response body used for the redirect to
+be controlled.
+ 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/95[Issue 95]::
 Clarify that Servlet containers are required to support HTTPS.
  

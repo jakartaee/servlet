@@ -145,9 +145,76 @@ public interface HttpServletResponse extends ServletResponse {
     public void sendError(int sc) throws IOException;
 
     /**
-     * Sends a temporary redirect response to the client using the specified redirect location URL and clears the buffer.
-     * The buffer will be replaced with the data set by this method. Calling this method sets the status code to
-     * {@link #SC_FOUND} 302 (Found).
+     * Sends a redirect response to the client using the specified redirect location URL with the status code
+     * {@link #SC_FOUND} 302 (Found), clears the response buffer and commits the response. The response buffer will be
+     * replaced with a short hypertext note as per RFC 9110.
+     *
+     * <p>
+     * This method has no effect if called from an include.
+     *
+     * @param location the redirect location URL (may be absolute or relative)
+     *
+     * @exception IOException If an input or output exception occurs
+     * @exception IllegalArgumentException If a relative URL is given and cannot be converted into an absolute URL
+     * @exception IllegalStateException If the response was already committed when this method was called
+     *
+     * @see #sendRedirect(String, int, boolean)
+     */
+    public default void sendRedirect(String location) throws IOException {
+        sendRedirect(location, SC_FOUND, true);
+    }
+
+    /**
+     * Sends a redirect response to the client using the specified redirect location URL with the status code
+     * {@link #SC_FOUND} 302 (Found), optionally clears the response buffer and commits the response. If the response buffer
+     * is cleared, it will be replaced with a short hypertext note as per RFC 9110.
+     *
+     * <p>
+     * This method has no effect if called from an include.
+     *
+     * @param location the redirect location URL (may be absolute or relative)
+     * @param clearBuffer if {@code true}, clear the buffer and replace it with the data set by this method otherwise retain
+     * the existing buffer
+     *
+     * @exception IOException If an input or output exception occurs
+     * @exception IllegalArgumentException If a relative URL is given and cannot be converted into an absolute URL
+     * @exception IllegalStateException If the response was already committed when this method was called
+     *
+     * @see #sendRedirect(String, int, boolean)
+     */
+    public default void sendRedirect(String location, boolean clearBuffer) throws IOException {
+        sendRedirect(location, SC_FOUND, clearBuffer);
+    }
+
+    /**
+     * Sends a redirect response to the client using the specified redirect location URL and status code, clears the
+     * response buffer and commits the response. The response buffer will be replaced with a short hypertext note as per RFC
+     * 9110.
+     *
+     * <p>
+     * This method has no effect if called from an include.
+     *
+     * @param location the redirect location URL (may be absolute or relative)
+     * @param sc the status code to use for the redirect
+     *
+     * @exception IOException If an input or output exception occurs
+     * @exception IllegalArgumentException If a relative URL is given and cannot be converted into an absolute URL
+     * @exception IllegalStateException If the response was already committed when this method was called
+     *
+     * @see #sendRedirect(String, int, boolean)
+     */
+    public default void sendRedirect(String location, int sc) throws IOException {
+        sendRedirect(location, sc, true);
+    }
+
+    /**
+     * Sends a redirect response to the client using the specified redirect location URL and status code, optionally clears
+     * the response buffer and commits the response. If the response buffer is cleared, it will be replaced with a short
+     * hypertext note as per RFC 9110.
+     *
+     * <p>
+     * This method has no effect if called from an include.
+     *
      * <p>
      * This method accepts both relative and absolute URLs. Absolute URLs passed to this method are used as provided as the
      * redirect location URL. Relative URLs are converted to absolute URLs unless a container specific feature/option is
@@ -167,12 +234,16 @@ public interface HttpServletResponse extends ServletResponse {
      * If the response has already been committed, this method throws an IllegalStateException. After using this method, the
      * response should be considered to be committed and should not be written to.
      *
-     * @param location the redirect location URL
+     * @param location the redirect location URL (may be absolute or relative)
+     * @param sc the status code to use for the redirect
+     * @param clearBuffer if {@code true}, clear the buffer and replace it with the data set by this method otherwise retain
+     * the existing buffer
+     *
      * @exception IOException If an input or output exception occurs
-     * @exception IllegalStateException If the response was committed or if a partial URL is given and cannot be converted
-     * into a valid URL
+     * @exception IllegalArgumentException If a relative URL is given and cannot be converted into an absolute URL
+     * @exception IllegalStateException If the response was already committed when this method was called
      */
-    public void sendRedirect(String location) throws IOException;
+    public void sendRedirect(String location, int sc, boolean clearBuffer) throws IOException;
 
     /**
      * Sets a response header with the given name and date-value. The date is specified in terms of milliseconds since the
