@@ -331,8 +331,13 @@ features.  The `doOptions` method responds with which HTTP methods are
 supported by the servlet. The `doTrace` method generates a response
 containing all instances of the headers sent in the `TRACE` request.
 
-The `CONNECT` method is not supported because it applies to proxies and
-the Jakarta Servlet API is targeted at endpoints.
+The `CONNECT` method applies to proxies whereas the Jakarta Servlet API is
+targeted at endpoints so, by default, Containers must reject such requests with
+an `SC_NOT_IMPLEMENTED` (501) response and not pass the request to a Filter or
+Servlet. Containers may provide container specific functionality to handle
+`CONNECT` requests. If that functionality includes passing `CONNECT` requests to
+a Filter or Servlet, then the container should define the expected behaviour of
+the Servlet API for such requests in that container.
 
 ==== Conditional GET Support
 
@@ -8604,6 +8609,9 @@ to correctly describe the default implementation.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/484[Issue 484]::
 Add ByteBuffer support to `ServletInputStream` and `ServletOutputStream`.
+
+Clarify the expected behavior if the container receives an HTTP request using
+the `CONNECT` method.
 
 === Changes Since Jakarta Servlet 5.0
 
