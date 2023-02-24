@@ -126,7 +126,7 @@ public class HttpServletTest {
         servlet.service(request, response);
         MockServletOutputStream out = response.getMockServletOutputStream();
         String actual = out == null ? null : out.takeOutputAsString();
-        System.out.println(actual);
+        assertThat(actual, !actual.contains(testHeader));
     }
 
     public static Stream<Arguments> headRequest() {
