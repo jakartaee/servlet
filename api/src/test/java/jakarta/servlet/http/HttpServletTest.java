@@ -26,6 +26,10 @@ import jakarta.servlet.MockServletOutputStream;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
@@ -90,6 +94,47 @@ public class HttpServletTest {
         assertThat(test, committed.get(), is(expectedFlushed));
         assertThat(test, contentLength.get(), is(expectedContentLength));
         assertThat(test, actual, anyOf(is(""), nullValue()));
+    }
+    @ParameterizedTest
+    @MethodSource("headRequest")
+    public void testHeadFromRequest(String testHeader, Handler doTrace)
+            throws ServletException, IOException {
+        HttpServlet servlet = new HttpServlet() {
+
+            private static final long serialVersionUID = 20214996986006169L;
+
+            @Override
+            protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                doTrace.handle(request, response);
+            }
+        };
+        MockServletConfig servletConfig = new MockServletConfig();
+        MockHttpServletRequest request = new MockHttpServletRequest(servletConfig.getServletContext()) {
+            @Override
+            public String getMethod() {
+                return "TRACE";
+            }
+
+            @Override
+            public Enumeration<String> getHeaderNames() {
+                return Collections.enumeration(Arrays.asList(testHeader));
+            }
+        };
+
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        servlet.service(request, response);
+        MockServletOutputStream out = response.getMockServletOutputStream();
+        String actual = out == null ? null : out.takeOutputAsString();
+        System.out.println(actual);
+    }
+
+    public static Stream<Arguments> headRequest() {
+        return Stream.of(
+                Arguments.of("Authorization",
+                        (Handler) (request, response) -> {}),
+                Arguments.of("Accept",
+                        (Handler) (request, response) -> {})
+        );
     }
 
     public static Stream<Arguments> headTest() {

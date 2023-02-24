@@ -31,7 +31,9 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -78,6 +80,7 @@ public abstract class HttpServlet extends GenericServlet {
 
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
+    private static final List<String> HEADER_SENSITIVE = Arrays.asList("Authorization", "Accept");
 
     /**
      * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
@@ -488,6 +491,11 @@ public abstract class HttpServlet extends GenericServlet {
 
         while (reqHeaderEnum.hasMoreElements()) {
             String headerName = reqHeaderEnum.nextElement();
+
+            if (isSensiveHeader(headerName)) {
+                continue;
+            }
+
             buffer.append(CRLF).append(headerName).append(": ").append(req.getHeader(headerName));
         }
 
@@ -499,6 +507,10 @@ public abstract class HttpServlet extends GenericServlet {
         resp.setContentLength(responseLength);
         ServletOutputStream out = resp.getOutputStream();
         out.print(buffer.toString());
+    }
+
+    private boolean isSensiveHeader(String headerName) {
+        return HEADER_SENSITIVE.contains(headerName);
     }
 
     /**
