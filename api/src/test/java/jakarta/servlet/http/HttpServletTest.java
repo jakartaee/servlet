@@ -95,6 +95,7 @@ public class HttpServletTest {
         assertThat(test, contentLength.get(), is(expectedContentLength));
         assertThat(test, actual, anyOf(is(""), nullValue()));
     }
+
     @ParameterizedTest
     @MethodSource("headRequest")
     public void testHeadFromRequest(String testHeader, Handler doTrace)
