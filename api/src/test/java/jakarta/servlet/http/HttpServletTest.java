@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Contributors to the Eclipse Foundation.
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import jakarta.servlet.MockServletConfig;
 import jakarta.servlet.MockServletOutputStream;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
@@ -90,6 +94,60 @@ public class HttpServletTest {
         assertThat(test, committed.get(), is(expectedFlushed));
         assertThat(test, contentLength.get(), is(expectedContentLength));
         assertThat(test, actual, anyOf(is(""), nullValue()));
+    }
+
+    @ParameterizedTest
+    @MethodSource("traceHeadersTest")
+    public void testTraceHeaders(String testHeader, Handler doTrace)
+            throws ServletException, IOException {
+        HttpServlet servlet = new HttpServlet() {
+
+            private static final long serialVersionUID = 20214996986006169L;
+
+            @Override
+            protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                doTrace.handle(request, response);
+            }
+        };
+        MockServletConfig servletConfig = new MockServletConfig();
+        MockHttpServletRequest request = new MockHttpServletRequest(servletConfig.getServletContext()) {
+            @Override
+            public String getMethod() {
+                return "TRACE";
+            }
+
+            @Override
+            public Enumeration<String> getHeaderNames() {
+                return Collections.enumeration(Arrays.asList(testHeader));
+            }
+        };
+
+        MockHttpServletResponse response = new MockHttpServletResponse();
+        servlet.service(request, response);
+        MockServletOutputStream out = response.getMockServletOutputStream();
+        assertNotNull(out);
+        String actual = out.takeOutputAsString();
+        assertNotNull(actual);
+        assertThat(actual, !actual.contains(testHeader));
+    }
+
+    public static Stream<Arguments> traceHeadersTest() {
+        return Stream.of(
+                Arguments.of("Authorization",
+                        (Handler) (request, response) -> {
+                        }),
+                Arguments.of("Cookie",
+                        (Handler) (request, response) -> {
+                        }),
+                Arguments.of("X-Forwarded-Ip",
+                        (Handler) (request, response) -> {
+                        }),
+                Arguments.of("Forwarded",
+                        (Handler) (request, response) -> {
+                        }),
+                Arguments.of("Proxy-Authorization",
+                        (Handler) (request, response) -> {
+                        }));
     }
 
     public static Stream<Arguments> headTest() {
