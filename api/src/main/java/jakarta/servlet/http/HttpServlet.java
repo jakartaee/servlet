@@ -492,7 +492,7 @@ public abstract class HttpServlet extends GenericServlet {
         while (reqHeaderEnum.hasMoreElements()) {
             String headerName = reqHeaderEnum.nextElement();
 
-            if (isSensiveHeader(headerName)) {
+            if (isSensitiveHeader(headerName)) {
                 continue;
             }
 
@@ -509,7 +509,7 @@ public abstract class HttpServlet extends GenericServlet {
         out.print(buffer.toString());
     }
 
-    private boolean isSensiveHeader(String headerName) {
+    private boolean isSensitiveHeader(String headerName) {
         return HEADER_SENSITIVE.contains(headerName);
     }
 
