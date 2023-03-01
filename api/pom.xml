@@ -192,7 +192,7 @@
                     <scm>git</scm>
                     <!-- turn on/off debugging -->
                     <debug>off</debug>
-                    <!-- skip files not under SCM-->
+                    <!-- skip files not under SCM -->
                     <scmOnly>true</scmOnly>
                     <!-- turn off warnings -->
                     <warn>true</warn>
