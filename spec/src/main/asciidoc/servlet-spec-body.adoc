@@ -6092,7 +6092,7 @@ is used as an extension mapping.
 
 * The empty string (`+""+`) is a special URL pattern that exactly maps
 to the application's context root, i.e., requests of the form
-`http://host:port/<context-root>` or `http://host:port/<context-root>/`.
+`\http://host:port/<context-root>` or `\http://host:port/<context-root>/`.
 In this case the path info is `"/"` and the servlet path is empty string
 (`+""+`).
 
