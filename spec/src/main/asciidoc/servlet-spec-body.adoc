@@ -7365,14 +7365,21 @@ and a 403 (SC_FORBIDDEN) status code shall be returned to the user.
 ==== Uncovered HTTP Protocol Methods
 
 The `security-constraint` schema provides the
-ability to enumerate (including by omission) the HTTP protocol methods
+ability to enumerate the HTTP methods
 to which the protection requirements defined in a `security-constraint`
 apply. When HTTP methods are enumerated within a `security-constraint`,
 the protections defined by the constraint apply only to the methods
-established by the enumeration. We refer to the HTTP methods that are
-not established by the enumeration as "uncovered" HTTP methods.
-Uncovered HTTP methods are NOT protected at all request URLs for which a
+included in the enumeration. We refer to the HTTP methods that are
+not included in the enumeration as "uncovered" HTTP methods because
+requests using those methods are NOT subject to the `security-constraint` for
+all request URLs for which a
 `url-pattern` of the `security-constraint` is a best match.
+
+The HTTP methods for a security constraint may be enumerated directly using
+`http-method` elements or may be enumerated by omission using
+`http-method-omission` elements. In the latter case, the HTTP methods for a
+security constraint are all those methods NOT listed by the
+`http-method-omission` elements.
 
 When HTTP methods are not enumerated within a
 `security-constraint`, the protections defined by the constraint apply
@@ -7382,8 +7389,8 @@ of the `security-constraint` is a best match.
 
 The examples that follow depict the three
 ways in which HTTP protocol methods may be left uncovered. The
-determination of whether methods are uncovered is made after all the
-constraints that apply to a `url-pattern` have been combined as
+determination of whether methods are uncovered for a `url-pattern` is made after
+all the constraints that apply to that `url-pattern` have been combined as
 described in <<Combining Constraints>>.
 
 . A `security-constraint` names one or more
@@ -7496,13 +7503,13 @@ the deployment system should establish additional excluding
 auth-constraints, to cover these HTTP methods at the constrained
 url-patterns at which the HTTP methods are uncovered.
 
-When an application’s security configuration
-contains no uncovered methods, the `deny-uncovered-http-methods` flag
+When an application’s security configuration does not create any
+uncovered methods, the `deny-uncovered-http-methods` flag
 must have no effect on the effective security configuration of the
 application.
 
 Applying the `deny-uncovered-http-methods`
-flag to an application whose security configuration contains uncovered
+flag to an application whose security configuration creates uncovered
 methods, may, in some cases, deny access to resources that must be
 accessible in order for the application to function. In such cases, the
 security configuration of the application should be completed such that
@@ -8679,6 +8686,9 @@ specification text.
 
 Update the Javadoc to clarify the scheduling implications when `ServletInputStream.isReady()`
 or `ServletOutputStream.isReady()` return `false`.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/460[Issue 460]::
+Reword the description of uncovered HTTP methods for improved clarity.
 
 === Compatibility with Jakarta Servlet Specification Version 4.0
 Jakarta Servlet version 5.0 is only a change of namespaces
