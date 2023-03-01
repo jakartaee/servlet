@@ -49,7 +49,7 @@ package jakarta.servlet.http;
  * The expected values of the properties for various incoming URI path values are as shown in this table. The
  * {@code servletName} column is omitted as its value is always {@code MyServlet}.
  * </p>
- * 
+ *
  * <table border="1">
  * <caption>Expected values of properties for various URI paths</caption>
  * <tr>
@@ -112,9 +112,9 @@ package jakarta.servlet.http;
  * <td>/path/*</td>
  * <td>PATH</td>
  * </tr>
- * 
+ *
  * </table>
- * 
+ *
  * @since Servlet 4.0
  */
 public interface HttpServletMapping {
@@ -127,7 +127,7 @@ public interface HttpServletMapping {
      * leading slash. If the {@link #getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this method must return
      * the value that matched the '*' excluding any leading '/'. See the class javadoc for examples.
      * </p>
-     * 
+     *
      * @return the match.
      */
     public String getMatchValue();
@@ -137,7 +137,7 @@ public interface HttpServletMapping {
      * Return the String representation for the {@code url-pattern} for this mapping. This method returns the pattern
      * exactly as specified in the descriptor or Java configuration.
      * </p>
-     * 
+     *
      * @return the String representation for the {@code url-pattern} for this mapping.
      */
     public String getPattern();
@@ -147,7 +147,7 @@ public interface HttpServletMapping {
      * Return the String representation for the {@code servlet-name} for this mapping. If the Servlet providing the response
      * is the default servlet, the return from this method is the name of the default servlet, which is container specific.
      * </p>
-     * 
+     *
      * @return the String representation for the {@code servlet-name} for this mapping.
      */
     public String getServletName();
@@ -156,7 +156,7 @@ public interface HttpServletMapping {
      * <p>
      * Return the {@link MappingMatch} for this instance.
      * </p>
-     * 
+     *
      * @return the {@code MappingMatch} for this instance.
      */
     public MappingMatch getMappingMatch();

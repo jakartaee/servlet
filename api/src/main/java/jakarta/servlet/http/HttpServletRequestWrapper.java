@@ -30,7 +30,7 @@ import java.util.*;
  * <p>
  * This class implements the Wrapper or Decorator pattern. Methods default to calling through to the wrapped request
  * object.
- * 
+ *
  * @see jakarta.servlet.http.HttpServletRequest
  * @since Servlet 2.3
  */

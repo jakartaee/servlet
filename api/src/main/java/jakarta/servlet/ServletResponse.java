@@ -46,7 +46,7 @@ import java.util.Locale;
  * explicitly specified, ISO-8859-1 will be used. The <code>setCharacterEncoding</code>, <code>setContentType</code>, or
  * <code>setLocale</code> method must be called before <code>getWriter</code> and before committing the response for the
  * character encoding to be used.
- * 
+ *
  * <p>
  * See the Internet RFCs such as <a href="http://www.ietf.org/rfc/rfc2045.txt"> RFC 2045</a> for more information on
  * MIME. Protocols such as SMTP and HTTP define profiles of MIME, and those standards are still evolving.
@@ -120,7 +120,7 @@ public interface ServletResponse {
      * <p>
      * Either this method or {@link #getOutputStream} may be called to write the body, not both, except when {@link #reset}
      * has been called.
-     * 
+     *
      * @return a <code>PrintWriter</code> object that can return character data to the client
      *
      * @exception java.io.UnsupportedEncodingException if the character encoding returned by
@@ -320,7 +320,7 @@ public interface ServletResponse {
      * @see #getBufferSize
      * @see #isCommitted
      * @see #reset
-     * 
+     *
      * @throws IOException if the act of flushing the buffer cannot be completed.
      *
      */
@@ -393,7 +393,7 @@ public interface ServletResponse {
      * <code>Content-Language</code> header, the character encoding as part of the <code>Content-Type</code> header for text
      * media types. Note that the character encoding cannot be communicated via HTTP headers if the servlet does not specify
      * a content type; however, it is still used to encode text written via the servlet response's writer.
-     * 
+     *
      * @param loc the locale of the response or {code @null}
      *
      * @see #getLocale
@@ -409,7 +409,7 @@ public interface ServletResponse {
      * container's default locale is returned.
      *
      * @return the Locale for this response.
-     * 
+     *
      * @see #setLocale
      */
     public Locale getLocale();

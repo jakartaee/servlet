@@ -49,7 +49,7 @@ import java.util.Enumeration;
  * <p>
  * When container migrates a session between VMs in a distributed container setting, all session attributes implementing
  * the {@link HttpSessionActivationListener} interface are notified.
- * 
+ *
  * <p>
  * A servlet should be able to handle cases in which the client does not choose to join a session, such as when cookies
  * are intentionally turned off. Until the client joins the session, <code>isNew</code> returns <code>true</code>. If
@@ -79,7 +79,7 @@ public interface HttpSession {
     /**
      * Returns a string containing the unique identifier assigned to this session. The identifier is assigned by the servlet
      * container and is implementation dependent.
-     * 
+     *
      * @return a string specifying the identifier assigned to this session
      */
     public String getId();
@@ -102,7 +102,7 @@ public interface HttpSession {
 
     /**
      * Returns the ServletContext to which this session belongs.
-     * 
+     *
      * @return The ServletContext object for the web application
      * @since Servlet 2.3
      */
@@ -163,7 +163,7 @@ public interface HttpSession {
      * After this method executes, and if the new object implements <code>HttpSessionBindingListener</code>, the container
      * calls <code>HttpSessionBindingListener.valueBound</code>. The container then notifies any
      * <code>HttpSessionAttributeListener</code>s in the web application.
-     * 
+     *
      * <p>
      * If an object was already bound to this session of this name that implements <code>HttpSessionBindingListener</code>,
      * its <code>HttpSessionBindingListener.valueUnbound</code> method is called.

@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * <p>
  * This annotation is processed by the container at deployment time, and the corresponding filter applied to the
  * specified URL patterns, servlets, and dispatcher types.
- * 
+ *
  * @see jakarta.servlet.Filter
  *
  * @since Servlet 3.0
@@ -42,7 +42,7 @@ public @interface WebFilter {
 
     /**
      * The description of the filter
-     * 
+     *
      * @return the description of the filter
      */
     String description() default "";

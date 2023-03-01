@@ -51,7 +51,7 @@ public abstract class HttpFilter extends GenericFilter {
      * <p>
      * Does nothing, because this is an abstract class.
      * </p>
-     * 
+     *
      * @since Servlet 4.0
      */
     public HttpFilter() {
@@ -65,7 +65,7 @@ public abstract class HttpFilter extends GenericFilter {
      * method allows the Filter to pass on the request and response to the next entity in the chain. There's no need to
      * override this method.
      * </p>
-     * 
+     *
      * <p>
      * The default implementation inspects the incoming {@code req} and {@code res} objects to determine if they are
      * instances of {@link HttpServletRequest} and {@link HttpServletResponse}, respectively. If not, a
@@ -77,9 +77,9 @@ public abstract class HttpFilter extends GenericFilter {
      * @param req a {@link ServletRequest} object that contains the request the client has made of the filter
      *
      * @param res a {@link ServletResponse} object that contains the response the filter sends to the client
-     * 
+     *
      * @param chain the <code>FilterChain</code> for invoking the next filter or the resource
-     * 
+     *
      * @throws IOException if an input or output error is detected when the filter handles the request
      *
      * @throws ServletException if the request for the could not be handled or either parameter is not an instance of the
@@ -104,7 +104,7 @@ public abstract class HttpFilter extends GenericFilter {
      * through the chain due to a client request for a resource at the end of the chain. The FilterChain passed in to this
      * method allows the Filter to pass on the request and response to the next entity in the chain.
      * </p>
-     * 
+     *
      * <p>
      * The default implementation simply calls {@link FilterChain#doFilter}
      * </p>
@@ -112,9 +112,9 @@ public abstract class HttpFilter extends GenericFilter {
      * @param req a {@link HttpServletRequest} object that contains the request the client has made of the filter
      *
      * @param res a {@link HttpServletResponse} object that contains the response the filter sends to the client
-     * 
+     *
      * @param chain the <code>FilterChain</code> for invoking the next filter or the resource
-     * 
+     *
      * @throws IOException if an input or output error is detected when the filter handles the request
      *
      * @throws ServletException if the request for the could not be handled

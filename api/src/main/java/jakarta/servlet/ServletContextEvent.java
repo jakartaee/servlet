@@ -20,7 +20,7 @@ package jakarta.servlet;
 
 /**
  * This is the event class for notifications about changes to the servlet context of a web application.
- * 
+ *
  * @see ServletContextListener
  *
  * @since Servlet 2.3

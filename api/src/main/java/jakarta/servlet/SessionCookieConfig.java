@@ -112,7 +112,7 @@ public interface SessionCookieConfig {
      * With the adoption of support for RFC 6265, this method should no longer be used.
      * <p>
      * If called, this method has no effect.
-     * 
+     *
      * @param comment ignore
      *
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
@@ -120,7 +120,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#setComment(String)
      * @see jakarta.servlet.http.Cookie#getVersion
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
@@ -132,7 +132,7 @@ public interface SessionCookieConfig {
      * @return Always {@code null}
      *
      * @see jakarta.servlet.http.Cookie#getComment()
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)

@@ -20,7 +20,7 @@ package jakarta.servlet;
 
 /**
  * This is the event class for notifications of changes to the attributes of the servlet request in an application.
- * 
+ *
  * @see ServletRequestAttributeListener
  * @since Servlet 2.4
  */

@@ -64,7 +64,7 @@ public interface ServletRegistration extends Registration {
 
     /**
      * Gets the name of the runAs role of the Servlet represented by this <code>ServletRegistration</code>.
-     * 
+     *
      * @return the name of the runAs role, or null if the Servlet is configured to run as its caller
      */
     public String getRunAsRole();
@@ -108,17 +108,17 @@ public interface ServletRegistration extends Registration {
          * <p>
          * This method applies to all mappings added to this <code>ServletRegistration</code> up until the point that the
          * <code>ServletContext</code> from which it was obtained has been initialized.
-         * 
+         *
          * <p>
          * If a URL pattern of this ServletRegistration is an exact target of a <code>security-constraint</code> that was
          * established via the portable deployment descriptor, then this method does not change the
          * <code>security-constraint</code> for that pattern, and the pattern will be included in the return value.
-         * 
+         *
          * <p>
          * If a URL pattern of this ServletRegistration is an exact target of a security constraint that was established via the
          * {@link jakarta.servlet.annotation.ServletSecurity} annotation or a previous call to this method, then this method
          * replaces the security constraint for that pattern.
-         * 
+         *
          * <p>
          * If a URL pattern of this ServletRegistration is neither the exact target of a security constraint that was
          * established via the {@link jakarta.servlet.annotation.ServletSecurity} annotation or a previous call to this method,
@@ -129,15 +129,15 @@ public interface ServletRegistration extends Registration {
          * The returned set is not backed by the {@code Dynamic} object, so changes in the returned set are not reflected in the
          * {@code Dynamic} object, and vice-versa.
          * </p>
-         * 
+         *
          * @param constraint the {@link ServletSecurityElement} to be applied to the patterns mapped to this ServletRegistration
-         * 
+         *
          * @return the (possibly empty) Set of URL patterns that were already the exact target of a
          * <code>security-constraint</code> that was established via the portable deployment descriptor. This method has no
          * effect on the patterns included in the returned set
-         * 
+         *
          * @throws IllegalArgumentException if <tt>constraint</tt> is null
-         * 
+         *
          * @throws IllegalStateException if the {@link ServletContext} from which this <code>ServletRegistration</code> was
          * obtained has already been initialized
          */

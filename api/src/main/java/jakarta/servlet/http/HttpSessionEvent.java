@@ -38,7 +38,7 @@ public class HttpSessionEvent extends java.util.EventObject {
 
     /**
      * Return the session that changed.
-     * 
+     *
      * @return the {@link HttpSession} for this event.
      */
     public HttpSession getSession() {

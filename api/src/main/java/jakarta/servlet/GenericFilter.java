@@ -40,7 +40,7 @@ import java.util.ResourceBundle;
  * To write a generic filter, you need only override the abstract <code>doFilter</code> method.
  *
  * @author Various
- * 
+ *
  * @since Servlet 4.0
  */
 public abstract class GenericFilter implements Filter, FilterConfig, java.io.Serializable {
@@ -156,15 +156,15 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * Called by the servlet container to indicate to a filter that it is being placed into service. See
      * {@link Filter#init}.
      * </p>
-     * 
+     *
      * <p>
      * This implementation stores the {@link FilterConfig} object it receives from the servlet container for later use. When
      * overriding this form of the method, call <code>super.init(config)</code>.
-     * 
+     *
      * @param config the <code>FilterConfig</code> object that contains configuration information for this filter
      *
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
-     * 
+     *
      * @see UnavailableException
      *
      * @since Servlet 4.0
@@ -184,7 +184,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * Instead of overriding {@link #init(FilterConfig)}, simply override this method and it will be called by
      * <code>GenericFilter.init(FilterConfig config)</code>. The <code>FilterConfig</code> object can still be retrieved via
      * {@link #getFilterConfig}.
-     * 
+     *
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
      *
      * @since Servlet 4.0

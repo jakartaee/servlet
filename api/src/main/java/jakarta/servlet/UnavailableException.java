@@ -49,7 +49,7 @@ public class UnavailableException extends ServletException {
     private int seconds; // unavailability estimate
 
     /**
-     * 
+     *
      * Constructs a new exception with a descriptive message indicating that the servlet is permanently unavailable.
      *
      * @param msg a <code>String</code> specifying the descriptive message
@@ -64,7 +64,7 @@ public class UnavailableException extends ServletException {
     /**
      * Constructs a new exception with a descriptive message indicating that the servlet is temporarily unavailable and
      * giving an estimate of how long it will be unavailable.
-     * 
+     *
      * <p>
      * In some cases, the servlet cannot make an estimate. For example, the servlet might know that a server it needs is not
      * running, but not be able to report how long it will take to be restored to functionality. This can be indicated with

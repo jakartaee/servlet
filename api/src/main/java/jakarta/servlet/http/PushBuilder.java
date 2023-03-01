@@ -21,7 +21,7 @@ import java.util.Set;
 
 /**
  * Build a request to be pushed.
- * 
+ *
  * According section 8.2 of RFC 7540, a promised request must be cacheable and safe without a request body.
  *
  * <p>
@@ -74,7 +74,7 @@ import java.util.Set;
  * The {@link #path} method must be called on the {@code PushBuilder} instance before the call to {@link #push}. Failure
  * to do so must cause an exception to be thrown from {@link #push}, as specified in that method.
  * </p>
- * 
+ *
  * <p>
  * A PushBuilder can be customized by chained calls to mutator methods before the {@link #push()} method is called to
  * initiate an asynchronous push request with the current state of the builder. After the call to {@link #push()}, the
@@ -89,7 +89,7 @@ public interface PushBuilder {
      * <p>
      * Set the method to be used for the push.
      * </p>
-     * 
+     *
      * @param method the method to be used for the push.
      *
      * @throws NullPointerException if the argument is {@code null}
@@ -107,7 +107,7 @@ public interface PushBuilder {
      * The query string will be appended to any query String included in a call to {@link #path(String)}. Any duplicate
      * parameters must be preserved. This method should be used instead of a query in {@link #path(String)} when multiple
      * {@link #push()} calls are to be made with the same query string.
-     * 
+     *
      * @param queryString the query string to be used for the push.
      * @return this builder.
      */
@@ -117,7 +117,7 @@ public interface PushBuilder {
      * Set the SessionID to be used for the push. The session ID will be set in the same way it was on the associated
      * request (ie as a cookie if the associated request used a cookie, or as a url parameter if the associated request used
      * a url parameter). Defaults to the requested session ID or any newly assigned session id from a newly created session.
-     * 
+     *
      * @param sessionId the SessionID to be used for the push.
      * @return this builder.
      */
@@ -139,7 +139,7 @@ public interface PushBuilder {
      * <p>
      * Add a request header to be used for the push.
      * </p>
-     * 
+     *
      * @param name The header name to add
      * @param value The header value to add
      * @return this builder.
@@ -208,7 +208,7 @@ public interface PushBuilder {
 
     /**
      * Return the SessionID to be used for the push.
-     * 
+     *
      * @return the SessionID to be used for the push.
      */
     public String getSessionId();
@@ -227,7 +227,7 @@ public interface PushBuilder {
 
     /**
      * Return the header of the given name to be used for the push.
-     * 
+     *
      * @param name the name of the header
      *
      * @return the header of the given name to be used for the push.

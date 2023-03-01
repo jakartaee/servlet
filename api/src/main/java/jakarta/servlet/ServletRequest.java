@@ -30,7 +30,7 @@ import java.util.*;
  * A <code>ServletRequest</code> object provides data including parameter name and values, attributes, and an input
  * stream. Interfaces that extend <code>ServletRequest</code> can provide additional protocol-specific data (for
  * example, HTTP data is provided by {@link jakarta.servlet.http.HttpServletRequest}.
- * 
+ *
  * @author Various
  *
  * @see jakarta.servlet.http.HttpServletRequest
@@ -63,7 +63,7 @@ public interface ServletRequest {
     /**
      * Returns an <code>Enumeration</code> containing the names of the attributes available to this request. This method
      * returns an empty <code>Enumeration</code> if the request has no attributes available to it.
-     * 
+     *
      * @return an <code>Enumeration</code> of strings containing the names of the request's attributes
      */
     public Enumeration<String> getAttributeNames();
@@ -74,7 +74,7 @@ public interface ServletRequest {
      * encoding are consulted, in decreasing order of priority: per request, per web app (using
      * {@link ServletContext#setRequestCharacterEncoding}, deployment descriptor), and per container (for all web
      * applications deployed in that container, using vendor specific configuration).
-     * 
+     *
      * @return a <code>String</code> containing the name of the character encoding, or <code>null</code> if the request does
      * not specify a character encoding
      */
@@ -83,7 +83,7 @@ public interface ServletRequest {
     /**
      * Overrides the name of the character encoding used in the body of this request. This method must be called prior to
      * reading request parameters or reading input using getReader(). Otherwise, it has no effect.
-     * 
+     *
      * @param encoding <code>String</code> containing the name of the character encoding.
      *
      * @throws UnsupportedEncodingException if this ServletRequest is still in a state where a character encoding may be
@@ -96,9 +96,9 @@ public interface ServletRequest {
      * request parameters or reading input using getReader(). Otherwise, it has no effect.
      * <p>
      * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
-     * 
+     *
      * @param encoding <code>Charset</code> representing the character encoding.
-     * 
+     *
      * @since Servlet 6.1
      */
     default public void setCharacterEncoding(Charset encoding) {
@@ -199,7 +199,7 @@ public interface ServletRequest {
 
     /**
      * Returns a java.util.Map of the parameters of this request.
-     * 
+     *
      * <p>
      * Request parameters are extra information sent with the request. For HTTP servlets, parameters are contained in the
      * query string or posted form data.
@@ -248,7 +248,7 @@ public interface ServletRequest {
      * Retrieves the body of the request as character data using a <code>BufferedReader</code>. The reader translates the
      * character data according to the character encoding used on the body. Either this method or {@link #getInputStream}
      * may be called to read the body, not both.
-     * 
+     *
      * @return a <code>BufferedReader</code> containing the body of the request
      *
      * @exception UnsupportedEncodingException if the character set encoding used is not supported and the text cannot be
@@ -384,7 +384,7 @@ public interface ServletRequest {
     /**
      * Returns the fully qualified name of the address returned by {@link #getLocalAddr()}. If the engine cannot or chooses
      * not to resolve the hostname (to improve performance), this method returns the IP address.
-     * 
+     *
      * @return a <code>String</code> containing the host name of the IP on which the request was received.
      *
      * @since Servlet 2.4
@@ -395,7 +395,7 @@ public interface ServletRequest {
      * Returns the Internet Protocol (IP) address representing the interface on which the request was received. In some
      * cases a protocol specific mechanism, such as <a href="https://tools.ietf.org/html/rfc7239">RFC 7239</a>, may be used
      * to obtain an address different to that of the actual TCP/IP connection.
-     * 
+     *
      * @return a <code>String</code> containing an IP address.
      *
      * @since Servlet 2.4
@@ -447,7 +447,7 @@ public interface ServletRequest {
      * reinitialized as appropriate.
      *
      * @return the (re)initialized AsyncContext
-     * 
+     *
      * @throws IllegalStateException if this request is within the scope of a filter or servlet that does not support
      * asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
      * any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
@@ -500,7 +500,7 @@ public interface ServletRequest {
      * @param servletResponse the ServletResponse used to initialize the AsyncContext
      *
      * @return the (re)initialized AsyncContext
-     * 
+     *
      * @throws IllegalStateException if this request is within the scope of a filter or servlet that does not support
      * asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
      * any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
@@ -518,7 +518,7 @@ public interface ServletRequest {
      * <p>
      * A ServletRequest is put into asynchronous mode by calling {@link #startAsync} or
      * {@link #startAsync(ServletRequest,ServletResponse)} on it.
-     * 
+     *
      * <p>
      * This method returns <tt>false</tt> if this request was put into asynchronous mode, but has since been dispatched
      * using one of the {@link AsyncContext#dispatch} methods or released from asynchronous mode via a call to
@@ -566,7 +566,7 @@ public interface ServletRequest {
      * <p>
      * The dispatcher type of a request is used by the container to select the filters that need to be applied to the
      * request: Only filters with matching dispatcher type and url patterns will be applied.
-     * 
+     *
      * <p>
      * Allowing a filter that has been configured for multiple dispatcher types to query a request for its dispatcher type
      * allows the filter to process the request differently depending on its dispatcher type.
@@ -581,7 +581,7 @@ public interface ServletRequest {
      * <code>DispatcherType.ERROR</code>.
      *
      * @return the dispatcher type of this request
-     * 
+     *
      * @see DispatcherType
      *
      * @since Servlet 3.0
@@ -592,9 +592,9 @@ public interface ServletRequest {
      * Obtain a unique (within the lifetime of the Servlet container) identifier string for this request.
      * <p>
      * There is no defined format for this string. The format is implementation dependent.
-     * 
+     *
      * @return A unique identifier for the request
-     * 
+     *
      * @since Servlet 6.0
      */
     String getRequestId();
@@ -616,7 +616,7 @@ public interface ServletRequest {
      * </dl>
      *
      * @return The request identifier if one is defined, otherwise an empty string
-     * 
+     *
      * @since Servlet 6.0
      */
     String getProtocolRequestId();
@@ -625,9 +625,9 @@ public interface ServletRequest {
      * Obtain details of the network connection to the Servlet container that is being used by this request. The information
      * presented may differ from information presented elsewhere in the Servlet API as raw information is presented without
      * adjustments for, example, use of reverse proxies that may be applied elsewhere in the Servlet API.
-     * 
+     *
      * @return The network connection details.
-     * 
+     *
      * @since Servlet 6.0
      */
     ServletConnection getServletConnection();

@@ -104,11 +104,11 @@ public interface Servlet {
      *
      * <p>
      * This method is only called after the servlet's <code>init()</code> method has completed successfully.
-     * 
+     *
      * <p>
      * The status code of the response always should be set for a servlet that throws or sends an error.
      *
-     * 
+     *
      * <p>
      * Servlets typically run inside multithreaded servlet containers that can handle multiple requests concurrently.
      * Developers must be aware to synchronize access to any shared resources such as files, network connections, and as
@@ -127,7 +127,7 @@ public interface Servlet {
 
     /**
      * Returns information about the servlet, such as author, version, and copyright.
-     * 
+     *
      * <p>
      * The string that this method returns should be plain text and not markup of any kind (such as HTML, XML, etc.).
      *

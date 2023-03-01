@@ -68,7 +68,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * @param request the {@link ServletRequest} to be installed
      *
      * @throws java.lang.IllegalArgumentException if the request is null.
-     * 
+     *
      */
     public void setRequest(ServletRequest request) {
         if (request == null) {
@@ -343,7 +343,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to invoke {@link ServletRequest#startAsync} on the wrapped request object.
      *
      * @return the (re)initialized AsyncContext
-     * 
+     *
      * @throws IllegalStateException if the request is within the scope of a filter or servlet that does not support
      * asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
      * any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
@@ -479,7 +479,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * Gets the dispatcher type of the wrapped request.
      *
      * @return the dispatcher type of the wrapped request
-     * 
+     *
      * @see ServletRequest#getDispatcherType
      *
      * @since Servlet 3.0
@@ -491,9 +491,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Gets the request ID for the wrapped request.
-     * 
+     *
      * @return the request ID for the wrapped request
-     * 
+     *
      * @since Servlet 6.0
      */
     @Override
@@ -503,9 +503,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Gets the protocol defined request ID, if any, for the wrapped request.
-     * 
+     *
      * @return the protocol defined request ID, if any, for the wrapped request
-     * 
+     *
      * @since Servlet 6.0
      */
     @Override
@@ -515,9 +515,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
     /**
      * Gets the connection information for the wrapped request.
-     * 
+     *
      * @return the connection information for the wrapped request
-     * 
+     *
      * @since Servlet 6.0
      */
     @Override

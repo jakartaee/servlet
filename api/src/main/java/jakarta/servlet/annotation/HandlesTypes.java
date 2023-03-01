@@ -43,7 +43,7 @@ public @interface HandlesTypes {
      * pass the <tt>Set</tt> of application classes that extend, implement, or have been annotated with the class types
      * listed by this annotation to the {@link jakarta.servlet.ServletContainerInitializer#onStartup} method of the
      * ServletContainerInitializer (if no matching classes are found, <tt>null</tt> must be passed instead)
-     * 
+     *
      * @return the classes in which {@link jakarta.servlet.ServletContainerInitializer ServletContainerInitializer} has
      * expressed interest
      */

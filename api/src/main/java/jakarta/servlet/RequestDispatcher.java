@@ -56,7 +56,7 @@ public interface RequestDispatcher {
     /**
      * The name of the request attribute under which the original {@link jakarta.servlet.http.HttpServletMapping} is made
      * available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
-     * 
+     *
      * @since Servlet 4.0
      */
     static final String FORWARD_MAPPING = "jakarta.servlet.forward.mapping";

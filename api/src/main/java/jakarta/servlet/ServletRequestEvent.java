@@ -44,7 +44,7 @@ public class ServletRequestEvent extends java.util.EventObject {
 
     /**
      * Returns the ServletRequest that is changing.
-     * 
+     *
      * @return the {@link ServletRequest} corresponding to this event.
      */
     public ServletRequest getServletRequest() {

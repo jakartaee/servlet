@@ -32,7 +32,7 @@ import java.util.TreeMap;
  * Creates a cookie, a small amount of information sent by a servlet to a Web browser, saved by the browser, and later
  * sent back to the server. A cookie's value can uniquely identify a client, so cookies are commonly used for session
  * management.
- * 
+ *
  * <p>
  * A cookie has a name, a single value, and optional attributes such as a comment, path and domain qualifiers, a maximum
  * age, and a version number. Some Web browsers have bugs in how they handle the optional attributes, so use them
@@ -42,12 +42,12 @@ import java.util.TreeMap;
  * The servlet sends cookies to the browser by using the {@link HttpServletResponse#addCookie} method, which adds fields
  * to HTTP response headers to send cookies to the browser, one at a time. The browser is expected to support 20 cookies
  * for each Web server, 300 cookies total, and may limit cookie size to 4 KB each.
- * 
+ *
  * <p>
  * The browser returns cookies to the servlet by adding fields to HTTP request headers. Cookies can be retrieved from a
  * request by using the {@link HttpServletRequest#getCookies} method. Several cookies might have the same name but
  * different path attributes.
- * 
+ *
  * <p>
  * Cookies affect the caching of the Web pages that use them. HTTP 1.0 does not cache pages that use cookies created
  * with this class. This class does not support the cache control defined with HTTP 1.1.
@@ -139,7 +139,7 @@ public class Cookie implements Cloneable, Serializable {
      * @param purpose This parameter is ignored
      *
      * @see #getComment
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
@@ -153,7 +153,7 @@ public class Cookie implements Cloneable, Serializable {
      * @return Always {@code null}
      *
      * @see #setComment
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
@@ -300,7 +300,7 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Assigns a new value to this Cookie.
-     * 
+     *
      * <p>
      * If you use a binary value, you may want to use BASE64 encoding.
      *
@@ -330,11 +330,11 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * With the adoption of support for RFC 6265, this method should no longer be used.
-     * 
+     *
      * @return Always 0
      *
      * @see #setVersion
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
@@ -350,7 +350,7 @@ public class Cookie implements Cloneable, Serializable {
      * @param v This parameter is ignored
      *
      * @see #getVersion
-     * 
+     *
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
@@ -360,7 +360,7 @@ public class Cookie implements Cloneable, Serializable {
 
     /*
      * Tests a string and returns true if the string contains a reserved characters for the Set-Cookie header.
-     * 
+     *
      * @param value the <code>String</code> to be tested
      *
      * @return <code>true</code> if the <code>String</code> contains a reserved character for the Set-Cookie header;
@@ -435,14 +435,14 @@ public class Cookie implements Cloneable, Serializable {
 
     /**
      * Sets the value of the cookie attribute associated with the given name.
-     * 
+     *
      * <p>
      * This should sync to any predefined attribute for which already a getter/setter pair exist in the current version,
      * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked, then
      * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
-     * 
+     *
      * @param name the name of the cookie attribute to set the value for, case insensitive
-     * 
+     *
      * @param value the value of the cookie attribute associated with the given name, can be {@code null}
      *
      * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for example,
@@ -492,7 +492,7 @@ public class Cookie implements Cloneable, Serializable {
      * @param name the name of the cookie attribute to get the value of, case insensitive
      *
      * @return the value of the cookie attribute associated with the given name
-     * 
+     *
      * @since Servlet 6.0
      */
     public String getAttribute(String name) {
@@ -502,10 +502,10 @@ public class Cookie implements Cloneable, Serializable {
     /**
      * Returns an unmodifiable mapping of all cookie attributes set via {@link #setAttribute(String, String)} as well as any
      * predefined setter method, except for <code>version</code>.
-     * 
+     *
      * @return an unmodifiable mapping of all cookie attributes set via <code>setAttribute(String, String)</code> as well as
      * any predefined setter method, except for <code>version</code>
-     * 
+     *
      * @since Servlet 6.0
      */
     public Map<String, String> getAttributes() {

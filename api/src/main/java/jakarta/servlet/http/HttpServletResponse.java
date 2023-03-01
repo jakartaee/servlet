@@ -33,7 +33,7 @@ import java.util.function.Supplier;
  * The servlet container creates an <code>HttpServletResponse</code> object and passes it as an argument to the
  * servlet's service methods (<code>doGet</code>, <code>doPost</code>, etc).
  *
- * 
+ *
  * @author Various
  *
  * @see jakarta.servlet.ServletResponse
@@ -53,7 +53,7 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Returns a boolean indicating whether the named response header has already been set.
-     * 
+     *
      * @param name the header name
      * @return <code>true</code> if the named response header has already been set; <code>false</code> otherwise
      */
@@ -63,7 +63,7 @@ public interface HttpServletResponse extends ServletResponse {
      * Encodes the specified URL by including the session ID, or, if encoding is not needed, returns the URL unchanged. The
      * implementation of this method includes the logic to determine whether the session ID needs to be encoded in the URL.
      * For example, if the browser supports cookies, or session tracking is turned off, URL encoding is unnecessary.
-     * 
+     *
      * <p>
      * For robust session tracking, all URLs emitted by a servlet should be run through this method. Otherwise, URL
      * rewriting cannot be used with browsers which do not support cookies.
@@ -83,7 +83,7 @@ public interface HttpServletResponse extends ServletResponse {
      * encoded in the URL. For example, if the browser supports cookies, or session tracking is turned off, URL encoding is
      * unnecessary. Because the rules for making this determination can differ from those used to decide whether to encode a
      * normal link, this method is separated from the <code>encodeURL</code> method.
-     * 
+     *
      * <p>
      * All URLs sent to the <code>HttpServletResponse.sendRedirect</code> method should be run through this method.
      * Otherwise, URL rewriting cannot be used with browsers which do not support cookies.
@@ -127,13 +127,13 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Sends an error response to the client using the specified status code and clears the buffer.
-     * 
+     *
      * The server will preserve cookies and may clear or update any headers needed to serve the error page as a valid
      * response.
      *
      * If an error-page declaration has been made for the web application corresponding to the status code passed in, it
      * will be served back the error page
-     * 
+     *
      * <p>
      * If the response has already been committed, this method throws an IllegalStateException. After using this method, the
      * response should be considered to be committed and should not be written to.
@@ -182,10 +182,10 @@ public interface HttpServletResponse extends ServletResponse {
      * This method has no effect if called after the response has been committed.
      * <p>
      * This method has no effect if {@code null} is passed for the {@code name} parameter.
-     * 
+     *
      * @param name the name of the header to set
      * @param date the assigned date value
-     * 
+     *
      * @see #containsHeader
      * @see #addDateHeader
      */
@@ -198,10 +198,10 @@ public interface HttpServletResponse extends ServletResponse {
      * This method has no effect if called after the response has been committed.
      * <p>
      * This method has no effect if {@code null} is passed for the {@code name} parameter.
-     * 
+     *
      * @param name the name of the header to set
      * @param date the additional date value
-     * 
+     *
      * @see #setDateHeader
      */
     public void addDateHeader(String name, long date);
@@ -218,7 +218,7 @@ public interface HttpServletResponse extends ServletResponse {
      * Passing {@code null} as the value removes all headers with the given name.
      * <p>
      * Note that the empty string is a valid header value.
-     * 
+     *
      * @param name the name of the header
      * @param value the header value If it contains octet string, it should be encoded according to RFC 2047
      * (http://www.ietf.org/rfc/rfc2047.txt)
@@ -236,7 +236,7 @@ public interface HttpServletResponse extends ServletResponse {
      * This method has no effect if {@code null} is passed for either the {@code name} or {@code value} parameters.
      * <p>
      * Note that the empty string is a valid header value.
-     * 
+     *
      * @param name the name of the header
      * @param value the additional header value If it contains octet string, it should be encoded according to RFC 2047
      * (http://www.ietf.org/rfc/rfc2047.txt)
@@ -295,7 +295,7 @@ public interface HttpServletResponse extends ServletResponse {
      * <p>
      * Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges. Other status codes are treated as container
      * specific.
-     * 
+     *
      * <p>
      * This method has no effect if called after the response has been committed.
      *
@@ -316,7 +316,7 @@ public interface HttpServletResponse extends ServletResponse {
 
     /**
      * Gets the value of the response header with the given name.
-     * 
+     *
      * <p>
      * If a response header with the given name exists and contains multiple values, the value that was added first will be
      * returned.
@@ -410,7 +410,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @implSpec The default implememtation return null.
      *
      * @return <code>Supplier</code> of trailer headers
-     * 
+     *
      * @since Servlet 4.0
      */
     default public Supplier<Map<String, String>> getTrailerFields() {
