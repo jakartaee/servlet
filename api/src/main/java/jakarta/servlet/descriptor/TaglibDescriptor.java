@@ -30,14 +30,14 @@ public interface TaglibDescriptor {
 
     /**
      * Gets the unique identifier of the tag library represented by this TaglibDescriptor.
-     * 
+     *
      * @return the unique identifier of the tag library represented by this TaglibDescriptor
      */
     public String getTaglibURI();
 
     /**
      * Gets the location of the tag library represented by this TaglibDescriptor.
-     * 
+     *
      * @return the location of the tag library represented by this TaglibDescriptor
      */
     public String getTaglibLocation();

@@ -79,12 +79,12 @@ public abstract class ServletInputStream extends InputStream {
      * @exception IllegalStateException If the input stream is in non-blocking mode and this method is called without first
      * calling {@link #isReady()} and that method has returned {@code true} or {@link ReadListener#onDataAvailable()} has
      * not signalled that data is available to read.
-     * 
+     *
      * @exception IOException If data cannot be read for any reason other than the end of stream being reached, the input
      * stream has been closed or if some other I/O error occurs.
-     * 
+     *
      * @exception NullPointerException If buffer is null.
-     * 
+     *
      * @since Servlet 6.1
      */
     public int read(ByteBuffer buffer) throws IOException {
@@ -132,7 +132,7 @@ public abstract class ServletInputStream extends InputStream {
      * @return an integer specifying the actual number of bytes read, or -1 if the end of the stream is reached
      *
      * @exception IllegalStateException If this method is called when the input stream is in non-blocking mode.
-     * 
+     *
      * @exception IOException if an input or output exception has occurred
      */
     public int readLine(byte[] b, int off, int len) throws IOException {
@@ -203,7 +203,7 @@ public abstract class ServletInputStream extends InputStream {
      * {@inheritDoc}
      * <p>
      * This method may only be used when the input stream is in blocking mode.
-     * 
+     *
      * @exception IllegalStateException If this method is called when the input stream is in non-blocking mode.
      */
     @Override
@@ -215,7 +215,7 @@ public abstract class ServletInputStream extends InputStream {
      * {@inheritDoc}
      * <p>
      * This method may only be used when the input stream is in blocking mode.
-     * 
+     *
      * @exception IllegalStateException If this method is called when the input stream is in non-blocking mode.
      */
     @Override
@@ -227,7 +227,7 @@ public abstract class ServletInputStream extends InputStream {
      * {@inheritDoc}
      * <p>
      * This method may only be used when the input stream is in blocking mode.
-     * 
+     *
      * @exception IllegalStateException If this method is called when the input stream is in non-blocking mode.
      */
     @Override

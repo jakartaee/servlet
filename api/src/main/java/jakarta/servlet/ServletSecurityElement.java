@@ -121,7 +121,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * <code>ServletSecurityElement</code>.
      *
      *
-     * 
+     *
      * @return the collection String method names
      */
     public Collection<String> getMethodNames() {

@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * {@link jakarta.servlet.ServletRequestListener}, {@link jakarta.servlet.ServletRequestAttributeListener},
  * {@link jakarta.servlet.http.HttpSessionListener}, or {@link jakarta.servlet.http.HttpSessionAttributeListener}, or
  * {@link jakarta.servlet.http.HttpSessionIdListener} interfaces.
- * 
+ *
  * @since Servlet 3.0
  */
 @Target({ ElementType.TYPE })

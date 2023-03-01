@@ -196,13 +196,13 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>
      * The returned object is immutable. Servlet 4.0 onwards compliant implementations must override this method.
      * </p>
-     * 
+     *
      * @implSpec The default implementation returns a {@code
      * HttpServletMapping} that returns the empty string for the match value, pattern and servlet name and {@code null} for
      * the match type.
      *
      * @return An instance of {@code HttpServletMapping} describing the manner in which the current request was invoked.
-     * 
+     *
      * @since Servlet 4.0
      */
     default public HttpServletMapping getHttpServletMapping() {
@@ -647,7 +647,7 @@ public interface HttpServletRequest extends ServletRequest {
      * processing.
      *
      * @param <T> The {@code Class}, which extends {@link HttpUpgradeHandler}, of the {@code handlerClass}.
-     * 
+     *
      * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
      *
      * @return an instance of the <code>HttpUpgradeHandler</code>
@@ -669,14 +669,14 @@ public interface HttpServletRequest extends ServletRequest {
      * The returned map is not backed by the {@code HttpServletRequest} object, so changes in the returned map are not
      * reflected in the {@code HttpServletRequest} object, and vice-versa.
      * </p>
-     * 
+     *
      * <p>
      * {@link #isTrailerFieldsReady()} should be called first to determine if it is safe to call this method without causing
      * an exception.
      * </p>
      *
      * @implSpec The default implementation returns an empty map.
-     * 
+     *
      * @return A map of trailer fields in which all the keys are in lowercase, regardless of the case they had at the
      * protocol level. If there are no trailer fields, yet {@link #isTrailerFieldsReady} is returning true, the empty map is
      * returned.

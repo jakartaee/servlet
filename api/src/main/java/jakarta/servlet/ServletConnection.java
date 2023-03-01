@@ -20,7 +20,7 @@ package jakarta.servlet;
  * debugging purposes and as such provides the raw information as seen by the container. Unless explicitly stated
  * otherwise in the Javadoc for a method, no adjustment is made for the presence of reverse proxies or similar
  * configurations.
- * 
+ *
  * @since Servlet 6.0
  */
 public interface ServletConnection {
@@ -30,7 +30,7 @@ public interface ServletConnection {
      * being used for the {@code ServletRequest} from which this {@code ServletConnection} was obtained.
      * <p>
      * There is no defined format for this string. The format is implementation dependent.
-     * 
+     *
      * @return A unique identifier for the network connection
      */
     String getConnectionId();
@@ -45,7 +45,7 @@ public interface ServletConnection {
      * registry for ALPN names</a> then the identification sequence, in string form, must be returned. Registered
      * identification sequences MUST only be used for the associated protocol. Return values for other protocols are
      * implementation dependent. Unknown protocols should return the string "unknown".
-     * 
+     *
      * @return The name of the protocol presented to the server after decryption of TLS, or similar encryption, if any.
      */
     String getProtocol();
@@ -66,7 +66,7 @@ public interface ServletConnection {
      * <dt>AJP</dt>
      * <dd>None, so the empty string should be returned</dd>
      * </dl>
-     * 
+     *
      * @return The connection identifier if one is defined, otherwise an empty string
      */
     String getProtocolConnectionId();
@@ -75,7 +75,7 @@ public interface ServletConnection {
      * Determine whether or not the incoming network connection to the server used encryption or not. Note that where a
      * reverse proxy is used, the application may have a different view as to whether encryption is being used due to the
      * use of headers like {@code X-Forwarded-Proto}.
-     * 
+     *
      * @return {@code true} if the incoming network connection used encryption, otherwise {@code false}
      */
     boolean isSecure();

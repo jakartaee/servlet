@@ -79,11 +79,11 @@ public abstract class ServletOutputStream extends OutputStream {
      * @exception IllegalStateException If the output stream is in non-blocking mode and this method is called without first
      * calling {@link #isReady()} and that method has returned {@code true} or {@link WriteListener#onWritePossible()} has
      * not signalled that data may be written.
-     * 
+     *
      * @exception IOException If the output stream has been closed or if some other I/O error occurs.
      *
      * @exception NullPointerException If buffer is null.
-     * 
+     *
      * @since Servlet 6.1
      */
     public void write(ByteBuffer buffer) throws IOException {

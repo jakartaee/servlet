@@ -29,7 +29,7 @@ import java.lang.annotation.Target;
  * <p>
  * This annotation is processed by the container at deployment time, and the corresponding servlet made available at the
  * specified URL patterns.
- * 
+ *
  * @see jakarta.servlet.Servlet
  *
  * @since Servlet 3.0

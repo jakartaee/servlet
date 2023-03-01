@@ -212,12 +212,12 @@ public interface ServletContext {
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
-     * 
+     *
      * <p>
      * The provided {@code path} parameter is canonicalized as per <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
      * 3.5.2</a> before being used to match resources.
-     * 
+     *
      * @param path the partial path used to match the resources, which must start with a <tt>/</tt>
      * @return a Set containing the directory listing, or null if there are no resources in the web application whose path
      * begins with the supplied path.
@@ -267,7 +267,7 @@ public interface ServletContext {
      * The provided {@code path} parameter is canonicalized as per <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
      * 3.5.2</a> before being used to match resources.
-     * 
+     *
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the resource located at the named path, or <code>null</code> if there is no resource at that path
@@ -306,7 +306,7 @@ public interface ServletContext {
      * The provided {@code path} parameter is canonicalized as per <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
      * 3.5.2</a> before being used to match resources.
-     * 
+     *
      * @param path a <code>String</code> specifying the path to the resource
      *
      * @return the <code>InputStream</code> returned to the servlet, or <code>null</code> if no resource exists at the
@@ -332,12 +332,12 @@ public interface ServletContext {
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
-     * 
+     *
      * <p>
      * The provided {@code path} parameter is canonicalized as per <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
      * 3.5.2</a> before being used to match resources.
-     * 
+     *
      * @param path a <code>String</code> specifying the pathname to the resource
      *
      * @return a <code>RequestDispatcher</code> object that acts as a wrapper for the resource at the specified path, or
@@ -391,7 +391,7 @@ public interface ServletContext {
 
     /**
      * Gets the <i>real</i> path corresponding to the given <i>virtual</i> path.
-     * 
+     *
      * <p>
      * The path should begin with a <tt>/</tt> and is interpreted as relative to the current context root. If the path does
      * not begin with a <tt>/</tt>, the container will behave as if the method was called with <tt>/</tt> appended to the
@@ -420,12 +420,12 @@ public interface ServletContext {
      * This method bypasses both implicit (no direct access to WEB-INF or META-INF) and explicit (defined by the web
      * application) security constraints. Care should be taken both when constructing the path (e.g. avoid unsanitized user
      * provided data) and when using the result not to create a security vulnerability in the application.
-     * 
+     *
      * <p>
      * The provided {@code path} parameter is canonicalized as per <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
      * 3.5.2</a> before being used to match resources.
-     * 
+     *
      * @param path the <i>virtual</i> path to be translated to a <i>real</i> path
      *
      * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed

@@ -55,7 +55,7 @@ import java.util.ResourceBundle;
  *
  * <p>
  * Likewise, there's almost no reason to override the <code>doOptions</code> and <code>doTrace</code> methods.
- * 
+ *
  * <p>
  * Servlets typically run on multithreaded servers, so be aware that a servlet must handle concurrent requests and be
  * careful to synchronize access to shared resources. Shared resources include in-memory data such as instance or class
@@ -82,7 +82,7 @@ public abstract class HttpServlet extends GenericServlet {
     /**
      * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
      * {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
-     * 
+     *
      * @deprecated may be removed in future releases
      * @since Servlet 6.0
      */
@@ -96,7 +96,7 @@ public abstract class HttpServlet extends GenericServlet {
 
     /**
      * Does nothing, because this is an abstract class.
-     * 
+     *
      */
 
     public HttpServlet() {
@@ -148,11 +148,11 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * <p>
      * If the request is incorrectly formatted, <code>doGet</code> returns an HTTP "Bad Request" message.
-     * 
+     *
      * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
      *
      * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
-     * 
+     *
      * @throws IOException if an input or output error is detected when the servlet handles the GET request
      *
      * @throws ServletException if the request for the GET could not be handled
@@ -184,7 +184,7 @@ public abstract class HttpServlet extends GenericServlet {
     }
 
     /**
-     * 
+     *
      *
      * <p>
      * Receives an HTTP HEAD request from the protected <code>service</code> method and handles the request. The client
@@ -205,7 +205,7 @@ public abstract class HttpServlet extends GenericServlet {
      * If the HTTP HEAD request is incorrectly formatted, <code>doHead</code> returns an HTTP "Bad Request" message.
      *
      * @param req the request object that is passed to the servlet
-     * 
+     *
      * @param resp the response object that the servlet uses to return the headers to the clien
      *
      * @throws IOException if an input or output error occurs
@@ -260,7 +260,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
      *
      * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
-     * 
+     *
      * @throws IOException if an input or output error is detected when the servlet handles the request
      *
      * @throws ServletException if the request for the POST could not be handled
@@ -312,7 +312,7 @@ public abstract class HttpServlet extends GenericServlet {
      * Called by the server (via the <code>service</code> method) to allow a servlet to handle a DELETE request.
      *
      * The DELETE operation allows a client to remove a document or Web page from the server.
-     * 
+     *
      * <p>
      * This method does not need to be either safe or idempotent. Operations requested through DELETE can have side effects
      * for which users can be held accountable. When using this method, it may be useful to save a copy of the affected URL
@@ -513,7 +513,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws IOException if an input or output error occurs while the servlet is handling the HTTP request
      *
      * @throws ServletException if the HTTP request cannot be handled
-     * 
+     *
      * @see jakarta.servlet.Servlet#service
      */
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -587,7 +587,7 @@ public abstract class HttpServlet extends GenericServlet {
 
     /**
      * Dispatches client requests to the protected <code>service</code> method. There's no need to override this method.
-     * 
+     *
      * @param req the {@link HttpServletRequest} object that contains the request the client made of the servlet
      *
      * @param res the {@link HttpServletResponse} object that contains the response the servlet returns to the client
@@ -596,7 +596,7 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @throws ServletException if the HTTP request cannot be handled or if either parameter is not an instance of its
      * respective {@link HttpServletRequest} or {@link HttpServletResponse} counterparts.
-     * 
+     *
      * @see jakarta.servlet.Servlet#service
      */
     @Override

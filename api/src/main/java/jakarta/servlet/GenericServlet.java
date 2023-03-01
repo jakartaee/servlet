@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 1997, 2020 Oracle and/or its affiliates and others.
  * All rights reserved.
- * Copyright 2004 The Apache Software Foundation  
+ * Copyright 2004 The Apache Software Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      * Called by the servlet container to indicate to a servlet that the servlet is being taken out of service. See
      * {@link Servlet#destroy}.
      *
-     * 
+     *
      */
     @Override
     public void destroy() {
@@ -169,7 +169,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      * @param config the <code>ServletConfig</code> object that contains configuration information for this servlet
      *
      * @exception ServletException if an exception occurs that interrupts the servlet's normal operation
-     * 
+     *
      * @see UnavailableException
      */
     @Override
@@ -217,7 +217,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
 
     /**
      * Called by the servlet container to allow the servlet to respond to a request. See {@link Servlet#service}.
-     * 
+     *
      * <p>
      * This method is declared abstract so subclasses, such as <code>HttpServlet</code>, must override it.
      *

@@ -54,7 +54,7 @@ public @interface HttpConstraint {
     /**
      * The data protection requirements (i.e., whether or not SSL/TLS is required) that must be satisfied by the connections
      * on which requests arrive.
-     * 
+     *
      * @return the {@link TransportGuarantee} indicating the data protection that must be provided by the connection.
      */
     TransportGuarantee transportGuarantee() default TransportGuarantee.NONE;

@@ -23,14 +23,14 @@ import java.util.*;
 /**
  * <p>
  * This class represents a part or form item that was received within a <code>multipart/form-data</code> POST request.
- * 
+ *
  * @since Servlet 3.0
  */
 public interface Part {
 
     /**
      * Gets the content of this part as an <tt>InputStream</tt>
-     * 
+     *
      * @return The content of this part as an <tt>InputStream</tt>
      * @throws IOException If an error occurs in retrieving the content as an <tt>InputStream</tt>
      */
@@ -68,7 +68,7 @@ public interface Part {
 
     /**
      * A convenience method to write this uploaded item to disk.
-     * 
+     *
      * <p>
      * This method is not guaranteed to succeed if called more than once for the same part. This allows a particular
      * implementation to use, for example, file renaming, where possible, rather than copying all of the underlying data,

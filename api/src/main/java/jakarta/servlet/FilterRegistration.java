@@ -32,7 +32,7 @@ public interface FilterRegistration extends Registration {
      *
      * <p>
      * Filter mappings are matched in the order in which they were added.
-     * 
+     *
      * <p>
      * Depending on the value of the <tt>isMatchAfter</tt> parameter, the given filter mapping will be considered after or
      * before any <i>declared</i> filter mappings of the ServletContext from which this FilterRegistration was obtained.
@@ -72,7 +72,7 @@ public interface FilterRegistration extends Registration {
      *
      * <p>
      * Filter mappings are matched in the order in which they were added.
-     * 
+     *
      * <p>
      * Depending on the value of the <tt>isMatchAfter</tt> parameter, the given filter mapping will be considered after or
      * before any <i>declared</i> filter mappings of the ServletContext from which this FilterRegistration was obtained.

@@ -24,11 +24,11 @@ import java.nio.charset.Charset;
 import java.util.Locale;
 
 /**
- * 
+ *
  * Provides a convenient implementation of the ServletResponse interface that can be subclassed by developers wishing to
  * adapt the response from a Servlet. This class implements the Wrapper or Decorator pattern. Methods default to calling
  * through to the wrapped response object.
- * 
+ *
  * @author Various
  * @since Servlet 2.3
  *
