@@ -8627,6 +8627,9 @@ to RFC 2109 and to replace them with RFC 6265.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/105[Issue 105]::
 Clarify the behaviour of `getRealPath(String)`.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/133[Issue 133]::
+Add support for the HTTP `PATCH` method.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/175[Issue 175]::
 Provide generic attribute support to cookies, including session cookies, to
 provide support for additional attributes such as the `SameSite` attribute.

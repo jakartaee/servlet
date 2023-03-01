@@ -260,7 +260,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
      *
      * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
-     * 
+     *
      * @throws IOException if an input or output error is detected when the servlet handles the request
      *
      * @throws ServletException if the request for the POST could not be handled
