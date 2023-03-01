@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -380,8 +380,8 @@ public interface ServletResponse {
      * <p>
      * This method may be called repeatedly to change locale and character encoding. The method has no effect if called
      * after the response has been committed. It does not set the response's character encoding if it is called after
-     * {@link #setContentType} has been called with a charset specification, after {@link #setCharacterEncoding(String} has
-     * been called, after {@link #setCharacterEncoding(Charset} has been called, after <code>getWriter</code> has been
+     * {@link #setContentType} has been called with a charset specification, after {@link #setCharacterEncoding(String)} has
+     * been called, after {@link #setCharacterEncoding(Charset)} has been called, after <code>getWriter</code> has been
      * called, or after the response has been committed.
      * <p>
      * If calling this method has an effect on the locale (as per the previous paragraph), calling this method with
