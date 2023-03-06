@@ -133,7 +133,13 @@ public class HttpServletTest {
         return Stream.of(
                 Arguments.of("Authorization",
                         (Handler) (request, response) -> {}),
-                Arguments.of("Accept",
+                Arguments.of("Cookie",
+                        (Handler) (request, response) -> {}),
+                Arguments.of("X-Forwarded-Ip",
+                        (Handler) (request, response) -> {}),
+                Arguments.of("Forwarded",
+                        (Handler) (request, response) -> {}),
+                Arguments.of("Proxy-Authorization",
                         (Handler) (request, response) -> {})
         );
     }

@@ -334,6 +334,12 @@ containing all instances of the headers sent in the `TRACE` request.
 The `CONNECT` method is not supported because it applies to proxies and
 the Jakarta Servlet API is targeted at endpoints.
 
+==== Sensitive headers
+
+The `HttpServlet` class define the `isSensitiveHeader` method which
+identifies sensitive headers that should not appear on `TRACE` operation.
+This implementation can be used to hide headers in a response.
+
 ==== Conditional GET Support
 
 The `HttpServlet` class defines the

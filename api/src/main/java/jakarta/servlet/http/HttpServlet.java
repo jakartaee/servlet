@@ -80,7 +80,6 @@ public abstract class HttpServlet extends GenericServlet {
 
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
-    private static final List<String> HEADER_SENSITIVE = Arrays.asList("Authorization", "Accept");
 
     /**
      * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
@@ -509,8 +508,9 @@ public abstract class HttpServlet extends GenericServlet {
         out.print(buffer.toString());
     }
 
-    private boolean isSensitiveHeader(String headerName) {
-        return HEADER_SENSITIVE.contains(headerName);
+    protected boolean isSensitiveHeader(String headerName) {
+        List<String> headersSensitive = Arrays.asList("Authorization", "Cookie", "X-Forwarded", "Forwarded", "Proxy-Authorization");
+        return headersSensitive.parallelStream().anyMatch(header -> headerName.startsWith(header));
     }
 
     /**
