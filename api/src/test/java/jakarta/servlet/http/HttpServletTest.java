@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
@@ -132,16 +131,20 @@ public class HttpServletTest {
     public static Stream<Arguments> headRequest() {
         return Stream.of(
                 Arguments.of("Authorization",
-                        (Handler) (request, response) -> {}),
+                        (Handler) (request, response) -> {
+                        }),
                 Arguments.of("Cookie",
-                        (Handler) (request, response) -> {}),
+                        (Handler) (request, response) -> {
+                        }),
                 Arguments.of("X-Forwarded-Ip",
-                        (Handler) (request, response) -> {}),
+                        (Handler) (request, response) -> {
+                        }),
                 Arguments.of("Forwarded",
-                        (Handler) (request, response) -> {}),
+                        (Handler) (request, response) -> {
+                        }),
                 Arguments.of("Proxy-Authorization",
-                        (Handler) (request, response) -> {})
-        );
+                        (Handler) (request, response) -> {
+                        }));
     }
 
     public static Stream<Arguments> headTest() {
