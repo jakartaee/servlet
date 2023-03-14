@@ -267,6 +267,8 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @see jakarta.servlet.ServletOutputStream
      * @see jakarta.servlet.ServletResponse#setContentType
+     *
+     * @since Servlet 6.1
      */
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
