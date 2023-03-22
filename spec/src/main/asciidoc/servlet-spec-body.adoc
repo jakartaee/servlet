@@ -5042,9 +5042,9 @@ jakarta.servlet.include.query_string
 These attributes are accessible from the
 included servlet via the `getAttribute` method on the request object and
 their values must be equal to the request URI, context path, servlet
-path, path info, and query string of the included servlet, respectively.
-If the request is subsequently included, these attributes are replaced
-for that include.
+path, mapping, path info, and query string of the included servlet,
+respectively. If the request is subsequently included, these attributes
+are replaced for that include.
 
 If the included servlet was obtained by using
 the `getNamedDispatcher` method, these attributes must not be set.
@@ -5109,10 +5109,11 @@ jakarta.servlet.forward.query_string
 ----
 
 The values of these attributes must be equal
-to the return values of the `HttpServletRequest` methods `getRequestURI`
-, `getContextPath`, `getServletPath`, `getPathInfo`, `getQueryString`
-respectively, invoked on the request object passed to the first servlet
-object in the call chain that received the request from the client.
+to the return values of the `HttpServletRequest` methods
+`getHttpServletMapping`, `getRequestURI`, `getContextPath`,
+`getServletPath`, `getPathInfo`, `getQueryString` respectively, invoked
+on the request object passed to the first servlet object in the call chain
+that received the request from the client.
 
 These attributes are accessible from the
 forwarded servlet via the `getAttribute` method on the request object.
@@ -5205,10 +5206,11 @@ jakarta.servlet.async.query_string
 ----
 
 The values of these attributes must be equal
-to the return values of the `HttpServletRequest` methods `getRequestURI`
-, `getContextPath`, `getServletPath`, `getPathInfo`, `getQueryString`
-respectively, invoked on the request object passed to the first servlet
-object in the call chain that received the request from the client.
+to the return values of the `HttpServletRequest` methods
+`getHttpServletMapping`, `getRequestURI`, `getContextPath`,
+`getServletPath`, `getPathInfo`, `getQueryString` respectively, invoked on
+the request object passed to the first servlet object in the call chain
+that received the request from the client.
 
 These attributes are accessible from the
 dispatched servlet via the `getAttribute` method on the request object.
