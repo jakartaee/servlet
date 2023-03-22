@@ -561,8 +561,11 @@ public abstract class HttpServlet extends GenericServlet {
             if (isSensitiveHeader(headerName)) {
                 continue;
             }
-
-            buffer.append(CRLF).append(headerName).append(": ").append(req.getHeader(headerName));
+            Enumeration<String> headerValues = req.getHeaders(headerName);
+            while (headerValues.hasMoreElements()) {
+                String headerValue = headerValues.nextElement();
+                buffer.append(CRLF).append(headerName).append(": ").append(headerValue);
+            }
         }
 
         buffer.append(CRLF);
