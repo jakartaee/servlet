@@ -98,7 +98,7 @@ public interface ServletContext {
      *
      * <p>
      * This method allows servlets to gain access to the context for various parts of the server, and as needed obtain
-     * {@link RequestDispatcher} objects from the context. The given path must be begin with <tt>/</tt>, is interpreted
+     * {@link RequestDispatcher} objects from the context. The given path must begin with <tt>/</tt>, is interpreted
      * relative to the server's document root and is matched against the context roots of other web applications hosted on
      * this container.
      *
