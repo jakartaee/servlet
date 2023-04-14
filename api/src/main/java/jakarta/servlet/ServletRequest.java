@@ -50,8 +50,8 @@ public interface ServletRequest {
      * information to be embedded into a request before a {@link RequestDispatcher} call.
      *
      * <p>
-     * Attribute names should follow the same conventions as package names. This specification reserves names matching
-     * <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * Attribute names should follow the same conventions as package names. The Jakarta Servlet specification reserves names
+     * matching <code>jakarta.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
      *
@@ -303,8 +303,8 @@ public interface ServletRequest {
      * request is being handled.
      *
      * <p>
-     * Attribute names should follow the same conventions as package names. Names beginning with <code>java.*</code>,
-     * <code>javax.*</code>, and <code>com.sun.*</code>, are reserved for use by Sun Microsystems.
+     * Attribute names should follow the same conventions as package names. Names beginning with <code>jakarta.*</code> are
+     * reserved for use by the Jakarta Servlet specification.
      *
      * @param name a <code>String</code> specifying the name of the attribute to remove
      */
