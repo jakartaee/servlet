@@ -515,7 +515,7 @@ public interface ServletContext {
      *
      * <p>
      * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves names
-     * matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * matching <code>jakarta.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
      *
@@ -551,7 +551,7 @@ public interface ServletContext {
      *
      * <p>
      * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves names
-     * matching <code>java.*</code>, <code>javax.*</code>, and <code>sun.*</code>.
+     * matching <code>jakarta.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
      *
