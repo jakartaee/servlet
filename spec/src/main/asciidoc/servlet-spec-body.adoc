@@ -8134,15 +8134,14 @@ application deployment descriptor or using the annotations defined in
 |`jakarta.servlet.Filter`
 
 |Listeners
-|`jakarta.servlet.ServletContextListener`
-`jakarta.servlet.ServletContextAttributeListener`
-`jakarta.servlet.ServletRequestListener`
-`jakarta.servlet.ServletRequestAttributeListener`
-`jakarta.servlet.http.HttpSessionListener`
-`jakarta.servlet.http.HttpSessionAttributeListener`
-`jakarta.servlet.http.HttpSessionIdListener`
+|`jakarta.servlet.ServletContextListener` +
+`jakarta.servlet.ServletContextAttributeListener` +
+`jakarta.servlet.ServletRequestListener` +
+`jakarta.servlet.ServletRequestAttributeListener` +
+`jakarta.servlet.http.HttpSessionListener` +
+`jakarta.servlet.http.HttpSessionAttributeListener` +
+`jakarta.servlet.http.HttpSessionIdListener` +
 `jakarta.servlet.AsyncListener`
-
 |Handlers
 |`jakarta.servlet.http.HttpUgradeHandler`
 |===
