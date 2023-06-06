@@ -8128,10 +8128,10 @@ application deployment descriptor or using the annotations defined in
 |Classes implementing the following interfaces
 
 |Servlets
-|jakarta.servlet.Servlet
+|`jakarta.servlet.Servlet`
 
 |Filters
-|jakarta.servlet.Filter
+|`jakarta.servlet.Filter`
 
 |Listeners
 |`jakarta.servlet.ServletContextListener`
