@@ -131,7 +131,7 @@ public class HttpServletTest {
         assertThat(actual, !actual.contains(testHeader));
     }
 
-    public static Stream<Arguments> traceHeadersTest() {
+    private static Stream<Arguments> traceHeadersTest() {
         return Stream.of(
                 Arguments.of("Authorization",
                         (Handler) (request, response) -> {
@@ -150,7 +150,7 @@ public class HttpServletTest {
                         }));
     }
 
-    public static Stream<Arguments> headTest() {
+    private static Stream<Arguments> headTest() {
         return Stream.of(
                 Arguments.of("Nothing output",
                         (Handler) (request, response) -> {
