@@ -56,7 +56,7 @@ public abstract class ServletOutputStream extends OutputStream {
     /**
      * Writes from the given buffer to the output stream.
      * <p>
-     * If the output steam is in non-blocking mode, before each invocation of this method {@link isReady()} must be called
+     * If the output steam is in non-blocking mode, before each invocation of this method {@link #isReady()} must be called
      * and must return {@code true} or the {@link WriteListener#onWritePossible()} call back must indicate that data may be
      * written else an {@link IllegalStateException} must be thrown.
      * <p>

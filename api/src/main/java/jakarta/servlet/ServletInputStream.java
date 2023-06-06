@@ -55,7 +55,7 @@ public abstract class ServletInputStream extends InputStream {
     /**
      * Reads from the input stream into the given buffer.
      * <p>
-     * If the input stream is in non-blocking mode, before each invocation of this method {@link isReady()} must be called
+     * If the input stream is in non-blocking mode, before each invocation of this method {@link #isReady()} must be called
      * and must return {@code true} or the {@link ReadListener#onDataAvailable()} call back must indicate that data is
      * available to read else an {@link IllegalStateException} must be thrown.
      * <p>
