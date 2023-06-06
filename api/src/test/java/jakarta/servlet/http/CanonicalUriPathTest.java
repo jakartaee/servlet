@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Contributors to the Eclipse Foundation.
+ * Copyright (c) 2023 Contributors to the Eclipse Foundation.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -217,7 +217,7 @@ public class CanonicalUriPathTest {
         }
     }
 
-    public static Stream<Arguments> data() {
+    private static Stream<Arguments> data() {
         List<Object[]> data = new ArrayList<>();
         data.add(new Object[] { "foo/bar", "/foo/bar", true });
         data.add(new Object[] { "/foo/bar", "/foo/bar", false });
