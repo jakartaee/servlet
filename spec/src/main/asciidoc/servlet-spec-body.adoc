@@ -86,8 +86,6 @@ referenced throughout this specification:
 
 * Jakarta Context and Dependency Injection for the Jakarta EE Platform
 
-* Jakarta Managed Beans specification
-
 These specifications may be found at the Jakarta EE
 Platform, web site: `https://jakarta.ee/specifications/`.
 
