@@ -78,7 +78,7 @@ accompanying Javadoc™ documentation, is available online at
 The following Jakarta API specifications are
 referenced throughout this specification:
 
-* Jakarta EE Platform, version 9
+* Jakarta EE Platform, version 11
 
 * Jakarta Server Pages™ (JSP), version 3.1
 
@@ -8552,7 +8552,7 @@ Dependency Injection (CDI) for Jakarta EE Platform and in which CDI is enabled,
 implementations MUST support the use of CDI managed beans. Servlets,
 filters, listeners and HttpUpgradeHandlers MUST support CDI injection
 and the use of interceptors as described in Section 5.24, "Support
-for Dependency Injection" of the Jakarta EE Platform 9 specification.
+for Dependency Injection" of the Jakarta EE Platform 11 specification.
 
 [appendix]
 == Change Log
