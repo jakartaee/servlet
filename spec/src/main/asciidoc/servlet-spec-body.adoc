@@ -8614,6 +8614,13 @@ Add new constants to `HttpServletResponse` for the HTTP response codes 308, 421,
 link:https://github.com/eclipse-ee4j/servlet-api/issues/415[Issue 415]::
 Add overloaded `setCharacterEncoding()` methods that support `Charset`.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/431[Issue 431]::
+`ServletRequest.getParameter()` and the other parameter methods are now
+documented to throw a runtime exception if the call triggers parsing of the
+parameters and an error is encountered during that parsing. Containers may
+provide container specific options to handle some or all of such errors in
+an alternative manner that may include not throwing the runtime exception.  
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/443[Issue 443]::
 Remove references to the SecurityManager and associated APIs.
 
