@@ -164,9 +164,22 @@ public interface ServletRequest {
      * If the parameter data was sent in the request body, such as occurs with an HTTP POST request, then reading the body
      * directly via {@link #getInputStream} or {@link #getReader} can interfere with the execution of this method.
      *
+     * <p>
+     * If not already parsed, calling this method will trigger the parsing of the query string, POSTed form data where the
+     * request body has content type is <code>application/x-www-form-urlencoded</code> and POSTed form data where the
+     * request body has content-type <code>multipart/form-data</code> and the Servlet is configured with a
+     * {@link jakarta.servlet.annotation.MultipartConfig} annotation or a <code>multipart-config</code> element in the
+     * deployment descriptor.
+     *
      * @param name a <code>String</code> specifying the name of the parameter
      *
      * @return a <code>String</code> representing the single value of the parameter
+     *
+     * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      *
      * @see #getParameterValues
      */
@@ -177,8 +190,21 @@ public interface ServletRequest {
      * Returns an <code>Enumeration</code> of <code>String</code> objects containing the names of the parameters contained
      * in this request. If the request has no parameters, the method returns an empty <code>Enumeration</code>.
      *
+     * <p>
+     * If not already parsed, calling this method will trigger the parsing of the query string, POSTed form data where the
+     * request body has content type is <code>application/x-www-form-urlencoded</code> and POSTed form data where the
+     * request body has content-type <code>multipart/form-data</code> and the Servlet is configured with a
+     * {@link jakarta.servlet.annotation.MultipartConfig} annotation or a <code>multipart-config</code> element in the
+     * deployment descriptor.
+     *
      * @return an <code>Enumeration</code> of <code>String</code> objects, each <code>String</code> containing the name of a
      * request parameter; or an empty <code>Enumeration</code> if the request has no parameters
+     *
+     * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      */
     public Enumeration<String> getParameterNames();
 
@@ -189,9 +215,22 @@ public interface ServletRequest {
      * <p>
      * If the parameter has a single value, the array has a length of 1.
      *
+     * <p>
+     * If not already parsed, calling this method will trigger the parsing of the query string, POSTed form data where the
+     * request body has content type is <code>application/x-www-form-urlencoded</code> and POSTed form data where the
+     * request body has content-type <code>multipart/form-data</code> and the Servlet is configured with a
+     * {@link jakarta.servlet.annotation.MultipartConfig} annotation or a <code>multipart-config</code> element in the
+     * deployment descriptor.
+     *
      * @param name a <code>String</code> containing the name of the parameter whose value is requested
      *
      * @return an array of <code>String</code> objects containing the parameter's values
+     *
+     * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      *
      * @see #getParameter
      */
@@ -204,8 +243,21 @@ public interface ServletRequest {
      * Request parameters are extra information sent with the request. For HTTP servlets, parameters are contained in the
      * query string or posted form data.
      *
+     * <p>
+     * If not already parsed, calling this method will trigger the parsing of the query string, POSTed form data where the
+     * request body has content type is <code>application/x-www-form-urlencoded</code> and POSTed form data where the
+     * request body has content-type <code>multipart/form-data</code> and the Servlet is configured with a
+     * {@link jakarta.servlet.annotation.MultipartConfig} annotation or a <code>multipart-config</code> element in the
+     * deployment descriptor.
+     *
      * @return an immutable java.util.Map containing parameter names as keys and parameter values as map values. The keys in
      * the parameter map are of type String. The values in the parameter map are of type String array.
+     *
+     * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      */
     public Map<String, String[]> getParameterMap();
 
