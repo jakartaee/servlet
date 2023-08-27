@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <display-name>SerJaxSerdispatchtest1</display-name>
+    <servlet>
+        <servlet-name>DispatchTests10</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests10</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests11</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests11</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests12</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests12</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests13</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests13</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests14</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests14</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests15</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests15</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests16</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests16</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests17</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests17</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests18</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests18</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests19</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests19</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>DispatchTests20</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.dispatchtest.DispatchTests20</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatchTests10</servlet-name>
+        <url-pattern>/DispatchTests10</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests11</servlet-name>
+        <url-pattern>/DispatchTests11</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests12</servlet-name>
+        <url-pattern>/DispatchTests12</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests13</servlet-name>
+        <url-pattern>/DispatchTests13</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests14</servlet-name>
+        <url-pattern>/DispatchTests14</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests15</servlet-name>
+        <url-pattern>/DispatchTests15</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests16</servlet-name>
+        <url-pattern>/DispatchTests16</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests17</servlet-name>
+        <url-pattern>/DispatchTests17</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests18</servlet-name>
+        <url-pattern>/DispatchTests18</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests19</servlet-name>
+        <url-pattern>/DispatchTests19</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DispatchTests20</servlet-name>
+        <url-pattern>/DispatchTests20</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>54</session-timeout>
+    </session-config>
+</web-app>
