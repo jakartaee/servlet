@@ -50,9 +50,13 @@
         </license>
     </licenses>
 
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+    </properties>
     <modules>
         <module>api</module>
         <module>spec</module>
+        <module>tck</module>
     </modules>
 
     <scm>
@@ -104,6 +108,9 @@
                                 <requireMavenVersion>
                                     <version>3.5.4</version>
                                 </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>11</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <display-name>SerSpecFilterMapping</display-name>
+    <filter>
+        <filter-name>RequestMappedTest_Filter</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_RequestFilter</filter-class>
+        <init-param>
+            <param-name>attribute</param-name>
+            <param-value>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_RequestFilter.SERVLET_MAPPED</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>IncludeMappedTest_Filter</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_IncludeFilter</filter-class>
+        <init-param>
+            <param-name>attribute</param-name>
+            <param-value>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_IncludeFilter.SERVLET_MAPPED</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>ForwardMappedTest_Filter</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_ForwardFilter</filter-class>
+        <init-param>
+            <param-name>attribute</param-name>
+            <param-value>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_ForwardFilter.SERVLET_MAPPED</param-value>
+        </init-param>
+    </filter>
+    <filter>
+        <filter-name>ErrorMappedTest_Filter</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_ErrorFilter</filter-class>
+        <init-param>
+            <param-name>attribute</param-name>
+            <param-value>com.sun.ts.tests.servlet.spec.multifiltermapping.Test_ErrorFilter.SERVLET_MAPPED</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>IncludeMappedTest_Filter</filter-name>
+        <url-pattern>/TestServlet3</url-pattern>
+        <url-pattern>*.bop</url-pattern>
+        <url-pattern>/*</url-pattern>
+        <url-pattern>/foo/bar/TestServlet5</url-pattern>
+        <servlet-name>TestServlet6</servlet-name>
+        <url-pattern>/dummy.html</url-pattern>
+        <url-pattern>/foo/bar/*</url-pattern>
+        <url-pattern>/foo/baR/*</url-pattern>   
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ErrorMappedTest_Filter</filter-name>
+        <url-pattern>/foo/bar/TestServlet5</url-pattern>
+        <servlet-name>TestServlet6</servlet-name>
+        <url-pattern>/TestServlet3</url-pattern>
+        <url-pattern>*.bop</url-pattern>
+        <url-pattern>/dummy.html</url-pattern>
+        <url-pattern>/foo/bar/*</url-pattern>
+        <url-pattern>/foo/baR/*</url-pattern>
+        <servlet-name>ErrorPage</servlet-name>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ForwardMappedTest_Filter</filter-name>
+        <url-pattern>/dummy.html</url-pattern>
+        <url-pattern>/foo/bar/*</url-pattern>
+        <url-pattern>/foo/baR/*</url-pattern>
+        <url-pattern>/*</url-pattern>
+        <url-pattern>/TestServlet3</url-pattern>
+        <url-pattern>*.bop</url-pattern>
+        <url-pattern>/foo/bar/TestServlet5</url-pattern>
+        <servlet-name>TestServlet6</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>RequestMappedTest_Filter</filter-name>
+        <servlet-name>TestServlet6</servlet-name>
+        <url-pattern>/dummy.html</url-pattern>
+        <url-pattern>/foo/bar/*</url-pattern>
+        <url-pattern>/foo/baR/*</url-pattern>
+        <url-pattern>/TestServlet3</url-pattern>
+        <url-pattern>*.bop</url-pattern>
+        <url-pattern>/foo/bar/TestServlet5</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.multifiltermapping.TestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrorPage</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.multifiltermapping.ErrorPage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet1</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet2</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet3</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet4</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet5</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet5</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet6</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.spec.multifiltermapping.TestServlet6</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet1</servlet-name>
+        <url-pattern>/foo/bar/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet2</servlet-name>
+        <url-pattern>/foo/baR/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet3</servlet-name>
+        <url-pattern>/TestServlet3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet4</servlet-name>
+        <url-pattern>*.bop</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet5</servlet-name>
+        <url-pattern>/foo/bar/TestServlet5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet6</servlet-name>
+        <url-pattern>/test/servletbyname</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorPage</servlet-name>
+        <url-pattern>/generic/ErrorPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>54</session-timeout>
+    </session-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/generic/ErrorPage</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.io.FileNotFoundException</exception-type>
+        <location>/generic/ErrorPage</location>
+    </error-page>
+</web-app>

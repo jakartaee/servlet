@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+  <display-name>SerJaxSerRequestMap</display-name>
+  <servlet>
+    <servlet-name>TestServlet1</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestServlet2</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet2</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestServlet3</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet3</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestServlet4</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet4</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestServlet5</servlet-name>
+    <servlet-class>com.sun.ts.tests.servlet.spec.requestmap.TestServlet5</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestServlet1</servlet-name>
+    <url-pattern>/foo/bar/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet2</servlet-name>
+    <url-pattern>/foo/baR/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet3</servlet-name>
+    <url-pattern>/TestServlet3</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet4</servlet-name>
+    <url-pattern>*.bop</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TestServlet5</servlet-name>
+    <url-pattern>/foo/bar/TestServlet5</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>54</session-timeout>
+  </session-config>
+</web-app>

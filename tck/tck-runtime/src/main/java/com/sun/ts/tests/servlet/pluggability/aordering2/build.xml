@@ -1,0 +1,108 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="servlet_spec_aordering2" basedir="." default="usage" >
+
+    <import file="../../../../../../../../bin/xml/ts.import.xml"/>
+
+    <property name="app.name" value="servlet_spec_aordering2" />
+    <property name="pkgcommon.dir" value="com/sun/ts/tests/servlet/pluggability/common" />
+
+    <target name="compile">
+        <ts.javac includes="${pkg.dir}/**/*.java,
+                  ${pkgcommon.dir}/**/*.java,
+        com/sun/ts/tests/common/webclient/validation/**/*.java"/>
+    </target>
+
+    <target name="package">
+        <mkdir dir="${ts.home}/dist/${pkg.dir}"/>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}1.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="TestServlet1.class, RequestListener1.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkgcommon.dir}"
+                        includes="web-fragment_1.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}2.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="RequestListener2.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkgcommon.dir}"
+                        includes="web-fragment_2.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}3.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="RequestListener3.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkgcommon.dir}"
+                        includes="web-fragment_3.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}4.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="RequestListener4.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkgcommon.dir}"
+                        includes="web-fragment_4.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}5.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="RequestListener5.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkgcommon.dir}"
+                        includes="web-fragment_5.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}6.jar">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="RequestListener6.class, TestServlet2.class"
+                        prefix="${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/src/${pkg.dir}"
+                        includes="web-fragment_6.xml"
+                        fullpath="META-INF/web-fragment.xml"/>
+        </jar>
+
+        <jar destfile="${ts.home}/dist/${pkg.dir}/${app.name}_web.war">
+            <zipfileset dir="${ts.home}/classes/${pkgcommon.dir}"
+                        includes="TestServlet1.class, RequestListener.class"
+                        prefix="WEB-INF/classes/${pkgcommon.dir}"/>
+            <zipfileset dir="${ts.home}/dist/${pkg.dir}"
+                        includes="${app.name}.jar, ${app.name}1.jar, ${app.name}2.jar, ${app.name}3.jar, ${app.name}4.jar, ${app.name}5.jar, ${app.name}6.jar"
+                        prefix="WEB-INF/lib"/>
+            <zipfileset dir="${ts.home}/src/${pkg.dir}"
+                        includes="${app.name}_web.xml" fullpath="WEB-INF/web.xml"/>
+        </jar>
+
+
+        <delete>
+            <fileset dir="${ts.home}/dist/${pkg.dir}" includes="*.jar"/>
+        </delete>
+
+        <ts.ear archivename="${app.name}" />
+    </target>
+
+</project>

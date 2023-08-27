@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <display-name>SerJaxSerServletContext30</display-name>
+    <listener>
+        <listener-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.TestListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>DuplicateFilterClass</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateFilterClass</filter-class>
+    </filter>
+    <filter>
+        <filter-name>DuplicateFilterString</filter-name>
+        <filter-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateFilterString</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DuplicateFilterClass</filter-name>
+        <url-pattern>/FilterTestServlet</url-pattern>
+     </filter-mapping>
+    <filter-mapping>
+        <filter-name>DuplicateFilterString</filter-name>
+        <url-pattern>/FilterTestServlet</url-pattern>
+     </filter-mapping>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.TestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterTestServlet</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.FilterTestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DuplicateServletClass</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateServletClass</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DuplicateServletString</servlet-name>
+        <servlet-class>com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateServletString</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterTestServlet</servlet-name>
+        <url-pattern>/FilterTestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DuplicateServletClass</servlet-name>
+        <url-pattern>/DuplicateServletClass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DuplicateServletString</servlet-name>
+        <url-pattern>/DuplicateServletString</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>54</session-timeout>
+    </session-config>
+</web-app>

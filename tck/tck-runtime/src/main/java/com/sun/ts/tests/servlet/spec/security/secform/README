@@ -1,0 +1,16 @@
+The security tests for both JSP and servlet performs the same functionality.
+
+So the common code between JSP and servlet is kept under 
+
+    TS_HOME/com/sun/ts/tests/common/jspservletsec/secbasicClient.java
+    TS_HOME/com/sun/ts/tests/common/jspservletsec/secformClient.java
+
+And they are extended and used under  
+
+    TS_HOME/com/sun/ts/tests/jsp/sec/secbasic/Client.java  (JSP)
+    TS_HOME/com/sun/ts/tests/servlet/sec/secbasic/Client.java (Servlet)
+
+    TS_HOME/com/sun/ts/tests/jsp/sec/secform/Client.java   (JSP)
+    TS_HOME/com/sun/ts/tests/servlet/sec/secform/Client.java  (Servlet)
+
+ 
