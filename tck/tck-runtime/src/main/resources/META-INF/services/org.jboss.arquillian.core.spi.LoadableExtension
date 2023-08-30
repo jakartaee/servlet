@@ -1,1 +1,1 @@
-com.sun.ts.tests.servlet.common.util.TCKLoadableExtension
+servlet.tck.common.util.TCKLoadableExtension

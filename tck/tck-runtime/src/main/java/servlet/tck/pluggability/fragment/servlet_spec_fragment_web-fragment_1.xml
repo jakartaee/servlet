@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-fragment xmlns="https://jakarta.ee/xml/ns/jakartaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+              https://jakarta.ee/xml/ns/jakartaee/web-fragment_5_0.xsd"
+              version="5.0" metadata-complete="false">
+    <name>Fragment1</name>
+    <ordering>
+        <after>
+            <name>Fragment2</name>
+        </after>
+    </ordering>
+    <filter>
+        <filter-name>TestFilter1</filter-name>
+        <filter-class>servlet.tck.pluggability.fragment.TestFilter1</filter-class>
+        <init-param>
+            <param-name>fragment</param-name>
+            <param-value>one</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>TestFilter1</filter-name>
+        <servlet-name>TestServlet5</servlet-name>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>TestServlet3</servlet-name>
+        <servlet-class>servlet.tck.pluggability.fragment.TestServlet3</servlet-class>
+        <init-param>
+            <param-name>msg1</param-name>
+            <param-value>third</param-value>
+        </init-param>
+        <init-param>
+            <param-name>msg2</param-name>
+            <param-value>third</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet3</servlet-name>
+        <url-pattern>/TestServlet3</url-pattern>
+    </servlet-mapping>
+</web-fragment>
