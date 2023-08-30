@@ -26,7 +26,7 @@ import java.util.Properties;
 
 /*
  * These tests are going to be similar to the tests that are in 
- * com.sun.ts.tests.servlet.spec.security.annotations with the key difference
+ * servlet.tck.spec.security.annotations with the key difference
  * being that these tests have a DD file which states metadata-complete=true.
  * When metadata-complete=true, then annotations should be ignored for the
  * application(s) in this jar.

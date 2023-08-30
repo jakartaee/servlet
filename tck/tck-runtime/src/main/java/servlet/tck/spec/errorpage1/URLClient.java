@@ -104,7 +104,7 @@ public class URLClient extends AbstractUrlClient {
         + "Servlet Name: TestServlet|"
         + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
         + "Status Code: 500|"
-        + "Exception: com.sun.ts.tests.servlet.spec.errorpage1.TestServletException: |"
+        + "Exception: servlet.tck.spec.errorpage1.TestServletException: |"
         + "error page invoked|" + "Message: error page invoked");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();

@@ -71,7 +71,7 @@ public class TestListener implements ServletContextListener {
      * Add Servlet AddServletString
      */
     ServletRegistration srString = context.addServlet(addServletName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString");
     srString.addMapping("/addServletString");
     srString.setInitParameter("FILTER", addFilterName1);
     Map<String, String> params = new HashMap<>();
@@ -84,7 +84,7 @@ public class TestListener implements ServletContextListener {
     params.clear();
 
     FilterRegistration frString = context.addFilter(addFilterName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddFilterString");
     frString.addMappingForServletNames(EnumSet.of(DispatcherType.FORWARD), true,
         addServletName1);
     frString.setInitParameter("SERVLET", addServletName1);

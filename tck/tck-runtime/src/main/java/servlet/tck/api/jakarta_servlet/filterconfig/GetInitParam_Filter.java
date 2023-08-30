@@ -91,7 +91,7 @@ public final class GetInitParam_Filter implements Filter {
     } else {
 
       String param = "GetInitParam_Filter_attribute1";
-      String expected = "com.sun.ts.tests.servlet.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
+      String expected = "servlet.tck.api.jakarta_servlet.filterconfig.GetInitParam_Filter.SERVLET_MAPPED1";
       String result = filterConfig.getInitParameter(param);
 
       if (expected.equals(result)) {

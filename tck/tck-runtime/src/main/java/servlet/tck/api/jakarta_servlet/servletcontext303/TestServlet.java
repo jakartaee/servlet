@@ -62,7 +62,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.SRAttributeListener");
+          "servlet.tck.api.common.sharedfiles.SRAttributeListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;
@@ -102,7 +102,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.SRListener");
+          "servlet.tck.api.common.sharedfiles.SRListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;
@@ -142,7 +142,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.SCAttributeListener");
+          "servlet.tck.api.common.sharedfiles.SCAttributeListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;
@@ -182,7 +182,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.SCListener");
+          "servlet.tck.api.common.sharedfiles.SCListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;
