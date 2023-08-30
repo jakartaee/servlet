@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.0" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+    <display-name>ServletSpecAsync</display-name>
+    <filter>
+        <filter-name>Filter4</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter4</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter>
+        <filter-name>Filter5</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter5</filter-class>
+        <async-supported>false</async-supported>
+    </filter>
+    <filter>
+        <filter-name>Filter6</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter6</filter-class>
+    </filter>
+    <filter>
+        <filter-name>Filter7</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter7</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter>
+        <filter-name>Filter8</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter8</filter-class>
+        <async-supported>false</async-supported>
+    </filter>
+    <filter>
+        <filter-name>Filter9</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter9</filter-class>
+    </filter>
+    <filter>
+        <filter-name>Filter10</filter-name>
+        <filter-class>servlet.tck.spec.async.Filter10</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter4</filter-name>
+        <servlet-name>Servlet4</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter5</filter-name>
+        <servlet-name>Servlet5</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter6</filter-name>
+        <servlet-name>Servlet6</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter7</filter-name>
+        <servlet-name>Servlet7</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter8</filter-name>
+        <servlet-name>Servlet8</servlet-name>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter9</filter-name>
+        <servlet-name>Servlet9</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Filter10</filter-name>
+        <servlet-name>Servlet10</servlet-name>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>Servlet1</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet1</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet2</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet3</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet3</servlet-class>
+        <async-supported>false</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet4</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet4</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet5</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet5</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet6</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet6</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet7</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet7</servlet-class>
+        <async-supported>false</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet8</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet8</servlet-class>
+        <async-supported>false</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet9</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet9</servlet-class>
+        <async-supported>false</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet10</servlet-name>
+        <servlet-class>servlet.tck.spec.async.Servlet10</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>servlet.tck.spec.async.TestServlet</servlet-class>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet1</servlet-name>
+        <url-pattern>/Servlet1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet2</servlet-name>
+        <url-pattern>/Servlet2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet3</servlet-name>
+        <url-pattern>/Servlet3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet4</servlet-name>
+        <url-pattern>/Servlet4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet5</servlet-name>
+        <url-pattern>/Servlet5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet6</servlet-name>
+        <url-pattern>/Servlet6</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet7</servlet-name>
+        <url-pattern>/Servlet7</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet8</servlet-name>
+        <url-pattern>/Servlet8</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet9</servlet-name>
+        <url-pattern>/Servlet9</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet10</servlet-name>
+        <url-pattern>/Servlet10</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>54</session-timeout>
+    </session-config>
+</web-app>
