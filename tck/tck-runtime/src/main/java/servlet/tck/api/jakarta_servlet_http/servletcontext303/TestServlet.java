@@ -60,7 +60,7 @@ public class TestServlet extends HttpTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionListener");
+          "servlet.tck.api.common.sharedfiles.HSessionListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;
@@ -100,7 +100,7 @@ public class TestServlet extends HttpTCKServlet {
 
     try {
       getServletContext().addListener(
-          "com.sun.ts.tests.servlet.api.common.sharedfiles.HSessionAttributeListener");
+          "servlet.tck.api.common.sharedfiles.HSessionAttributeListener");
     } catch (Exception exf) {
       if (exf instanceof java.lang.IllegalStateException) {
         passed = true;

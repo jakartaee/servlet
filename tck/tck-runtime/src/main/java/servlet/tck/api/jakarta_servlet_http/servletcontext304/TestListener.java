@@ -47,7 +47,7 @@ public class TestListener implements ServletContextListener {
     context.addListener(
         AddHttpSessionListenerClass.class);
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerString");
+        "servlet.tck.api.jakarta_servlet_http.servletcontext304.AddHttpSessionListenerString");
     try {
       EventListener hslistener = context.createListener(
           CreateHttpSessionListener.class);

@@ -39,7 +39,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addServlet("/testURL",
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addservlet1.DummyServlet");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addservlet1.DummyServlet");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addServlet(String, String).");

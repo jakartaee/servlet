@@ -73,7 +73,7 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1URL HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_INVOKED"
-        + "|servletname=com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet1"
+        + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet1"
         + "|isAsyncSupported=false");
     invoke();
 
@@ -104,28 +104,28 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL1 HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
-        + "|servletname=com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2"
+        + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL2 HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
-        + "|servletname=com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2"
+        + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/xyz HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
-        + "|servletname=com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2"
+        + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/x/y/t.html HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
-        + "|servletname=com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet2"
+        + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 

@@ -55,7 +55,7 @@ public class TestListener implements ServletContextListener {
      * Add Servlet1
      */
     ServletRegistration sr1 = context.addServlet(addServletName1,
-        "com.sun.ts.tests.servlet.spec.annotationservlet.webservlet.Servlet1");
+        "servlet.tck.spec.annotationservlet.webservlet.Servlet1");
     sr1.addMapping("/Servlet1APIURL");
 
     /*

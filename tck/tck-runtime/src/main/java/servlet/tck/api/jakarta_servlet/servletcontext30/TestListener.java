@@ -66,14 +66,14 @@ public class TestListener implements ServletContextListener {
      * Add Servlet AddServletString
      */
     ServletRegistration srString = context.addServlet(addServletName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString");
     srString.addMapping("/addServletString");
     srString.setInitParameter("FILTER", addFilterName1);
     srString.setInitParameter(addFilterName1,
         DispatcherType.FORWARD.toString());
 
     FilterRegistration frString = context.addFilter(addFilterName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddFilterString");
     frString.addMappingForServletNames(EnumSet.of(DispatcherType.FORWARD), true,
         addServletName1);
     frString.setInitParameter("SERVLET", addServletName1);
@@ -150,7 +150,7 @@ public class TestListener implements ServletContextListener {
         AddSCAttributeListenerClass.class);
 
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSCAttributeListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSCAttributeListenerString");
     try {
       EventListener sclistener = context.createListener(
           CreateSCAttributeListener.class);
@@ -166,7 +166,7 @@ public class TestListener implements ServletContextListener {
     context.addListener(
         AddSRListenerClass.class);
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSRListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSRListenerString");
     try {
       EventListener srlistener = context.createListener(
           CreateSRListener.class);
@@ -182,7 +182,7 @@ public class TestListener implements ServletContextListener {
     context.addListener(
         AddSRAttributeListenerClass.class);
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSRAttributeListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSRAttributeListenerString");
     try {
       EventListener sralistener = context.createListener(
           CreateSRAttributeListener.class);
@@ -256,7 +256,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSCListenerString");
+          "servlet.tck.api.jakarta_servlet.servletcontext30.AddSCListenerString");
     } catch (IllegalArgumentException ilex) {
       scs_listener_test = true;
       LOGGER.error(
@@ -295,7 +295,7 @@ public class TestListener implements ServletContextListener {
         duplicatec_servlet_test.toString());
 
     ServletRegistration srdString = context.addServlet(addServletName6,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateServletString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateServletString");
     if (srdString == null) {
       duplicates_servlet_test = true;
     }
@@ -311,7 +311,7 @@ public class TestListener implements ServletContextListener {
         duplicatec_filter_test.toString());
 
     FilterRegistration frdString = context.addFilter(addFilterName6,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.DuplicateFilterString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateFilterString");
     if (frdString == null) {
       duplicates_filter_test = true;
     }

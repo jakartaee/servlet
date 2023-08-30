@@ -25,7 +25,7 @@ import servlet.tck.api.jakarta_servlet.genericservlet.InitServletExceptionTestSe
 import servlet.tck.api.jakarta_servlet.genericservlet.InitTestServlet;
 import servlet.tck.api.jakarta_servlet.genericservlet.Init_ServletConfigServletExceptionTestServlet;
 import servlet.tck.api.jakarta_servlet.genericservlet.Init_ServletConfigTestServlet;
-//import com.sun.ts.tests.servlet.api.jakarta_servlet.genericservlet.ServiceTestServlet;
+//import servlet.tck.api.jakarta_servlet.genericservlet.ServiceTestServlet;
 import servlet.tck.api.jakarta_servlet.genericservlet.ServletErrorPage;
 import servlet.tck.api.jakarta_servlet.genericservlet.TestServlet;
 import servlet.tck.common.client.AbstractUrlClient;

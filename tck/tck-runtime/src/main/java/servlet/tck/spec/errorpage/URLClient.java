@@ -145,8 +145,8 @@ public class URLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(SEARCH_STRING, "Second ErrorPage|"
         + "Servlet Name: WrappedException|"
         + "Request URI: /servlet_spec_errorpage_web/WrappedException|Status Code: 500|"
-        + "Exception Type: com.sun.ts.tests.servlet.spec.errorpage.TestException|"
-        + "Exception: com.sun.ts.tests.servlet.spec.errorpage.TestException: error page invoked|Message: error page invoked");
+        + "Exception Type: servlet.tck.spec.errorpage.TestException|"
+        + "Exception: servlet.tck.spec.errorpage.TestException: error page invoked|Message: error page invoked");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     TEST_PROPS.setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");

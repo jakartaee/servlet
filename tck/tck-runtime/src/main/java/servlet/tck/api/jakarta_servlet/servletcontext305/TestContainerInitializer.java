@@ -57,14 +57,14 @@ public class TestContainerInitializer implements ServletContainerInitializer {
      * Add Servlet AddServletString
      */
     ServletRegistration srString = context.addServlet(addServletName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString");
     srString.addMapping("/addServletString");
     srString.setInitParameter("FILTER", addFilterName1);
     srString.setInitParameter(addFilterName1,
         DispatcherType.FORWARD.toString());
 
     FilterRegistration frString = context.addFilter(addFilterName1,
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddFilterString");
     frString.addMappingForServletNames(EnumSet.of(DispatcherType.FORWARD), true,
         addServletName1);
     frString.setInitParameter("SERVLET", addServletName1);
@@ -141,7 +141,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
         AddSCListenerClass.class);
 
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext305.AddSCListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext305.AddSCListenerString");
     try {
       EventListener sclistener = context.createListener(
           CreateSCListener.class);
@@ -159,7 +159,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
         AddSCAttributeListenerClass.class);
 
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSCAttributeListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSCAttributeListenerString");
     try {
       EventListener scalistener = context.createListener(
           CreateSCAttributeListener.class);
@@ -175,7 +175,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
     context.addListener(
         AddSRListenerClass.class);
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSRListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSRListenerString");
     try {
       EventListener srlistener = context.createListener(
           CreateSRListener.class);
@@ -192,7 +192,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
     context.addListener(
         AddSRAttributeListenerClass.class);
     context.addListener(
-        "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddSRAttributeListenerString");
+        "servlet.tck.api.jakarta_servlet.servletcontext30.AddSRAttributeListenerString");
     try {
       EventListener sralistener = context.createListener(
           CreateSRAttributeListener.class);
@@ -252,7 +252,7 @@ public class TestContainerInitializer implements ServletContainerInitializer {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext302.AssGenericEventListenerString");
+          "servlet.tck.api.jakarta_servlet.servletcontext302.AssGenericEventListenerString");
     } catch (IllegalArgumentException ex) {
       listener_test = true;
     }

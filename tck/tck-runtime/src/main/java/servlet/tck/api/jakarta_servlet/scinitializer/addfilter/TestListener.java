@@ -41,7 +41,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addFilter(addFilterName1,
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addfilter.AddFilterString");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addfilter.AddFilterString");
       passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {

@@ -39,7 +39,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.getFilterRegistration(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getfilterregistration.TestFilter");
+          "servlet.tck.api.jakarta_servlet.scinitializer.getfilterregistration.TestFilter");
       log.append(
           "Expected UnsupportedOperationException not thrown by getFilterRegistration(String).");
       passed = false;

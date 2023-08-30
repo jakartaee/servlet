@@ -39,7 +39,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.getServletRegistration(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.getservletregistrationtest.TestServlet");
+          "servlet.tck.api.jakarta_servlet.scinitializer.getservletregistrationtest.TestServlet");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by getServletRegistration(String).");

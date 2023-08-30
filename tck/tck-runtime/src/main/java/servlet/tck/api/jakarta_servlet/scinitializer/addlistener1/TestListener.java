@@ -39,7 +39,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCListener");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addlistener.SCListener");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SCListener).");
@@ -50,7 +50,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SCAttributeListener");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addlistener.SCAttributeListener");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SCAttributeListener).");
@@ -61,7 +61,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRListener");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addlistener.SRListener");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SRListener).");
@@ -72,7 +72,7 @@ public class TestListener implements ServletContextListener {
 
     try {
       context.addListener(
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.scinitializer.addlistener.SRAttributeListener");
+          "servlet.tck.api.jakarta_servlet.scinitializer.addlistener.SRAttributeListener");
       passed = false;
       log.append(
           "Expected UnsupportedOperationException not thrown by addListener(SRAttributeListene).");

@@ -55,7 +55,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addServlet(addServletName1,
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddServletString");
+          "servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString");
       pw.append("Expected IllegalStateException not thrown.");
       ServletTestUtil.printResult(pw, false);
     } catch (IllegalStateException ex) {
@@ -102,7 +102,7 @@ public class TestServlet extends GenericTCKServlet {
 
     try {
       getServletContext().addFilter(addFilterName1,
-          "com.sun.ts.tests.servlet.api.jakarta_servlet.servletcontext30.AddFilterString");
+          "servlet.tck.api.jakarta_servlet.servletcontext30.AddFilterString");
       pw.append("Expected IllegalStateException not thrown.");
       ServletTestUtil.printResult(pw, false);
 
