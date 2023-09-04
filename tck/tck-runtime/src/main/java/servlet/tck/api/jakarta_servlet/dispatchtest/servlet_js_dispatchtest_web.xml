@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>DispatchTests</servlet-name>
-        <servlet-class>servlet.tck.api.jakarta_servlet.dispatchtest.DispatchTests</servlet-class>
+        <servlet-class>servlet.tck.api.jakarta_servlet.dispatchtest.DispatchTestsServlet</servlet-class>
         <async-supported>true</async-supported>
     </servlet>
     <servlet>
