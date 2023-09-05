@@ -46,7 +46,7 @@ import java.util.Properties;
  * </PRE>
  */
 @ExtendWith({ArquillianExtension.class})
-public abstract class BaseUrlClient {
+public abstract class BaseTckTest {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 

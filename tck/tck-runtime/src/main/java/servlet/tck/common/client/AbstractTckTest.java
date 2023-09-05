@@ -37,7 +37,7 @@ import java.net.UnknownHostException;
  * Base client for Servlet tests.
  */
 
-public abstract class AbstractUrlClient extends BaseUrlClient {
+public abstract class AbstractTckTest extends BaseTckTest {
 
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -49,7 +49,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 
   private String _servlet = null;
 
-  protected AbstractUrlClient() {
+  protected AbstractTckTest() {
     // Construct a default context root based on the class name of
     // the concrete subclass of this class.
     String cname = this.getClass().getName();

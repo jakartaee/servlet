@@ -16,7 +16,7 @@
 
 package servlet.tck.spec.security.metadatacomplete;
 
-import servlet.tck.common.client.BaseUrlClient;
+import servlet.tck.common.client.BaseTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -32,7 +32,7 @@ import java.util.Properties;
  * application(s) in this jar.
  *
  */
-public class MetaDataCompleteTests extends BaseUrlClient {
+public class MetaDataCompleteTests extends BaseTckTest {
 
 
 

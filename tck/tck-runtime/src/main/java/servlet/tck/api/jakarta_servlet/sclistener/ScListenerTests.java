@@ -20,7 +20,7 @@
 
 package servlet.tck.api.jakarta_servlet.sclistener;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -29,7 +29,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class ScListenerTests extends AbstractUrlClient {
+public class ScListenerTests extends AbstractTckTest {
   @BeforeEach
   public void setupServletName() throws Exception {
     setServletName("TestServlet");

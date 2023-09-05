@@ -46,7 +46,7 @@ import servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateFilterString;
 import servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateServletClass;
 import servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateServletString;
 import servlet.tck.api.jakarta_servlet.servletcontext30.FilterTestServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -60,7 +60,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ServletContext30Tests extends AbstractUrlClient {
+public class ServletContext30Tests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

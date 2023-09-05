@@ -17,7 +17,7 @@
 package servlet.tck.spec.security.annotations;
 
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.BaseUrlClient;
+import servlet.tck.common.client.BaseTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -28,7 +28,7 @@ import java.util.Properties;
 /*
  *
  */
-public class AnnotationsTests extends BaseUrlClient {
+public class AnnotationsTests extends BaseTckTest {
 
   // TOFIX
 

@@ -20,14 +20,14 @@
 
 package servlet.tck.api.jakarta_servlet.filter;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class FilterTests extends AbstractUrlClient {
+public class FilterTests extends AbstractTckTest {
 
   /**
    * Deployment for the test

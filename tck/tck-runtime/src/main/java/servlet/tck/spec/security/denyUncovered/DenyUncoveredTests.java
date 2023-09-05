@@ -22,7 +22,7 @@ import java.util.Properties;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -40,7 +40,7 @@ import org.junit.jupiter.api.Test;
  * deny-uncovered-http-methods DD semantic (Servlet 3.1 spec, section 13.8.4.2).
  *
  */
-public class DenyUncoveredTests extends AbstractUrlClient {
+public class DenyUncoveredTests extends AbstractTckTest {
   private Properties props = null;
 
   private String hostname = null;

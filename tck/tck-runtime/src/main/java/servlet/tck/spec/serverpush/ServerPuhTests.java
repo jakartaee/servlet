@@ -19,7 +19,7 @@ package servlet.tck.spec.serverpush;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -51,7 +51,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ServerPuhTests extends AbstractUrlClient {
+public class ServerPuhTests extends AbstractTckTest {
 
     @BeforeEach
     public void setupServletName() throws Exception {

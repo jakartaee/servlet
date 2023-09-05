@@ -20,7 +20,7 @@
 
 package servlet.tck.api.jakarta_servlet.filterrequestdispatcher;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.Data;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class FilterRequestDispatcherTests extends AbstractUrlClient {
+public class FilterRequestDispatcherTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

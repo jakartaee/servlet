@@ -19,7 +19,7 @@
  */
 package servlet.tck.spec.pluggability.ordering;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.spec.pluggability.common.RequestListener;
 import servlet.tck.spec.pluggability.common.TestServlet4;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -28,7 +28,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class PluggabilityOrderingTests extends AbstractUrlClient {
+public class PluggabilityOrderingTests extends AbstractTckTest {
 
   public static JavaArchive getFragment1() {
     return ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")

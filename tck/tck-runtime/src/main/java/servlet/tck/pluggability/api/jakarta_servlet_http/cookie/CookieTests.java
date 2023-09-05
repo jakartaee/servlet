@@ -22,7 +22,7 @@ package servlet.tck.pluggability.api.jakarta_servlet_http.cookie;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.api.jakarta_servlet_http.cookie.TestServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.request.HttpRequest;
 import servlet.tck.common.request.HttpResponse;
 import servlet.tck.common.servlets.CommonServlets;
@@ -44,7 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class CookieTests extends AbstractUrlClient {
+public class CookieTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

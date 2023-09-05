@@ -26,7 +26,7 @@ import servlet.tck.api.jakarta_servlet.servletrequest30.TestServlet;
 import servlet.tck.api.jakarta_servlet.servletrequestwrapper30.AsyncTestServletWrapper;
 import servlet.tck.api.jakarta_servlet.servletrequestwrapper30.ErrorServletWrapper;
 import servlet.tck.api.jakarta_servlet.servletrequestwrapper30.TestServletWrapper;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class ServletRequestWrapper30Tests extends AbstractUrlClient {
+public class ServletRequestWrapper30Tests extends AbstractTckTest {
 
 
   /**

@@ -19,7 +19,7 @@
  */
 package servlet.tck.api.jakarta_servlet.dispatchtest;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 
 import java.net.URL;
 
-public class DispatchTests extends AbstractUrlClient {
+public class DispatchTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

@@ -25,7 +25,7 @@ import servlet.tck.api.jakarta_servlet.servletcontext30.AddServletClass;
 import servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString;
 import servlet.tck.api.jakarta_servlet.servletcontext30.CreateFilter;
 import servlet.tck.api.jakarta_servlet.servletcontext30.CreateServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -33,7 +33,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ServletContext306Tests extends AbstractUrlClient {
+public class ServletContext306Tests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

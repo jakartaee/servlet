@@ -21,7 +21,7 @@ package servlet.tck.pluggability.api.jakarta_servlet.asynccontext;
 
 import servlet.tck.api.jakarta_servlet.asynccontext.AsyncTestServlet;
 import servlet.tck.api.jakarta_servlet.asynccontext.AsyncTestsServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.api.jakarta_servlet.asynccontext.ResponseWrapper;
 import servlet.tck.api.jakarta_servlet.asynccontext.RequestWrapper;
@@ -36,7 +36,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AsyncContextTests extends AbstractUrlClient {
+public class AsyncContextTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

@@ -17,7 +17,7 @@
 package servlet.tck.spec.security.clientcert;
 
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -54,7 +54,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author Raja Perumal
  */
-public class ClientCertTests extends AbstractUrlClient {
+public class ClientCertTests extends AbstractTckTest {
 
     // TOFIX
 

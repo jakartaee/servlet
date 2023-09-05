@@ -32,7 +32,7 @@ import java.net.URL;
 
 import servlet.tck.api.jakarta_servlet_http.part.PartTests;
 import servlet.tck.api.jakarta_servlet_http.part.TestServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.ServletTestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -41,7 +41,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Part1Tests extends AbstractUrlClient {
+public class Part1Tests extends AbstractTckTest {
 
     private static final String CRLF = "\r\n";
 

@@ -20,10 +20,10 @@
 
 package servlet.tck.common.request;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.util.Data;
 
-public class RequestClient extends AbstractUrlClient {
+public class RequestClient extends AbstractTckTest {
 
   
   public void getAttributeNamesTest() throws Exception {

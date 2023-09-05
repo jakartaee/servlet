@@ -19,13 +19,13 @@
  */
 package servlet.tck.spec.listenerorder;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class ListenerOrderTests extends AbstractUrlClient {
+public class ListenerOrderTests extends AbstractTckTest {
 
 
   /**
