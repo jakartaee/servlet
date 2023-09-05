@@ -20,6 +20,9 @@
 
 package servlet.tck.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,6 +46,8 @@ import java.util.StringTokenizer;
  * @author Mark Roth
  */
 public class WebUtil {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(WebUtil.class);
 
   /**
    * Reponse object containing information returned from the web server
@@ -260,7 +265,7 @@ public class WebUtil {
       // Read first line and check for HTTP version and OK.
       line = in.readLine();
       if (line != null) {
-        TestUtil.logTrace("HEADER: " + line);
+        LOGGER.trace("HEADER: {}", line);
 
         StringTokenizer st = new StringTokenizer(line.trim());
         response.versionToken = st.nextToken();
@@ -269,10 +274,10 @@ public class WebUtil {
 
       // Read each line of the header until we hit a blank line
       while ((line = in.readLine()) != null) {
-        TestUtil.logTrace("HEADER: " + line);
+        LOGGER.trace("HEADER: {}", line);
 
         // Blank line means we are done with the header:
-        if (line.trim().equals(""))
+        if (line.trim().isEmpty())
           break;
 
         // Analyze special tags location and set cookie
@@ -297,11 +302,11 @@ public class WebUtil {
       in.close();
       out.close();
     } catch (MalformedURLException e) {
-      throw new IOException("MalformedURLException: " + e.getMessage());
+      throw new IOException("MalformedURLException: " + e.getMessage(), e);
     } catch (UnknownHostException e) {
-      throw new IOException("UnknownHostException: " + e.getMessage());
+      throw new IOException("UnknownHostException: " + e.getMessage(), e);
     } catch (ConnectException e) {
-      throw new IOException("ConnectException: " + e.getMessage());
+      throw new IOException("ConnectException: " + e.getMessage(), e);
     }
 
     return response;
@@ -314,7 +319,7 @@ public class WebUtil {
    */
   private static void send(PrintWriter out, String s) {
     out.print(s + "\r\n");
-    TestUtil.logTrace("REQUEST: " + s);
+    LOGGER.trace("REQUEST: {}", s);
   }
 
   /**

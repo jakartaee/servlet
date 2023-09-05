@@ -60,6 +60,8 @@
 
 package servlet.tck.common.client.handler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import servlet.tck.util.TestUtil;
 import org.apache.commons.httpclient.Header;
 
@@ -75,6 +77,8 @@ import org.apache.commons.httpclient.Header;
  * </PRE>
  */
 public class ContentTypeHandler implements Handler {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ContentTypeHandler.class);
 
   private static Handler handler = new ContentTypeHandler();
 
@@ -107,7 +111,7 @@ public class ContentTypeHandler implements Handler {
    */
   public boolean invoke(Header configuredHeader, Header responseHeader) {
     boolean ret = false;
-    TestUtil.logTrace("[ContentTypeHandler] ContentTypeHandler invoked.");
+    LOGGER.trace("[ContentTypeHandler] ContentTypeHandler invoked.");
     String configVal = configuredHeader.getValue().trim();
     String responseVal = responseHeader.getValue().trim();
     int colIdx = configVal.indexOf(';');

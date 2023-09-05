@@ -60,7 +60,8 @@
 
 package servlet.tck.common.client.handler;
 
-import servlet.tck.util.TestUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.httpclient.Header;
 
 /**
@@ -74,7 +75,9 @@ import org.apache.commons.httpclient.Header;
  */
 public class WWWAuthenticateHandler implements Handler {
 
-  private static Handler handler = new WWWAuthenticateHandler();
+  private static final Logger LOGGER = LoggerFactory.getLogger(WWWAuthenticateHandler.class);
+
+  private static final Handler handler = new WWWAuthenticateHandler();
 
   /**
    * Creates new ContentTypeHandler
@@ -104,9 +107,7 @@ public class WWWAuthenticateHandler implements Handler {
    * @return True if the passed match, otherwise false
    */
   public boolean invoke(Header configuredHeader, Header responseHeader) {
-
-    TestUtil
-        .logTrace("[WWWAuthenticateHandler] WWAuthenticateHandler invoked.");
+    LOGGER.trace("[WWWAuthenticateHandler] WWAuthenticateHandler invoked.");
     return true;
   }
 }

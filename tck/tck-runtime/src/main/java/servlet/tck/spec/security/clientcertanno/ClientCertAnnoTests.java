@@ -16,6 +16,7 @@
 
 package servlet.tck.spec.security.clientcertanno;
 
+import servlet.tck.spec.listenerorder.ListenerOrderTests;
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.common.client.AbstractTckTest;
@@ -177,7 +178,7 @@ public class ClientCertAnnoTests extends AbstractTckTest {
       String line;
       while ((line = in.readLine()) != null) {
         output.append(line);
-        TestUtil.logMsg(line);
+        logger.debug(line);
       }
 
       // compare getRemoteUser() obtained from server's response

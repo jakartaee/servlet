@@ -388,7 +388,7 @@ public abstract class SecBasicClient extends BaseTckTest {
             .indexOf(searchString) != -1) {
           // ohoh - we should NOT have been allowed to access the page and it
           // appears we did access it. log an error
-          TestUtil.logErr("(Should say: \"" + searchString + "\")");
+          logger.error("(Should say: \"" + searchString + "\")");
           throw new Exception("test7 failed.");
         }
       } catch (Exception ex) {
@@ -420,8 +420,8 @@ public abstract class SecBasicClient extends BaseTckTest {
    * @param message
    *          - the message to log
    */
-  private static void logMessage(String message) {
-    TestUtil.logMsg(CLASS_TRACE_HEADER + message);
+  protected void logMessage(String message) {
+    logger.info("{} {}",CLASS_TRACE_HEADER, message);
   }
 
   /**
@@ -430,8 +430,8 @@ public abstract class SecBasicClient extends BaseTckTest {
    * @param message
    *          - the message to log
    */
-  private static void trace(String message) {
-    TestUtil.logTrace(CLASS_TRACE_HEADER + message);
+  private void trace(String message) {
+    logger.trace("{} {}", CLASS_TRACE_HEADER, message);
   }
 
   private void dumpResponse() {

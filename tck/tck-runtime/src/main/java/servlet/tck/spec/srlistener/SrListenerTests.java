@@ -19,7 +19,6 @@
  */
 package servlet.tck.spec.srlistener;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -63,7 +62,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleinclude() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "includes");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -71,8 +70,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
     invoke();
@@ -92,7 +90,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void multipleincludes() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "multipleincludes");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -100,8 +98,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -122,7 +119,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void includeforward() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "includeforward");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -130,8 +127,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -152,7 +148,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void includeerror() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=includeerror HTTP/1.1");
@@ -160,8 +156,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -182,7 +177,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleforward() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "forward");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -190,8 +185,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -212,7 +206,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void multipleforwards() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "multipleforwards");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -220,8 +214,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -242,7 +235,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void forwardinclude() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "forwardinclude");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -250,8 +243,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -272,7 +264,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void forwarderror() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=forwarderror HTTP/1.1");
@@ -280,8 +272,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -302,7 +293,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleasync() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "async");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -310,8 +301,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -332,7 +322,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleasyncinclude() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "simpleasyncinclude");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -342,8 +332,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -364,7 +353,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleasyncforward() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(APITEST, "simpleasyncforward");
       TEST_PROPS.setProperty(SEARCH_STRING,
@@ -372,8 +361,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -394,7 +382,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void simpleasyncerror() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=simpleasyncerror HTTP/1.1");
@@ -402,8 +390,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");
@@ -424,7 +411,7 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void error() throws Exception {
-    Boolean pass = true;
+    boolean pass = true;
     try {
       TEST_PROPS.setProperty(REQUEST,
           "GET " + getContextRoot() + "/TestServlet?testname=error HTTP/1.1");
@@ -433,8 +420,7 @@ public class SrListenerTests extends AbstractTckTest {
       invoke();
     } catch (Exception flt) {
       pass = false;
-      TestUtil.logErr("Test failed at the first invocation."
-          + "catch it here so the cleanup can continue", flt);
+      logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
     TEST_PROPS.setProperty(APITEST, "checkLogSimple");

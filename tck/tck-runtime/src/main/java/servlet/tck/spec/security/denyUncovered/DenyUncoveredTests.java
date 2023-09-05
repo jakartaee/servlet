@@ -41,7 +41,6 @@ import org.junit.jupiter.api.Test;
  *
  */
 public class DenyUncoveredTests extends AbstractTckTest {
-  private Properties props = null;
 
   private String hostname = null;
 
@@ -87,7 +86,6 @@ public class DenyUncoveredTests extends AbstractTckTest {
    *
    */
   public void setup(String[] args, Properties p) throws Exception {
-    props = p;
 
     try {
       hostname = p.getProperty("webServerHost");
@@ -136,19 +134,17 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
     httpStatusCode = invokeServlet(ctxtAllMethodsAllowedAnno, "PUT");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtAllMethodsAllowedAnno
-          + "  (PUT) returns = " + httpStatusCode);
+      logger.debug("Accessing {} (PUT) returns = {}", ctxtAllMethodsAllowedAnno, httpStatusCode);
       throw new Exception("testAllMethodsAllowedAnno : FAILED");
     }
 
     httpStatusCode = invokeServlet(ctxtAllMethodsAllowedAnno, "DELETE");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtAllMethodsAllowedAnno
-          + "  (DELETE) returns = " + httpStatusCode);
+      logger.debug("Accessing {} (DELETE) returns = {}", ctxtAllMethodsAllowedAnno, httpStatusCode);
       throw new Exception("testAllMethodsAllowedAnno : FAILED");
     }
 
-    TestUtil.logMsg("testAllMethodsAllowedAnno : PASSED");
+    logger.debug("testAllMethodsAllowedAnno : PASSED");
   }
 
   /*
@@ -172,19 +168,17 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "POST");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtTestServlet + "  (POST) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (POST) returns = {}", ctxtTestServlet, httpStatusCode);
       throw new Exception("testAccessToMethodAllowed : FAILED");
     }
 
     httpStatusCode = invokeServlet(ctxtTestServlet, "GET");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtTestServlet + "  (GET) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (GET) returns = {}", ctxtTestServlet, httpStatusCode);
       throw new Exception("testAccessToMethodAllowed : FAILED");
     }
 
-    TestUtil.logMsg("testAccessToMethodAllowed : PASSED");
+    logger.debug("testAccessToMethodAllowed : PASSED");
   }
 
   /*
@@ -208,19 +202,17 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "DELETE");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtTestServlet + "  (DELETE) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (DELETE) returns = {}",ctxtTestServlet, httpStatusCode);
       throw new Exception("testDenySomeUncovered : FAILED");
     }
 
     httpStatusCode = invokeServlet(ctxtTestServlet, "PUT");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtTestServlet + "  (PUT) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (PUT) returns = {}", ctxtTestServlet, httpStatusCode);
       throw new Exception("testDenySomeUncovered : FAILED");
     }
 
-    TestUtil.logMsg("testDenySomeUncovered : PASSED");
+    logger.debug("testDenySomeUncovered : PASSED");
   }
 
   /*
@@ -249,19 +241,17 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
     int httpStatusCode = invokeServlet(ctxtExcludeAuthConstraint, "GET");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtExcludeAuthConstraint
-          + "  (GET) returns = " + httpStatusCode);
+      logger.debug("Accessing {}} (GET) returns = {}", ctxtExcludeAuthConstraint, httpStatusCode);
       throw new Exception("testExcludeAuthConstraint : FAILED");
     }
 
     httpStatusCode = invokeServlet(ctxtExcludeAuthConstraint, "POST");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtExcludeAuthConstraint
-          + "  (POST) returns = " + httpStatusCode);
+      logger.debug("Accessing {} (POST) returns = {}", ctxtExcludeAuthConstraint, httpStatusCode);
       throw new Exception("testExcludeAuthConstraint : FAILED");
     }
 
-    TestUtil.logMsg("testExcludeAuthConstraint : PASSED");
+    logger.debug("testExcludeAuthConstraint : PASSED");
   }
 
   /*
@@ -289,39 +279,35 @@ public class DenyUncoveredTests extends AbstractTckTest {
   @Test
   public void testPartialDDServlet() throws Exception {
 
-    TestUtil.logMsg("Invoking " + ctxtPartialDDServlet + "  (GET)");
+    logger.debug("Invoking {} (GET)", ctxtPartialDDServlet);
     int httpStatusCode = invokeServlet(ctxtPartialDDServlet, "GET");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtPartialDDServlet + "  (GET) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (GET) returns = {}", ctxtPartialDDServlet, httpStatusCode);
       throw new Exception("testPartialDDServlet : FAILED");
     }
 
-    TestUtil.logMsg("Invoking " + ctxtPartialDDServlet + "  (POST)");
+    logger.debug("Invoking {} (POST)", ctxtPartialDDServlet);
     httpStatusCode = invokeServlet(ctxtPartialDDServlet, "POST");
     if (httpStatusCode != 200) {
-      TestUtil.logMsg("Accessing " + ctxtPartialDDServlet
-          + "  (POST) returns = " + httpStatusCode);
+      logger.debug("Accessing {} (POST) returns = {}", ctxtPartialDDServlet, httpStatusCode);
       throw new Exception("testPartialDDServlet : FAILED");
     }
 
-    TestUtil.logMsg("Invoking " + ctxtPartialDDServlet + "  (PUT)");
+    logger.debug("Invoking {} (PUT)", ctxtPartialDDServlet);
     httpStatusCode = invokeServlet(ctxtPartialDDServlet, "PUT");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtPartialDDServlet + "  (PUT) returns = "
-          + httpStatusCode);
+      logger.debug("Accessing {} (PUT) returns = {}", ctxtPartialDDServlet, httpStatusCode);
       throw new Exception("testPartialDDServlet : FAILED");
     }
 
-    TestUtil.logMsg("Invoking " + ctxtPartialDDServlet + "  (DELETE)");
+    logger.debug("Invoking {} (DELETE)", ctxtPartialDDServlet);
     httpStatusCode = invokeServlet(ctxtPartialDDServlet, "DELETE");
     if (httpStatusCode != 403) {
-      TestUtil.logMsg("Accessing " + ctxtPartialDDServlet
-          + "  (DELETE) returns = " + httpStatusCode);
+      logger.debug("Accessing {} (DELETE) returns = {}", ctxtPartialDDServlet, httpStatusCode);
       throw new Exception("testPartialDDServlet : FAILED");
     }
 
-    TestUtil.logMsg("testPartialDDServlet : PASSED");
+    logger.debug("testPartialDDServlet : PASSED");
   }
 
   /*
