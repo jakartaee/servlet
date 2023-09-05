@@ -222,7 +222,7 @@ public class TestServlet extends GenericTCKServlet {
       pw.println("GetResourcePathsTest: returned null resourcepath");
     }
 
-    path = "/WEB-INF/classes/com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext/";
+    path = "/WEB-INF/classes/servlet/tck/api/jakarta_servlet/servletcontext/";
     realPath = context.getResourcePaths(path);
     pw.println("GetResourcePathsTest: Start test for path=" + path);
     if (realPath != null) {

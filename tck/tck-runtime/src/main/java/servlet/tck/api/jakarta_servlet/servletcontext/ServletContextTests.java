@@ -156,12 +156,12 @@ public class ServletContextTests extends AbstractUrlClient {
     invoke();
 
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "/WEB-INF/classes/com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext/TestServlet.class");
+        "/WEB-INF/classes/servlet/tck/api/jakarta_servlet/servletcontext/TestServlet.class");
     TEST_PROPS.setProperty(APITEST, "getResourcePaths");
     invoke();
 
     TEST_PROPS.setProperty(SEARCH_STRING,
-        "/WEB-INF/classes/com/sun/ts/tests/servlet/api/jakarta_servlet/servletcontext/GetNamedDispatcherTestServlet.class");
+        "/WEB-INF/classes/servlet/tck/api/jakarta_servlet/servletcontext/GetNamedDispatcherTestServlet.class");
     TEST_PROPS.setProperty(APITEST, "getResourcePaths");
     invoke();
   }
