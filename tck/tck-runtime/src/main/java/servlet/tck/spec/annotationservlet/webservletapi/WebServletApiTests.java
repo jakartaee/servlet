@@ -19,7 +19,7 @@
  */
 package servlet.tck.spec.annotationservlet.webservletapi;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.spec.annotationservlet.webservlet.Servlet1;
 import servlet.tck.spec.annotationservlet.webservlet.Servlet2;
 import servlet.tck.spec.annotationservlet.webservlet.Servlet3;
@@ -31,7 +31,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WebServletApiTests extends AbstractUrlClient {
+public class WebServletApiTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

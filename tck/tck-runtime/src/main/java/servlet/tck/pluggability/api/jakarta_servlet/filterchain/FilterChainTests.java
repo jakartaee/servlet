@@ -22,7 +22,7 @@ package servlet.tck.pluggability.api.jakarta_servlet.filterchain;
 import servlet.tck.api.jakarta_servlet.filterchain.FilterChainTestServlet;
 import servlet.tck.api.jakarta_servlet.filterchain.FilterChain_Filter1;
 import servlet.tck.api.jakarta_servlet.filterchain.FilterChain_Filter2;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -32,7 +32,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class FilterChainTests extends AbstractUrlClient {
+public class FilterChainTests extends AbstractTckTest {
 
 
   /**

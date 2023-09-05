@@ -23,7 +23,7 @@ import servlet.tck.api.jakarta_servlet.filter.DoFilterTestServlet;
 import servlet.tck.api.jakarta_servlet.filter.DoFilter_Filter;
 import servlet.tck.api.jakarta_servlet.filter.InitFilterConfigTestServlet;
 import servlet.tck.api.jakarta_servlet.filter.InitFilter_Filter;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -33,7 +33,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class FilterTests extends AbstractUrlClient {
+public class FilterTests extends AbstractTckTest {
 
 
   /**

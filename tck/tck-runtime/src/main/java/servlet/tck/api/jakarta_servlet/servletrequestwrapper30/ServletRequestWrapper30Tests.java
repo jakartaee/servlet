@@ -23,14 +23,14 @@ import servlet.tck.api.jakarta_servlet.servletrequest30.TestServlet;
 import servlet.tck.api.jakarta_servlet.servletrequest30.AsyncTestServlet;
 import servlet.tck.api.jakarta_servlet.servletrequest30.AsyncTests;
 import servlet.tck.api.jakarta_servlet.servletrequest30.SecondServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class ServletRequestWrapper30Tests extends AbstractUrlClient {
+public class ServletRequestWrapper30Tests extends AbstractTckTest {
 
   /**
    * Deployment for the test

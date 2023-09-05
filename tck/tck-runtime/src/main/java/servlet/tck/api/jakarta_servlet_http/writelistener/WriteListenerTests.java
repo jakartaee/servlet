@@ -19,7 +19,7 @@
  */
 package servlet.tck.api.jakarta_servlet_http.writelistener;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.ServletTestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -33,7 +33,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class WriteListenerTests extends AbstractUrlClient {
+public class WriteListenerTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

@@ -20,13 +20,13 @@
 
 package servlet.tck.spec.webapps.accesswebinf;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class AccessWebinfTests extends AbstractUrlClient {
+public class AccessWebinfTests extends AbstractTckTest {
 
   /**
    * Deployment for the test

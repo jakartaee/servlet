@@ -27,7 +27,7 @@ import servlet.tck.api.jakarta_servlet.servlet.DoServiceTestServlet;
 import servlet.tck.api.jakarta_servlet.servlet.DoServletConfigTestServlet;
 import servlet.tck.api.jakarta_servlet.servlet.DoServletInfoTestServlet;
 import servlet.tck.api.jakarta_servlet.servlet.PUTestServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -37,7 +37,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class ServletTests extends AbstractUrlClient {
+public class ServletTests extends AbstractTckTest {
 
   /**
    * Deployment for the test

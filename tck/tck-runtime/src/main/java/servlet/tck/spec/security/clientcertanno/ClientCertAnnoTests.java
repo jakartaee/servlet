@@ -18,7 +18,7 @@ package servlet.tck.spec.security.clientcertanno;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -45,7 +45,7 @@ import java.util.Properties;
  *              Security annotations with the ultimate goal being to test client
  *              cert w/ Transport guarantee mechanism.
  */
-public class ClientCertAnnoTests extends AbstractUrlClient {
+public class ClientCertAnnoTests extends AbstractTckTest {
 
   /**
    * Deployment for the test

@@ -19,14 +19,14 @@
  */
 package servlet.tck.api.jakarta_servlet.servletresponsewrapper30;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class ServletResponseWrapper30Tests extends AbstractUrlClient {
+public class ServletResponseWrapper30Tests extends AbstractTckTest {
 
 
   /**

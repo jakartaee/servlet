@@ -21,7 +21,7 @@ package servlet.tck.api.jakarta_servlet_http.httpservletrequest40;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -35,7 +35,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 
-public class HttpServletRequest40Tests extends AbstractUrlClient {
+public class HttpServletRequest40Tests extends AbstractTckTest {
 
   public static final String DELIMITER = "\r\n";
 

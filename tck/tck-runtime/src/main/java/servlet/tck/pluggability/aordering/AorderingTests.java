@@ -19,7 +19,7 @@
  */
 package servlet.tck.pluggability.aordering;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.pluggability.common.CommonArchives;
 import servlet.tck.pluggability.common.RequestListener;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -28,7 +28,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 
-public class AorderingTests extends AbstractUrlClient {
+public class AorderingTests extends AbstractTckTest {
 
   /**
    * Deployment for the test

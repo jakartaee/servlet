@@ -23,7 +23,7 @@ import servlet.tck.api.common.sharedfiles.SCAttributeListener;
 import servlet.tck.api.common.sharedfiles.SCListener;
 import servlet.tck.api.common.sharedfiles.SRAttributeListener;
 import servlet.tck.api.common.sharedfiles.SRListener;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -31,7 +31,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ServletContext303Tests extends AbstractUrlClient {
+public class ServletContext303Tests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

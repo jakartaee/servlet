@@ -31,7 +31,7 @@ import servlet.tck.api.jakarta_servlet.servletcontext30.BadFilter;
 import servlet.tck.api.jakarta_servlet.servletcontext30.BadListener;
 import servlet.tck.api.jakarta_servlet.servletcontext30.CreateServlet;
 import servlet.tck.api.jakarta_servlet.servletcontext30.CreateFilter;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.pluggability.common.RequestListener1;
 import servlet.tck.pluggability.common.TestServlet1;
@@ -42,7 +42,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RegistrationTests extends AbstractUrlClient {
+public class RegistrationTests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

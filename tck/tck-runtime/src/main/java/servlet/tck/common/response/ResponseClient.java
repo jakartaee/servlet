@@ -20,10 +20,10 @@
 
 package servlet.tck.common.response;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.util.Data;
 
-public class ResponseClient extends AbstractUrlClient {
+public class ResponseClient extends AbstractTckTest {
 
   
   public void flushBufferTest() throws Exception {

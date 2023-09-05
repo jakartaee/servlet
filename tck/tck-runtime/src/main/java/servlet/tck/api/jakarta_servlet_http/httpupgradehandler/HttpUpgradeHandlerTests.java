@@ -17,7 +17,7 @@
 
 package servlet.tck.api.jakarta_servlet_http.httpupgradehandler;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.ServletTestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -32,7 +32,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URL;
 
-public class HttpUpgradeHandlerTests extends AbstractUrlClient {
+public class HttpUpgradeHandlerTests extends AbstractTckTest {
 
   private static final String CRLF = "\r\n";
 

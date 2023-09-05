@@ -20,7 +20,7 @@
 
 package servlet.tck.spec.errorpage1;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.Data;
 import servlet.tck.spec.errorpage.ServletErrorPage;
@@ -32,7 +32,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ErrorPage1Tests extends AbstractUrlClient {
+public class ErrorPage1Tests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

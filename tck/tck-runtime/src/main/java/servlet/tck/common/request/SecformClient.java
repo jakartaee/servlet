@@ -19,7 +19,7 @@ package servlet.tck.common.request;
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.util.WebUtil.Response;
-import servlet.tck.common.client.BaseUrlClient;
+import servlet.tck.common.client.BaseTckTest;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-public class SecformClient extends BaseUrlClient {
+public class SecformClient extends BaseTckTest {
   // Configurable constants:
 
   private String protocol = "http";

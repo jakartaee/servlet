@@ -21,7 +21,7 @@ package servlet.tck.api.jakarta_servlet_http.httpservletresponse40;
 
 import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -37,7 +37,7 @@ import java.net.URL;
 import static servlet.tck.api.jakarta_servlet_http.httpservletrequest40.HttpServletRequest40Tests.DELIMITER;
 import static servlet.tck.api.jakarta_servlet_http.httpservletrequest40.HttpServletRequest40Tests.ENCODING;
 
-public class HttpServletResponse40Tests extends AbstractUrlClient {
+public class HttpServletResponse40Tests extends AbstractTckTest {
 
   /**
    * Deployment for the test

@@ -21,7 +21,7 @@ package servlet.tck.api.jakarta_servlet.servletcontext302;
 
 import servlet.tck.api.jakarta_servlet.servletcontext301.AddGenericEventListenerClass;
 import servlet.tck.api.jakarta_servlet.servletcontext301.TestServlet;
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -29,7 +29,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ServletContext302Tests extends AbstractUrlClient {
+public class ServletContext302Tests extends AbstractTckTest {
 
   @BeforeEach
   public void setupServletName() throws Exception {

@@ -18,11 +18,11 @@
 package servlet.tck.common.request;
 
 import servlet.tck.util.TestUtil;
-import servlet.tck.common.client.BaseUrlClient;
+import servlet.tck.common.client.BaseTckTest;
 
 import java.util.Properties;
 
-public abstract class SecBasicClient extends BaseUrlClient {
+public abstract class SecBasicClient extends BaseTckTest {
 
   // Constants:
   private static final String USERNAME = "user";

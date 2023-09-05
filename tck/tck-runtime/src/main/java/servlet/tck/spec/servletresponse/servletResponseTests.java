@@ -20,7 +20,7 @@
 
 package servlet.tck.spec.servletresponse;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -32,7 +32,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Calendar;
 
-public class servletResponseTests extends AbstractUrlClient {
+public class servletResponseTests extends AbstractTckTest {
 
 
     /**

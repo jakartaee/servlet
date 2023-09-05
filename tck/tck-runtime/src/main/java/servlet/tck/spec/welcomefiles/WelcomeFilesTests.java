@@ -20,7 +20,7 @@
 
 package servlet.tck.spec.welcomefiles;
 
-import servlet.tck.common.client.AbstractUrlClient;
+import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class WelcomeFilesTests extends AbstractUrlClient {
+public class WelcomeFilesTests extends AbstractTckTest {
 
   /**
    * Deployment for the test
