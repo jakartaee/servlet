@@ -20,13 +20,14 @@
 
 package servlet.tck.common.client.handler;
 
-import servlet.tck.util.TestUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.httpclient.Header;
 
 import java.util.StringTokenizer;
 
 public class SetCookieHandler implements Handler {
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(SetCookieHandler.class);
   private static final Handler HANDLER = new SetCookieHandler();
 
   private static final String DELIM = "##";
@@ -42,8 +43,7 @@ public class SetCookieHandler implements Handler {
     String setCookieHeader = responseHeader.getValue().toLowerCase();
     String expectedValues = configuredHeader.getValue().toLowerCase();
 
-    TestUtil.logTrace(
-        "[SetCookieHandler] Set-Cookie header received: " + setCookieHeader);
+    LOGGER.trace("[SetCookieHandler] Set-Cookie header received: {}", setCookieHeader);
 
     StringTokenizer conf = new StringTokenizer(expectedValues, DELIM);
     while (conf.hasMoreTokens()) {
@@ -58,22 +58,20 @@ public class SetCookieHandler implements Handler {
       if (token.startsWith("!")) {
         String attr = token.substring(1);
         String attr1 = token1.substring(1);
-        if ((setCookieHeader.indexOf(attr) > -1)
-            || (setCookieHeader.indexOf(attr1) > -1)) {
-          TestUtil.logErr("[SetCookieHandler] Unexpected attribute found "
-              + " Set-Cookie header.  Attribute: " + attr
-              + "\nSet-Cookie header: " + setCookieHeader);
+        if ((setCookieHeader.contains(attr))
+            || (setCookieHeader.contains(attr1))) {
+          LOGGER.trace("[SetCookieHandler] Unexpected attribute found "
+              + " Set-Cookie header.  Attribute: {}"
+              + "\nSet-Cookie header: {}", attr, setCookieHeader);
           return false;
         }
       } else {
-        if ((setCookieHeader.indexOf(token) < 0)
-            && (setCookieHeader.indexOf(token1) < 0)) {
-          TestUtil.logErr("[SetCookieHandler] Unable to find '" + token
-              + "' within the Set-Cookie header returned by the server.");
+        if ((!setCookieHeader.contains(token))
+            && (!setCookieHeader.contains(token1))) {
+          LOGGER.error("[SetCookieHandler] Unable to find '{}' within the Set-Cookie header returned by the server.", token);
           return false;
         } else {
-          TestUtil.logTrace("[SetCookieHandler] Found expected value, '" + token
-              + "' in Set-Cookie header returned by server.");
+          LOGGER.trace("[SetCookieHandler] Found expected value, '{}' in Set-Cookie header returned by server.", token);
         }
       }
     }

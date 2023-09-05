@@ -19,7 +19,6 @@
  */
 package servlet.tck.api.jakarta_servlet_http.httpservletresponse40;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
@@ -67,7 +66,7 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
     String response = simpleTest("TrailerTestWithHTTP10", "HTTP/1.0",
         "/TrailerTestServlet");
     if (!response.contains("Get IllegalStateException when call setTrailerFields")) {
-      TestUtil.logErr(
+      logger.error(
           "The underlying protocol is HTTP 1.0, the IllegalStateException should be thrown");
       throw new Exception("TrailerTestWithHTTP10 failed.");
     }
@@ -87,7 +86,7 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
     String response = simpleTest("TrailerTestResponseCommitted", "HTTP/1.1",
         "/TrailerTestServlet2");
     if (!response.contains("Get IllegalStateException when call setTrailerFields")) {
-      TestUtil.logErr(
+      logger.error(
           "The response has been committed, the IllegalStateException should be thrown");
       throw new Exception("TrailerTestResponseCommitted failed.");
     }
@@ -120,14 +119,14 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
     }
     int lastChunkSize = Integer.parseInt(ss[1], 16);
     if (lastChunkSize != 0 || !ss[0].trim().equals("myTrailer:foo")) {
-      TestUtil.logErr("The current getTrailerFields is " + ss[0].trim() + 
+      logger.error("The current getTrailerFields is " + ss[0].trim() +
           ", But expected getTrailerFields should be myTrailer:foo");
       throw new Exception("TrailerTest failed.");
     }
     String[] trailer = ss[2].split(":");
     if (trailer.length != 2 || !trailer[0].trim().equals("myTrailer")
         || !trailer[1].trim().equals("foo")) {
-      TestUtil.logErr("Expected tailer should be myTrailer:foo");
+      logger.error("Expected tailer should be myTrailer:foo");
       throw new Exception("TrailerTest failed.");
     }
 
@@ -140,14 +139,14 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
     URL url = new URL(
             "http://" + _hostname + ":" + _port + getContextRoot() + servletPath);
 
-    TestUtil.logMsg("access " + url.toString());
+    logger.debug("access {}", url);
     try (Socket socket = new Socket(url.getHost(), url.getPort());
          OutputStream output = socket.getOutputStream();
          InputStream input = socket.getInputStream()) {
 
       socket.setKeepAlive(true);
       String path = url.getPath();
-      StringBuffer outputBuffer = new StringBuffer();
+      StringBuilder outputBuffer = new StringBuilder();
       outputBuffer.append("POST " + path + " " + protocol + DELIMITER);
       outputBuffer.append("Host: " + url.getHost() + DELIMITER);
       outputBuffer.append("Content-Type: text/plain" + DELIMITER);
@@ -165,11 +164,10 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
         bytes.write(read);
       }
       String response = new String(bytes.toByteArray());
-      TestUtil.logMsg(response);
+      logger.info(response);
       return response;
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logger.error("Caught exception: " + e.getMessage(), e);
       throw new Exception(testName + " failed: ", e);
     }
   }

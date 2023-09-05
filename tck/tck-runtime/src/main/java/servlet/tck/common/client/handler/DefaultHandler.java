@@ -60,7 +60,8 @@
 
 package servlet.tck.common.client.handler;
 
-import servlet.tck.util.TestUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HeaderElement;
 
@@ -71,6 +72,8 @@ import org.apache.commons.httpclient.HeaderElement;
  * </PRE>
  */
 public class DefaultHandler implements Handler {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(DefaultHandler.class);
 
   private static Handler handler = new DefaultHandler();
 
@@ -103,7 +106,7 @@ public class DefaultHandler implements Handler {
    */
   public boolean invoke(Header configuredHeader, Header responseHeader) {
 
-    TestUtil.logTrace("[DefaulHandler] DefaultHandler invoked.");
+    LOGGER.trace("[DefaulHandler] DefaultHandler invoked.");
 
     return areHeadersEqual(configuredHeader, responseHeader);
   }

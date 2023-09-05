@@ -19,7 +19,6 @@
  */
 package servlet.tck.api.jakarta_servlet_http.httpservletrequest40;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.servlets.CommonServlets;
@@ -198,7 +197,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
     // Check that the page was found (no error).
     if (response.isError()) {
-      TestUtil.logErr("Could not find " + request);
+      logger.error("Could not find {}", request);
       throw new Exception(testName + " failed.");
     }
 
@@ -253,8 +252,8 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
       while ((read = input.read()) >= 0) {
         bytes.write(read);
       }
-      String response = new String(bytes.toByteArray());
-      TestUtil.logMsg(response);
+      String response = bytes.toString();
+      logger.debug(response);
       if (response.indexOf("isTrailerFieldsReady: true") < 0) {
         logger.error("isTrailerFieldsReady should be true");
         throw new Exception("TrailerTest failed.");
@@ -270,8 +269,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
         throw new Exception("TrailerTest failed.");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logger.error("Caught exception: " + e.getMessage(), e);
       throw new Exception("TrailerTest failed: ", e);
     }
   }

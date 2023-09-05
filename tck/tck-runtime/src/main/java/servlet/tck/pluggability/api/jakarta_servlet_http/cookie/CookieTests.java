@@ -20,7 +20,6 @@
  */
 package servlet.tck.pluggability.api.jakarta_servlet_http.cookie;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.api.jakarta_servlet_http.cookie.TestServlet;
 import servlet.tck.common.client.AbstractTckTest;
 import servlet.tck.common.request.HttpRequest;
@@ -369,7 +368,9 @@ public class CookieTests extends AbstractTckTest {
       Header[] CookiesHeader = response.getResponseHeaders("Set-Cookie");
       int i = 0;
       while (i < CookiesHeader.length) {
-        TestUtil.logTrace("Checking set-cookiei " + i + ":" + CookiesHeader[i]);
+        if(logger.isTraceEnabled()) {
+          logger.trace("Checking set-cookiei {}, {}", i, CookiesHeader[i]);
+        }
         Cookie[] cookies = spec.parse(".eng.com", _port, getServletName(),
             false, CookiesHeader[i]);
         index = findCookie(cookies, "name1");

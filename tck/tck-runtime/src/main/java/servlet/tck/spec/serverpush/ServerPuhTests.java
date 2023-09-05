@@ -17,7 +17,6 @@
 
 package servlet.tck.spec.serverpush;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -128,7 +127,7 @@ public class ServerPuhTests extends AbstractTckTest {
     public void getNullPushBuilderTest() throws Exception {
         try {
             requestURI = getContextRoot() + "/TestServlet";
-            TestUtil.logMsg("Sending request \"" + requestURI + "\"");
+            logger.debug("Sending request {}", requestURI);
 
             response = WebUtil.sendRequest("GET", InetAddress.getByName(hostname),
                     portnum, getRequest(requestURI), null, null);
@@ -370,8 +369,7 @@ public class ServerPuhTests extends AbstractTckTest {
                 }
             }
         } catch (Exception e) {
-            TestUtil.logErr("Caught exception: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Caught exception: " + e.getMessage(), e);
             throw new Exception("serverPushSessionTest failed: ", e);
         }
 

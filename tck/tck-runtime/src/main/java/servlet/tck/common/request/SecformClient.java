@@ -16,7 +16,6 @@
 
 package servlet.tck.common.request;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.util.WebUtil;
 import servlet.tck.util.WebUtil.Response;
 import servlet.tck.common.client.BaseTckTest;
@@ -290,7 +289,7 @@ public class SecformClient extends BaseTckTest {
       // Check to make sure we are authenticated by checking the page
       // content. The jsp should output "The user principal is: j2ee"
       String searchString = searchFor + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("User Principal incorrect.  Page received:");
         logger.error(response.content);
         logger.error("(Should say: \"" + searchString + "\")");
@@ -300,7 +299,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure getRemoteUser returns the user name.
       searchString = searchForGetRemoteUser + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("getRemoteUser() did not return " + username + ":");
         logger.error(response.content);
         logger.error("(Should say: \"" + searchString + "\")");
@@ -673,8 +672,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("getRemoteUser() test passed.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test5 failed: ", e);
     }
   }
@@ -755,8 +753,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("isUserInRole() correct.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test6 failed: ", e);
     }
   }
@@ -824,7 +821,7 @@ public class SecformClient extends BaseTckTest {
       this.testStatusCodes(request, statusCodes, "test7");
 
     } catch (Exception e) {
-      e.printStackTrace();
+      logger.error(e.getMessage(), e);
     }
   }
 
@@ -936,8 +933,7 @@ public class SecformClient extends BaseTckTest {
       }
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test8 failed: ", e);
     }
   }
@@ -1005,8 +1001,7 @@ public class SecformClient extends BaseTckTest {
       compareURLContents(testURL, 9, exactMatchURL);
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test9 failed: ", e);
     }
   }
@@ -1100,8 +1095,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("isUserInRole() correct.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test10 failed: ", e);
     }
   }
@@ -1173,8 +1167,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("Successfully accessed allRoles.jsp as user javajoe");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test11 failed: ", e);
     }
   }
@@ -1310,8 +1303,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("uploaded " + pageSample + "using HTTP method PUT");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test12 failed: ", e);
     }
   }
@@ -1375,8 +1367,7 @@ public class SecformClient extends BaseTckTest {
           + " ForwardedServlet and IncludedServlet");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test13 failed: ", e);
     }
   }
@@ -1501,8 +1492,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("getRemoteUser() still correct.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test14 failed: ", e);
     }
   }
@@ -1534,21 +1524,20 @@ public class SecformClient extends BaseTckTest {
     String modifiedPageSec = pageSec + pageSecurityCheck;
     try {
       // 1. attempt to access a protected resource
-      TestUtil.logTrace("Sending request \"" + modifiedPageSec + "\"");
+      logger.trace("Sending request {}", modifiedPageSec);
       try {
         response = WebUtil.sendRequest("GET", InetAddress.getByName(hostname),
             portnum, modifiedPageSec, null, null);
       } catch (Exception ex) {
         // if here, problem as we should have been redirected
         logErr(
-            "ERROR - got exception when trying to access restricted page w/out AuthN first.");
-        ex.printStackTrace();
+            "ERROR - got exception when trying to access restricted page w/out AuthN first.", ex);
         throw new Exception("test15 failed.");
       }
 
       if (response != null) {
         // if we got directed to login page that is okay too
-        TestUtil.logTrace("response.content=" + response.content);
+        logger.trace("response.content= {}", response.content);
 
         // 2. verify that the requested page was NOT accessed/found
         String searchString = "getAuthType()"; // this string appears on the
@@ -1562,18 +1551,17 @@ public class SecformClient extends BaseTckTest {
           logErr("response.content = " + response.content);
           throw new Exception("test15 failed.");
         } else {
-          TestUtil.logTrace(
+          logTrace(
               "Good - we were not able to access restricted page without authenticating.");
         }
       } else {
-        TestUtil.logTrace("response=null");
+        logTrace("response=null");
       }
 
       logMsg("test15 passed.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test15 failed: ", e);
     }
   }
@@ -1607,8 +1595,8 @@ public class SecformClient extends BaseTckTest {
       // set some params that will be needed from within the pageProgLogin
       // servlet
       Properties postData = new Properties();
-      TestUtil.logTrace("setting request parameter my_username = " + username);
-      TestUtil.logTrace("setting request parameter my_password = " + password);
+      logger.trace("setting request parameter my_username = {}", username);
+      logger.trace("setting request parameter my_password = {}", password);
       postData.setProperty("the_username", username);
       postData.setProperty("the_password", password);
 
@@ -1616,7 +1604,7 @@ public class SecformClient extends BaseTckTest {
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
-      TestUtil.logTrace("response.content = \n" + response.content);
+      logger.trace("response.content = {} {}", System.lineSeparator(), response.content);
 
       if (!response.statusToken.equals("200")) {
         logErr(
@@ -1630,18 +1618,18 @@ public class SecformClient extends BaseTckTest {
         throw new Exception("test16 failed.");
       }
 
-      TestUtil.logTrace(response.content); // debug aid
+      logger.trace(response.content); // debug aid
 
       // verify there were no errors detected fom within our servlet
       String searchString = "ERROR - HttpServletRequest.login";
-      if (response.content.indexOf(searchString) != -1) {
+      if (response.content.contains(searchString)) {
         logErr(response.content);
         throw new Exception("test16 failed.");
       }
 
       // verify that we got success
       searchString = "HttpServletRequest.login() passed";
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr(response.content);
         throw new Exception("test16 failed.");
       }
@@ -1649,8 +1637,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("test16 passed.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test16 failed: ", e);
     }
   }
@@ -1688,7 +1675,7 @@ public class SecformClient extends BaseTckTest {
           portnum, request, postData, cookies);
 
       // Check that the page was found (no error).
-      TestUtil.logTrace("response.content = " + response.content); // debug aid
+      logger.trace("response.content = {}", response.content); // debug aid
       if (response.isError()) {
         logErr("Could not find " + request);
         throw new Exception("test17 failed.");
@@ -1696,7 +1683,7 @@ public class SecformClient extends BaseTckTest {
 
       // Call followRedirect() to make sure we receive the required page
       response = followRedirect(response, 17);
-      TestUtil.logTrace("response.content = " + response.content); // debug aid
+      logger.trace("response.content = {}", response.content); // debug aid
 
       // Check to make sure we are authenticated by checking the page
       // content. It should contain the string below to indicate we
@@ -1722,8 +1709,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("test17 passed.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test17 failed: ", e);
     }
   }
@@ -1766,7 +1752,7 @@ public class SecformClient extends BaseTckTest {
           portnum, request, postData, cookies);
 
       // Call followRedirect() to make sure we receive the required page
-      TestUtil.logTrace("YYYYY: response.content = \n" + response.content);
+      logger.trace("YYYYY: response.content = {}{}", System.lineSeparator(), response.content);
 
       if (!response.statusToken.equals("200")) {
         logErr(
@@ -1797,8 +1783,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("test18 passed.");
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test18 failed: ", e);
     }
   }
@@ -1960,15 +1945,6 @@ public class SecformClient extends BaseTckTest {
     }
 
     return response;
-  }
-
-  /**
-   * Outputs a single line of text to the given output stream. Appends a \r\n
-   * automatically. By adding a System.out.println here, you can easily echo
-   * what is being sent to the web server.
-   */
-  private static void send(PrintWriter out, String s) {
-    out.print(s + "\r\n");
   }
 
   /**
@@ -2294,8 +2270,7 @@ public class SecformClient extends BaseTckTest {
       }
 
     } catch (Exception e) {
-      logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
+      logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception(testName + " failed: ", e);
     }
 
