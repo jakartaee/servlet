@@ -22,17 +22,13 @@ package servlet.tck.common.response.validation;
 
 import servlet.tck.common.client.handler.Handler;
 import servlet.tck.common.client.handler.HandlerFactory;
-import servlet.tck.common.request.HttpRequest;
-import servlet.tck.common.request.HttpResponse;
-import servlet.tck.common.request.ValidationStrategy;
-import servlet.tck.common.request.WebTestCase;
-import org.apache.commons.httpclient.Header;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import servlet.tck.common.request.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -62,7 +58,7 @@ public class WebValidatorBase implements ValidationStrategy {
   /**
    * This test case's HttpRequest
    */
-  protected HttpRequest _req = null;
+  protected HttpExchange _req = null;
 
   /**
    * The test case being validated
@@ -535,10 +531,10 @@ public class WebValidatorBase implements ValidationStrategy {
     Header currentHeader = null;
     for (Header header : expected) {
       currentHeader = header;
-      Header resHeader = _res.getResponseHeader(currentHeader.getName());
-      if (resHeader != null) {
+      Optional<Header> resHeader = _res.getResponseHeader(currentHeader.getName());
+      if (resHeader.isPresent()) {
         Handler handler = HandlerFactory.getHandler(currentHeader.getName());
-        if (!handler.invoke(currentHeader, resHeader)) {
+        if (!handler.invoke(currentHeader, resHeader.get())) {
           found = false;
           break;
         }
@@ -555,17 +551,17 @@ public class WebValidatorBase implements ValidationStrategy {
       sb.append(" Response headers received from");
       sb.append(" server:");
 
-      Header[] resHeaders = _res.getResponseHeaders();
-      sb.append(Arrays.stream(resHeaders)
-              .map(header -> "ResponseHeader ->" + header.toExternalForm())
+      List<Header> resHeaders = _res.getResponseHeaders();
+      sb.append(resHeaders.stream()
+              .map(header -> "ResponseHeader ->" + header.getName() + "" + String.join(",", header.getValues()))
               .collect(Collectors.joining("\n\t")));
 
       sb.append("\n");
-      String result = String.format(sb.toString(), _case.getName(), currentHeader.toExternalForm());
+      String result = String.format(sb.toString(), _case.getName(), currentHeader.toString());
       logger.error(result);
       throw new Exception(result);
     }
-    logger.debug(" Test {} Found expected header: {}", _case.getName(), currentHeader.toExternalForm());
+    logger.debug(" Test {} Found expected header: {}", _case.getName(), currentHeader.toString());
     return true;
   }
 
@@ -600,9 +596,9 @@ public class WebValidatorBase implements ValidationStrategy {
       for (Header currentHeader : unexpected) {
         String currName = currentHeader.getName();
         String currValue = currentHeader.getValue();
-        Header resHeader = _res.getResponseHeader(currName);
-        if (resHeader != null) {
-          if (resHeader.getValue().equals(currValue)) {
+        Optional<Header> resHeader = _res.getResponseHeader(currName);
+        if (resHeader.isPresent()) {
+          if (resHeader.get().getValue().equals(currValue)) {
             StringBuilder sb = new StringBuilder(255);
             sb.append(" Test {} Unexpected header found in the ");
             sb.append("server's response: ");
@@ -610,11 +606,11 @@ public class WebValidatorBase implements ValidationStrategy {
             sb.append(" Response headers recieved from");
             sb.append("server:");
 
-            Header[] resHeaders = _res.getResponseHeaders();
-            sb.append(Arrays.stream(resHeaders)
-                    .map(header -> "ResponseHeader ->" + header.toExternalForm())
+            List<Header> resHeaders = _res.getResponseHeaders();
+            sb.append(resHeaders.stream()
+                    .map(header -> "ResponseHeader ->" + header.getName() + ":" + String.join(",", header.getValues()))
                     .collect(Collectors.joining("\n\t")));
-            logger.error(sb.toString(), _case.getName(), currentHeader.toExternalForm());
+            logger.error(sb.toString(), _case.getName(), currentHeader);
 
             return false;
           }

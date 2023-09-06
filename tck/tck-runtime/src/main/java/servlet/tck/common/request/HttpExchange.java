@@ -20,46 +20,24 @@
 
 package servlet.tck.common.request;
 
-import org.apache.commons.httpclient.Cookie;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpConnection;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpState;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.cookie.CookiePolicy;
-import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.httpclient.protocol.DefaultProtocolSocketFactory;
-import org.apache.commons.httpclient.protocol.Protocol;
-import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-import org.apache.commons.httpclient.protocol.SSLProtocolSocketFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.Base64;
-import java.util.StringTokenizer;
+import java.net.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
+import java.util.*;
 
 /**
  * Represents an HTTP client Request
  */
 
-public class HttpRequest {
+public class HttpExchange {
 
 
-//  static {
-//    if (TestUtil.traceflag) {
-//      System.setProperty("org.apache.commons.logging.Log",
-//          "com.sun.ts.tests.common.webclient.log.WebLog");
-//      System.setProperty(
-//          "org.apache.commons.logging.simplelog.log.httpclient.wire", "debug");
-//    }
-//  }
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(HttpRequest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(HttpExchange.class);
 
   /**
    * Default HTTP port.
@@ -89,12 +67,12 @@ public class HttpRequest {
   /**
    * Method representation of request.
    */
-  private HttpMethod _method = null;
+  private String _method;
 
   /**
    * Target web container host
    */
-  private String _host = null;
+  private String _host;
 
   /**
    * Target web container port
@@ -105,11 +83,6 @@ public class HttpRequest {
    * Is the request going over SSL
    */
   private boolean _isSecure = false;
-
-  /**
-   * HTTP state
-   */
-  private HttpState _state = null;
 
   /**
    * Original request line for this request.
@@ -127,18 +100,30 @@ public class HttpRequest {
   private boolean _useCookies = false;
 
   /**
-   * Content length of request body.
-   */
-  private int _contentLength = 0;
-
-  /**
    * FollowRedirects
    */
   private boolean _redirect = false;
 
-  Header[] _headers = null;
+  List<HttpHeaders> headers = null;
 
-  protected HttpClient client = null;
+  private String uri;
+
+  private String query;
+
+  private String content;
+
+  private String username;
+
+  private String password;
+
+  // TODO change to enum?
+  private int authType;
+
+  private String realm;
+
+  private Map<String, String> requestHeaders = new HashMap<>();
+
+  private boolean followRedirect;
 
   /**
    * Creates new HttpRequest based of the passed request line. The request line
@@ -149,10 +134,20 @@ public class HttpRequest {
    *     Ex.  GET /index.html HTTP/1.0
    * </pre>
    */
-  public HttpRequest(String requestLine, String host, int port) {
-    client = new HttpClient();
-    _method = MethodFactory.getInstance(requestLine);
-    _method.setFollowRedirects(false);
+  public HttpExchange(String requestLine, String host, int port) {
+
+    StringTokenizer st = new StringTokenizer(requestLine);
+    String method;
+    String version;
+    try {
+      this._method = st.nextToken();
+      uri = st.nextToken();
+      version = st.nextToken();
+    } catch (NoSuchElementException nsee) {
+      throw new IllegalArgumentException(
+              "Request provided: " + requestLine + " is malformed.");
+    }
+
     _host = host;
     _port = port;
 
@@ -163,6 +158,14 @@ public class HttpRequest {
     // If we got this far, the request line is in the proper
     // format
     _requestLine = requestLine;
+
+    // check to see if there is a query string appended
+    // to the URI
+    int queryStart = uri.indexOf('?');
+    if (queryStart != -1) {
+      query = uri.substring(queryStart + 1);
+      uri = uri.substring(0, queryStart);
+    }
   }
 
   /*
@@ -177,7 +180,7 @@ public class HttpRequest {
    * @return String request path
    */
   public String getRequestPath() {
-    return _method.getPath();
+    return uri;
   }
 
   /**
@@ -187,7 +190,7 @@ public class HttpRequest {
    * @return String request type
    */
   public String getRequestMethod() {
-    return _method.getName();
+    return _method;
   }
 
   /**
@@ -219,11 +222,7 @@ public class HttpRequest {
    *          request content
    */
   public void setContent(String content) {
-    if (_method instanceof EntityEnclosingMethod) {
-      ((EntityEnclosingMethod) _method)
-          .setRequestEntity(new StringRequestEntity(content));
-    }
-    _contentLength = content.length();
+    this.content = content;
   }
 
   /**
@@ -256,11 +255,9 @@ public class HttpRequest {
       throw new IllegalArgumentException("Password cannot be null");
     }
 
-    UsernamePasswordCredentials cred = new UsernamePasswordCredentials(username,
-        password);
-    AuthScope scope = new AuthScope(_host, _port, realm);
-    getState().setCredentials(scope, cred);
-
+    this.username = username;
+    this.password = password;
+    this.realm = realm;
     LOGGER.debug("Added credentials for '{}' with password '{}' in realm '{}'", username, password, realm);
 
     _authType = authType;
@@ -279,8 +276,8 @@ public class HttpRequest {
    *          request header value
    */
   public void addRequestHeader(String headerName, String headerValue) {
-    _method.addRequestHeader(headerName, headerValue);
-    LOGGER.debug("Added request header: {}", _method.getRequestHeader(headerName).toExternalForm());
+    requestHeaders.put(headerName, headerValue);
+    LOGGER.debug("Added request header: {}:{}", headerName, headerValue);
   }
 
   public void addRequestHeader(String header) {
@@ -308,8 +305,8 @@ public class HttpRequest {
    *          request header value
    */
   public void setRequestHeader(String headerName, String headerValue) {
-    _method.setRequestHeader(headerName, headerValue);
-    LOGGER.trace("Set request header: {}", _method.getRequestHeader(headerName).toExternalForm());
+    requestHeaders.put(headerName, headerValue);
+    LOGGER.trace("Set request header: {}:{}", headerName, headerValue);
 
   }
 
@@ -318,7 +315,7 @@ public class HttpRequest {
    * followed. By default, redirects are not followed.
    */
   public void setFollowRedirects(boolean followRedirects) {
-    _method.setFollowRedirects(followRedirects);
+    this.followRedirect = followRedirects;
   }
 
   /**
@@ -326,17 +323,17 @@ public class HttpRequest {
    * followed.
    */
   public boolean getFollowRedirects() {
-    return _method.getFollowRedirects();
+    return this.followRedirect;
   }
 
   /**
    * <code>setState</code> will set the HTTP state for the current request (i.e.
    * session tracking). This has the side affect
    */
-  public void setState(HttpState state) {
-    _state = state;
-    _useCookies = true;
-  }
+//  public void setState(HttpState state) {
+//    _state = state;
+//    _useCookies = true;
+//  }
 
   /**
    * <code>execute</code> will dispatch the current request to the target
@@ -346,13 +343,86 @@ public class HttpRequest {
    * @throws IOException
    *           if an I/O error occurs during dispatch.
    */
-  public HttpResponse execute() throws IOException, HttpException {
+  public HttpResponse execute() throws IOException {
     String method;
     int defaultPort;
+
+    CookieManager cookieManager = new CookieManager();
+    cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+    //CookieHandler.setDefault(cookieManager); //.getDefault()
+    // FIXME do this later on requestt
+    HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect?HttpClient.Redirect.ALWAYS:HttpClient.Redirect.NEVER)
+            .version(HttpClient.Version.HTTP_1_1) // not supporting 1.0?
+            // TODO _useCookies ?
+            .cookieHandler(cookieManager);
+
+    StringBuilder url = new StringBuilder();
+
+    if(isSecureRequest()){
+      url.append("https://");
+    } else {
+      url.append("http://");
+    }
+    url.append(_host).append(':').append(_port);
+    url.append(uri);
+    if(query!=null){
+      url.append('?').append(query);
+    }
+
+    switch (_authType) {
+      case NO_AUTHENTICATION:
+        break;
+      case BASIC_AUTHENTICATION:
+        builder.authenticator(new Authenticator() {
+          @Override
+          protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password.toCharArray());
+          }
+        });
+        break;
+      case DIGEST_AUTHENTICATION:
+        throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
+    }
+
+
+    HttpClient httpClient = builder.build();
+
+    HttpRequest.Builder httpRequestBuilder = HttpRequest.newBuilder().uri(URI.create(url.toString()));
+
+    switch (_method) {
+      case "GET":
+        httpRequestBuilder.GET();
+        break;
+      case "HEAD":
+        // from java 18 only
+        //httpRequestBuilder.HEAD();
+        httpRequestBuilder.method("HEAD", HttpRequest.BodyPublishers.noBody());
+        break;
+      case "POST":
+        httpRequestBuilder.POST(this.content == null ?
+                HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
+        break;
+      default:
+        throw new RuntimeException("unknow method " + _method);
+    }
+
+    for(Map.Entry<String, String> entry : requestHeaders.entrySet()) {
+      httpRequestBuilder.header(entry.getKey(), entry.getValue());
+    }
+
+    try {
+      java.net.http.HttpResponse<String> response = httpClient.send(httpRequestBuilder.build(), java.net.http.HttpResponse.BodyHandlers.ofString());
+      return new HttpResponse(_host, _port, _isSecure, _method, response);
+    } catch (InterruptedException e) {
+      throw new IOException(e.getMessage(), e);
+    }
+
+
+    /*
     ProtocolSocketFactory factory;
 
     if (_method.getFollowRedirects()) {
-      client = new HttpClient();
+
 
       if (_isSecure) {
         method = "https";
@@ -417,6 +487,7 @@ public class HttpRequest {
 
       return new HttpResponse(_host, _port, _isSecure, _method, getState());
     }
+    */
   }
 
   /**
@@ -424,27 +495,25 @@ public class HttpRequest {
    *
    * @return HttpState current state
    */
-  public HttpState getState() {
-    if (_state == null) {
-      _state = new HttpState();
-    }
-    return _state;
-  }
+//  public HttpState getState() {
+//    if (_state == null) {
+//      _state = new HttpState();
+//    }
+//    return _state;
+//  }
 
   public String toString() {
     StringBuilder sb = new StringBuilder(255);
     sb.append("[REQUEST LINE] -> ").append(_requestLine).append('\n');
 
-    if (_headers != null && _headers.length != 0) {
-
-      for (Header _header : _headers) {
+    for (Map.Entry<String,String> header : requestHeaders.entrySet()) {
         sb.append("[REQUEST HEADER] -> ");
-        sb.append(_header.toExternalForm()).append('\n');
-      }
+        sb.append(header.getKey()).append(':').append(header.getValue()).append(System.lineSeparator());
     }
 
-    if (_contentLength != 0) {
-      sb.append("[REQUEST BODY LENGTH] -> ").append(_contentLength);
+
+    if (content != null) {
+      sb.append("[REQUEST BODY LENGTH] -> ").append(content.length());
       sb.append('\n');
     }
 
@@ -458,124 +527,36 @@ public class HttpRequest {
    */
 
   private void createCookie(String cookieHeader) {
-    String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1)
-        .trim();
-    StringTokenizer st = new StringTokenizer(cookieLine, " ;");
-    Cookie cookie = new Cookie();
-    cookie.setVersion(1);
-
-    getState();
-
-    if (cookieLine.indexOf("$Version") == -1) {
-      cookie.setVersion(0);
-      _method.getParams().setCookiePolicy(CookiePolicy.NETSCAPE);
-    }
-
-    while (st.hasMoreTokens()) {
-      String token = st.nextToken();
-
-      if (token.charAt(0) != '$' && !token.startsWith("Domain")
-          && !token.startsWith("Path")) {
-        cookie.setName(token.substring(0, token.indexOf('=')));
-        cookie.setValue(token.substring(token.indexOf('=') + 1));
-      } else if (token.indexOf("Domain") > -1) {
-        cookie.setDomainAttributeSpecified(true);
-        cookie.setDomain(token.substring(token.indexOf('=') + 1));
-      } else if (token.indexOf("Path") > -1) {
-        cookie.setPathAttributeSpecified(true);
-        cookie.setPath(token.substring(token.indexOf('=') + 1));
-      }
-    }
-    _state.addCookie(cookie);
+//    String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1)
+//        .trim();
+//    StringTokenizer st = new StringTokenizer(cookieLine, " ;");
+//    Cookie cookie = new Cookie();
+//    cookie.setVersion(1);
+//
+//    getState();
+//
+//    if (cookieLine.indexOf("$Version") == -1) {
+//      cookie.setVersion(0);
+//      _method.getParams().setCookiePolicy(CookiePolicy.NETSCAPE);
+//    }
+//
+//    while (st.hasMoreTokens()) {
+//      String token = st.nextToken();
+//
+//      if (token.charAt(0) != '$' && !token.startsWith("Domain")
+//          && !token.startsWith("Path")) {
+//        cookie.setName(token.substring(0, token.indexOf('=')));
+//        cookie.setValue(token.substring(token.indexOf('=') + 1));
+//      } else if (token.indexOf("Domain") > -1) {
+//        cookie.setDomainAttributeSpecified(true);
+//        cookie.setDomain(token.substring(token.indexOf('=') + 1));
+//      } else if (token.indexOf("Path") > -1) {
+//        cookie.setPathAttributeSpecified(true);
+//        cookie.setPath(token.substring(token.indexOf('=') + 1));
+//      }
+//    }
+//    _state.addCookie(cookie);
 
   }
 
-  /**
-   * Adds any support request headers necessary for this request. These headers
-   * will be added based on the state of the request.
-   */
-  private void addSupportHeaders() {
-
-    // Authentication headers
-    // NOTE: Possibly move logic to generic method
-    switch (_authType) {
-      case NO_AUTHENTICATION:
-        break;
-      case BASIC_AUTHENTICATION:
-        setBasicAuthorizationHeader();
-        break;
-      case DIGEST_AUTHENTICATION:
-        throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
-    }
-
-    // A Host header will be added to each request to handle
-    // cases where virtual hosts are used, or there is no DNS
-    // available on the system where the container is running.
-    setHostHeader();
-
-    // Content length header
-    setContentLengthHeader();
-
-    // Cookies
-    setCookieHeader();
-  }
-
-  /**
-   * Sets a basic authentication header in the request is Request is configured
-   * to use basic authentication
-   */
-  private void setBasicAuthorizationHeader() {
-    UsernamePasswordCredentials cred = (UsernamePasswordCredentials) getState()
-        .getCredentials(new AuthScope(_host, _port, null));
-    String authString = null;
-    if (cred != null) {
-      authString = "Basic " + new String(Base64.getEncoder().encode((cred.getUserName() + ":" + cred.getPassword()).getBytes()));
-    } else {
-      LOGGER.trace("[HttpRequest] NULL CREDENTIALS");
-    }
-    _method.setRequestHeader("Authorization", authString);
-  }
-
-  /**
-   * Sets a Content-Length header in the request if content is present
-   */
-  private void setContentLengthHeader() {
-    if (_contentLength > 0) {
-      _method.setRequestHeader("Content-Length", Integer.toString(_contentLength));
-    }
-  }
-
-  /**
-   * Sets a host header in the request. If the configured host value is an IP
-   * address, the Host header will be sent, but without any value.
-   *
-   * If we adhered to the HTTP/1.1 spec, the Host header must be empty of the
-   * target server is identified via IP address. However, no user agents I've
-   * tested follow this. And if a custom client library does this, it may not
-   * work properly with the target server. For now, the Host request-header will
-   * always have a value.
-   */
-  private void setHostHeader() {
-    if (_port == DEFAULT_HTTP_PORT || _port == DEFAULT_SSL_PORT) {
-      _method.setRequestHeader("Host", _host);
-    } else {
-      _method.setRequestHeader("Host", _host + ":" + _port);
-    }
-  }
-
-  /**
-   * Sets a Cookie header if this request is using cookies.
-   */
-  private void setCookieHeader() {
-    if (_useCookies) {
-      Cookie[] cookies = _state.getCookies();
-      if (cookies != null && cookies.length > 0) {
-        Header cHeader = CookiePolicy.getCookieSpec(CookiePolicy.RFC_2109)
-            .formatCookieHeader(_state.getCookies());
-        if (cHeader != null) {
-          _method.setRequestHeader(cHeader);
-        }
-      }
-    }
-  }
 }

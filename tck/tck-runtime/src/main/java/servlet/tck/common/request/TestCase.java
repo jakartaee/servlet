@@ -46,21 +46,21 @@ public interface TestCase {
    * @return test case name
    */
   public String getName();
-
-  /**
-   * Sets the state for this test case. This state will differ from
-   * implementation to implementation.
-   *
-   * @param state
-   *          test state
-   */
-  public void setState(Object state);
-
-  /**
-   * Returns the state of the test case. The state returned could possibly
-   * differ depending on when this method is called and when the test case has
-   * been executed.
-   */
-  public Object getState();
+//
+//  /**
+//   * Sets the state for this test case. This state will differ from
+//   * implementation to implementation.
+//   *
+//   * @param state
+//   *          test state
+//   */
+//  public void setState(Object state);
+//
+//  /**
+//   * Returns the state of the test case. The state returned could possibly
+//   * differ depending on when this method is called and when the test case has
+//   * been executed.
+//   */
+//  public Object getState();
 
 }

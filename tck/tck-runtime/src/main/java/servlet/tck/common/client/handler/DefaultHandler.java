@@ -62,8 +62,10 @@ package servlet.tck.common.client.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HeaderElement;
+import servlet.tck.common.request.Header;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <PRE>
@@ -122,15 +124,17 @@ public class DefaultHandler implements Handler {
    */
   protected boolean areHeadersEqual(Header h1, Header h2) {
 
-    HeaderElement[] h1Values = h1.getElements();
-    HeaderElement[] h2Values = h2.getElements();
+    List<String> h1Values = h1.getValues();
+    List<String> h2Values = h2.getValues();
 
-    if (h1Values.length == h2Values.length) {
-      for (HeaderElement h1Value : h1Values) {
-        String h1Val = h1Value.getName();
+    Collections.sort(h1Values);
+    Collections.sort(h2Values);
+
+    if (h1Values.size() == h2Values.size()) {
+      for (String h1Value : h1Values) {
         boolean found = false;
-        for (HeaderElement h2Value : h2Values) {
-          if (h1Val.equals(h2Value.getName())) {
+        for (String h2Value : h2Values) {
+          if (h1Value.equals(h2Value)) {
             found = true;
             break;
           }

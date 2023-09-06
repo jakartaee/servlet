@@ -21,8 +21,6 @@
 package servlet.tck.common.request;
 
 import servlet.tck.common.response.validation.WebValidatorBase;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +46,7 @@ public class WebTestCase implements TestCase {
   /**
    * The request for this case.
    */
-  private HttpRequest _request = null;
+  private HttpExchange _request = null;
 
   /**
    * The server's response.
@@ -207,7 +205,7 @@ public class WebTestCase implements TestCase {
    * @param request
    *          the HTTP request used for this test case
    */
-  public void setRequest(HttpRequest request) {
+  public void setRequest(HttpExchange request) {
     _request = request;
   }
 
@@ -419,7 +417,7 @@ public class WebTestCase implements TestCase {
    *
    * @return HttpRequest of this test case
    */
-  public HttpRequest getRequest() {
+  public HttpExchange getRequest() {
     return _request;
   }
 
@@ -428,14 +426,14 @@ public class WebTestCase implements TestCase {
    *
    * @return test state
    */
-  public Object getState() {
-    if (_response != null) {
-      return _response.getState();
-    } else {
-      // an initial request for state
-      return _request.getState();
-    }
-  }
+//  public Object getState() {
+//    if (_response != null) {
+//      return _response.getState();
+//    } else {
+//      // an initial request for state
+//      return _request.getState();
+//    }
+//  }
 
   /**
    * Sets the state for this test case.
@@ -444,7 +442,7 @@ public class WebTestCase implements TestCase {
    *          test state
    */
   public void setState(Object state) {
-    _request.setState((HttpState) state);
+    //_request.setState((HttpState) state);
   }
 
   /**
@@ -532,8 +530,8 @@ public class WebTestCase implements TestCase {
    * @return new Header
    */
   private Header createNewHeader(String newValue, Header header) {
-    String oldValue = header.getValue();
-    return new Header(header.getName(), oldValue + ", " + newValue);
+    List<String> oldValue = header.getValues();
+    return new Header(header.getName(), String.join(",", oldValue) + ", " + newValue);
   }
 
   /**

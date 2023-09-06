@@ -19,13 +19,12 @@
  */
 package servlet.tck.api.jakarta_servlet_http.httpservletrequest;
 
-import java.io.InputStream;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-import servlet.tck.common.request.HttpRequest;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import servlet.tck.common.request.Header;
+import servlet.tck.common.request.HttpExchange;
 import servlet.tck.common.request.HttpResponse;
-import org.apache.commons.httpclient.Header;
 import servlet.tck.common.request.HttpRequestClient;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.Data;
@@ -666,43 +665,50 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void doHeadTest() throws Exception {
-        HttpRequest requestGet = new HttpRequest("GET " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
-        HttpRequest requestHead = new HttpRequest("HEAD " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
+        HttpExchange requestGet = new HttpExchange("GET " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
+        HttpExchange requestHead = new HttpExchange("HEAD " + getContextRoot() + "/doHeadTest HTTP/1.1", _hostname, _port);
         try {
             HttpResponse responseGet = requestGet.execute();
             HttpResponse responseHead = requestHead.execute();
             // Validate the response bodies
             String responseBodyGet = responseGet.getResponseBodyAsString();
-            if (responseBodyGet == null || responseBodyGet.length() == 0) {
+            if (responseBodyGet == null || responseBodyGet.isEmpty()) {
                 throw new Exception("GET request did not include a response body");
             }
-            InputStream responseBodyHead = responseHead.getResponseBodyAsRawStream();
+            String responseBodyHead = responseHead.getResponseBodyAsRawString();
             if (responseBodyHead != null) {
                 throw new Exception("HEAD request included a response body");
             }
-            // Validate the response headers
-            Set<Header> headersToMatch = new HashSet<>();
-            Header[] headersGet = responseGet.getResponseHeaders();
-            for (Header header : headersGet) {
-                switch(header.getName().toLowerCase(Locale.ENGLISH)) {
-                    case "date":
-                        // Ignore date header as it will change between requests
-                        break;
-                    default:
-                        headersToMatch.add(header);
-                }
-            }
-            Header[] headersHead = responseHead.getResponseHeaders();
+            // Validate the response headers names
+//            Set<String> headersToMatch = new HashSet<>();
+//            Map<String, List<String>> headersGet = responseGet.getResponseHeaders();
+//            for (Map.Entry<String, List<String>> header : headersGet.entrySet()) {
+//                switch(header.getKey().toLowerCase(Locale.ENGLISH)) {
+//                    case "date":
+//                        // Ignore date header as it will change between requests
+//                        break;
+//                    default:
+//                        headersToMatch.add(header.getKey());
+//                }
+//            }
+
+            List<Header> headersGet = responseGet.getResponseHeaders();
+            Set<String> headersToMatch = headersGet.stream()
+                    .filter(header -> header.getName().toLowerCase(Locale.ENGLISH).equals("date"))
+                    .map(Header::getValue)
+                    .collect(Collectors.toSet());
+
+            List<Header> headersHead = responseHead.getResponseHeaders();
             for (Header header : headersHead) {
-                if (header.getName().toLowerCase().equals("date")) {
+                if (header.getName().equalsIgnoreCase("date")) {
                     // Skip date header
                     continue;
                 }
-                if (!headersToMatch.remove(header)) {
+                if (!headersToMatch.remove(header.getName())) {
                     throw new Exception("HEAD request contained header that was not present for GET: " + header);
                 }
             }
-            if (headersToMatch.size() > 0) {
+            if (!headersToMatch.isEmpty()) {
                 throw new Exception("HEAD request did not contain header that was present for GET:" + headersToMatch.iterator().next());
             }
         } catch (Throwable t) {

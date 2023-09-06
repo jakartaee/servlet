@@ -20,9 +20,8 @@
 
 package servlet.tck.common.client;
 
-import servlet.tck.common.request.HttpRequest;
+import servlet.tck.common.request.HttpExchange;
 import servlet.tck.common.request.WebTestCase;
-import org.apache.commons.httpclient.HttpState;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -329,11 +328,6 @@ public abstract class BaseTckTest {
   protected int _port = 0;
 
   /**
-   * HttpState that may be used for multiple invocations requiring state.
-   */
-  protected HttpState _state = null;
-
-  /**
    * Test case.
    */
   protected WebTestCase _testCase = null;
@@ -482,17 +476,17 @@ public abstract class BaseTckTest {
       _testCase = new WebTestCase();
       setTestProperties(_testCase);
       logger.trace("[BaseUrlClient] EXECUTING");
-      if (_useSavedState && _state != null) {
-        _testCase.getRequest().setState(_state);
-      }
+//      if (_useSavedState && _state != null) {
+//        _testCase.getRequest().setState(_state);
+//      }
       if (_redirect) {
         logger.trace("##########Call setFollowRedirects");
         _testCase.getRequest().setFollowRedirects(_redirect);
       }
       _testCase.execute();
-      if (_saveState) {
-        _state = _testCase.getResponse().getState();
-      }
+//      if (_saveState) {
+//        _state = _testCase.getResponse()..getState();
+//      }
     } catch (Exception tfe) {
       Throwable t = tfe.getCause();
       if (t != null) {
@@ -515,7 +509,7 @@ public abstract class BaseTckTest {
    * </PRE>
    */
   protected void setTestProperties(WebTestCase testCase) {
-    HttpRequest req = testCase.getRequest();
+    HttpExchange req = testCase.getRequest();
 
     // Check for a request object. If doesn't exist, then
     // check for a REQUEST property and create the request object.
@@ -528,10 +522,10 @@ public abstract class BaseTckTest {
           || request.startsWith("DELETE") || request.startsWith("HEAD")
           || request.endsWith(HTTP10) || request.endsWith(HTTP11)) {
         // user has overriden default request behavior
-        req = new HttpRequest(request, _hostname, _port);
+        req = new HttpExchange(request, _hostname, _port);
         testCase.setRequest(req);
       } else {
-        req = new HttpRequest(getTSRequest(request), _hostname, _port);
+        req = new HttpExchange(getTSRequest(request), _hostname, _port);
         testCase.setRequest(req);
       }
     }
@@ -607,7 +601,7 @@ public abstract class BaseTckTest {
           String user = TEST_PROPS.getProperty(BASIC_AUTH_USER);
           String password = TEST_PROPS.getProperty(BASIC_AUTH_PASSWD);
           String realm = TEST_PROPS.getProperty(BASIC_AUTH_REALM);
-          req.setAuthenticationCredentials(user, password, HttpRequest.BASIC_AUTHENTICATION, realm);
+          req.setAuthenticationCredentials(user, password, HttpExchange.BASIC_AUTHENTICATION, realm);
           break;
         default:
           // no op
