@@ -62,7 +62,7 @@ package servlet.tck.common.client.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.commons.httpclient.Header;
+import servlet.tck.common.request.Header;
 
 /**
  * <PRE>

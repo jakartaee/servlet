@@ -58,7 +58,7 @@
  */
 package servlet.tck.common.client.handler;
 
-import org.apache.commons.httpclient.Header;
+import servlet.tck.common.request.Header;
 
 /**
  * Handler interface.

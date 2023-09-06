@@ -62,8 +62,7 @@ package servlet.tck.common.client.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import servlet.tck.util.TestUtil;
-import org.apache.commons.httpclient.Header;
+import servlet.tck.common.request.Header;
 
 /**
  * <PRE>
@@ -112,8 +111,8 @@ public class ContentTypeHandler implements Handler {
   public boolean invoke(Header configuredHeader, Header responseHeader) {
     boolean ret = false;
     LOGGER.trace("[ContentTypeHandler] ContentTypeHandler invoked.");
-    String configVal = configuredHeader.getValue().trim();
-    String responseVal = responseHeader.getValue().trim();
+    String configVal = configuredHeader.getValues().get(0).trim();
+    String responseVal = responseHeader.getValues().get(0).trim();
     int colIdx = configVal.indexOf(';');
     if (colIdx < 0) {
       // Info we're interested in : type/subtype

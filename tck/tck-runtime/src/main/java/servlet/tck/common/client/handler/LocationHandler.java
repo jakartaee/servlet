@@ -62,8 +62,7 @@ package servlet.tck.common.client.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import servlet.tck.util.TestUtil;
-import org.apache.commons.httpclient.Header;
+import servlet.tck.common.request.Header;
 
 import java.net.MalformedURLException;
 import java.net.URL;

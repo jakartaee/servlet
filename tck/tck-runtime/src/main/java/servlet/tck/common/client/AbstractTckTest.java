@@ -20,7 +20,7 @@
 
 package servlet.tck.common.client;
 
-import servlet.tck.common.request.HttpRequest;
+import servlet.tck.common.request.HttpExchange;
 import servlet.tck.common.request.WebTestCase;
 import servlet.tck.common.util.Data;
 import org.slf4j.Logger;
@@ -103,7 +103,7 @@ public abstract class AbstractTckTest extends BaseTckTest {
     }
     logger.debug("REQUEST LINE: {}", sb);
 
-    HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
+    HttpExchange req = new HttpExchange(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
     if ((TEST_PROPS.getProperty(SEARCH_STRING) == null)
@@ -152,7 +152,7 @@ public abstract class AbstractTckTest extends BaseTckTest {
       sb.append(testValue).append(HTTP10);
     }
     logger.debug("REQUEST LINE: {}", sb);
-    HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
+    HttpExchange req = new HttpExchange(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
   }
 

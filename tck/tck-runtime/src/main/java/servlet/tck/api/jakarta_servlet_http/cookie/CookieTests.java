@@ -22,22 +22,21 @@
 package servlet.tck.api.jakarta_servlet_http.cookie;
 
 import servlet.tck.common.client.AbstractTckTest;
-import servlet.tck.common.request.HttpRequest;
+import servlet.tck.common.request.HttpExchange;
 import servlet.tck.common.request.HttpResponse;
 import servlet.tck.common.servlets.CommonServlets;
 import servlet.tck.common.util.Data;
-import org.apache.commons.httpclient.Cookie;
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.cookie.CookiePolicy;
-import org.apache.commons.httpclient.cookie.CookieSpec;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.HttpCookie;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.TimeZone;
 
 public class CookieTests extends AbstractTckTest {
@@ -58,31 +57,6 @@ public class CookieTests extends AbstractTckTest {
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
             .addClasses(TestServlet.class)
             .setWebXML(CookieTests.class.getResource("servlet_jsh_cookie_web.xml"));
-  }
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
-  private int findCookie(Cookie[] cookie, String name) {
-    boolean found = false;
-    int i = 0;
-    if (cookie != null) {
-      while ((!found) && (i < cookie.length)) {
-        if (cookie[i].getName().equals(name)) {
-          found = true;
-        } else {
-          i++;
-        }
-      }
-    } else {
-      found = false;
-    }
-    if (found) {
-      return i;
-    } else {
-      return -1;
-    }
   }
 
   /* Run test */
@@ -306,32 +280,31 @@ public class CookieTests extends AbstractTckTest {
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
     String dateHeader = null;
-    int index = -1;
     Date expiryDate = null;
     String body = null;
 
-    HttpRequest request = new HttpRequest("GET " + getContextRoot() + "/"
+    HttpExchange request = new HttpExchange("GET " + getContextRoot() + "/"
             + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
             _port);
 
     try {
       response = request.execute();
       dateHeader = response.getResponseHeader("testDate").toString();
-      CookieSpec spec = CookiePolicy.getCookieSpec(CookiePolicy.NETSCAPE);
 
-      logger.trace("Found " + response.getResponseHeaders("Set-Cookie").length
-                      + " set-cookie entry");
+
+      logger.trace("Found {}  set-cookie entry", response.getResponseHeaders("Set-Cookie").size());
 
       boolean foundcookie = false;
-      Header[] CookiesHeader = response.getResponseHeaders("Set-Cookie");
+      List<String> cookiesHeaders = response.getResponseHeaders("Set-Cookie");
       int i = 0;
-      while (i < CookiesHeader.length) {
-        logger.trace("Checking set-cookiei " + i + ":" + CookiesHeader[i]);
-        Cookie[] cookies = spec.parse(".eng.com", _port, getServletName(),
-                false, CookiesHeader[i]);
-        index = findCookie(cookies, "name1");
-        if (index >= 0) {
-          expiryDate = cookies[index].getExpiryDate();
+      while (i < cookiesHeaders.size()) {
+        logger.trace("Checking set-cookiei {}:{}", i, cookiesHeaders.get(i));
+        List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
+        Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1"))
+                .findFirst();
+        if (optionalHttpCookie.isPresent()) {
+          HttpCookie httpCookie = optionalHttpCookie.get();
+          expiryDate = new Date(httpCookie.getMaxAge());
           body = response.getResponseBodyAsString();
           foundcookie = true;
           break;
@@ -361,7 +334,7 @@ public class CookieTests extends AbstractTckTest {
       throw new Exception("Exception occurred: " + t);
     }
 
-    if (body.indexOf(Data.PASSED) == -1) {
+    if (!body.contains(Data.PASSED)) {
       throw new Exception("The string: " + Data.PASSED + " not found in response");
     }
   }

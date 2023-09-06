@@ -20,12 +20,6 @@
 
 package servlet.tck.common.request;
 
-import org.apache.commons.httpclient.Header;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpMethodBase;
-import org.apache.commons.httpclient.HttpState;
-import org.apache.commons.httpclient.HttpVersion;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -33,12 +27,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * This class represents an HTTP response from the server.
  */
 
-public class HttpResponse<T> {
+public class HttpResponse {
 
   /**
    * Default encoding based on Servlet Specification
@@ -53,12 +51,8 @@ public class HttpResponse<T> {
   /**
    * Wrapped HttpMethod used to pull response info from.
    */
-  private HttpMethod _method = null;
+  private String _method = null;
 
-  /**
-   * HttpState obtained after execution of request
-   */
-  private HttpState _state = null;
 
   /**
    * Charset encoding returned in the response
@@ -86,15 +80,16 @@ public class HttpResponse<T> {
    */
   private boolean _isSecure;
 
+  private java.net.http.HttpResponse<String> response;
+
   /** Creates new HttpResponse */
-  public HttpResponse(String host, int port, boolean isSecure,
-      HttpMethod method, HttpState state) {
+  public HttpResponse(String host, int port, boolean isSecure, String method, java.net.http.HttpResponse<String> response) {
 
     _host = host;
     _port = port;
     _isSecure = isSecure;
     _method = method;
-    _state = state;
+    this.response = response;
   }
 
   /*
@@ -108,7 +103,7 @@ public class HttpResponse<T> {
    * @return HTTP status code
    */
   public String getStatusCode() {
-    return Integer.toString(_method.getStatusCode());
+    return Integer.toString(response.statusCode());
   }
 
   /**
@@ -117,7 +112,7 @@ public class HttpResponse<T> {
    * @return HTTP reason-phrase
    */
   public String getReasonPhrase() {
-    return _method.getStatusText();
+    return "";
   }
 
   /**
@@ -125,12 +120,10 @@ public class HttpResponse<T> {
    *
    * @return response headers
    */
-  public Header[] getResponseHeaders() {
-    return _method.getResponseHeaders();
-  }
-
-  public List<Header> getHeaders() {
-    return Arrays.asList(_method.getResponseHeaders());
+  public List<Header> getResponseHeaders() {
+    return response.headers().map().entrySet()
+            .stream().map(stringListEntry -> new Header(stringListEntry.getKey(), stringListEntry.getValue()))
+            .collect(Collectors.toList());
   }
 
   /**
@@ -138,8 +131,8 @@ public class HttpResponse<T> {
    *
    * @return response headers
    */
-  public Header[] getResponseHeaders(String headerName) {
-    return _method.getResponseHeaders(headerName);
+  public List<String> getResponseHeaders(String headerName) {
+    return response.headers().allValues(headerName);
   }
 
   /**
@@ -148,8 +141,9 @@ public class HttpResponse<T> {
    * @return a specfic response header or null if the specified header doesn't
    *         exist.
    */
-  public Header getResponseHeader(String headerName) {
-    return _method.getResponseHeader(headerName);
+  public Optional<Header> getResponseHeader(String headerName) {
+    List<String> s = response.headers().allValues(headerName);
+    return s.isEmpty()?Optional.empty() : Optional.of(new Header(headerName, String.join(", ", s)));
   }
 
   /**
@@ -170,7 +164,7 @@ public class HttpResponse<T> {
    *           if an error occurs reading from server
    */
   public byte[] getResponseBodyAsRawBytes() throws IOException {
-    return _method.getResponseBody();
+    return response.body().getBytes();
   }
 
   /**
@@ -192,7 +186,7 @@ public class HttpResponse<T> {
    *           if an error occurs reading from the server
    */
   public String getResponseBodyAsRawString() throws IOException {
-    return _method.getResponseBodyAsString();
+    return response.body();
   }
 
   /**
@@ -205,17 +199,6 @@ public class HttpResponse<T> {
     return new ByteArrayInputStream(getEncodedResponse().getBytes());
   }
 
-  /**
-   * Returns the response body as an InputStream without any encoding applied by
-   * the client.
-   * 
-   * @return an InputStream to read the response
-   * @throws IOException
-   *           if an error occurs reading from the server
-   */
-  public InputStream getResponseBodyAsRawStream() throws IOException {
-    return _method.getResponseBodyAsStream();
-  }
 
   /**
    * Returns the charset encoding for this response.
@@ -223,9 +206,9 @@ public class HttpResponse<T> {
    * @return charset encoding
    */
   public String getResponseEncoding() {
-    Header content = _method.getResponseHeader(CONTENT_TYPE);
-    if (content != null) {
-      String headerVal = content.getValue();
+    Optional<String> content = response.headers().firstValue(CONTENT_TYPE);
+    if (content.isPresent()) {
+      String headerVal = content.get();
       int idx = headerVal.indexOf(";charset=");
       if (idx > -1) {
         // content encoding included in response
@@ -240,9 +223,9 @@ public class HttpResponse<T> {
    *
    * @return an HttpState object
    */
-  public HttpState getState() {
-    return _state;
-  }
+//  public HttpState getState() {
+//    return _state;
+//  }
 
   /**
    * Displays a String representation of the response.
@@ -253,26 +236,18 @@ public class HttpResponse<T> {
     StringBuffer sb = new StringBuffer(255);
 
     sb.append("[RESPONSE STATUS LINE] -> ");
-    sb.append(((HttpMethodBase) _method).getParams().getVersion()
-        .equals(HttpVersion.HTTP_1_1) ? "HTTP/1.1 " : "HTTP/1.0 ");
-    sb.append(_method.getStatusCode()).append(' ');
-    sb.append(_method.getStatusText()).append('\n');
-    Header[] headers = _method.getResponseHeaders();
-    if (headers != null && headers.length != 0) {
-      for (int i = 0; i < headers.length; i++) {
-        sb.append("       [RESPONSE HEADER] -> ");
-        sb.append(headers[i].toExternalForm()).append('\n');
-      }
+    sb.append(response.version().toString());
+    sb.append(response.statusCode()).append(' ');
+    sb.append(System.lineSeparator());
+    sb.append("       [RESPONSE HEADER] -> ");
+    for (Map.Entry<String, List<String>> header : response.headers().map().entrySet()){
+        sb.append(header.getKey()).append(':').append(header.getValue()).append(System.lineSeparator());
     }
 
-    String resBody;
-    try {
-      resBody = _method.getResponseBodyAsString();
-    } catch (IOException ioe) {
-      resBody = "UNEXECTED EXCEPTION: " + ioe.toString();
-    }
-    if (resBody != null && resBody.length() != 0) {
-      sb.append("------ [RESPONSE BODY] ------\n");
+    String resBody = response.body();
+
+    if (resBody != null && !resBody.isEmpty()) {
+      sb.append("------ [RESPONSE BODY] ------").append(System.lineSeparator());
       sb.append(resBody);
       sb.append("\n-----------------------------\n\n");
     }
@@ -294,10 +269,10 @@ public class HttpResponse<T> {
   public String getProtocol() {
     return _isSecure ? "https" : "http";
   }
-
-  public String getPath() {
-    return _method.getPath();
-  }
+//
+//  public String getPath() {
+//    return _method.getPath();
+//  }
 
   /*
    * Private Methods
@@ -311,8 +286,7 @@ public class HttpResponse<T> {
    */
   private String getEncodedResponse() throws IOException {
     if (_responseBody == null) {
-      _responseBody = getEncodedStringFromStream(
-          _method.getResponseBodyAsStream(), getResponseEncoding());
+      _responseBody = response.body();
     }
     return _responseBody;
   }
