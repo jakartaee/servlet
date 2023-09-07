@@ -106,6 +106,8 @@ public class HttpExchange {
 
   List<HttpHeaders> headers = null;
 
+  private boolean state;
+
   private String uri;
 
   private String query;
@@ -326,15 +328,8 @@ public class HttpExchange {
     return this.followRedirect;
   }
 
-  /**
-   * <code>setState</code> will set the HTTP state for the current request (i.e.
-   * session tracking). This has the side affect
-   */
-//  public void setState(HttpState state) {
-//    _state = state;
-//    _useCookies = true;
-//  }
 
+  private static final ThreadLocal<HttpClient> httpClientThreadLocal = new ThreadLocal<>();
   /**
    * <code>execute</code> will dispatch the current request to the target
    * server.
@@ -347,14 +342,9 @@ public class HttpExchange {
     String method;
     int defaultPort;
 
-    CookieManager cookieManager = new CookieManager();
-    cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-    //CookieHandler.setDefault(cookieManager); //.getDefault()
-    // FIXME do this later on requestt
     HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect?HttpClient.Redirect.ALWAYS:HttpClient.Redirect.NEVER)
-            .version(HttpClient.Version.HTTP_1_1) // not supporting 1.0?
-            // TODO _useCookies ?
-            .cookieHandler(cookieManager);
+            .version(HttpClient.Version.HTTP_1_1)
+            .cookieHandler(new CookieManager());
 
     StringBuilder url = new StringBuilder();
 
@@ -384,8 +374,23 @@ public class HttpExchange {
         throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
     }
 
+    HttpClient httpClient = null;
 
-    HttpClient httpClient = builder.build();
+    if(state) {
+      httpClient = httpClientThreadLocal.get();
+    } else {
+      httpClientThreadLocal.set(null);
+    }
+
+    if (httpClient == null) {
+      httpClient = builder.build();
+    }
+
+    if (state) {
+      httpClientThreadLocal.set(httpClient);
+    }
+
+
 
     HttpRequest.Builder httpRequestBuilder = HttpRequest.newBuilder().uri(URI.create(url.toString()));
 
@@ -490,18 +495,6 @@ public class HttpExchange {
     */
   }
 
-  /**
-   * Returns the current state for this request.
-   *
-   * @return HttpState current state
-   */
-//  public HttpState getState() {
-//    if (_state == null) {
-//      _state = new HttpState();
-//    }
-//    return _state;
-//  }
-
   public String toString() {
     StringBuilder sb = new StringBuilder(255);
     sb.append("[REQUEST LINE] -> ").append(_requestLine).append('\n');
@@ -519,6 +512,14 @@ public class HttpExchange {
 
     return sb.toString();
 
+  }
+
+  public boolean isState() {
+    return state;
+  }
+
+  public void setState(boolean state) {
+    this.state = state;
   }
 
   /*

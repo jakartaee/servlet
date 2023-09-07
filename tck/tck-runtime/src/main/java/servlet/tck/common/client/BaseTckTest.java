@@ -476,9 +476,9 @@ public abstract class BaseTckTest {
       _testCase = new WebTestCase();
       setTestProperties(_testCase);
       logger.trace("[BaseUrlClient] EXECUTING");
-//      if (_useSavedState && _state != null) {
-//        _testCase.getRequest().setState(_state);
-//      }
+      if (_useSavedState || _saveState) {
+        _testCase.getRequest().setState(true);
+      }
       if (_redirect) {
         logger.trace("##########Call setFollowRedirects");
         _testCase.getRequest().setFollowRedirects(_redirect);
