@@ -333,9 +333,10 @@ public class CookieTests extends AbstractTckTest {
 
     try {
       response = request.execute();
-      dateHeader = response.getResponseHeader("testDate").toString();
+      dateHeader = response.getResponseHeader("testDate")
+              .orElseThrow(() -> new NullPointerException("testDate is empty")).getValue();
 
-      logger.trace("Found {} set-cookie entry", Integer.toString(response.getResponseHeaders("Set-Cookie").size()));
+      logger.trace("Found {} set-cookie entry", response.getResponseHeaders("Set-Cookie").size());
 
       boolean foundcookie = false;
       List<String> cookiesHeaders = response.getResponseHeaders("Set-Cookie");

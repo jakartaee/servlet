@@ -29,6 +29,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Represents an HTTP client Request
@@ -67,17 +68,17 @@ public class HttpExchange {
   /**
    * Method representation of request.
    */
-  private String _method;
+  private String method;
 
   /**
    * Target web container host
    */
-  private String _host;
+  private String host;
 
   /**
    * Target web container port
    */
-  private int _port = DEFAULT_HTTP_PORT;
+  private int port = DEFAULT_HTTP_PORT;
 
   /**
    * Is the request going over SSL
@@ -123,9 +124,10 @@ public class HttpExchange {
 
   private String realm;
 
-  private Map<String, String> requestHeaders = new HashMap<>();
+  private final Map<String, String> requestHeaders = new HashMap<>();
 
   private boolean followRedirect;
+  private final List<HttpCookie> httpCookies = new ArrayList<>();
 
   /**
    * Creates new HttpRequest based of the passed request line. The request line
@@ -139,10 +141,9 @@ public class HttpExchange {
   public HttpExchange(String requestLine, String host, int port) {
 
     StringTokenizer st = new StringTokenizer(requestLine);
-    String method;
     String version;
     try {
-      this._method = st.nextToken();
+      this.method = st.nextToken();
       uri = st.nextToken();
       version = st.nextToken();
     } catch (NoSuchElementException nsee) {
@@ -150,8 +151,8 @@ public class HttpExchange {
               "Request provided: " + requestLine + " is malformed.");
     }
 
-    _host = host;
-    _port = port;
+    this.host = host;
+    this.port = port;
 
     if (port == DEFAULT_SSL_PORT) {
       _isSecure = true;
@@ -192,7 +193,7 @@ public class HttpExchange {
    * @return String request type
    */
   public String getRequestMethod() {
-    return _method;
+    return method;
   }
 
   /**
@@ -342,9 +343,11 @@ public class HttpExchange {
     String method;
     int defaultPort;
 
+    CookieManager cookieManager = new CookieManager();
+
     HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect?HttpClient.Redirect.ALWAYS:HttpClient.Redirect.NEVER)
             .version(HttpClient.Version.HTTP_1_1)
-            .cookieHandler(new CookieManager());
+            .cookieHandler(cookieManager);
 
     StringBuilder url = new StringBuilder();
 
@@ -353,7 +356,7 @@ public class HttpExchange {
     } else {
       url.append("http://");
     }
-    url.append(_host).append(':').append(_port);
+    url.append(host).append(':').append(port);
     url.append(uri);
     if(query!=null){
       url.append('?').append(query);
@@ -390,11 +393,16 @@ public class HttpExchange {
       httpClientThreadLocal.set(httpClient);
     }
 
+    URI uri = URI.create(url.toString());
 
+    HttpRequest.Builder httpRequestBuilder = HttpRequest.newBuilder().uri(uri);
 
-    HttpRequest.Builder httpRequestBuilder = HttpRequest.newBuilder().uri(URI.create(url.toString()));
+    if(!httpCookies.isEmpty()) {
+      cookieManager.put(uri, httpCookies.stream()
+              .collect(Collectors.toMap(HttpCookie::getName, o -> Collections.singletonList(o.getValue()))));
+    }
 
-    switch (_method) {
+    switch (this.method) {
       case "GET":
         httpRequestBuilder.GET();
         break;
@@ -408,7 +416,7 @@ public class HttpExchange {
                 HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
         break;
       default:
-        throw new RuntimeException("unknow method " + _method);
+        throw new RuntimeException("unknow method " + this.method);
     }
 
     for(Map.Entry<String, String> entry : requestHeaders.entrySet()) {
@@ -417,82 +425,10 @@ public class HttpExchange {
 
     try {
       java.net.http.HttpResponse<String> response = httpClient.send(httpRequestBuilder.build(), java.net.http.HttpResponse.BodyHandlers.ofString());
-      return new HttpResponse(_host, _port, _isSecure, _method, response);
+      return new HttpResponse(host, port, _isSecure, this.method, response);
     } catch (InterruptedException e) {
       throw new IOException(e.getMessage(), e);
     }
-
-
-    /*
-    ProtocolSocketFactory factory;
-
-    if (_method.getFollowRedirects()) {
-
-
-      if (_isSecure) {
-        method = "https";
-        defaultPort = DEFAULT_SSL_PORT;
-        factory = new SSLProtocolSocketFactory();
-      } else {
-        method = "http";
-        defaultPort = DEFAULT_HTTP_PORT;
-        factory = new DefaultProtocolSocketFactory();
-      }
-
-      Protocol protocol = new Protocol(method, factory, defaultPort);
-      HttpConnection conn = new HttpConnection(_host, _port, protocol);
-
-      if (conn.isOpen()) {
-        throw new IllegalStateException("Connection incorrectly opened");
-      }
-
-      conn.open();
-
-      LOGGER.info("[HttpRequest] Dispatching request: '{}' to target server at '{}:{}'", _requestLine , _host, _port);
-
-      addSupportHeaders();
-      _headers = _method.getRequestHeaders();
-
-      LOGGER.debug(
-          "########## The real value set: {}", _method.getFollowRedirects());
-
-      client.getHostConfiguration().setHost(_host, _port, protocol);
-
-      client.executeMethod(_method);
-
-      return new HttpResponse(_host, _port, _isSecure, _method, getState());
-    } else {
-      if (_isSecure) {
-        method = "https";
-        defaultPort = DEFAULT_SSL_PORT;
-        factory = new SSLProtocolSocketFactory();
-      } else {
-        method = "http";
-        defaultPort = DEFAULT_HTTP_PORT;
-        factory = new DefaultProtocolSocketFactory();
-      }
-
-      Protocol protocol = new Protocol(method, factory, defaultPort);
-      HttpConnection conn = new HttpConnection(_host, _port, protocol);
-
-      if (conn.isOpen()) {
-        throw new IllegalStateException("Connection incorrectly opened");
-      }
-
-      conn.open();
-
-      LOGGER.info("Dispatching request: '{}' to target server at '{}:{}'", _requestLine, _host, _port);
-
-      addSupportHeaders();
-      _headers = _method.getRequestHeaders();
-
-      LOGGER.debug("########## The real value set: {}", _method.getFollowRedirects());
-
-      _method.execute(getState(), conn);
-
-      return new HttpResponse(_host, _port, _isSecure, _method, getState());
-    }
-    */
   }
 
   public String toString() {
@@ -528,36 +464,39 @@ public class HttpExchange {
    */
 
   private void createCookie(String cookieHeader) {
-//    String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1)
-//        .trim();
-//    StringTokenizer st = new StringTokenizer(cookieLine, " ;");
-//    Cookie cookie = new Cookie();
-//    cookie.setVersion(1);
-//
-//    getState();
-//
-//    if (cookieLine.indexOf("$Version") == -1) {
-//      cookie.setVersion(0);
-//      _method.getParams().setCookiePolicy(CookiePolicy.NETSCAPE);
-//    }
-//
-//    while (st.hasMoreTokens()) {
-//      String token = st.nextToken();
-//
-//      if (token.charAt(0) != '$' && !token.startsWith("Domain")
-//          && !token.startsWith("Path")) {
-//        cookie.setName(token.substring(0, token.indexOf('=')));
-//        cookie.setValue(token.substring(token.indexOf('=') + 1));
-//      } else if (token.indexOf("Domain") > -1) {
-//        cookie.setDomainAttributeSpecified(true);
-//        cookie.setDomain(token.substring(token.indexOf('=') + 1));
-//      } else if (token.indexOf("Path") > -1) {
-//        cookie.setPathAttributeSpecified(true);
-//        cookie.setPath(token.substring(token.indexOf('=') + 1));
-//      }
-//    }
-//    _state.addCookie(cookie);
+    String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1)
+        .trim();
+    StringTokenizer st = new StringTokenizer(cookieLine, " ;");
+    String cookieName = "", cookieValue = "", cookieDomain = "", cookiePath = "";
+    int cookieVersion = 1;
 
+    if (!cookieLine.contains("$Version")) {
+      cookieVersion = 0;
+    }
+
+    while (st.hasMoreTokens()) {
+      String token = st.nextToken();
+
+      if (token.charAt(0) != '$' && !token.startsWith("Domain")
+          && !token.startsWith("Path")) {
+        cookieName = token.substring(0, token.indexOf('='));
+        cookieValue = token.substring(token.indexOf('=') + 1);
+      } else if (token.contains("Domain")) {
+        cookieDomain  = token.substring(token.indexOf('=') + 1);
+      } else if (token.contains("Path")) {
+        cookiePath = token.substring(token.indexOf('=') + 1);
+      }
+    }
+
+    HttpCookie httpCookie = new HttpCookie(cookieName, cookieValue);
+    if (!cookieDomain.isBlank()) {
+      httpCookie.setDomain(cookieDomain);
+    }
+    if(!cookiePath.isBlank()) {
+      httpCookie.setPath(cookiePath);
+    }
+    httpCookie.setVersion(cookieVersion);
+    httpCookies.add(httpCookie);
   }
 
 }
