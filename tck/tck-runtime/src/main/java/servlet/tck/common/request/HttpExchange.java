@@ -124,7 +124,7 @@ public class HttpExchange {
 
   private String realm;
 
-  private final Map<String, String> requestHeaders = new HashMap<>();
+  private final Map<String, List<String>> requestHeaders = new HashMap<>();
 
   private boolean followRedirect;
   private final List<HttpCookie> httpCookies = new ArrayList<>();
@@ -279,7 +279,7 @@ public class HttpExchange {
    *          request header value
    */
   public void addRequestHeader(String headerName, String headerValue) {
-    requestHeaders.put(headerName, headerValue);
+    requestHeaders.computeIfAbsent(headerName, k -> new ArrayList<>()).add(headerValue);
     LOGGER.debug("Added request header: {}:{}", headerName, headerValue);
   }
 
@@ -308,7 +308,7 @@ public class HttpExchange {
    *          request header value
    */
   public void setRequestHeader(String headerName, String headerValue) {
-    requestHeaders.put(headerName, headerValue);
+    requestHeaders.computeIfAbsent(headerName, k -> new ArrayList<>()).add(headerValue);
     LOGGER.trace("Set request header: {}:{}", headerName, headerValue);
 
   }
@@ -420,8 +420,8 @@ public class HttpExchange {
         throw new RuntimeException("unknow method " + this.method);
     }
 
-    for(Map.Entry<String, String> entry : requestHeaders.entrySet()) {
-      httpRequestBuilder.header(entry.getKey(), entry.getValue());
+    for(Map.Entry<String, List<String>> entry : requestHeaders.entrySet()) {
+      entry.getValue().forEach(s -> httpRequestBuilder.header(entry.getKey(),s));
     }
 
     try {
@@ -436,7 +436,7 @@ public class HttpExchange {
     StringBuilder sb = new StringBuilder(255);
     sb.append("[REQUEST LINE] -> ").append(_requestLine).append('\n');
 
-    for (Map.Entry<String,String> header : requestHeaders.entrySet()) {
+    for (Map.Entry<String,List<String>> header : requestHeaders.entrySet()) {
         sb.append("[REQUEST HEADER] -> ");
         sb.append(header.getKey()).append(':').append(header.getValue()).append(System.lineSeparator());
     }

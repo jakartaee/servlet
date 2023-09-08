@@ -46,7 +46,13 @@ public class HttpServletRequestTests extends HttpRequestClient {
      */
     @Deployment(testable = false)
     public static WebArchive getTestArchive() throws Exception {
-        return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpservletrequest_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(GetParameterNamesEmptyEnumTestServlet.class, GetQueryStringNullTestServlet.class, GetReaderUnsupportedEncodingExceptionTestServlet.class, doHeadTest.class, getServletContextTest.class, GetServletPathEmptyStringTestServlet.class, SetCharacterEncodingTest.class, SetCharacterEncodingUnsupportedEncodingExceptionTest.class).setWebXML(HttpServletRequestTests.class.getResource("servlet_jsh_httpservletrequest_web.xml"));
+        return ShrinkWrap.create(WebArchive.class, "servlet_jsh_httpservletrequest_web.war")
+                .addAsLibraries(CommonServlets.getCommonServletsArchive())
+                .addClasses(GetParameterNamesEmptyEnumTestServlet.class, GetQueryStringNullTestServlet.class,
+                        GetReaderUnsupportedEncodingExceptionTestServlet.class, doHeadTest.class,
+                        getServletContextTest.class, GetServletPathEmptyStringTestServlet.class,
+                        SetCharacterEncodingTest.class, SetCharacterEncodingUnsupportedEncodingExceptionTest.class)
+                .setWebXML(HttpServletRequestTests.class.getResource("servlet_jsh_httpservletrequest_web.xml"));
     }
 
     /*
