@@ -382,7 +382,7 @@ public class HttpExchange {
     if(state) {
       httpClient = httpClientThreadLocal.get();
     } else {
-      httpClientThreadLocal.set(null);
+      httpClientThreadLocal.remove();
     }
 
     if (httpClient == null) {
@@ -400,6 +400,7 @@ public class HttpExchange {
     if(!httpCookies.isEmpty()) {
       cookieManager.put(uri, httpCookies.stream()
               .collect(Collectors.toMap(HttpCookie::getName, o -> Collections.singletonList(o.getValue()))));
+      httpCookies.forEach(httpCookie -> cookieManager.getCookieStore().add(uri, httpCookie));
     }
 
     switch (this.method) {
