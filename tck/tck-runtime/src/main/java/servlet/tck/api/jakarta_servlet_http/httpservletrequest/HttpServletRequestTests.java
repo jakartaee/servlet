@@ -676,7 +676,7 @@ public class HttpServletRequestTests extends HttpRequestClient {
                 throw new Exception("GET request did not include a response body");
             }
             String responseBodyHead = responseHead.getResponseBodyAsRawString();
-            if (responseBodyHead != null) {
+            if (responseBodyHead != null && !responseBodyHead.isEmpty()) {
                 throw new Exception("HEAD request included a response body");
             }
             // Validate the response headers names
@@ -694,8 +694,8 @@ public class HttpServletRequestTests extends HttpRequestClient {
 
             List<Header> headersGet = responseGet.getResponseHeaders();
             Set<String> headersToMatch = headersGet.stream()
-                    .filter(header -> header.getName().toLowerCase(Locale.ENGLISH).equals("date"))
-                    .map(Header::getValue)
+                    .map(Header::getName)
+                    .filter(name -> !name.toLowerCase(Locale.ENGLISH).equals("date"))
                     .collect(Collectors.toSet());
 
             List<Header> headersHead = responseHead.getResponseHeaders();
