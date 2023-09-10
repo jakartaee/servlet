@@ -362,21 +362,6 @@ public class HttpExchange {
       url.append('?').append(query);
     }
 
-    switch (_authType) {
-      case NO_AUTHENTICATION:
-        break;
-      case BASIC_AUTHENTICATION:
-        builder.authenticator(new Authenticator() {
-          @Override
-          protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(username, password.toCharArray());
-          }
-        });
-        break;
-      case DIGEST_AUTHENTICATION:
-        throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
-    }
-
     HttpClient httpClient = null;
 
     if(state) {
@@ -420,6 +405,16 @@ public class HttpExchange {
         throw new RuntimeException("unknow method " + this.method);
     }
 
+    switch (_authType) {
+      case NO_AUTHENTICATION:
+        break;
+      case BASIC_AUTHENTICATION:
+        httpRequestBuilder.header("Authorization", getBasicAuthenticationHeader(username, password));
+        break;
+      case DIGEST_AUTHENTICATION:
+        throw new UnsupportedOperationException("Digest Authentication is not currently " + "supported");
+    }
+
     for(Map.Entry<String, List<String>> entry : requestHeaders.entrySet()) {
       entry.getValue().forEach(s -> httpRequestBuilder.header(entry.getKey(),s));
     }
@@ -427,9 +422,14 @@ public class HttpExchange {
     try {
       java.net.http.HttpResponse<String> response = httpClient.send(httpRequestBuilder.build(), java.net.http.HttpResponse.BodyHandlers.ofString());
       return new HttpResponse(host, port, _isSecure, this.method, response);
-    } catch (InterruptedException e) {
+    } catch (Exception e) {
       throw new IOException(e.getMessage(), e);
     }
+  }
+
+  private static String getBasicAuthenticationHeader(String username, String password) {
+    String valueToEncode = username + ":" + password;
+    return "Basic " + Base64.getEncoder().encodeToString(valueToEncode.getBytes());
   }
 
   public String toString() {
