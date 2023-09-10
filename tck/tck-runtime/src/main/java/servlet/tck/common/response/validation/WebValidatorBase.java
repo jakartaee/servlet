@@ -548,16 +548,15 @@ public class WebValidatorBase implements ValidationStrategy {
       sb.append(" Test %s Unable to find the following header");
       sb.append(" in the server's response: ");
       sb.append("%s").append("\n");
-      sb.append(" Response headers received from");
-      sb.append(" server:");
+      sb.append(" Response headers received from server:");
 
       List<Header> resHeaders = _res.getResponseHeaders();
       sb.append(resHeaders.stream()
-              .map(header -> "ResponseHeader ->" + header.getName() + "" + String.join(",", header.getValues()))
+              .map(header -> "ResponseHeader ->'" + header.getName() + "';'" + String.join(",", header.getValues()) + "'")
               .collect(Collectors.joining("\n\t")));
 
       sb.append("\n");
-      String result = String.format(sb.toString(), _case.getName(), currentHeader.toString());
+      String result = String.format(sb.toString(), _case.getName(), currentHeader);
       logger.error(result);
       throw new Exception(result);
     }
