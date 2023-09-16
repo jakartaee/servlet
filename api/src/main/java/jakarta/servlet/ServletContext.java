@@ -527,6 +527,36 @@ public interface ServletContext {
      * @throws NullPointerException if the argument {@code name} is {@code null}
      *
      */
+    default <T> T getAttribute(String name, Class<T> clazz) {
+        return clazz.cast(this.getAttribute(name));
+    }
+
+    /**
+     * Returns the servlet container attribute with the given name, or <code>null</code> if there is no attribute by that
+     * name.
+     *
+     * <p>
+     * An attribute allows a servlet container to give the servlet additional information not already provided by this
+     * interface. See your server documentation for information about its attributes. A list of supported attributes can be
+     * retrieved using <code>getAttributeNames</code>.
+     *
+     * <p>
+     * The attribute is returned as a <code>java.lang.Object</code> or some subclass.
+     *
+     * <p>
+     * Attribute names should follow the same convention as package names. The Jakarta Servlet specification reserves names
+     * matching <code>jakarta.*</code>.
+     *
+     * @param name a <code>String</code> specifying the name of the attribute
+     *
+     * @return an <code>Object</code> containing the value of the attribute, or <code>null</code> if no attribute exists
+     * matching the given name.
+     *
+     * @see ServletContext#getAttributeNames
+     *
+     * @throws NullPointerException if the argument {@code name} is {@code null}
+     *
+     */
     public Object getAttribute(String name);
 
     /**
