@@ -18,13 +18,9 @@
 
 package jakarta.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.charset.Charset;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Defines an object to provide client request information to a servlet. The servlet container creates a
@@ -36,7 +32,9 @@ import java.util.Map;
  * example, HTTP data is provided by {@link jakarta.servlet.http.HttpServletRequest}.
  *
  * @author Various
+ *
  * @see jakarta.servlet.http.HttpServletRequest
+ *
  */
 public interface ServletRequest {
 
@@ -79,6 +77,7 @@ public interface ServletRequest {
      * matching <code>jakarta.*</code>.
      *
      * @param name a <code>String</code> specifying the name of the attribute
+     *
      * @return an <code>Object</code> containing the value of the attribute, or <code>null</code> if the attribute does not
      * exist
      */
@@ -109,8 +108,9 @@ public interface ServletRequest {
      * reading request parameters or reading input using getReader(). Otherwise, it has no effect.
      *
      * @param encoding <code>String</code> containing the name of the character encoding.
+     *
      * @throws UnsupportedEncodingException if this ServletRequest is still in a state where a character encoding may be
-     *                                      set, but the specified encoding is invalid
+     * set, but the specified encoding is invalid
      */
     public void setCharacterEncoding(String encoding) throws UnsupportedEncodingException;
 
@@ -121,6 +121,7 @@ public interface ServletRequest {
      * Implementations are strongly encouraged to override this default method and provide a more efficient implementation.
      *
      * @param encoding <code>Charset</code> representing the character encoding.
+     *
      * @since Servlet 6.1
      */
     default public void setCharacterEncoding(Charset encoding) {
@@ -145,6 +146,7 @@ public interface ServletRequest {
      * known.
      *
      * @return a long containing the length of the request body or -1L if the length is not known
+     *
      * @since Servlet 3.1
      */
     public long getContentLengthLong();
@@ -161,8 +163,10 @@ public interface ServletRequest {
      * {@link #getReader} may be called to read the body, not both.
      *
      * @return a {@link ServletInputStream} object containing the body of the request
-     * @throws IllegalStateException if the {@link #getReader} method has already been called for this request
-     * @throws IOException           if an input or output exception occurred
+     *
+     * @exception IllegalStateException if the {@link #getReader} method has already been called for this request
+     *
+     * @exception IOException if an input or output exception occurred
      */
     public ServletInputStream getInputStream() throws IOException;
 
@@ -191,17 +195,21 @@ public interface ServletRequest {
      * deployment descriptor.
      *
      * @param name a <code>String</code> specifying the name of the parameter
+     *
      * @return a <code>String</code> representing the single value of the parameter
+     *
      * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
-     *                               including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
-     *                               I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
-     *                               Containers may provide container specific options to handle some or all of these errors in an alternative manner that
-     *                               may include not throwing an exception.
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
+     *
      * @see #getParameterValues
      */
     public String getParameter(String name);
 
     /**
+     *
      * Returns an <code>Enumeration</code> of <code>String</code> objects containing the names of the parameters contained
      * in this request. If the request has no parameters, the method returns an empty <code>Enumeration</code>.
      *
@@ -214,11 +222,12 @@ public interface ServletRequest {
      *
      * @return an <code>Enumeration</code> of <code>String</code> objects, each <code>String</code> containing the name of a
      * request parameter; or an empty <code>Enumeration</code> if the request has no parameters
+     *
      * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
-     *                               including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
-     *                               I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
-     *                               Containers may provide container specific options to handle some or all of these errors in an alternative manner that
-     *                               may include not throwing an exception.
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      */
     public Enumeration<String> getParameterNames();
 
@@ -237,12 +246,15 @@ public interface ServletRequest {
      * deployment descriptor.
      *
      * @param name a <code>String</code> containing the name of the parameter whose value is requested
+     *
      * @return an array of <code>String</code> objects containing the parameter's values
+     *
      * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
-     *                               including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
-     *                               I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
-     *                               Containers may provide container specific options to handle some or all of these errors in an alternative manner that
-     *                               may include not throwing an exception.
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
+     *
      * @see #getParameter
      */
     public String[] getParameterValues(String name);
@@ -263,11 +275,12 @@ public interface ServletRequest {
      *
      * @return an immutable java.util.Map containing parameter names as keys and parameter values as map values. The keys in
      * the parameter map are of type String. The values in the parameter map are of type String array.
+     *
      * @throws IllegalStateException if parameter parsing is triggered and a problem is encountered parsing the parameters
-     *                               including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
-     *                               I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
-     *                               Containers may provide container specific options to handle some or all of these errors in an alternative manner that
-     *                               may include not throwing an exception.
+     * including, but not limited to: invalid percent (%nn) encoding; invalid byte sequence for the specified character set;
+     * I/O errors reading the request body; and triggering a container defined limit related to parameter parsing.
+     * Containers may provide container specific options to handle some or all of these errors in an alternative manner that
+     * may include not throwing an exception.
      */
     public Map<String, String[]> getParameterMap();
 
@@ -312,10 +325,14 @@ public interface ServletRequest {
      * may be called to read the body, not both.
      *
      * @return a <code>BufferedReader</code> containing the body of the request
-     * @throws UnsupportedEncodingException if the character set encoding used is not supported and the text cannot be
-     *                                      decoded
-     * @throws IllegalStateException        if {@link #getInputStream} method has been called on this request
-     * @throws IOException                  if an input or output exception occurred
+     *
+     * @exception UnsupportedEncodingException if the character set encoding used is not supported and the text cannot be
+     * decoded
+     *
+     * @exception IllegalStateException if {@link #getInputStream} method has been called on this request
+     *
+     * @exception IOException if an input or output exception occurred
+     *
      * @see #getInputStream
      */
     public BufferedReader getReader() throws IOException;
@@ -349,11 +366,14 @@ public interface ServletRequest {
      * <code>RequestDispatcher</code>, the object set by this method may not be correctly retrieved in the caller servlet.
      *
      * @param name a <code>String</code> specifying the name of the attribute
-     * @param o    the <code>Object</code> to be stored
+     *
+     * @param o the <code>Object</code> to be stored
+     *
      */
     public void setAttribute(String name, Object o);
 
     /**
+     *
      * Removes an attribute from this request. This method is not generally needed as attributes only persist as long as the
      * request is being handled.
      *
@@ -385,6 +405,7 @@ public interface ServletRequest {
     public Enumeration<Locale> getLocales();
 
     /**
+     *
      * Returns a boolean indicating whether this request was made using a secure channel, such as HTTPS.
      *
      * @return a boolean indicating if the request was made using a secure channel
@@ -392,6 +413,7 @@ public interface ServletRequest {
     public boolean isSecure();
 
     /**
+     *
      * Returns a {@link RequestDispatcher} object that acts as a wrapper for the resource located at the given path. A
      * <code>RequestDispatcher</code> object can be used to forward a request to the resource or to include the resource in
      * a response. The resource can be dynamic or static.
@@ -412,9 +434,11 @@ public interface ServletRequest {
      * relative path.
      *
      * @param path a <code>String</code> specifying the pathname to the resource. If it is relative, it must be relative
-     *             against the current servlet.
+     * against the current servlet.
+     *
      * @return a <code>RequestDispatcher</code> object that acts as a wrapper for the resource at the specified path, or
      * <code>null</code> if the servlet container cannot return a <code>RequestDispatcher</code>
+     *
      * @see RequestDispatcher
      * @see ServletContext#getRequestDispatcher
      */
@@ -427,6 +451,7 @@ public interface ServletRequest {
      * to that of the actual TCP/IP connection.
      *
      * @return an integer specifying the port number
+     *
      * @since Servlet 2.4
      */
     public int getRemotePort();
@@ -436,6 +461,7 @@ public interface ServletRequest {
      * not to resolve the hostname (to improve performance), this method returns the IP address.
      *
      * @return a <code>String</code> containing the host name of the IP on which the request was received.
+     *
      * @since Servlet 2.4
      */
     public String getLocalName();
@@ -446,6 +472,7 @@ public interface ServletRequest {
      * to obtain an address different to that of the actual TCP/IP connection.
      *
      * @return a <code>String</code> containing an IP address.
+     *
      * @since Servlet 2.4
      */
     public String getLocalAddr();
@@ -456,6 +483,7 @@ public interface ServletRequest {
      * to obtain an address different to that of the actual TCP/IP connection.
      *
      * @return an integer specifying a port number
+     *
      * @since Servlet 2.4
      */
     public int getLocalPort();
@@ -464,6 +492,7 @@ public interface ServletRequest {
      * Gets the servlet context to which this ServletRequest was last dispatched.
      *
      * @return the servlet context to which this ServletRequest was last dispatched
+     *
      * @since Servlet 3.0
      */
     public ServletContext getServletContext();
@@ -493,11 +522,13 @@ public interface ServletRequest {
      * reinitialized as appropriate.
      *
      * @return the (re)initialized AsyncContext
+     *
      * @throws IllegalStateException if this request is within the scope of a filter or servlet that does not support
-     *                               asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
-     *                               any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
-     *                               scope of any such dispatch, or is called again within the scope of the same dispatch, or if the response has already
-     *                               been closed
+     * asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
+     * any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
+     * scope of any such dispatch, or is called again within the scope of the same dispatch, or if the response has already
+     * been closed
+     *
      * @see AsyncContext#dispatch()
      * @since Servlet 3.0
      */
@@ -540,14 +571,17 @@ public interface ServletRequest {
      * specified (and possibly wrapped) request and response objects will remain <i>locked in</i> on the returned
      * AsyncContext.
      *
-     * @param servletRequest  the ServletRequest used to initialize the AsyncContext
+     * @param servletRequest the ServletRequest used to initialize the AsyncContext
      * @param servletResponse the ServletResponse used to initialize the AsyncContext
+     *
      * @return the (re)initialized AsyncContext
+     *
      * @throws IllegalStateException if this request is within the scope of a filter or servlet that does not support
-     *                               asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
-     *                               any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
-     *                               scope of any such dispatch, or is called again within the scope of the same dispatch, or if the response has already
-     *                               been closed
+     * asynchronous operations (that is, {@link #isAsyncSupported} returns false), or if this method is called again without
+     * any asynchronous dispatch (resulting from one of the {@link AsyncContext#dispatch} methods), is called outside the
+     * scope of any such dispatch, or is called again within the scope of the same dispatch, or if the response has already
+     * been closed
+     *
      * @since Servlet 3.0
      */
     public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse)
@@ -558,7 +592,7 @@ public interface ServletRequest {
      *
      * <p>
      * A ServletRequest is put into asynchronous mode by calling {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on it.
+     * {@link #startAsync(ServletRequest,ServletResponse)} on it.
      *
      * <p>
      * This method returns <tt>false</tt> if this request was put into asynchronous mode, but has since been dispatched
@@ -569,6 +603,7 @@ public interface ServletRequest {
      * {@link ServletRequest#startAsync()} has returned to the container.
      *
      * @return true if this request has been put into asynchronous mode, false otherwise
+     *
      * @since Servlet 3.0
      */
     public boolean isAsyncStarted();
@@ -581,18 +616,21 @@ public interface ServletRequest {
      * has not been annotated or flagged in the deployment descriptor as being able to support asynchronous handling.
      *
      * @return true if this request supports asynchronous operation, false otherwise
+     *
      * @since Servlet 3.0
      */
     public boolean isAsyncSupported();
 
     /**
      * Gets the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on this request.
+     * {@link #startAsync(ServletRequest,ServletResponse)} on this request.
      *
      * @return the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest, ServletResponse)} on this request
+     * {@link #startAsync(ServletRequest,ServletResponse)} on this request
+     *
      * @throws IllegalStateException if this request has not been put into asynchronous mode, i.e., if neither
-     *                               {@link #startAsync} nor {@link #startAsync(ServletRequest, ServletResponse)} has been called
+     * {@link #startAsync} nor {@link #startAsync(ServletRequest,ServletResponse)} has been called
+     *
      * @since Servlet 3.0
      */
     public AsyncContext getAsyncContext();
@@ -618,7 +656,9 @@ public interface ServletRequest {
      * <code>DispatcherType.ERROR</code>.
      *
      * @return the dispatcher type of this request
+     *
      * @see DispatcherType
+     *
      * @since Servlet 3.0
      */
     public DispatcherType getDispatcherType();
@@ -629,6 +669,7 @@ public interface ServletRequest {
      * There is no defined format for this string. The format is implementation dependent.
      *
      * @return A unique identifier for the request
+     *
      * @since Servlet 6.0
      */
     String getRequestId();
@@ -650,6 +691,7 @@ public interface ServletRequest {
      * </dl>
      *
      * @return The request identifier if one is defined, otherwise an empty string
+     *
      * @since Servlet 6.0
      */
     String getProtocolRequestId();
@@ -660,6 +702,7 @@ public interface ServletRequest {
      * adjustments for, example, use of reverse proxies that may be applied elsewhere in the Servlet API.
      *
      * @return The network connection details.
+     *
      * @since Servlet 6.0
      */
     ServletConnection getServletConnection();
