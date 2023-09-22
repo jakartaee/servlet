@@ -211,10 +211,10 @@ public class HttpServletResponseTests extends HttpResponseClient {
    */
     @Test
     public void getContentTypeTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getContentTypeTest");
+        TEST_PROPS.get().setProperty(APITEST, "getContentTypeTest");
         invoke();
-        TEST_PROPS.setProperty(REQUEST, "GET /servlet_pluh_httpservletresponse_web/GetContentTypeNullTestServlet HTTP/1.1");
-        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        TEST_PROPS.get().setProperty(REQUEST, "GET /servlet_pluh_httpservletresponse_web/GetContentTypeNullTestServlet HTTP/1.1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
         invoke();
     }
 

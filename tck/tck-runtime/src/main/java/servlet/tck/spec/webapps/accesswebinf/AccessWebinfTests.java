@@ -55,12 +55,12 @@ public class AccessWebinfTests extends AbstractTckTest {
   @Test
   public void accessWebInfTest() throws Exception {
     String testName = "accessWebInfTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "/test.html HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
 
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "test html page");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "test html page");
     invoke();
   }
 }

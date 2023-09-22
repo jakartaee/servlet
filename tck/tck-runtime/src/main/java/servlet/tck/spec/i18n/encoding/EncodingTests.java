@@ -63,7 +63,7 @@ public class EncodingTests extends AbstractTckTest {
    */
   @Test
   public void spec1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "spec1Test");
+    TEST_PROPS.get().setProperty(APITEST, "spec1Test");
     invoke();
   }
 
@@ -77,7 +77,7 @@ public class EncodingTests extends AbstractTckTest {
    */
   @Test
   public void spec2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "spec2Test");
+    TEST_PROPS.get().setProperty(APITEST, "spec2Test");
     invoke();
   }
 
@@ -91,7 +91,7 @@ public class EncodingTests extends AbstractTckTest {
    */
   @Test
   public void spec3Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "spec3Test");
+    TEST_PROPS.get().setProperty(APITEST, "spec3Test");
     invoke();
   }
 

@@ -63,7 +63,7 @@ public class GetEffectiveMinorVersionTests extends AbstractTckTest {
    */
   @Test
   public void getEffectiveMajorVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getEffectiveMajorVersionTest");
+    TEST_PROPS.get().setProperty(APITEST, "getEffectiveMajorVersionTest");
     invoke();
   }
 }

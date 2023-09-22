@@ -149,9 +149,9 @@ public class AnnotationsTests extends BaseTckTest {
   public void test1() throws Exception {
     trace("testing DenyAll");
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test1");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageDeny));
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageDeny));
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
@@ -161,9 +161,9 @@ public class AnnotationsTests extends BaseTckTest {
       // fails then we have an issue.
       trace(
           "we tested for Status Code=401 but we could have a 403 code, so check for that.");
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test1");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageDeny));
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageDeny));
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
@@ -200,20 +200,20 @@ public class AnnotationsTests extends BaseTckTest {
     // attempt to doPost as "javajoe" should be allowed
     trace(
         "Sending request to resource with valid username/password, but not the right roles...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
-    //TEST_PROPS.setProperty(BASIC_AUTH_REALM, realm); // default
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
+    //TEST_PROPS.get().setProperty(BASIC_AUTH_REALM, realm); // default
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception ex) {
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
     }
 
     // attempt to doGet as "javajoe" should be allowed due to DD and
@@ -222,12 +222,12 @@ public class AnnotationsTests extends BaseTckTest {
     // check
     trace(
         "Sending request to resource with valid username/password, but not the right roles...");
-    TEST_PROPS.setProperty(SEARCH_STRING, sb.toString());
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, sb.toString());
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
 
     // attempt to doGet as "j2ee" should NOT be allowed since the DD only
@@ -236,21 +236,21 @@ public class AnnotationsTests extends BaseTckTest {
     // spec statement cited in the javadoc for this test.
     trace(
         "Sending request to resource with valid username/password, but not the right roles...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
       // its possible we were denied access with a FORBIDDEN code
       // so retry with that code - if it still fails then we have an issue.
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
@@ -279,13 +279,13 @@ public class AnnotationsTests extends BaseTckTest {
     String invalidUser = "invalid";
 
     // this should all work as @PermitAll is set on ServletSecTestServlet.doGet
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test3");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // try using
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test3");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // try using
                                                              // "invalid" creds
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // and it should
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // and it should
                                                                // still work
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
     trace(
         "Class level annotation of Roles allowed overridden by method level permit all access.");
@@ -315,10 +315,10 @@ public class AnnotationsTests extends BaseTckTest {
     String invalidUser = "invalid";
 
     // now see if we get access denied - since DenyAll anno set on doPost method
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED); // check for status code
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED); // check for status code
                                                        // 401
     try {
       invoke();
@@ -327,10 +327,10 @@ public class AnnotationsTests extends BaseTckTest {
       // of
       // UNAUTHORIZED (401) so retry and check for FORBIDDEN code. If it still
       // fails then we have an issue.
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageSec));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username);
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username);
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
@@ -356,13 +356,13 @@ public class AnnotationsTests extends BaseTckTest {
   public void test5() throws Exception {
 
     trace("Sending request to resource that uses the PermitAll annotation....");
-    TEST_PROPS.setProperty(TEST_NAME, "BasicSec/Test5");
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // try using
+    TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test5");
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // try using
                                                              // "invalid" creds
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // and it should
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // and it should
                                                                // still work
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
     trace("Class level PermitAll anno returned expected results");
     trace("test5 passed.");
@@ -394,7 +394,7 @@ public class AnnotationsTests extends BaseTckTest {
 
     trace(
         "Sending request to resource where DD allows access to override any restricting annotation...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
 
     // attempt to doGet as "j2ee" should NOT be allowed since the DD only
     // states to allow Manager role (ie javajoe). The RolesAllowed annon
@@ -403,21 +403,21 @@ public class AnnotationsTests extends BaseTckTest {
     trace(
         "Sending request to resource with valid username/password, but not the right roles...");
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
       // its possible we were denied access with a FORBIDDEN code
       // so retry with that code - if it still fails then we have an issue.
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
@@ -447,9 +447,9 @@ public class AnnotationsTests extends BaseTckTest {
     trace("testing http-method-omission");
 
     // try to access servlet via GET with NO creds/roles should fail
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test7");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pagePartial));
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test7");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pagePartial));
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
@@ -459,28 +459,28 @@ public class AnnotationsTests extends BaseTckTest {
       // fails then we have an issue.
       trace(
           "we tested for Status Code=401 but we could have a 403 code, so check for that.");
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test7");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pagePartial));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // try as "j2ee"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // try as "j2ee"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test7");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pagePartial));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // try as "j2ee"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // try as "j2ee"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
     trace("test7:  complete doGet() with no creds - now starting doPost");
 
     // try to access servlet via GET with creds/roles should pass
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test7");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pagePartial));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // try as "j2ee"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // try as "j2ee"
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test7");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pagePartial));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // try as "j2ee"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // try as "j2ee"
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
     trace("test7:  complete doGet() with creds - now starting doPost");
 
     // we should be allowed to do POST with NO creds
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test7");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pagePartial));
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test7");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pagePartial));
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
     trace("test7:  complete doPost() with no creds.");
 

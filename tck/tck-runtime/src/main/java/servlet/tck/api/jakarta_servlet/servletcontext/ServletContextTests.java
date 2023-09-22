@@ -62,7 +62,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetServletTempDirTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletTempDir");
+    TEST_PROPS.get().setProperty(APITEST, "getServletTempDir");
     invoke();
   }
 
@@ -77,7 +77,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetMajorVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMajorVersion");
+    TEST_PROPS.get().setProperty(APITEST, "getMajorVersion");
     invoke();
   }
 
@@ -92,7 +92,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetMinorVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMinorVersion");
+    TEST_PROPS.get().setProperty(APITEST, "getMinorVersion");
     invoke();
   }
 
@@ -107,7 +107,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetMimeTypeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMimeType");
+    TEST_PROPS.get().setProperty(APITEST, "getMimeType");
     invoke();
   }
 
@@ -122,7 +122,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetMimeType_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMimeType_1");
+    TEST_PROPS.get().setProperty(APITEST, "getMimeType_1");
     invoke();
   }
 
@@ -137,7 +137,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetRealPathTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRealPath");
+    TEST_PROPS.get().setProperty(APITEST, "getRealPath");
     invoke();
   }
 
@@ -151,18 +151,18 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResourcePathsTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "/WEB-INF/web.xml");
-    TEST_PROPS.setProperty(APITEST, "getResourcePaths");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "/WEB-INF/web.xml");
+    TEST_PROPS.get().setProperty(APITEST, "getResourcePaths");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "/WEB-INF/classes/servlet/tck/api/jakarta_servlet/servletcontext/TestServlet.class");
-    TEST_PROPS.setProperty(APITEST, "getResourcePaths");
+    TEST_PROPS.get().setProperty(APITEST, "getResourcePaths");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "/WEB-INF/classes/servlet/tck/api/jakarta_servlet/servletcontext/GetNamedDispatcherTestServlet.class");
-    TEST_PROPS.setProperty(APITEST, "getResourcePaths");
+    TEST_PROPS.get().setProperty(APITEST, "getResourcePaths");
     invoke();
   }
 
@@ -176,7 +176,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResourceAsStreamTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getResourceAsStream");
+    TEST_PROPS.get().setProperty(APITEST, "getResourceAsStream");
     invoke();
   }
 
@@ -190,7 +190,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResourceAsStream_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getResourceAsStream_1");
+    TEST_PROPS.get().setProperty(APITEST, "getResourceAsStream_1");
     invoke();
   }
 
@@ -204,7 +204,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResourceTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getResource");
+    TEST_PROPS.get().setProperty(APITEST, "getResource");
     invoke();
   }
 
@@ -219,7 +219,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResource_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getResource_1");
+    TEST_PROPS.get().setProperty(APITEST, "getResource_1");
     invoke();
   }
 
@@ -234,8 +234,8 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetResource_2Test() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "");
-    TEST_PROPS.setProperty(APITEST, "getResource_2");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "");
+    TEST_PROPS.get().setProperty(APITEST, "getResource_2");
     invoke();
   }
 
@@ -249,7 +249,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetServerInfoTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServerInfo");
+    TEST_PROPS.get().setProperty(APITEST, "getServerInfo");
     invoke();
   }
 
@@ -263,7 +263,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetAttribute");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttribute");
     invoke();
   }
 
@@ -278,7 +278,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetAttribute_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetAttribute_1");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttribute_1");
     invoke();
   }
 
@@ -292,7 +292,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetContextTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetContext");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetContext");
     invoke();
   }
 
@@ -307,7 +307,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetInitParameterNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameterNames");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameterNames");
     invoke();
   }
 
@@ -322,7 +322,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameter");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameter");
     invoke();
   }
 
@@ -337,7 +337,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetInitParameterTestNull() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetInitParameterNull");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameterNull");
     invoke();
   }
 
@@ -351,7 +351,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextRemoveAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextRemoveAttribute");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextRemoveAttribute");
     invoke();
   }
 
@@ -365,7 +365,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextSetAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextSetAttribute");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute");
     invoke();
   }
 
@@ -381,7 +381,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextSetAttribute_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextSetAttribute_1");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute_1");
     invoke();
   }
 
@@ -396,7 +396,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextSetAttribute_2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextSetAttribute_2");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute_2");
     invoke();
   }
 
@@ -410,7 +410,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetAttributeNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetAttributeNames");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttributeNames");
     invoke();
   }
 
@@ -425,7 +425,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void ServletContextGetRequestDispatcherTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletContextGetRequestDispatcher");
+    TEST_PROPS.get().setProperty(APITEST, "servletContextGetRequestDispatcher");
     invoke();
   }
 
@@ -441,7 +441,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetNamedDispatcherTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNamedDispatcher");
+    TEST_PROPS.get().setProperty(APITEST, "getNamedDispatcher");
     invoke();
   }
 
@@ -456,7 +456,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetNamedDispatcher_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNamedDispatcher_1");
+    TEST_PROPS.get().setProperty(APITEST, "getNamedDispatcher_1");
     invoke();
   }
 
@@ -472,7 +472,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void GetServletNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletNameTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletNameTest");
     invoke();
   }
 }

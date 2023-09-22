@@ -65,7 +65,7 @@ public class CreateServletTests extends AbstractTckTest {
    */
   @Test
   public void createServletTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "createServletTest");
+    TEST_PROPS.get().setProperty(APITEST, "createServletTest");
     invoke();
   }
 }

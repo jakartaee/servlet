@@ -80,10 +80,10 @@ public class PluggabilityOrderingTests extends AbstractTckTest {
    */
   @Test
   public void initParamTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4|"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4|"
         + "msg1=first|msg2=second|msg3=third|msg4=fourth|" + "RequestListener");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet4" + " HTTP/1.1");
     invoke();
   }

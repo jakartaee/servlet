@@ -68,9 +68,9 @@ public class SrListenerTests extends AbstractTckTest {
    */
   @Test
   public void initializeDestroyTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "initializeDestroyTest");
+    TEST_PROPS.get().setProperty(APITEST, "initializeDestroyTest");
     invoke();
-    TEST_PROPS.setProperty(APITEST, "checkLog");
+    TEST_PROPS.get().setProperty(APITEST, "checkLog");
     invoke();
   }
 }

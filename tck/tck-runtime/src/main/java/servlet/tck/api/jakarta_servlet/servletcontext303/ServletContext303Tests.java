@@ -66,8 +66,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSRAListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSRAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSRAListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
     invoke();
   }
 
@@ -82,8 +82,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSRAListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSRAListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSRAListenerStringTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
     invoke();
   }
 
@@ -97,8 +97,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSRListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSRListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
   }
 
@@ -112,8 +112,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSRListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSRListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSRListenerStringTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
   }
 
@@ -128,8 +128,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSCAListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSCAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSCAListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
   }
 
@@ -144,8 +144,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSCAListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSCAListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCAttributeListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSCAListenerStringTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCAttributeListener");
     invoke();
   }
 
@@ -159,8 +159,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSCListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSCListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
     invoke();
   }
 
@@ -174,8 +174,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddSCListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddSCListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddSCListenerStringTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
     invoke();
   }
 }

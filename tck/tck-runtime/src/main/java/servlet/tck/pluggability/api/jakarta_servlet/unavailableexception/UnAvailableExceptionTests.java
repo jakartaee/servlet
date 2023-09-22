@@ -71,7 +71,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    */
   @Test
   public void getUnavailableSecondsTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getUnavailableSecondsTest");
+    TEST_PROPS.get().setProperty(APITEST, "getUnavailableSecondsTest");
     invoke();
   }
 
@@ -85,7 +85,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    */
   @Test
   public void isPermanentTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "isPermanentTest");
+    TEST_PROPS.get().setProperty(APITEST, "isPermanentTest");
     invoke();
   }
 
@@ -101,11 +101,11 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    */
   @Test
   public void unavailableTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, " ");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(STATUS_CODE, "404");
-    TEST_PROPS.setProperty(APITEST, "unavailableTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, " ");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(STATUS_CODE, "404");
+    TEST_PROPS.get().setProperty(APITEST, "unavailableTest");
     invoke();
   }
 
@@ -120,7 +120,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    */
   @Test
   public void unavailableException_Constructor1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "unavailableException_Constructor1Test");
+    TEST_PROPS.get().setProperty(APITEST, "unavailableException_Constructor1Test");
     invoke();
   }
 
@@ -135,7 +135,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    */
   @Test
   public void unavailableException_Constructor2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "unavailableException_Constructor2Test");
+    TEST_PROPS.get().setProperty(APITEST, "unavailableException_Constructor2Test");
     invoke();
   }
 }

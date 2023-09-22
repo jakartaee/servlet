@@ -57,9 +57,9 @@ public class ServletRequestWrapper30xTests extends AbstractTckTest {
    */
   @Test
   public void isWrapperForTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/IsWrapperForTest  HTTP/1.1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test Failed");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test Failed");
     invoke();
   }
 }

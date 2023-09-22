@@ -64,15 +64,15 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleinclude() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "includes");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "includes");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "IncludedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
       pass = false;
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -92,8 +92,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void multipleincludes() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "multipleincludes");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "multipleincludes");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "SecondIncludedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
@@ -101,7 +101,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -121,8 +121,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void includeforward() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "includeforward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "includeforward");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
@@ -130,7 +130,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -150,16 +150,16 @@ public class SrListenerTests extends AbstractTckTest {
   public void includeerror() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+      TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=includeerror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
+      TEST_PROPS.get().setProperty(STATUS_CODE, "403");
       invoke();
     } catch (Exception flt) {
       pass = false;
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -179,8 +179,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleforward() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "forward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "forward");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
@@ -188,7 +188,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -208,8 +208,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void multipleforwards() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "multipleforwards");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "multipleforwards");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "SecondForwardedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
@@ -217,7 +217,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -237,8 +237,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void forwardinclude() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "forwardinclude");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "forwardinclude");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "IncludedServlet Invoked|simple method");
       invoke();
     } catch (Exception flt) {
@@ -246,7 +246,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -266,16 +266,16 @@ public class SrListenerTests extends AbstractTckTest {
   public void forwarderror() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+      TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=forwarderror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
+      TEST_PROPS.get().setProperty(STATUS_CODE, "403");
       invoke();
     } catch (Exception flt) {
       pass = false;
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -295,8 +295,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleasync() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "async");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "async");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "TestServlet Invoked|method async|TestServlet_Async=STARTED");
       invoke();
     } catch (Exception flt) {
@@ -304,7 +304,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -324,8 +324,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleasyncinclude() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "simpleasyncinclude");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "simpleasyncinclude");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "TestServlet Invoked|method simpleasyncinclude"
               + "|TestServlet_Async=STARTED"
               + "|IncludedServlet Invoked||simple method");
@@ -335,7 +335,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -355,8 +355,8 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleasyncforward() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(APITEST, "simpleasyncforward");
-      TEST_PROPS.setProperty(SEARCH_STRING,
+      TEST_PROPS.get().setProperty(APITEST, "simpleasyncforward");
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
           "ForwardedServlet Invoked||simple method");
       invoke();
     } catch (Exception flt) {
@@ -364,7 +364,7 @@ public class SrListenerTests extends AbstractTckTest {
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -384,16 +384,16 @@ public class SrListenerTests extends AbstractTckTest {
   public void simpleasyncerror() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+      TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
           + "/TestServlet?testname=simpleasyncerror HTTP/1.1");
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
+      TEST_PROPS.get().setProperty(STATUS_CODE, "403");
       invoke();
     } catch (Exception flt) {
       pass = false;
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {
@@ -413,17 +413,17 @@ public class SrListenerTests extends AbstractTckTest {
   public void error() throws Exception {
     boolean pass = true;
     try {
-      TEST_PROPS.setProperty(REQUEST,
+      TEST_PROPS.get().setProperty(REQUEST,
           "GET " + getContextRoot() + "/TestServlet?testname=error HTTP/1.1");
 
-      TEST_PROPS.setProperty(STATUS_CODE, "403");
+      TEST_PROPS.get().setProperty(STATUS_CODE, "403");
       invoke();
     } catch (Exception flt) {
       pass = false;
       logger.error("Test failed at the first invocation. catch it here so the cleanup can continue", flt);
     }
 
-    TEST_PROPS.setProperty(APITEST, "checkLogSimple");
+    TEST_PROPS.get().setProperty(APITEST, "checkLogSimple");
     invoke();
 
     if (!pass) {

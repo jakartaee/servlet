@@ -68,11 +68,11 @@ public class AorderingTests extends AbstractTckTest {
    */
   @Test
   public void absoluteOrderingTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "msg1=first|msg2=second|" + "RequestListener|RequestListener1|"
             + "RequestListener2|RequestListener3|"
             + "RequestListener4|RequestListener5");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet1" + " HTTP/1.1");
     invoke();
   }

@@ -65,7 +65,7 @@ public class SrListener40Tests extends AbstractTckTest {
    */
   @Test
   public void defaultMethodsTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "defaultMethodsTest");
+    TEST_PROPS.get().setProperty(APITEST, "defaultMethodsTest");
     invoke();
   }
 

@@ -59,7 +59,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest1");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest1");
     invoke();
   }
 
@@ -73,7 +73,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest2");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest2");
     invoke();
   }
 
@@ -86,7 +86,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest3() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest3");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest3");
     invoke();
   }
 
@@ -100,7 +100,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest4() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest4");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest4");
     invoke();
   }
 
@@ -115,7 +115,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void getSuppliedRequestTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSuppliedRequestTest1");
+    TEST_PROPS.get().setProperty(APITEST, "getSuppliedRequestTest1");
     invoke();
   }
 
@@ -130,7 +130,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void getSuppliedRequestTest2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSuppliedRequestTest2");
+    TEST_PROPS.get().setProperty(APITEST, "getSuppliedRequestTest2");
     invoke();
   }
 
@@ -145,7 +145,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void getSuppliedResponseTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSuppliedResponseTest1");
+    TEST_PROPS.get().setProperty(APITEST, "getSuppliedResponseTest1");
     invoke();
   }
 
@@ -160,7 +160,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void getSuppliedResponseTest2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSuppliedResponseTest2");
+    TEST_PROPS.get().setProperty(APITEST, "getSuppliedResponseTest2");
     invoke();
   }
 
@@ -175,7 +175,7 @@ public class AsynceventTests extends AbstractTckTest {
    */
   @Test
   public void getThrowableTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getThrowableTest");
+    TEST_PROPS.get().setProperty(APITEST, "getThrowableTest");
     invoke();
   }
 }

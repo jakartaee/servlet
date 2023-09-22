@@ -71,7 +71,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    */
   @Test
   public void getRootCauseTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRootCause");
+    TEST_PROPS.get().setProperty(APITEST, "getRootCause");
     invoke();
   }
 
@@ -84,7 +84,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    */
   @Test
   public void servletExceptionConstructor1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletExceptionConstructor1");
+    TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor1");
     invoke();
   }
 
@@ -97,7 +97,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    */
   @Test
   public void servletExceptionConstructor2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletExceptionConstructor2");
+    TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor2");
     invoke();
   }
 
@@ -111,7 +111,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    */
   @Test
   public void servletExceptionConstructor3Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletExceptionConstructor3");
+    TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor3");
     invoke();
 
   }
@@ -127,7 +127,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    */
   @Test
   public void servletExceptionConstructor4Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletExceptionConstructor4");
+    TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor4");
     invoke();
   }
 }

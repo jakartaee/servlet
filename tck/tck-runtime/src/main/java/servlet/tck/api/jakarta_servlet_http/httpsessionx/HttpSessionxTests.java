@@ -76,17 +76,17 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void getMaxInactiveIntervalTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "getMaxInactiveIntervalTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -108,13 +108,13 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void expireHttpSessionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
 
     try {
@@ -123,8 +123,8 @@ public class HttpSessionxTests extends AbstractTckTest {
       ex.printStackTrace();
     }
 
-    TEST_PROPS.setProperty(APITEST, "expireHttpSessionTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "expireHttpSessionTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -146,13 +146,13 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void expireHttpSessionxTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
 
     try {
@@ -161,10 +161,10 @@ public class HttpSessionxTests extends AbstractTckTest {
       ex.printStackTrace();
     }
 
-    TEST_PROPS.setProperty(REQUEST, "GET " + "/servlet_jsh_httpsessionx2_web"
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + "/servlet_jsh_httpsessionx2_web"
         + "/expireHttpSession" + " HTTP/1.1");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Session expired as expected.");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Session expired as expected.");
 
     invoke();
   }
@@ -188,13 +188,13 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void expireHttpSessionxriTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
 
     try {
@@ -203,8 +203,8 @@ public class HttpSessionxTests extends AbstractTckTest {
       ex.printStackTrace();
     }
 
-    TEST_PROPS.setProperty(APITEST, "expireHttpSessionxriTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "expireHttpSessionxriTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -230,8 +230,8 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void expireHttpSessionxri1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalxiTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalxiTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
     try {
@@ -240,8 +240,8 @@ public class HttpSessionxTests extends AbstractTckTest {
       ex.printStackTrace();
     }
 
-    TEST_PROPS.setProperty(APITEST, "expireHttpSessionxriTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "expireHttpSessionxriTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -267,8 +267,8 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void expireHttpSessionxrfTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalxfTest");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalxfTest");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
     try {
@@ -277,8 +277,8 @@ public class HttpSessionxTests extends AbstractTckTest {
       ex.printStackTrace();
     }
 
-    TEST_PROPS.setProperty(APITEST, "expireHttpSessionxrfTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "expireHttpSessionxrfTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -298,12 +298,12 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void invalidateHttpSessionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "invalidateSessionTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "invalidateSessionTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -325,12 +325,12 @@ public class HttpSessionxTests extends AbstractTckTest {
    */
   @Test
   public void invalidateHttpSessionxTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getNewSessionx");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getNewSessionx");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "invalidateSessionxTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "invalidateSessionxTest");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 }

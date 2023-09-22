@@ -62,7 +62,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    */
   @Test
   public void setSessionTrackingModes1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes1");
+    TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes1");
     invoke();
   }
 
@@ -78,7 +78,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    */
   @Test
   public void setSessionTrackingModes2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes2");
+    TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes2");
     invoke();
   }
   /*
@@ -93,7 +93,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    */
   @Test
   public void setSessionTrackingModes3() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes3");
+    TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes3");
     invoke();
   }
 
@@ -109,7 +109,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    */
   @Test
   public void setSessionTrackingModes4() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes4");
+    TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes4");
     invoke();
   }
 }

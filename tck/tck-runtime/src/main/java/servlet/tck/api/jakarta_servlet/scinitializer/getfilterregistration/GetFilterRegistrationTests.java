@@ -63,7 +63,7 @@ public class GetFilterRegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getFilterRegistrationTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getFilterRegistrationTest");
+    TEST_PROPS.get().setProperty(APITEST, "getFilterRegistrationTest");
     invoke();
   }
 }

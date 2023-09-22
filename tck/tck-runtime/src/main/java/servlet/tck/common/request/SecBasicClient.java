@@ -131,10 +131,10 @@ public abstract class SecBasicClient extends BaseTckTest {
   public void test1() throws Exception {
     logMessage(
         "Sending request to validate presence of www-authenticate header...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test1");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "www-authenticate:<somevalue>");
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test1");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "www-authenticate:<somevalue>");
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     invoke();
 
     dumpResponse(); // debug aid
@@ -169,11 +169,11 @@ public abstract class SecBasicClient extends BaseTckTest {
     sb.append("isUserInRole(\"VP\"): !false!").append("|");
     sb.append("isUserInRole(\"EMP\"): !true!").append("|");
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(SEARCH_STRING, sb.toString());
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, sb.toString());
     invoke();
 
     dumpResponse(); // debug aid
@@ -199,11 +199,11 @@ public abstract class SecBasicClient extends BaseTckTest {
     logMessage(
         "Sending an request for a protected resource with invalid username/password...");
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test3");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, "invalid");
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test3");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, "invalid");
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     invoke();
 
     dumpResponse(); // debug aid
@@ -235,11 +235,11 @@ public abstract class SecBasicClient extends BaseTckTest {
     sb.append(USER_PRINCIPAL_SEARCH).append(unauthUsername);
 
     logMessage("Sending request to resource the user has access to...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test4");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword);
-    TEST_PROPS.setProperty(SEARCH_STRING, sb.toString());
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test4");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, sb.toString());
     invoke();
 
     dumpResponse(); // debug aid
@@ -248,11 +248,11 @@ public abstract class SecBasicClient extends BaseTckTest {
 
     logMessage(
         "Sending request to resource with valid username/password, but not the right roles...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test4");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword);
-    TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test4");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword);
+    TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
     invoke();
 
     dumpResponse(); // debug aid
@@ -283,10 +283,10 @@ public abstract class SecBasicClient extends BaseTckTest {
     sb.append(REMOTE_USER_SEARCH).append("null");
 
     logMessage("Sending request to unprotected resource....");
-    TEST_PROPS.setProperty(TEST_NAME, "BasicSec/Test5");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
-    TEST_PROPS.setProperty(SEARCH_STRING, sb.toString());
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "!true!");
+    TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test5");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
+    TEST_PROPS.get().setProperty(SEARCH_STRING, sb.toString());
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "!true!");
     invoke();
 
     dumpResponse(); // debug aid
@@ -331,11 +331,11 @@ public abstract class SecBasicClient extends BaseTckTest {
 
     logMessage(
         "Sending request to validate isUserInRole with roles reversed...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test6");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageRoleReverse));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(SEARCH_STRING, sb.toString());
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test6");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageRoleReverse));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, sb.toString());
     invoke();
 
     dumpResponse(); // debug aid
@@ -365,15 +365,15 @@ public abstract class SecBasicClient extends BaseTckTest {
     logMessage(
         "Sending an request for a protected resource with invalid username/password...");
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecBasic/Test7");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecBasic/Test7");
+    TEST_PROPS.get().setProperty(REQUEST,
         getRequestLine("GET", pageSec + "/j_security_check"));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, "invalid");
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, "invalid");
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
     // The servlet is mapped to "/ServletSecTest" so this request should result
     // in a 404 since no Servlet is mapped to the requested URI or 401 if the container
     // rejects the incoming BASIC header.
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED + "," + NOT_FOUND);
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED + "," + NOT_FOUND);
     invoke();
 
     dumpResponse(); // debug aid

@@ -64,7 +64,7 @@ public class GetSessionCookieconfigTests extends AbstractTckTest {
    */
   @Test
   public void getSessionCookieConfigTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSessionCookieConfigTest");
+    TEST_PROPS.get().setProperty(APITEST, "getSessionCookieConfigTest");
     invoke();
   }
 }

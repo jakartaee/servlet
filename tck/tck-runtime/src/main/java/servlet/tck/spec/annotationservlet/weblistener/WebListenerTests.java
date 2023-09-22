@@ -63,8 +63,8 @@ public class WebListenerTests extends AbstractTckTest {
    */
   @Test
   public void ContextListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "ContextListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "ContextInitialized");
+    TEST_PROPS.get().setProperty(APITEST, "ContextListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "ContextInitialized");
     invoke();
   }
 
@@ -79,8 +79,8 @@ public class WebListenerTests extends AbstractTckTest {
    */
   @Test
   public void ContextAttributeListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "ContextAttributeListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "ContextAttributeListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SCAAdded:ContextListener|" + "ContextInitialized|" + "SCAAdded:SRList|"
             + "in requestInitialized method of listener|" + "SCAAdded:Test,tmp|"
             + "SCARemoved:Test,tmp");
@@ -98,8 +98,8 @@ public class WebListenerTests extends AbstractTckTest {
    */
   @Test
   public void RequsetListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "RequsetListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "RequsetListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in requestInitialized method of listener");
     invoke();
   }
@@ -116,13 +116,13 @@ public class WebListenerTests extends AbstractTckTest {
    */
   @Test
   public void RepeatRequsetListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "RepeatRequsetListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "RepeatRequsetListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in requestInitialized method of listener");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "RequsetListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "RequsetListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in requestInitialized method of listener|"
             + "in requestDestroyed method of listener|"
             + "in requestInitialized method of listener");
@@ -140,8 +140,8 @@ public class WebListenerTests extends AbstractTckTest {
    */
   @Test
   public void RequsetAttributeListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "RequsetAttributeListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "RequsetAttributeListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SRAAdded:Test,RequestAttribute|" + "SRARemoved:Test,RequestAttribute");
     invoke();
   }
@@ -159,8 +159,8 @@ public class WebListenerTests extends AbstractTckTest {
   @Test
   public void HttpSessionListenerTest() throws Exception {
     setServletName("HttpTestServlet");
-    TEST_PROPS.setProperty(APITEST, "HttpSessionListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "HttpSessionListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "HSListener:sessionCreated|" + "HSListener:sessionDestroyed");
     invoke();
   }
@@ -184,15 +184,15 @@ public class WebListenerTests extends AbstractTckTest {
 
     // first invocation is to do some session attribute manipulations
     // which should trigger HttpSessionAttributeListener notifications
-    TEST_PROPS.setProperty(APITEST, "HttpSessionAttributeListenerPreLude");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "HttpSessionAttributeListenerPreLude");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in HttpSessionAttributeListenerPreLude");
     invoke();
 
     // 2nd invocation checks that the HttpSessionAttributeListener notifications
     // occurred by verifying certain strings were written to HSAList attribute
-    TEST_PROPS.setProperty(APITEST, "HttpSessionAttributeListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "HttpSessionAttributeListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "HSAttributeListener.attributeAdded|"
             + "HSAttributeListener.attributeReplaced|"
             + "HSAttributeListener.attributeRemoved");

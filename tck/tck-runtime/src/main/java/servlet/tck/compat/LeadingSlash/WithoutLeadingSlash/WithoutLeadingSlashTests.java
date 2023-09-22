@@ -63,7 +63,7 @@ public class WithoutLeadingSlashTests extends AbstractTckTest {
    */
   @Test
   public void WithoutLeadingSlashTest() throws Exception {
-    TEST_PROPS.setProperty(STANDARD, "WithoutLeadingSlashTest");
+    TEST_PROPS.get().setProperty(STANDARD, "WithoutLeadingSlashTest");
     invoke();
   }
 }

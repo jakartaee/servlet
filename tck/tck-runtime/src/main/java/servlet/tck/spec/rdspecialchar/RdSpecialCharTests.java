@@ -65,7 +65,7 @@ public class RdSpecialCharTests extends AbstractTckTest {
    */
   @Test
   public void querySemicolonInclude() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "querySemicolonInclude");
+    TEST_PROPS.get().setProperty(APITEST, "querySemicolonInclude");
     invoke();
   }
 
@@ -83,7 +83,7 @@ public class RdSpecialCharTests extends AbstractTckTest {
    */
   @Test
   public void querySemicolonForward() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "querySemicolonForward");
+    TEST_PROPS.get().setProperty(APITEST, "querySemicolonForward");
     invoke();
   }
 

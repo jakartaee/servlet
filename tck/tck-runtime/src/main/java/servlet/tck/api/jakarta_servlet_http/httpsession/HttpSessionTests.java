@@ -64,7 +64,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getCreationTimeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getCreationTimeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getCreationTimeTest");
     invoke();
   }
 
@@ -77,7 +77,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getCreationTimeIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getCreationTimeIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "getCreationTimeIllegalStateExceptionTest");
     invoke();
   }
 
@@ -90,7 +90,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getIdTestServlet() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getIdTestServlet");
+    TEST_PROPS.get().setProperty(APITEST, "getIdTestServlet");
     invoke();
   }
 
@@ -104,7 +104,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getIdIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getIdIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "getIdIllegalStateExceptionTest");
     invoke();
   }
 
@@ -117,7 +117,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getLastAccessedTimeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getLastAccessedTimeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getLastAccessedTimeTest");
     invoke();
   }
 
@@ -130,7 +130,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getLastAccessedTimeSetGetTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getLastAccessedTimeSetGetTest");
+    TEST_PROPS.get().setProperty(APITEST, "getLastAccessedTimeSetGetTest");
     invoke();
   }
 
@@ -163,8 +163,8 @@ public class HttpSessionTests extends AbstractTckTest {
   @Test
   public void expireHttpSessionTest() throws Exception {
 
-    TEST_PROPS.setProperty(APITEST, "getSessionMax");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getSessionMax");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
 
     Long t1 = System.currentTimeMillis();
@@ -173,11 +173,11 @@ public class HttpSessionTests extends AbstractTckTest {
       tmp++;
     }
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/index.html HTTP/1.1");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, "INDEX from index.html");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "INDEX from index.html");
     invoke();
     Long t2 = System.currentTimeMillis();
 
@@ -185,11 +185,11 @@ public class HttpSessionTests extends AbstractTckTest {
       tmp++;
     }
 
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/getLastAccessedTime?t1=" + t1 + "&t2=" + t2 + " HTTP/1.1");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Test passed: session.getLastAccessedTime()");
     invoke();
 
@@ -199,10 +199,10 @@ public class HttpSessionTests extends AbstractTckTest {
       tmp++;
     }
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/expireHttpSession HTTP/1.1");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Session expired as expected.");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Session expired as expected.");
     invoke();
   }
 
@@ -215,12 +215,12 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getLastAccessedTimeIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSession");
-    TEST_PROPS.setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(APITEST, "getSession");
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
-    TEST_PROPS.setProperty(APITEST,
+    TEST_PROPS.get().setProperty(APITEST,
         "getLastAccessedTimeIllegalStateExceptionTest");
-    TEST_PROPS.setProperty(USE_SAVED_STATE, "true");
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     invoke();
   }
 
@@ -233,7 +233,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getMaxInactiveIntervalTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(APITEST, "getMaxInactiveIntervalTest");
     invoke();
   }
 
@@ -246,7 +246,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getAttributeNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getAttributeNamesTest");
+    TEST_PROPS.get().setProperty(APITEST, "getAttributeNamesTest");
     invoke();
   }
 
@@ -259,7 +259,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getAttributeNamesIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST,
+    TEST_PROPS.get().setProperty(APITEST,
         "getAttributeNamesIllegalStateExceptionTest");
     invoke();
   }
@@ -273,7 +273,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getAttributeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getAttributeTest");
     invoke();
   }
 
@@ -286,7 +286,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getAttributeIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getAttributeIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "getAttributeIllegalStateExceptionTest");
     invoke();
   }
 
@@ -299,7 +299,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void getServletContextTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletContextTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     invoke();
   }
 
@@ -312,7 +312,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void invalidateTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "invalidateTest");
+    TEST_PROPS.get().setProperty(APITEST, "invalidateTest");
     invoke();
   }
 
@@ -325,7 +325,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void invalidateIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "invalidateIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "invalidateIllegalStateExceptionTest");
     invoke();
   }
 
@@ -338,7 +338,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void isNewTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "isNewTest");
+    TEST_PROPS.get().setProperty(APITEST, "isNewTest");
     invoke();
   }
 
@@ -351,7 +351,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void isNewIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "isNewIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "isNewIllegalStateExceptionTest");
     invoke();
   }
 
@@ -364,7 +364,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void removeAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "removeAttributeTest");
+    TEST_PROPS.get().setProperty(APITEST, "removeAttributeTest");
     invoke();
   }
 
@@ -378,7 +378,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void removeAttributeDoNothingTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "removeAttributeDoNothingTest");
+    TEST_PROPS.get().setProperty(APITEST, "removeAttributeDoNothingTest");
     invoke();
   }
 
@@ -391,7 +391,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void removeAttributeIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "removeAttributeIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "removeAttributeIllegalStateExceptionTest");
     invoke();
   }
 
@@ -404,7 +404,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void setAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
 
@@ -417,7 +417,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void setAttributeNullTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setAttributeNullTest");
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeNullTest");
     invoke();
   }
 
@@ -430,7 +430,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void setAttributeIllegalStateExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setAttributeIllegalStateExceptionTest");
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeIllegalStateExceptionTest");
     invoke();
   }
 
@@ -443,7 +443,7 @@ public class HttpSessionTests extends AbstractTckTest {
    */
   @Test
   public void setMaxInactiveIntervalTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxInactiveIntervalTest");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
     invoke();
   }
 }

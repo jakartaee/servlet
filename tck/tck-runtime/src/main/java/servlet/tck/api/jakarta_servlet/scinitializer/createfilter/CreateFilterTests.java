@@ -65,7 +65,7 @@ public class CreateFilterTests extends AbstractTckTest {
    */
   @Test
   public void createFilterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "createFilterTest");
+    TEST_PROPS.get().setProperty(APITEST, "createFilterTest");
     invoke();
   }
 }

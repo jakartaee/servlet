@@ -67,8 +67,8 @@ public class DoFilerTests extends AbstractTckTest {
    */
   @Test
   public void wrapResponseTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "wrapResponseTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "wrapResponseTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "CTSResponseWrapper|WrapResponseFilter|ForwardedServlet");
     invoke();
   }

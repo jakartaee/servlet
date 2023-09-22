@@ -71,17 +71,17 @@ public class Aordering3Tests extends AbstractTckTest {
    */
   @Test
   public void absoluteOrderingTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "msg1=first|RequestListener");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "msg1=first|RequestListener");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "msg2=second|TestServlet2|"
             + "RequestListener1|RequestListener2|RequestListener3|"
             + "RequestListener4|RequestListener5|RequestListener6");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet1" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet2" + " HTTP/1.1");
     invoke();
   }

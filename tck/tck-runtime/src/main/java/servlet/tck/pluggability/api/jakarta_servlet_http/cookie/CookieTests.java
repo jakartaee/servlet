@@ -79,7 +79,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void cloneTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "cloneTest");
+    TEST_PROPS.get().setProperty(APITEST, "cloneTest");
     invoke();
   }
 
@@ -94,7 +94,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest");
     invoke();
   }
 
@@ -110,9 +110,9 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void constructorIllegalArgumentExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet?testname=constructorIllegalArgumentExceptionTest HTTP/1.1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -127,7 +127,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getCommentTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getCommentTest");
+    TEST_PROPS.get().setProperty(APITEST, "getCommentTest");
     invoke();
   }
 
@@ -142,7 +142,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getCommentNullTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getCommentNullTest");
+    TEST_PROPS.get().setProperty(APITEST, "getCommentNullTest");
     invoke();
   }
 
@@ -159,10 +159,10 @@ public class CookieTests extends AbstractTckTest {
   @Test
   public void getDomainTest() throws Exception {
     // version 1
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
         "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
             + "; $Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getDomainTest");
+    TEST_PROPS.get().setProperty(APITEST, "getDomainTest");
     invoke();
 
   }
@@ -178,7 +178,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getMaxAgeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getMaxAgeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getMaxAgeTest");
     invoke();
   }
 
@@ -195,16 +195,16 @@ public class CookieTests extends AbstractTckTest {
   @Test
   public void getNameTest() throws Exception {
     // version 0 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
         + _hostname + "; Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getNameTest");
+    TEST_PROPS.get().setProperty(APITEST, "getNameTest");
     invoke();
 
     // version 1 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
         "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
             + "; $Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getNameTest");
+    TEST_PROPS.get().setProperty(APITEST, "getNameTest");
     invoke();
   }
 
@@ -220,10 +220,10 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getPathTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
         "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
             + "; $Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getPathTest");
+    TEST_PROPS.get().setProperty(APITEST, "getPathTest");
     invoke();
   }
 
@@ -238,7 +238,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getSecureTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getSecureTest");
+    TEST_PROPS.get().setProperty(APITEST, "getSecureTest");
     invoke();
   }
 
@@ -255,15 +255,15 @@ public class CookieTests extends AbstractTckTest {
   @Test
   public void getValueTest() throws Exception {
     // version 0 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
         + _hostname + "; Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getValueTest");
+    TEST_PROPS.get().setProperty(APITEST, "getValueTest");
     invoke();
     // version 1 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
         "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
             + "; $Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getValueTest");
+    TEST_PROPS.get().setProperty(APITEST, "getValueTest");
     invoke();
   }
 
@@ -280,15 +280,15 @@ public class CookieTests extends AbstractTckTest {
   @Test
   public void getVersionTest() throws Exception {
     // version 0 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
         + _hostname + "; Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getVersionVer0Test");
+    TEST_PROPS.get().setProperty(APITEST, "getVersionVer0Test");
     invoke();
     // version 1 Cookie
-    TEST_PROPS.setProperty(REQUEST_HEADERS,
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
         "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
             + "; $Path=" + getContextRoot());
-    TEST_PROPS.setProperty(APITEST, "getVersionVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "getVersionVer1Test");
     invoke();
   }
 
@@ -303,7 +303,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setDomainTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setDomainTest");
+    TEST_PROPS.get().setProperty(APITEST, "setDomainTest");
     invoke();
   }
 
@@ -401,8 +401,8 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setMaxAgeZeroTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeZeroTest");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxAgeZeroTest");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
     invoke();
   }
 
@@ -418,8 +418,8 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setMaxAgeNegativeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeNegativeTest");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
+    TEST_PROPS.get().setProperty(APITEST, "setMaxAgeNegativeTest");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
             "Set-Cookie:name1=value1##!Expire##!Max-Age");
     invoke();
   }
@@ -436,9 +436,9 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setSecureTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSecureVer0Test");
+    TEST_PROPS.get().setProperty(APITEST, "setSecureVer0Test");
     invoke();
-    TEST_PROPS.setProperty(APITEST, "setSecureVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "setSecureVer1Test");
     invoke();
   }
 
@@ -454,9 +454,9 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setValueTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setValueVer0Test");
+    TEST_PROPS.get().setProperty(APITEST, "setValueVer0Test");
     invoke();
-    TEST_PROPS.setProperty(APITEST, "setValueVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "setValueVer1Test");
     invoke();
   }
 
@@ -472,9 +472,9 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setVersionVer0Test");
+    TEST_PROPS.get().setProperty(APITEST, "setVersionVer0Test");
     invoke();
-    TEST_PROPS.setProperty(APITEST, "setVersionVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "setVersionVer1Test");
     invoke();
   }
 
@@ -489,7 +489,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
   
@@ -502,7 +502,7 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getAttributesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getAttributesTest");
+    TEST_PROPS.get().setProperty(APITEST, "getAttributesTest");
     invoke();
   }
 }

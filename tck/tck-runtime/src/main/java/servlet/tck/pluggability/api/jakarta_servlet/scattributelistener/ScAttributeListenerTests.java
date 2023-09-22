@@ -73,7 +73,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void addedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addedTest");
+    TEST_PROPS.get().setProperty(APITEST, "addedTest");
     invoke();
   }
 
@@ -88,7 +88,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void removedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "removedTest");
+    TEST_PROPS.get().setProperty(APITEST, "removedTest");
     invoke();
   }
 
@@ -103,7 +103,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void replacedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "replacedTest");
+    TEST_PROPS.get().setProperty(APITEST, "replacedTest");
     invoke();
   }
 }

@@ -70,16 +70,16 @@ public class WebServletApiTests extends AbstractTckTest {
    */
   @Test
   public void test1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1URL HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_INVOKED"
         + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet1"
         + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1APIURL HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet1_INVOKED" + "|servletname=Servlet1API|isAsyncSupported=false");
     invoke();
   }
@@ -101,55 +101,55 @@ public class WebServletApiTests extends AbstractTckTest {
    */
   @Test
   public void test2() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL1 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
         + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL2 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
         + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/xyz HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
         + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/x/y/t.html HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
         + "|servletname=servlet.tck.spec.annotationservlet.webservlet.Servlet2"
         + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2APIURL HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet2_INVOKED" + "|servletname=Servlet2API|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2APIURL2 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet2_INVOKED" + "|servletname=Servlet2API|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test2/indext.xml HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet2_INVOKED" + "|servletname=Servlet2API|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/ServletAPIURL2/xyz HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_INVOKED"
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
         + "|servletname=Servlet2API" + "|isAsyncSupported=false");
     invoke();
   }
@@ -173,16 +173,16 @@ public class WebServletApiTests extends AbstractTckTest {
    */
   @Test
   public void test3() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3URL HTTP/1.1");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "Servlet3_INVOKED|initParams:" + "|name1=value1|name2=value2"
             + "|servletname=Servlet3" + "|isAsyncSupported=false");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3APIURL HTTP/1.1");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "Servlet3_INVOKED|initParams:" + "|name1=servlet3|name2=servlet3again"
             + "|servletname=Servlet3API" + "|isAsyncSupported=false");
     invoke();

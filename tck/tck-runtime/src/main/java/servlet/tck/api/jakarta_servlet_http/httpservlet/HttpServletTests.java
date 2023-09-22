@@ -66,14 +66,14 @@ public class HttpServletTests extends AbstractTckTest {
   @Test
   public void destroyTest() throws Exception {
     String testName = "destroyTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(IGNORE_BODY, "true");
+    TEST_PROPS.get().setProperty(IGNORE_BODY, "true");
     invoke();
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(IGNORE_BODY, "true");
+    TEST_PROPS.get().setProperty(IGNORE_BODY, "true");
     invoke();
   }
 
@@ -88,7 +88,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getServletConfigTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletConfigTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletConfigTest");
     invoke();
   }
 
@@ -103,7 +103,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getServletContextTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletContextTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     invoke();
   }
 
@@ -118,7 +118,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getServletInfoTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletInfoTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletInfoTest");
     invoke();
   }
 
@@ -131,7 +131,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getInitParameterTest");
+    TEST_PROPS.get().setProperty(APITEST, "getInitParameterTest");
     invoke();
   }
 
@@ -144,7 +144,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getInitParameterTestNull() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getInitParameterTestNull");
+    TEST_PROPS.get().setProperty(APITEST, "getInitParameterTestNull");
     invoke();
   }
 
@@ -157,7 +157,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getInitParameterNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getInitParameterNamesTest");
+    TEST_PROPS.get().setProperty(APITEST, "getInitParameterNamesTest");
     invoke();
   }
 
@@ -170,7 +170,7 @@ public class HttpServletTests extends AbstractTckTest {
    */
   @Test
   public void getServletNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletNameTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletNameTest");
     invoke();
   }
 
@@ -184,8 +184,8 @@ public class HttpServletTests extends AbstractTckTest {
   @Test
   public void serviceTest() throws Exception {
     String testName = "serviceTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
     invoke();
   }
@@ -201,8 +201,8 @@ public class HttpServletTests extends AbstractTckTest {
   @Test
   public void initTest() throws Exception {
     String testName = "initTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
     invoke();
   }
@@ -218,8 +218,8 @@ public class HttpServletTests extends AbstractTckTest {
   @Test
   public void init_ServletConfigTest() throws Exception {
     String testName = "init_ServletConfigTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
     invoke();
   }

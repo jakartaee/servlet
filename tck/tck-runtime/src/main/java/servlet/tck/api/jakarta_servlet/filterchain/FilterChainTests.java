@@ -56,7 +56,7 @@ public class FilterChainTests extends AbstractTckTest {
    */
   @Test
   public void filterChainTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "FilterChainTest");
+    TEST_PROPS.get().setProperty(APITEST, "FilterChainTest");
     invoke();
   }
 }

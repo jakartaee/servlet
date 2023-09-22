@@ -62,10 +62,10 @@ public class WelcomeFilesTests extends AbstractTckTest {
    */
   @Test
   public void partialfound1() throws Exception {
-    TEST_PROPS.setProperty(FOLLOW_REDIRECT, "follow_redirect");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(FOLLOW_REDIRECT, "follow_redirect");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "<html>|<head>|<title>index.html</title>|</head>|<body>|INDEX from foo/index.html|</body>|</html>");
-    TEST_PROPS.setProperty(APITEST, "foo");
+    TEST_PROPS.get().setProperty(APITEST, "foo");
     invoke();
   }
 
@@ -82,9 +82,9 @@ public class WelcomeFilesTests extends AbstractTckTest {
    */
   @Test
   public void partialfound2() throws Exception {
-    TEST_PROPS.setProperty(FOLLOW_REDIRECT, "follow_redirect");
-    TEST_PROPS.setProperty(SEARCH_STRING, "HELLO from catalog/default.jsp");
-    TEST_PROPS.setProperty(APITEST, "catalog");
+    TEST_PROPS.get().setProperty(FOLLOW_REDIRECT, "follow_redirect");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "HELLO from catalog/default.jsp");
+    TEST_PROPS.get().setProperty(APITEST, "catalog");
     invoke();
   }
 

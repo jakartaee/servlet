@@ -55,9 +55,9 @@ public class ListenerOrderTests extends AbstractTckTest {
    */
   @Test
   public void requestListenerOrderTest() throws Exception {
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet is invoked");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet is invoked");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet" + " HTTP/1.1");
     invoke();
   }

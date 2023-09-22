@@ -73,11 +73,11 @@ public class ServletInputStreamTests extends AbstractTckTest {
   @Test
   public void readLineTest() throws Exception {
     String testName = "readLineTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "POST " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(CONTENT, "test data");
-    TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+    TEST_PROPS.get().setProperty(CONTENT, "test data");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
     invoke();
   }
 }

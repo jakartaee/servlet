@@ -94,8 +94,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void getContextPathTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getContextPathTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getContextPathTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddSRListenerClass_INVOKED" + "|AddSRListenerString_INVOKED"
             + "|CreateSRListener_INVOKED" + "|AttributeAddedClass"
             + "|AttributeAddedString");
@@ -122,12 +122,12 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddServletString() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletString HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "ADD_FILTER_STRING_INVOKED");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddSRListenerClass_INVOKED" + "|AddSRListenerString_INVOKED"
             + "|CreateSRListener_INVOKED" + "|SCAttributeAddedClass:"
             + "|SCAttributeAddedString:" + "|SCAttributeAdded:");
@@ -154,8 +154,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddFilterString() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "testAddFilterString");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "testAddFilterString");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletString" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|ADD_FILTER_STRING_INVOKED" + "|SCAttributeAddedClass:"
@@ -182,10 +182,10 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddServletClass() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletClass HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletClass" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|ADD_FILTER_CLASS_INVOKED" + "|SCAttributeAddedClass:"
@@ -213,10 +213,10 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddFilterClass() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "testAddFilterClass");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(APITEST, "testAddFilterClass");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "ADD_FILTER_CLASS_INVOKED");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletClass" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|SCAttributeAddedClass" + "|SCAttributeAddedString");
@@ -246,9 +246,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddServlet() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/createServlet HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "CreateServlet" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|SCAttributeAddedClass:" + "|SCAttributeAddedString:"
@@ -280,9 +280,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddFilterForward() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "testCreateFilterForward");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "testCreateFilterForward");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "CreateServlet" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|SCAttributeAddedClass:" + "|SCAttributeAddedString:"
@@ -313,9 +313,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddFilterInclude() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "testCreateFilterInclude");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "testCreateFilterInclude");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "CreateServlet" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|SCAttributeAddedClass:" + "|SCAttributeAddedString:"
@@ -343,10 +343,10 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testAddServletNotFound() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletNotFound HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "AddServletNotFound|ADD_FILTER_NOTFOUND");
     invoke();
   }
@@ -377,9 +377,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void testCreateSRAListener() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "testCreateSRAListener");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "testCreateSRAListener");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletClass" + "|AddSRListenerClass_INVOKED"
             + "|AddSRListenerString_INVOKED" + "|CreateSRListener_INVOKED"
             + "|SCAttributeAddedClass:" + "|SCAttributeAddedString:"
@@ -416,8 +416,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void negativeCreateTests() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeCreateTests");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "negativeCreateTests");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SERVLET_TEST=TRUE" + "|FILTER_TEST=TRUE" + "|LISTENER_TEST=TRUE"
             + "|SCC_LISTENER_TEST=TRUE" + "|SCS_LISTENER_TEST=TRUE"
             + "|CSC_|LISTENER_TEST=TRUE");
@@ -436,9 +436,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void duplicateServletTest1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletClass HTTP/1.0");
-    TEST_PROPS.setProperty(SEARCH_STRING, "DuplicateServletClass");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "DuplicateServletClass");
     invoke();
   }
 
@@ -454,9 +454,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void duplicateServletTest2() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletString HTTP/1.0");
-    TEST_PROPS.setProperty(SEARCH_STRING, "DuplicateServletString");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "DuplicateServletString");
     invoke();
   }
 
@@ -475,8 +475,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void duplicateServletTest3() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "duplicateServletTest3");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "duplicateServletTest3");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "DUPLICATEC_SERVLET_TEST=TRUE" + "|DUPLICATES_SERVLET_TEST=TRUE");
     invoke();
   }
@@ -495,9 +495,9 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void duplicateFilterTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/FilterTestServlet HTTP/1.0");
-    TEST_PROPS.setProperty(SEARCH_STRING, "FilterTestServlet");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "FilterTestServlet");
     invoke();
   }
 
@@ -515,8 +515,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void duplicateFilterTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "duplicateFilterTest1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "duplicateFilterTest1");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "DUPLICATEC_FILTER_TEST=TRUE" + "|DUPLICATES_FILTER_TEST=TRUE");
     invoke();
   }
@@ -531,8 +531,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void getEffectiveMajorVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getEffectiveMajorVersionTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
+    TEST_PROPS.get().setProperty(APITEST, "getEffectiveMajorVersionTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
     invoke();
   }
 
@@ -546,8 +546,8 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void getEffectiveMinorVersionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getEffectiveMinorVersionTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "EFFECTIVEMINORVERSION=0;");
+    TEST_PROPS.get().setProperty(APITEST, "getEffectiveMinorVersionTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "EFFECTIVEMINORVERSION=0;");
     invoke();
   }
 
@@ -561,7 +561,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void getDefaultSessionTrackingModes() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getDefaultSessionTrackingModes");
+    TEST_PROPS.get().setProperty(APITEST, "getDefaultSessionTrackingModes");
     invoke();
   }
 
@@ -575,7 +575,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void sessionTrackingModesValueOfTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "sessionTrackingModesValueOfTest");
+    TEST_PROPS.get().setProperty(APITEST, "sessionTrackingModesValueOfTest");
     invoke();
   }
 
@@ -589,7 +589,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    */
   @Test
   public void sessionTrackingModesValuesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "sessionTrackingModesValuesTest");
+    TEST_PROPS.get().setProperty(APITEST, "sessionTrackingModesValuesTest");
     invoke();
   }
 }

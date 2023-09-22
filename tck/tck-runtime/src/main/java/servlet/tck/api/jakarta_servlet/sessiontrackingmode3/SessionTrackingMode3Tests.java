@@ -62,7 +62,7 @@ public class SessionTrackingMode3Tests extends AbstractTckTest {
    */
   @Test
   public void setSessionTrackingModes6() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSessionTrackingModes6");
+    TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes6");
     invoke();
   }
 }

@@ -66,7 +66,7 @@ public class HttpSessionListenerTests extends AbstractTckTest {
    */
   @Test
   public void createdTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "createdTest");
+    TEST_PROPS.get().setProperty(APITEST, "createdTest");
     invoke();
   }
 
@@ -83,7 +83,7 @@ public class HttpSessionListenerTests extends AbstractTckTest {
    */
   @Test
   public void destroyedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "destroyedTest");
+    TEST_PROPS.get().setProperty(APITEST, "destroyedTest");
     invoke();
   }
 }

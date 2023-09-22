@@ -77,9 +77,9 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void constructortest1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet?testname=constructortest1 HTTP/1.1");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS,
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
         "Set-Cookie:" + "TCK_Cookie_Name=" + "##Expires="
             + "##Path=" + getContextRoot() + "/TestServlet"
             + "##Secure");
@@ -97,7 +97,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setNameTest");
+    TEST_PROPS.get().setProperty(APITEST, "setNameTest");
     invoke();
   }
 
@@ -112,7 +112,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setCommentTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setCommentTest");
+    TEST_PROPS.get().setProperty(APITEST, "setCommentTest");
     invoke();
   }
 
@@ -127,7 +127,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setPathTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setPathTest");
+    TEST_PROPS.get().setProperty(APITEST, "setPathTest");
     invoke();
   }
 
@@ -142,7 +142,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setDomainTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setDomainTest");
+    TEST_PROPS.get().setProperty(APITEST, "setDomainTest");
     invoke();
   }
 
@@ -157,7 +157,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setMaxAgeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setMaxAgeTest");
+    TEST_PROPS.get().setProperty(APITEST, "setMaxAgeTest");
     invoke();
   }
 
@@ -172,7 +172,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setHttpOnlyTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setHttpOnlyTest");
+    TEST_PROPS.get().setProperty(APITEST, "setHttpOnlyTest");
     invoke();
   }
 
@@ -187,7 +187,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setSecureTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setSecureTest");
+    TEST_PROPS.get().setProperty(APITEST, "setSecureTest");
     invoke();
   }
 
@@ -202,7 +202,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    */
   @Test
   public void setAttributeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setAttributeTest");
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
 }

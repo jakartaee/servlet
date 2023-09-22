@@ -70,7 +70,7 @@ public class ServletConfigTests extends AbstractTckTest {
    */
   @Test
   public void getServletConfigInitParameterNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameterNames");
+    TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameterNames");
     invoke();
   }
 
@@ -84,7 +84,7 @@ public class ServletConfigTests extends AbstractTckTest {
    */
   @Test
   public void getServletConfigInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameter");
+    TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameter");
     invoke();
   }
 
@@ -99,7 +99,7 @@ public class ServletConfigTests extends AbstractTckTest {
    */
   @Test
   public void getServletConfigInitParameterTestNull() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletConfigInitParameterNull");
+    TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameterNull");
     invoke();
   }
 
@@ -113,7 +113,7 @@ public class ServletConfigTests extends AbstractTckTest {
    */
   @Test
   public void getServletContextTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletContext");
+    TEST_PROPS.get().setProperty(APITEST, "getServletContext");
     invoke();
   }
 
@@ -126,7 +126,7 @@ public class ServletConfigTests extends AbstractTckTest {
    */
   @Test
   public void getServletNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletName");
+    TEST_PROPS.get().setProperty(APITEST, "getServletName");
     invoke();
   }
 }

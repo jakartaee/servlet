@@ -54,13 +54,13 @@ public class ServletMappingTests extends AbstractTckTest {
    */
   @Test
   public void multiURLmappingTest1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet1" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet2");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet2" + " HTTP/1.1");
     invoke();
   }
@@ -80,13 +80,13 @@ public class ServletMappingTests extends AbstractTckTest {
    */
   @Test
   public void multiURLmappingTest2() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/foo/bar/xyz" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet5");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet5");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/foo/bar/TestServlet5" + " HTTP/1.1");
     invoke();
   }
@@ -105,13 +105,13 @@ public class ServletMappingTests extends AbstractTckTest {
    */
   @Test
   public void multiURLmappingTest3() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/foo/baR/TestServlet1" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet2");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/foo/baR/Ten" + " HTTP/1.1");
     invoke();
   }
@@ -130,13 +130,13 @@ public class ServletMappingTests extends AbstractTckTest {
    */
   @Test
   public void multiURLmappingTest4() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/Test1.bop" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Test1.bop" + " HTTP/1.1");
     invoke();
   }

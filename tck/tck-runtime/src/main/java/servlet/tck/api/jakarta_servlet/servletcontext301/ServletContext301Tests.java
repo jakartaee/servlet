@@ -65,9 +65,9 @@ public class ServletContext301Tests extends AbstractTckTest {
    */
   @Test
   public void addListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "LISTENER_TEST=TRUE");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(APITEST, "addListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "LISTENER_TEST=TRUE");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "AddGenericEventListenerClass");
     invoke();
   }

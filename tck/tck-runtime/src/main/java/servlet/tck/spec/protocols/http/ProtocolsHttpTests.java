@@ -65,16 +65,16 @@ public class ProtocolsHttpTests extends AbstractTckTest {
   @Test
   public void httpTest() throws Exception {
     String testName = "httpTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testName + " HTTP/1.0");
-    TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
     invoke();
 
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
     invoke();
   }
 }

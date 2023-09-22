@@ -65,8 +65,8 @@ public class ServletContext304Tests extends AbstractTckTest {
    */
   @Test
   public void addListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addListenerTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "addListenerTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "LISTENER_TEST=TRUE" + "|AddHttpSessionListenerClass Created"
             + "|AddHttpSessionListenerString Created"
             + "|CreateHttpSessionListener Created"

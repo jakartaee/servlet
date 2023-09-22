@@ -66,19 +66,19 @@ public class DirStructTests extends AbstractTckTest {
   @Test
   public void loadClassesTest() throws Exception {
     String testName = "classFileTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "in ClassFileTestServlet");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "in jarFileTestServlet");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "in ClassFileTestServlet");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "in jarFileTestServlet");
     invoke();
 
     testName = "jarFileTest";
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "in JarFileTestServlet");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "in JarFileTestServlet");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "in ClassFileTestServlet");
     invoke();
   }

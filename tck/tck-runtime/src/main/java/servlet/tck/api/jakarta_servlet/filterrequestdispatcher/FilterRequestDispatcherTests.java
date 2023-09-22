@@ -75,16 +75,16 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void RequestTest() throws Exception {
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(APITEST, "generic/DummyServlet");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "generic/DummyServlet");
     invoke();
 
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(APITEST, "generic/dummyJSP");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "generic/dummyJSP");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "dummy.html");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "dummy.html");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
   }
 
@@ -100,8 +100,8 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void RequestTest1() throws Exception {
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(APITEST, "request/RequestTest");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "request/RequestTest");
     invoke();
   }
 
@@ -117,11 +117,11 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void RequestTest2() throws Exception {
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, Data.FAILED);
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.PASSED);
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.PASSED);
 
-    TEST_PROPS.setProperty(APITEST, "forward/ForwardedServlet");
+    TEST_PROPS.get().setProperty(APITEST, "forward/ForwardedServlet");
     invoke();
   }
 
@@ -138,7 +138,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void ForwardTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "forwardTest");
+    TEST_PROPS.get().setProperty(APITEST, "forwardTest");
     invoke();
   }
 
@@ -156,13 +156,13 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void ForwardTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "forwardServletTest");
+    TEST_PROPS.get().setProperty(APITEST, "forwardServletTest");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "forwardJSPTest");
+    TEST_PROPS.get().setProperty(APITEST, "forwardJSPTest");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "forwardHTMLTest");
+    TEST_PROPS.get().setProperty(APITEST, "forwardHTMLTest");
     invoke();
   }
 
@@ -179,7 +179,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void IncludeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "includeTest");
+    TEST_PROPS.get().setProperty(APITEST, "includeTest");
     invoke();
   }
 
@@ -197,13 +197,13 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void IncludeTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "includeJSPTest");
+    TEST_PROPS.get().setProperty(APITEST, "includeJSPTest");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "includeServletTest");
+    TEST_PROPS.get().setProperty(APITEST, "includeServletTest");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "includeHTMLTest");
+    TEST_PROPS.get().setProperty(APITEST, "includeHTMLTest");
     invoke();
   }
 
@@ -220,9 +220,9 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void ErrorTest() throws Exception {
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(APITEST, "forward/IncludedServlet");
-    TEST_PROPS.setProperty(STATUS_CODE, "404");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "forward/IncludedServlet");
+    TEST_PROPS.get().setProperty(STATUS_CODE, "404");
     invoke();
   }
 }

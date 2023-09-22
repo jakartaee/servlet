@@ -75,7 +75,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void forwardTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "forwardTest");
+    TEST_PROPS.get().setProperty(APITEST, "forwardTest");
     invoke();
   }
 
@@ -91,7 +91,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void forward_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "forward_1Test");
+    TEST_PROPS.get().setProperty(APITEST, "forward_1Test");
     invoke();
   }
 
@@ -105,7 +105,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void includeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "includeTest");
+    TEST_PROPS.get().setProperty(APITEST, "includeTest");
     invoke();
   }
 
@@ -122,8 +122,8 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void include_1Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "include_1Test");
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "Content-Type: text/sgml");
+    TEST_PROPS.get().setProperty(APITEST, "include_1Test");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Content-Type: text/sgml");
     invoke();
   }
 
@@ -140,7 +140,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void include_2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "include_2Test");
+    TEST_PROPS.get().setProperty(APITEST, "include_2Test");
     invoke();
   }
 
@@ -157,7 +157,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void include_3Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "include_3Test");
+    TEST_PROPS.get().setProperty(APITEST, "include_3Test");
     invoke();
   }
 }
