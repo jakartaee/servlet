@@ -66,9 +66,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_StringTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "some text");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "some text");
 
-    TEST_PROPS.setProperty(APITEST, "print_StringTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_StringTest");
     invoke();
   }
 
@@ -85,9 +85,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
 
     StringBuffer ss = new StringBuffer(s).append(s);
 
-    TEST_PROPS.setProperty(SEARCH_STRING, ss.toString());
+    TEST_PROPS.get().setProperty(SEARCH_STRING, ss.toString());
 
-    TEST_PROPS.setProperty(APITEST, "print_booleanTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_booleanTest");
     invoke();
   }
 
@@ -100,9 +100,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_charTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TEXT");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TEXT");
 
-    TEST_PROPS.setProperty(APITEST, "print_charTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_charTest");
     invoke();
   }
 
@@ -115,9 +115,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_doubleTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "12345.612345.6");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "12345.612345.6");
 
-    TEST_PROPS.setProperty(APITEST, "print_doubleTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_doubleTest");
     invoke();
   }
 
@@ -130,9 +130,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_floatTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "1234.51234.5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "1234.51234.5");
 
-    TEST_PROPS.setProperty(APITEST, "print_floatTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_floatTest");
     invoke();
   }
 
@@ -145,9 +145,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_intTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "11");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "11");
 
-    TEST_PROPS.setProperty(APITEST, "print_intTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_intTest");
     invoke();
   }
 
@@ -160,9 +160,9 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void print_longTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "12345678901234567890");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "12345678901234567890");
 
-    TEST_PROPS.setProperty(APITEST, "print_longTest");
+    TEST_PROPS.get().setProperty(APITEST, "print_longTest");
     invoke();
   }
 
@@ -176,10 +176,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void printlnTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "some test");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "some test text");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "some test");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "some test text");
 
-    TEST_PROPS.setProperty(APITEST, "printlnTest");
+    TEST_PROPS.get().setProperty(APITEST, "printlnTest");
     invoke();
   }
 
@@ -192,10 +192,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_StringTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "some|text");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "sometext");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "some|text");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "sometext");
 
-    TEST_PROPS.setProperty(APITEST, "println_StringTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_StringTest");
     invoke();
   }
 
@@ -213,10 +213,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
     StringBuffer ss = new StringBuffer(s);
     ss = ss.append(s);
 
-    TEST_PROPS.setProperty(SEARCH_STRING, s);
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, ss.toString());
+    TEST_PROPS.get().setProperty(SEARCH_STRING, s);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, ss.toString());
 
-    TEST_PROPS.setProperty(APITEST, "println_booleanTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_booleanTest");
     invoke();
   }
 
@@ -229,10 +229,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_charTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "T|E|X|T");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "TEXT");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "T|E|X|T");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "TEXT");
 
-    TEST_PROPS.setProperty(APITEST, "println_charTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_charTest");
     invoke();
   }
 
@@ -245,10 +245,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_doubleTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "12345.6");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "12345.612345.6");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "12345.6");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "12345.612345.6");
 
-    TEST_PROPS.setProperty(APITEST, "println_doubleTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_doubleTest");
     invoke();
   }
 
@@ -261,10 +261,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_floatTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "1234.5");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "1234.51234.5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "1234.5");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "1234.51234.5");
 
-    TEST_PROPS.setProperty(APITEST, "println_floatTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_floatTest");
     invoke();
   }
 
@@ -277,10 +277,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_intTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "11");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "1");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "11");
 
-    TEST_PROPS.setProperty(APITEST, "println_intTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_intTest");
     invoke();
   }
 
@@ -293,10 +293,10 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    */
   @Test
   public void println_longTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "1234567890");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "12345678901234567890");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "1234567890");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "12345678901234567890");
 
-    TEST_PROPS.setProperty(APITEST, "println_longTest");
+    TEST_PROPS.get().setProperty(APITEST, "println_longTest");
     invoke();
   }
 }

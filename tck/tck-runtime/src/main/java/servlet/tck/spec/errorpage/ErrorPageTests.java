@@ -67,18 +67,18 @@ public class ErrorPageTests extends AbstractTckTest {
    */
   @Test
   public void servletToDifferentErrorPagesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletErrorPageTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "servletErrorPageTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: java.lang.IllegalStateException|Exception: java.lang.IllegalStateException: error page invoked|Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "htmlErrorPageTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "htmlErrorPageTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "<html>|<head>|<title>HTML Error Page</title>|</head>|<body>|Error page mechanism invoked.|</body>|</html>");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
 
@@ -93,11 +93,11 @@ public class ErrorPageTests extends AbstractTckTest {
    */
   @Test
   public void statusCodeErrorPageTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "statusCodeErrorPageTest");
-    TEST_PROPS.setProperty(STATUS_CODE, "501");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "statusCodeErrorPageTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, "501");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 501|Exception Type: null|Exception: null|Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
 
@@ -116,11 +116,11 @@ public class ErrorPageTests extends AbstractTckTest {
    */
   @Test
   public void heirarchyErrorMatchTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "heirarchyErrorMatchTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "heirarchyErrorMatchTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Servlet Name: TestServlet|Request URI: /servlet_spec_errorpage_web/TestServlet|Status Code: 500|Exception Type: java.lang.IllegalThreadStateException|Exception: java.lang.IllegalThreadStateException: error page invoked|Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
 
@@ -140,15 +140,15 @@ public class ErrorPageTests extends AbstractTckTest {
   public void wrappedExceptionTest() throws Exception {
     String testName = "WrappedException";
 
-    TEST_PROPS.setProperty(TEST_NAME, testName);
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Second ErrorPage|"
+    TEST_PROPS.get().setProperty(TEST_NAME, testName);
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Second ErrorPage|"
         + "Servlet Name: WrappedException|"
         + "Request URI: /servlet_spec_errorpage_web/WrappedException|Status Code: 500|"
         + "Exception Type: servlet.tck.spec.errorpage.TestException|"
         + "Exception: servlet.tck.spec.errorpage.TestException: error page invoked|Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
     invoke();
   }

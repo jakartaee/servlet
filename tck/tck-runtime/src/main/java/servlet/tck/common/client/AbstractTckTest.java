@@ -65,8 +65,8 @@ public abstract class AbstractTckTest extends BaseTckTest {
   }
 
   protected void setTestProperties(WebTestCase testCase) {
-    setStandardProperties(TEST_PROPS.getProperty(STANDARD), testCase);
-    setApiTestProperties(TEST_PROPS.getProperty(APITEST), testCase);
+    setStandardProperties(TEST_PROPS.get().getProperty(STANDARD), testCase);
+    setApiTestProperties(TEST_PROPS.get().getProperty(APITEST), testCase);
     super.setTestProperties(testCase);
   }
 
@@ -93,7 +93,7 @@ public abstract class AbstractTckTest extends BaseTckTest {
     // set the request
     StringBuilder sb = new StringBuilder(50);
     if ((_servlet != null)
-            && (TEST_PROPS.getProperty(DONOTUSEServletName) == null)) {
+            && (TEST_PROPS.get().getProperty(DONOTUSEServletName) == null)) {
       sb.append(GET).append(_contextRoot).append(SL);
       sb.append(_servlet).append("?testname=").append(testValue);
       sb.append(HTTP11);
@@ -106,8 +106,8 @@ public abstract class AbstractTckTest extends BaseTckTest {
     HttpExchange req = new HttpExchange(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
-    if ((TEST_PROPS.getProperty(SEARCH_STRING) == null)
-            || ((TEST_PROPS.getProperty(SEARCH_STRING)).equals(""))) {
+    if ((TEST_PROPS.get().getProperty(SEARCH_STRING) == null)
+            || ((TEST_PROPS.get().getProperty(SEARCH_STRING)).equals(""))) {
       testCase.setResponseSearchString(Data.PASSED);
       testCase.setUnexpectedResponseSearchString(Data.FAILED);
     }

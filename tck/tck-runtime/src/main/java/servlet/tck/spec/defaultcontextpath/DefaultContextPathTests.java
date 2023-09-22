@@ -57,7 +57,7 @@ public class DefaultContextPathTests extends AbstractTckTest {
    */
   @Test
   public void getDefaultContextPathTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getDefaultContextPathTest");
+    TEST_PROPS.get().setProperty(APITEST, "getDefaultContextPathTest");
     invoke();
   }
 }

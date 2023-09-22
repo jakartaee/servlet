@@ -67,7 +67,7 @@ public class HttpSessionBindingListenerTests extends AbstractTckTest {
    */
   @Test
   public void unBoundTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "unBoundTest");
+    TEST_PROPS.get().setProperty(APITEST, "unBoundTest");
     invoke();
   }
 
@@ -83,7 +83,7 @@ public class HttpSessionBindingListenerTests extends AbstractTckTest {
    */
   @Test
   public void boundTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "boundTest");
+    TEST_PROPS.get().setProperty(APITEST, "boundTest");
     invoke();
   }
 }

@@ -69,7 +69,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addServletStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addServletStringTest");
+    TEST_PROPS.get().setProperty(APITEST, "addServletStringTest");
     invoke();
   }
 
@@ -84,7 +84,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addServletClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addServletClassTest");
+    TEST_PROPS.get().setProperty(APITEST, "addServletClassTest");
     invoke();
   }
 
@@ -99,7 +99,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addServletTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addServletTest");
+    TEST_PROPS.get().setProperty(APITEST, "addServletTest");
     invoke();
   }
 
@@ -114,7 +114,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addFilterStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addFilterStringTest");
+    TEST_PROPS.get().setProperty(APITEST, "addFilterStringTest");
     invoke();
   }
 
@@ -129,7 +129,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addFilterClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addFilterClassTest");
+    TEST_PROPS.get().setProperty(APITEST, "addFilterClassTest");
     invoke();
   }
 
@@ -144,7 +144,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void addFilterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addFilterTest");
+    TEST_PROPS.get().setProperty(APITEST, "addFilterTest");
     invoke();
   }
 
@@ -159,7 +159,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    */
   @Test
   public void setInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setInitParameterTest");
+    TEST_PROPS.get().setProperty(APITEST, "setInitParameterTest");
     invoke();
   }
 }

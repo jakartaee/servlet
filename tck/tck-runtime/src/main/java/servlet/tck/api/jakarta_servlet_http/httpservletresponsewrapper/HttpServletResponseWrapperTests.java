@@ -189,7 +189,7 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void httpResponseWrapperGetResponseTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "httpResponseWrapperGetResponseTest");
+        TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperGetResponseTest");
         invoke();
     }
 
@@ -202,7 +202,7 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void httpResponseWrapperSetResponseTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "httpResponseWrapperSetResponseTest");
+        TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperSetResponseTest");
         invoke();
     }
 
@@ -215,7 +215,7 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void httpResponseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "httpResponseWrapperSetResponseIllegalArgumentExceptionTest");
+        TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperSetResponseIllegalArgumentExceptionTest");
         invoke();
     }
 
@@ -228,7 +228,7 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void httpResponseWrapperConstructorTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "httpResponseWrapperConstructorTest");
+        TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperConstructorTest");
         invoke();
     }
 
@@ -291,16 +291,16 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
     @Test
     public void sendRedirectTest() throws Exception {
         String testName = "sendRedirectWithLeadingSlashTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + " HTTP/1.1");
-        TEST_PROPS.setProperty(EXPECTED_HEADERS, "Location: http://" + _hostname + ":" + _port + "/RedirectedTest");
-        TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + " HTTP/1.1");
+        TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Location: http://" + _hostname + ":" + _port + "/RedirectedTest");
+        TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);
         invoke();
         testName = "sendRedirectWithoutLeadingSlashTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + " HTTP/1.1");
-        TEST_PROPS.setProperty(EXPECTED_HEADERS, "Location: http://" + _hostname + ":" + _port + "" + getContextRoot() + "/RedirectedTest");
-        TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + " HTTP/1.1");
+        TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Location: http://" + _hostname + ":" + _port + "" + getContextRoot() + "/RedirectedTest");
+        TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);
         invoke();
     }
 

@@ -85,8 +85,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void servletURLMappingTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "servletURLMappingTest");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "servletURLMappingTest");
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "URL_MAPPING_TEST" + "|/ADDSERVLETCLASS" + "|/SECONDADDSERVLETCLASS"
             + "|/THIRDADDSERVLETCLASS" + "|/ADDSERVLETCLASS/*");
     invoke();
@@ -111,8 +111,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void filterServletMappingTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "filterServletMappingTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "filterServletMappingTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "FILTER_SERVLET_MAPPING" + "|AddServletString" + "|AddServletClass"
             + "|AddServletNotFound" + "|CreateServlet");
     invoke();
@@ -137,8 +137,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void servletRegistrationsTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletRegistrationsTest");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getServletRegistrationsTest");
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "SERVLET_REGISTRATIONS:" + "|ADDSERVLETCLASS" + "|ADDSERVLETNOTFOUND"
             + "|ADDSERVLETSTRING" + "|CREATESERVLET" + "|TESTSERVLET");
     invoke();
@@ -162,8 +162,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getServletRegistrationTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletRegistrationTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getServletRegistrationTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SERVLET_REGISTRATION:" + "|ADDSERVLETSTRING" + "|ADDSERVLETCLASS"
             + "|ADDSERVLETNOTFOUND" + "|CREATESERVLET" + "|TESTSERVLET");
     invoke();
@@ -188,8 +188,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getFilterRegistrationsTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getFilterRegistrationsTest");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getFilterRegistrationsTest");
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "FILTER_REGISTRATIONS:" + "|AddFilterClass" + "|AddFilterNotFound"
             + "|AddFilterString" + "|CreateFilter");
     invoke();
@@ -213,8 +213,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getFilterRegistrationTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getFilterRegistrationTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getFilterRegistrationTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "FILTER_REGISTRATION:" + "|AddFilterString" + "|AddFilterClass"
             + "|AddFilterNotFound" + "|CreateFilter");
     invoke();
@@ -243,8 +243,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getRegistrationNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRegistrationNameTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getRegistrationNameTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "REGISTRION_NAME:" + "|ADDSERVLETSTRING" + "|ADDFILTERSTRING"
             + "|ADDSERVLETCLASS" + "|ADDFILTERCLASS" + "|CREATESERVLET"
             + "|CREATEFILTER" + "|ADDSERVLETNOTFOUND" + "|ADDFILTERNOTFOUND");
@@ -274,8 +274,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getRegistrationClassNameTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRegistrationClassNameTest");
-    TEST_PROPS.setProperty(SEARCH_STRING, "REGISTRATION_CLASS_NAME:"
+    TEST_PROPS.get().setProperty(APITEST, "getRegistrationClassNameTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "REGISTRATION_CLASS_NAME:"
         + "|SERVLET.TCK.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDSERVLETSTRING"
         + "|SERVLET.TCK.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDFILTERSTRING"
         + "|SERVLET.TCK.API.JAKARTA_SERVLET.SERVLETCONTEXT30.ADDSERVLETCLASS"
@@ -312,8 +312,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getRegistrationInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRegistrationInitParameterTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getRegistrationInitParameterTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "REGISTRATION_INIT_PARAMETER:" + "|AddFilterString"
             + "|AddServletString" + "|AddFilterClass" + "|AddServletClass"
             + "|CreateFilter" + "|CreateServlet" + "|AddFilterNotFound"
@@ -346,8 +346,8 @@ public class RegistrationTests extends AbstractTckTest {
    */
   @Test
   public void getRegistrationInitParametersTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRegistrationInitParametersTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "getRegistrationInitParametersTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "REGISTRATION_INIT_PARAMETERS:"
             + "|Filter=No|FilterName=AddFilterString|Servlet=Yes"
             + "|DISPATCH=FORWARD|ServletName=AddServletString"

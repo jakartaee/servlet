@@ -63,7 +63,7 @@ public class GetClassLoaderTests extends AbstractTckTest {
    */
   @Test
   public void getClassloaderTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getClassloaderTest");
+    TEST_PROPS.get().setProperty(APITEST, "getClassloaderTest");
     invoke();
   }
 }

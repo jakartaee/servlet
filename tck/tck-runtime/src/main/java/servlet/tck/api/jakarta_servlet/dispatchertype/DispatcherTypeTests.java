@@ -63,7 +63,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    */
   @Test
   public void valuesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "valuesTest");
+    TEST_PROPS.get().setProperty(APITEST, "valuesTest");
     invoke();
   }
 
@@ -78,7 +78,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    */
   @Test
   public void valueOfTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "valueOfTest");
+    TEST_PROPS.get().setProperty(APITEST, "valueOfTest");
     invoke();
   }
   /*
@@ -93,7 +93,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    */
   @Test
   public void valueOfNullTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "valueOfNullTest");
+    TEST_PROPS.get().setProperty(APITEST, "valueOfNullTest");
     invoke();
   }
   /*
@@ -108,7 +108,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    */
   @Test
   public void valueOfInvalidTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "valueOfInvalidTest");
+    TEST_PROPS.get().setProperty(APITEST, "valueOfInvalidTest");
     invoke();
   }
 }

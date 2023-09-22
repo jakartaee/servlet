@@ -63,7 +63,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    */
   @Test
   public void addedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addedTest");
+    TEST_PROPS.get().setProperty(APITEST, "addedTest");
     invoke();
   }
 
@@ -79,7 +79,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    */
   @Test
   public void removedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "removedTest");
+    TEST_PROPS.get().setProperty(APITEST, "removedTest");
     invoke();
   }
 
@@ -95,7 +95,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    */
   @Test
   public void replacedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "replacedTest");
+    TEST_PROPS.get().setProperty(APITEST, "replacedTest");
     invoke();
   }
 
@@ -108,7 +108,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    */
   @Test
   public void constructor_StringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructor_StringTest");
+    TEST_PROPS.get().setProperty(APITEST, "constructor_StringTest");
     invoke();
   }
 
@@ -121,7 +121,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    */
   @Test
   public void constructor_String_ObjectTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructor_String_ObjectTest");
+    TEST_PROPS.get().setProperty(APITEST, "constructor_String_ObjectTest");
     invoke();
   }
 }

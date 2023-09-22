@@ -62,9 +62,9 @@ public class HttpServletResponseTests extends AbstractTckTest {
    */
   @Test
   public void intHeaderTest() throws Exception {
-    TEST_PROPS.setProperty(EXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header2: 56789");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "header1: 12345");
+    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header2: 56789");
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + "intHeaderTest" + " HTTP/1.1");
     invoke();
   }
@@ -80,8 +80,8 @@ public class HttpServletResponseTests extends AbstractTckTest {
    */
   @Test
   public void flushBufferTest() throws Exception {
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + "flushBufferTest" + " HTTP/1.1");
     invoke();
   }
@@ -98,9 +98,9 @@ public class HttpServletResponseTests extends AbstractTckTest {
   @Test
   public void sendErrorCommitTest() throws Exception {
     String testname = "sendErrorCommitTest";
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testname + " HTTP/1.1");
     invoke();
   }
@@ -118,10 +118,10 @@ public class HttpServletResponseTests extends AbstractTckTest {
   @Test
   public void sendRedirectCommitTest() throws Exception {
     String testname = "sendRedirectCommitTest";
-    TEST_PROPS.setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testname + " HTTP/1.1");
     invoke();
   }
@@ -137,9 +137,9 @@ public class HttpServletResponseTests extends AbstractTckTest {
   @Test
   public void sendRedirectClearBufferTest() throws Exception {
     String testname = "sendRedirectClearBufferTest";
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(STATUS_CODE, MOVED_TEMPORARY);
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/"
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testname + " HTTP/1.1");
     invoke();
   }

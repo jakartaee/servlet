@@ -72,7 +72,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoDestroyedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoDestroyedTest");
+    TEST_PROPS.get().setProperty(APITEST, "DoDestroyedTest");
     invoke();
   }
 
@@ -87,10 +87,10 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoInit1Test() throws Exception {
-    TEST_PROPS.setProperty(TEST_NAME, "DoInit1Test");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(TEST_NAME, "DoInit1Test");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_js_servlet_web/DoInit1Test HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
     invoke();
   }
 
@@ -105,7 +105,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoInit2Test() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoInit2Test");
+    TEST_PROPS.get().setProperty(APITEST, "DoInit2Test");
     invoke();
   }
 
@@ -119,7 +119,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoServletConfigTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoServletConfigTest");
+    TEST_PROPS.get().setProperty(APITEST, "DoServletConfigTest");
     invoke();
   }
 
@@ -132,7 +132,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoServletInfoTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoServletInfoTest");
+    TEST_PROPS.get().setProperty(APITEST, "DoServletInfoTest");
     invoke();
   }
 
@@ -146,7 +146,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void PUTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "PUTest");
+    TEST_PROPS.get().setProperty(APITEST, "PUTest");
     invoke();
   }
 
@@ -162,7 +162,7 @@ public class ServletTests extends AbstractTckTest {
    */
   @Test
   public void DoServiceTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoServiceTest");
+    TEST_PROPS.get().setProperty(APITEST, "DoServiceTest");
     invoke();
   }
 }

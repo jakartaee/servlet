@@ -56,7 +56,7 @@ public class ServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void responseWrapperConstructorTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "responseWrapperConstructorTest");
+        TEST_PROPS.get().setProperty(APITEST, "responseWrapperConstructorTest");
         invoke();
     }
 
@@ -69,7 +69,7 @@ public class ServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void responseWrapperGetResponseTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "responseWrapperGetResponseTest");
+        TEST_PROPS.get().setProperty(APITEST, "responseWrapperGetResponseTest");
         invoke();
     }
 
@@ -82,7 +82,7 @@ public class ServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void responseWrapperSetResponseTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "responseWrapperSetResponseTest");
+        TEST_PROPS.get().setProperty(APITEST, "responseWrapperSetResponseTest");
         invoke();
     }
 
@@ -95,7 +95,7 @@ public class ServletResponseWrapperTests extends HttpResponseClient {
    */
     @Test
     public void responseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "responseWrapperSetResponseIllegalArgumentExceptionTest");
+        TEST_PROPS.get().setProperty(APITEST, "responseWrapperSetResponseIllegalArgumentExceptionTest");
         invoke();
     }
 

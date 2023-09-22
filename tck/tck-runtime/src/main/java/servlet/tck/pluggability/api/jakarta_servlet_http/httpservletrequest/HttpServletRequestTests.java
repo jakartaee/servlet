@@ -68,9 +68,9 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getAttributeNamesTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getAttributeNamesTest");
+        TEST_PROPS.get().setProperty(APITEST, "getAttributeNamesTest");
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getAttributeNamesEmptyEnumTest");
+        TEST_PROPS.get().setProperty(APITEST, "getAttributeNamesEmptyEnumTest");
         invoke();
     }
 
@@ -84,9 +84,9 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getAttributeTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getAttributeTest");
+        TEST_PROPS.get().setProperty(APITEST, "getAttributeTest");
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getAttributeDoesNotExistTest");
+        TEST_PROPS.get().setProperty(APITEST, "getAttributeDoesNotExistTest");
         invoke();
     }
 
@@ -99,10 +99,10 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getCharacterEncodingTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getCharacterEncodingTest");
-        TEST_PROPS.setProperty(REQUEST_HEADERS, "Content-Type:text/plain; charset=ISO-8859-1");
+        TEST_PROPS.get().setProperty(APITEST, "getCharacterEncodingTest");
+        TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Content-Type:text/plain; charset=ISO-8859-1");
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getCharacterEncodingNullTest");
+        TEST_PROPS.get().setProperty(APITEST, "getCharacterEncodingNullTest");
         invoke();
     }
 
@@ -148,10 +148,10 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getLocaleTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getLocaleTest");
-        TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language:en-US");
+        TEST_PROPS.get().setProperty(APITEST, "getLocaleTest");
+        TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Accept-Language:en-US");
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getLocaleDefaultTest");
+        TEST_PROPS.get().setProperty(APITEST, "getLocaleDefaultTest");
         invoke();
     }
 
@@ -164,10 +164,10 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getLocalesTest() throws Exception {
-        TEST_PROPS.setProperty(APITEST, "getLocalesTest");
-        TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language:en-US,en-GB");
+        TEST_PROPS.get().setProperty(APITEST, "getLocalesTest");
+        TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Accept-Language:en-US,en-GB");
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getLocalesDefaultTest");
+        TEST_PROPS.get().setProperty(APITEST, "getLocalesDefaultTest");
         invoke();
     }
 
@@ -189,14 +189,14 @@ public class HttpServletRequestTests extends HttpRequestClient {
     @Test
     public void getParameterNamesTest() throws Exception {
         String testName = "getParameterNamesTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&parameter1=value1&parameter2=value2 HTTP/1.1");
-        TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&parameter1=value1&parameter2=value2 HTTP/1.1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
         invoke();
         testName = "getParameterNamesEmptyEnumTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
-        TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + testName + " HTTP/1.1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
         invoke();
     }
 
@@ -210,11 +210,11 @@ public class HttpServletRequestTests extends HttpRequestClient {
     @Test
     public void getParameterTest() throws Exception {
         String testName = "getParameterTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&parameter1=value1 HTTP/1.1");
-        TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&parameter1=value1 HTTP/1.1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getParameterDoesNotExistTest");
+        TEST_PROPS.get().setProperty(APITEST, "getParameterDoesNotExistTest");
         invoke();
     }
 
@@ -228,11 +228,11 @@ public class HttpServletRequestTests extends HttpRequestClient {
     @Test
     public void getParameterValuesTest() throws Exception {
         String testName = "getParameterValuesTest";
-        TEST_PROPS.setProperty(TEST_NAME, testName);
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&Names=value1&Names=value2 HTTP/1.1");
-        TEST_PROPS.setProperty(SEARCH_STRING, Data.PASSED);
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + "&Names=value1&Names=value2 HTTP/1.1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
         invoke();
-        TEST_PROPS.setProperty(APITEST, "getParameterValuesDoesNotExistTest");
+        TEST_PROPS.get().setProperty(APITEST, "getParameterValuesDoesNotExistTest");
         invoke();
     }
 
@@ -657,10 +657,10 @@ public class HttpServletRequestTests extends HttpRequestClient {
    */
     @Test
     public void getServletContextTest() throws Exception {
-        TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot() + "/getServletContextTest HTTP/1.1");
-        TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-        TEST_PROPS.setProperty(STATUS_CODE, OK);
-        TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
+        TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/getServletContextTest HTTP/1.1");
+        TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+        TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+        TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
         invoke();
     }
 

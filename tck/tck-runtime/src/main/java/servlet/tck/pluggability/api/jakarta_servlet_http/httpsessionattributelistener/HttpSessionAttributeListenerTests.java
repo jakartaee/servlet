@@ -74,7 +74,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void attributeAddedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "attributeAddedTest");
+    TEST_PROPS.get().setProperty(APITEST, "attributeAddedTest");
     invoke();
   }
 
@@ -89,7 +89,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void attributeRemovedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "attributeRemovedTest");
+    TEST_PROPS.get().setProperty(APITEST, "attributeRemovedTest");
     invoke();
   }
 
@@ -104,7 +104,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    */
   @Test
   public void attributeReplacedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "attributeReplacedTest");
+    TEST_PROPS.get().setProperty(APITEST, "attributeReplacedTest");
     invoke();
   }
 }

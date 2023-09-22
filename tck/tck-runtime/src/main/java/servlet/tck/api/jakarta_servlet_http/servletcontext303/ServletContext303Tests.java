@@ -59,8 +59,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddHListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddHListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
     invoke();
   }
 
@@ -74,8 +74,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddHListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHListenerStringTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddHListenerStringTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
     invoke();
   }
 
@@ -89,8 +89,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddHAListenerClassTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddHAListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
     invoke();
   }
 
@@ -104,8 +104,8 @@ public class ServletContext303Tests extends AbstractTckTest {
    */
   @Test
   public void negativeaddHAListenerStringTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "negativeaddHAListenerClassTest");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
+    TEST_PROPS.get().setProperty(APITEST, "negativeaddHAListenerClassTest");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
     invoke();
   }
 }

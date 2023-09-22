@@ -123,9 +123,9 @@ public class MetaDataCompleteTests extends BaseTckTest {
   public void test1() throws Exception {
     logger.trace("testing that we can NOT access: {}", pageDeny);
 
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test1");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageDeny));
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageDeny));
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
@@ -135,9 +135,9 @@ public class MetaDataCompleteTests extends BaseTckTest {
       // fails then we have an issue.
       logger.trace(
           "we tested for Status Code=401 but we could have a 403 code, so check for that.");
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test1");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageDeny));
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageDeny));
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
@@ -171,11 +171,11 @@ public class MetaDataCompleteTests extends BaseTckTest {
 
     // attempt to POST as "javajoe" should be allowed
     logger.trace("POST w/ user= {} should be allowed due to DD declaration", unauthUsername);
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword);
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword);
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
 
     // attempt to GET as "javajoe" should be allowed due to DD and
@@ -183,12 +183,12 @@ public class MetaDataCompleteTests extends BaseTckTest {
     // note: doGet metho prints out userprincipal name that we are going to
     // check
     logger.trace("GET w/ user= {} should be allowed due to DD declaration", unauthUsername);
-    TEST_PROPS.setProperty(SEARCH_STRING, USER_PRINCIPAL_SEARCH+unauthUsername);
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test2");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, USER_PRINCIPAL_SEARCH+unauthUsername);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword); // "javajoe"
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
 
     logger.trace("success - DD's role access was honored while the conflicting annotation was ignored.");
@@ -231,13 +231,13 @@ public class MetaDataCompleteTests extends BaseTckTest {
     // Manager(javajoe)
     // in DD. So attempts to POST as Administrator=j2ee should fail.
     logger.trace("Attempting to POST as user= {} should be denied due to DD security.", username);
-    TEST_PROPS.setProperty(TEST_NAME, "SecurityAnno/Test3");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // this is username for
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecurityAnno/Test3");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // this is username for
                                                        // Administrator not
                                                        // Manager
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED); // check for status code
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED); // check for status code
                                                        // 401
     try {
       invoke();
@@ -246,24 +246,24 @@ public class MetaDataCompleteTests extends BaseTckTest {
       // of
       // UNAUTHORIZED (401) so retry and check for FORBIDDEN code. If it still
       // fails then we have an issue.
-      TEST_PROPS.setProperty(TEST_NAME, "SecurityAnno/Test3");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageSec));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // this is username for
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecurityAnno/Test3");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // this is username for
                                                          // Administrator not
                                                          // Manager
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
     // now verify that GET can be done by role=Administrator (per DD definition)
     logger.trace("Attempting to GET as user= {} should be allowed due to DD security.", username);
-    TEST_PROPS.setProperty(TEST_NAME, "BasicSec/Test3");
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // this is username for
+    TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test3");
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // this is username for
                                                        // Administrator
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password);
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageSec));
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password);
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageSec));
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
 
     logger.trace("Class level annotation setting was overridden by DD.");
@@ -293,10 +293,10 @@ public class MetaDataCompleteTests extends BaseTckTest {
   public void test4() throws Exception {
 
     // now see if we get access denied - since DenyAll anno set on doPost method
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageSec));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, unauthUsername);
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, unauthPassword);
-    TEST_PROPS.setProperty(STATUS_CODE, OK); // check for status code 401
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername);
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, unauthPassword);
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK); // check for status code 401
     invoke();
 
     logger.trace("Success - DD allowed POST by user={}", unauthUsername);
@@ -322,12 +322,12 @@ public class MetaDataCompleteTests extends BaseTckTest {
   public void test5() throws Exception {
 
     logger.trace("GET w/ user= {} should be allowed access as DD leaves this servlet unprotected.", unauthUsername);
-    TEST_PROPS.setProperty(TEST_NAME, "BasicSec/Test5");
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // try using valid creds
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // and it should still
+    TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test5");
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // try using valid creds
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // and it should still
                                                          // work
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageUnprotected));
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
     invoke();
     logger.trace("Class level PermitAll anno returned expected results");
     logger.trace("test5 passed.");
@@ -355,7 +355,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
   public void test6() throws Exception {
 
     logger.trace("Sending request to resource where DD allows access to override any restricting annotation...");
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
 
     // attempt to GET as "j2ee" should NOT be allowed since the DD only
     // states to allow Manager role (ie javajoe). The annotation
@@ -363,44 +363,44 @@ public class MetaDataCompleteTests extends BaseTckTest {
     // by Administrator role (e.g. user=j2ee) but this annotation
     // must be completely ignored sine the DD has set metadata-complete=true.
     logger.trace("GET w/ user= {} should NOT be allowed due to DD declaration", username);
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
       // its possible we were denied access with a FORBIDDEN code
       // so retry with that code - if it still fails then we have an issue.
       logger.trace("retrying: GET w/ user= {} should still NOT be allowed due to DD declaration", username);
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("GET", pageGuest));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 
     // attempt to POST as "j2ee" should NOT be allowed since the DD only
     // states to allow Manager role (ie javajoe).
     logger.trace("POST w/ user= {} should NOT be allowed due to DD declaration", username);
-    TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-    TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-    TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-    TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-    TEST_PROPS.setProperty(STATUS_CODE, UNAUTHORIZED);
+    TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+    TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+    TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+    TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+    TEST_PROPS.get().setProperty(STATUS_CODE, UNAUTHORIZED);
     try {
       invoke();
     } catch (Exception e) {
       // its possible we were denied access with a FORBIDDEN code
       // so retry with that code - if it still fails then we have an issue.
       logger.trace("retrying: POST w/ user= {} should still NOT be allowed due to DD declaration", username);
-      TEST_PROPS.setProperty(TEST_NAME, "SecAnnotations/Test6");
-      TEST_PROPS.setProperty(REQUEST, getRequestLine("POST", pageGuest));
-      TEST_PROPS.setProperty(BASIC_AUTH_USER, username); // "j2ee"
-      TEST_PROPS.setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
-      TEST_PROPS.setProperty(STATUS_CODE, FORBIDDEN);
+      TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");
+      TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageGuest));
+      TEST_PROPS.get().setProperty(BASIC_AUTH_USER, username); // "j2ee"
+      TEST_PROPS.get().setProperty(BASIC_AUTH_PASSWD, password); // "j2ee"
+      TEST_PROPS.get().setProperty(STATUS_CODE, FORBIDDEN);
       invoke();
     }
 

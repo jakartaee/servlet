@@ -66,10 +66,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.include.request_uri=SET_GOOD;jakarta.servlet.include.context_path=SET_GOOD;jakarta.servlet.include.servlet_path=SET_GOOD;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_GOOD;");
 
-    TEST_PROPS.setProperty(APITEST, "includeAttributes");
+    TEST_PROPS.get().setProperty(APITEST, "includeAttributes");
     invoke();
   }
 
@@ -90,10 +90,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.include.request_uri=SET_GOOD;jakarta.servlet.include.context_path=SET_GOOD;jakarta.servlet.include.servlet_path=SET_GOOD;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_GOOD;");
 
-    TEST_PROPS.setProperty(APITEST, "includeAttributes1");
+    TEST_PROPS.get().setProperty(APITEST, "includeAttributes1");
     invoke();
   }
 
@@ -114,10 +114,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes2() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.include.request_uri=SET_NO;jakarta.servlet.include.context_path=SET_NO;jakarta.servlet.include.servlet_path=SET_NO;jakarta.servlet.include.path_info=SET_NO;jakarta.servlet.include.query_string=SET_NO;");
 
-    TEST_PROPS.setProperty(APITEST, "includeAttributes2");
+    TEST_PROPS.get().setProperty(APITEST, "includeAttributes2");
     invoke();
   }
 
@@ -134,10 +134,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherIncludeIOAndServletExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=includeIOAndServletException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED|Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED|Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -153,10 +153,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherIncludeRuntimeExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=includeUnCheckedException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -172,10 +172,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherIncludeCheckedExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=includeCheckedException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -192,10 +192,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherForwardIOAndServletExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=forwardIOAndServletException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED|Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED|Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -211,10 +211,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherForwardRuntimeExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=forwardUnCheckedException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -230,10 +230,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherForwardCheckedExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=forwardCheckedException HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -254,14 +254,14 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes3() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.forward.request_uri=SET_GOOD;"
             + "jakarta.servlet.forward.context_path=SET_GOOD;"
             + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
             + "jakarta.servlet.forward.path_info=SET_NO;"
             + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
-    TEST_PROPS.setProperty(APITEST, "forwardAttributes");
+    TEST_PROPS.get().setProperty(APITEST, "forwardAttributes");
     invoke();
   }
 
@@ -282,14 +282,14 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes4() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.forward.request_uri=SET_GOOD;"
             + "jakarta.servlet.forward.context_path=SET_GOOD;"
             + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
             + "jakarta.servlet.forward.path_info=SET_NO;"
             + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
-    TEST_PROPS.setProperty(APITEST, "forwardAttributes1");
+    TEST_PROPS.get().setProperty(APITEST, "forwardAttributes1");
     invoke();
   }
 
@@ -310,14 +310,14 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes5() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.forward.request_uri=SET_NO;"
             + "jakarta.servlet.forward.context_path=SET_NO;"
             + "jakarta.servlet.forward.servlet_path=SET_NO;"
             + "jakarta.servlet.forward.path_info=SET_NO;"
             + "jakarta.servlet.forward.query_string=SET_NO;");
 
-    TEST_PROPS.setProperty(APITEST, "forwardAttributes2");
+    TEST_PROPS.get().setProperty(APITEST, "forwardAttributes2");
     invoke();
   }
 
@@ -341,14 +341,14 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestAttributes6() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "jakarta.servlet.forward.request_uri=SET_GOOD;"
             + "jakarta.servlet.forward.context_path=SET_GOOD;"
             + "jakarta.servlet.forward.servlet_path=SET_GOOD;"
             + "jakarta.servlet.forward.path_info=SET_NO;"
             + "jakarta.servlet.forward.query_string=SET_GOOD;");
 
-    TEST_PROPS.setProperty(APITEST, "forwardAttributes6");
+    TEST_PROPS.get().setProperty(APITEST, "forwardAttributes6");
     invoke();
   }
 
@@ -365,10 +365,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void bufferContent() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "bufferContent_in_ForwardedServlet_invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    TEST_PROPS.setProperty(APITEST, "bufferContent");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(APITEST, "bufferContent");
     invoke();
   }
 
@@ -383,15 +383,15 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void requestDispatcherNoWrappingTest() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=rdNoWrappingTest&operation=0 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=rdNoWrappingTest&operation=1 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     invoke();
   }
 
@@ -407,7 +407,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestURIIncludeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRequestURIIncludeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getRequestURIIncludeTest");
     invoke();
   }
 
@@ -423,7 +423,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestURLIncludeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRequestURLIncludeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getRequestURLIncludeTest");
     invoke();
   }
 
@@ -439,7 +439,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestURIForwardTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRequestURIForwardTest");
+    TEST_PROPS.get().setProperty(APITEST, "getRequestURIForwardTest");
     invoke();
   }
 
@@ -455,7 +455,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getRequestURLForwardTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRequestURLForwardTest");
+    TEST_PROPS.get().setProperty(APITEST, "getRequestURLForwardTest");
     invoke();
   }
 
@@ -473,7 +473,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getQueryStringIncludeTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getQueryStringIncludeTest");
+    TEST_PROPS.get().setProperty(APITEST, "getQueryStringIncludeTest");
     invoke();
   }
 
@@ -491,7 +491,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    */
   @Test
   public void getQueryStringForwardTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getQueryStringForwardTest");
+    TEST_PROPS.get().setProperty(APITEST, "getQueryStringForwardTest");
     invoke();
   }
 }

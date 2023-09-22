@@ -65,9 +65,9 @@ public class WebFilterTests extends AbstractTckTest {
    */
   @Test
   public void test1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "FILTER1_INVOKED|Servlet1_INVOKED");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "FILTER1_INVOKED|Servlet1_INVOKED");
     invoke();
   }
 
@@ -91,9 +91,9 @@ public class WebFilterTests extends AbstractTckTest {
    */
   @Test
   public void test2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "forward1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
-    TEST_PROPS.setProperty(UNORDERED_SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "forward1");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
+    TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
         "FILTER2_INVOKED|" + "FilterName=filter2|"
             + "PName=name1 PVALUE=value1|" + "PName=name2 PVALUE=value2|"
             + "AsyncSupport=false|" + "URL=servlet1|" + "From=TestServlet|"
@@ -116,9 +116,9 @@ public class WebFilterTests extends AbstractTckTest {
    */
   @Test
   public void test3() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "include1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_INVOKED");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
+    TEST_PROPS.get().setProperty(APITEST, "include1");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_INVOKED");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
     invoke();
   }
 }

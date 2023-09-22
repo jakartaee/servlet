@@ -66,7 +66,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    */
   @Test
   public void getHeadersTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getHeadersTest");
+    TEST_PROPS.get().setProperty(APITEST, "getHeadersTest");
     invoke();
   }
 
@@ -82,7 +82,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    */
   @Test
   public void getHeaderTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getHeaderTest");
+    TEST_PROPS.get().setProperty(APITEST, "getHeaderTest");
     invoke();
   }
 
@@ -100,7 +100,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    */
   @Test
   public void getHeaderNamesTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getHeaderNamesTest");
+    TEST_PROPS.get().setProperty(APITEST, "getHeaderNamesTest");
     invoke();
   }
 
@@ -114,7 +114,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    */
   @Test
   public void getStatusTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getStatusTest");
+    TEST_PROPS.get().setProperty(APITEST, "getStatusTest");
     invoke();
   }
   // ------------------- END HttpServletResponseWrapper

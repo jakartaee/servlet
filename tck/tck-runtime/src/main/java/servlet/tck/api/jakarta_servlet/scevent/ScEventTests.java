@@ -63,7 +63,7 @@ public class ScEventTests extends AbstractTckTest {
    */
   @Test
   public void constructorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "constructorTest");
+    TEST_PROPS.get().setProperty(APITEST, "constructorTest");
     invoke();
   }
 
@@ -78,7 +78,7 @@ public class ScEventTests extends AbstractTckTest {
    */
   @Test
   public void getServletContextTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getServletContextTest");
+    TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     invoke();
   }
 

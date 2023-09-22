@@ -75,50 +75,50 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    */
   @Test
   public void requestTest() throws Exception {
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
-    TEST_PROPS.setProperty(APITEST, "foo/bar/index.html");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar/index.html");
     invoke();
 
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
-    TEST_PROPS.setProperty(APITEST, "foo/bar");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "foo/baR/TestServlet5");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet2");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "foo/baR/TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet2");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "TestServlet3");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet3");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "TestServlet3");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet3");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "foo/bar/TestServlet5");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet5");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar/TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet5");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "test/servletbyname");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet6");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "test/servletbyname");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet6");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "dummy.html");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "dummy.html");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Test_RequestFilter|Test FAILED from dummy html page");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "index.bop");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet4");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "index.bop");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet4");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
 
-    TEST_PROPS.setProperty(APITEST, "TestServlet3/racecar.bop");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet4");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(APITEST, "TestServlet3/racecar.bop");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet4");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     invoke();
   }
 
@@ -141,59 +141,59 @@ public class MultiFilterMappingTests extends AbstractTckTest {
   public void forwardTest() throws Exception {
     String testName = "forwardTest";
 
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar/index.html HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet1");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet1");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/baR/TestServlet5 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet2");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet2");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/TestServlet3 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet3");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet3");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar/TestServlet5 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet5");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/test/servletbyname HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet6");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet6");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/dummy.html HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Test_ForwardFilter|Test FAILED from dummy html page");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/index.bop HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet4");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet4");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/TestServlet3/racecar.bop HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet4");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet4");
     invoke();
   }
 
@@ -217,59 +217,59 @@ public class MultiFilterMappingTests extends AbstractTckTest {
     String testName = "includeTest";
     String filterString = "Test_IncludeFilter";
 
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet1");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet1");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar/index.html HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet1");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet1");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/baR/TestServlet5 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet2");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet2");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/TestServlet3 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet3");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet3");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/foo/bar/TestServlet5 HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet5");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/test/servletbyname HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet6");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet6");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/dummy.html HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         filterString + "|Test FAILED from dummy html page");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/index.bop HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet4");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet4");
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName() + "?testname="
             + testName + "&parameter1=/TestServlet3/racecar.bop HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, filterString + "|TestServlet4");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, filterString + "|TestServlet4");
     invoke();
   }
 
@@ -296,18 +296,18 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    */
   @Test
   public void errorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "test/foo/bar/xyz");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");
-    TEST_PROPS.setProperty(DONOTUSEServletName, "true");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(APITEST, "test/foo/bar/xyz");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");
+    TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
     invoke();
 
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName()
             + "?testname=forwardTest"
             + "&parameter1=/test/foo/bar/xyz HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
     invoke();
   }
 }

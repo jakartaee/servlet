@@ -55,8 +55,8 @@ public class DefaultMappingTests extends AbstractTckTest {
    */
   @Test
   public void defaultservletTest1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");
-    TEST_PROPS.setProperty(APITEST, "TestServlet3/xyz");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet6");
+    TEST_PROPS.get().setProperty(APITEST, "TestServlet3/xyz");
     invoke();
   }
 
@@ -74,8 +74,8 @@ public class DefaultMappingTests extends AbstractTckTest {
    */
   @Test
   public void defaultservletTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet6");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet6");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/foo/bar/xxx" + " HTTP/1.1");
     invoke();
   }

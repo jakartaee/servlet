@@ -61,7 +61,7 @@ public class GenericFilterTests extends AbstractTckTest {
    */
   @Test
   public void initFilterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "InitFilterTest");
+    TEST_PROPS.get().setProperty(APITEST, "InitFilterTest");
     invoke();
   }
 
@@ -75,7 +75,7 @@ public class GenericFilterTests extends AbstractTckTest {
    */
   @Test
   public void initFilterConfigTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "InitFilterConfigTest");
+    TEST_PROPS.get().setProperty(APITEST, "InitFilterConfigTest");
     invoke();
   }
 
@@ -90,7 +90,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetFilterNameTest() throws Exception {
     String testName = "GetFilterNameTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 
@@ -105,7 +105,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetInitParamTest() throws Exception {
     String testName = "GetInitParamTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 
@@ -120,7 +120,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetInitParamNamesTest() throws Exception {
     String testName = "GetInitParamNamesTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 
@@ -135,7 +135,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetInitParamNamesNullTest() throws Exception {
     String testName = "GetInitParamNamesNullTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 
@@ -150,7 +150,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetInitParamNullTest() throws Exception {
     String testName = "GetInitParamNullTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 
@@ -165,7 +165,7 @@ public class GenericFilterTests extends AbstractTckTest {
   @Test
   public void GetServletContextTest() throws Exception {
     String testName = "GetServletContextTest";
-    TEST_PROPS.setProperty(APITEST, testName);
+    TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
   }
 }

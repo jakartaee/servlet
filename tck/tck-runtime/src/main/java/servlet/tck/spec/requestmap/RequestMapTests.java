@@ -59,8 +59,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void longestPathMatchTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(APITEST, "foo/bar/index.html");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar/index.html");
     invoke();
   }
 
@@ -78,8 +78,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void longestPathMatchTest1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet1");
-    TEST_PROPS.setProperty(APITEST, "foo/bar");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet1");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar");
     invoke();
   }
 
@@ -97,8 +97,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void longestPathMatchTest2() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
-    TEST_PROPS.setProperty(APITEST, "foo/baR/TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet2");
+    TEST_PROPS.get().setProperty(APITEST, "foo/baR/TestServlet5");
     invoke();
   }
 
@@ -115,8 +115,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void exactMatchTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet3");
-    TEST_PROPS.setProperty(APITEST, "TestServlet3");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet3");
+    TEST_PROPS.get().setProperty(APITEST, "TestServlet3");
     invoke();
   }
 
@@ -134,8 +134,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void exactMatchTest1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet5");
-    TEST_PROPS.setProperty(APITEST, "foo/bar/TestServlet5");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet5");
+    TEST_PROPS.get().setProperty(APITEST, "foo/bar/TestServlet5");
     invoke();
   }
 
@@ -153,8 +153,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void extMatchTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
-    TEST_PROPS.setProperty(APITEST, "TestServlet3/racecar.bop");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4");
+    TEST_PROPS.get().setProperty(APITEST, "TestServlet3/racecar.bop");
     invoke();
   }
 
@@ -171,8 +171,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void extMatchTest1() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
-    TEST_PROPS.setProperty(APITEST, "index.bop");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4");
+    TEST_PROPS.get().setProperty(APITEST, "index.bop");
     invoke();
   }
 
@@ -189,8 +189,8 @@ public class RequestMapTests extends AbstractTckTest {
    */
   @Test
   public void notFoundTest1() throws Exception {
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/foo/bar/xxx" + " HTTP/1.1");
     invoke();
   }

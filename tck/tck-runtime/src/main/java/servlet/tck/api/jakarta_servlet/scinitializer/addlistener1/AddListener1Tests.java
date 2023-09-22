@@ -63,7 +63,7 @@ public class AddListener1Tests extends AbstractTckTest {
    */
   @Test
   public void addListenerTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "addListenerTest");
+    TEST_PROPS.get().setProperty(APITEST, "addListenerTest");
     invoke();
   }
 }

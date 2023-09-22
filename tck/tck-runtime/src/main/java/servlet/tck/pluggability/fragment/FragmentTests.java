@@ -80,10 +80,10 @@ public class FragmentTests extends AbstractTckTest {
    */
   @Test
   public void initParamTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestServlet1|msg1=first|msg2=second");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet1" + " HTTP/1.1");
     invoke();
   }
@@ -99,10 +99,10 @@ public class FragmentTests extends AbstractTckTest {
    */
   @Test
   public void addServletTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestFilter3|fragment|three|TestServlet3|msg1=third|msg2=third");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet3" + " HTTP/1.1");
     invoke();
   }
@@ -120,14 +120,14 @@ public class FragmentTests extends AbstractTckTest {
    */
   @Test
   public void addServletURLTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet2");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet2");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet2" + " HTTP/1.1");
     invoke();
 
-    TEST_PROPS.setProperty(STATUS_CODE, NOT_FOUND);
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet22" + " HTTP/1.1");
     invoke();
   }
@@ -143,10 +143,10 @@ public class FragmentTests extends AbstractTckTest {
    */
   @Test
   public void welcomefileTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING, "TestServlet4");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4");
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + " HTTP/1.1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
     invoke();
   }
 
@@ -164,13 +164,13 @@ public class FragmentTests extends AbstractTckTest {
    */
   @Test
   public void filterOrderingTest() throws Exception {
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestFilter|fragment|none|" + "TestFilter3|fragment|three|"
             + "TestFilter2|fragment|two|"
             + "TestFilter1|fragment|one|TestServlet5");
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet5" + " HTTP/1.1");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
     invoke();
   }
 }

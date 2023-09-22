@@ -57,7 +57,7 @@ public class ServletContextTests extends AbstractTckTest {
    */
   @Test
   public void getJspConfigDescriptorTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getJspConfigDescriptorTest");
+    TEST_PROPS.get().setProperty(APITEST, "getJspConfigDescriptorTest");
     invoke();
   }
 }

@@ -67,7 +67,7 @@ public class FilterTests extends AbstractTckTest {
    */
   @Test
   public void doFilterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "DoFilterTest");
+    TEST_PROPS.get().setProperty(APITEST, "DoFilterTest");
     invoke();
   }
 
@@ -81,7 +81,7 @@ public class FilterTests extends AbstractTckTest {
    */
   @Test
   public void initFilterConfigTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "InitFilterConfigTest");
+    TEST_PROPS.get().setProperty(APITEST, "InitFilterConfigTest");
     invoke();
   }
 }

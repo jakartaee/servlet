@@ -63,7 +63,7 @@ public class SetInitParameterTests extends AbstractTckTest {
    */
   @Test
   public void setInitParameterTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "setInitParameterTest");
+    TEST_PROPS.get().setProperty(APITEST, "setInitParameterTest");
     invoke();
   }
 }

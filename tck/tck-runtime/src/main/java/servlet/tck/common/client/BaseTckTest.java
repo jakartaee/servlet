@@ -130,7 +130,7 @@ public abstract class BaseTckTest {
   /**
    * Test properties
    */
-  protected static final Properties TEST_PROPS = new Properties();
+  protected static final ThreadLocal<Properties> TEST_PROPS = ThreadLocal.withInitial(Properties::new);
 
   /**
    * StatusCode property
@@ -466,7 +466,7 @@ public abstract class BaseTckTest {
   /**
    * <PRE>
    * Invokes a test based on the properties
-    * stored in TEST_PROPS.  Once the test has completed,
+    * stored in TEST_PROPS.get().  Once the test has completed,
     * the properties in TEST_PROPS will be cleared.
    * </PRE>
    *
@@ -515,7 +515,7 @@ public abstract class BaseTckTest {
     // check for a REQUEST property and create the request object.
 
     if (req == null) {
-      String request = TEST_PROPS.getProperty(REQUEST);
+      String request = TEST_PROPS.get().getProperty(REQUEST);
 
       if (request.startsWith("GET") || request.startsWith("POST")
           || request.startsWith("OPTIONS") || request.startsWith("PUT")
@@ -533,9 +533,9 @@ public abstract class BaseTckTest {
     String key = null;
     String value = null;
     // process the remainder of the properties
-    for (Enumeration e = TEST_PROPS.propertyNames(); e.hasMoreElements();) {
+    for (Enumeration e = TEST_PROPS.get().propertyNames(); e.hasMoreElements();) {
       key = (String) e.nextElement();
-      value = TEST_PROPS.getProperty(key);
+      value = TEST_PROPS.get().getProperty(key);
 
       switch (key) {
         case TEST_NAME:
@@ -570,10 +570,10 @@ public abstract class BaseTckTest {
           req.setContent(value);
           break;
         case RESPONSE_MATCH:
-          // setResponseMatch(TEST_PROPS.getProperty(key));
+          // setResponseMatch(TEST_PROPS.get().getProperty(key));
           break;
         case REQUEST_HEADERS:
-          req.addRequestHeader(TEST_PROPS.getProperty(key));
+          req.addRequestHeader(TEST_PROPS.get().getProperty(key));
           break;
         case EXPECT_RESPONSE_BODY:
           // FIXME
@@ -598,9 +598,9 @@ public abstract class BaseTckTest {
         case BASIC_AUTH_USER:
         case BASIC_AUTH_PASSWD:
         case BASIC_AUTH_REALM:
-          String user = TEST_PROPS.getProperty(BASIC_AUTH_USER);
-          String password = TEST_PROPS.getProperty(BASIC_AUTH_PASSWD);
-          String realm = TEST_PROPS.getProperty(BASIC_AUTH_REALM);
+          String user = TEST_PROPS.get().getProperty(BASIC_AUTH_USER);
+          String password = TEST_PROPS.get().getProperty(BASIC_AUTH_PASSWD);
+          String realm = TEST_PROPS.get().getProperty(BASIC_AUTH_REALM);
           req.setAuthenticationCredentials(user, password, HttpExchange.BASIC_AUTHENTICATION, realm);
           break;
         default:
@@ -628,7 +628,7 @@ public abstract class BaseTckTest {
    * Clears the contents of TEST_PROPS
    */
   private void clearTestProperties() {
-    TEST_PROPS.clear();
+    TEST_PROPS.get().clear();
   }
 
   private boolean isNullOrEmpty(String val) {

@@ -57,10 +57,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedTrueTest1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_Async=true");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_Async=true");
     invoke();
   }
 
@@ -76,10 +76,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedTrueTest2() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet4?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter4=INVOKED|Servlet4_Async=true");
     invoke();
   }
@@ -97,10 +97,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedTrueTest3() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=1 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_Async=true");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_Async=true");
     invoke();
   }
 
@@ -119,10 +119,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedTrueTest4() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=10 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter10=INVOKED|Servlet10_Async=true");
     invoke();
   }
@@ -138,9 +138,9 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_Async=false");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=false");
     invoke();
   }
 
@@ -155,10 +155,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest2() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet3_Async=false");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet3_Async=false");
     invoke();
   }
 
@@ -174,10 +174,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest3() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet5?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter5=INVOKED|Servlet5_Async=false");
     invoke();
   }
@@ -194,10 +194,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest4() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet6?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter6=INVOKED|Servlet6_Async=false");
     invoke();
   }
@@ -214,10 +214,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest5() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet7?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter7=INVOKED|Servlet7_Async=false");
     invoke();
   }
@@ -234,10 +234,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest6() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet8?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter8=INVOKED|Servlet8_Async=false");
     invoke();
   }
@@ -254,10 +254,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest7() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet9?testname=direct HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter9=INVOKED|Servlet9_Async=false");
     invoke();
   }
@@ -275,10 +275,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest8() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=2 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_Async=false");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=false");
     invoke();
   }
 
@@ -295,10 +295,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest9() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=3 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet3_Async=false");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet3_Async=false");
     invoke();
   }
 
@@ -316,10 +316,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void AsyncSupportedFalseTest10() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=5 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet5_Async=false");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet5_Async=false");
     invoke();
   }
 
@@ -334,10 +334,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest1() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_Async=STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_Async=STARTED");
     invoke();
   }
 
@@ -352,10 +352,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest2() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
     invoke();
   }
 
@@ -370,10 +370,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest3() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
     invoke();
   }
 
@@ -389,10 +389,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest4() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet4?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter4=INVOKED|Servlet4_Async=STARTED");
     invoke();
   }
@@ -410,10 +410,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest5() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet5?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter5=INVOKED|Servlet5_Async=NOT_STARTED");
     invoke();
   }
@@ -431,10 +431,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest6() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet6?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter6=INVOKED|Servlet6_Async=NOT_STARTED");
     invoke();
   }
@@ -452,10 +452,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest7() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet7?testname=startA HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter7=INVOKED|Servlet7_Async=NOT_STARTED");
     invoke();
   }
@@ -474,10 +474,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest8() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=1 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_Async=STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_Async=STARTED");
     invoke();
   }
 
@@ -495,10 +495,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest9() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=2 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
     invoke();
   }
 
@@ -516,10 +516,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest10() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=3 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
     invoke();
   }
 
@@ -538,10 +538,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest11() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=10 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet10_Async=STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet10_Async=STARTED");
     invoke();
   }
 
@@ -560,10 +560,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest12() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=5 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter5=INVOKED|Servlet5_Async=false" + "|Servlet5_Async=NOT_STARTED");
     invoke();
   }
@@ -583,10 +583,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest13() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=6 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter6=INVOKED|Servlet6_Async=false" + "|Servlet6_Async=NOT_STARTED");
     invoke();
   }
@@ -606,10 +606,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest14() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=7 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter7=INVOKED|Servlet7_Async=false" + "|Servlet7_Async=NOT_STARTED");
     invoke();
   }
@@ -629,10 +629,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest15() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=8 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter8=INVOKED|Servlet8_Async=false" + "|Servlet8_Async=NOT_STARTED");
     invoke();
   }
@@ -652,10 +652,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest16() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=9 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter9=INVOKED|Servlet9_Async=false" + "|Servlet9_Async=NOT_STARTED");
     invoke();
   }
@@ -673,10 +673,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest17() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=1 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet1_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_Async=NOT_STARTED");
     invoke();
   }
 
@@ -694,10 +694,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest18() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=2 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=NOT_STARTED");
     invoke();
   }
 
@@ -715,10 +715,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest19() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=3 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet3_Async=NOT_STARTED");
     invoke();
   }
 
@@ -737,10 +737,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest20() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=4 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter4=INVOKED|Servlet4_Async=NOT_STARTED");
     invoke();
   }
@@ -760,10 +760,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest21() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=6 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter6=INVOKED|Servlet6_Async=NOT_STARTED");
     invoke();
   }
@@ -783,10 +783,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest22() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=7 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter7=INVOKED|Servlet7_Async=NOT_STARTED");
     invoke();
   }
@@ -806,10 +806,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest23() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=8 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter8=INVOKED|Servlet8_Async=false|Servlet8_Async=NOT_STARTED");
     invoke();
   }
@@ -829,10 +829,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest24() throws Exception {
-    TEST_PROPS.setProperty(REQUEST, "GET " + getContextRoot()
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=9 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "Filter9=INVOKED|Servlet9_Async=NOT_STARTED");
     invoke();
   }
@@ -848,10 +848,10 @@ public class AsyncTests extends AbstractTckTest {
    */
   @Test
   public void StartAsyncTest25() throws Exception {
-    TEST_PROPS.setProperty(REQUEST,
+    TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet?testname=test1 HTTP/1.1");
-    TEST_PROPS.setProperty(STATUS_CODE, OK);
-    TEST_PROPS.setProperty(SEARCH_STRING, "test1_INVOKED");
+    TEST_PROPS.get().setProperty(STATUS_CODE, OK);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "test1_INVOKED");
     invoke();
   }
 }

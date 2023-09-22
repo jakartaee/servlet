@@ -65,7 +65,7 @@ public class ScListenerTests extends AbstractTckTest {
    */
   @Test
   public void contextInitializedTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "contextInitializedTest");
+    TEST_PROPS.get().setProperty(APITEST, "contextInitializedTest");
     invoke();
   }
 }

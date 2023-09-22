@@ -71,15 +71,15 @@ public class ErrorPage1Tests extends AbstractTckTest {
    */
   @Test
   public void nonServletExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "nonServletExceptionTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "nonServletExceptionTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "First ErrorPage|" + "Servlet Name: TestServlet|"
             + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
             + "Status Code: 500|"
             + "Exception: java.lang.IllegalStateException: error page invoked|"
             + "Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
 
@@ -98,15 +98,15 @@ public class ErrorPage1Tests extends AbstractTckTest {
    */
   @Test
   public void servletExceptionTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "ServletExceptionTest");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    TEST_PROPS.setProperty(SEARCH_STRING, "Second ErrorPage|"
+    TEST_PROPS.get().setProperty(APITEST, "ServletExceptionTest");
+    TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "Second ErrorPage|"
         + "Servlet Name: TestServlet|"
         + "Request URI: /servlet_spec_errorpage1_web/TestServlet|"
         + "Status Code: 500|"
         + "Exception: servlet.tck.spec.errorpage1.TestServletException: |"
         + "error page invoked|" + "Message: error page invoked");
-    TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
+    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.FAILED);
     invoke();
   }
 

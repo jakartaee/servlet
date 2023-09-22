@@ -80,8 +80,8 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void dispatchZeroArgTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "dispatchZeroArgTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchZeroArgTest|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
             + "ASYNC_STARTED_dispatchZeroArgTest|" + "IsAsyncSupported=true|"
@@ -104,8 +104,8 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void dispatchZeroArgTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "dispatchZeroArgTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "dispatchZeroArgTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchZeroArgTest|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
             + "ASYNC_STARTED_dispatchZeroArgTest|" + "IsAsyncSupported=true|"
@@ -129,8 +129,8 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void dispatchContextPathTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "dispatchContextPathTest");
-    TEST_PROPS.setProperty(SEARCH_STRING,
+    TEST_PROPS.get().setProperty(APITEST, "dispatchContextPathTest");
+    TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchContextPathTest|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
             + "ASYNC_STARTED_asyncTest|" + "IsAsyncSupported=true|"
@@ -149,7 +149,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void getRequestTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "getRequestTest");
+    TEST_PROPS.get().setProperty(APITEST, "getRequestTest");
     invoke();
   }
 
@@ -166,7 +166,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void asyncListenerTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "asyncListenerTest1");
+    TEST_PROPS.get().setProperty(APITEST, "asyncListenerTest1");
     invoke();
   }
 
@@ -182,7 +182,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void timeOutTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "timeOutTest");
+    TEST_PROPS.get().setProperty(APITEST, "timeOutTest");
     invoke();
   }
 
@@ -198,9 +198,9 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void timeOutTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "timeOutTest1");
-    TEST_PROPS.setProperty(SEARCH_STRING, "in onTimeout method of ACListener2");
-    TEST_PROPS.setProperty(STATUS_CODE, "-1");
+    TEST_PROPS.get().setProperty(APITEST, "timeOutTest1");
+    TEST_PROPS.get().setProperty(SEARCH_STRING, "in onTimeout method of ACListener2");
+    TEST_PROPS.get().setProperty(STATUS_CODE, "-1");
     invoke();
   }
 
@@ -217,7 +217,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void originalRequestTest() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "originalRequestTest");
+    TEST_PROPS.get().setProperty(APITEST, "originalRequestTest");
     invoke();
   }
 
@@ -233,7 +233,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void originalRequestTest1() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "originalRequestTest1");
+    TEST_PROPS.get().setProperty(APITEST, "originalRequestTest1");
     invoke();
   }
 
@@ -250,7 +250,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void originalRequestTest2() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "originalRequestTest2");
+    TEST_PROPS.get().setProperty(APITEST, "originalRequestTest2");
     invoke();
   }
 
@@ -267,7 +267,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void originalRequestTest3() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "originalRequestTest3");
+    TEST_PROPS.get().setProperty(APITEST, "originalRequestTest3");
     invoke();
   }
 
@@ -284,7 +284,7 @@ public class AsyncContextTests extends AbstractTckTest {
    */
   @Test
   public void originalRequestTest4() throws Exception {
-    TEST_PROPS.setProperty(APITEST, "originalRequestTest4");
+    TEST_PROPS.get().setProperty(APITEST, "originalRequestTest4");
     invoke();
   }
 }
