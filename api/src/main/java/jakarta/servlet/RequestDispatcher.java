@@ -155,6 +155,14 @@ public interface RequestDispatcher {
     String ERROR_MESSAGE = "jakarta.servlet.error.message";
 
     /**
+     * The name of the request attribute under which the method of the request whose processing caused the error is
+     * propagated during an error dispatch.
+     *
+     * @since Servlet 6.1
+     */
+    public static final String ERROR_METHOD = "jakarta.servlet.error.method";
+
+    /**
      * The name of the request attribute under which the request URI whose processing caused the error is propagated during
      * an error dispatch
      *

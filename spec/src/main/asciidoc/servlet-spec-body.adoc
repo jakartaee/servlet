@@ -5627,6 +5627,13 @@ threads. The container MAY take care of the errors from the thread
 issued via `AsyncContext.start`. For handling errors that occur during
 `AsyncContext.dispatch` see <<Dispatch_Errors>>.
 
+To avoid unexpected behaviour, the container must dispatch all error dispatches
+to error pages as HTTP GET requests. The original HTTP method must be provided
+to the dispatched request via the request attribute
+'RequestDispatcher.ERROR_METHOD'. The original HTTP method is the value returned
+from 'HttpServletRequest.getMethod()' immediately before the error dispatch. 
+
+
 ==== Error Filters
 
 The error page mechanism operates on the
@@ -8668,6 +8675,11 @@ the `CONNECT` method.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/538[Issue 538]::
 Deprecate support for HTTP/2 server push and make implementaing support for this
 feature optional.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/544[Issue 544]::
+Require that all error dispatches are performed as HTTP GET requests with the
+original HTTP method being made available via a new request attribute
+`jakarta.servlet.error.method`.
 
 === Changes Since Jakarta Servlet 5.0
 
