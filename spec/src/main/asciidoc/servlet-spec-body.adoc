@@ -138,6 +138,8 @@ Requirement Levels
 
 * RFC 7617 The 'Basic' HTTP Authentication Scheme
 
+* RFC 8297 An HTTP Status Code for Indicating Hints
+
 * RFC 9110 HTTP Semantics
 
 * RFC 9111 HTTP Caching
@@ -1655,43 +1657,49 @@ thrown.
 
 === HTTP/2 Server Push
 
-Server push is the most visible of the
-improvements in HTTP/2 to appear in the servlet API. All of the new
-features in HTTP/2, including server push, are aimed at improving the
-perceived performance of the web browsing experience. Server push
-derives its contribution to improved perceived browser performance from
-the simple fact that servers are in a much better position than clients
-to know what additional assets (such as images, stylesheets and scripts)
-go along with initial requests. For example, it is possible for servers
-to know that whenever a browser requests `index.html`, it will shortly
-thereafter request `header.gif`, `footer.gif` and `style.css`. Since
-servers know this, they can preemptively start sending the bytes of
-these assets along side the bytes of the `index.html`.
+Server push was intended to improve the perceived performance of the web
+browsing experience. The basis for this was the idea that servers are in a much
+better position than clients to know what additional assets (such as images,
+stylesheets and scripts) go along with initial requests. For example, it is
+possible for servers to know that whenever a browser requests `index.html`, it
+will shortly require `header.gif`, `footer.gif` and `style.css`. Since servers
+know this, they can preemptively start sending the bytes of these assets along
+side the bytes of the `index.html`.
 
-To use server push, obtain a reference to a
-`PushBuilder` from an `HttpServletRequest`, mutate the builder as
-desired, then call `push()`. Please see the javadoc for method
+Server push has not been widely adopted and the leading browsers have removed
+support for server push. This is because the server does not have visibility
+into either the client cache or any intermediate caches that may be present and,
+as such, is unable to identify which resources need to be pushed and which the
+client already has. Server push has essentially been replaced by RFC 8297 (Early
+Hints).
+
+Server push support was added in version 4 of this specification. As of version
+6.1 of this specification, containers are not required to support server push
+and may always return `null` from
+`jakarta.servlet.http.HttpServletRequest.newPushBuilder()`
+
+To use server push, obtain a reference to a `PushBuilder` from an
+`HttpServletRequest`, mutate the builder as desired, then call `push()`. Please
+see the javadoc for method
 `jakarta.servlet.http.HttpServletRequest.newPushBuilder()` and class
 `jakarta.servlet.http.PushBuilder` for the normative specification. The
-remainder of this section calls out implementation requirements with
-respect to the section titled “Server Push” in the HTTP/2 specification
-version referenced in <<Other Important References>>.
+remainder of this section calls out implementation requirements with respect to
+the section titled “Server Push” in the HTTP/2 specification version referenced
+in <<Other Important References>>.
 
-Unless explicitly excluded, Servlet {spec-version}
-containers must support server push as specified in the HTTP/2
-specification section “Server Push”. Containers must enable server push
-if the client is capable of speaking HTTP/2, unless the client has
-explicitly disabled server push by sending a `SETTINGS_ENABLE_PUSH`
-setting value of 0 (zero) for the current connection. In that case, for
-that connection only, server push must not be enabled.
+Servlet {spec-version} containers may support server push as specified in the
+HTTP/2 specification section “Server Push”. Containers may enable server push if
+the client is capable of speaking HTTP/2, unless the client has explicitly
+disabled server push by sending a `SETTINGS_ENABLE_PUSH` setting value of 0
+(zero) for the current connection. In that case, for that connection only,
+server push must not be enabled.
 
-In addition to allowing clients to disable
-server push with the `SETTINGS_ENABLE_PUSH` setting, servlet containers
-must honor a client’s request to not receive a pushed response on a
-finer grained basis by heeding the `CANCEL` or `REFUSED_STREAM` code
-that references the pushed stream’s stream identifier. One common use of
-this interaction is when a browser already has the resource in its
-cache.
+In addition to allowing clients to disable server push with the
+`SETTINGS_ENABLE_PUSH` setting, servlet containers must honor a client’s request
+to not receive a pushed response on a finer grained basis by heeding the
+`CANCEL` or `REFUSED_STREAM` code that references the pushed stream’s stream
+identifier. One common use of this interaction is when a browser already has the
+resource in its cache.
 
 === Cookies
 
@@ -8647,6 +8655,10 @@ Add ByteBuffer support to `ServletInputStream` and `ServletOutputStream`.
 
 Clarify the expected behavior if the container receives an HTTP request using
 the `CONNECT` method.
+
+link:https://github.com/eclipse-ee4j/servlet-api/issues/538[Issue 538]::
+Deprecate support for HTTP/2 server push and make implementaing support for this
+feature optional.
 
 === Changes Since Jakarta Servlet 5.0
 

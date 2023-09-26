@@ -288,11 +288,15 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @implSpec The default implementation returns null.
      *
-     * @return a {@link PushBuilder} for issuing server push responses from the current request, or null if push is not
-     * supported
+     * @return a {@link PushBuilder} for issuing server push responses from the current request, or {@code null} if push is
+     * not supported. Note that some implementations may opt not to support server push and will therefore always return
+     * {@code null}
      *
      * @since Servlet 4.0
+     *
+     * @deprecated In favor of 103 early hints
      */
+    @Deprecated
     default public PushBuilder newPushBuilder() {
         return null;
     }
