@@ -83,7 +83,10 @@ import java.util.Set;
  * are retained over calls to {@link #push()}.
  *
  * @since Servlet 4.0
+ *
+ * @deprecated In favor of 103 early hints
  */
+@Deprecated
 public interface PushBuilder {
     /**
      * <p>
