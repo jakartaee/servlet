@@ -20,6 +20,7 @@ package jakarta.servlet.http;
 
 import jakarta.servlet.ServletContext;
 import java.util.Enumeration;
+import java.util.function.Consumer;
 
 /**
  *
@@ -59,6 +60,11 @@ import java.util.Enumeration;
  * <p>
  * Session information is scoped only to the current web application (<code>ServletContext</code>), so information
  * stored in one context will not be directly visible in another.
+ *
+ * <p>
+ * This object is <b>only</b> valid within the scope of the HTTP request from which it was obtained. Once the processing
+ * of that request returns to the container, this object must not be used. If there is a requirement to access the
+ * session outside of the scope of an HTTP request then this must be done via {@code #getAccessor()}.
  *
  * @author Various
  *
@@ -213,4 +219,24 @@ public interface HttpSession {
      */
     boolean isNew();
 
+    /**
+     * Provides a mechanism for applications to interact with the {@code HttpSession} outside of the scope of an HTTP
+     * request.
+     * <p>
+     * To use this mechanism, applications call the {@code Consumer#accept(Object)} method on the {@code Consumer} instance
+     * returned from this method and pass an application provided instance of {@code Consumer<Session>}. During that call,
+     * the container will call the the {@code Consumer#accept(Session)} method of the application provided
+     * {@code Consumer<Session>} passing the {@code HttpSession} object.
+     * <p>
+     * For the purposes of session access, validity, passivation, activation etc. the container behaves as if the call the
+     * container makes to the {@code Consumer#accept(Session)} method of the application provided {@code Consumer<Session>}
+     * instance occurs during the processing of an HTTP request.
+     *
+     * @return A container provided {@code Consumer} instance that accepts application provided {@code Consumer<Session>}
+     * instances to enable the application to interact with the HTTP session outside of the scope of an HTTP request or
+     * {@code null} if access to the session is not supported outside of an HTTP request
+     */
+    default public Consumer<Consumer<HttpSession>> getAccessor() {
+        return null;
+    }
 }

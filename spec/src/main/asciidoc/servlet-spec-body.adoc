@@ -3250,6 +3250,11 @@ resumable by requests into that context regardless of whether their
 associated context was being accessed directly or as the target of a
 request dispatch at the time the sessions were created.
 
+`HttpSession` objects obtained from `HttpServletRequest` must not be used
+outside the scope of the request from which there are obtained. If it is
+necessary to access the `HttpSession` outside of this scope, the
+`HttpSession.getAccessor()` method must be used.
+
 === Binding Attributes into a Session
 
 A servlet can bind an object attribute into an
