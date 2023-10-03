@@ -223,10 +223,16 @@ public interface HttpSession {
      * Provides a mechanism for applications to interact with the {@code HttpSession} outside of the scope of an HTTP
      * request.
      * <p>
-     * To use this mechanism, applications call the {@code Consumer#accept(Object)} method on the {@code Consumer} instance
-     * returned from this method and pass an application provided instance of {@code Consumer<Session>}. During that call,
-     * the container will call the the {@code Consumer#accept(Session)} method of the application provided
-     * {@code Consumer<Session>} passing the {@code HttpSession} object.
+     * To use this mechanism, applications call the {@code getAccessor()} method on {@code HttpSession} instance that will be accessed.
+     * This call must be made from within the scope of an HTTP request and will return a  {@code Consumer<Consumer<HttpSession>>}
+     * that then can be used outside of the scope of a HTTP request to access the session.   Such access is obtained by passing a 
+     * {@code Consumer<HttpSession>>} to the {@code Consumer#accept(Object)} method on the {@code Consumer} instance
+     * returned from this method.  During that call, the container will call the the {@code Consumer#accept(Session)} method of the 
+     * application provided {@code Consumer<Session>} passing an {@code HttpSession} object that represents the same 
+     * {@code HttpSession} that the accessor was obtained from, but it may be a different instance and have been passivated then activated
+     * since the accessor was obtained.  If the session has been invalidated before the call, then the consumer will be called with an invalid 
+     * {@code HttpSession} instance representing the original {@code HttpSession}. 
+     
      * <p>
      * For the purposes of session access, validity, passivation, activation etc. the container behaves as if the call the
      * container makes to the {@code Consumer#accept(Session)} method of the application provided {@code Consumer<Session>}
