@@ -79,6 +79,6 @@ public interface Handler {
    *          the response header from the server
    * @return True if the passed match, otherwise false
    */
-  public boolean invoke(Header configuredHeader, Header responseHeader);
+  boolean invoke(Header configuredHeader, Header responseHeader);
 
 }

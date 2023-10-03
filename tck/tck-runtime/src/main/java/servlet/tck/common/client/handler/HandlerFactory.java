@@ -60,7 +60,6 @@
 package servlet.tck.common.client.handler;
 
 /**
- * <PRE>
  * The HandlerManager is responsible for returning the appropriate handler
  * instance based on the provided value.
  */
@@ -109,18 +108,19 @@ public class HandlerFactory {
    *          handler instance to obtain.
    */
   public static Handler getHandler(String handlerName) {
-    if (CONTENT_TYPE.equals(handlerName.toLowerCase())) {
-      return ContentTypeHandler.getInstance();
-    } else if (LOCATION.equals(handlerName.toLowerCase())) {
-      return LocationHandler.getInstance();
-    } else if (SET_COOKIE.equals(handlerName.toLowerCase())) {
-      return SetCookieHandler.getInstance();
-    } else if (WWW_AUTH.equals(handlerName.toLowerCase())) {
-      return WWWAuthenticateHandler.getInstance();
-    } else if (ALLOW.equals(handlerName.toLowerCase())) {
-      return ALLOWHandler.getInstance();
-    } else {
-      return DefaultHandler.getInstance();
-    }
+      switch (handlerName.toLowerCase()) {
+          case CONTENT_TYPE:
+              return ContentTypeHandler.getInstance();
+          case LOCATION:
+              return LocationHandler.getInstance();
+          case SET_COOKIE:
+              return SetCookieHandler.getInstance();
+          case WWW_AUTH:
+              return WWWAuthenticateHandler.getInstance();
+          case ALLOW:
+              return ALLOWHandler.getInstance();
+          default:
+              return DefaultHandler.getInstance();
+      }
   }
 }

@@ -25,11 +25,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 import servlet.tck.common.util.Data;
 import servlet.tck.common.util.ServletTestUtil;
@@ -151,13 +147,8 @@ public class RequestTests {
       throws ServletException, IOException {
 
     boolean passed = false;
-    ;
 
-    Enumeration e = request.getAttributeNames();
-    Object[] attr = ServletTestUtil.getAsArray(e);
-    for (int i = 0, len = attr.length; i < len; i++) {
-      request.removeAttribute((String) attr[i]);
-    }
+    Collections.list(request.getAttributeNames()).forEach(request::removeAttribute);
 
     String attribute1 = "attribute1";
     String attribute2 = "attribute2";
@@ -166,7 +157,7 @@ public class RequestTests {
     request.setAttribute(attribute2, "value2");
     String[] expected = { attribute1, attribute2 };
 
-    e = request.getAttributeNames();
+    Enumeration<String> e = request.getAttributeNames();
 
     if (!ServletTestUtil.checkEnumeration(e, expected)) {
       passed = false;
@@ -183,13 +174,9 @@ public class RequestTests {
       throws ServletException, IOException {
 
     boolean passed = false;
+    Collections.list(request.getAttributeNames()).forEach(request::removeAttribute);
 
-    Enumeration e = request.getAttributeNames();
-    Object[] attr = ServletTestUtil.getAsArray(e);
-    for (int i = 0, len = attr.length; i < len; i++) {
-      request.removeAttribute((String) attr[i]);
-    }
-    e = request.getAttributeNames();
+    Enumeration<String> e = request.getAttributeNames();
     if (!e.hasMoreElements()) {
       passed = true;
     } else {
@@ -198,7 +185,7 @@ public class RequestTests {
           "getAttributeNames() returned a non empty enumeration after all attributes were removed");
       pw.println("The values returned were:");
       while (e.hasMoreElements()) {
-        pw.println(" " + (String) e.nextElement());
+        pw.println(" " + e.nextElement());
       }
     }
     ServletTestUtil.printResult(pw, passed);
@@ -797,7 +784,7 @@ public class RequestTests {
     int arraycount = 0;
 
     if (enumlength > 0) {
-      Vector v = new Vector();
+      List<String> v = new ArrayList<>();
 
       while (arraycount < enumlength) {
         String result = names[arraycount++];
@@ -845,10 +832,7 @@ public class RequestTests {
         }
 
         pw.println("Other parameter values received were :");
-
-        for (int i = 0; i < v.size(); i++) {
-          pw.println(" " + v.elementAt(i).toString());
-        }
+        v.forEach(s -> pw.println(" " + s));
       }
 
     } else {
@@ -2613,7 +2597,7 @@ public class RequestTests {
   public static void changeSessionIDTest(PrintWriter pw,
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    Boolean passed = true;
+    boolean passed = true;
 
     try {
       request.changeSessionId();
@@ -2634,7 +2618,7 @@ public class RequestTests {
   public static void changeSessionIDTest1(PrintWriter pw,
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    Boolean pass = true;
+    boolean pass = true;
     String attrName_OLD = "OLD";
     String attrName_NEW = "NEW";
 

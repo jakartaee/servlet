@@ -30,7 +30,7 @@ public interface TestCase {
    *
    * @throws Exception if the test fails for any reason.
    */
-  public void execute() throws Exception;
+  void execute() throws Exception;
 
   /**
    * Sets the name of the test case.
@@ -38,14 +38,14 @@ public interface TestCase {
    * @param name
    *          of the test case
    */
-  public void setName(String name);
+  void setName(String name);
 
   /**
    * Returns the name of this test case.
    *
    * @return test case name
    */
-  public String getName();
+  String getName();
 //
 //  /**
 //   * Sets the state for this test case. This state will differ from

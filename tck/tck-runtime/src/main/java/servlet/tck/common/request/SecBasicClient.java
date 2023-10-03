@@ -17,7 +17,6 @@
 
 package servlet.tck.common.request;
 
-import servlet.tck.util.TestUtil;
 import servlet.tck.common.client.BaseTckTest;
 
 import java.util.Properties;
@@ -161,7 +160,7 @@ public abstract class SecBasicClient extends BaseTckTest {
   public void test2() throws Exception {
     logMessage("Sending request with Authroization header...");
 
-    StringBuffer sb = new StringBuffer(100);
+    StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(username).append("|");
     sb.append(REMOTE_USER_SEARCH).append(username).append("|");
     sb.append("isUserInRole(\"ADM\"): !true!").append("|");
@@ -231,7 +230,7 @@ public abstract class SecBasicClient extends BaseTckTest {
   
   public void test4() throws Exception {
 
-    StringBuffer sb = new StringBuffer(100);
+    StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(unauthUsername);
 
     logMessage("Sending request to resource the user has access to...");
@@ -278,7 +277,7 @@ public abstract class SecBasicClient extends BaseTckTest {
    */
   
   public void test5() throws Exception {
-    StringBuffer sb = new StringBuffer(100);
+    StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append("|");
     sb.append(REMOTE_USER_SEARCH).append("null");
 
@@ -322,7 +321,7 @@ public abstract class SecBasicClient extends BaseTckTest {
   
   public void test6() throws Exception {
 
-    StringBuffer sb = new StringBuffer(100);
+    StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(username).append("|");
     sb.append("isUserInRole(\"ADM\"): !false!").append("|");
     sb.append("isUserInRole(\"MGR\"): !true!").append("|");
@@ -384,17 +383,14 @@ public abstract class SecBasicClient extends BaseTckTest {
       // allowed access to a protected page!
       String searchString = "Inside  ServletSecTestServlet";
       try {
-        if (_testCase.getResponse().getResponseBodyAsString()
-            .indexOf(searchString) != -1) {
+        if (_testCase.getResponse().getResponseBodyAsString().contains(searchString)) {
           // ohoh - we should NOT have been allowed to access the page and it
           // appears we did access it. log an error
           logger.error("(Should say: \"" + searchString + "\")");
           throw new Exception("test7 failed.");
         }
       } catch (Exception ex) {
-        // must've had problem getting response so dump exception but continue
-        // on
-        ex.printStackTrace();
+        logger.error(ex.getMessage(), ex);
       }
     }
 
@@ -441,7 +437,7 @@ public abstract class SecBasicClient extends BaseTckTest {
       }
     } catch (Exception ex) {
       // must've had problem getting response so dump exception but continue on
-      ex.printStackTrace();
+      logger.error(ex.getMessage(), ex);
     }
   }
 

@@ -66,7 +66,7 @@ public class WebValidatorBase implements ValidationStrategy {
   protected WebTestCase _case = null;
 
   /**
-   * <tt>validate</tt> Will validate the response against the configured
+   * <b>validate</b> Will validate the response against the configured
    * TestCase.
    *
    *

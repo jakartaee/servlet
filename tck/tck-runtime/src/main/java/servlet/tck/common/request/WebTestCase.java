@@ -190,7 +190,7 @@ public class WebTestCase implements TestCase {
    * Adds a header that is to be expected in the response from the server.
    *
    * @param header
-   *          in the format of <headername>:<value> (test:foo)
+   *          in the format of headername:value (test:foo)
    */
   public void addExpectedHeader(String header) {
     if (_expected == null) {
@@ -213,7 +213,7 @@ public class WebTestCase implements TestCase {
    * Adds a header that is should not be in the server's response.
    *
    * @param header
-   *          in the format of <headername>:<value> (test:foo)
+   *          in the format of headername:value (test:foo)
    */
   public void addUnexpectedHeader(String header) {
     if (_unexpected == null) {
@@ -236,7 +236,7 @@ public class WebTestCase implements TestCase {
    * from the server.
    *
    * If multiple search strings are required, one can either call this method
-   * for each string, or pass in one string with pipe <code>|<code> delimiting
+   * for each string, or pass in one string with pipe <code>|</code> delimiting
    * the individual search strings within the large string.
    *
    * @param searchString
@@ -254,7 +254,7 @@ public class WebTestCase implements TestCase {
    * from the server.
    *
    * If multiple search strings are required, one can either call this method
-   * for each string, or pass in one string with pipe <code>|<code> delimiting
+   * for each string, or pass in one string with pipe <code>|</code> delimiting
    * the individual search strings within the large string.
    *
    * @param searchString
@@ -272,7 +272,7 @@ public class WebTestCase implements TestCase {
    * response body from the server.
    *
    * If multiple search strings are required, one can either call this method
-   * for each string, or pass in one string with pipe <code>|<code> delimiting
+   * for each string, or pass in one string with pipe <code>|</code> delimiting
    * the individual search strings within the large string.
    *
    * @param searchString
@@ -288,7 +288,7 @@ public class WebTestCase implements TestCase {
   /**
    * Sets a string or series of strings that will be searched for in the
    * response. If multiple search strings are required, one can either call this
-   * method for each string, or pass in one string with pipe <code>|<code>
+   * method for each string, or pass in one string with pipe <code>|</code>
    * delimiting the individual search strings within the large string.
    *
    * @param searchString
@@ -499,8 +499,7 @@ public class WebTestCase implements TestCase {
    * @param map
    *          the object in which to add header to
    * @param headerString
-   *          String representation of a header in the form of
-   *          <headername>:<value>
+   *          String representation of a header in the form of headername:value
    */
   private void addHeader(Map<String,Header> map, String headerString) {
     LOGGER.debug("[WebTestCase] addHeader utility method called: {}", headerString);

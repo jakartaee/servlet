@@ -107,7 +107,7 @@ public abstract class AbstractTckTest extends BaseTckTest {
     testCase.setRequest(req);
 
     if ((TEST_PROPS.get().getProperty(SEARCH_STRING) == null)
-            || ((TEST_PROPS.get().getProperty(SEARCH_STRING)).equals(""))) {
+            || ((TEST_PROPS.get().getProperty(SEARCH_STRING)).isEmpty())) {
       testCase.setResponseSearchString(Data.PASSED);
       testCase.setUnexpectedResponseSearchString(Data.FAILED);
     }

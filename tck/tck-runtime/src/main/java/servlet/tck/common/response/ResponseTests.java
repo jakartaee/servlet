@@ -183,15 +183,10 @@ public class ResponseTests {
   public static void getOutputStreamFlushTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
 
-    boolean passed = false;
     ServletOutputStream sos = response.getOutputStream();
     sos.println("in getOutputStreamFlushTest");
     sos.flush();
-    if (response.isCommitted()) {
-      passed = true;
-    } else {
-      passed = false;
-    }
+    boolean passed = response.isCommitted();
     ServletTestUtil.printResult(sos, passed);
   }
 
@@ -241,7 +236,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set with UTF-8 Fail\n");
     }
-    response.setCharacterEncoding((String)null);
+    response.setCharacterEncoding(null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -259,7 +254,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set via Content-Type Fail\n");
     }
-    response.setCharacterEncoding((String)null);
+    response.setCharacterEncoding(null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -277,7 +272,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set via Locale Fail\n");
     }
-    response.setCharacterEncoding((String)null);
+    response.setCharacterEncoding(null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -311,14 +306,14 @@ public class ResponseTests {
     String type = response.getContentType();
 
     if (type != null) {
-      if ((type.toLowerCase().indexOf("text/html") > -1)
-          && (type.toLowerCase().indexOf("charset") > -1)
-          && (type.toLowerCase().indexOf("iso-8859-7") > -1)) {
+      if ((type.toLowerCase().contains("text/html"))
+          && (type.toLowerCase().contains("charset"))
+          && (type.toLowerCase().contains("iso-8859-7"))) {
         report.append(" getContentType returns correct type\n");
       } else {
         pass = false;
         report.append(" Expecting text/html; charset=ISO-8859-7");
-        report.append(" getContentType returns incorrect type: " + type);
+        report.append(" getContentType returns incorrect type: ").append(type);
       }
     } else {
       pass = false;
@@ -326,7 +321,7 @@ public class ResponseTests {
     }
 
     PrintWriter pw = response.getWriter();
-    pw.print(report.toString());
+    pw.print(report);
     ServletTestUtil.printResult(pw, pass);
   }
 
@@ -338,9 +333,9 @@ public class ResponseTests {
     response.setContentType("text/html;charset=ISO-8859-7");
     String type = response.getContentType();
     if (type != null) {
-      if ((type.toLowerCase().indexOf("text/html") > -1)
-          && (type.toLowerCase().indexOf("charset") > -1)
-          && (type.toLowerCase().indexOf("iso-8859-1") > -1)) {
+      if ((type.toLowerCase().contains("text/html"))
+          && (type.toLowerCase().contains("charset"))
+          && (type.toLowerCase().contains("iso-8859-1"))) {
         pass = true;
       } else {
         pw.println("Expecting text/html; charset=ISO-8859-1");
@@ -354,16 +349,11 @@ public class ResponseTests {
 
   public static void getWriterFlushTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
-    boolean passed = false;
     PrintWriter pw = response.getWriter();
     response.setContentType("text/html;charset=ISO-8859-7");
     pw.println("in test");
     pw.flush();
-    if (response.isCommitted()) {
-      passed = true;
-    } else {
-      passed = false;
-    }
+    boolean passed = response.isCommitted();
     ServletTestUtil.printResult(pw, passed);
   }
 
@@ -376,9 +366,9 @@ public class ResponseTests {
 
     String type = response.getContentType();
     if (type != null) {
-      if ((type.toLowerCase().indexOf("text/html") > -1)
-          && (type.toLowerCase().indexOf("charset") > -1)
-          && (type.toLowerCase().indexOf("iso-8859-7") > -1)) {
+      if ((type.toLowerCase().contains("text/html"))
+          && (type.toLowerCase().contains("charset"))
+          && (type.toLowerCase().contains("iso-8859-7"))) {
         pass = true;
       } else {
         pw.println("Expecting text/html; charset=ISO-8859-7");
@@ -426,12 +416,12 @@ public class ResponseTests {
       response.setBufferSize(50);
 
       // commit the response
-      if (response.isCommitted() == false)
+      if (!response.isCommitted())
         notYet = true;
 
       response.flushBuffer();
 
-      if (notYet && (response.isCommitted() == true)) {
+      if (notYet && (response.isCommitted())) {
         passed = true;
       } else {
         passed = false;
@@ -718,9 +708,9 @@ public class ResponseTests {
     String actual = response.getContentType();
     if (actual == null) {
       sos.println("null value returned by getContentType()");
-    } else if (actual.toLowerCase().indexOf(expected) >= 0) {
+    } else if (actual.toLowerCase().contains(expected)) {
       passed = true;
-    } else if (actual.toLowerCase().indexOf("char=") >= 0) {
+    } else if (actual.toLowerCase().contains("char=")) {
       sos.println(
           "The value returned by getContentType() contains the unexpected encoding");
       sos.println("actual=" + actual + "   expected=" + expected);
@@ -778,8 +768,7 @@ public class ResponseTests {
         .equalsIgnoreCase("text/xml;charset=Shift_Jis")) {
       pw.println("getContentType() did not return text/xml; charset=Shift_Jis");
       pw.println("actual=" + actual_type);
-    } else if (actual_encoding.toLowerCase()
-        .indexOf(expected.toLowerCase()) < 0) {
+    } else if (!actual_encoding.toLowerCase().contains(expected.toLowerCase())) {
       pw.println("getCharacterEncoding() did not return correct encoding");
       pw.println("actual=" + actual_encoding);
       pw.println("expected=" + expected);
@@ -810,8 +799,8 @@ public class ResponseTests {
 
     if (actual == null) {
       pw.println("Null value returned by getContentType()");
-    } else if ((actual.toLowerCase().indexOf(expected1) >= 0)
-        && (actual.toLowerCase().indexOf(expected2.toLowerCase()) >= 0)) {
+    } else if ((actual.toLowerCase().contains(expected1))
+        && (actual.toLowerCase().contains(expected2.toLowerCase()))) {
       passed = true;
     } else {
       pw.println(
@@ -1226,7 +1215,7 @@ public class ResponseTests {
   public static void getHeadersTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    Boolean passed = true;
+    boolean passed = true;
     String name = "TestheadersUnique";
     String[] values = { "first", "second", "third" };
 

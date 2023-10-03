@@ -24,13 +24,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
 import java.util.Properties;
-import java.util.Vector;
+import java.util.stream.Collectors;
 
 /**
  * TestUtil is a final utility class responsible for implementing logging across
@@ -67,18 +65,20 @@ public final class TestUtil {
         "************************************************************");
   }
 
-  public static String toEncodedString(Properties args) {
-    StringBuffer buf = new StringBuffer();
-    Enumeration names = args.propertyNames();
-    while (names.hasMoreElements()) {
-      String name = (String) names.nextElement();
-      String value = args.getProperty(name);
-      buf.append(URLEncoder.encode(name)).append("=")
-          .append(URLEncoder.encode(value));
-      if (names.hasMoreElements())
-        buf.append("&");
-    }
-    return buf.toString();
+  public static String toEncodedString(Map<String, String> args) {
+//    StringBuilder buf = new StringBuilder();
+//    for(Map.Entry<String, String> entry : args.entrySet()){
+//      String name = entry.getKey();
+//      String value = entry.getValue();
+//      buf.append(URLEncoder.encode(name)).append("=")
+//          .append(URLEncoder.encode(value));
+//      buf.append("&");
+//    }
+//    return buf.toString();
+
+    return args.entrySet().stream()
+            .map(entry -> entry.getKey() + "=" + entry.getValue())
+            .collect(Collectors.joining("&"));
   }
 
 }

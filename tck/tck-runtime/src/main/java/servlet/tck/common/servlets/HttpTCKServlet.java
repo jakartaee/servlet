@@ -55,7 +55,7 @@ public abstract class HttpTCKServlet extends HttpServlet {
   /**
    * <code>TEST_ARGS</code> is an array of Classes used during reflection.
    */
-  private static final Class[] TEST_ARGS = { HttpServletRequest.class,
+  private static final Class<?>[] TEST_ARGS = { HttpServletRequest.class,
       HttpServletResponse.class };
 
   /**
@@ -88,7 +88,7 @@ public abstract class HttpTCKServlet extends HttpServlet {
 
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
+      method.invoke(this, req, res);
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {
