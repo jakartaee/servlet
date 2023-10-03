@@ -13,5 +13,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Set up Maven
+      run:
+        mvn --errors --batch-mode --show-version org.apache.maven.plugins:maven-wrapper-plugin:3.2.0:wrapper "-Dmaven=3.9.4"
     - name: Build with Maven
-      run: mvn -B package --file pom.xml -Dvalidate-format
+      run: ./mvnw -B verify -Dvalidate-format
