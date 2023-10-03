@@ -163,7 +163,7 @@ public class SecformClient extends BaseTckTest {
 
   private Response errorPageRequestResponse = null;
 
-  private Map<String,String> cookies = null;
+  private Map<String,String> cookies = new HashMap<>();
   
   /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
@@ -2196,7 +2196,6 @@ public class SecformClient extends BaseTckTest {
    */
   public void addNewCookies(final Map<String, String> oldCookies, Map<String, String> newCookies) {
     newCookies.forEach((key, value) -> oldCookies.put(key.trim(), value.trim()));
-
   }
 
   /**
