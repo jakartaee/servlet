@@ -34,13 +34,14 @@
 
     <properties>
         <shrinkwrap-resolver.version>3.1.4</shrinkwrap-resolver.version>
+        <servlet.api.version>6.0.0</servlet.api.version> <!-- ${project.version} -->
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>${project.version}</version>
+            <version>${servlet.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

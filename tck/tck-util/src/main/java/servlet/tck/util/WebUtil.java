@@ -34,11 +34,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.Base64;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Properties;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * Contains convenience methods for interacting with a web server.
@@ -66,7 +62,7 @@ public class WebUtil {
     public String content = "";
 
     /** Storage for cookies */
-    public Hashtable cookies = new Hashtable();
+    public final Map<String, String> cookies = new HashMap<>();
 
     /** Flag; true if authentication requested */
     public boolean authenticationRequested = false;
@@ -148,7 +144,7 @@ public class WebUtil {
    *              Thrown if request could not be made
    */
   public static Response sendRequest(String method, InetAddress addr, int port,
-      String req, Properties postData, Hashtable cookieList)
+      String req, Map<String, String> postData, Map<String,String> cookieList)
       throws IOException {
     return sendAuthenticatedRequest(method, addr, port, req, postData,
         cookieList, null, null);
@@ -183,8 +179,8 @@ public class WebUtil {
    *              Thrown if request could not be made
    */
   public static Response sendAuthenticatedRequest(String method,
-      InetAddress addr, int port, String req, Properties postData,
-      Hashtable cookieList, String username, String password)
+      InetAddress addr, int port, String req, Map<String, String> postData,
+      Map<String, String> cookieList, String username, String password)
       throws IOException {
     String protocol = "HTTP/1.0";
     URL requestURL;
@@ -215,22 +211,9 @@ public class WebUtil {
 
       if (cookieList != null) {
         // Send cookies:
-        Enumeration keys = cookieList.keys();
-
         // Does at least one cookie exist?
-        if (keys.hasMoreElements()) {
-          String cookieString = "Cookie: ";
-
-          // Add each cookie to the string
-          boolean first = true;
-          while (keys.hasMoreElements()) {
-            String key = (String) keys.nextElement();
-            String value = (String) cookieList.get(key);
-            cookieString += (first ? "" : "; ") + key + "=" + value; // + ";
-                                                                     // $Path=/";
-            first = false;
-          }
-
+        if (!cookieList.isEmpty()) {
+          String cookieString = toCookieValue(cookieList);
           // Write cookies:
           send(out, cookieString);
         }
@@ -248,7 +231,7 @@ public class WebUtil {
       }
 
       // If this is a post request, send post data:
-      if ((postData != null) && method.toUpperCase().equals("POST")) {
+      if ((postData != null) && method.equalsIgnoreCase("POST")) {
         String postString = TestUtil.toEncodedString(postData);
 
         // Skip a line:
@@ -310,6 +293,20 @@ public class WebUtil {
     }
 
     return response;
+  }
+
+  public static String toCookieValue(Map<String, String> cookieList) {
+    StringBuilder cookieString = new StringBuilder("Cookie: ");
+
+    // Add each cookie to the string
+    boolean first = true;
+    for(Map.Entry<String, String> entry : cookieList.entrySet()) {
+      String key = entry.getKey();
+      String value = entry.getValue();
+      cookieString.append(first ? "" : "; ").append(key).append("=").append(value);
+      first = false;
+    }
+    return cookieString.toString();
   }
 
   /**

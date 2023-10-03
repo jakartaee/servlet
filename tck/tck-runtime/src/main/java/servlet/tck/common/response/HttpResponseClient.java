@@ -155,7 +155,7 @@ public class HttpResponseClient extends ResponseClient {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + testName + " HTTP/1.1");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Location: http://" + _hostname
-        + ":" + _port + "" + getContextRoot() + "/RedirectedTest");
+        + ":" + _port + getContextRoot() + "/RedirectedTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);
     invoke();
   }

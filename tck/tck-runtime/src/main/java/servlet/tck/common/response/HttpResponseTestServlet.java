@@ -40,13 +40,13 @@ public class HttpResponseTestServlet extends HttpServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] HTTP_TEST_ARGS = { HttpServletRequest.class,
+  private static final Class<?>[] HTTP_TEST_ARGS = { HttpServletRequest.class,
       HttpServletResponse.class };
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
+  private static final Class<?>[] TEST_ARGS = { ServletRequest.class,
       ServletResponse.class, };
 
-  private static final Class[][] ALL_TYPES = { TEST_ARGS, HTTP_TEST_ARGS };
+  private static final Class<?>[][] ALL_TYPES = { TEST_ARGS, HTTP_TEST_ARGS };
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);
@@ -57,13 +57,13 @@ public class HttpResponseTestServlet extends HttpServlet {
       throws ServletException, IOException {
     String test = servletRequest.getParameter(TEST_HEADER).trim();
     Method method = null;
-    for (int i = 0; i < ALL_TYPES.length; i++) {
-      try {
-        method = ResponseTests.class.getDeclaredMethod(test, ALL_TYPES[i]);
-        break;
-      } catch (NoSuchMethodException nsme) {
-        ; // do nothing
-      }
+    for (Class<?>[] allType : ALL_TYPES) {
+        try {
+            method = ResponseTests.class.getDeclaredMethod(test, allType);
+            break;
+        } catch (NoSuchMethodException x) {
+          // do nothing
+        }
     }
 
     if (method != null) {

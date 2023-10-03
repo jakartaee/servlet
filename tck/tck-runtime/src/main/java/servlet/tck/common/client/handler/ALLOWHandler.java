@@ -31,8 +31,6 @@ public class ALLOWHandler implements Handler {
 
   private static final Handler HANDLER = new ALLOWHandler();
 
-  private static final String DELIM = "##";
-
   private ALLOWHandler() {
   }
 

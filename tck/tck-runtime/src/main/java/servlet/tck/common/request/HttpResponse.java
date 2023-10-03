@@ -25,12 +25,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * This class represents an HTTP response from the server.
@@ -48,11 +46,6 @@ public class HttpResponse {
    */
   private static final String CONTENT_TYPE = "Content-Type";
 
-  /**
-   * Wrapped HttpMethod used to pull response info from.
-   */
-  private String _method = null;
-
 
   /**
    * Charset encoding returned in the response
@@ -68,7 +61,7 @@ public class HttpResponse {
   /**
    * Host name used for processing request
    */
-  private String _host = null;
+  private String _host;
 
   /**
    * Port number used for processing request
@@ -88,7 +81,9 @@ public class HttpResponse {
     _host = host;
     _port = port;
     _isSecure = isSecure;
-    _method = method;
+    /**
+     * Wrapped HttpMethod used to pull response info from.
+     */
     this.response = response;
   }
 
@@ -233,7 +228,7 @@ public class HttpResponse {
    * @return string representation of response
    */
   public String toString() {
-    StringBuffer sb = new StringBuffer(255);
+    StringBuilder sb = new StringBuilder(255);
 
     sb.append("[RESPONSE STATUS LINE] -> ");
     sb.append(response.version().toString());

@@ -15,7 +15,6 @@
  */
 
 package servlet.tck.common.request;
-
 import servlet.tck.util.WebUtil;
 import servlet.tck.util.WebUtil.Response;
 import servlet.tck.common.client.BaseTckTest;
@@ -33,12 +32,9 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Properties;
-import java.util.StringTokenizer;
+import java.util.*;
+
+import static servlet.tck.util.WebUtil.toCookieValue;
 
 public class SecformClient extends BaseTckTest {
   // Configurable constants:
@@ -167,7 +163,7 @@ public class SecformClient extends BaseTckTest {
 
   private Response errorPageRequestResponse = null;
 
-  private Hashtable cookies = null;
+  private Map<String,String> cookies = null;
   
   /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
@@ -265,9 +261,9 @@ public class SecformClient extends BaseTckTest {
       // Send response to login form with session id cookie:
       request = pageSecurityCheck;
       logger.debug("Sending request '{}' with login information.", request);
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -308,7 +304,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("getRemoteUser() correct.");
 
       // Check to make sure isUserInRole is working properly:
-      Hashtable roleCheck = new Hashtable();
+      Map<String, Boolean> roleCheck = new HashMap<>();
       roleCheck.put("ADM", Boolean.TRUE);
       roleCheck.put("MGR", Boolean.FALSE);
       roleCheck.put("VP", Boolean.FALSE);
@@ -336,7 +332,7 @@ public class SecformClient extends BaseTckTest {
       }
 
       // Check to make sure we are still authenticated.
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("User Principal incorrect.  Page received:");
         logger.error(response.content);
         logger.error("(Should say: \"" + searchString + "\")");
@@ -346,7 +342,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure getRemoteUser still returns the user name.
       searchString = searchForGetRemoteUser + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("getRemoteUser() did not return " + username
             + " after lazy authentication:");
         logger.error(response.content);
@@ -395,9 +391,9 @@ public class SecformClient extends BaseTckTest {
       // and incorrect password:
       request = pageSecurityCheck;
       logger.debug("Sending request {} with incorrect login information.", request);
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", "incorrect" + password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", "incorrect" + password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
       logger.debug("response.statusToken: {}", response.statusToken);
@@ -407,7 +403,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure the user principal is null:
       String searchString = searchFor + "null";
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("User principal is not null in error page: {}", response.content);
         throw new Exception("test2 failed.");
       }
@@ -470,9 +466,9 @@ public class SecformClient extends BaseTckTest {
       // Send response to login form with session id cookie:
       request = pageSecurityCheck;
       logger.debug("Sending request {} with login information (as {}).", request, unauthUsername);
-      Properties postData = new Properties();
-      postData.setProperty("j_username", unauthUsername);
-      postData.setProperty("j_password", unauthPassword);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", unauthUsername);
+      postData.put("j_password", unauthPassword);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -488,7 +484,7 @@ public class SecformClient extends BaseTckTest {
       // Check to make sure we are authenticated by checking the page
       // content. The jsp should output "The user principal is: javajoe"
       String searchString = searchFor + unauthUsername;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logger.error("User Principal incorrect.  Page received: {}", response.content);
         logger.error("(Should say: {}", searchString);
         throw new Exception("test3 failed.");
@@ -528,9 +524,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logger.debug("Sending request {} with correct login information ({}), but incorrect authorization for this resource.",
               request, unauthUsername);
-      Properties postData = new Properties();
-      postData.setProperty("j_username", unauthUsername);
-      postData.setProperty("j_password", unauthPassword);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", unauthUsername);
+      postData.put("j_password", unauthPassword);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -639,7 +635,7 @@ public class SecformClient extends BaseTckTest {
       // Check that the page returned is the correct one. The principal
       // is not checked.
       String searchString = searchFor;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("Incorrect page received:");
         logErr(response.content);
         logErr("(Should contain: \"" + searchString + "\")");
@@ -651,7 +647,7 @@ public class SecformClient extends BaseTckTest {
       // Check to see if any of the calls to isUserInRole returned true:
       logMsg("Checking isUserInRole...");
       searchString = "!true!";
-      if (response.content.indexOf(searchString) != -1) {
+      if (response.content.contains(searchString)) {
         logErr("At least one call to isUserInRole returned true.");
         logErr("Page received:");
         logErr(response.content);
@@ -663,7 +659,7 @@ public class SecformClient extends BaseTckTest {
       // Check to make sure the call to getRemoteUser() returned null.
       logMsg("Checking getRemoteUser()...");
       searchString = searchForGetRemoteUser + "null";
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("A call to getRemoteUser() did not return null.");
         logErr("Page received:");
         logErr(response.content);
@@ -711,9 +707,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg("Sending request \"" + request
           + "\" with login information (as " + username + ").");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -729,7 +725,7 @@ public class SecformClient extends BaseTckTest {
       // Check to make sure we are authenticated by checking the page
       // content. The jsp should output "The user principal is: j2ee"
       String searchString = searchFor + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("User Principal incorrect.  Page received:");
         logErr(response.content);
         logErr("(Should say: \"" + searchString + "\")");
@@ -738,7 +734,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("User Principal correct.");
 
       // Check to make sure isUserInRole is working properly:
-      Hashtable roleCheck = new Hashtable();
+      Map<String, Boolean> roleCheck = new HashMap<>();
       roleCheck.put("ADM", Boolean.FALSE);
       roleCheck.put("MGR", Boolean.TRUE);
       roleCheck.put("VP", Boolean.FALSE);
@@ -781,7 +777,7 @@ public class SecformClient extends BaseTckTest {
       // Try accessing WEB-INF
       request = pageBase + "/WEB-INF/";
 
-      statusCodes = new ArrayList<String>();
+      statusCodes = new ArrayList<>();
       statusCodes.add("404");
       statusCodes.add("403");
 
@@ -790,7 +786,7 @@ public class SecformClient extends BaseTckTest {
       // Try accessing /web-inf (for case insensitive platforms)
       request = pageBase + "/web-inf/";
 
-      statusCodes = new ArrayList<String>();
+      statusCodes = new ArrayList<>();
       statusCodes.add("404");
       statusCodes.add("403");
 
@@ -799,7 +795,7 @@ public class SecformClient extends BaseTckTest {
       // Try accessing WEB-INF/web.xml
       request = pageBase + "/WEB-INF/web.xml";
 
-      statusCodes = new ArrayList<String>();
+      statusCodes = new ArrayList<>();
       statusCodes.add("404");
 
       this.testStatusCodes(request, statusCodes, "test7");
@@ -807,7 +803,7 @@ public class SecformClient extends BaseTckTest {
       // Try accessing web-inf/web.xml (for case insensitive platforms)
       request = pageBase + "/web-inf/web.xml";
 
-      statusCodes = new ArrayList<String>();
+      statusCodes = new ArrayList<>();
       statusCodes.add("404");
 
       this.testStatusCodes(request, statusCodes, "test7");
@@ -815,7 +811,7 @@ public class SecformClient extends BaseTckTest {
       // Try accessing WEB-INF/web.xml
       request = pageBase + "/WEB-INF/web.xml";
 
-      statusCodes = new ArrayList<String>();
+      statusCodes = new ArrayList<>();
       statusCodes.add("404");
 
       this.testStatusCodes(request, statusCodes, "test7");
@@ -1047,9 +1043,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1065,7 +1061,7 @@ public class SecformClient extends BaseTckTest {
       // Check to make sure we are authenticated by checking the page
       // content. The jsp should output "The user principal is: j2ee"
       String searchString = searchFor + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("User Principal incorrect.  Page received:");
         logErr(response.content);
         logErr("(Should say: \"" + searchString + "\")");
@@ -1075,7 +1071,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure getRemoteUser returns the user name.
       searchString = searchForGetRemoteUser + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("getRemoteUser() did not return " + username + ":");
         logErr(response.content);
         logErr("(Should say: \"" + searchString + "\")");
@@ -1084,7 +1080,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("getRemoteUser() correct.");
 
       // Check to make sure isUserInRole is working properly:
-      Hashtable roleCheck = new Hashtable();
+      Map<String, Boolean> roleCheck = new HashMap<>();
       roleCheck.put("Administrator", Boolean.TRUE);
       if (!checkRoles(response.content, roleCheck)) {
         logErr("isUserInRole() does not work correctly.");
@@ -1127,9 +1123,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1149,9 +1145,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      postData = new Properties();
-      postData.setProperty("j_username", unauthUsername);
-      postData.setProperty("j_password", unauthPassword);
+      postData.clear();
+      postData.put("j_username", unauthUsername);
+      postData.put("j_password", unauthPassword);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1201,9 +1197,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1262,46 +1258,44 @@ public class SecformClient extends BaseTckTest {
 //      FileInputStream fstream = new FileInputStream(
 //          tshome + "/src/web/jsp/sec/secform/Sample.jsp");
 
-      InputStream fstream =
-              Thread.currentThread().getContextClassLoader().getResourceAsStream("sec/secform/Sample.jsp");
+      try (InputStream fstream =
+              Thread.currentThread().getContextClassLoader().getResourceAsStream("sec/secform/Sample.jsp")) {
+        int fileContentLength = fstream.available();
+        byte[] byteArray = new byte[1024];
+        int bytesRead = fstream.read(byteArray, 0, fileContentLength);
+        // Now use HTTP method DELETE and later use http method PUT
 
-      int fileContentLength = fstream.available();
-      byte[] byteArray = new byte[1024];
-      int bytesRead = fstream.read(byteArray, 0, fileContentLength);
+        // Delete pageSample using HTTP method DELETE
+        logMsg("\nDELETE " + pageSample + " Using HTTP method DELETE ....");
+        response = WebUtil.sendRequest("DELETE", InetAddress.getByName(hostname),
+                portnum, request, postData, cookies);
 
-      // Now use HTTP method DELETE and later use http method PUT
+        addNewCookies(cookies, response.cookies);
 
-      // Delete pageSample using HTTP method DELETE
-      logMsg("\nDELETE " + pageSample + " Using HTTP method DELETE ....");
-      response = WebUtil.sendRequest("DELETE", InetAddress.getByName(hostname),
-          portnum, request, postData, cookies);
+        // Check that the page was found (no error).
+        if (response.isError()) {
+          logErr("Could not find " + request);
+          throw new Exception("test12 failed.");
+        }
+        logMsg("response.content :" + response.content);
+        logMsg("Successfully accessed " + pageSample + " with \"DELETE\"");
 
-      addNewCookies(cookies, response.cookies);
+        // put pageSample using HTTP method PUT
+        logMsg("\nPUT " + pageSample + " Using HTTP method PUT ....");
 
-      // Check that the page was found (no error).
-      if (response.isError()) {
-        logErr("Could not find " + request);
-        throw new Exception("test12 failed.");
+        response = uploadUsingHttpMethodPUT("PUT",
+                InetAddress.getByName(hostname), portnum, request,
+                byteArray, cookies, username, password);
+
+        // Check that the page was found (no error).
+        if (response.isError()) {
+          logErr("Could not find " + request);
+          throw new Exception("test12 failed.");
+        }
+        logMsg("response.content :" + response.content);
+        logMsg("response.statusToken :" + response.statusToken);
+        logMsg("uploaded " + pageSample + "using HTTP method PUT");
       }
-      logMsg("response.content :" + response.content);
-      logMsg("Successfully accessed " + pageSample + " with \"DELETE\"");
-
-      // put pageSample using HTTP method PUT
-      logMsg("\nPUT " + pageSample + " Using HTTP method PUT ....");
-
-      response = uploadUsingHttpMethodPUT("PUT",
-          InetAddress.getByName(hostname), portnum, request,
-          byteArray, cookies, username, password);
-
-      // Check that the page was found (no error).
-      if (response.isError()) {
-        logErr("Could not find " + request);
-        throw new Exception("test12 failed.");
-      }
-      logMsg("response.content :" + response.content);
-      logMsg("response.statusToken :" + response.statusToken);
-      logMsg("uploaded " + pageSample + "using HTTP method PUT");
-
     } catch (Exception e) {
       logErr("Caught exception: " + e.getMessage(), e);
       throw new Exception("test12 failed: ", e);
@@ -1407,9 +1401,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1435,7 +1429,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure getRemoteUser returns the user name.
       searchString = searchForGetRemoteUser + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("getRemoteUser() did not return " + username + ":");
         logErr(response.content);
         logErr("(Should say: \"" + searchString + "\")");
@@ -1444,7 +1438,7 @@ public class SecformClient extends BaseTckTest {
       logMsg("getRemoteUser() correct.");
 
       // Check to make sure isUserInRole is working properly:
-      Hashtable roleCheck = new Hashtable();
+      Map<String, Boolean> roleCheck = new HashMap<>();
       roleCheck.put("ADM", Boolean.TRUE);
       roleCheck.put("MGR", Boolean.FALSE);
       roleCheck.put("VP", Boolean.FALSE);
@@ -1472,7 +1466,7 @@ public class SecformClient extends BaseTckTest {
       }
 
       // Check to make sure we are still authenticated.
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("User Principal incorrect.  Page received:");
         logErr(response.content);
         logErr("(Should say: \"" + searchString + "\")");
@@ -1482,7 +1476,7 @@ public class SecformClient extends BaseTckTest {
 
       // Check to make sure getRemoteUser still returns the user name.
       searchString = searchForGetRemoteUser + username;
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         logErr("getRemoteUser() did not return " + username
             + " after lazy authentication:");
         logErr(response.content);
@@ -1542,7 +1536,7 @@ public class SecformClient extends BaseTckTest {
         // 2. verify that the requested page was NOT accessed/found
         String searchString = "getAuthType()"; // this string appears on the
                                                // pageSec page
-        if (response.content.indexOf(searchString) != -1) {
+        if (response.content.contains(searchString)) {
           // Error - it looks like we were able to access the requested page!
           String err = "Error - we were not authenticated but were able to access the ";
           err += "following page: " + modifiedPageSec
@@ -1594,11 +1588,11 @@ public class SecformClient extends BaseTckTest {
 
       // set some params that will be needed from within the pageProgLogin
       // servlet
-      Properties postData = new Properties();
+      Map<String, String> postData = new HashMap<>();
       logger.trace("setting request parameter my_username = {}", username);
       logger.trace("setting request parameter my_password = {}", password);
-      postData.setProperty("the_username", username);
-      postData.setProperty("the_password", password);
+      postData.put("the_username", username);
+      postData.put("the_password", password);
 
       logMsg("Sending request " + request);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
@@ -1668,9 +1662,9 @@ public class SecformClient extends BaseTckTest {
       request = pageSecurityCheck;
       logMsg(
           "Sending request \"" + request + "\" with login information.");
-      Properties postData = new Properties();
-      postData.setProperty("j_username", username);
-      postData.setProperty("j_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("j_username", username);
+      postData.put("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
           portnum, request, postData, cookies);
 
@@ -1689,7 +1683,7 @@ public class SecformClient extends BaseTckTest {
       // content. It should contain the string below to indicate we
       // properly accessed the servlet.
       String searchString = "enterred ServletProgrammaticLogout.service()";
-      if (response.content.indexOf(searchString) == -1) {
+      if (!response.content.contains(searchString)) {
         String str = "Error - Did not get expected content from page: "
             + pageServletProgLogout;
         str += "  Content should have contained: " + searchString;
@@ -1699,7 +1693,7 @@ public class SecformClient extends BaseTckTest {
 
       // now make sure we didnt get any errors in our content
       String errString = "ERROR - HttpServletRequest.logout()";
-      if (response.content.indexOf(errString) != -1) {
+      if (response.content.contains(errString)) {
         // there was an error msg detected in servlet content
         String str = "Error - returned in content from page: "
             + pageServletProgLogout;
@@ -1743,9 +1737,9 @@ public class SecformClient extends BaseTckTest {
 
       // set some params that will be needed from within the pageProgLogin
       // servlet
-      Properties postData = new Properties();
-      postData.setProperty("the_username", username);
-      postData.setProperty("the_password", password);
+      Map<String, String> postData = new HashMap<>();
+      postData.put("the_username", username);
+      postData.put("the_password", password);
 
       logMsg("Sending request " + request);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
@@ -1768,14 +1762,13 @@ public class SecformClient extends BaseTckTest {
 
       // verify there were no errors detected fom within our servlet
       String searchString = "ERROR - HttpServletRequest.authenticate";
-      if (response.content.indexOf(searchString) != -1) {
+      if (response.content.contains(searchString)) {
         logErr(response.content);
         throw new Exception("test18 failed.");
       }
 
       // now verify the authenticate truely passed
-      if (response.content
-          .indexOf("HttpServletRequest.authenticate passed") == -1) {
+      if (!response.content.contains("HttpServletRequest.authenticate passed")) {
         logErr(response.content);
         throw new Exception("test18 failed.");
       }
@@ -1817,7 +1810,7 @@ public class SecformClient extends BaseTckTest {
    */
   public static Response uploadUsingHttpMethodPUT(String method,
       InetAddress addr, int port, String req, byte[] postData,
-      Hashtable cookieList, String username, String password)
+      Map<String, String> cookieList, String username, String password)
       throws IOException {
     String protocol = "HTTP/1.0";
     URL requestURL;
@@ -1838,23 +1831,10 @@ public class SecformClient extends BaseTckTest {
       out.println(req);
 
       if (cookieList != null) {
-        // Send cookies:
-        Enumeration keys = cookieList.keys();
 
         // Does at least one cookie exist?
-        if (keys.hasMoreElements()) {
-          String cookieString = "Cookie: ";
-
-          // Add each cookie to the string
-          boolean first = true;
-          while (keys.hasMoreElements()) {
-            String key = (String) keys.nextElement();
-            String value = (String) cookieList.get(key);
-            cookieString += (first ? "" : "; ") + key + "=" + value; // + ";
-                                                                     // $Path=/";
-            first = false;
-          }
-
+        if (!cookieList.isEmpty()) {
+          String cookieString = toCookieValue(cookieList);
           // Write cookies:
           out.println(cookieString);
         }
@@ -1873,7 +1853,7 @@ public class SecformClient extends BaseTckTest {
 
       // Read the file contents from the byte array(postData)
       // and store it in a string(fileContents)
-      StringBuffer content = new StringBuffer(1024);
+      StringBuilder content = new StringBuilder(1024);
       ByteArrayInputStream bais = new ByteArrayInputStream(postData);
       int c;
       while ((c = bais.read()) != -1) {
@@ -1884,7 +1864,7 @@ public class SecformClient extends BaseTckTest {
       // TestUtil.logMsg("File Content: "+ fileContents);
 
       // If this is a post request, send post data:
-      if ((postData != null) && method.toUpperCase().equals("PUT")) {
+      if ((postData != null) && method.equalsIgnoreCase("PUT")) {
         String postString = WebUtil.encodeBase64(fileContents);
 
         // Skip a line:
@@ -1911,7 +1891,7 @@ public class SecformClient extends BaseTckTest {
       while ((line = in.readLine()) != null) {
 
         // Blank line means we are done with the header:
-        if (line.trim().equals("")) {
+        if (line.trim().isEmpty()) {
           break;
         }
 
@@ -2107,18 +2087,17 @@ public class SecformClient extends BaseTckTest {
    * Hashtable and y = corresponding value in hashtable. If all results are as
    * expected, returns true, else returns false.
    */
-  private boolean checkRoles(String content, Hashtable roleCheck) {
-    Enumeration keys = roleCheck.keys();
+  private boolean checkRoles(String content, Map<String,Boolean> roleCheck) {
     boolean pass = true;
 
-    while (pass && keys.hasMoreElements()) {
-      String key = (String) keys.nextElement();
-      boolean expected = ((Boolean) roleCheck.get(key)).booleanValue();
+    for (Map.Entry<String, Boolean> entry : roleCheck.entrySet()) {
+      String key = entry.getKey();
+      boolean expected = entry.getValue();
 
       String search = "isUserInRole(\"" + key + "\"): !" + expected + "!";
       String logMsg = "Searching for \"" + search + "\": ";
 
-      if (content.indexOf(search) == -1) {
+      if (!content.contains(search)) {
         pass = false;
         logMsg += "NOT FOUND!";
       } else {
@@ -2215,23 +2194,9 @@ public class SecformClient extends BaseTckTest {
    * @param newCookies
    *          Hashtable containing new cookies error messages.
    */
-  public void addNewCookies(Hashtable oldCookies, Hashtable newCookies) {
-    // Add new cookie/cookies to the existing cookies Hashtable
-    for (Enumeration e = newCookies.keys(); e.hasMoreElements();) {
-      // get cookie name
-      String name = (String) e.nextElement();
+  public void addNewCookies(final Map<String, String> oldCookies, Map<String, String> newCookies) {
+    newCookies.forEach((key, value) -> oldCookies.put(key.trim(), value.trim()));
 
-      // get value for this name
-      String value = (String) newCookies.get(name);
-
-      if (oldCookies == null) {
-        oldCookies = new Hashtable();
-      }
-
-      // Add this name value pair (cookie) to old cookies
-      oldCookies.put(name.trim(), value.trim());
-
-    }
   }
 
   /**

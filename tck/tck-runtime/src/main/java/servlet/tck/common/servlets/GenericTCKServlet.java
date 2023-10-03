@@ -58,7 +58,7 @@ public abstract class GenericTCKServlet extends GenericServlet {
   /**
    * <code>TEST_ARGS</code> is an array of Classes used during reflection.
    */
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
+  private static final Class<?>[] TEST_ARGS = { ServletRequest.class,
       ServletResponse.class };
 
   /**
@@ -92,7 +92,7 @@ public abstract class GenericTCKServlet extends GenericServlet {
     String test = req.getParameter(TEST_HEADER);
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
+      method.invoke(this, req, res);
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {

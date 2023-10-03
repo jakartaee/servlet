@@ -230,7 +230,7 @@ public class HttpExchange {
 
   /**
    * <code>setAuthenticationCredentials configures the request to
-   * perform authentication.
+   * perform authentication.</code>
    *
    * <p><code>username</code> and <code>password</code> cannot be null.
    * </p>

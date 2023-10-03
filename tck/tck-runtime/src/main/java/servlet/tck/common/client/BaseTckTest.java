@@ -355,10 +355,10 @@ public abstract class BaseTckTest {
    */
 
   /**
-   * <code>setTestDir</code> sets the current test directory.
+   * {@code setTestDir} sets the current test directory.
    *
    * @param testDir
-   *          a <code>String</code> value
+   *          a {@code String} value
    */
   public void setTestDir(String testDir) {
     TESTDIR = testDir;

@@ -69,7 +69,7 @@ public class ServletTestUtil {
    *
    * @return true if all the expected values are found, otherwise false.
    */
-  public static boolean checkEnumeration(Enumeration e, String[] values) {
+  public static boolean checkEnumeration(Enumeration<String> e, String[] values) {
     return checkEnumeration(e, values, true, true);
   }
 
@@ -109,7 +109,7 @@ public class ServletTestUtil {
     }
 
     if (!allowDuplicates) {
-      foundValues = new ArrayList();
+      foundValues = new ArrayList<>();
     }
 
     boolean valuesFound = true;
@@ -141,7 +141,6 @@ public class ServletTestUtil {
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
         LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
-        continue;
       }
     }
 
@@ -170,7 +169,7 @@ public class ServletTestUtil {
     }
 
     if (!allowDuplicates) {
-      foundValues = new ArrayList();
+      foundValues = new ArrayList<>();
     }
 
     al.trimToSize();
