@@ -1729,6 +1729,10 @@ must expose the following attributes to the servlet programmer:
 |Attribute Name
 |Java Type
 
+|protocol e.g. TLSv1.3
+|`jakarta.servlet.request.secure_protocol`
+|`String`
+
 |cipher suite
 |`jakarta.servlet.request.cipher_suite`
 |`String`
