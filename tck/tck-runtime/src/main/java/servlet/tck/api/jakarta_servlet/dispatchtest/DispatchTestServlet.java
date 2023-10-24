@@ -21,6 +21,7 @@ package servlet.tck.api.jakarta_servlet.dispatchtest;
 
 import java.io.IOException;
 
+import jakarta.servlet.ServletContext;
 import servlet.tck.common.servlets.GenericTCKServlet;
 
 import jakarta.servlet.AsyncContext;
@@ -156,9 +157,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
+    ServletContext context = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if (context!=null) {
+      ac.dispatch(context,"/DispatchTests10?testname=dispatchTest10");
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -176,9 +178,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null){
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -584,9 +587,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests11?testname=dispatchTest11");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null) {
+      ac.dispatch(servletContext, "/DispatchTests11?testname=dispatchTest11");
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -684,9 +688,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests16?testname=dispatchTest16");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null) {
+      ac.dispatch(servletContext, "/DispatchTests16?testname=dispatchTest16");
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }

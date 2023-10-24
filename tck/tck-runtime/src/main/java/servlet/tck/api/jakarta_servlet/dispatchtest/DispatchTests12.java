@@ -23,11 +23,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import jakarta.servlet.AsyncContext;
-import jakarta.servlet.GenericServlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import jakarta.servlet.*;
 
 public class DispatchTests12 extends GenericServlet {
 
@@ -84,9 +80,10 @@ public class DispatchTests12 extends GenericServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before second dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot()),
-        "/DispatchTests?testname=dispatchTest");
+    ServletContext servletContext = request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot());
+    if(servletContext!=null) {
+      ac.dispatch(servletContext, "/DispatchTests?testname=dispatchTest");
+    }
     response.getWriter()
         .println("second dispatch return=" + System.currentTimeMillis());
   }

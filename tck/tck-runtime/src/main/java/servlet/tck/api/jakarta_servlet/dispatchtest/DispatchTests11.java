@@ -23,11 +23,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import jakarta.servlet.AsyncContext;
-import jakarta.servlet.GenericServlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
+import jakarta.servlet.*;
 
 public class DispatchTests11 extends GenericServlet {
 
@@ -84,10 +80,12 @@ public class DispatchTests11 extends GenericServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before second dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot()),
-        "/DispatchTests?testname=dispatchTest");
+    ServletContext context = request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot());
+    if(context != null) {
+      ac.dispatch(context, "/DispatchTests?testname=dispatchTest");
+    }
+    // we admit cross context not supported and so validate it
     response.getWriter()
-        .println("second dispatch return=" + System.currentTimeMillis());
+            .println("second dispatch return=" + System.currentTimeMillis());
   }
 }
