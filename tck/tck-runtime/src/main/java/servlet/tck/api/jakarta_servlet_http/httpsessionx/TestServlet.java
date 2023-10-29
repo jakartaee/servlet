@@ -44,7 +44,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/getNewSession");
 
@@ -105,7 +105,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/setMaxInterval");
 
@@ -119,7 +119,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/setMaxInterval");
       rd.forward(request, response);
@@ -132,7 +132,7 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/expireHttpSession");
 
@@ -147,7 +147,7 @@ public class TestServlet extends HttpTCKServlet {
 
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/expireHttpSession");
 
@@ -182,7 +182,7 @@ public class TestServlet extends HttpTCKServlet {
 
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       RequestDispatcher rd = servletContext
               .getRequestDispatcher("/invalidateHttpSession");
 

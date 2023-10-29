@@ -43,6 +43,8 @@ public class ServletTestUtil {
 
   private static Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
 
+  public static final boolean SUPPORT_CROSS_CONTEXT = Boolean.parseBoolean(System.getProperty("servlet.tck.support.crossContext", "true"));
+
   /**
    * Private as this class contains only public static methods.
    */
@@ -177,8 +179,7 @@ public class ServletTestUtil {
     Arrays.sort(values);
     int len = al.size();
     for (int i = 0; i < len; i++) {
-      Object val = null;
-      val = (String) al.get(i);
+      Object val = (String) al.get(i);
       LOGGER.debug("[ServletTestUtil] val= {}", val);
       if (!allowDuplicates) {
         if (foundValues.contains(val)) {
@@ -193,7 +194,6 @@ public class ServletTestUtil {
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
         LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
-        continue;
       }
     }
 
