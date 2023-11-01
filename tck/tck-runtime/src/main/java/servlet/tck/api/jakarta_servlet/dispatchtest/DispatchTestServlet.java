@@ -27,6 +27,7 @@ import servlet.tck.common.servlets.GenericTCKServlet;
 import jakarta.servlet.AsyncContext;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import servlet.tck.common.util.ServletTestUtil;
 
 public class DispatchTestServlet extends GenericTCKServlet {
 
@@ -158,8 +159,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ServletContext context = request.getServletContext().getContext(getDispatcher1ContextRoot());
-    if (context!=null) {
+    if (context!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       ac.dispatch(context,"/DispatchTests10?testname=dispatchTest10");
+    } else {
+      ac.complete();
     }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -179,8 +182,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
-    if(servletContext!=null){
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT ) {
       ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
+    } else {
+      ac.complete();
     }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -588,8 +593,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
-    if(servletContext!=null) {
+    if(servletContext!=null|| ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       ac.dispatch(servletContext, "/DispatchTests11?testname=dispatchTest11");
+    } else {
+      ac.complete();
     }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -608,9 +615,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests12?testname=dispatchTest12");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null|| ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests12?testname=dispatchTest12");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -628,9 +638,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests13?testname=dispatchTest13");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null|| ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests13?testname=dispatchTest13");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -648,9 +661,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests14?testname=dispatchTest14");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null|| ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests14?testname=dispatchTest14");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -668,9 +684,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests15?testname=dispatchTest15");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null|| ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests15?testname=dispatchTest15");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -689,8 +708,10 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
     ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       ac.dispatch(servletContext, "/DispatchTests16?testname=dispatchTest16");
+    } else {
+      ac.complete();
     }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
@@ -852,22 +873,25 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
-    response.getWriter()
-        .println("dispatch return=" + System.currentTimeMillis());
-
-    try {
-      response.getWriter().println("dispatch again");
-      ac.dispatch(
-          request.getServletContext()
-              .getContext(getDispatcher1ContextRoot()),
-          "/DispatchTests19?testname=dispatchTest19");
-    } catch (IllegalStateException ex) {
-      response.getWriter().println("dispatch() called again");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
       response.getWriter()
-          .println("Expected IllegalStateException thrown" + ex.getMessage());
+              .println("dispatch return=" + System.currentTimeMillis());
+
+      try {
+        response.getWriter().println("dispatch again");
+        ac.dispatch(
+                request.getServletContext()
+                        .getContext(getDispatcher1ContextRoot()),
+                "/DispatchTests19?testname=dispatchTest19");
+      } catch (IllegalStateException ex) {
+        response.getWriter().println("dispatch() called again");
+        response.getWriter()
+                .println("Expected IllegalStateException thrown" + ex.getMessage());
+      }
+    } else {
+      ac.complete();
     }
   }
 
@@ -884,22 +908,25 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
-    response.getWriter()
-        .println("dispatch return=" + System.currentTimeMillis());
-
-    try {
-      response.getWriter().println("dispatch again");
-      ac.dispatch(
-          request.getServletContext()
-              .getContext(getDispatcher1ContextRoot()),
-          "/DispatchTests19?testname=dispatchTest19");
-    } catch (IllegalStateException ex) {
-      response.getWriter().println("dispatch() called again");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
       response.getWriter()
-          .println("Expected IllegalStateException thrown" + ex.getMessage());
+              .println("dispatch return=" + System.currentTimeMillis());
+
+      try {
+        response.getWriter().println("dispatch again");
+        ac.dispatch(
+                request.getServletContext()
+                        .getContext(getDispatcher1ContextRoot()),
+                "/DispatchTests19?testname=dispatchTest19");
+      } catch (IllegalStateException ex) {
+        response.getWriter().println("dispatch() called again");
+        response.getWriter()
+                .println("Expected IllegalStateException thrown" + ex.getMessage());
+      }
+    } else {
+      ac.complete();
     }
   }
 
@@ -917,19 +944,22 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
-    response.getWriter()
-        .println("dispatch return=" + System.currentTimeMillis());
-
-    try {
-      response.getWriter().println("dispatch again");
-      ac.dispatch("/DispatchTests?testname=dispatchTest");
-    } catch (IllegalStateException ex) {
-      response.getWriter().println("dispatch(URI) called again");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
       response.getWriter()
-          .println("Expected IllegalStateException thrown" + ex.getMessage());
+              .println("dispatch return=" + System.currentTimeMillis());
+
+      try {
+        response.getWriter().println("dispatch again");
+        ac.dispatch("/DispatchTests?testname=dispatchTest");
+      } catch (IllegalStateException ex) {
+        response.getWriter().println("dispatch(URI) called again");
+        response.getWriter()
+                .println("Expected IllegalStateException thrown" + ex.getMessage());
+      }
+    } else {
+      ac.complete();
     }
   }
 
@@ -947,19 +977,22 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
-    response.getWriter()
-        .println("dispatch return=" + System.currentTimeMillis());
-
-    try {
-      response.getWriter().println("dispatch again");
-      ac.dispatch("/DispatchTests?testname=dispatchTest");
-    } catch (IllegalStateException ex) {
-      response.getWriter().println("dispatch(URI) called again");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
       response.getWriter()
-          .println("Expected IllegalStateException thrown" + ex.getMessage());
+              .println("dispatch return=" + System.currentTimeMillis());
+
+      try {
+        response.getWriter().println("dispatch again");
+        ac.dispatch("/DispatchTests?testname=dispatchTest");
+      } catch (IllegalStateException ex) {
+        response.getWriter().println("dispatch(URI) called again");
+        response.getWriter()
+                .println("Expected IllegalStateException thrown" + ex.getMessage());
+      }
+    } else {
+      ac.complete();
     }
   }
 
@@ -1092,9 +1125,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }
@@ -1115,9 +1151,12 @@ public class DispatchTestServlet extends GenericTCKServlet {
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
-    ac.dispatch(
-        request.getServletContext().getContext(getDispatcher1ContextRoot()),
-        "/DispatchTests10?testname=dispatchTest10");
+    ServletContext servletContext = request.getServletContext().getContext(getDispatcher1ContextRoot());
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      ac.dispatch(servletContext, "/DispatchTests10?testname=dispatchTest10");
+    } else {
+      ac.complete();
+    }
     response.getWriter()
         .println("dispatch return=" + System.currentTimeMillis());
   }

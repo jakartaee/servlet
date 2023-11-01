@@ -43,7 +43,7 @@ public class ServletTestUtil {
 
   private static Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
 
-  public static final boolean SUPPORT_CROSS_CONTEXT = Boolean.parseBoolean(System.getProperty("servlet.tck.support.crossContext", "true"));
+  public static boolean SUPPORT_CROSS_CONTEXT = Boolean.parseBoolean(System.getProperty("servlet.tck.support.crossContext", "true"));
 
   /**
    * Private as this class contains only public static methods.
