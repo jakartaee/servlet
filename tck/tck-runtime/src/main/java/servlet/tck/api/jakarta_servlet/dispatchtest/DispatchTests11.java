@@ -25,6 +25,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import servlet.tck.common.util.ServletTestUtil;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -87,7 +88,7 @@ public class DispatchTests11 extends GenericServlet {
     response.getWriter()
         .println("Before second dispatch=" + System.currentTimeMillis());
     ServletContext context = request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot());
-    if(context != null) {
+    if(context != null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       ac.dispatch(context, "/DispatchTests?testname=dispatchTest");
     }
     // we admit cross context not supported and so validate it

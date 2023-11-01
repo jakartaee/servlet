@@ -24,6 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import jakarta.servlet.*;
+import servlet.tck.common.util.ServletTestUtil;
 
 public class DispatchTests12 extends GenericServlet {
 
@@ -81,7 +82,7 @@ public class DispatchTests12 extends GenericServlet {
     response.getWriter()
         .println("Before second dispatch=" + System.currentTimeMillis());
     ServletContext servletContext = request.getServletContext().getContext(DispatchTestServlet.getDispatcherContextRoot());
-    if(servletContext!=null) {
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
       ac.dispatch(servletContext, "/DispatchTests?testname=dispatchTest");
     }
     response.getWriter()
