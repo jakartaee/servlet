@@ -3050,7 +3050,7 @@ context dispatch mechanism specified in
 component using a `dispatch` call.
 +
 This is indicated by a `<dispatcher>` element
-with the value `ASYNC.`
+with the value `ASYNC`.
 
 . Or any combination of 1, 2, 3, 4 or 5 above.
 
