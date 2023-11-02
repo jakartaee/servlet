@@ -52,7 +52,7 @@ public interface FilterRegistration extends Registration {
      * initialized
      */
     void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-                                   String... servletNames);
+            String... servletNames);
 
     /**
      * Gets the currently available servlet name mappings of the Filter represented by this <code>FilterRegistration</code>.
@@ -92,7 +92,7 @@ public interface FilterRegistration extends Registration {
      * initialized
      */
     void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-                                  String... urlPatterns);
+            String... urlPatterns);
 
     /**
      * Gets the currently available URL pattern mappings of the Filter represented by this <code>FilterRegistration</code>.
