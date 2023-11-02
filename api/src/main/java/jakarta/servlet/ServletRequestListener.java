@@ -49,7 +49,7 @@ public interface ServletRequestListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void requestDestroyed(ServletRequestEvent sre) {
+    default void requestDestroyed(ServletRequestEvent sre) {
     }
 
     /**
@@ -60,6 +60,6 @@ public interface ServletRequestListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void requestInitialized(ServletRequestEvent sre) {
+    default void requestInitialized(ServletRequestEvent sre) {
     }
 }

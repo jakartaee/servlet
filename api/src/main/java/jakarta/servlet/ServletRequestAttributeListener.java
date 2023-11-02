@@ -48,7 +48,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeAdded(ServletRequestAttributeEvent srae) {
+    default void attributeAdded(ServletRequestAttributeEvent srae) {
     }
 
     /**
@@ -59,7 +59,7 @@ public interface ServletRequestAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeRemoved(ServletRequestAttributeEvent srae) {
+    default void attributeRemoved(ServletRequestAttributeEvent srae) {
     }
 
     /**
@@ -70,6 +70,6 @@ public interface ServletRequestAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeReplaced(ServletRequestAttributeEvent srae) {
+    default void attributeReplaced(ServletRequestAttributeEvent srae) {
     }
 }

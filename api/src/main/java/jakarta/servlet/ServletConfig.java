@@ -32,7 +32,7 @@ public interface ServletConfig {
      *
      * @return the name of the servlet instance
      */
-    public String getServletName();
+    String getServletName();
 
     /**
      * Returns a reference to the {@link ServletContext} in which the caller is executing.
@@ -41,7 +41,7 @@ public interface ServletConfig {
      *
      * @see ServletContext
      */
-    public ServletContext getServletContext();
+    ServletContext getServletContext();
 
     /**
      * Gets the value of the initialization parameter with the given name.
@@ -51,7 +51,7 @@ public interface ServletConfig {
      * @return a <code>String</code> containing the value of the initialization parameter, or <code>null</code> if the
      * initialization parameter does not exist
      */
-    public String getInitParameter(String name);
+    String getInitParameter(String name);
 
     /**
      * Returns the names of the servlet's initialization parameters as an <code>Enumeration</code> of <code>String</code>
@@ -60,6 +60,6 @@ public interface ServletConfig {
      * @return an <code>Enumeration</code> of <code>String</code> objects containing the names of the servlet's
      * initialization parameters
      */
-    public Enumeration<String> getInitParameterNames();
+    Enumeration<String> getInitParameterNames();
 
 }

@@ -51,8 +51,8 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this FilterRegistration was obtained has already been
      * initialized
      */
-    public void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-            String... servletNames);
+    void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+                                   String... servletNames);
 
     /**
      * Gets the currently available servlet name mappings of the Filter represented by this <code>FilterRegistration</code>.
@@ -64,7 +64,7 @@ public interface FilterRegistration extends Registration {
      * @return a (possibly empty) <code>Collection</code> of the currently available servlet name mappings of the Filter
      * represented by this <code>FilterRegistration</code>
      */
-    public Collection<String> getServletNameMappings();
+    Collection<String> getServletNameMappings();
 
     /**
      * Adds a filter mapping with the given url patterns and dispatcher types for the Filter represented by this
@@ -91,8 +91,8 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this FilterRegistration was obtained has already been
      * initialized
      */
-    public void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-            String... urlPatterns);
+    void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
+                                  String... urlPatterns);
 
     /**
      * Gets the currently available URL pattern mappings of the Filter represented by this <code>FilterRegistration</code>.
@@ -104,7 +104,7 @@ public interface FilterRegistration extends Registration {
      * @return a (possibly empty) <code>Collection</code> of the currently available URL pattern mappings of the Filter
      * represented by this <code>FilterRegistration</code>
      */
-    public Collection<String> getUrlPatternMappings();
+    Collection<String> getUrlPatternMappings();
 
     /**
      * Interface through which a {@link Filter} registered via one of the <tt>addFilter</tt> methods on

@@ -97,7 +97,7 @@ public abstract class HttpServlet extends GenericServlet {
     public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private boolean legacyHeadHandling;
 
@@ -735,7 +735,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
 
-    private NoBodyOutputStream noBody;
+    private final NoBodyOutputStream noBody;
     private PrintWriter writer;
     private boolean didSetContentLength;
     private boolean usingOutputStream;
@@ -856,7 +856,7 @@ class NoBodyResponse extends HttpServletResponseWrapper {
 class NoBodyOutputStream extends ServletOutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
     static ThreadLocal<Boolean> disableFlush = new ThreadLocal<>();
 
     private int contentLength = 0;
@@ -880,7 +880,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void write(byte buf[], int offset, int len) throws IOException {
+    public void write(byte[] buf, int offset, int len) throws IOException {
         if (buf == null) {
             throw new NullPointerException(lStrings.getString("err.io.nullArray"));
         }

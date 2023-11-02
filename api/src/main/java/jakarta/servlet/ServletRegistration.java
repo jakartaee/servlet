@@ -48,7 +48,7 @@ public interface ServletRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this ServletRegistration was obtained has already been
      * initialized
      */
-    public Set<String> addMapping(String... urlPatterns);
+    Set<String> addMapping(String... urlPatterns);
 
     /**
      * Gets the currently available mappings of the Servlet represented by this <code>ServletRegistration</code>.
@@ -60,14 +60,14 @@ public interface ServletRegistration extends Registration {
      * @return a (possibly empty) <code>Collection</code> of the currently available mappings of the Servlet represented by
      * this <code>ServletRegistration</code>
      */
-    public Collection<String> getMappings();
+    Collection<String> getMappings();
 
     /**
      * Gets the name of the runAs role of the Servlet represented by this <code>ServletRegistration</code>.
      *
      * @return the name of the runAs role, or null if the Servlet is configured to run as its caller
      */
-    public String getRunAsRole();
+    String getRunAsRole();
 
     /**
      * Interface through which a {@link Servlet} registered via one of the <tt>addServlet</tt> methods on
@@ -99,7 +99,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the ServletContext from which this ServletRegistration was obtained has already been
          * initialized
          */
-        public void setLoadOnStartup(int loadOnStartup);
+        void setLoadOnStartup(int loadOnStartup);
 
         /**
          * Sets the {@link ServletSecurityElement} to be applied to the mappings defined for this
@@ -141,7 +141,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this <code>ServletRegistration</code> was
          * obtained has already been initialized
          */
-        public Set<String> setServletSecurity(ServletSecurityElement constraint);
+        Set<String> setServletSecurity(ServletSecurityElement constraint);
 
         /**
          * Sets the {@link MultipartConfigElement} to be applied to the mappings defined for this
@@ -155,7 +155,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this ServletRegistration was obtained has
          * already been initialized
          */
-        public void setMultipartConfig(MultipartConfigElement multipartConfig);
+        void setMultipartConfig(MultipartConfigElement multipartConfig);
 
         /**
          * Sets the name of the <code>runAs</code> role for this <code>ServletRegistration</code>.
@@ -167,7 +167,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this ServletRegistration was obtained has
          * already been initialized
          */
-        public void setRunAsRole(String roleName);
+        void setRunAsRole(String roleName);
 
     }
 

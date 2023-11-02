@@ -35,7 +35,7 @@ public interface WebConnection extends AutoCloseable {
      *
      * @exception IOException if an I/O error occurs
      */
-    public ServletInputStream getInputStream() throws IOException;
+    ServletInputStream getInputStream() throws IOException;
 
     /**
      * Returns an output stream for this web connection.
@@ -44,5 +44,5 @@ public interface WebConnection extends AutoCloseable {
      *
      * @exception IOException if an I/O error occurs
      */
-    public ServletOutputStream getOutputStream() throws IOException;
+    ServletOutputStream getOutputStream() throws IOException;
 }

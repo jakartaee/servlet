@@ -130,7 +130,7 @@ public interface HttpServletMapping {
      *
      * @return the match.
      */
-    public String getMatchValue();
+    String getMatchValue();
 
     /**
      * <p>
@@ -140,7 +140,7 @@ public interface HttpServletMapping {
      *
      * @return the String representation for the {@code url-pattern} for this mapping.
      */
-    public String getPattern();
+    String getPattern();
 
     /**
      * <p>
@@ -150,7 +150,7 @@ public interface HttpServletMapping {
      *
      * @return the String representation for the {@code servlet-name} for this mapping.
      */
-    public String getServletName();
+    String getServletName();
 
     /**
      * <p>
@@ -159,6 +159,6 @@ public interface HttpServletMapping {
      *
      * @return the {@code MappingMatch} for this instance.
      */
-    public MappingMatch getMappingMatch();
+    MappingMatch getMappingMatch();
 
 }

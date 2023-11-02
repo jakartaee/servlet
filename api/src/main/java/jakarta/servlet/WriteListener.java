@@ -37,13 +37,13 @@ public interface WriteListener extends EventListener {
      *
      * @throws IOException if an I/O related error has occurred during processing
      */
-    public void onWritePossible() throws IOException;
+    void onWritePossible() throws IOException;
 
     /**
      * Invoked when an error occurs writing data using the non-blocking APIs.
      *
      * @param t the throwable to indicate why the write operation failed
      */
-    public void onError(final Throwable t);
+    void onError(final Throwable t);
 
 }

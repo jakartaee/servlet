@@ -26,7 +26,7 @@ import jakarta.servlet.annotation.HttpMethodConstraint;
  */
 public class HttpMethodConstraintElement extends HttpConstraintElement {
 
-    private String methodName;
+    private final String methodName;
 
     /**
      * Constructs an instance with default {@link HttpConstraintElement} value.

@@ -45,7 +45,7 @@ public class UnavailableException extends ServletException {
 
     private static final long serialVersionUID = 5622686609215003468L;
 
-    private boolean permanent; // needs admin action?
+    private final boolean permanent; // needs admin action?
     private int seconds; // unavailability estimate
 
     /**

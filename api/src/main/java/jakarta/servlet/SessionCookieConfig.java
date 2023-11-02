@@ -43,7 +43,7 @@ public interface SessionCookieConfig {
      * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
      * acquired has already been initialized
      */
-    public void setName(String name);
+    void setName(String name);
 
     /**
      * Gets the name that will be assigned to any session tracking cookies created on behalf of the application represented
@@ -56,7 +56,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getName()
      */
-    public String getName();
+    String getName();
 
     /**
      * Sets the domain name that will be assigned to any session tracking cookies created on behalf of the application
@@ -69,7 +69,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#setDomain(String)
      */
-    public void setDomain(String domain);
+    void setDomain(String domain);
 
     /**
      * Gets the domain name that will be assigned to any session tracking cookies created on behalf of the application
@@ -79,7 +79,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getDomain()
      */
-    public String getDomain();
+    String getDomain();
 
     /**
      * Sets the path that will be assigned to any session tracking cookies created on behalf of the application represented
@@ -92,7 +92,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#setPath(String)
      */
-    public void setPath(String path);
+    void setPath(String path);
 
     /**
      * Gets the path that will be assigned to any session tracking cookies created on behalf of the application represented
@@ -106,7 +106,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getPath()
      */
-    public String getPath();
+    String getPath();
 
     /**
      * With the adoption of support for RFC 6265, this method should no longer be used.
@@ -124,7 +124,7 @@ public interface SessionCookieConfig {
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public void setComment(String comment);
+    void setComment(String comment);
 
     /**
      * With the adoption of support for RFC 6265, this method should no longer be used.
@@ -136,7 +136,7 @@ public interface SessionCookieConfig {
      * @deprecated This is no longer required with RFC 6265
      */
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public String getComment();
+    String getComment();
 
     /**
      * Marks or unmarks the session tracking cookies created on behalf of the application represented by the
@@ -156,7 +156,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#setHttpOnly(boolean)
      */
-    public void setHttpOnly(boolean httpOnly);
+    void setHttpOnly(boolean httpOnly);
 
     /**
      * Checks if the session tracking cookies created on behalf of the application represented by the
@@ -168,7 +168,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#isHttpOnly()
      */
-    public boolean isHttpOnly();
+    boolean isHttpOnly();
 
     /**
      * Marks or unmarks the session tracking cookies created on behalf of the application represented by the
@@ -191,7 +191,7 @@ public interface SessionCookieConfig {
      * @see jakarta.servlet.http.Cookie#setSecure(boolean)
      * @see ServletRequest#isSecure()
      */
-    public void setSecure(boolean secure);
+    void setSecure(boolean secure);
 
     /**
      * Checks if the session tracking cookies created on behalf of the application represented by the
@@ -206,7 +206,7 @@ public interface SessionCookieConfig {
      * @see jakarta.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
      */
-    public boolean isSecure();
+    boolean isSecure();
 
     /**
      * Sets the lifetime (in seconds) for the session tracking cookies created on behalf of the application represented by
@@ -220,7 +220,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#setMaxAge
      */
-    public void setMaxAge(int maxAge);
+    void setMaxAge(int maxAge);
 
     /**
      * Gets the lifetime (in seconds) of the session tracking cookies created on behalf of the application represented by
@@ -234,7 +234,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getMaxAge
      */
-    public int getMaxAge();
+    int getMaxAge();
 
     /**
      * Sets the value for the given session cookie attribute. When a value is set via this method, the value returned by the
@@ -253,7 +253,7 @@ public interface SessionCookieConfig {
      *
      * @since Servlet 6.0
      */
-    public void setAttribute(String name, String value);
+    void setAttribute(String name, String value);
 
     /**
      * Obtain the value for a given session cookie attribute. Values returned from this method must be consistent with the
@@ -265,7 +265,7 @@ public interface SessionCookieConfig {
      *
      * @since Servlet 6.0
      */
-    public String getAttribute(String name);
+    String getAttribute(String name);
 
     /**
      * Obtain the Map (keys are case insensitive) of all attributes and values, including those set via the attribute
@@ -275,5 +275,5 @@ public interface SessionCookieConfig {
      *
      * @since Servlet 6.0
      */
-    public Map<String, String> getAttributes();
+    Map<String, String> getAttributes();
 }
