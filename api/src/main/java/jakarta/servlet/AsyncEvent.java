@@ -26,10 +26,10 @@ package jakarta.servlet;
  */
 public class AsyncEvent {
 
-    private AsyncContext context;
-    private ServletRequest request;
-    private ServletResponse response;
-    private Throwable throwable;
+    private final AsyncContext context;
+    private final ServletRequest request;
+    private final ServletResponse response;
+    private final Throwable throwable;
 
     /**
      * Constructs an AsyncEvent from the given AsyncContext.

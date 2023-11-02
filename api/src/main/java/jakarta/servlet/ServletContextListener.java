@@ -49,7 +49,7 @@ public interface ServletContextListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void contextInitialized(ServletContextEvent sce) {
+    default void contextInitialized(ServletContextEvent sce) {
     }
 
     /**
@@ -63,6 +63,6 @@ public interface ServletContextListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void contextDestroyed(ServletContextEvent sce) {
+    default void contextDestroyed(ServletContextEvent sce) {
     }
 }

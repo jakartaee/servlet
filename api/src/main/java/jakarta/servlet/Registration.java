@@ -42,7 +42,7 @@ public interface Registration {
      *
      * @return the name of the Servlet or Filter that is represented by this Registration
      */
-    public String getName();
+    String getName();
 
     /**
      * Gets the fully qualified class name of the Servlet or Filter that is represented by this Registration.
@@ -50,7 +50,7 @@ public interface Registration {
      * @return the fully qualified class name of the Servlet or Filter that is represented by this Registration, or null if
      * this Registration is preliminary
      */
-    public String getClassName();
+    String getClassName();
 
     /**
      * Sets the initialization parameter with the given name and value on the Servlet or Filter that is represented by this
@@ -66,7 +66,7 @@ public interface Registration {
      * initialized
      * @throws IllegalArgumentException if the given name or value is <tt>null</tt>
      */
-    public boolean setInitParameter(String name, String value);
+    boolean setInitParameter(String name, String value);
 
     /**
      * Gets the value of the initialization parameter with the given name that will be used to initialize the Servlet or
@@ -77,7 +77,7 @@ public interface Registration {
      * @return the value of the initialization parameter with the given name, or <tt>null</tt> if no initialization
      * parameter with the given name exists
      */
-    public String getInitParameter(String name);
+    String getInitParameter(String name);
 
     /**
      * Sets the given initialization parameters on the Servlet or Filter that is represented by this Registration.
@@ -103,7 +103,7 @@ public interface Registration {
      * @throws IllegalArgumentException if the given map contains an initialization parameter with a <tt>null</tt> name or
      * value
      */
-    public Set<String> setInitParameters(Map<String, String> initParameters);
+    Set<String> setInitParameters(Map<String, String> initParameters);
 
     /**
      * Gets an immutable (and possibly empty) Map containing the currently available initialization parameters that will be
@@ -112,7 +112,7 @@ public interface Registration {
      * @return Map containing the currently available initialization parameters that will be used to initialize the Servlet
      * or Filter represented by this Registration object
      */
-    public Map<String, String> getInitParameters();
+    Map<String, String> getInitParameters();
 
     /**
      * Interface through which a {@link Servlet} or {@link Filter} registered via one of the <tt>addServlet</tt> or
@@ -136,6 +136,6 @@ public interface Registration {
          * @throws IllegalStateException if the ServletContext from which this dynamic Registration was obtained has already
          * been initialized
          */
-        public void setAsyncSupported(boolean isAsyncSupported);
+        void setAsyncSupported(boolean isAsyncSupported);
     }
 }

@@ -39,6 +39,6 @@ public interface FilterChain {
      * @throws IOException if an I/O related error has occurred during the processing
      * @throws ServletException if an exception has occurred that interferes with the filterChain's normal operation
      */
-    public void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
+    void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException;
 
 }
