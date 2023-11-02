@@ -30,10 +30,10 @@ public interface HttpUpgradeHandler {
      *
      * @param wc the WebConnection object associated to this upgrade request
      */
-    public void init(WebConnection wc);
+    void init(WebConnection wc);
 
     /**
      * It is called when the client is disconnected.
      */
-    public void destroy();
+    void destroy();
 }

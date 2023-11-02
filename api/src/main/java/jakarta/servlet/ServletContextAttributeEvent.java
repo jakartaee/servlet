@@ -29,8 +29,8 @@ public class ServletContextAttributeEvent extends ServletContextEvent {
 
     private static final long serialVersionUID = -5804680734245618303L;
 
-    private String name;
-    private Object value;
+    private final String name;
+    private final Object value;
 
     /**
      * Constructs a ServletContextAttributeEvent from the given ServletContext, attribute name, and attribute value.

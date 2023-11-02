@@ -33,7 +33,7 @@ public interface FilterConfig {
      *
      * @return the filter name of this filter
      */
-    public String getFilterName();
+    String getFilterName();
 
     /**
      * Returns a reference to the {@link ServletContext} in which the caller is executing.
@@ -42,7 +42,7 @@ public interface FilterConfig {
      *
      * @see ServletContext
      */
-    public ServletContext getServletContext();
+    ServletContext getServletContext();
 
     /**
      * Returns a <code>String</code> containing the value of the named initialization parameter, or <code>null</code> if the
@@ -53,7 +53,7 @@ public interface FilterConfig {
      * @return a <code>String</code> containing the value of the initialization parameter, or <code>null</code> if the
      * initialization parameter does not exist
      */
-    public String getInitParameter(String name);
+    String getInitParameter(String name);
 
     /**
      * Returns the names of the filter's initialization parameters as an <code>Enumeration</code> of <code>String</code>
@@ -62,6 +62,6 @@ public interface FilterConfig {
      * @return an <code>Enumeration</code> of <code>String</code> objects containing the names of the filter's
      * initialization parameters
      */
-    public Enumeration<String> getInitParameterNames();
+    Enumeration<String> getInitParameterNames();
 
 }

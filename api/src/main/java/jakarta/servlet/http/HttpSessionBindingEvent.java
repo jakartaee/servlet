@@ -39,7 +39,7 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
     private static final long serialVersionUID = 7308000419984825907L;
 
     /* The name to which the object is being bound or unbound */
-    private String name;
+    private final String name;
 
     /* The object is being bound or unbound */
     private Object value;

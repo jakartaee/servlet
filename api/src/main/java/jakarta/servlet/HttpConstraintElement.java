@@ -28,9 +28,9 @@ import jakarta.servlet.annotation.ServletSecurity.TransportGuarantee;
  */
 public class HttpConstraintElement {
 
-    private EmptyRoleSemantic emptyRoleSemantic;
-    private TransportGuarantee transportGuarantee;
-    private String[] rolesAllowed;
+    private final EmptyRoleSemantic emptyRoleSemantic;
+    private final TransportGuarantee transportGuarantee;
+    private final String[] rolesAllowed;
 
     /**
      * Constructs a default HTTP constraint element
@@ -45,7 +45,7 @@ public class HttpConstraintElement {
      * @param semantic should be EmptyRoleSemantic.DENY
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic) {
-        this(semantic, TransportGuarantee.NONE, new String[0]);
+        this(semantic, TransportGuarantee.NONE);
     }
 
     /**

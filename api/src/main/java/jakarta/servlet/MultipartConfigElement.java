@@ -26,10 +26,10 @@ import jakarta.servlet.annotation.MultipartConfig;
  */
 public class MultipartConfigElement {
 
-    private String location;
-    private long maxFileSize;
-    private long maxRequestSize;
-    private int fileSizeThreshold;
+    private final String location;
+    private final long maxFileSize;
+    private final long maxRequestSize;
+    private final int fileSizeThreshold;
 
     /**
      * Constructs an instance with defaults for all but location.

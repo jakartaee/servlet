@@ -28,8 +28,8 @@ import java.util.*;
  */
 public class ServletSecurityElement extends HttpConstraintElement {
 
-    private Collection<String> methodNames;
-    private Collection<HttpMethodConstraintElement> methodConstraints;
+    private final Collection<String> methodNames;
+    private final Collection<HttpMethodConstraintElement> methodConstraints;
 
     /**
      * Constructs an instance using the default <code>HttpConstraintElement</code> value as the default Constraint element

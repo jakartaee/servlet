@@ -118,7 +118,7 @@ public class HttpServletTest {
 
             @Override
             public Enumeration<String> getHeaderNames() {
-                return Collections.enumeration(Arrays.asList(testHeader));
+                return Collections.enumeration(Collections.singletonList(testHeader));
             }
         };
 

@@ -48,7 +48,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     private static final long serialVersionUID = -8592279577370996712L;
 
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private transient ServletConfig config;
 
