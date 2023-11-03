@@ -5188,7 +5188,7 @@ via the `startAsync(ServletRequest, ServletResponse)` and the request
 passed is an instance of `HttpServletRequest`, then the dispatch is to
 the URI returned by `HttpServletRequest.getRequestURI()`. Otherwise the
 dispatch is to the URI of the request when it was last dispatched by the
-container
+container.
 
 One of the `dispatch` methods of the
 `AsyncContext` interface may be called by the application waiting for
