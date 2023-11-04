@@ -1945,7 +1945,7 @@ corresponding to the servlet with the given `name`, or `null` if no
 `UnsupportedOperationException` is thrown if the `ServletContext` was
 passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
-annotated with `jakarta.servlet.annotation.WebListener.`
+annotated with `jakarta.servlet.annotation.WebListener`.
 
 ===== Map<String, ? extends ServletRegistration> getServletRegistrations()
 
@@ -1961,7 +1961,7 @@ MUST not affect the `ServletContext`. An
 `UnsupportedOperationException` is thrown if the `ServletContext` was
 passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
-annotated with `jakarta.servlet.annotation.WebListener.`
+annotated with `jakarta.servlet.annotation.WebListener`.
 
 ==== Programmatically Adding and Configuring Filters
 
@@ -2001,7 +2001,7 @@ corresponding to the filter with the given `name`, or `null` if no
 `UnsupportedOperationException` is thrown if the `ServletContext` was
 passed to the `contextInitialized` method of a `ServletContextListener`
 that was neither declared in the `web.xml` or `web-fragment.xml`, nor
-annotated with `jakarta.servlet.annotation.WebListener.`
+annotated with `jakarta.servlet.annotation.WebListener`.
 
 ===== Map<String, ? extends FilterRegistration> getFilterRegistrations()
 
