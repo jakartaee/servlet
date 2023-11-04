@@ -1981,7 +1981,7 @@ filter instance to the web application.
 
 This method allows the application to declare
 a filter programmatically. It adds a filter with the given name, and
-an instance of the filter class to the web application.
+an filter class to the web application.
 
 ===== <T extends Filter> T createFilter(Class<T> clazz)
 
