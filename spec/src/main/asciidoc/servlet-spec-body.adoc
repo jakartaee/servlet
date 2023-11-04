@@ -1918,7 +1918,7 @@ servlet instance to the servlet context.
 
 This method allows the application to declare
 a servlet programmatically. It adds a servlet with the given name, and
-an instance of the servlet class to the servlet context.
+an servlet class to the servlet context.
 
 ===== addJspFile(String servletName, String jspfile)
 
