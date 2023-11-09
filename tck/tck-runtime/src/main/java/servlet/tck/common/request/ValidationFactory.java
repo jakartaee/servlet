@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author Ryan Lubke
  * @version %I%
  */
-public class ValidationFactory {
+public final class ValidationFactory {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ValidationFactory.class);
 

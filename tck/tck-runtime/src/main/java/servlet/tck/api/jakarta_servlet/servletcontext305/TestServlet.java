@@ -123,8 +123,8 @@ public class TestServlet extends GenericTCKServlet {
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] names = { "SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST",
-        "GC_LISTENER_TEST", "GS_LISTENER_TEST", "CGC_LISTENER_TEST" };
+    String[] names = {"SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST",
+        "GC_LISTENER_TEST", "GS_LISTENER_TEST", "CGC_LISTENER_TEST"};
 
     for (String name : names) {
       pw.println(name + "="

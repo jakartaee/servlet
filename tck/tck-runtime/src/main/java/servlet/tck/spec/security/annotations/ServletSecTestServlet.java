@@ -38,11 +38,11 @@ import jakarta.servlet.http.HttpServletResponse;
  * this declares several roles, specifies which roles are allowed, then
  * sets POST to DENYALL and sets GET TO PERMITALL.
  */
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
+    "Administrator"}), httpMethodConstraints = {
         @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
-        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.PERMIT) })
+        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.PERMIT)})
 @WebServlet("/ServletSecTest")
 public class ServletSecTestServlet extends HttpServlet {
 
@@ -54,7 +54,7 @@ public class ServletSecTestServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
     System.out
@@ -62,7 +62,7 @@ public class ServletSecTestServlet extends HttpServlet {
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
     System.out.println("Inside  ServletSecTestServlet.doGet() ....." + "<BR>");

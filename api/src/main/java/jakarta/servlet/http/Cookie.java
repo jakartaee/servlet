@@ -92,7 +92,7 @@ public class Cookie implements Cloneable, Serializable {
     //
     // Attributes encoded in the header's cookie fields.
     //
-    private Map<String, String> attributes = null;
+    private Map<String, String> attributes;
 
     /**
      * Constructs a cookie with the specified name and value.
@@ -521,10 +521,10 @@ public class Cookie implements Cloneable, Serializable {
     public boolean equals(Object obj) {
         if (obj instanceof Cookie) {
             Cookie c = (Cookie) obj;
-            return Objects.equals(getName(), c.getName()) &&
-                    Objects.equals(getValue(), c.getValue()) &&
-                    getVersion() == c.getVersion() &&
-                    Objects.equals(getAttributes(), c.getAttributes());
+            return Objects.equals(getName(), c.getName())
+                    && Objects.equals(getValue(), c.getValue())
+                    && getVersion() == c.getVersion()
+                    && Objects.equals(getAttributes(), c.getAttributes());
         }
         return false;
     }

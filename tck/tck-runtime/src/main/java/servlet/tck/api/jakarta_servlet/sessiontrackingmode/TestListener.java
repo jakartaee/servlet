@@ -43,9 +43,9 @@ public class TestListener implements ServletContextListener {
     Boolean pass = true;
     StringBuilder log = new StringBuilder();
     StringBuilder modes = new StringBuilder();
-    List<SessionTrackingMode> defaults = new CopyOnWriteArrayList<SessionTrackingMode>(
+    List<SessionTrackingMode> defaults = new CopyOnWriteArrayList<>(
         context.getDefaultSessionTrackingModes());
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
 
     complete.add(SessionTrackingMode.COOKIE);
     complete.add(SessionTrackingMode.URL);

@@ -32,7 +32,7 @@ import jakarta.servlet.ServletResponse;
 
 public final class TestFilter2 implements Filter {
 
-  private FilterConfig filterConfig = null;
+  private FilterConfig filterConfig;
 
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {

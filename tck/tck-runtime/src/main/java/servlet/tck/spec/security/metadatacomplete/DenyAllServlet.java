@@ -36,7 +36,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.PERMIT))
 @WebServlet(name = "DenyAllTestLogicalName", urlPatterns = {
-    "/ServletDenyAll" })
+    "/ServletDenyAll"})
 public class DenyAllServlet extends HttpServlet {
 
   //
@@ -59,7 +59,7 @@ public class DenyAllServlet extends HttpServlet {
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
 

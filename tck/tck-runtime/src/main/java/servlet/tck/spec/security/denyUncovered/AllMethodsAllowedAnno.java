@@ -36,10 +36,10 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  */
 
-@ServletSecurity(@HttpConstraint(rolesAllowed = { "Administrator", "Manager",
-    "Employee" }))
+@ServletSecurity(@HttpConstraint(rolesAllowed = {"Administrator", "Manager",
+    "Employee"}))
 @WebServlet(name = "AllMethodsAllowedAnno", urlPatterns = {
-    "/AllMethodsAllowedAnno" })
+    "/AllMethodsAllowedAnno"})
 public class AllMethodsAllowedAnno extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)

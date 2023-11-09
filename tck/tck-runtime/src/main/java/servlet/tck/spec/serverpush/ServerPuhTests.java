@@ -69,19 +69,19 @@ public class ServerPuhTests extends AbstractTckTest {
                 .setWebXML(ServerPuhTests.class.getResource("servlet_spec_serverpush_web.xml"));
     }
 
-    private String requestURI = null;
+    private String requestURI;
 
     private String hostname;
 
     private int portnum;
 
-    private WebUtil.Response response = null;
+    private WebUtil.Response response;
 
     private String authUsername = "javajoe";
 
     private String authPassword = "javajoe";
 
-    private CookieManager cm = new CookieManager();
+  private final CookieManager cm = new CookieManager();
 
     /*
      * @class.setup_props: webServerHost; webServerPort; authuser; authpassword;
@@ -112,7 +112,7 @@ public class ServerPuhTests extends AbstractTckTest {
         Map<String, String> headers = new HashMap<>();
         headers.put("foo", "bar");
         List<HttpResponse<String>> responses = sendRequest(headers, null, null);
-        verifyResponses(responses, new String[] { "hello", "INDEX from index.html" });
+        verifyResponses(responses, new String[]{"hello", "INDEX from index.html"});
     }
 
     /*
@@ -159,8 +159,8 @@ public class ServerPuhTests extends AbstractTckTest {
      */
     @Test
     public void serverPushInitTest() throws Exception {
-        requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
-                "/TestServlet2";
+        requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
+                + "/TestServlet2";
         Map<String, String> headers = new HashMap<>();
         headers.put("foo", "bar");
         headers.put("If-Match", "*");
@@ -192,9 +192,9 @@ public class ServerPuhTests extends AbstractTckTest {
 
         sessionid = sessionid
                 .substring(sessionid.indexOf("JSESSIONID=") + "JSESSIONID=".length());
-        if (sessionid.indexOf(";") > 0) {
+        if (sessionid.indexOf(";") >= 1) {
             sessionid = sessionid.substring(0, sessionid.indexOf(";"));
-        } else if (sessionid.indexOf(".") > 0) {
+        } else if (sessionid.indexOf(".") >= 1) {
             sessionid = sessionid.substring(0, sessionid.indexOf("."));
         }
 
@@ -301,13 +301,13 @@ public class ServerPuhTests extends AbstractTckTest {
      */
     @Test
     public void serverPushCookieTest() throws Exception {
-        requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
-                "/TestServlet4";
+        requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
+                + "/TestServlet4";
         Map<String, String> headers = new HashMap<>();
         headers.put("foo", "bar");
         CookieManager cm = new CookieManager();
         List<HttpResponse<String>> responses = sendRequest(headers, null, cm);
-        verifyResponses(responses, new String[] { "add cookies [foo,bar] [baz,qux] to response", "INDEX from index.html" });
+        verifyResponses(responses, new String[]{"add cookies [foo,bar] [baz,qux] to response", "INDEX from index.html"});
         boolean cookieExisted = false;
         String pbCookies = "";
         try {
@@ -363,7 +363,7 @@ public class ServerPuhTests extends AbstractTckTest {
 
             if (!pass) {
                 for (HttpResponse<String> response : responses) {
-                    if (response.uri().toString().indexOf("index.html;jsessionid") > 0) {
+                    if (response.uri().toString().indexOf("index.html;jsessionid") >= 1) {
                         pass = true;
                     }
                 }
@@ -405,20 +405,21 @@ public class ServerPuhTests extends AbstractTckTest {
             }
         }
 
-        if (pushResp == null)
-            throw new Exception("can not get push response");
+      if (pushResp == null) {
+        throw new Exception("can not get push response");
+      }
 
         logMsg(
                 "expected header: h1=v1, foo=v2; expected querysting: querystring=1&querystring=2");
         Map<String, List<String>> pushHeaders = pushReq.headers().map();
         logMsg("Current push request header: " + pushHeaders);
         if (!(pushHeaders.get("h1") != null
-                && pushHeaders.get("h1").get(0).equals("v1"))) {
+                && "v1".equals(pushHeaders.get("h1").get(0)))) {
             throw new Exception("test fail: could not find header h1=v1");
         }
 
         if (!(pushHeaders.get("foo") != null
-                && pushHeaders.get("foo").get(0).equals("v2"))) {
+                && "v2".equals(pushHeaders.get("foo").get(0)))) {
             throw new Exception("test fail: could not find header foo=v2");
         }
 
@@ -455,8 +456,9 @@ public class ServerPuhTests extends AbstractTckTest {
             }
         }
 
-        if (servletResp == null)
-            throw new Exception("can not get servlet response");
+      if (servletResp == null) {
+        throw new Exception("can not get servlet response");
+      }
         if (!servletResp.body().contains("test passed")) {
             throw new Exception("test fail");
         }
@@ -465,10 +467,12 @@ public class ServerPuhTests extends AbstractTckTest {
     private List<HttpResponse<String>> sendRequest(Map<String, String> headers,
                                                    Authenticator auth, CookieManager cm) throws Exception {
         HttpClient.Builder builder = HttpClient.newBuilder();
-        if (auth != null)
-            builder.authenticator(auth);
-        if (cm != null)
-            builder.cookieHandler(cm);
+      if (auth != null) {
+        builder.authenticator(auth);
+      }
+      if (cm != null) {
+        builder.cookieHandler(cm);
+      }
 
         HttpClient client = builder.version(HttpClient.Version.HTTP_2)
                 .followRedirects(HttpClient.Redirect.ALWAYS)
@@ -521,7 +525,7 @@ public class ServerPuhTests extends AbstractTckTest {
 
     private void verifyResponses(List<HttpResponse<String>> responses,
                                  String[] expectedResponses) throws Exception {
-        if (responses.size() == 0) {
+        if (responses.isEmpty()) {
             throw new Exception("No Responses, expected responses are "
                     + Arrays.toString(expectedResponses));
         }

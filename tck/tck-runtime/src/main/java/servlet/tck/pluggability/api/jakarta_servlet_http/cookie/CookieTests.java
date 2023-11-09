@@ -349,7 +349,7 @@ public class CookieTests extends AbstractTckTest {
         List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
 
         Optional<HttpCookie> optionalHttpCookie =
-                cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1")).findFirst();
+                cookies.stream().filter(httpCookie -> "name1".equals(httpCookie.getName())).findFirst();
 
         if (optionalHttpCookie.isPresent()) {
           HttpCookie httpCookie = optionalHttpCookie.get();

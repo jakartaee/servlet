@@ -90,7 +90,7 @@ public class TestServlet extends HttpTCKServlet {
       pw.println("In method includeerror");
       rd.include(request, response);
     }
-    if (!((String) request.getAttribute("ERROR_TEST_INCLUDE")).equals("403")) {
+    if (!"403".equals(((String) request.getAttribute("ERROR_TEST_INCLUDE")))) {
       pw.println("Test Failed");
     } else {
       response.sendError(403);
@@ -252,18 +252,18 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     Boolean pass = true;
     // the last item in the expected is a result of this servlet being called
-    String[] expected = { "in requestInitialized method of listener",
+    String[] expected = {"in requestInitialized method of listener",
         "in requestDestroyed method of listener",
-        "in requestInitialized method of listener" };
-    int expected_len = expected.length;
+        "in requestInitialized method of listener"};
+    int expectedLen = expected.length;
 
     // verify results
     ArrayList result = (ArrayList) getServletContext()
         .getAttribute("arraylist");
     result.trimToSize();
     int len = result.size();
-    if (len == expected_len) {
-      pw.write("Got expected " + expected_len + " access times");
+    if (len == expectedLen) {
+      pw.write("Got expected " + expectedLen + " access times");
       for (int i = 0; i < len; i++) {
         Object val = null;
         val = (String) result.get(i);
@@ -279,10 +279,10 @@ public class TestServlet extends HttpTCKServlet {
       pass = false;
       pw.write(
           "RequestListener is invoked/deleted more or less times than required");
-      pw.write("Expect " + expected_len + " times, got " + len + ".");
+      pw.write("Expect " + expectedLen + " times, got " + len + ".");
 
-      if (len > expected_len) {
-        for (int i = 0; i < expected_len; i++) {
+      if (len > expectedLen) {
+        for (int i = 0; i < expectedLen; i++) {
           Object val = null;
           val = (String) result.get(i);
           if (!expected[i].equals(val)) {
@@ -295,7 +295,7 @@ public class TestServlet extends HttpTCKServlet {
           }
         }
 
-        for (int i = expected_len; i < len; i++) {
+        for (int i = expectedLen; i < len; i++) {
           pw.write("Extra access to Listener: " + result.get(i)
               + " at position " + i);
         }
@@ -314,7 +314,7 @@ public class TestServlet extends HttpTCKServlet {
           }
         }
 
-        for (int i = len; i < expected_len; i++) {
+        for (int i = len; i < expectedLen; i++) {
           pw.write(
               "Missing expected value: " + expected[i] + " at position " + i);
         }

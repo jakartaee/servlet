@@ -60,12 +60,12 @@ public class ServletContext31Tests extends AbstractTckTest {
    */
   @Test
   public void getVirtualServerNameTest() throws Exception {
-    String expected_virtualservername = _props
+    String expectedVirtualservername = _props
         .getProperty("logical.hostname.servlet").trim();
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + getServletName()
             + "?testname=getVirtualServerNameTest&VirtualServerNamePlease="
-            + expected_virtualservername + " HTTP/1.0");
+            + expectedVirtualservername + " HTTP/1.0");
     invoke();
   }
 }

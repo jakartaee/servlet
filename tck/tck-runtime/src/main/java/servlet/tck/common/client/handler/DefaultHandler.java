@@ -73,11 +73,11 @@ import java.util.List;
  * header that doesn't have a configured handler.
  * </PRE>
  */
-public class DefaultHandler implements Handler {
+public final class DefaultHandler implements Handler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DefaultHandler.class);
 
-  private static Handler handler = new DefaultHandler();
+  private static final Handler handler = new DefaultHandler();
 
   /**
    * Creates new DefaultHandler

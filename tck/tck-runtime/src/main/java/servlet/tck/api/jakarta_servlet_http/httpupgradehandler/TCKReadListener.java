@@ -25,11 +25,11 @@ import jakarta.servlet.ServletOutputStream;
 
 public class TCKReadListener implements ReadListener {
 
-  private ServletInputStream input = null;
+  private final ServletInputStream input;
 
-  private ServletOutputStream output = null;
+  private final ServletOutputStream output;
 
-  private String delimiter = null;
+  private final String delimiter;
 
   TCKReadListener(String del, ServletInputStream in, ServletOutputStream out) {
     input = in;
@@ -42,7 +42,7 @@ public class TCKReadListener implements ReadListener {
       output.println("=onDataAvailable");
       StringBuilder sb = new StringBuilder();
       int len = -1;
-      byte b[] = new byte[1024];
+      byte[] b = new byte[1024];
       while (input.isReady() && (len = input.read(b)) != -1) {
         String data = new String(b, 0, len);
         sb.append(data);

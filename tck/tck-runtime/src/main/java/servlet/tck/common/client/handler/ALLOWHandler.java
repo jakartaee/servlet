@@ -25,7 +25,7 @@ import servlet.tck.common.request.Header;
 
 import java.util.StringTokenizer;
 
-public class ALLOWHandler implements Handler {
+public final class ALLOWHandler implements Handler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ALLOWHandler.class);
 
@@ -39,18 +39,18 @@ public class ALLOWHandler implements Handler {
   }
 
   public boolean invoke(Header configuredHeader, Header responseHeader) {
-    String ALLOWHeader = responseHeader.getValue().toLowerCase();
+    String aLLOWHeader = responseHeader.getValue().toLowerCase();
     String expectedValues = configuredHeader.getValue().toLowerCase()
         .replace(" ", "");
 
-    LOGGER.trace("[ALLOWHandler] ALLOW header received: {}", ALLOWHeader);
+    LOGGER.trace("[ALLOWHandler] ALLOW header received: {}", aLLOWHeader);
 
     StringTokenizer conf = new StringTokenizer(expectedValues, ",");
     while (conf.hasMoreTokens()) {
       String token = conf.nextToken();
       String token1 = token;
 
-      if ((!ALLOWHeader.contains(token)) && (!ALLOWHeader.contains(token1))) {
+      if ((!aLLOWHeader.contains(token)) && (!aLLOWHeader.contains(token1))) {
         LOGGER.error("[ALLOWHandler] Unable to find '{}' within the ALLOW header returned by the server.", token);
         return false;
       } else {

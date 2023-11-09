@@ -53,17 +53,17 @@ public class WebValidatorBase implements ValidationStrategy {
   /**
    * This test case's HttpResponse
    */
-  protected HttpResponse _res = null;
+  protected HttpResponse _res;
 
   /**
    * This test case's HttpRequest
    */
-  protected HttpExchange _req = null;
+  protected HttpExchange _req;
 
   /**
    * The test case being validated
    */
-  protected WebTestCase _case = null;
+  protected WebTestCase _case;
 
   /**
    * <b>validate</b> Will validate the response against the configured
@@ -145,8 +145,9 @@ public class WebValidatorBase implements ValidationStrategy {
   protected boolean checkStatusCode() throws IOException {
     String sCode = _case.getStatusCode();
     String resCode = _res.getStatusCode();
-    if ("-1".equals(sCode))
+    if ("-1".equals(sCode)) {
       return true;
+    }
 
     if (sCode == null && resCode.charAt(0) == CLIENT_ERROR) {
       logger.error("Test {} Unexpected {} received from target server!  Request path: {}"
@@ -156,10 +157,10 @@ public class WebValidatorBase implements ValidationStrategy {
 
     if (sCode == null && (resCode.charAt(0) == SERVER_ERROR)) {
       String resBody = _res.getResponseBodyAsRawString();
-      logger.error( " Test {} Unexpected '{}' received from target server!\n " +
-                      "Error response received from server:\n" +
-                      "------------------------------------------------\n" +
-                      " {}"
+      logger.error(" Test {} Unexpected '{}' received from target server!\n "
+                      + "Error response received from server:\n"
+                      + "------------------------------------------------\n"
+                      + " {}"
               , _case.getName(), resCode, (resBody != null ? resBody : "NO RESPONSE"));
       return false;
     }
@@ -262,12 +263,12 @@ public class WebValidatorBase implements ValidationStrategy {
                 _case.getName(), search, startIdx);
         if (searchIdx < 0) {
           found = false;
-          String sb = " Test %s Unable to find the following " +
-                  "search string in the server's response: \n'%s'\n at index: %s" +
-                  "\n Server's response:\n" +
-                  "-------------------------------------------\n" +
-                  "%s" +
-                  "\n-------------------------------------------\n";
+          String sb = " Test %s Unable to find the following "
+                  + "search string in the server's response: \n'%s'\n at index: %s"
+                  + "\n Server's response:\n"
+                  + "-------------------------------------------\n"
+                  + "%s"
+                  + "\n-------------------------------------------\n";
           String result = String.format(sb, _case.getName(), search, startIdx, responseBody);
           logger.error(result);
           throw new Exception(result);
@@ -337,12 +338,12 @@ public class WebValidatorBase implements ValidationStrategy {
                 _case.getName(), search, startIdx);
         if (searchIdx < 0) {
           found = false;
-          String sb = " Test %s Unable to find the following search string in the server's " +
-                  "response: \n'%s'\n at index: %s" +
-                  "\n Server's response:\n" +
-                  "-------------------------------------------\n" +
-                  "%s" +
-                  "\n-------------------------------------------\n";
+          String sb = " Test %s Unable to find the following search string in the server's "
+                  + "response: \n'%s'\n at index: %s"
+                  + "\n Server's response:\n"
+                  + "-------------------------------------------\n"
+                  + "%s"
+                  + "\n-------------------------------------------\n";
           String result = String.format(sb, _case.getName(), search, searchIdx, responseBody);
           logger.error(result);
           throw new Exception(result);
@@ -394,13 +395,13 @@ public class WebValidatorBase implements ValidationStrategy {
                 _case.getName(), search);
         if (searchIdx < 0) {
           found = false;
-          String sb = " Test %s Unable to find the following " +
-                  "search string in the server's " +
-                  "response: \n' %s" +
-                  "\n Server's response:\n" +
-                  "-------------------------------------------\n" +
-                  "%s" +
-                  "\n-------------------------------------------\n";
+          String sb = " Test %s Unable to find the following "
+                  + "search string in the server's "
+                  + "response: \n' %s"
+                  + "\n Server's response:\n"
+                  + "-------------------------------------------\n"
+                  + "%s"
+                  + "\n-------------------------------------------\n";
           String result = String.format(sb, _case.getName(), search, responseBody);
           logger.error(result);
           throw new Exception(result);
@@ -445,13 +446,13 @@ public class WebValidatorBase implements ValidationStrategy {
         logger.debug(" Test {} Scanning response. The following string should not be present in the response: '{}'",
                 _case.getName(), search);
         if (responseBody.contains(search)) {
-          String sb = " Test {} Found the following unexpected " +
-                  "search string in the server's " +
-                  "response: '{}'" +
-                  "\n Server's response:\n" +
-                  "-------------------------------------------\n" +
-                  "{}}" +
-                  "\n-------------------------------------------\n";
+          String sb = " Test {} Found the following unexpected "
+                  + "search string in the server's "
+                  + "response: '{}'"
+                  + "\n Server's response:\n"
+                  + "-------------------------------------------\n"
+                  + "{}}"
+                  + "\n-------------------------------------------\n";
           logger.error(sb, _case.getName(), search, responseBody);
           return false;
         }
@@ -492,7 +493,7 @@ public class WebValidatorBase implements ValidationStrategy {
     }
     boolean check = sReason.equalsIgnoreCase(resReason);
     if (check) {
-      logger.debug("Test {}, found expected reasonPhrase is '{}'",_case.getName(), resReason);
+      logger.debug("Test {}, found expected reasonPhrase is '{}'", _case.getName(), resReason);
       return true;
     }
     logger.error("Test {}, reasonPhrase is '{}' but not '{}'", _case.getName(), resReason, sReason);

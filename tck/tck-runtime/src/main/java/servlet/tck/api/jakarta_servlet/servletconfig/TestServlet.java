@@ -105,7 +105,7 @@ public class TestServlet extends GenericTCKServlet {
     String initParam = config.getInitParameter("Team");
 
     if (initParam != null) {
-      if (initParam.equals("WebAccess")) {
+      if ("WebAccess".equals(initParam)) {
         passed = true;
       } else {
         passed = false;
@@ -153,7 +153,7 @@ public class TestServlet extends GenericTCKServlet {
     // get this servlets name
     String servletName = config.getServletName();
 
-    if (servletName.indexOf(expected) > -1) {
+    if (servletName.contains(expected)) {
       passed = true;
     } else {
       passed = false;
@@ -178,7 +178,7 @@ public class TestServlet extends GenericTCKServlet {
     // we expect ServletContext object that corresponds to the named URL
     ServletContext context2 = context.getContext(anotherServlet);
 
-    if ((context2 == context)) {
+    if (context2 == context) {
       passed = true;
     } else {
       passed = true;

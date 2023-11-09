@@ -50,8 +50,8 @@ public class ServletProgrammaticLogin extends HttpServlet {
     System.out.println("enterred ServletProgrammaticLogin.service()");
 
     // get user creds that are set in secformClient.test16()
-    String the_username = request.getParameter("the_username");
-    String the_password = request.getParameter("the_password");
+    String theUsername = request.getParameter("the_username");
+    String thePassword = request.getParameter("the_password");
 
     // we are not yet authenticated so at this point a call to getRemoteUser()
     // MUST return null (per Servlet 3.1 speec (section 13.3).
@@ -65,7 +65,7 @@ public class ServletProgrammaticLogin extends HttpServlet {
     }
 
     try {
-      request.login(the_username, the_password);
+      request.login(theUsername, thePassword);
 
       // per javadoc, if login() worked with no exception then there must
       // be non-null values for getUserPrincipal, getRemoteUser, and
@@ -90,9 +90,9 @@ public class ServletProgrammaticLogin extends HttpServlet {
   }
 
   public void sendOutput(String str, PrintWriter out) {
-    String HDR = "ServletProgrammaticLogin:  ";
-    out.println(HDR + str); // this line is used for test validation
-    System.out.println(HDR + str); // this line is for debug aid
+    String hdr = "ServletProgrammaticLogin:  ";
+    out.println(hdr + str); // this line is used for test validation
+    System.out.println(hdr + str); // this line is for debug aid
   }
 
 }

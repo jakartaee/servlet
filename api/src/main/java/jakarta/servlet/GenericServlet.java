@@ -19,6 +19,7 @@
 package jakarta.servlet;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
@@ -44,11 +45,11 @@ import java.util.ResourceBundle;
  *
  * @author Various
  */
-public abstract class GenericServlet implements Servlet, ServletConfig, java.io.Serializable {
+public abstract class GenericServlet implements Servlet, ServletConfig, Serializable {
     private static final long serialVersionUID = -8592279577370996712L;
 
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+  private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private transient ServletConfig config;
 

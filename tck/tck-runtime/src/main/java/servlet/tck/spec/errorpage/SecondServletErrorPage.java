@@ -68,11 +68,11 @@ public class SecondServletErrorPage extends HttpServlet {
       pw.println("Exception Type: null");
     } else {
       // with the cast we even enforce it's a Class type
-      pw.println("Exception Type: " + ((Class<?>)req.getAttribute(EXCEPTION_TYPE)).getName());
+      pw.println("Exception Type: " + ((Class<?>) req.getAttribute(EXCEPTION_TYPE)).getName());
     }
     pw.println("Exception: " + req.getAttribute(EXCEPTION));
     pw.print("Message: ");
-    if (((String) req.getAttribute(MESSAGE)).indexOf(EXP_MESSAGE) > -1) {
+    if (((String) req.getAttribute(MESSAGE)).contains(EXP_MESSAGE)) {
       pw.println(EXP_MESSAGE);
     } else {
       pw.println(Data.FAILED);

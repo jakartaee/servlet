@@ -45,7 +45,7 @@ public class TestServlet extends GenericTCKServlet {
     ServletContext context = config.getServletContext();
     pw.println((String) context.getAttribute("LOG"));
 
-    Set<SessionTrackingMode> expected_modes = new HashSet();
+    Set<SessionTrackingMode> expectedModes = new HashSet();
     String expected = (String) context.getAttribute("MODES");
     StringTokenizer str = new StringTokenizer(expected, ";");
 
@@ -53,12 +53,12 @@ public class TestServlet extends GenericTCKServlet {
       String mode = str.nextToken();
       pw.println("Expected SessionTrackingMode =" + mode);
       if (mode.equals(SessionTrackingMode.COOKIE.toString())) {
-        expected_modes.add(SessionTrackingMode.COOKIE);
+        expectedModes.add(SessionTrackingMode.COOKIE);
       } else if (mode.equals(SessionTrackingMode.SSL.toString())) {
         // SSL cannot be set with combination of other SessionTrackingMode
         // expected_modes.add(SessionTrackingMode.SSL);
       } else if (mode.equals(SessionTrackingMode.URL.toString())) {
-        expected_modes.add(SessionTrackingMode.URL);
+        expectedModes.add(SessionTrackingMode.URL);
       } else {
         passed = false;
         pw.println("Unrecogized SessionTrackingMode expected: " + mode);
@@ -68,13 +68,13 @@ public class TestServlet extends GenericTCKServlet {
 
     Set<SessionTrackingMode> results = null;
 
-    if (expected_modes.isEmpty()) {
+    if (expectedModes.isEmpty()) {
       results = context.getDefaultSessionTrackingModes();
     } else {
       results = context.getEffectiveSessionTrackingModes();
     }
 
-    if (!results.containsAll(expected_modes)) {
+    if (!results.containsAll(expectedModes)) {
       passed = false;
       pw.append("setSessionTrackingModes and getEffectiveSessionTrackingModes "
           + "retuns different set of SessionTrackingModes");

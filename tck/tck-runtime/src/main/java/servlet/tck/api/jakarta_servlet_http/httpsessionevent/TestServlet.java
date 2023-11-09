@@ -82,7 +82,7 @@ public class TestServlet extends HttpTCKServlet {
 
     HttpSession session = request.getSession(true);
 
-    String[] expected = { "sessionCreated:sessionid=" + session.getId() };
+    String[] expected = {"sessionCreated:sessionid=" + session.getId()};
 
     ArrayList result = StaticLog.getClear();
     boolean b = ServletTestUtil.checkArrayList(result, expected, true, false);

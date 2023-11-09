@@ -76,11 +76,11 @@ import java.net.URL;
  *   - Port value is in response
  * </PRE>
  */
-public class LocationHandler implements Handler {
+public final class LocationHandler implements Handler {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(LocationHandler.class);
 
-  private static Handler handler = new LocationHandler();
+  private static final Handler handler = new LocationHandler();
 
   /**
    * Creates new ContentTypeHandler

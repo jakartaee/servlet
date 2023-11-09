@@ -63,7 +63,7 @@ package servlet.tck.common.client.handler;
  * The HandlerManager is responsible for returning the appropriate handler
  * instance based on the provided value.
  */
-public class HandlerFactory {
+public final class HandlerFactory {
 
   /**
    * Content-Type handler name.

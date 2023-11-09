@@ -210,7 +210,7 @@ public interface ServletResponse {
      *
      * @since Servlet 6.1
      */
-    default public void setCharacterEncoding(Charset encoding) {
+    public default void setCharacterEncoding(Charset encoding) {
         setCharacterEncoding(encoding.name());
     }
 

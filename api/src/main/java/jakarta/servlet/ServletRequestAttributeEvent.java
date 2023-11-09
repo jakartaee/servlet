@@ -28,8 +28,8 @@ public class ServletRequestAttributeEvent extends ServletRequestEvent {
 
     private static final long serialVersionUID = -1466635426192317793L;
 
-    private String name;
-    private Object value;
+  private final String name;
+  private final Object value;
 
     /**
      * Construct a ServletRequestAttributeEvent giving the servlet context of this web application, the ServletRequest whose

@@ -45,10 +45,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/include/IncludedServlet?testname=attributes";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.include(request, response);
+    }
   }
 
   public void includeAttributes1(HttpServletRequest request,
@@ -58,10 +59,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "include/IncludedServlet?testname=attributes";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.include(request, response);
+    }
   }
 
   public void includeAttributes2(HttpServletRequest request,
@@ -71,9 +73,9 @@ public class TestServlet extends HttpTCKServlet {
     String path = "IncludedServlet";
     RequestDispatcher rd = getServletContext().getNamedDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       request.setAttribute("TestName", "attributes");
       rd.include(request, response);
     }
@@ -89,21 +91,21 @@ public class TestServlet extends HttpTCKServlet {
         "include/IncludedServlet?testname=thrownServletException");
 
     testMap.keySet().iterator();
-    for (Iterator i = testMap.keySet().iterator(); i.hasNext();) {
+    for (Iterator i = testMap.keySet().iterator(); i.hasNext(); ) {
       String type = (String) i.next();
       String path = (String) testMap.get(type);
       RequestDispatcher rd = request.getRequestDispatcher(path);
 
-      if (rd == null)
+      if (rd == null) {
         pw.println("Null RequestDispatcher got for path=" + path);
-      else {
+      } else {
         try {
           rd.include(request, response);
           pw.println("Test FAILED with no propagation of " + type + " from "
               + "IncludedServlet to TestServlet.");
         } catch (Throwable t) {
           Throwable targetThrowable = ((ServletException) t).getRootCause();
-          if (type.equals("IOException")) {
+          if ("IOException".equals(type)) {
             if (targetThrowable instanceof IOException) {
               pw.println("Test PASSED with proper propagation of " + type
                   + " from IncludedServlet to TestServlet:"
@@ -115,7 +117,7 @@ public class TestServlet extends HttpTCKServlet {
                   + targetThrowable.getClass().getName());
             }
           }
-          if (type.equals("ServletException")) {
+          if ("ServletException".equals(type)) {
             if (targetThrowable instanceof ServletException) {
               ServletException se = (ServletException) targetThrowable;
               if (se.getRootCause() == null) {
@@ -147,9 +149,9 @@ public class TestServlet extends HttpTCKServlet {
     String path = "include/IncludedServlet?testname=thrownUnCheckedException";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       try {
         rd.include(request, response);
         pw.println("Test FAILED with no propagation of RuntimeException from "
@@ -177,19 +179,20 @@ public class TestServlet extends HttpTCKServlet {
     String path = "include/IncludedServlet?testname=thrownCheckedException";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       try {
         rd.include(request, response);
         pw.println("Test FAILED with no propagation of Exception from "
             + "IncludedServlet to TestServlet.");
 
       } catch (ServletException se) {
-        if (se.getRootCause() instanceof java.lang.ClassNotFoundException)
+        if (se.getRootCause() instanceof java.lang.ClassNotFoundException) {
           pw.println(
               "Test PASSED with proper propagation of ClassNotFoundException "
                   + "from IncludedServlet to TestServlet.");
+        }
       } catch (Throwable t) {
         pw.println("Test FAILED with incorrect propagation of RuntimeException "
             + "Exception from IncludedServlet to TestServlet "
@@ -206,10 +209,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/forward/ForwardedServlet?testname=attributes&query=forwardAttributes";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void forwardAttributes1(HttpServletRequest request,
@@ -219,10 +223,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/forward/ForwardedServlet?testname=attributes&query=forwardAttributes1";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void forwardAttributes2(HttpServletRequest request,
@@ -232,9 +237,9 @@ public class TestServlet extends HttpTCKServlet {
     String path = "ForwardedServlet";
     RequestDispatcher rd = getServletContext().getNamedDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       request.setAttribute("TestName", "attributes");
       rd.forward(request, response);
     }
@@ -247,9 +252,9 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/forward/MultiForwardedServlet?testname=attributes&query=forwardAttributes";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       request.setAttribute("TestName", "attributes");
       rd.forward(request, response);
     }
@@ -265,14 +270,14 @@ public class TestServlet extends HttpTCKServlet {
         "forward/ForwardedServlet?testname=thrownServletException");
 
     testMap.keySet().iterator();
-    for (Iterator i = testMap.keySet().iterator(); i.hasNext();) {
+    for (Iterator i = testMap.keySet().iterator(); i.hasNext(); ) {
       String type = (String) i.next();
       String path = (String) testMap.get(type);
       RequestDispatcher rd = request.getRequestDispatcher(path);
 
-      if (rd == null)
+      if (rd == null) {
         pw.println("Null RequestDispatcher got for path=" + path);
-      else {
+      } else {
         try {
           rd.include(request, response);
           pw.println("Test FAILED with no propagation of " + type + " from "
@@ -280,7 +285,7 @@ public class TestServlet extends HttpTCKServlet {
 
         } catch (Throwable t) {
           Throwable targetThrowable = ((ServletException) t).getRootCause();
-          if (type.equals("IOException")) {
+          if ("IOException".equals(type)) {
             if (targetThrowable instanceof IOException) {
               pw.println("Test PASSED with proper propagation of " + type
                   + " from IncludedServlet to TestServlet:"
@@ -292,7 +297,7 @@ public class TestServlet extends HttpTCKServlet {
                   + targetThrowable.getClass().getName());
             }
           }
-          if (type.equals("ServletException")) {
+          if ("ServletException".equals(type)) {
             if (targetThrowable instanceof ServletException) {
               ServletException se = (ServletException) targetThrowable;
               if (se.getRootCause() == null) {
@@ -324,9 +329,9 @@ public class TestServlet extends HttpTCKServlet {
     String path = "forward/ForwardedServlet?testname=thrownUnCheckedException";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       try {
         rd.include(request, response);
         pw.println("Test FAILED with no propagation of RuntimeException from "
@@ -354,19 +359,20 @@ public class TestServlet extends HttpTCKServlet {
     String path = "forward/ForwardedServlet?testname=thrownCheckedException";
     RequestDispatcher rd = request.getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else {
+    } else {
       try {
         rd.include(request, response);
         pw.println("Test FAILED with no propagation of Exception from "
             + "ForwardedServlet to TestServlet.");
 
       } catch (ServletException se) {
-        if (se.getRootCause() instanceof java.lang.ClassNotFoundException)
+        if (se.getRootCause() instanceof java.lang.ClassNotFoundException) {
           pw.println(
               "Test PASSED with proper propagation of ClassNotFoundException "
                   + "from ForwardServlet to TestServlet.");
+        }
       } catch (Throwable t) {
         pw.println("Test FAILED with incorrect propagation of RuntimeException "
             + "Exception from ForwardedServlet to TestServlet "
@@ -385,10 +391,11 @@ public class TestServlet extends HttpTCKServlet {
 
     pw.println("Test FAILED if you see this message");
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void rdNoWrappingTest(HttpServletRequest request,
@@ -410,16 +417,13 @@ public class TestServlet extends HttpTCKServlet {
     RequestDispatcher rd = request.getRequestDispatcher("/WrapServlet");
 
     if (rd != null) {
-      switch (operation) {
-      case 0:
+      if (operation == 0) {
         System.out.println("PERFORMING RD.FORWARD....");
         System.out.println("COMMITTED: " + response.isCommitted());
         rd.forward(reqw, resw);
-        break;
-      case 1:
+      } else if (operation == 1) {
         System.out.println("PERFORMING RD.INCLUDE...");
         rd.include(reqw, resw);
-        break;
       }
     }
   }
@@ -431,10 +435,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getRequestURIIncludeTest";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.include(request, response);
+    }
   }
 
   public void getRequestURIForwardTest(HttpServletRequest request,
@@ -444,10 +449,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getRequestURIForwardTest";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void getRequestURIMultiForwardTest(HttpServletRequest request,
@@ -457,10 +463,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getRequestURIMultiForwardTest";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void getRequestURLIncludeTest(HttpServletRequest request,
@@ -470,10 +477,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getRequestURLIncludeTest";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.include(request, response);
+    }
   }
 
   public void getRequestURLForwardTest(HttpServletRequest request,
@@ -483,10 +491,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getRequestURLForwardTest";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
   public void getQueryStringIncludeTest(HttpServletRequest request,
@@ -496,10 +505,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getQueryStringTestInclude";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.include(request, response);
+    }
   }
 
   public void getQueryStringForwardTest(HttpServletRequest request,
@@ -509,10 +519,11 @@ public class TestServlet extends HttpTCKServlet {
     String path = "/other/HttpTestServlet?testname=getQueryStringTestForward";
     RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
 
-    if (rd == null)
+    if (rd == null) {
       pw.println("Null RequestDispatcher got for path=" + path);
-    else
+    } else {
       rd.forward(request, response);
+    }
   }
 
 }

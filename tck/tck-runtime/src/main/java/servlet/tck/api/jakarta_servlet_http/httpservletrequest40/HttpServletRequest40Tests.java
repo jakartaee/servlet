@@ -40,9 +40,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   public static final String ENCODING = "ISO-8859-1";
   
-  private WebUtil.Response response = null;
+  private WebUtil.Response response;
 
-  private String request = null;
+  private String request;
 
 
   @Deployment(testable = false)

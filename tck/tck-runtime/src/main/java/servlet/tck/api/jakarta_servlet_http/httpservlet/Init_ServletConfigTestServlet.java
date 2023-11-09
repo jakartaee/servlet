@@ -71,7 +71,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class Init_ServletConfigTestServlet extends HttpServlet {
 
-  private final static String EXPECTED = "in init";
+  private static final String EXPECTED = "in init";
 
   public void init(ServletConfig sc) throws ServletException {
     super.init(sc);

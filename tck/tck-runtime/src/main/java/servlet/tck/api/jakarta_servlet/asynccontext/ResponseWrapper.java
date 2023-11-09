@@ -24,7 +24,7 @@ import jakarta.servlet.ServletResponseWrapper;
 
 public class ResponseWrapper extends ServletResponseWrapper {
 
-  protected ServletResponse origResponse = null;
+  protected ServletResponse origResponse;
 
   public ResponseWrapper(ServletResponse response) {
     super(response);

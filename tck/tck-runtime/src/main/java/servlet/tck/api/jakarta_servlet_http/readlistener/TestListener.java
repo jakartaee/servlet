@@ -26,11 +26,11 @@ import jakarta.servlet.ServletOutputStream;
 
 public class TestListener implements ReadListener {
 
-  private ServletInputStream input = null;
+  private final ServletInputStream input;
 
-  private ServletOutputStream output = null;
+  private final ServletOutputStream output;
 
-  private AsyncContext ac = null;
+  private final AsyncContext ac;
 
   TestListener(ServletInputStream in, ServletOutputStream out, AsyncContext c) {
     input = in;
@@ -43,7 +43,7 @@ public class TestListener implements ReadListener {
       StringBuilder sb = new StringBuilder();
       output.println("=onDataAvailable");
       int len = -1;
-      byte b[] = new byte[1024];
+      byte[] b = new byte[1024];
       while (input.isReady() && (len = input.read(b)) != -1) {
         String data = new String(b, 0, len);
         sb.append("=").append(data);

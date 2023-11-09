@@ -135,8 +135,6 @@ public class servletResponseTests extends AbstractTckTest {
                 }
             }
 
-            bis.close();
-
             if (((time2 - time1) > 5000) && (time1 != 0L) && (time2 != 0L)) {
                 logger.trace(
                         "Test passed.  There is decent time difference between two clocked time.");

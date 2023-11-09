@@ -22,6 +22,7 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 /**
@@ -205,7 +206,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 4.0
      */
-    default public HttpServletMapping getHttpServletMapping() {
+    public default HttpServletMapping getHttpServletMapping() {
         return new HttpServletMapping() {
             @Override
             public String getMatchValue() {
@@ -297,7 +298,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @deprecated In favor of 103 early hints
      */
     @Deprecated
-    default public PushBuilder newPushBuilder() {
+    public default PushBuilder newPushBuilder() {
         return null;
     }
 
@@ -373,7 +374,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>java.security.Principal</code> containing the name of the user making this request; <code>null</code>
      * if the user has not been authenticated
      */
-    public java.security.Principal getUserPrincipal();
+    public Principal getUserPrincipal();
 
     /**
      * Returns the session ID specified by the client. This may not be the same as the ID of the current valid session for
@@ -689,7 +690,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 4.0
      */
-    default public Map<String, String> getTrailerFields() {
+    public default Map<String, String> getTrailerFields() {
         return Collections.emptyMap();
     }
 
@@ -712,7 +713,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 4.0
      */
-    default public boolean isTrailerFieldsReady() {
+    public default boolean isTrailerFieldsReady() {
         return true;
     }
 }

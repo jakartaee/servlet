@@ -49,7 +49,7 @@ public class TestListener implements ServletContextListener {
     final String addServletName2 = "Servlet2API";
     final String addServletName3 = "Servlet3API";
 
-    Map<String, String> params = new HashMap<String, String>();
+    Map<String, String> params = new HashMap<>();
 
     /*
      * Add Servlet1

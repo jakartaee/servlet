@@ -50,17 +50,17 @@ import org.slf4j.LoggerFactory;
  *
  */
 
-@DeclareRoles({ "Administrator" })
+@DeclareRoles({"Administrator"})
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.PERMIT), httpMethodConstraints = {
     @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator", transportGuarantee = TransportGuarantee.CONFIDENTIAL),
-    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator", transportGuarantee = TransportGuarantee.CONFIDENTIAL) })
+    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator", transportGuarantee = TransportGuarantee.CONFIDENTIAL)})
 @WebServlet("/ServletSecTest")
 public class ServletSecTestServlet extends HttpServlet {
-  private boolean fail = false;
+  private boolean fail;
 
-  private String FAILSTRING = "FAILED";
+  private String failstring = "FAILED";
 
-  private String PASSSTRING = "PASSED";
+  private String passstring = "PASSED";
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ServletSecTestServlet.class);
 
@@ -120,7 +120,7 @@ public class ServletSecTestServlet extends HttpServlet {
       if (request.getUserPrincipal() != null) {
         String userPrincipalName = request.getUserPrincipal().getName();
         out.println("Caller principal Name = " + userPrincipalName);
-        if (userPrincipalName.equals("")) {
+        if ("".equals(userPrincipalName)) {
           fail = true;
         }
 
@@ -134,20 +134,22 @@ public class ServletSecTestServlet extends HttpServlet {
       // verify cipher-suite attribute
       if (cipherSuite == null) {
         out.println(
-            testName + ": " + FAILSTRING + " - cipher-suite attribute not set");
+            testName + ": " + failstring + " - cipher-suite attribute not set");
         fail = true;
-      } else
+      } else {
         out.println(testName + ": cipher-suite : " + cipherSuite);
+      }
 
       keySize = (Integer) request.getAttribute(keySizeAttrib);
 
       // verify key-size attribute
       if (keySize == null) {
         out.println(
-            testName + ": " + FAILSTRING + " - key-size attribute not set");
+            testName + ": " + failstring + " - key-size attribute not set");
         fail = true;
-      } else
+      } else {
         out.println(testName + ": key-size : " + keySize.toString());
+      }
 
       certificates = (X509Certificate[]) request
           .getAttribute(certificateAttrib);
@@ -162,26 +164,26 @@ public class ServletSecTestServlet extends HttpServlet {
         }
       } else {
         out.println(
-            testName + ": " + FAILSTRING + " - No SSL certificate found");
+            testName + ": " + failstring + " - No SSL certificate found");
         fail = true;
 
       }
 
       // verify authenticate type
       String authType = request.getAuthType();
-      if ((authType != null) && (!authType.equals("CLIENT_CERT"))) {
-        out.println(testName + ":" + FAILSTRING
+      if ((authType != null) && (!"CLIENT_CERT".equals(authType))) {
+        out.println(testName + ":" + failstring
             + " - Server returns wrong authentication type : " + authType
             + " : expected authentication type is CLIENT_CERT");
         fail = true;
       }
 
       if (!fail) {
-        out.println(testName + ": " + PASSSTRING);
+        out.println(testName + ": " + passstring);
       }
     } catch (Exception e) {
       out.println(
-          testName + ": " + FAILSTRING + " - Exception: " + e.getMessage());
+          testName + ": " + failstring + " - Exception: " + e.getMessage());
       e.printStackTrace();
     }
   }

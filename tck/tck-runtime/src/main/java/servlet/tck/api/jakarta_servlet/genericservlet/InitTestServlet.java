@@ -70,7 +70,7 @@ import jakarta.servlet.ServletResponse;
 
 public class InitTestServlet extends GenericServlet {
 
-  private final static String EXPECTED = "in init";
+  private static final String EXPECTED = "in init";
 
   public void init() throws ServletException {
     getServletConfig().getServletContext().setAttribute("status", EXPECTED);

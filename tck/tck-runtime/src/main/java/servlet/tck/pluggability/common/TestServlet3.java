@@ -43,7 +43,7 @@ public class TestServlet3 extends GenericServlet {
     ArrayList result = (ArrayList) getServletContext()
         .getAttribute("testmessage");
 
-    Object results[] = result.toArray();
+    Object[] results = result.toArray();
     for (int i = 0; i < results.length; i++) {
       pw.println(results[i].toString());
     }

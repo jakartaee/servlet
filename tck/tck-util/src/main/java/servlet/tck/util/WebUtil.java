@@ -41,7 +41,7 @@ import java.util.*;
  *
  * @author Mark Roth
  */
-public class WebUtil {
+public final class WebUtil {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WebUtil.class);
 
@@ -65,7 +65,7 @@ public class WebUtil {
     public final Map<String, String> cookies = new HashMap<>();
 
     /** Flag; true if authentication requested */
-    public boolean authenticationRequested = false;
+    public boolean authenticationRequested;
 
     /**
      * Parses a header line for an old-style cookie (not Set-Cookie2), and
@@ -231,7 +231,7 @@ public class WebUtil {
       }
 
       // If this is a post request, send post data:
-      if ((postData != null) && method.equalsIgnoreCase("POST")) {
+      if ((postData != null) && "POST".equalsIgnoreCase(method)) {
         String postString = TestUtil.toEncodedString(postData);
 
         // Skip a line:
@@ -260,8 +260,9 @@ public class WebUtil {
         LOGGER.trace("HEADER: {}", line);
 
         // Blank line means we are done with the header:
-        if (line.trim().isEmpty())
+        if (line.trim().isEmpty()) {
           break;
+        }
 
         // Analyze special tags location and set cookie
         if (line.toLowerCase().startsWith("location:")) {
@@ -331,5 +332,8 @@ public class WebUtil {
     return new String(Base64.getEncoder().encode(s.getBytes()));
 //    BASE64Encoder encoder = new BASE64Encoder();
 //    return encoder.encodeBuffer(s.getBytes());
+  }
+
+  private WebUtil() {
   }
 }

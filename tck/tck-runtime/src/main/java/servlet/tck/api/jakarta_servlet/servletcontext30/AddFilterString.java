@@ -33,14 +33,15 @@ public final class AddFilterString implements Filter {
 
   // The filter configuration object we are associated with. If this value
   // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+  private FilterConfig filterConfig;
 
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {
 
-    if (filterConfig == null)
+    if (filterConfig == null) {
       throw new ServletException(
           "doFilter of AddFilterString was called but this filter instance is not currently configured");
+    }
 
     ArrayList result = (ArrayList) filterConfig.getServletContext()
         .getAttribute("arraylist");

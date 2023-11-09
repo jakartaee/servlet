@@ -14,7 +14,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonServlets {
+public final class CommonServlets {
 
     private static final CommonServlets INSTANCE = new CommonServlets();
 

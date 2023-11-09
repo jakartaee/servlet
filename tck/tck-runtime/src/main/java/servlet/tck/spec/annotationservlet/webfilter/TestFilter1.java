@@ -33,10 +33,10 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 
 @WebFilter(dispatcherTypes = DispatcherType.REQUEST, urlPatterns = {
-    "/Servlet1" })
+    "/Servlet1"})
 public final class TestFilter1 implements Filter {
 
-  private FilterConfig filterConfig = null;
+  private FilterConfig filterConfig;
 
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {

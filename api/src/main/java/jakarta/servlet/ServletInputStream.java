@@ -140,7 +140,8 @@ public abstract class ServletInputStream extends InputStream {
         if (len <= 0) {
             return 0;
         }
-        int count = 0, c;
+      int count = 0;
+      int c;
 
         while ((c = read()) != -1) {
             b[off++] = (byte) c;

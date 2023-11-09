@@ -38,8 +38,8 @@ public class ResponseTestServlet extends GenericServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class<?>[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class<?>[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);

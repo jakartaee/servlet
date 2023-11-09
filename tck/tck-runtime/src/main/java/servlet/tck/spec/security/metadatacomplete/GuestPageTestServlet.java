@@ -44,9 +44,9 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
-    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator") })
+    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator")})
 @WebServlet(name = "GuestPageTestLogicalName", urlPatterns = {
-    "/GuestPageTest" })
+    "/GuestPageTest"})
 public class GuestPageTestServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -29,7 +29,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = { "/Servlet2URL1", "/Servlet2URL2", "/test/*", "*.html" })
+@WebServlet(value = {"/Servlet2URL1", "/Servlet2URL2", "/test/*", "*.html"})
 public class Servlet2 extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)

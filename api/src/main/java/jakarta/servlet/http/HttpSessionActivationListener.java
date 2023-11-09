@@ -36,7 +36,7 @@ public interface HttpSessionActivationListener extends EventListener {
      *
      * @param se the {@link HttpSessionEvent} indicating the passivation of the session
      */
-    default public void sessionWillPassivate(HttpSessionEvent se) {
+    public default void sessionWillPassivate(HttpSessionEvent se) {
     }
 
     /**
@@ -46,6 +46,6 @@ public interface HttpSessionActivationListener extends EventListener {
      *
      * @param se the {@link HttpSessionEvent} indicating the activation of the session
      */
-    default public void sessionDidActivate(HttpSessionEvent se) {
+    public default void sessionDidActivate(HttpSessionEvent se) {
     }
 }

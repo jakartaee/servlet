@@ -42,7 +42,7 @@ public class ErrorPageTests extends AbstractTckTest {
   @Deployment(testable = false)
   public static WebArchive getTestArchive() throws Exception {
     return ShrinkWrap.create(WebArchive.class, "servlet_spec_errorpage_web.war")
-            .addAsWebResource("spec/errorpage/HTMLErrorPage.html","HTMLErrorPage.html")
+            .addAsWebResource("spec/errorpage/HTMLErrorPage.html", "HTMLErrorPage.html")
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
             .addClasses(SecondServletErrorPage.class, ServletErrorPage.class, TestException.class, TestServlet.class,
                     WrappedException.class)

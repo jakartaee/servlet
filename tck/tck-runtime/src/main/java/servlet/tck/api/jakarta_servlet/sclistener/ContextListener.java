@@ -65,7 +65,7 @@ import jakarta.servlet.ServletContextListener;
 public final class ContextListener implements ServletContextListener {
 
   // The servlet context with which we are associated.
-  private ServletContext context = null;
+  private ServletContext context;
 
   public void contextDestroyed(ServletContextEvent event) {
     createAttribute("ContextDestroyed");

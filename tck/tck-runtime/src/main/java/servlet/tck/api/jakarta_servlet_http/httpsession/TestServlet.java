@@ -230,7 +230,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String attribute1 = "attribute1";
     String attribute2 = "attribute2";
-    String[] expected = { attribute1, attribute2 };
+    String[] expected = {attribute1, attribute2};
 
     // Binding values with the Session
     session.setAttribute(attribute1, "value1");

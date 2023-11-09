@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
  *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebServlet {
@@ -79,7 +79,7 @@ public @interface WebServlet {
      *
      * @return {@code true} if the servlet supports asynchronous operation mode
      * @see jakarta.servlet.ServletRequest#startAsync
-     * @see jakarta.servlet.ServletRequest#startAsync( jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
+     * @see jakarta.servlet.ServletRequest#startAsync(jakarta.servlet.ServletRequest, jakarta.servlet.ServletResponse)
      */
     boolean asyncSupported() default false;
 

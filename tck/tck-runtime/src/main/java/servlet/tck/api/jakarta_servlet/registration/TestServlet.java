@@ -35,11 +35,11 @@ public class TestServlet extends GenericTCKServlet {
   public void servletURLMappingTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String URL_MAPPING = "URL_MAPPING_TEST";
+    String urlMapping = "URL_MAPPING_TEST";
 
-    pw.println(URL_MAPPING + "="
-        + getServletContext().getInitParameter(URL_MAPPING).toUpperCase());
-    getServletContext().removeAttribute(URL_MAPPING);
+    pw.println(urlMapping + "="
+        + getServletContext().getInitParameter(urlMapping).toUpperCase());
+    getServletContext().removeAttribute(urlMapping);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -47,11 +47,11 @@ public class TestServlet extends GenericTCKServlet {
   public void filterServletMappingTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String FILTER_SERVLET_MAPPING = "FILTER_SERVLET_MAPPING";
+    String filterServletMapping = "FILTER_SERVLET_MAPPING";
 
-    pw.println(FILTER_SERVLET_MAPPING + "="
-        + getServletContext().getInitParameter(FILTER_SERVLET_MAPPING));
-    getServletContext().removeAttribute(FILTER_SERVLET_MAPPING);
+    pw.println(filterServletMapping + "="
+        + getServletContext().getInitParameter(filterServletMapping));
+    getServletContext().removeAttribute(filterServletMapping);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -59,10 +59,10 @@ public class TestServlet extends GenericTCKServlet {
   public void getServletRegistrationsTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String SERVLET_REGISTRIONS = "SERVLET_REGISTRATIONS";
+    String servletRegistrions = "SERVLET_REGISTRATIONS";
 
-    pw.println(SERVLET_REGISTRIONS + ":");
-    String servlets = getServletContext().getInitParameter(SERVLET_REGISTRIONS)
+    pw.println(servletRegistrions + ":");
+    String servlets = getServletContext().getInitParameter(servletRegistrions)
         .toUpperCase();
 
     StringTokenizer st = new StringTokenizer(servlets, "|");
@@ -70,7 +70,7 @@ public class TestServlet extends GenericTCKServlet {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(SERVLET_REGISTRIONS);
+    getServletContext().removeAttribute(servletRegistrions);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -78,10 +78,10 @@ public class TestServlet extends GenericTCKServlet {
   public void getServletRegistrationTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String SERVLET_REGISTRATION = "SERVLET_REGISTRATION";
+    String servletRegistration = "SERVLET_REGISTRATION";
 
-    pw.println(SERVLET_REGISTRATION + ":");
-    String servlets = getServletContext().getInitParameter(SERVLET_REGISTRATION)
+    pw.println(servletRegistration + ":");
+    String servlets = getServletContext().getInitParameter(servletRegistration)
         .toUpperCase();
 
     StringTokenizer st = new StringTokenizer(servlets, "|");
@@ -89,7 +89,7 @@ public class TestServlet extends GenericTCKServlet {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(SERVLET_REGISTRATION);
+    getServletContext().removeAttribute(servletRegistration);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -97,17 +97,17 @@ public class TestServlet extends GenericTCKServlet {
   public void getFilterRegistrationsTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String FILTER_REGISTRIONS = "FILTER_REGISTRATIONS";
+    String filterRegistrions = "FILTER_REGISTRATIONS";
 
-    pw.println(FILTER_REGISTRIONS + ":");
-    String filters = getServletContext().getInitParameter(FILTER_REGISTRIONS);
+    pw.println(filterRegistrions + ":");
+    String filters = getServletContext().getInitParameter(filterRegistrions);
 
     StringTokenizer st = new StringTokenizer(filters, "|");
     while (st.hasMoreTokens()) {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(FILTER_REGISTRIONS);
+    getServletContext().removeAttribute(filterRegistrions);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -115,17 +115,17 @@ public class TestServlet extends GenericTCKServlet {
   public void getFilterRegistrationTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String FILTER_REGISTRION = "FILTER_REGISTRATION";
+    String filterRegistrion = "FILTER_REGISTRATION";
 
-    pw.println(FILTER_REGISTRION + ":");
-    String filters = getServletContext().getInitParameter(FILTER_REGISTRION);
+    pw.println(filterRegistrion + ":");
+    String filters = getServletContext().getInitParameter(filterRegistrion);
 
     StringTokenizer st = new StringTokenizer(filters, "|");
     while (st.hasMoreTokens()) {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(FILTER_REGISTRION);
+    getServletContext().removeAttribute(filterRegistrion);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -133,10 +133,10 @@ public class TestServlet extends GenericTCKServlet {
   public void getRegistrationNameTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String REGISTRATION_NAME = "REGISTRION_NAME";
+    String registrationName = "REGISTRION_NAME";
 
-    pw.println(REGISTRATION_NAME + ":");
-    String servlets = getServletContext().getInitParameter(REGISTRATION_NAME)
+    pw.println(registrationName + ":");
+    String servlets = getServletContext().getInitParameter(registrationName)
         .toUpperCase();
 
     StringTokenizer st = new StringTokenizer(servlets, "|");
@@ -144,7 +144,7 @@ public class TestServlet extends GenericTCKServlet {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(REGISTRATION_NAME);
+    getServletContext().removeAttribute(registrationName);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -152,18 +152,18 @@ public class TestServlet extends GenericTCKServlet {
   public void getRegistrationClassNameTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String REGISTRATION_CLASS_NAME = "REGISTRATION_CLASS_NAME";
+    String registrationClassName = "REGISTRATION_CLASS_NAME";
 
-    pw.println(REGISTRATION_CLASS_NAME + ":");
+    pw.println(registrationClassName + ":");
     String servlets = getServletContext()
-        .getInitParameter(REGISTRATION_CLASS_NAME).toUpperCase();
+        .getInitParameter(registrationClassName).toUpperCase();
 
     StringTokenizer st = new StringTokenizer(servlets, "|");
     while (st.hasMoreTokens()) {
       pw.println(st.nextToken());
     }
 
-    getServletContext().removeAttribute(REGISTRATION_CLASS_NAME);
+    getServletContext().removeAttribute(registrationClassName);
 
     ServletTestUtil.printResult(pw, true);
   }
@@ -171,11 +171,11 @@ public class TestServlet extends GenericTCKServlet {
   public void getRegistrationInitParameterTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String REGISTRATION_INIT_PARAMETER = "REGISTRATION_INIT_PARAMETER";
+    String registrationInitParameter = "REGISTRATION_INIT_PARAMETER";
 
-    pw.println(REGISTRATION_INIT_PARAMETER + ":");
+    pw.println(registrationInitParameter + ":");
     String servlets = getServletContext()
-        .getInitParameter(REGISTRATION_INIT_PARAMETER);
+        .getInitParameter(registrationInitParameter);
 
     if (servlets != null) {
       StringTokenizer st = new StringTokenizer(servlets, "|");
@@ -186,20 +186,20 @@ public class TestServlet extends GenericTCKServlet {
     } else {
       ServletTestUtil.printResult(pw, false);
     }
-    getServletContext().removeAttribute(REGISTRATION_INIT_PARAMETER);
+    getServletContext().removeAttribute(registrationInitParameter);
   }
 
   public void getRegistrationInitParametersTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
-    String REGISTRATION_INIT_PARAMETERS = "REGISTRATION_INIT_PARAMETERS";
+    String registrationInitParameters = "REGISTRATION_INIT_PARAMETERS";
 
-    pw.println(REGISTRATION_INIT_PARAMETERS + ":");
-    String all_stuff = getServletContext()
-        .getInitParameter(REGISTRATION_INIT_PARAMETERS);
+    pw.println(registrationInitParameters + ":");
+    String allStuff = getServletContext()
+        .getInitParameter(registrationInitParameters);
 
-    if (all_stuff != null) {
-      StringTokenizer st = new StringTokenizer(all_stuff, "|");
+    if (allStuff != null) {
+      StringTokenizer st = new StringTokenizer(allStuff, "|");
       while (st.hasMoreTokens()) {
         pw.println(st.nextToken());
       }
@@ -207,6 +207,6 @@ public class TestServlet extends GenericTCKServlet {
     } else {
       ServletTestUtil.printResult(pw, false);
     }
-    getServletContext().removeAttribute(REGISTRATION_INIT_PARAMETERS);
+    getServletContext().removeAttribute(registrationInitParameters);
   }
 }

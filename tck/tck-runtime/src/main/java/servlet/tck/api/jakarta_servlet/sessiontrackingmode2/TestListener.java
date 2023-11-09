@@ -42,14 +42,14 @@ public class TestListener implements ServletContextListener {
     ServletContext context = sce.getServletContext();
     StringBuilder log = new StringBuilder();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.URL);
     complete.add(SessionTrackingMode.SSL);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       log.append("Expected IllegalArgumentException not thrown.");
     } catch (IllegalArgumentException ex) {
       log.append("Expected IllegalArgumentException thrown.");

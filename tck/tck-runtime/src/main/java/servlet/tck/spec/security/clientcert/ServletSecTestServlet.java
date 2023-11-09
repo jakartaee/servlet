@@ -26,11 +26,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class ServletSecTestServlet extends HttpServlet {
-  private boolean fail = false;
+  private boolean fail;
 
-  private String FAILSTRING = "FAILED";
+  private static final String FAILSTRING = "FAILED";
 
-  private String PASSSTRING = "PASSED";
+  private static final String PASSSTRING = "PASSED";
 
   /*
    * testName: clientCertTest
@@ -81,7 +81,7 @@ public class ServletSecTestServlet extends HttpServlet {
     String certificateAttrib = "jakarta.servlet.request.X509Certificate";
 
     String cipherSuite = null;
-    Integer keySize = new Integer(0);
+    Integer keySize = Integer.valueOf(0);
     X509Certificate[] certificates = null;
 
     try {
@@ -90,7 +90,7 @@ public class ServletSecTestServlet extends HttpServlet {
       if (request.getUserPrincipal() != null) {
         String userPrincipalName = request.getUserPrincipal().getName();
         out.println("Caller principal Name = " + userPrincipalName);
-        if (userPrincipalName.equals("")) {
+        if ("".equals(userPrincipalName)) {
           fail = true;
         }
 
@@ -106,8 +106,9 @@ public class ServletSecTestServlet extends HttpServlet {
         out.println(
             testName + ": " + FAILSTRING + " - cipher-suite attribute not set");
         fail = true;
-      } else
+      } else {
         out.println(testName + ": cipher-suite : " + cipherSuite);
+      }
 
       keySize = (Integer) request.getAttribute(keySizeAttrib);
 
@@ -116,8 +117,9 @@ public class ServletSecTestServlet extends HttpServlet {
         out.println(
             testName + ": " + FAILSTRING + " - key-size attribute not set");
         fail = true;
-      } else
+      } else {
         out.println(testName + ": key-size : " + keySize.toString());
+      }
 
       certificates = (X509Certificate[]) request.getAttribute(certificateAttrib);
 
@@ -136,7 +138,7 @@ public class ServletSecTestServlet extends HttpServlet {
 
       // verify authenticate type
       String authType = request.getAuthType();
-      if (!authType.equals("CLIENT_CERT")) {
+      if (!"CLIENT_CERT".equals(authType)) {
         out.println(testName + ":" + FAILSTRING
             + " - Server returns wrong authentication type : " + authType
             + " : expected authentication type is CLIENT_CERT");

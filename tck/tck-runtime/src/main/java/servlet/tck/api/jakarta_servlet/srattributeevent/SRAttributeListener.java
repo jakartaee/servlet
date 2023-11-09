@@ -69,7 +69,7 @@ import jakarta.servlet.ServletRequestAttributeListener;
 public final class SRAttributeListener
     implements ServletRequestAttributeListener, ServletContextListener {
 
-  static ServletContext savedSC = null;
+  static ServletContext savedSC;
 
   // Public Methods
 

@@ -101,7 +101,7 @@ public interface ServletRequest {
      *
      * @since Servlet 6.1
      */
-    default public void setCharacterEncoding(Charset encoding) {
+    public default void setCharacterEncoding(Charset encoding) {
         try {
             setCharacterEncoding(encoding.name());
         } catch (UnsupportedEncodingException e) {
@@ -569,7 +569,7 @@ public interface ServletRequest {
      *
      * <p>
      * A ServletRequest is put into asynchronous mode by calling {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on it.
+     * {@link #startAsync(ServletRequest, ServletResponse)} on it.
      *
      * <p>
      * This method returns <tt>false</tt> if this request was put into asynchronous mode, but has since been dispatched
@@ -600,13 +600,13 @@ public interface ServletRequest {
 
     /**
      * Gets the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on this request.
+     * {@link #startAsync(ServletRequest, ServletResponse)} on this request.
      *
      * @return the AsyncContext that was created or reinitialized by the most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on this request
+     * {@link #startAsync(ServletRequest, ServletResponse)} on this request
      *
      * @throws IllegalStateException if this request has not been put into asynchronous mode, i.e., if neither
-     * {@link #startAsync} nor {@link #startAsync(ServletRequest,ServletResponse)} has been called
+     * {@link #startAsync} nor {@link #startAsync(ServletRequest, ServletResponse)} has been called
      *
      * @since Servlet 3.0
      */

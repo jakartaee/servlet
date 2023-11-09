@@ -68,7 +68,7 @@ public class WriteListenerTests extends AbstractTckTest {
   public void nioOutputTest() throws Exception {
     boolean passed = true;
     String testName = "nioOutputTest";
-    String EXPECTED_RESPONSE = "=onWritePossible";
+    String expectedResponse = "=onWritePossible";
 
     String requestUrl = getContextRoot() + "/" + getServletName() + "?testname="
         + testName;
@@ -85,14 +85,14 @@ public class WriteListenerTests extends AbstractTckTest {
       try (BufferedReader input = new BufferedReader(
               new InputStreamReader(conn.getInputStream()))) {
         String line = null;
-        StringBuilder message_received = new StringBuilder();
+        StringBuilder messageReceived = new StringBuilder();
 
         while ((line = input.readLine()) != null) {
           logger.debug("======= message received: " + line);
-          message_received.append(line);
+          messageReceived.append(line);
         }
-        passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-            message_received.toString());
+        passed = ServletTestUtil.compareString(expectedResponse,
+            messageReceived.toString());
 
       }
     } catch (Exception ex) {

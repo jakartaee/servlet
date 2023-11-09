@@ -46,8 +46,8 @@ public class ServletProgrammaticAuthen extends HttpServlet {
     System.out.println("enterred ServletProgrammaticAuthen.service()");
 
     // get user creds that are set in secformClient.test16()
-    String the_username = request.getParameter("the_username");
-    String the_password = request.getParameter("the_password");
+    String theUsername = request.getParameter("the_username");
+    String thePassword = request.getParameter("the_password");
 
     // we are not yet logged in nor authenticated so at this point calls
     // to getRemoteUser(), getUserPrincipal(), and getAuthType()
@@ -66,7 +66,7 @@ public class ServletProgrammaticAuthen extends HttpServlet {
     // login.jsp so not doing this. Spec is not clear here so omit.
 
     try {
-      request.login(the_username, the_password);
+      request.login(theUsername, thePassword);
 
       // per javadoc, if login() worked with no exception then there must
       // be non-null values for getUserPrincipal, getRemoteUser, and
@@ -109,9 +109,9 @@ public class ServletProgrammaticAuthen extends HttpServlet {
   }
 
   public void sendOutput(String str, PrintWriter out) {
-    String HDR = "ServletProgrammaticAuthen:  ";
-    out.println(HDR + str); // this line is used for test validation
-    System.out.println(HDR + str); // this line is for debug aid
+    String hdr = "ServletProgrammaticAuthen:  ";
+    out.println(hdr + str); // this line is used for test validation
+    System.out.println(hdr + str); // this line is for debug aid
   }
 
 }

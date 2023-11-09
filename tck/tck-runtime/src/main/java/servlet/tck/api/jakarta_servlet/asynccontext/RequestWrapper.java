@@ -24,7 +24,7 @@ import jakarta.servlet.ServletRequestWrapper;
 
 public class RequestWrapper extends ServletRequestWrapper {
 
-  protected ServletRequest origRequest = null;
+  protected ServletRequest origRequest;
 
   public RequestWrapper(ServletRequest request) {
     super(request);

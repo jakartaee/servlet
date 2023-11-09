@@ -61,7 +61,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
      * @throws IllegalArgumentException if duplicate method names are detected
      */
     public ServletSecurityElement(Collection<HttpMethodConstraintElement> methodConstraints) {
-        this.methodConstraints = (methodConstraints == null ? new HashSet<>() : methodConstraints);
+        this.methodConstraints = methodConstraints == null ? new HashSet<>() : methodConstraints;
         methodNames = checkMethodNames(this.methodConstraints);
     }
 
@@ -78,7 +78,7 @@ public class ServletSecurityElement extends HttpConstraintElement {
     public ServletSecurityElement(HttpConstraintElement constraint,
             Collection<HttpMethodConstraintElement> methodConstraints) {
         super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
-        this.methodConstraints = (methodConstraints == null ? new HashSet<>() : methodConstraints);
+        this.methodConstraints = methodConstraints == null ? new HashSet<>() : methodConstraints;
         methodNames = checkMethodNames(this.methodConstraints);
     }
 

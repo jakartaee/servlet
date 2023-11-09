@@ -74,9 +74,9 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
     Boolean passed1 = false;
     Boolean passed2 = false;
     Boolean passed3 = false;
-    String EXPECTED_RESPONSE1 = "TCKHttpUpgradeHandler.init";
-    String EXPECTED_RESPONSE2 = "onDataAvailable|Hello";
-    String EXPECTED_RESPONSE3 = "onDataAvailable|World";
+    String expectedResponse1 = "TCKHttpUpgradeHandler.init";
+    String expectedResponse2 = "onDataAvailable|Hello";
+    String expectedResponse3 = "onDataAvailable|World";
 
     String requestUrl = getContextRoot() + "/" + getServletName() + " HTTP/1.1";
 
@@ -90,14 +90,14 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
           + url.toExternalForm().replace("http://", "").replace(_hostname, "")
               .replace(":" + _port, "")
           + CRLF);
-      reqStr.append("User-Agent: Java/1.6.0_33" + CRLF);
+      reqStr.append("User-Agent: Java/1.6.0_33").append(CRLF);
       reqStr.append("Host: ").append(_hostname).append(":").append(_port).append(CRLF);
       reqStr
-          .append("Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"
-              + CRLF);
-      reqStr.append("Upgrade: YES" + CRLF);
-      reqStr.append("Connection: Upgrade" + CRLF);
-      reqStr.append("Content-type: application/x-www-form-urlencoded" + CRLF);
+          .append("Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2")
+          .append(CRLF);
+      reqStr.append("Upgrade: YES").append(CRLF);
+      reqStr.append("Connection: Upgrade").append(CRLF);
+      reqStr.append("Content-type: application/x-www-form-urlencoded").append(CRLF);
       reqStr.append(CRLF);
 
       logger.debug("REQUEST========= {}", reqStr);
@@ -123,15 +123,15 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
         String line = new String(b, 0, len);
         sb.append(line);
         logger.debug("==============Read from server: {} {} {}", CRLF, sb, CRLF);
-        if (passed1 = ServletTestUtil.compareString(EXPECTED_RESPONSE1, sb.toString())) {
+        if (passed1 = ServletTestUtil.compareString(expectedResponse1, sb.toString())) {
           logger.debug("==============Received first expected response!");
           receivedFirstMessage = true;
         }
-		if (passed2 = ServletTestUtil.compareString(EXPECTED_RESPONSE2, sb.toString())) {
+		if (passed2 = ServletTestUtil.compareString(expectedResponse2, sb.toString())) {
           logger.debug("==============Received second expected response!");
           receivedSecondMessage = true;
         }
-        if (passed3 = ServletTestUtil.compareString(EXPECTED_RESPONSE3, sb.toString())) {
+        if (passed3 = ServletTestUtil.compareString(expectedResponse3, sb.toString())) {
           logger.debug("==============Received third expected response!");
           receivedThirdMessage = true;
         }

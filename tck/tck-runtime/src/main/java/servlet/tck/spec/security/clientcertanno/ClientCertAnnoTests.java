@@ -63,17 +63,17 @@ public class ClientCertAnnoTests extends AbstractTckTest {
   @OperateOnDeployment("webapp-https") URL urlHttps;
 
   // Configurable constants:
-  private String hostname = null;
+  private String hostname;
 
-  private int portnum = 0;
+  private int portnum;
 
   private String tlsVersion;
 
-  private String pageBase = "/clientcertanno_web";
+  private final String pageBase = "/clientcertanno_web";
 
-  private String authorizedPage = "/ServletSecTest";
+  private final String authorizedPage = "/ServletSecTest";
 
-  private String user = null;
+  private String user;
 
   // Constants:
   private final String webHostProp = "webServerHost";
@@ -84,9 +84,9 @@ public class ClientCertAnnoTests extends AbstractTckTest {
   private final String username = "CN=CTS, OU=Java Software, O=Sun Microsystems Inc., L=Burlington, ST=MA, C=US";
 
   // Shared test variables:
-  private String request = null;
+  private String request;
 
-  private WebUtil.Response response = null;
+  private WebUtil.Response response;
 
   private HostnameVerifier hostnameVerifier;
 
@@ -103,7 +103,7 @@ public class ClientCertAnnoTests extends AbstractTckTest {
       hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
       //for localhost testing only
       HttpsURLConnection
-              .setDefaultHostnameVerifier((hostname, sslSession) -> hostname.equals("localhost")? true : false);
+              .setDefaultHostnameVerifier((hostname, sslSession) -> "localhost".equals(hostname) ? true : false);
     }
 
     p.setProperty(webHostProp, hostname);

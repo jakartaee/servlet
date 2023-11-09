@@ -46,12 +46,12 @@ public class WebTestCase implements TestCase {
   /**
    * The request for this case.
    */
-  private HttpExchange _request = null;
+  private HttpExchange _request;
 
   /**
    * The server's response.
    */
-  private HttpResponse _response = null;
+  private HttpResponse response;
 
   // use HttpMethod instances to store test
   // case headers that are expected or not
@@ -60,56 +60,56 @@ public class WebTestCase implements TestCase {
   /**
    * Storage for headers that are expected in the response
    */
-  private Map<String, Header> _expected = null;
+  private Map<String, Header> expected;
 
   /**
    * Storage for headers that are not expected in the response
    */
-  private Map<String, Header> _unexpected = null;
+  private Map<String, Header> unexpected;
 
   /**
    * Expected response status code.
    */
-  private String _statusCode = null;
+  private String _statusCode;
 
   /**
    * Expected response reason phrase.
    */
-  private String _reasonPhrase = null;
+  private String _reasonPhrase;
 
   /**
    * A List of strings that will be searched for in the response in the order
    * they appear in the list.
    */
-  private List<String> _searchStrings = null;
+  private List<String> searchStrings;
 
   /**
    * A List of case insensitive strings that will be searched for in the
    * response in the order they appear in the list.
    */
-  private List<String> _searchStringsNoCase = null;
+  private List<String> searchStringsNoCase;
 
   /**
    * A List of strings that will be search for in the response with no attention
    * paid to the order they appear.
    */
-  private List<String> _unorderedSearchStrings = null;
+  private List<String> unorderedSearchStrings;
 
   /**
    * A List of strings that should not be in the server's response.
    */
-  private List<String> _uSearchStrings = null;
+  private List<String> uSearchStrings;
 
   /**
    * Indicates whether a response body should be expected or not.
    */
-  private boolean _expectResponseBody = true;
+  private final boolean expectResponseBody = true;
 
   /**
    * Strategy to use when validating the test case against the server's
    * response.
    */
-  private ValidationStrategy _strategy = null;
+  private ValidationStrategy strategy;
 
   /**
    * Logical name for test case.
@@ -122,7 +122,7 @@ public class WebTestCase implements TestCase {
    * configured properties of the test case.
    */
   public WebTestCase() {
-    _strategy = ValidationFactory.getInstance(BASED_STRATEGY);
+    strategy = ValidationFactory.getInstance(BASED_STRATEGY);
   }
 
   /*
@@ -147,19 +147,19 @@ public class WebTestCase implements TestCase {
 
     // If no stragey instance is available (strange, but has happened),
     // fail.
-    if (_strategy == null) {
+    if (strategy == null) {
       throw new IllegalStateException("[FATAL] No Validator available.");
     }
 
     try {
-      _response = _request.execute();
+      response = _request.execute();
     } catch (Throwable t) {
       String message = t.getMessage();
       throw new Exception("[FATAL] Unexpected failure during test execution." + (message == null ? t.toString() : message), t);
     }
 
     // Validate this test case instance
-    if (!_strategy.validate(this)) {
+    if (!strategy.validate(this)) {
       throw new Exception("Test FAILED!");
     }
 
@@ -193,10 +193,10 @@ public class WebTestCase implements TestCase {
    *          in the format of headername:value (test:foo)
    */
   public void addExpectedHeader(String header) {
-    if (_expected == null) {
-      _expected = new HashMap<>();
+    if (expected == null) {
+      expected = new HashMap<>();
     }
-    addHeader(_expected, header);
+    addHeader(expected, header);
   }
 
   /**
@@ -216,10 +216,10 @@ public class WebTestCase implements TestCase {
    *          in the format of headername:value (test:foo)
    */
   public void addUnexpectedHeader(String header) {
-    if (_unexpected == null) {
-      _unexpected = new HashMap<>();
+    if (unexpected == null) {
+      unexpected = new HashMap<>();
     }
-    addHeader(_unexpected, header);
+    addHeader(unexpected, header);
   }
 
   /**
@@ -243,10 +243,10 @@ public class WebTestCase implements TestCase {
    *          a string expected in the server's response body
    */
   public void setResponseSearchString(String searchString) {
-    if (_searchStrings == null) {
-      _searchStrings = new ArrayList<>();
+    if (searchStrings == null) {
+      searchStrings = new ArrayList<>();
     }
-    addSearchStrings(_searchStrings, searchString);
+    addSearchStrings(searchStrings, searchString);
   }
 
   /**
@@ -261,10 +261,10 @@ public class WebTestCase implements TestCase {
    *          a case insensitive string expected in the server's response body
    */
   public void setResponseSearchStringIgnoreCase(String searchString) {
-    if (_searchStringsNoCase == null) {
-      _searchStringsNoCase = new ArrayList<>();
+    if (searchStringsNoCase == null) {
+      searchStringsNoCase = new ArrayList<>();
     }
-    addSearchStrings(_searchStringsNoCase, searchString);
+    addSearchStrings(searchStringsNoCase, searchString);
   }
 
   /**
@@ -279,10 +279,10 @@ public class WebTestCase implements TestCase {
    *          a string that is not expected in the server's response body
    */
   public void setUnexpectedResponseSearchString(String searchString) {
-    if (_uSearchStrings == null) {
-      _uSearchStrings = new ArrayList<>();
+    if (uSearchStrings == null) {
+      uSearchStrings = new ArrayList<>();
     }
-    addSearchStrings(_uSearchStrings, searchString);
+    addSearchStrings(uSearchStrings, searchString);
   }
 
   /**
@@ -295,10 +295,10 @@ public class WebTestCase implements TestCase {
    *          a string that is not expected in the server's response body
    */
   public void setUnorderedSearchString(String searchString) {
-    if (_unorderedSearchStrings == null) {
-      _unorderedSearchStrings = new ArrayList<>();
+    if (unorderedSearchStrings == null) {
+      unorderedSearchStrings = new ArrayList<>();
     }
-    addSearchStrings(_unorderedSearchStrings, searchString);
+    addSearchStrings(unorderedSearchStrings, searchString);
   }
 
   /**
@@ -307,7 +307,7 @@ public class WebTestCase implements TestCase {
    * @return the list of search strings.
    */
   public List<String> getUnorderedSearchStrings() {
-    return _unorderedSearchStrings;
+    return unorderedSearchStrings;
   }
 
   /**
@@ -316,7 +316,7 @@ public class WebTestCase implements TestCase {
    * @return an HttpResponse object
    */
   public HttpResponse getResponse() {
-    return _response;
+    return response;
   }
 
   /**
@@ -326,10 +326,10 @@ public class WebTestCase implements TestCase {
    * @return an array of headers
    */
   public Header[] getExpectedHeaders() {
-    if (_expected == null) {
+    if (expected == null) {
       return null;
     }
-    return _expected.values().toArray(new Header[0]);
+    return expected.values().toArray(new Header[0]);
   }
 
   /**
@@ -339,10 +339,10 @@ public class WebTestCase implements TestCase {
    * @return an array of headers
    */
   public Header[] getUnexpectedHeaders() {
-    if (_unexpected == null) {
+    if (unexpected == null) {
       return null;
     }
-    return _unexpected.values().toArray(new Header[0]);
+    return unexpected.values().toArray(new Header[0]);
   }
 
   /**
@@ -371,10 +371,10 @@ public class WebTestCase implements TestCase {
    * @return list of Strings
    */
   public List<String> getSearchStrings() {
-    if (_searchStrings == null) {
+    if (searchStrings == null) {
       return null;
     }
-    return _searchStrings;
+    return searchStrings;
   }
 
   /**
@@ -384,10 +384,10 @@ public class WebTestCase implements TestCase {
    * @return list of case insensitive Strings
    */
   public List<String> getSearchStringsNoCase() {
-    if (_searchStringsNoCase == null) {
+    if (searchStringsNoCase == null) {
       return null;
     }
-    return _searchStringsNoCase;
+    return searchStringsNoCase;
   }
 
   /**
@@ -397,10 +397,10 @@ public class WebTestCase implements TestCase {
    * @return list of Strings
    */
   public List<String> getUnexpectedSearchStrings() {
-    if (_uSearchStrings == null) {
+    if (uSearchStrings == null) {
       return null;
     }
-    return _uSearchStrings;
+    return uSearchStrings;
   }
 
   /**
@@ -409,7 +409,7 @@ public class WebTestCase implements TestCase {
    * @return boolean value
    */
   public boolean getExpectResponseBody() {
-    return _expectResponseBody;
+    return expectResponseBody;
   }
 
   /**
@@ -473,7 +473,7 @@ public class WebTestCase implements TestCase {
   public void setStrategy(String validator) {
     ValidationStrategy strat = ValidationFactory.getInstance(validator);
     if (strat != null) {
-      _strategy = strat;
+      strategy = strat;
     } else {
       LOGGER.info("[WebTestCase][WARNING] An attempt was made to use a non-existing validator ({}) . Falling back to the TokenizedValidator", validator);
     }
@@ -485,7 +485,7 @@ public class WebTestCase implements TestCase {
    * @return the fully qualified class of the validator used
    */
   public String getStrategy() {
-    return _strategy.getClass().getName();
+    return strategy.getClass().getName();
   }
 
   /*
@@ -501,7 +501,7 @@ public class WebTestCase implements TestCase {
    * @param headerString
    *          String representation of a header in the form of headername:value
    */
-  private void addHeader(Map<String,Header> map, String headerString) {
+  private void addHeader(Map<String, Header> map, String headerString) {
     LOGGER.debug("[WebTestCase] addHeader utility method called: {}", headerString);
     StringTokenizer st = new StringTokenizer(headerString, "|");
     while (st.hasMoreTokens()) {

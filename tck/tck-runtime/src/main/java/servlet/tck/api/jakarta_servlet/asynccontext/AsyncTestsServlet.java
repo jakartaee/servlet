@@ -32,15 +32,15 @@ public class AsyncTestsServlet extends GenericServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   public void service(ServletRequest req, ServletResponse res)
       throws ServletException, IOException {
     String test = req.getParameter(TEST_HEADER);
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
+      method.invoke(this, new Object[]{req, res});
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {

@@ -76,7 +76,7 @@ public class ReadListenerTests extends AbstractTckTest {
         .parseInt(_props.getProperty("servlet_async_wait").trim());
     boolean passed = true;
 
-    String EXPECTED_RESPONSE = "=onDataAvailable|=Hello|=onDataAvailable|=World"
+    String expectedResponse = "=onDataAvailable|=Hello|=onDataAvailable|=World"
         + "|=onAllDataRead";
 
     BufferedReader input = null;
@@ -117,14 +117,14 @@ public class ReadListenerTests extends AbstractTckTest {
         input = new BufferedReader(
             new InputStreamReader(conn.getInputStream()));
         String line;
-        StringBuilder message_received = new StringBuilder();
+        StringBuilder messageReceived = new StringBuilder();
 
         while ((line = input.readLine()) != null) {
           logger.debug("======= message received: {}", line);
-          message_received.append(line);
+          messageReceived.append(line);
         }
-        passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-            message_received.toString());
+        passed = ServletTestUtil.compareString(expectedResponse,
+            messageReceived.toString());
 
       } catch (Exception ex) {
         passed = false;

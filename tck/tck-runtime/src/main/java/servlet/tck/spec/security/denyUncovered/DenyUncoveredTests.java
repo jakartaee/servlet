@@ -42,9 +42,9 @@ import org.junit.jupiter.api.Test;
  */
 public class DenyUncoveredTests extends AbstractTckTest {
 
-  private String hostname = null;
+  private String hostname;
 
-  private int portnum = 0;
+  private int portnum;
 
 
   /**
@@ -59,20 +59,20 @@ public class DenyUncoveredTests extends AbstractTckTest {
   }
 
   // this must be the decoded context path corresponding to the web module
-  private String contextPath = "/servlet_sec_denyUncovered_web";
+  private final String contextPath = "/servlet_sec_denyUncovered_web";
 
-  private String ctxtTestServlet = contextPath + "/TestServlet"; // specifies
-                                                                 // access to
-                                                                 // get & put
-                                                                 // only
+  private final String ctxtTestServlet = contextPath + "/TestServlet"; // specifies
+  // access to
+  // get & put
+  // only
 
-  private String ctxtAllMethodsAllowedAnno = contextPath
+  private final String ctxtAllMethodsAllowedAnno = contextPath
       + "/AllMethodsAllowedAnno";
 
-  private String ctxtExcludeAuthConstraint = contextPath
+  private final String ctxtExcludeAuthConstraint = contextPath
       + "/ExcludeAuthConstraint";
 
-  private String ctxtPartialDDServlet = contextPath + "/PartialDDServlet";
+  private final String ctxtPartialDDServlet = contextPath + "/PartialDDServlet";
 
   private String username = "";
 
@@ -202,7 +202,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "DELETE");
     if (httpStatusCode != 403) {
-      logger.debug("Accessing {} (DELETE) returns = {}",ctxtTestServlet, httpStatusCode);
+      logger.debug("Accessing {} (DELETE) returns = {}", ctxtTestServlet, httpStatusCode);
       throw new Exception("testDenySomeUncovered : FAILED");
     }
 

@@ -387,7 +387,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
           .println("DispatcherType=" + request.getDispatcherType());
       try {
         request.startAsync();
-      } catch (java.lang.IllegalStateException ex) {
+      } catch (IllegalStateException ex) {
         response.getWriter().println("startAsync called again");
         response.getWriter()
             .println("Expected IllegalStateException thrown" + ex.getMessage());
@@ -437,7 +437,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
           .println("DispatcherType=" + request.getDispatcherType());
       try {
         request.startAsync(request, response);
-      } catch (java.lang.IllegalStateException ex) {
+      } catch (IllegalStateException ex) {
         response.getWriter().println("startAsync called again");
         response.getWriter()
             .println("Expected IllegalStateException thrown" + ex.getMessage());

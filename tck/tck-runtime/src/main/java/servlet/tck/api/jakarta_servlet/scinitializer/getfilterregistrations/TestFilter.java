@@ -29,7 +29,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 
-@WebFilter(urlPatterns = { "/foo" })
+@WebFilter(urlPatterns = {"/foo"})
 public final class TestFilter implements Filter {
 
   // The filter configuration object we are associated with. If this value

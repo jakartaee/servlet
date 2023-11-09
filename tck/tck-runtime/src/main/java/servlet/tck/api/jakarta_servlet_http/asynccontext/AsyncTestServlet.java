@@ -105,21 +105,21 @@ public class AsyncTestServlet extends HttpTCKServlet {
   public void timeOutTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
 
-    long timeout_set = 5015L;
-    long timeout_actual;
+    long timeoutSet = 5015L;
+    long timeoutActual;
 
     AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());
 
-    ac.setTimeout(timeout_set);
-    timeout_actual = ac.getTimeout();
+    ac.setTimeout(timeoutSet);
+    timeoutActual = ac.getTimeout();
 
-    if (timeout_actual == timeout_set) {
+    if (timeoutActual == timeoutSet) {
       response.getWriter().println("Test PASSED.");
     } else {
       response.getWriter()
-          .println("Test FAILED.  setTimeout to " + timeout_set);
-      response.getWriter().println("getTimeout returned " + timeout_actual);
+          .println("Test FAILED.  setTimeout to " + timeoutSet);
+      response.getWriter().println("getTimeout returned " + timeoutActual);
     }
 
     ac.complete();
@@ -129,7 +129,7 @@ public class AsyncTestServlet extends HttpTCKServlet {
   // AsyncContext.addListener(AsyncListener), and timeout
   public void timeOutTest1(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
-    long timeout_set = 5015L;
+    long timeoutSet = 5015L;
 
     AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());
@@ -137,10 +137,10 @@ public class AsyncTestServlet extends HttpTCKServlet {
         ACListener2.class);
     ac.addListener(acl2);
 
-    ac.setTimeout(timeout_set);
+    ac.setTimeout(timeoutSet);
 
     try {
-      Thread.sleep(timeout_set * 2);
+      Thread.sleep(timeoutSet * 2);
     } catch (InterruptedException ex) {
       response.getWriter()
           .println("Test FAILED with exception: " + ex.getMessage());
@@ -150,7 +150,7 @@ public class AsyncTestServlet extends HttpTCKServlet {
   // Negative test for AsyncContext.createListener
   public void asyncListenerTest1(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
-    long timeout_set = 5015L;
+    long timeoutSet = 5015L;
 
     AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());

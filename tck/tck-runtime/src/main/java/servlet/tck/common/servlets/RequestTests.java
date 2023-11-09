@@ -43,13 +43,13 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class RequestTests {
+public final class RequestTests {
 
-  static String savedSessionId = null;
+  static String savedSessionId;
 
-  static String savedRequestedSessionId = null;
+  static String savedRequestedSessionId;
 
-  static HttpSession savedSession = null;
+  static HttpSession savedSession;
 
   // ------------------------ jakarta_servlet.RequestRequest
   // -------------------------------
@@ -155,7 +155,7 @@ public class RequestTests {
 
     request.setAttribute(attribute1, "value1");
     request.setAttribute(attribute2, "value2");
-    String[] expected = { attribute1, attribute2 };
+    String[] expected = {attribute1, attribute2};
 
     Enumeration<String> e = request.getAttributeNames();
 
@@ -203,7 +203,7 @@ public class RequestTests {
     if (o != null) {
       if (o instanceof String) {
         String attr = (String) o;
-        if (!attr.equals("value1")) {
+        if (!"value1".equals(attr)) {
           passed = false;
           pw.println("getAttribute() returned incorrect value");
           pw.println("Expected Attribute Value -> value1");
@@ -487,7 +487,7 @@ public class RequestTests {
 
     Object[] result = ServletTestUtil.getAsArray(e);
     if (result.length == 1) {
-      Locale locale = ((Locale) result[0]);
+      Locale locale = (Locale) result[0];
       if (locale != null) {
         if ((locale.getLanguage() == null) || (locale.getCountry() == null)) {
           if (locale.getLanguage() == null) {
@@ -541,7 +541,7 @@ public class RequestTests {
       Vector v = new Vector();
 
       while (e.hasMoreElements()) {
-        Locale result = ((Locale) e.nextElement());
+        Locale result = (Locale) e.nextElement();
 
         if (result.equals(expectedResult1)) {
           if (!expectedResult1Found) {
@@ -634,7 +634,7 @@ public class RequestTests {
     int expectedCount2 = 1;
 
     if (map.containsKey(expectedResult1)) {
-      String result[] = (String[]) map.get(expectedResult1);
+      String[] result = (String[]) map.get(expectedResult1);
       int count2 = result.length;
 
       if (count2 == expectedCount1) {
@@ -658,7 +658,7 @@ public class RequestTests {
     }
 
     if (map.containsKey(expectedResult2)) {
-      String result[] = (String[]) map.get(expectedResult2);
+      String[] result = (String[]) map.get(expectedResult2);
       int count2 = result.length;
 
       if (count2 == expectedCount1) {
@@ -701,7 +701,7 @@ public class RequestTests {
     String parameter1 = "parameter1";
     String parameter2 = "parameter2";
 
-    String[] expected = { parameter1, parameter2 };
+    String[] expected = {parameter1, parameter2};
 
     Enumeration e = request.getParameterNames();
 
@@ -1022,21 +1022,21 @@ public class RequestTests {
     boolean passed = false;
 
     String expected_results = null;
-    InetAddress[] _addrs = null;
+    InetAddress[] addrs = null;
 
     try {
-      _addrs = InetAddress
+      addrs = InetAddress
           .getAllByName(InetAddress.getLocalHost().getCanonicalHostName());
 
-      if (_addrs.length != 0) {
+      if (addrs.length != 0) {
         StringBuffer sb = new StringBuffer(32);
 
-        for (int i = 0; i < _addrs.length; i++) {
-          String ip = _addrs[i].getHostAddress();
-          if (!ip.equals("127.0.0.1")) {
+        for (int i = 0; i < addrs.length; i++) {
+          String ip = addrs[i].getHostAddress();
+          if (!"127.0.0.1".equals(ip)) {
             if (ip.contains("%")) {
-              int scope_id = ip.indexOf("%");
-              ip = ip.substring(0, scope_id);
+              int scopeId = ip.indexOf("%");
+              ip = ip.substring(0, scopeId);
             }
             sb.append(ip);
           }
@@ -1075,7 +1075,7 @@ public class RequestTests {
     String actual = request.getRemoteHost();
 
     for (int i = 0; i < expectedResults.length; i++) {
-      if (actual.indexOf(expectedResults[i]) >= 0) {
+      if (actual.contains(expectedResults[i])) {
         passed = true;
         break;
       }
@@ -1393,11 +1393,11 @@ public class RequestTests {
       // Check the cases when hostname and hostname.domain are used to send
       // request
       // Check the cases when localhost or 127.0.0.1 are used to send request
-      if (tmp.equals("localhost") || tmp.equals("127.0.0.1")
+      if ("localhost".equals(tmp) || "127.0.0.1".equals(tmp)
           || tmp.startsWith(expected.toLowerCase())
           || expected.toLowerCase().startsWith(tmp)
-          || expected.toLowerCase().equals("127.0.0.1")
-          || expected.toLowerCase().equals("localhost")) {
+          || "127.0.0.1".equals(expected.toLowerCase())
+          || "localhost".equals(expected.toLowerCase())) {
         passed = true;
         pw.println("Correct answer returned = " + tmp);
         pw.println("Expecting " + expected);
@@ -1423,7 +1423,7 @@ public class RequestTests {
             pw.println("Got result (as IP) = " + thisHost);
             pw.println("Incorrect answer returned = " + tmp);
           }
-        } catch (java.net.UnknownHostException t) {
+        } catch (UnknownHostException t) {
           pw.println("Incorrect answer returned = " + tmp);
           pw.println("Not an correct IP address neither");
           pw.println("Expecting " + expected);
@@ -1615,7 +1615,7 @@ public class RequestTests {
     String expectedName = "cookie";
     String expectedValue = "value";
     boolean expectedResultFound = false;
-    Cookie cookies[] = null;
+    Cookie[] cookies = null;
     int count = 0;
     int expectedCount = 1;
     boolean gotCookie = false;
@@ -1830,7 +1830,7 @@ public class RequestTests {
 
     String expected1 = "If-Modified-Since";
     String expected2 = "Cookie";
-    String[] expected = { expected1, expected2 };
+    String[] expected = {expected1, expected2};
 
     Enumeration e = request.getHeaderNames();
     if (e == null) {
@@ -1850,9 +1850,9 @@ public class RequestTests {
 
     boolean passed = true;
 
-    final String[] expected = { "en-us, ga-us" };
+    final String[] expected = {"en-us, ga-us"};
 
-    final String[] expected1 = { "en-us", "ga-us" };
+    final String[] expected1 = {"en-us", "ga-us"};
 
     pw.println("lower case");
     String param = "accept-language";
@@ -2619,50 +2619,53 @@ public class RequestTests {
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     boolean pass = true;
-    String attrName_OLD = "OLD";
-    String attrName_NEW = "NEW";
+    String attrNameOLD = "OLD";
+    String attrNameNEW = "NEW";
 
     HttpSession session = request.getSession(true);
-    String sessionId_old = session.getId();
-    String sessionId_new = request.changeSessionId();
+    String sessionIdOld = session.getId();
+    String sessionIdNew = request.changeSessionId();
 
-    if (sessionId_new.equals(sessionId_old)) {
+    if (sessionIdNew.equals(sessionIdOld)) {
       pass = false;
       pw.append(
           "HttpServletRequest.changeSessionId didn't return new Session ID,"
-              + "it returns the original sesison ID " + sessionId_old);
+              + "it returns the original sesison ID " + sessionIdOld);
     }
 
-    if (!((String) request.getSession(false).getAttribute(attrName_OLD))
-        .equals(sessionId_old)) {
+    if (!((String) request.getSession(false).getAttribute(attrNameOLD))
+        .equals(sessionIdOld)) {
       pass = false;
       pw.append(
           "Original Session ID does not sync up. Before ChangeSessionId is called: "
-              + sessionId_old + " From TCKHttpSessionIDListener "
-              + request.getSession(false).getAttribute(attrName_OLD));
+              + sessionIdOld + " From TCKHttpSessionIDListener "
+              + request.getSession(false).getAttribute(attrNameOLD));
     }
 
-    if (((String) request.getSession(false).getAttribute(attrName_NEW))
-        .equals(sessionId_old)) {
+    if (((String) request.getSession(false).getAttribute(attrNameNEW))
+        .equals(sessionIdOld)) {
       pass = false;
-      pw.append("Session ID didn't change: " + sessionId_old);
+      pw.append("Session ID didn't change: " + sessionIdOld);
     }
 
-    if (!((String) request.getSession(false).getAttribute(attrName_NEW))
-        .equals(sessionId_new)) {
+    if (!((String) request.getSession(false).getAttribute(attrNameNEW))
+        .equals(sessionIdNew)) {
       pass = false;
       pw.append("New Session ID does not sync up. ChangeSessionId returned  "
-          + sessionId_new + " TCKHttpSessionIDListener returned "
-          + request.getSession(false).getAttribute(attrName_NEW));
+          + sessionIdNew + " TCKHttpSessionIDListener returned "
+          + request.getSession(false).getAttribute(attrNameNEW));
     }
 
-    pw.append("Original before changeSessionId is called =" + sessionId_old
-        + "=changeSessionId returned=" + sessionId_new
+    pw.append("Original before changeSessionId is called =" + sessionIdOld
+        + "=changeSessionId returned=" + sessionIdNew
         + "=oroginal from TCKHttpSessionIDListener="
-        + request.getSession(false).getAttribute(attrName_OLD)
+        + request.getSession(false).getAttribute(attrNameOLD)
         + "=new from TCKHttpSessionIDListener="
-        + request.getSession(false).getAttribute(attrName_NEW));
+        + request.getSession(false).getAttribute(attrNameNEW));
     ServletTestUtil.printResult(pw, pass);
+  }
+
+  private RequestTests() {
   }
   // --------------- END jakarta_servlet_http.HttpServletRequest
   // -------------------

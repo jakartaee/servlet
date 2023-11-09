@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
  *
  * @since Servlet 3.0
  */
-@Target({ ElementType.TYPE })
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface WebFilter {
@@ -108,14 +108,14 @@ public @interface WebFilter {
      *
      * @return the dispatcher types to which the filter applies
      */
-    DispatcherType[] dispatcherTypes() default { DispatcherType.REQUEST };
+    DispatcherType[] dispatcherTypes() default {DispatcherType.REQUEST};
 
     /**
      * Declares whether the filter supports asynchronous operation mode.
      *
      * @return {@code true} if the filter supports asynchronous operation mode
      * @see jakarta.servlet.ServletRequest#startAsync
-     * @see jakarta.servlet.ServletRequest#startAsync( jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse)
+     * @see jakarta.servlet.ServletRequest#startAsync(jakarta.servlet.ServletRequest, jakarta.servlet.ServletResponse)
      */
     boolean asyncSupported() default false;
 

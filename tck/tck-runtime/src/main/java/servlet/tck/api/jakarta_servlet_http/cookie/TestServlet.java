@@ -126,7 +126,7 @@ public class TestServlet extends HttpTCKServlet {
   public void constructorIllegalArgumentExceptionTest(
       HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String[] invalidNameValues = { ",test", ";test", " test", "\ttest", "\ntest" };
+    String[] invalidNameValues = {",test", ";test", " test", "\ttest", "\ntest"};
 
     PrintWriter pw = response.getWriter();
 
@@ -690,8 +690,8 @@ public class TestServlet extends HttpTCKServlet {
     if (result != null) {
       if (!result.equalsIgnoreCase(attrValue)) {
         passed = false;
-        pw.println("setAttribute(" + attrName + "," + attrValue +
-            ") did not set the attribute properly ");
+        pw.println("setAttribute(" + attrName + "," + attrValue
+            + ") did not set the attribute properly ");
         pw.println("Expected value = " + attrValue + " ");
         pw.println("Actual value = |" + result + "| ");
       }
@@ -721,8 +721,8 @@ public class TestServlet extends HttpTCKServlet {
       if (result.size() == 1) {
         if (!result.get(attrName).equals(attrValue)) {
           passed = false;
-          pw.println("getAttributes() returned a map that contained [" + result.get(attrName) +
-              "] as the value for key [" + attrName + "] rather than [" + attrValue + "]");
+          pw.println("getAttributes() returned a map that contained [" + result.get(attrName)
+              + "] as the value for key [" + attrName + "] rather than [" + attrValue + "]");
         }
       } else {
         passed = false;

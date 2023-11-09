@@ -37,12 +37,12 @@ import jakarta.servlet.http.HttpServletResponse;
  * ServletSecTestServlet uses DD for configuring its security constraints.
  */
 
-@DeclareRoles({ "ADM", "MGR", "EMP" })
+@DeclareRoles({"ADM", "MGR", "EMP"})
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
     @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
-    @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator") })
+    @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator")})
 @WebServlet(name = "ServletSecAnnoTestLogicalName", urlPatterns = {
-    "/ServletSecAnnoTest" })
+    "/ServletSecAnnoTest"})
 public class ServletSecAnnoTestServlet extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)

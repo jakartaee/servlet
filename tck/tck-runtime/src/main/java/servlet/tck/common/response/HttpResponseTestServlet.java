@@ -40,13 +40,13 @@ public class HttpResponseTestServlet extends HttpServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class<?>[] HTTP_TEST_ARGS = { HttpServletRequest.class,
-      HttpServletResponse.class };
+  private static final Class<?>[] HTTP_TEST_ARGS = {HttpServletRequest.class,
+      HttpServletResponse.class};
 
-  private static final Class<?>[] TEST_ARGS = { ServletRequest.class,
+  private static final Class<?>[] TEST_ARGS = {ServletRequest.class,
       ServletResponse.class, };
 
-  private static final Class<?>[][] ALL_TYPES = { TEST_ARGS, HTTP_TEST_ARGS };
+  private static final Class<?>[][] ALL_TYPES = {TEST_ARGS, HTTP_TEST_ARGS};
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);
@@ -67,7 +67,7 @@ public class HttpResponseTestServlet extends HttpServlet {
     }
 
     if (method != null) {
-      invokeTest(method, new Object[] { servletRequest, servletResponse });
+      invokeTest(method, new Object[]{servletRequest, servletResponse});
     } else {
       throw new ServletException("No such test: " + test);
     }

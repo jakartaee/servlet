@@ -51,8 +51,8 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
                                 IncludeTest1Servlet.class, IncludeTestServlet.class, RequestTestServlet.class,
                                 Test_Filter.class, TestServlet.class)
             .setWebXML(FilterRequestDispatcherTests.class.getResource("servlet_js_filterrequestdispatcher_web.xml"));
-    Arrays.asList("dummy.html","dummyJSP.jsp")
-            .forEach(s -> webArchive.addAsWebResource("api/jakarta_servlet/filterrequestdispatcher/"+ s, s));
+    Arrays.asList("dummy.html", "dummyJSP.jsp")
+            .forEach(s -> webArchive.addAsWebResource("api/jakarta_servlet/filterrequestdispatcher/" + s, s));
     return webArchive;
   }
 

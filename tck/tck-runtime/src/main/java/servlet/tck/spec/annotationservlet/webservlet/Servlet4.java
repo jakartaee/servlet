@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/Servlet4URL/*", asyncSupported = true, initParams = {
     @WebInitParam(name = "name1", value = "value1"),
-    @WebInitParam(name = "name2", value = "value2") }, name = "Servlet4")
+    @WebInitParam(name = "name2", value = "value2")}, name = "Servlet4")
 public class Servlet4 extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)

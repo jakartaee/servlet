@@ -94,9 +94,9 @@ public class ServletProgrammaticLogout extends HttpServlet {
   }
 
   public void sendOutput(String str, PrintWriter out) {
-    String HDR = "ServletProgrammaticLogout:  ";
-    out.println(HDR + str); // this line is used for test validation
-    System.out.println(HDR + str); // this line is for debug aid
+    String hdr = "ServletProgrammaticLogout:  ";
+    out.println(hdr + str); // this line is used for test validation
+    System.out.println(hdr + str); // this line is for debug aid
   }
 
 }

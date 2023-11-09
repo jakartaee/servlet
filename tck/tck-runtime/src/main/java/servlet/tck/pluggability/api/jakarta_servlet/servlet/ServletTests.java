@@ -52,7 +52,7 @@ public class ServletTests extends AbstractTckTest {
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
             .addClasses(DoServletInfoTestServlet.class, DoDestroyedTestServlet.class, DoInit2TestServlet.class,
                     DoServletConfigTestServlet.class, PUTestServlet.class, DoServiceTestServlet.class,
-                    DoInit1TestServlet.class, CoreServletTest.class )
+                    DoInit1TestServlet.class, CoreServletTest.class)
             .addAsLibraries(javaArchive);
   }
 

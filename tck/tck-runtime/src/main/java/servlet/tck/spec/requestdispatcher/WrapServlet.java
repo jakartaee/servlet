@@ -40,7 +40,7 @@ public class WrapServlet extends HttpServlet {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WrapServlet.class);
 
-  ServletContext ctx = null;
+  ServletContext ctx;
 
   public void init(ServletConfig servletConfig) throws ServletException {
     super.init(servletConfig);

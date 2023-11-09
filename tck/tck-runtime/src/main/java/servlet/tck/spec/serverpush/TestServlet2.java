@@ -38,7 +38,7 @@ public class TestServlet2 extends HttpServlet {
     String defaultMethod = pb.getMethod();
     pw.println("Method:" + defaultMethod);
     PushBuilder pb2 = req.newPushBuilder();
-    pw.println("Return new instance:" + String.valueOf(pb != pb2));
+    pw.println("Return new instance:" + pb != pb2);
     pw.println("JSESSIONID: " + pb.getSessionId());
     pw.println("The headers of PushBuilder: ");
     for (String name : pb.getHeaderNames()) {

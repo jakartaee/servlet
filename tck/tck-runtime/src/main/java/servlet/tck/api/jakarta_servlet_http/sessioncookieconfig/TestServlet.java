@@ -37,7 +37,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String results = (String) getServletContext().getAttribute(TestListener.class.getName());
 
-    if (results.indexOf("-FAILED-") > -1) {
+    if (results.contains("-FAILED-")) {
       ServletTestUtil.printResult(
           response.getWriter(), "At least on test failed.  " + results);
     }

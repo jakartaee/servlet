@@ -100,25 +100,28 @@ public class TestServlet2 extends HttpServlet {
           .getEffectiveSessionTrackingModes();
       StringBuilder strB = new StringBuilder(
           "getEffectiveSessionTrackingModes_test_passed");
-      if (set != null && set.size() > 0) {
+      if (set != null && !set.isEmpty()) {
         for (SessionTrackingMode stm : set)
-          strB.append("_" + stm.toString());
+          strB.append("_").append(stm.toString());
       }
 
-      if (set == null || set.size() == 0)
+      if (set == null || set.isEmpty()) {
         throw new Exception(
             "getEffectiveSessionTrackingModes_test_with_set_is_null");
+      }
 
       Set<SessionTrackingMode> defaultSet = getServletContext()
           .getDefaultSessionTrackingModes();
-      if (defaultSet == null || defaultSet.size() == 0)
+      if (defaultSet == null || defaultSet.isEmpty()) {
         throw new Exception(
             "getEffectiveSessionTrackingModes_test_with_defaultSet_is_null");
+      }
 
-      if (set.size() != defaultSet.size())
+      if (set.size() != defaultSet.size()) {
         throw new Exception(
             "getEffectiveSessionTrackingModes_test_with_set_is_not_equlto_defalut_"
                 + set.size());
+      }
 
       for (SessionTrackingMode stm : set) {
         if (!defaultSet.contains(stm)) {

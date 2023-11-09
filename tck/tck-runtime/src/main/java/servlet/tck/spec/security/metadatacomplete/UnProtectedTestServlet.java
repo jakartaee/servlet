@@ -36,7 +36,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.DENY))
 @WebServlet(name = "UnProtectedTestLogicalName", urlPatterns = {
-    "/UnProtectedTest" })
+    "/UnProtectedTest"})
 public class UnProtectedTestServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)

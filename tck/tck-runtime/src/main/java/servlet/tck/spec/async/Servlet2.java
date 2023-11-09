@@ -31,8 +31,8 @@ public class Servlet2 extends GenericServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   public void service(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
@@ -43,7 +43,7 @@ public class Servlet2 extends GenericServlet {
 
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { request, response });
+      method.invoke(this, new Object[]{request, response});
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {

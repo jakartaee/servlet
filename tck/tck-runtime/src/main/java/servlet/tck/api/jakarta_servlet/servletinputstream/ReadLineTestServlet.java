@@ -80,7 +80,7 @@ public class ReadLineTestServlet extends GenericServlet {
 
     if (contentLen >= 1) {
 
-      byte buffer[] = new byte[contentLen + 1];
+      byte[] buffer = new byte[contentLen + 1];
       int len = sins.readLine(buffer, 0, contentLen);
 
       String expectedResult = "test data";

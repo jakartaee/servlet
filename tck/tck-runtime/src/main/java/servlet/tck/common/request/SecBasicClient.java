@@ -39,41 +39,41 @@ public abstract class SecBasicClient extends BaseTckTest {
   private static final String REMOTE_USER_SEARCH = "getRemoteUser(): "; // (+username)
 
   // fields:
-  protected String pageSec = null;
+  protected String pageSec;
 
-  protected String pageGuest = null;
+  protected String pageGuest;
 
-  protected String pageUnprotected = null;
+  protected String pageUnprotected;
 
-  protected String pageRoleReverse = null;
+  protected String pageRoleReverse;
 
-  private String pageJspBase = "/jsp_sec_secbasic_web";
+  private final String pageJspBase = "/jsp_sec_secbasic_web";
 
-  private String pageJspSec = pageJspBase + "/jspSec.jsp";
+  private final String pageJspSec = pageJspBase + "/jspSec.jsp";
 
-  private String pageJspGuest = pageJspBase + "/guestPage.jsp";
+  private final String pageJspGuest = pageJspBase + "/guestPage.jsp";
 
-  private String pageJspUnprotected = pageJspBase + "/unprotected.jsp";
+  private final String pageJspUnprotected = pageJspBase + "/unprotected.jsp";
 
-  private String pageJspRoleReverse = pageJspBase + "/rolereverse.jsp";
+  private final String pageJspRoleReverse = pageJspBase + "/rolereverse.jsp";
 
-  private String pageServletBase = "/servlet_sec_secbasic_web";
+  private final String pageServletBase = "/servlet_sec_secbasic_web";
 
-  private String pageServletSec = pageServletBase + "/ServletSecTest";
+  private final String pageServletSec = pageServletBase + "/ServletSecTest";
 
-  private String pageServletGuest = pageServletBase + "/GuestPageTest";
+  private final String pageServletGuest = pageServletBase + "/GuestPageTest";
 
-  private String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
+  private final String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
 
-  private String pageServletRoleReverse = pageServletBase + "/RoleReverseTest";
+  private final String pageServletRoleReverse = pageServletBase + "/RoleReverseTest";
 
-  private String username = null;
+  private String username;
 
-  private String password = null;
+  private String password;
 
-  private String unauthUsername = null;
+  private String unauthUsername;
 
-  private String unauthPassword = null;
+  private String unauthPassword;
 
   /*
    * @class.setup_props: webServerHost; webServerPort; user; password; authuser;
@@ -417,7 +417,7 @@ public abstract class SecBasicClient extends BaseTckTest {
    *          - the message to log
    */
   protected void logMessage(String message) {
-    logger.info("{} {}",CLASS_TRACE_HEADER, message);
+    logger.info("{} {}", CLASS_TRACE_HEADER, message);
   }
 
   /**

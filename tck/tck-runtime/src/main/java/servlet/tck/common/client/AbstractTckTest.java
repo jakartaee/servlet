@@ -45,20 +45,22 @@ public abstract class AbstractTckTest extends BaseTckTest {
 
   protected static final String DONOTUSEServletName = "NoServletName";
 
-  private InetAddress[] _addrs = null;
+  private InetAddress[] addrs;
 
-  private String _servlet = null;
+  private String _servlet;
 
   protected AbstractTckTest() {
     // Construct a default context root based on the class name of
     // the concrete subclass of this class.
     String cname = this.getClass().getName();
     String prefix = "com.sun.ts.tests.";
-    if (cname.startsWith(prefix))
+    if (cname.startsWith(prefix)) {
       cname = cname.substring(prefix.length());
+    }
     String suffix = ".URLClient";
-    if (cname.endsWith(suffix))
+    if (cname.endsWith(suffix)) {
       cname = cname.substring(0, cname.length() - suffix.length());
+    }
     cname = cname.replace('.', '_');
     cname = "/" + cname + "_web";
     setContextRoot(cname);
@@ -174,7 +176,7 @@ public abstract class AbstractTckTest extends BaseTckTest {
   protected String getLocalInterfaceInfo(boolean returnAddresses) {
     String result = null;
     initInetAddress();
-    if (_addrs.length != 0) {
+    if (addrs.length != 0) {
       StringBuilder sb = new StringBuilder(32);
       if (!returnAddresses) {
         // localhost might not show up if aliased
@@ -184,23 +186,23 @@ public abstract class AbstractTckTest extends BaseTckTest {
         sb.append("127.0.0.1,");
       }
 
-      for (int i = 0; i < _addrs.length; i++) {
+      for (int i = 0; i < addrs.length; i++) {
         if (returnAddresses) {
-          String ip = _addrs[i].getHostAddress();
-          if (!ip.equals("127.0.0.1")) {
+          String ip = addrs[i].getHostAddress();
+          if (!"127.0.0.1".equals(ip)) {
             if (ip.contains("%")) {
-              int scope_id = ip.indexOf("%");
-              ip = ip.substring(0, scope_id);
+              int scopeId = ip.indexOf("%");
+              ip = ip.substring(0, scopeId);
             }
             sb.append(ip);
           }
         } else {
-          String host = _addrs[i].getCanonicalHostName();
-          if (!host.equals("localhost")) {
+          String host = addrs[i].getCanonicalHostName();
+          if (!"localhost".equals(host)) {
             sb.append(host);
           }
         }
-        if (i + 1 != _addrs.length) {
+        if (i + 1 != addrs.length) {
           sb.append(",");
         }
       }
@@ -211,9 +213,9 @@ public abstract class AbstractTckTest extends BaseTckTest {
   }
 
   private void initInetAddress() {
-    if (_addrs == null) {
+    if (addrs == null) {
       try {
-        _addrs = InetAddress
+        addrs = InetAddress
             .getAllByName(InetAddress.getLocalHost().getCanonicalHostName());
       } catch (UnknownHostException uhe) {
         logger.info(
@@ -246,11 +248,11 @@ public abstract class AbstractTckTest extends BaseTckTest {
       httpsURLConn.setDoOutput(true);
       httpsURLConn.setUseCaches(false);
 
-    } else
+    } else {
       throw new IOException("Error opening httsURLConnection");
+    }
 
     return httpsURLConn;
   }
 
 }
-

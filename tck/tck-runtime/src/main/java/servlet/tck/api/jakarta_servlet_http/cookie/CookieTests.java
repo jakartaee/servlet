@@ -301,7 +301,7 @@ public class CookieTests extends AbstractTckTest {
       while (i < cookiesHeaders.size()) {
         logger.trace("Checking set-cookiei {}:{}", i, cookiesHeaders.get(i));
         List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
-        Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1"))
+        Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> "name1".equals(httpCookie.getName()))
                 .findFirst();
         if (optionalHttpCookie.isPresent()) {
           HttpCookie httpCookie = optionalHttpCookie.get();
@@ -313,8 +313,9 @@ public class CookieTests extends AbstractTckTest {
         i++;
       }
 
-      if (!foundcookie)
+      if (!foundcookie) {
         throw new Exception("The test cookie was not located in the response");
+      }
     } catch (Throwable t) {
       throw new Exception("Exception occurred:" + t, t);
     }

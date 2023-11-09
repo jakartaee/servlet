@@ -79,7 +79,7 @@ public interface Filter {
      * parameters
      * @throws ServletException if an exception has occurred that interferes with the filter's normal operation
      */
-    default public void init(FilterConfig filterConfig) throws ServletException {
+    public default void init(FilterConfig filterConfig) throws ServletException {
     }
 
     /**
@@ -133,6 +133,6 @@ public interface Filter {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void destroy() {
+    public default void destroy() {
     }
 }

@@ -53,31 +53,31 @@ public class MetaDataCompleteTests extends BaseTckTest {
   private static final String USER_PRINCIPAL_SEARCH = "The user principal is: "; // (+username)
 
   // fields:
-  private String pageDeny = null;
+  private String pageDeny;
 
-  private String pageSec = null;
+  private String pageSec;
 
-  private String pageGuest = null;
+  private String pageGuest;
 
-  private String pageUnprotected = null;
+  private String pageUnprotected;
 
-  private String pageServletBase = "/servlet_sec_metadatacomplete_web";
+  private final String pageServletBase = "/servlet_sec_metadatacomplete_web";
 
-  private String pageServletDeny = pageServletBase + "/ServletDenyAll";
+  private final String pageServletDeny = pageServletBase + "/ServletDenyAll";
 
-  private String pageServletSec = pageServletBase + "/ServletSecTest";
+  private final String pageServletSec = pageServletBase + "/ServletSecTest";
 
-  private String pageServletGuest = pageServletBase + "/GuestPageTest";
+  private final String pageServletGuest = pageServletBase + "/GuestPageTest";
 
-  private String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
+  private final String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
 
-  private String username = null;
+  private String username;
 
-  private String password = null;
+  private String password;
 
-  private String unauthUsername = null;
+  private String unauthUsername;
 
-  private String unauthPassword = null;
+  private String unauthPassword;
 
 
   /*
@@ -183,7 +183,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
     // note: doGet metho prints out userprincipal name that we are going to
     // check
     logger.trace("GET w/ user= {} should be allowed due to DD declaration", unauthUsername);
-    TEST_PROPS.get().setProperty(SEARCH_STRING, USER_PRINCIPAL_SEARCH+unauthUsername);
+    TEST_PROPS.get().setProperty(SEARCH_STRING, USER_PRINCIPAL_SEARCH + unauthUsername);
     TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test2");
     TEST_PROPS.get().setProperty(REQUEST, getRequestLine("GET", pageGuest));
     TEST_PROPS.get().setProperty(BASIC_AUTH_USER, unauthUsername); // "javajoe"

@@ -20,6 +20,7 @@
 
 package servlet.tck.api.jakarta_servlet.dofilter;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import jakarta.servlet.ServletResponse;
@@ -28,7 +29,7 @@ import jakarta.servlet.ServletResponseWrapper;
 public class CTSResponseWrapper extends ServletResponseWrapper {
 
   public CTSResponseWrapper(ServletResponse response)
-      throws java.io.IOException {
+      throws IOException {
     super(response);
     PrintWriter pw = response.getWriter();
     pw.write("CTSResponseWrapper");

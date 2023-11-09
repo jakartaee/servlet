@@ -105,8 +105,6 @@ public class SecBasicTests extends SecBasicClient {
         pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
         try {
             super.test1();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -163,8 +161,6 @@ public class SecBasicTests extends SecBasicClient {
         pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
         try {
             super.test2();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -209,8 +205,6 @@ public class SecBasicTests extends SecBasicClient {
         pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
         try {
             super.test3();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -263,8 +257,6 @@ public class SecBasicTests extends SecBasicClient {
         pageGuest = "/servlet_sec_secbasic_web/GuestPageAnnoTest";
         try {
             super.test4();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -316,8 +308,6 @@ public class SecBasicTests extends SecBasicClient {
         pageUnprotected = "/servlet_sec_secbasic_web/UnProtectedAnnoTest";
         try {
             super.test5();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageUnprotected = tempPageUnprotected;
@@ -385,8 +375,6 @@ public class SecBasicTests extends SecBasicClient {
         pageRoleReverse = "/servlet_sec_secbasic_web/RoleReverseAnnoTest";
         try {
             super.test6();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageRoleReverse = tempPageRoleReverse;
@@ -430,8 +418,6 @@ public class SecBasicTests extends SecBasicClient {
         pageSec = "/servlet_sec_secbasic_web/ServletSecAnnoTest";
         try {
             super.test7();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;

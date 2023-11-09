@@ -41,12 +41,12 @@ public class TestServlet extends GenericTCKServlet {
     ServletContext context = config.getServletContext();
 
     try {
-      String expected_virtualhost = request
+      String expectedVirtualhost = request
           .getParameter("VirtualServerNamePlease");
       String tmp = context.getVirtualServerName();
       if (tmp != null) {
         pw.println("VirtualServerName=" + tmp);
-        if (!tmp.equals(expected_virtualhost)) {
+        if (!tmp.equals(expectedVirtualhost)) {
           passed = false;
           pw.println("Incorrect value returned");
         }

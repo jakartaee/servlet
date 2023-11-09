@@ -76,7 +76,7 @@ public class TestServlet extends GenericTCKServlet {
       throw new ServletException("Exceptional");
     } catch (Throwable t) {
       if (t instanceof ServletException) {
-        if (t.getMessage().equals("Exceptional")) {
+        if ("Exceptional".equals(t.getMessage())) {
           passed = true;
         } else {
           passed = false;
@@ -105,7 +105,7 @@ public class TestServlet extends GenericTCKServlet {
         Throwable rootCause = se.getRootCause();
 
         if (rootCause != null) {
-          if (rootCause.getMessage().equals("irrelevant")) {
+          if ("irrelevant".equals(rootCause.getMessage())) {
             passed = true;
           } else {
             passed = false;
@@ -141,7 +141,7 @@ public class TestServlet extends GenericTCKServlet {
         String mesg = se.getMessage();
 
         if (cause != null && mesg != null) {
-          if (mesg.equals("Exceptional") && cause.getMessage().equals("cos")) {
+          if ("Exceptional".equals(mesg) && "cos".equals(cause.getMessage())) {
             passed = true;
           } else {
             passed = false;

@@ -55,8 +55,8 @@ public abstract class HttpTCKServlet extends HttpServlet {
   /**
    * <code>TEST_ARGS</code> is an array of Classes used during reflection.
    */
-  private static final Class<?>[] TEST_ARGS = { HttpServletRequest.class,
-      HttpServletResponse.class };
+  private static final Class<?>[] TEST_ARGS = {HttpServletRequest.class,
+      HttpServletResponse.class};
 
   /**
    * <code>init</code> initializes the servlet.

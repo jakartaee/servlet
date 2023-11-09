@@ -34,12 +34,12 @@ public class GetLastAccessedTime extends HttpServlet {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
 
-    String TS1 = request.getParameter("t1");
-    String TS2 = request.getParameter("t2");
-    pw.println("Session created before " + TS1);
-    pw.println("Session accessed before " + TS2);
-    long t1 = Long.parseLong(TS1);
-    long t2 = Long.parseLong(TS2);
+    String ts1 = request.getParameter("t1");
+    String ts2 = request.getParameter("t2");
+    pw.println("Session created before " + ts1);
+    pw.println("Session accessed before " + ts2);
+    long t1 = Long.parseLong(ts1);
+    long t2 = Long.parseLong(ts2);
 
     HttpSession session = request.getSession(false);
 

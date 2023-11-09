@@ -34,7 +34,7 @@ public final class BadFilter implements Filter {
 
   // The filter configuration object we are associated with. If this value
   // is null, this filter instance is not currently configured.
-  private FilterConfig filterConfig = null;
+  private FilterConfig filterConfig;
 
   // Non-zero argument constructor
   public BadFilter(String x) throws ServletException {

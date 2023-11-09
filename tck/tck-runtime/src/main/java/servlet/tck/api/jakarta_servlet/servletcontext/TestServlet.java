@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -163,8 +164,8 @@ public class TestServlet extends GenericTCKServlet {
 
     String realPath = context.getRealPath(path);
     // a null will be returned if running directly from a jar file
-    if ((realPath == null) || (realPath.indexOf(path) > -1) || // UNIX path
-        (realPath.indexOf(win32Path) > -1)) // Win32 path
+    if ((realPath == null) || (realPath.contains(path)) || // UNIX path
+        (realPath.contains(win32Path))) // Win32 path
     {
       pw.println("realPath = " + realPath);
     } else {
@@ -177,8 +178,8 @@ public class TestServlet extends GenericTCKServlet {
     String pathNoSolidus = path.substring(1);
     String realPathNoSolidus = context.getRealPath(pathNoSolidus);
     
-    if (realPath == null && realPathNoSolidus == null ||
-        realPath != null && realPath.equals(realPathNoSolidus)) {
+    if (realPath == null && realPathNoSolidus == null
+        || realPath != null && realPath.equals(realPathNoSolidus)) {
       pw.println("realPathNoSolidus = " + realPathNoSolidus);      
     } else {
       passed = false;
@@ -318,7 +319,7 @@ public class TestServlet extends GenericTCKServlet {
     if (resourceURL != null) {
       String result = resourceURL.toString();
 
-      if (result.indexOf(path) > -1) {
+      if (result.contains(path)) {
         passed = true;
       } else {
         passed = false;
@@ -379,7 +380,7 @@ public class TestServlet extends GenericTCKServlet {
       pw.println("Test FAILED.  Expected a MalformedURLException to "
           + "be thrown when ServletContext.getResource(String) "
           + " is provided a value that does not start with a '/'");
-    } catch (java.net.MalformedURLException ex) {
+    } catch (MalformedURLException ex) {
       passed = true;
       pw.println("GetResource_2Test " + Data.PASSED);
       pw.println("Expected java.net.MalformedURLException to be thrown");
@@ -412,7 +413,7 @@ public class TestServlet extends GenericTCKServlet {
 
     if (attr != null) {
       // attr should also be an instance of java.lang.String
-      if (attr.getClass().getName().equals("java.lang.String")) {
+      if ("java.lang.String".equals(attr.getClass().getName())) {
         String sAttr = (String) attr;
 
         if (sAttr.equals(param2)) {
@@ -575,7 +576,7 @@ public class TestServlet extends GenericTCKServlet {
     String result = context.getInitParameter(param);
 
     if (result != null) {
-      if (result.equals("VI")) {
+      if ("VI".equals(result)) {
         passed = true;
       } else {
         passed = false;
@@ -667,7 +668,7 @@ public class TestServlet extends GenericTCKServlet {
     Object attr = context.getAttribute(param1);
 
     if (attr != null) {
-      if (attr.getClass().getName().equals("java.lang.String")) {
+      if ("java.lang.String".equals(attr.getClass().getName())) {
         String sAttr = (String) attr;
 
         if (sAttr.equals(param2)) {
@@ -708,7 +709,7 @@ public class TestServlet extends GenericTCKServlet {
     Object attr = context.getAttribute(param1);
 
     if (attr != null) {
-      if (attr.getClass().getName().equals("java.lang.String")) {
+      if ("java.lang.String".equals(attr.getClass().getName())) {
         String sAttr = (String) attr;
 
         if (sAttr.equals(param3)) {
@@ -947,7 +948,7 @@ public class TestServlet extends GenericTCKServlet {
 
     String name = context.getServletContextName();
 
-    if (name.equals("SerJaxSerServletContext")) {
+    if ("SerJaxSerServletContext".equals(name)) {
       passed = true;
       pw.println("ame = " + name);
     } else {
@@ -965,7 +966,7 @@ public class TestServlet extends GenericTCKServlet {
     ServletContext context = config.getServletContext();
 
     try {
-      java.io.File tmp = (java.io.File) context
+      File tmp = (File) context
           .getAttribute("jakarta.servlet.context.tempdir");
       if (tmp != null) {
         pw.println("jakarta.servlet.context.tempdir=" + tmp.getAbsolutePath());

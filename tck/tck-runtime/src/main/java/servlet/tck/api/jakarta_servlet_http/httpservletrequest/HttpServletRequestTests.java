@@ -701,12 +701,12 @@ public class HttpServletRequestTests extends HttpRequestClient {
             List<Header> headersGet = responseGet.getResponseHeaders();
             Set<String> headersToMatch = headersGet.stream()
                     .map(Header::getName)
-                    .filter(name -> !name.toLowerCase(Locale.ENGLISH).equals("date"))
+                    .filter(name -> !"date".equals(name.toLowerCase(Locale.ENGLISH)))
                     .collect(Collectors.toSet());
 
             List<Header> headersHead = responseHead.getResponseHeaders();
             for (Header header : headersHead) {
-                if (header.getName().equalsIgnoreCase("date")) {
+                if ("date".equalsIgnoreCase(header.getName())) {
                     // Skip date header
                     continue;
                 }

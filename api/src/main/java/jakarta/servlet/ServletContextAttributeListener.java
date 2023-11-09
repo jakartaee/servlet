@@ -45,7 +45,7 @@ public interface ServletContextAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeAdded(ServletContextAttributeEvent event) {
+    public default void attributeAdded(ServletContextAttributeEvent event) {
     }
 
     /**
@@ -56,7 +56,7 @@ public interface ServletContextAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeRemoved(ServletContextAttributeEvent event) {
+    public default void attributeRemoved(ServletContextAttributeEvent event) {
     }
 
     /**
@@ -67,6 +67,6 @@ public interface ServletContextAttributeListener extends EventListener {
      *
      * @implSpec The default implementation takes no action.
      */
-    default public void attributeReplaced(ServletContextAttributeEvent event) {
+    public default void attributeReplaced(ServletContextAttributeEvent event) {
     }
 }

@@ -245,7 +245,7 @@ public abstract class BaseTckTest {
   /**
    * Current test directory
    */
-  protected String TESTDIR = null;
+  protected String TESTDIR;
 
   /**
    * Goldenfile directory
@@ -300,54 +300,54 @@ public abstract class BaseTckTest {
   /**
    * Current test name
    */
-  protected String _testName = null;
+  protected String _testName;
 
   /**
    * location of _tsHome
    */
-  protected String _tsHome = null;
+  protected String _tsHome;
 
   /**
    * Context root of target tests
    */
-  protected String _contextRoot = null;
+  protected String _contextRoot;
 
   /**
    * General file/request URI for both gfiles and tests
    */
-  protected String _generalURI = null;
+  protected String _generalURI;
 
   /**
    * Target webserver hostname
    */
-  protected String _hostname = null;
+  protected String _hostname;
 
   /**
    * Target webserver port
    */
-  protected int _port = 0;
+  protected int _port;
 
   /**
    * Test case.
    */
-  protected WebTestCase _testCase = null;
+  protected WebTestCase _testCase;
 
   /**
    * Use saved state.
    */
-  protected boolean _useSavedState = false;
+  protected boolean _useSavedState;
 
   /**
    * Save state.
    */
-  protected boolean _saveState = false;
+  protected boolean _saveState;
 
   /**
    * Follow redirect.
    */
   protected static final String FOLLOW_REDIRECT = "follow_redirect";
 
-  protected boolean _redirect = false;
+  protected boolean _redirect;
 
   /*
    * public methods
@@ -390,16 +390,16 @@ public abstract class BaseTckTest {
   @BeforeEach
   public void setup() throws Exception {
     String ctxRoot = url.getPath();
-    setContextRoot(ctxRoot.endsWith("/")?ctxRoot.substring(0, ctxRoot.length()-1):ctxRoot);
+    setContextRoot(ctxRoot.endsWith("/") ? ctxRoot.substring(0, ctxRoot.length() - 1) : ctxRoot);
     Properties properties = new Properties();
     properties.put(SERVLETHOSTPROP, url.getHost());
     properties.put(SERVLETPORTPROP, Integer.toString(url.getPort()));
     // TODO do we really need this??
     properties.put(TSHOME, Paths.get("target/test-classes").toFile().getName());
     //  TOFIX configuration
-    properties.setProperty("servlet_waittime", System.getProperty("servlet_waittime","10"));
-    properties.setProperty("servlet_async_wait", System.getProperty("servlet_async_wait","4"));
-    properties.setProperty("logical.hostname.servlet", System.getProperty("logical.hostname.servlet","server"));
+    properties.setProperty("servlet_waittime", System.getProperty("servlet_waittime", "10"));
+    properties.setProperty("servlet_async_wait", System.getProperty("servlet_async_wait", "4"));
+    properties.setProperty("logical.hostname.servlet", System.getProperty("logical.hostname.servlet", "server"));
     properties.setProperty(USERNAME, System.getProperty(USERNAME, "j2ee"));
     properties.setProperty(PASSWORD, System.getProperty(PASSWORD, "j2ee"));
     properties.setProperty(BASIC_AUTH_PASSWD, System.getProperty(UNAUTH_PASSWORD, "j2ee"));
@@ -533,7 +533,7 @@ public abstract class BaseTckTest {
     String key = null;
     String value = null;
     // process the remainder of the properties
-    for (Enumeration e = TEST_PROPS.get().propertyNames(); e.hasMoreElements();) {
+    for (Enumeration e = TEST_PROPS.get().propertyNames(); e.hasMoreElements(); ) {
       key = (String) e.nextElement();
       value = TEST_PROPS.get().getProperty(key);
 
@@ -632,7 +632,7 @@ public abstract class BaseTckTest {
   }
 
   private boolean isNullOrEmpty(String val) {
-    return val == null || val.equals("");
+    return val == null || "".equals(val);
   }
 
   public void logErr(String message) {

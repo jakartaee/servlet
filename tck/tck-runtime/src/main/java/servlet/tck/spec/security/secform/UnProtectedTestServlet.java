@@ -34,12 +34,13 @@ public class UnProtectedTestServlet extends HttpServlet {
       throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
-    if (request.getUserPrincipal() == null)
+    if (request.getUserPrincipal() == null) {
       out.println(
           "The user principal is: " + request.getUserPrincipal() + "<BR>");
-    else
+    } else {
       out.println("The user principal is: "
           + request.getUserPrincipal().getName() + "<BR>");
+    }
 
     // Output whether the user is in any of the known or an unknown role.
     // Surround these with !'s so they are easier to search for.

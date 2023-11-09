@@ -64,8 +64,8 @@ public class TestListener implements ServletContextListener {
     final String addFilterName3 = "CreateFilter";
     final String addFilterName4 = "AddFilterNotFound";
 
-    final String[] param_names = { "Filter", "FilterName", "Servlet",
-        "DISPATCH", "ServletName" };
+    final String[] paramNames = {"Filter", "FilterName", "Servlet",
+        "DISPATCH", "ServletName"};
 
     /*
      * Add Servlet AddServletString
@@ -197,9 +197,9 @@ public class TestListener implements ServletContextListener {
      * Negative tests for - createServlet - createFilter - createListener
      */
 
-    Boolean servlet_test = false;
-    Boolean filter_test = false;
-    Boolean listener_test = false;
+    Boolean servletTest = false;
+    Boolean filterTest = false;
+    Boolean listenerTest = false;
     String SERVLET_TEST = "SERVLET_TEST";
     String FILTER_TEST = "FILTER_TEST";
     String LISTENER_TEST = "LISTENER_TEST";
@@ -208,110 +208,115 @@ public class TestListener implements ServletContextListener {
       Servlet badservlet = context.createServlet(
           BadServlet.class);
     } catch (ServletException ex) {
-      servlet_test = true;
+      servletTest = true;
     }
-    context.setInitParameter(SERVLET_TEST, servlet_test.toString());
+    context.setInitParameter(SERVLET_TEST, servletTest.toString());
 
     try {
       Filter badfilter = context.createFilter(
           BadFilter.class);
     } catch (ServletException ex) {
-      filter_test = true;
+      filterTest = true;
     }
-    context.setInitParameter(FILTER_TEST, filter_test.toString());
+    context.setInitParameter(FILTER_TEST, filterTest.toString());
 
     try {
       EventListener badlistener = context.createListener(
           BadListener.class);
     } catch (ServletException ex) {
-      listener_test = true;
+      listenerTest = true;
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
 
     /*
      * Test for ServletRegistration.getMappings()
      */
-    String URL_MAPPING = "URL_MAPPING_TEST";
-    StringBuilder Value_OF_URL = new StringBuilder();
-    Collection<String> url_mappings = srClass.getMappings();
-    for (String url : url_mappings) {
-      Value_OF_URL.append(url).append('|');
+    String urlMapping = "URL_MAPPING_TEST";
+    StringBuilder valueOFURL = new StringBuilder();
+    Collection<String> urlMappings = srClass.getMappings();
+    for (String url : urlMappings) {
+      valueOFURL.append(url).append('|');
     }
-    context.setInitParameter(URL_MAPPING, Value_OF_URL.toString());
+    context.setInitParameter(urlMapping, valueOFURL.toString());
 
     /*
      * Test for ServletRegistration.getServletRegistrations()
      */
-    String SERVLET_REGISTRATIONS = "SERVLET_REGISTRATIONS";
-    StringBuilder Value_OF_Servlet_Registrations = new StringBuilder();
+    String servletRegistrations = "SERVLET_REGISTRATIONS";
+    StringBuilder valueOFServletRegistrations = new StringBuilder();
     Map<String, ? extends ServletRegistration> servlet_registrations = context.getServletRegistrations();
     Iterator it = servlet_registrations.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry pairs = (Map.Entry) it.next();
-      Value_OF_Servlet_Registrations
-          .append(pairs.getKey() + "=" + pairs.getValue() + "|");
+      valueOFServletRegistrations
+          .append(pairs.getKey())
+          .append("=")
+          .append(pairs.getValue())
+          .append("|");
     }
-    context.setInitParameter(SERVLET_REGISTRATIONS,
-        Value_OF_Servlet_Registrations.toString());
+    context.setInitParameter(servletRegistrations,
+        valueOFServletRegistrations.toString());
 
     /*
      * Test for ServletRegistration.getServletRegistration(String)
      */
-    String SERVLET_REGISTRATION = "SERVLET_REGISTRATION";
-    StringBuilder Value_OF_Registration = new StringBuilder();
-    String[] servlets = { "AddServletString", "AddServletClass", "AddServletNotFound", "CreateServlet", "TestServlet" };
+    String servletRegistration = "SERVLET_REGISTRATION";
+    StringBuilder valueOFRegistration = new StringBuilder();
+    String[] servlets = {"AddServletString", "AddServletClass", "AddServletNotFound", "CreateServlet", "TestServlet"};
     for (String servlet : servlets) {
-      Value_OF_Registration.append(
-          servlet + "=" + context.getServletRegistration(servlet) + "|");
+      valueOFRegistration.append(servlet + "=").append(context.getServletRegistration(servlet)).append("|");
     }
-    context.setInitParameter(SERVLET_REGISTRATION,
-        Value_OF_Registration.toString());
+    context.setInitParameter(servletRegistration,
+        valueOFRegistration.toString());
 
     /*
      * Test for FilterRegistration.getFilterRegistrations()
      */
-    String FILTER_REGISTRATIONS = "FILTER_REGISTRATIONS";
-    StringBuilder Value_OF_Filter_Registrations = new StringBuilder();
+    String filterRegistrations = "FILTER_REGISTRATIONS";
+    StringBuilder valueOFFilterRegistrations = new StringBuilder();
     Map<String, ? extends FilterRegistration> filter_registrations = context
         .getFilterRegistrations();
     it = filter_registrations.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry pairs = (Map.Entry) it.next();
-      Value_OF_Filter_Registrations
-          .append(pairs.getKey() + "=" + pairs.getValue() + "|");
+      valueOFFilterRegistrations
+          .append(pairs.getKey())
+          .append("=")
+          .append(pairs.getValue())
+          .append("|");
     }
-    context.setInitParameter(FILTER_REGISTRATIONS,
-        Value_OF_Filter_Registrations.toString());
+    context.setInitParameter(filterRegistrations,
+        valueOFFilterRegistrations.toString());
 
     /*
      * Test for ServletRegistration.getFilterRegistration(String)
      */
-    String FILTER_REGISTRATION = "FILTER_REGISTRATION";
-    StringBuffer Value_OF_Filter_Registration = new StringBuffer();
-    String[] filters = { "AddFilterString", "AddFilterClass",
-        "AddFilterNotFound", "CreateFilter" };
+    String filterRegistration = "FILTER_REGISTRATION";
+    StringBuffer valueOFFilterRegistration = new StringBuffer();
+    String[] filters = {"AddFilterString", "AddFilterClass",
+        "AddFilterNotFound", "CreateFilter"};
     for (String filter : filters) {
-      Value_OF_Filter_Registration
+      valueOFFilterRegistration
           .append(filter + "=" + context.getFilterRegistration(filter) + "|");
     }
-    context.setInitParameter(FILTER_REGISTRATION,
-        Value_OF_Filter_Registration.toString());
+    context.setInitParameter(filterRegistration,
+        valueOFFilterRegistration.toString());
 
     /*
      * Test for FilterRegistration.getServletNameMappings()
      */
-    String FILTER_SERVLET_MAPPING = "FILTER_SERVLET_MAPPING";
-    StringBuffer Value_OF_Servlet_URL = new StringBuffer();
-    FilterRegistration[] Filters = { frString, frClass, frNotFound, frFilter };
+    String filterServletMapping = "FILTER_SERVLET_MAPPING";
+    StringBuffer valueOFServletURL = new StringBuffer();
+    FilterRegistration[] Filters = {frString, frClass, frNotFound, frFilter};
     for (FilterRegistration Filter_Test : Filters) {
-      Collection<String> servlet_mappings = Filter_Test
+      Collection<String> servletMappings = Filter_Test
           .getServletNameMappings();
-      for (String servlet : servlet_mappings) {
-        Value_OF_Servlet_URL.append(servlet + "|");
+      for (String servlet : servletMappings) {
+        valueOFServletURL.append(servlet + "|");
       }
     }
-    context.setInitParameter(FILTER_SERVLET_MAPPING,
-        Value_OF_Servlet_URL.toString());
+    context.setInitParameter(filterServletMapping,
+        valueOFServletURL.toString());
 
     /*
      * Test for Registration.getName() Test for Registration.getClassName() Test
@@ -321,45 +326,45 @@ public class TestListener implements ServletContextListener {
      * Registration.getInitParameters()
      */
 
-    String REGISTRATION_NAME = "REGISTRION_NAME";
-    String REGISTRATION_CLASS_NAME = "REGISTRATION_CLASS_NAME";
-    String REGISTRATION_INIT_PARAMETER = "REGISTRATION_INIT_PARAMETER";
-    String REGISTRATION_INIT_PARAMETERS = "REGISTRATION_INIT_PARAMETERS";
+    String registrationName = "REGISTRION_NAME";
+    String registrationClassName = "REGISTRATION_CLASS_NAME";
+    String registrationInitParameter = "REGISTRATION_INIT_PARAMETER";
+    String registrationInitParameters = "REGISTRATION_INIT_PARAMETERS";
 
-    StringBuffer Value_OF_Registration_Name = new StringBuffer();
-    StringBuffer Value_OF_Registration_Class_Name = new StringBuffer();
-    StringBuffer Value_OF_Registration_InitParameter = new StringBuffer();
-    StringBuffer Value_OF_Registration_InitParameters = new StringBuffer();
+    StringBuffer valueOFRegistrationName = new StringBuffer();
+    StringBuffer valueOFRegistrationClassName = new StringBuffer();
+    StringBuffer valueOFRegistrationInitParameter = new StringBuffer();
+    StringBuffer valueOFRegistrationInitParameters = new StringBuffer();
 
-    Registration[] registrations = { srString, frString, srClass, frClass,
-        srServlet, frFilter, srNotFound, frNotFound };
+    Registration[] registrations = {srString, frString, srClass, frClass,
+        srServlet, frFilter, srNotFound, frNotFound};
 
     for (Registration registration : registrations) {
-      Value_OF_Registration_Name.append(registration.getName() + "|");
+      valueOFRegistrationName.append(registration.getName() + "|");
 
-      Value_OF_Registration_Class_Name
+      valueOFRegistrationClassName
           .append(registration.getClassName() + "|");
 
-      Value_OF_Registration_InitParameter
+      valueOFRegistrationInitParameter
           .append(registration.getInitParameter("FILTER") + "|");
-      Value_OF_Registration_InitParameter
+      valueOFRegistrationInitParameter
           .append(registration.getInitParameter("SERVLET") + "|");
 
       params = registration.getInitParameters();
       for (int i = 0; i < 5; i++) {
-        Value_OF_Registration_InitParameters
-            .append(param_names[i] + "=" + params.get(param_names[i]) + "|");
+        valueOFRegistrationInitParameters
+            .append(paramNames[i] + "=" + params.get(paramNames[i]) + "|");
       }
     }
 
-    context.setInitParameter(REGISTRATION_NAME,
-        Value_OF_Registration_Name.toString());
-    context.setInitParameter(REGISTRATION_CLASS_NAME,
-        Value_OF_Registration_Class_Name.toString());
-    context.setInitParameter(REGISTRATION_INIT_PARAMETER,
-        Value_OF_Registration_InitParameter.toString());
-    context.setInitParameter(REGISTRATION_INIT_PARAMETERS,
-        Value_OF_Registration_InitParameters.toString());
+    context.setInitParameter(registrationName,
+        valueOFRegistrationName.toString());
+    context.setInitParameter(registrationClassName,
+        valueOFRegistrationClassName.toString());
+    context.setInitParameter(registrationInitParameter,
+        valueOFRegistrationInitParameter.toString());
+    context.setInitParameter(registrationInitParameters,
+        valueOFRegistrationInitParameters.toString());
   }
 
   /**

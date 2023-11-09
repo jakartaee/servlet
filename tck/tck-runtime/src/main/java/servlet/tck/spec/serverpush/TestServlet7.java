@@ -27,8 +27,8 @@ import jakarta.servlet.http.PushBuilder;
 
 public class TestServlet7 extends HttpServlet {
 
-  private final static String[] METHODS = { "", "POST", "PUT", "DELETE",
-      "CONNECT", "OPTIONS", "TRACE" };
+  private static final String[] METHODS = {"", "POST", "PUT", "DELETE",
+      "CONNECT", "OPTIONS", "TRACE"};
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -65,12 +65,14 @@ public class TestServlet7 extends HttpServlet {
     }
 
     for (String method : METHODS) {
-      if (!testMethod(pb, pw, method))
+      if (!testMethod(pb, pw, method)) {
         pass = false;
+      }
     }
 
-    if (pass)
+    if (pass) {
       pw.println("test passed");
+    }
   }
 
   private boolean testMethod(PushBuilder pb, PrintWriter pw, String method) {

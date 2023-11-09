@@ -207,39 +207,39 @@ public class TestContainerInitializer implements ServletContainerInitializer {
      * Negative tests for - createServlet - createFilter - createListener
      */
 
-    Boolean servlet_test = false;
-    Boolean filter_test = false;
-    Boolean listener_test = false;
+    Boolean servletTest = false;
+    Boolean filterTest = false;
+    Boolean listenerTest = false;
     String SERVLET_TEST = "SERVLET_TEST";
     String FILTER_TEST = "FILTER_TEST";
     String LISTENER_TEST = "LISTENER_TEST";
-    String GC_LISTENER_TEST = "GC_LISTENER_TEST";
-    String GS_LISTENER_TEST = "GS_LISTENER_TEST";
-    String CGC_LISTENER_TEST = "CGC_LISTENER_TEST";
+    String gcListenerTest = "GC_LISTENER_TEST";
+    String gsListenerTest = "GS_LISTENER_TEST";
+    String cgcListenerTest = "CGC_LISTENER_TEST";
 
     try {
       Servlet badservlet = context.createServlet(
           BadServlet.class);
     } catch (ServletException ex) {
-      servlet_test = true;
+      servletTest = true;
     }
-    context.setInitParameter(SERVLET_TEST, servlet_test.toString());
+    context.setInitParameter(SERVLET_TEST, servletTest.toString());
 
     try {
       Filter badfilter = context.createFilter(
           BadFilter.class);
     } catch (ServletException ex) {
-      filter_test = true;
+      filterTest = true;
     }
-    context.setInitParameter(FILTER_TEST, filter_test.toString());
+    context.setInitParameter(FILTER_TEST, filterTest.toString());
 
     try {
       context.createListener(
           BadListener.class);
     } catch (ServletException ex) {
-      listener_test = true;
+      listenerTest = true;
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
 
     try {
       context.addListener(
@@ -248,26 +248,26 @@ public class TestContainerInitializer implements ServletContainerInitializer {
       System.out
           .println("Error adding Listener addListener: " + ex.getMessage());
     }
-    context.setInitParameter(GC_LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(gcListenerTest, listenerTest.toString());
 
     try {
       context.addListener(
           "servlet.tck.api.jakarta_servlet.servletcontext302.AssGenericEventListenerString");
     } catch (IllegalArgumentException ex) {
-      listener_test = true;
+      listenerTest = true;
     }
-    context.setInitParameter(GS_LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(gsListenerTest, listenerTest.toString());
 
     try {
       context.createListener(
           CreateGenericEventListener.class);
-    } catch (java.lang.IllegalArgumentException ex) {
+    } catch (IllegalArgumentException ex) {
       System.out.println("Error creating Listener CreateGenericEventListener: "
           + ex.getMessage());
     } catch (ServletException exs) {
       System.out.println("Error creating Listener CreateGenericEventListener: "
           + exs.getMessage());
     }
-    context.setInitParameter(CGC_LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(cgcListenerTest, listenerTest.toString());
   }
 }

@@ -80,7 +80,7 @@ public class TestServlet extends HttpTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "attributeAdded:attributeAddedTest,Attribute1" };
+    String[] expected = {"attributeAdded:attributeAddedTest,Attribute1"};
 
     HttpSession session = request.getSession(true);
 
@@ -104,8 +104,8 @@ public class TestServlet extends HttpTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "attributeAdded:attributeRemovedTest,Attribute1",
-        "attributeRemoved:attributeRemovedTest,Attribute1" };
+    String[] expected = {"attributeAdded:attributeRemovedTest,Attribute1",
+        "attributeRemoved:attributeRemovedTest,Attribute1"};
 
     HttpSession session = request.getSession(true);
 
@@ -129,8 +129,8 @@ public class TestServlet extends HttpTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "attributeAdded:attributeReplacedTest,Attribute1",
-        "attributeReplaced:attributeReplacedTest,Attribute1" };
+    String[] expected = {"attributeAdded:attributeReplacedTest,Attribute1",
+        "attributeReplaced:attributeReplacedTest,Attribute1"};
 
     HttpSession session = request.getSession(true);
 

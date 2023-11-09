@@ -75,7 +75,7 @@ public class ReadListener1Tests extends AbstractTckTest {
     int sleepInSeconds = Integer
             .parseInt(_props.getProperty("servlet_async_wait").trim());
     String testName = "nioInputTest1";
-    String EXPECTED_RESPONSE = "Test PASSED|NullPointerException";
+    String expectedResponse = "Test PASSED|NullPointerException";
 
     //BufferedReader input = null;
 
@@ -111,14 +111,14 @@ public class ReadListener1Tests extends AbstractTckTest {
 
         try (BufferedReader input = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
           String line;
-          StringBuilder message_received = new StringBuilder();
+          StringBuilder messageReceived = new StringBuilder();
 
           while ((line = input.readLine()) != null) {
             logger.trace("======= message received: {}", line);
-            message_received.append(line);
+            messageReceived.append(line);
           }
-          passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                  message_received.toString());
+          passed = ServletTestUtil.compareString(expectedResponse,
+                  messageReceived.toString());
         }
       }
     } catch (Exception ex3) {
@@ -146,7 +146,7 @@ public class ReadListener1Tests extends AbstractTckTest {
     int sleepInSeconds = Integer
             .parseInt(_props.getProperty("servlet_async_wait").trim());
     String testName = "nioInputTest2";
-    String EXPECTED_RESPONSE = "Test PASSED|IllegalStateException";
+    String expectedResponse = "Test PASSED|IllegalStateException";
 
     String requestUrl = "http://" + _hostname + ":" + _port + getContextRoot() + "/" + getServletName() + "?testname="
             + testName;
@@ -172,19 +172,18 @@ public class ReadListener1Tests extends AbstractTckTest {
         data = "World";
         output.write(data);
         output.flush();
-        output.close();
 
         try (BufferedReader input = new BufferedReader(
                 new InputStreamReader(conn.getInputStream()))) {
           String line;
-          StringBuilder message_received = new StringBuilder();
+          StringBuilder messageReceived = new StringBuilder();
 
           while ((line = input.readLine()) != null) {
             logger.trace("======= message received: {}", line);
-            message_received.append(line);
+            messageReceived.append(line);
           }
-          passed = ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                  message_received.toString());
+          passed = ServletTestUtil.compareString(expectedResponse,
+                  messageReceived.toString());
         }
       }
     } catch (Exception ex3) {

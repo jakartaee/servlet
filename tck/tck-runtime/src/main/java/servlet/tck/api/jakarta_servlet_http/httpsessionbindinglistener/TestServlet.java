@@ -79,7 +79,7 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     StaticLog.clear();
 
-    String[] expected = { "valueBound:boundTest" };
+    String[] expected = {"valueBound:boundTest"};
 
     HttpSession session = request.getSession(true);
     HSBindingListener hsbl = new HSBindingListener();
@@ -102,8 +102,8 @@ public class TestServlet extends HttpTCKServlet {
     PrintWriter pw = response.getWriter();
     StaticLog.clear();
 
-    String[] expected = { "valueBound:unBoundTest", "valueUnBound:unBoundTest",
-        "valueBound:unBoundTest", "valueUnBound:unBoundTest" };
+    String[] expected = {"valueBound:unBoundTest", "valueUnBound:unBoundTest",
+        "valueBound:unBoundTest", "valueUnBound:unBoundTest"};
 
     HttpSession session = request.getSession(true);
     HSBindingListener hsbl1 = new HSBindingListener();

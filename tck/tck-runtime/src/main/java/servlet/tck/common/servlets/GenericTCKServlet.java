@@ -58,8 +58,8 @@ public abstract class GenericTCKServlet extends GenericServlet {
   /**
    * <code>TEST_ARGS</code> is an array of Classes used during reflection.
    */
-  private static final Class<?>[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class<?>[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   /**
    * <code>init</code> initializes the servlet.

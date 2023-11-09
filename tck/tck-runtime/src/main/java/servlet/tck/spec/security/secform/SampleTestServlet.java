@@ -43,7 +43,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @ServletSecurity(@HttpConstraint(EmptyRoleSemantic.DENY))
 @WebServlet(name = "SampleTestServletLogicalName", urlPatterns = {
-    "/SampleTest" })
+    "/SampleTest"})
 public class SampleTestServlet extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)

@@ -24,7 +24,7 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener(value = "ContextListener")
 public final class ContextListener implements ServletContextListener {
 
-  private ServletContext context = null;
+  private ServletContext context;
 
   public void contextDestroyed(ServletContextEvent event) {
     createAttribute("ContextDestroyed");

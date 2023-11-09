@@ -42,12 +42,12 @@ import jakarta.servlet.http.HttpServletResponse;
  * 
  */
 
-@DeclareRoles({ "Administrator", "Manager", "VP", "Employee" })
+@DeclareRoles({"Administrator", "Manager", "VP", "Employee"})
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
     @HttpMethodConstraint(value = "GET", rolesAllowed = "Employee"),
-    @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee") })
+    @HttpMethodConstraint(value = "POST", rolesAllowed = "Employee")})
 @WebServlet(name = "RoleReverseAnnoTestLogicalName", urlPatterns = {
-    "/RoleReverseAnnoTest" })
+    "/RoleReverseAnnoTest"})
 public class RoleReverseAnnoTestServlet extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)

@@ -18,6 +18,8 @@
 
 package jakarta.servlet;
 
+import java.util.EventObject;
+
 /**
  * This is the event class for notifications about changes to the servlet context of a web application.
  *
@@ -25,7 +27,7 @@ package jakarta.servlet;
  *
  * @since Servlet 2.3
  */
-public class ServletContextEvent extends java.util.EventObject {
+public class ServletContextEvent extends EventObject {
 
     private static final long serialVersionUID = -7501701636134222423L;
 

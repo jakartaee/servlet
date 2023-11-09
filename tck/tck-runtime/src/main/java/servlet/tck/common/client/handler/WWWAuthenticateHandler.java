@@ -73,7 +73,7 @@ import servlet.tck.common.request.Header;
  *   - Port value is in response
  * </PRE>
  */
-public class WWWAuthenticateHandler implements Handler {
+public final class WWWAuthenticateHandler implements Handler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WWWAuthenticateHandler.class);
 

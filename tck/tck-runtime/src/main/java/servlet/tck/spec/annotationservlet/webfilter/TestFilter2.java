@@ -37,14 +37,14 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.annotation.WebInitParam;
 
 @WebFilter(filterName = "filter2", dispatcherTypes = {
-    DispatcherType.FORWARD }, servletNames = { "servlet1" }, value = {
-        "/Servlet1" }, initParams = {
+    DispatcherType.FORWARD}, servletNames = {"servlet1"}, value = {
+        "/Servlet1"}, initParams = {
             @WebInitParam(name = "name1", value = "value1"),
-            @WebInitParam(name = "name2", value = "value2") })
+            @WebInitParam(name = "name2", value = "value2")})
 
 public final class TestFilter2 implements Filter {
 
-  private FilterConfig filterConfig = null;
+  private FilterConfig filterConfig;
 
   public void doFilter(ServletRequest request, ServletResponse response,
       FilterChain chain) throws IOException, ServletException {
@@ -56,7 +56,7 @@ public final class TestFilter2 implements Filter {
       StaticLog.add("FilterName=" + filterConfig.getFilterName());
 
       for (Enumeration names = filterConfig.getInitParameterNames(); names
-          .hasMoreElements();) {
+          .hasMoreElements(); ) {
         String name = (String) names.nextElement();
         StaticLog.add(
             "PName=" + name + " PVALUE=" + filterConfig.getInitParameter(name));

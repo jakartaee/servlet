@@ -39,16 +39,16 @@ public class TestListener implements ServletContextListener {
      * Negative tests for - addListener
      */
 
-    Boolean listener_test = false;
+    Boolean listenerTest = false;
     String LISTENER_TEST = "LISTENER_TEST";
 
     try {
       context.addListener(
           AddGenericEventListenerClass.class);
     } catch (IllegalArgumentException ex) {
-      listener_test = true;
+      listenerTest = true;
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
   }
 
   /**

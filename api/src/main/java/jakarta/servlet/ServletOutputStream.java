@@ -43,7 +43,7 @@ import java.util.ResourceBundle;
 public abstract class ServletOutputStream extends OutputStream {
 
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+  private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     /**
      *
@@ -114,8 +114,9 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      */
     public void print(String s) throws IOException {
-        if (s == null)
-            s = "null";
+      if (s == null) {
+        s = "null";
+      }
         int len = s.length();
         byte[] out = new byte[len];
         for (int i = 0; i < len; i++) {

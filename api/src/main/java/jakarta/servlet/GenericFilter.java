@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
@@ -43,7 +44,7 @@ import java.util.ResourceBundle;
  *
  * @since Servlet 4.0
  */
-public abstract class GenericFilter implements Filter, FilterConfig, java.io.Serializable {
+public abstract class GenericFilter implements Filter, FilterConfig, Serializable {
     private static final long serialVersionUID = 4060116231031076581L;
 
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";

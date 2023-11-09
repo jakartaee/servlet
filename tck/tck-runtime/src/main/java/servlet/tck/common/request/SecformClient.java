@@ -39,35 +39,35 @@ import static servlet.tck.util.WebUtil.toCookieValue;
 public class SecformClient extends BaseTckTest {
   // Configurable constants:
 
-  private String protocol = "http";
+  private final String protocol = "http";
 
-  private String hostname = null;
+  private String hostname;
 
-  private int portnum = 0;
+  private int portnum;
 
-  protected String pageBase = null;
+  protected String pageBase;
 
-  protected String pageSec = null;
+  protected String pageSec;
 
-  protected String pageGuest = null;
+  protected String pageGuest;
 
-  protected String pageRoleReverse = null;
+  protected String pageRoleReverse;
 
-  protected String pageUnprotected = null;
+  protected String pageUnprotected;
 
-  private String pageProgAuthen = null;
+  private String pageProgAuthen;
 
-  private String pageProgLogin = null;
+  private String pageProgLogin;
 
-  private String pageProgLogout = null;
+  private String pageProgLogout;
 
-  private String pageOne = null;
+  private String pageOne;
 
-  private String pageTwo = null;
+  private String pageTwo;
 
-  private String pageSample = null;
+  private String pageSample;
 
-  private String pageallRoles = null;
+  private String pageallRoles;
 
   // common for JSP and Servlet
   private String pageLogin = "/login.jsp";
@@ -76,54 +76,54 @@ public class SecformClient extends BaseTckTest {
 
   private String pageSecurityCheck = "/j_security_check";
 
-  private String pageJspBase = "/jsp_sec_secform_web";
+  private final String pageJspBase = "/jsp_sec_secform_web";
 
-  private String pageJspSec = pageJspBase + "/jspSec.jsp";
+  private final String pageJspSec = pageJspBase + "/jspSec.jsp";
 
-  private String pageJspUnprotected = pageJspBase + "/unprotected.jsp";
+  private final String pageJspUnprotected = pageJspBase + "/unprotected.jsp";
 
-  private String pageJspGuest = pageJspBase + "/guestPage.jsp";
+  private final String pageJspGuest = pageJspBase + "/guestPage.jsp";
 
-  private String pageJspRoleReverse = pageJspBase + "/rolereverse.jsp";
+  private final String pageJspRoleReverse = pageJspBase + "/rolereverse.jsp";
 
-  private String pageJspOne = pageJspBase + "/One.jsp";
+  private final String pageJspOne = pageJspBase + "/One.jsp";
 
-  private String pageJspTwo = pageJspBase + "/Two.jsp";
+  private final String pageJspTwo = pageJspBase + "/Two.jsp";
 
-  private String pageJspSample = pageJspBase + "/Sample.jsp";
+  private final String pageJspSample = pageJspBase + "/Sample.jsp";
 
-  private String pageJspallRoles = pageJspBase + "/allRoles.jsp";
+  private final String pageJspallRoles = pageJspBase + "/allRoles.jsp";
 
-  private String pageServletBase = "/servlet_sec_secform_web";
+  private final String pageServletBase = "/servlet_sec_secform_web";
 
-  private String pageServletSec = pageServletBase + "/ServletSecTest";
+  private final String pageServletSec = pageServletBase + "/ServletSecTest";
 
-  private String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
+  private final String pageServletUnprotected = pageServletBase + "/UnProtectedTest";
 
-  private String pageServletProgLogin = pageServletBase
+  private final String pageServletProgLogin = pageServletBase
       + "/ServletProgrammaticLogin";
 
-  private String pageServletProgLogout = pageServletBase
+  private final String pageServletProgLogout = pageServletBase
       + "/ServletProgrammaticLogout";
 
-  private String pageServletProgAuthen = pageServletBase
+  private final String pageServletProgAuthen = pageServletBase
       + "/ServletProgrammaticAuthen";
 
-  private String pageServletGuest = pageServletBase + "/GuestPageTest";
+  private final String pageServletGuest = pageServletBase + "/GuestPageTest";
 
-  private String pageServletRoleReverse = pageServletBase + "/RoleReverseTest";
+  private final String pageServletRoleReverse = pageServletBase + "/RoleReverseTest";
 
-  private String pageServletOne = pageServletBase + "/OneTest";
+  private final String pageServletOne = pageServletBase + "/OneTest";
 
-  private String pageServletTwo = pageServletBase + "/TwoTest";
+  private final String pageServletTwo = pageServletBase + "/TwoTest";
 
-  private String pageServletSample = pageServletBase + "/SampleTest";
+  private final String pageServletSample = pageServletBase + "/SampleTest";
 
-  private String pageServletallRoles = pageServletBase + "/allRolesTest";
+  private final String pageServletallRoles = pageServletBase + "/allRolesTest";
 
-  private String searchFor = "The user principal is: "; // (+username)
+  private final String searchFor = "The user principal is: "; // (+username)
 
-  private String searchForGetRemoteUser = "getRemoteUser(): "; // (+username)
+  private final String searchForGetRemoteUser = "getRemoteUser(): "; // (+username)
 
   private String username = "";
 
@@ -136,13 +136,13 @@ public class SecformClient extends BaseTckTest {
   private String tshome = "";
 
   // Constants:
-  private final String WebHostProp = "webServerHost";
+  private final String webHostProp = "webServerHost";
 
-  private final String WebPortProp = "webServerPort";
+  private final String webPortProp = "webServerPort";
 
-  private final String UserNameProp = "user";
+  private final String userNameProp = "user";
 
-  private final String PasswordProp = "password";
+  private final String passwordProp = "password";
 
   private final String unauthUserNameProp = "authuser";
 
@@ -150,18 +150,18 @@ public class SecformClient extends BaseTckTest {
 
   private final String tsHomeProp = "ts_home";
 
-  private String testDir = System.getProperty("user.dir");
+  private final String testDir = System.getProperty("user.dir");
 
   // Shared test variables:
-  private Properties props = null;
+  private Properties props;
 
-  private String request = null;
+  private String request;
 
-  private Response response = null;
+  private Response response;
 
-  private Response loginPageRequestResponse = null;
+  private Response loginPageRequestResponse;
 
-  private Response errorPageRequestResponse = null;
+  private Response errorPageRequestResponse;
 
   private Map<String,String> cookies = new HashMap<>();
   
@@ -174,10 +174,10 @@ public class SecformClient extends BaseTckTest {
     props = p;
 
     try {
-      hostname = p.getProperty(WebHostProp);
-      portnum = Integer.parseInt(p.getProperty(WebPortProp));
-      username = p.getProperty(UserNameProp);
-      password = p.getProperty(PasswordProp);
+      hostname = p.getProperty(webHostProp);
+      portnum = Integer.parseInt(p.getProperty(webPortProp));
+      username = p.getProperty(userNameProp);
+      password = p.getProperty(passwordProp);
       unauthUsername = p.getProperty(unauthUserNameProp);
       unauthPassword = p.getProperty(unauthPasswordProp);
       tshome = p.getProperty(tsHomeProp);
@@ -532,7 +532,7 @@ public class SecformClient extends BaseTckTest {
 
       logger.debug("response.content = {}", response.content);
 
-      if (response.statusToken.equals("302")) {
+      if ("302".equals(response.statusToken)) {
         // We should receive a redirection page
         if (response.location == null) {
           logger.error("No redirection to login page received.");
@@ -553,8 +553,8 @@ public class SecformClient extends BaseTckTest {
       }
 
       // Receive "403" or "404" error code for unauthorized access (forbidden).
-      if ((response.statusToken.equals("403"))
-          || (response.statusToken.equals("404"))) {
+      if (("403".equals(response.statusToken))
+          || ("404".equals(response.statusToken))) {
         logger.debug("Status Token {}, Received expected unauthorized access error", response.statusToken);
       } else {
         logger.error("Did not receive error for unauthorized access: {}", request);
@@ -850,8 +850,8 @@ public class SecformClient extends BaseTckTest {
       response = followRedirect(response, 8);
 
       // Receive "404" or "403" error code.
-      if (response.statusToken.equals("404")
-          || response.statusToken.equals("403")) {
+      if ("404".equals(response.statusToken)
+          || "403".equals(response.statusToken)) {
         logMsg("Status Token " + response.statusToken);
         logMsg("Received expected error code");
       } else {
@@ -872,8 +872,8 @@ public class SecformClient extends BaseTckTest {
       response = followRedirect(response, 8);
 
       // Receive "404" or "403" error code.
-      if (response.statusToken.equals("404")
-          || response.statusToken.equals("403")) {
+      if ("404".equals(response.statusToken)
+          || "403".equals(response.statusToken)) {
         logMsg("Status Token " + response.statusToken);
         logMsg("Received expected error code");
       } else {
@@ -894,8 +894,8 @@ public class SecformClient extends BaseTckTest {
       response = followRedirect(response, 8);
 
       // Receive "404" or "403" error code.
-      if (response.statusToken.equals("404")
-          || response.statusToken.equals("403")) {
+      if ("404".equals(response.statusToken)
+          || "403".equals(response.statusToken)) {
         logMsg("Status Token " + response.statusToken);
         logMsg("Received expected error code");
       } else {
@@ -916,8 +916,8 @@ public class SecformClient extends BaseTckTest {
       response = followRedirect(response, 8);
 
       // Receive "404" or "403" error code.
-      if (response.statusToken.equals("404")
-          || response.statusToken.equals("403")) {
+      if ("404".equals(response.statusToken)
+          || "403".equals(response.statusToken)) {
         logMsg("Status Token " + response.statusToken);
         logMsg("Received expected error code");
       } else {
@@ -1600,7 +1600,7 @@ public class SecformClient extends BaseTckTest {
 
       logger.trace("response.content = {} {}", System.lineSeparator(), response.content);
 
-      if (!response.statusToken.equals("200")) {
+      if (!"200".equals(response.statusToken)) {
         logErr(
             "ERROR:  not able to do Programmatic Login in: " + pageProgLogin);
         throw new Exception("test16 failed.");
@@ -1748,7 +1748,7 @@ public class SecformClient extends BaseTckTest {
       // Call followRedirect() to make sure we receive the required page
       logger.trace("YYYYY: response.content = {}{}", System.lineSeparator(), response.content);
 
-      if (!response.statusToken.equals("200")) {
+      if (!"200".equals(response.statusToken)) {
         logErr(
             "ERROR:  not able to do Programmatic Login in: " + pageProgLogin);
         throw new Exception("test18 failed.");
@@ -1864,7 +1864,7 @@ public class SecformClient extends BaseTckTest {
       // TestUtil.logMsg("File Content: "+ fileContents);
 
       // If this is a post request, send post data:
-      if ((postData != null) && method.equalsIgnoreCase("PUT")) {
+      if ((postData != null) && "PUT".equalsIgnoreCase(method)) {
         String postString = WebUtil.encodeBase64(fileContents);
 
         // Skip a line:
@@ -1956,7 +1956,7 @@ public class SecformClient extends BaseTckTest {
     // if (response.statusToken=302)
     // then follow redirect to get the login page
 
-    if (response.statusToken.equals("302")) {
+    if ("302".equals(response.statusToken)) {
       // We should receive a redirection to the login page:
       if (response.location == null) {
         logErr("No redirection to login page received.");
@@ -2132,8 +2132,8 @@ public class SecformClient extends BaseTckTest {
 
     // if (response.statusToken=302)
     // send request to redirected URL
-    if ((response.statusToken.equals("301"))
-        || (response.statusToken.equals("302"))) {
+    if (("301".equals(response.statusToken))
+        || ("302".equals(response.statusToken))) {
       // We should receive a redirection page:
       if (response.location == null) {
         logErr("redirection URL : null");

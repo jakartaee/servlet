@@ -75,11 +75,11 @@ import servlet.tck.common.request.Header;
  *    conent-type
  * </PRE>
  */
-public class ContentTypeHandler implements Handler {
+public final class ContentTypeHandler implements Handler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ContentTypeHandler.class);
 
-  private static Handler handler = new ContentTypeHandler();
+  private static final Handler handler = new ContentTypeHandler();
 
   /**
    * Creates new ContentTypeHandler

@@ -81,7 +81,7 @@ public class PUTestServlet extends GenericServlet {
           "Throwing Permanent unavailable Exception ");
     } catch (Throwable t) {
       if (t instanceof UnavailableException) {
-        if (((UnavailableException) t).isPermanent() == true) {
+        if ( ((UnavailableException) t).isPermanent()) {
           passed = true;
         } else {
           passed = false;

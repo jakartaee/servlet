@@ -43,8 +43,8 @@ public class Header {
     @Override
     public String toString() {
         return "Header{"
-                + '\'' + name + '\'' +
-                ":" + String.join(",",values) +
-                '}';
+                + '\'' + name + '\''
+                + ":" + String.join(",", values)
+                + '}';
     }
 }

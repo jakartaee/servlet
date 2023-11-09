@@ -33,9 +33,9 @@ import java.net.InetAddress;
 
 public class ServletContext40Tests extends AbstractTckTest {
 
-    private WebUtil.Response response = null;
+    private WebUtil.Response response;
 
-    private String request = null;
+    private String request;
 
     /**
      * Deployment for the test

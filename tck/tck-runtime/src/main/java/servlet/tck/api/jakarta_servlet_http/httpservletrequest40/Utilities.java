@@ -18,14 +18,20 @@ package servlet.tck.api.jakarta_servlet_http.httpservletrequest40;
 
 import jakarta.servlet.http.HttpServletMapping;
 
-public class Utilities {
+public final class Utilities {
 
   public static String toString(HttpServletMapping mapping) {
     StringBuilder sb = new StringBuilder();
-    sb.append("matchValue=" + mapping.getMatchValue())
-        .append(", pattern=" + mapping.getPattern())
-        .append(", servletName=" + mapping.getServletName())
-        .append(", mappingMatch=" + mapping.getMappingMatch());
+    sb.append("matchValue=").append(mapping.getMatchValue())
+        .append(", pattern=")
+        .append(mapping.getPattern())
+        .append(", servletName=")
+        .append(mapping.getServletName())
+        .append(", mappingMatch=")
+        .append(mapping.getMappingMatch());
     return sb.toString();
+  }
+
+  private Utilities() {
   }
 }

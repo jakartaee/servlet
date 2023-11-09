@@ -45,7 +45,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.PERMIT), httpMethodConstraints = {
     @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator"),
     @HttpMethodConstraint(value = "POST", rolesAllowed = "Administrator"), })
-@WebServlet(name = "PartialDDServlet", urlPatterns = { "/PartialDDServlet" })
+@WebServlet(name = "PartialDDServlet", urlPatterns = {"/PartialDDServlet"})
 public class PartialDDServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -46,31 +46,31 @@ public class AnnotationsTests extends BaseTckTest {
   private static final String REMOTE_USER_SEARCH = "getRemoteUser(): "; // (+username)
 
   // fields:
-  private String pageDeny = null;
+  private String pageDeny;
 
-  private String pageSec = null;
+  private String pageSec;
 
-  private String pageGuest = null;
+  private String pageGuest;
 
-  private String pageUnprotected = null;
+  private String pageUnprotected;
 
-  private String pageTrans = null;
+  private String pageTrans;
 
-  private String pagePartial = null;
+  private String pagePartial;
 
-  private String username = null;
+  private String username;
 
-  private String password = null;
+  private String password;
 
-  private String unauthUsername = null;
+  private String unauthUsername;
 
-  private String unauthPassword = null;
+  private String unauthPassword;
 
-  private String realm = null;
+  private String realm;
 
-  private WebUtil.Response response = null;
+  private WebUtil.Response response;
 
-  private String request = null;
+  private String request;
 
   /**
    * Deployment for the test

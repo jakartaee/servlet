@@ -30,7 +30,7 @@ public class TrailerTestServlet extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     Writer writer = resp.getWriter();
-    if (!req.getProtocol().equals("HTTP/1.0")) {
+    if (!"HTTP/1.0".equals(req.getProtocol())) {
       resp.setHeader("Transfer-Encoding", "chunked");
     }
 

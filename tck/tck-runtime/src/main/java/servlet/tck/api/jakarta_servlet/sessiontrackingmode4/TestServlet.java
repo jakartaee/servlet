@@ -36,12 +36,12 @@ public class TestServlet extends GenericTCKServlet {
   public void setSessionTrackingModes7(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     boolean passed = true;
-    String expected_status = "Expected IllegalArgumentException thrown.";
+    String expectedStatus = "Expected IllegalArgumentException thrown.";
     PrintWriter pw = response.getWriter();
     ServletConfig config = this.getServletConfig();
     ServletContext context = config.getServletContext();
     String status = (String) context.getAttribute("TCK_TEST_STATUS");
-    if (!expected_status.equals(status)) {
+    if (!expectedStatus.equals(status)) {
       passed = false;
     }
 

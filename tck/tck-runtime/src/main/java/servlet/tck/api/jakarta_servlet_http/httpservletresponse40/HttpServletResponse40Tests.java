@@ -49,9 +49,9 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
             .setWebXML(HttpServletResponse40Tests.class.getResource("servlet_jsh_httpservletresponse40_web.xml"));
   }
 
-  private WebUtil.Response response = null;
+  private WebUtil.Response response;
 
-  private String request = null;
+  private String request;
 
   /*
    * @testName: TrailerTestWithHTTP10
@@ -118,14 +118,14 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
       throw new Exception("TrailerTest failed.");
     }
     int lastChunkSize = Integer.parseInt(ss[1], 16);
-    if (lastChunkSize != 0 || !ss[0].trim().equals("myTrailer:foo")) {
-      logger.error("The current getTrailerFields is " + ss[0].trim() +
-          ", But expected getTrailerFields should be myTrailer:foo");
+    if (lastChunkSize != 0 || !"myTrailer:foo".equals(ss[0].trim())) {
+      logger.error("The current getTrailerFields is " + ss[0].trim()
+          + ", But expected getTrailerFields should be myTrailer:foo");
       throw new Exception("TrailerTest failed.");
     }
     String[] trailer = ss[2].split(":");
-    if (trailer.length != 2 || !trailer[0].trim().equals("myTrailer")
-        || !trailer[1].trim().equals("foo")) {
+    if (trailer.length != 2 || !"myTrailer".equals(trailer[0].trim())
+        || !"foo".equals(trailer[1].trim())) {
       logger.error("Expected tailer should be myTrailer:foo");
       throw new Exception("TrailerTest failed.");
     }
@@ -147,10 +147,10 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
       socket.setKeepAlive(true);
       String path = url.getPath();
       StringBuilder outputBuffer = new StringBuilder();
-      outputBuffer.append("POST " + path + " " + protocol + DELIMITER);
-      outputBuffer.append("Host: " + url.getHost() + DELIMITER);
-      outputBuffer.append("Content-Type: text/plain" + DELIMITER);
-      outputBuffer.append("Content-Length: 3" + DELIMITER);
+      outputBuffer.append("POST ").append(path).append(" ").append(protocol).append(DELIMITER);
+      outputBuffer.append("Host: ").append(url.getHost()).append(DELIMITER);
+      outputBuffer.append("Content-Type: text/plain").append(DELIMITER);
+      outputBuffer.append("Content-Length: 3").append(DELIMITER);
       outputBuffer.append(DELIMITER);
       outputBuffer.append("ABC");
 

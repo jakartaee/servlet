@@ -49,7 +49,7 @@ public class SecFormTests extends SecformClient {
     }
 
     // Shared test variables:
-    private Properties props = null;
+    private Properties props;
 
     // Note: To share the commoncode between servlet and JSP,
     // the commoncode is kept under
@@ -111,8 +111,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
         try {
             super.test1();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -150,8 +148,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
         try {
             super.test2();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -202,8 +198,6 @@ public class SecFormTests extends SecformClient {
         pageGuest = "/servlet_sec_secform_web/GuestPageAnnoTest";
         try {
             super.test3();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageGuest to orig value
             pageGuest = tempPageGuest;
@@ -251,8 +245,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
         try {
             super.test4();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -302,8 +294,6 @@ public class SecFormTests extends SecformClient {
         pageUnprotected = "/servlet_sec_secform_web/UnProtectedAnnoTest";
         try {
             super.test5();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset to orig value
             pageUnprotected = tempPageUnprotected;
@@ -368,8 +358,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/RoleReverseAnnoTest";
         try {
             super.test6();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset tempPageReverse to orig value
             pageRoleReverse = tempPageReverse;
@@ -539,8 +527,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
         try {
             super.test14();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;
@@ -596,8 +582,6 @@ public class SecFormTests extends SecformClient {
         pageSec = "/servlet_sec_secform_web/ServletSecAnnoTest";
         try {
             super.test15();
-        } catch (Exception e) {
-            throw e;
         } finally {
             // reset pageSec to orig value
             pageSec = tempPageSec;

@@ -43,11 +43,11 @@ import jakarta.servlet.http.HttpServletResponse;
  * and sets POST accessible by role=Manager(javajoe)
  */
 @ServletSecurity(value = @HttpConstraint(rolesAllowed = {
-    "Administrator" }), httpMethodConstraints = {
+    "Administrator"}), httpMethodConstraints = {
         @HttpMethodConstraint(value = "POST", emptyRoleSemantic = EmptyRoleSemantic.DENY),
-        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY) })
+        @HttpMethodConstraint(value = "GET", emptyRoleSemantic = EmptyRoleSemantic.DENY)})
 @WebServlet(name = "ServletSecTestLogicalName", urlPatterns = {
-    "/ServletSecTest" })
+    "/ServletSecTest"})
 public class ServletSecTestServlet extends HttpServlet {
 
   public void service(HttpServletRequest request, HttpServletResponse response)
@@ -58,7 +58,7 @@ public class ServletSecTestServlet extends HttpServlet {
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
     System.out
@@ -66,7 +66,7 @@ public class ServletSecTestServlet extends HttpServlet {
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
     System.out.println("Inside  ServletSecTestServlet.doGet() ....." + "<BR>");

@@ -50,30 +50,30 @@ public class HttpResponse {
   /**
    * Charset encoding returned in the response
    */
-  private String _encoding = DEFAULT_ENCODING;
+  private final String encoding = DEFAULT_ENCODING;
 
   /**
    * The response body. Initialized after first call to one of the
    * getResponseBody methods and cached for subsequent calls.
    */
-  private String _responseBody = null;
+  private String responseBody;
 
   /**
    * Host name used for processing request
    */
-  private String _host;
+  private final String _host;
 
   /**
    * Port number used for processing request
    */
-  private int _port;
+  private final int _port;
 
   /**
    * Issecure
    */
-  private boolean _isSecure;
+  private final boolean _isSecure;
 
-  private java.net.http.HttpResponse<String> response;
+  private final java.net.http.HttpResponse<String> response;
 
   /** Creates new HttpResponse */
   public HttpResponse(String host, int port, boolean isSecure, String method, java.net.http.HttpResponse<String> response) {
@@ -207,10 +207,10 @@ public class HttpResponse {
       int idx = headerVal.indexOf(";charset=");
       if (idx > -1) {
         // content encoding included in response
-        _encoding = headerVal.substring(idx + 9);
+        encoding = headerVal.substring(idx + 9);
       }
     }
-    return _encoding;
+    return encoding;
   }
 
   /**
@@ -280,10 +280,10 @@ public class HttpResponse {
    * @return encoded response String.
    */
   private String getEncodedResponse() throws IOException {
-    if (_responseBody == null) {
-      _responseBody = response.body();
+    if (responseBody == null) {
+      responseBody = response.body();
     }
-    return _responseBody;
+    return responseBody;
   }
 
   public static String getEncodedStringFromStream(InputStream in, String enc)

@@ -21,6 +21,7 @@ package jakarta.servlet.http;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequestWrapper;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 /**
@@ -177,7 +178,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * The default behavior of this method is to return getUserPrincipal() on the wrapped request object.
      */
     @Override
-    public java.security.Principal getUserPrincipal() {
+    public Principal getUserPrincipal() {
         return this._getHttpServletRequest().getUserPrincipal();
     }
 

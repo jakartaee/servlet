@@ -25,9 +25,9 @@ import jakarta.servlet.WriteListener;
 
 public class TestListener implements WriteListener {
 
-  private ServletOutputStream output = null;
+  private final ServletOutputStream output;
 
-  private AsyncContext ac = null;
+  private final AsyncContext ac;
 
   TestListener(ServletOutputStream sos, AsyncContext c) {
     output = sos;

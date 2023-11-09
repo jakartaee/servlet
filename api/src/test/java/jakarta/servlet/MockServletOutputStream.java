@@ -49,8 +49,9 @@ public class MockServletOutputStream extends ServletOutputStream {
     }
 
     public void reset() {
-        if (out instanceof ByteArrayOutputStream)
-            ((ByteArrayOutputStream) out).reset();
+      if (out instanceof ByteArrayOutputStream) {
+        ((ByteArrayOutputStream) out).reset();
+      }
     }
 
     @Override

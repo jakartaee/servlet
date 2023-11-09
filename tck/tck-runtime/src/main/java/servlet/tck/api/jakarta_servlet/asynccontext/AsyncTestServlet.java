@@ -369,7 +369,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -395,7 +395,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -425,7 +425,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -454,7 +454,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -483,7 +483,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -508,7 +508,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -533,7 +533,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -562,7 +562,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -590,7 +590,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -618,7 +618,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
                 .println("getRequest() didnot work as expected.  Test FAILED.");
           }
           ac.complete();
-        } catch (java.io.IOException ioe) {
+        } catch (IOException ioe) {
           ioe.printStackTrace();
         }
       }
@@ -641,7 +641,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
   // Negative test for AsyncContext.createListener
   public void asyncListenerTest1(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
-    long timeout_set = 5015L;
+    long timeoutSet = 5015L;
 
     AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());
@@ -697,7 +697,7 @@ public class AsyncTestServlet extends GenericTCKServlet {
   // Negative test for AsyncContext.createListener
   public void asyncListenerTest6(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
-    long timeout_set = 5015L;
+    long timeoutSet = 5015L;
 
     final AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());
@@ -749,21 +749,21 @@ public class AsyncTestServlet extends GenericTCKServlet {
   public void timeOutTest(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
 
-    long timeout_set = 5015L;
-    long timeout_actual;
+    long timeoutSet = 5015L;
+    long timeoutActual;
 
     AsyncContext ac = request.startAsync();
     response.getWriter().println("Default timeout: " + ac.getTimeout());
 
-    ac.setTimeout(timeout_set);
-    timeout_actual = ac.getTimeout();
+    ac.setTimeout(timeoutSet);
+    timeoutActual = ac.getTimeout();
 
-    if (timeout_actual == timeout_set) {
+    if (timeoutActual == timeoutSet) {
       response.getWriter().println("Test PASSED.");
     } else {
       response.getWriter()
-          .println("Test FAILED.  setTimeout to " + timeout_set);
-      response.getWriter().println("getTimeout returned " + timeout_actual);
+          .println("Test FAILED.  setTimeout to " + timeoutSet);
+      response.getWriter().println("getTimeout returned " + timeoutActual);
     }
 
     ac.complete();
@@ -773,19 +773,19 @@ public class AsyncTestServlet extends GenericTCKServlet {
   public void timeOutTest1(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
 
-    long timeout_set = 0L;
-    long timeout_actual;
+    long timeoutSet = 0L;
+    long timeoutActual;
 
     AsyncContext ac = request.startAsync();
-    ac.setTimeout(timeout_set);
-    timeout_actual = ac.getTimeout();
+    ac.setTimeout(timeoutSet);
+    timeoutActual = ac.getTimeout();
 
-    if (timeout_actual == timeout_set) {
+    if (timeoutActual == timeoutSet) {
       response.getWriter().println("Test PASSED.");
     } else {
       response.getWriter()
-          .println("Test FAILED.  setTimeout to " + timeout_set);
-      response.getWriter().println("getTimeout returned " + timeout_actual);
+          .println("Test FAILED.  setTimeout to " + timeoutSet);
+      response.getWriter().println("getTimeout returned " + timeoutActual);
     }
 
     ac.complete();
@@ -795,19 +795,19 @@ public class AsyncTestServlet extends GenericTCKServlet {
   // AsyncContext.addListener(AsyncListener), and timeout
   public void timeOutTest2(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    long timeout_default;
+    long timeoutDefault;
 
     AsyncContext ac = request.startAsync();
-    timeout_default = ac.getTimeout();
-    response.getWriter().println("Default timeout: " + timeout_default);
+    timeoutDefault = ac.getTimeout();
+    response.getWriter().println("Default timeout: " + timeoutDefault);
     AsyncListener acl2 = ac.createListener(
         ACListener2.class);
     ac.addListener(acl2);
 
-    ac.setTimeout(timeout_default);
+    ac.setTimeout(timeoutDefault);
 
     try {
-      Thread.sleep(timeout_default * 2);
+      Thread.sleep(timeoutDefault * 2);
     } catch (InterruptedException ex) {
       response.getWriter()
           .println("Test FAILED with exception: " + ex.getMessage());
@@ -818,11 +818,11 @@ public class AsyncTestServlet extends GenericTCKServlet {
   // AsyncContext.addListener(AsyncListener), and AsyncContext.setTimeout(0L)
   public void timeOutTest3(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    long timeout_default;
+    long timeoutDefault;
 
     AsyncContext ac = request.startAsync();
-    timeout_default = ac.getTimeout();
-    response.getWriter().println("Default timeout: " + timeout_default);
+    timeoutDefault = ac.getTimeout();
+    response.getWriter().println("Default timeout: " + timeoutDefault);
     AsyncListener acl = ac.createListener(
         ACListener.class);
     ac.addListener(acl);
@@ -830,8 +830,8 @@ public class AsyncTestServlet extends GenericTCKServlet {
     ac.setTimeout(0L);
 
     try {
-      if (timeout_default * 5 < 3000000L) {
-        Thread.sleep(timeout_default * 5);
+      if (timeoutDefault * 5 < 3000000L) {
+        Thread.sleep(timeoutDefault * 5);
       } else {
         Thread.sleep(3000000L);
       }
@@ -846,17 +846,17 @@ public class AsyncTestServlet extends GenericTCKServlet {
   // AsyncContext.addListener(AsyncListener), and AsyncContext timeout
   public void timeOutTest4(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
-    long timeout_default;
+    long timeoutDefault;
 
     AsyncContext ac = request.startAsync();
-    timeout_default = ac.getTimeout();
-    response.getWriter().println("Default timeout: " + timeout_default);
+    timeoutDefault = ac.getTimeout();
+    response.getWriter().println("Default timeout: " + timeoutDefault);
     AsyncListener acl2 = ac.createListener(
         ACListener2.class);
     ac.addListener(acl2);
 
     try {
-      Thread.sleep(timeout_default + 18000L);
+      Thread.sleep(timeoutDefault + 18000L);
     } catch (InterruptedException ex) {
       response.getWriter()
           .println("Test FAILED with exception: " + ex.getMessage());

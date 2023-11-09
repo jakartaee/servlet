@@ -38,8 +38,8 @@ public class WelcomeFilesTests extends AbstractTckTest {
     WebArchive webArchive =
             ShrinkWrap.create(WebArchive.class, "servlet_js_welcomefiles_web.war")
             .setWebXML(WelcomeFilesTests.class.getResource("servlet_js_welcomefiles_web.xml"));
-    Arrays.asList("foo/index.html","foo/default.jsp","default.jsp", "foo/order.jsp", "index.html", "catalog/default.jsp")
-            .forEach(s -> webArchive.addAsWebResource("spec/welcomefiles/" +s, s));
+    Arrays.asList("foo/index.html", "foo/default.jsp", "default.jsp", "foo/order.jsp", "index.html", "catalog/default.jsp")
+            .forEach(s -> webArchive.addAsWebResource("spec/welcomefiles/" + s, s));
     return webArchive;
   }
 

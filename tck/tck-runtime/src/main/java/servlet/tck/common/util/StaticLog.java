@@ -62,7 +62,7 @@ import java.util.List;
 
 public final class StaticLog {
 
-  private static List<String> al = new ArrayList<>();
+  private static final List<String> al = new ArrayList<>();
 
   public static void clear() {
     al.clear();
@@ -91,16 +91,18 @@ public final class StaticLog {
      */
     // Create a new list which will be returned so that the old list can be
     // cleared
-    ArrayList tmp = new ArrayList(al);
     /*
      * Object[] o1 = tmp.toArray(); for (int i = 0;i<o1.length;i++){
      * System.out.println("tmp - o1["+i+"]="+(String)o1[i]); }
      */
     // clear();
-    return tmp;
+    return new ArrayList(al);
   }
 
   public static List get() {
     return al;
+  }
+
+  private StaticLog() {
   }
 }

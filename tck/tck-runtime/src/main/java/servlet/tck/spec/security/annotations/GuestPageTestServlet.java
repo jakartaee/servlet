@@ -43,11 +43,11 @@ import jakarta.servlet.http.HttpServletResponse;
  * state that role Administrator (user=j2ee) can issue GET requests.  
  */
 
-@DeclareRoles({ "Administrator", "Manager", "Employee" })
+@DeclareRoles({"Administrator", "Manager", "Employee"})
 @ServletSecurity(value = @HttpConstraint(EmptyRoleSemantic.DENY), httpMethodConstraints = {
-    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator") })
+    @HttpMethodConstraint(value = "GET", rolesAllowed = "Administrator")})
 @WebServlet(name = "GuestPageTestLogicalName", urlPatterns = {
-    "/GuestPageTest" })
+    "/GuestPageTest"})
 public class GuestPageTestServlet extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)

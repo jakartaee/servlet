@@ -195,16 +195,16 @@ public class TestListener implements ServletContextListener {
     /*
      * Negative tests for - createServlet - createFilter - createListener
      */
-    Boolean servlet_test = false;
-    Boolean duplicatec_servlet_test = false;
-    Boolean duplicates_servlet_test = false;
-    Boolean filter_test = false;
-    Boolean duplicatec_filter_test = false;
-    Boolean duplicates_filter_test = false;
-    Boolean listener_test = false;
-    Boolean scc_listener_test = false;
-    Boolean scs_listener_test = false;
-    Boolean csc_listener_test = false;
+    Boolean servletTest = false;
+    Boolean duplicatecServletTest = false;
+    Boolean duplicatesServletTest = false;
+    Boolean filterTest = false;
+    Boolean duplicatecFilterTest = false;
+    Boolean duplicatesFilterTest = false;
+    Boolean listenerTest = false;
+    Boolean sccListenerTest = false;
+    Boolean scsListenerTest = false;
+    Boolean cscListenerTest = false;
     String SERVLET_TEST = "SERVLET_TEST";
     String DUPLICATEC_SERVLET_TEST = "DUPLICATEC_SERVLET_TEST";
     String DUPLICATES_SERVLET_TEST = "DUPLICATES_SERVLET_TEST";
@@ -220,31 +220,31 @@ public class TestListener implements ServletContextListener {
       Servlet badservlet = context.createServlet(
           BadServlet.class);
     } catch (ServletException ex) {
-      servlet_test = true;
+      servletTest = true;
     }
-    context.setInitParameter(SERVLET_TEST, servlet_test.toString());
+    context.setInitParameter(SERVLET_TEST, servletTest.toString());
 
     try {
       Filter badfilter = context.createFilter(
           BadFilter.class);
     } catch (ServletException ex) {
-      filter_test = true;
+      filterTest = true;
     }
-    context.setInitParameter(FILTER_TEST, filter_test.toString());
+    context.setInitParameter(FILTER_TEST, filterTest.toString());
 
     try {
       context.createListener(
           BadListener.class);
     } catch (ServletException ex) {
-      listener_test = true;
+      listenerTest = true;
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
 
     try {
       context.addListener(
           AddSCListenerClass.class);
     } catch (IllegalArgumentException ilex) {
-      scc_listener_test = true;
+      sccListenerTest = true;
       LOGGER.error(
           "Expected exception thrown adding Listener AddSCListenerClass: "
               + ilex.getMessage());
@@ -252,13 +252,13 @@ public class TestListener implements ServletContextListener {
       LOGGER.error(
           "Error adding Listener AddSCListenerClass: " + ex.getMessage());
     }
-    context.setInitParameter(SCC_LISTENER_TEST, scc_listener_test.toString());
+    context.setInitParameter(SCC_LISTENER_TEST, sccListenerTest.toString());
 
     try {
       context.addListener(
           "servlet.tck.api.jakarta_servlet.servletcontext30.AddSCListenerString");
     } catch (IllegalArgumentException ilex) {
-      scs_listener_test = true;
+      scsListenerTest = true;
       LOGGER.error(
           "Expected exception thrown adding Listener AddSCListenerString: "
               + ilex.getMessage());
@@ -266,14 +266,14 @@ public class TestListener implements ServletContextListener {
       LOGGER.error(
           "Error adding Listener AddSCListenerString: " + ex.getMessage());
     }
-    context.setInitParameter(SCS_LISTENER_TEST, scs_listener_test.toString());
+    context.setInitParameter(SCS_LISTENER_TEST, scsListenerTest.toString());
 
     try {
       EventListener csclistener = context.createListener(
           CreateSCListener.class);
       context.addListener(csclistener);
     } catch (IllegalArgumentException ilex) {
-      csc_listener_test = true;
+      cscListenerTest = true;
       LOGGER.error(
           "Expected exception thrown adding Listener CreateSCListener: "
               + ilex.getMessage());
@@ -281,7 +281,7 @@ public class TestListener implements ServletContextListener {
       LOGGER.error(
           "Error adding Listener AddSCListenerClass: " + ex.getMessage());
     }
-    context.setInitParameter(CSC_LISTENER_TEST, csc_listener_test.toString());
+    context.setInitParameter(CSC_LISTENER_TEST, cscListenerTest.toString());
 
     /*
      * Add Servlet DuplicateServletClass
@@ -289,34 +289,34 @@ public class TestListener implements ServletContextListener {
     ServletRegistration srdClass = context.addServlet(addServletName5,
         DuplicateServletClass.class);
     if (srdClass == null) {
-      duplicatec_servlet_test = true;
+      duplicatecServletTest = true;
     }
     context.setInitParameter(DUPLICATEC_SERVLET_TEST,
-        duplicatec_servlet_test.toString());
+        duplicatecServletTest.toString());
 
     ServletRegistration srdString = context.addServlet(addServletName6,
         "servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateServletString");
     if (srdString == null) {
-      duplicates_servlet_test = true;
+      duplicatesServletTest = true;
     }
     context.setInitParameter(DUPLICATES_SERVLET_TEST,
-        duplicates_servlet_test.toString());
+        duplicatesServletTest.toString());
 
     FilterRegistration frdClass = context.addFilter(addFilterName6,
         DuplicateFilterClass.class);
     if (frdClass == null) {
-      duplicatec_filter_test = true;
+      duplicatecFilterTest = true;
     }
     context.setInitParameter(DUPLICATEC_FILTER_TEST,
-        duplicatec_filter_test.toString());
+        duplicatecFilterTest.toString());
 
     FilterRegistration frdString = context.addFilter(addFilterName6,
         "servlet.tck.api.jakarta_servlet.servletcontext30.DuplicateFilterString");
     if (frdString == null) {
-      duplicates_filter_test = true;
+      duplicatesFilterTest = true;
     }
     context.setInitParameter(DUPLICATES_FILTER_TEST,
-        duplicates_filter_test.toString());
+        duplicatesFilterTest.toString());
 
   }
 

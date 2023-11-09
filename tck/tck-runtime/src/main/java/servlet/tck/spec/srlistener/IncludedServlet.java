@@ -36,15 +36,15 @@ public class IncludedServlet extends HttpServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { HttpServletRequest.class,
-      HttpServletResponse.class };
+  private static final Class[] TEST_ARGS = {HttpServletRequest.class,
+      HttpServletResponse.class};
 
   public void service(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
     String test = req.getParameter(TEST_HEADER);
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
+      method.invoke(this, new Object[]{req, res});
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {

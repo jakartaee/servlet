@@ -75,7 +75,7 @@ public class DenyAllServlet extends HttpServlet {
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, java.io.IOException {
+      throws ServletException, IOException {
 
     PrintWriter out = response.getWriter();
 

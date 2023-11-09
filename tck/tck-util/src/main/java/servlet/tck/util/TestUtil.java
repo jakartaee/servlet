@@ -81,4 +81,7 @@ public final class TestUtil {
             .collect(Collectors.joining("&"));
   }
 
+  private TestUtil() {
+  }
+
 }

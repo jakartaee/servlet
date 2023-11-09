@@ -73,7 +73,7 @@ public class HttpExchange {
   /**
    * Target web container host
    */
-  private String host;
+  private final String host;
 
   /**
    * Target web container port
@@ -83,12 +83,12 @@ public class HttpExchange {
   /**
    * Is the request going over SSL
    */
-  private boolean _isSecure = false;
+  private boolean isSecure;
 
   /**
    * Original request line for this request.
    */
-  private String _requestLine = null;
+  private final String _requestLine;
 
   /**
    * Authentication type for current request
@@ -98,14 +98,14 @@ public class HttpExchange {
   /**
    * Flag to determine if session tracking will be used or not.
    */
-  private boolean _useCookies = false;
+  private boolean useCookies;
 
   /**
    * FollowRedirects
    */
-  private boolean _redirect = false;
+  private boolean redirect;
 
-  List<HttpHeaders> headers = null;
+  List<HttpHeaders> headers;
 
   private boolean state;
 
@@ -155,7 +155,7 @@ public class HttpExchange {
     this.port = port;
 
     if (port == DEFAULT_SSL_PORT) {
-      _isSecure = true;
+      isSecure = true;
     }
 
     // If we got this far, the request line is in the proper
@@ -203,7 +203,7 @@ public class HttpExchange {
    * @return boolean whether Request is using SSL or not.
    */
   public boolean isSecureRequest() {
-    return _isSecure;
+    return isSecure;
   }
 
   /**
@@ -213,7 +213,7 @@ public class HttpExchange {
    *          - whether the Request uses SSL or not.
    */
   public void setSecureRequest(boolean secure) {
-    _isSecure = secure;
+    isSecure = secure;
   }
 
   /**
@@ -345,7 +345,7 @@ public class HttpExchange {
 
     CookieManager cookieManager = new CookieManager();
 
-    HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect?HttpClient.Redirect.ALWAYS:HttpClient.Redirect.NEVER)
+    HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect ? HttpClient.Redirect.ALWAYS : HttpClient.Redirect.NEVER)
             .version(HttpClient.Version.HTTP_1_1)
             .cookieHandler(cookieManager);
 
@@ -398,8 +398,8 @@ public class HttpExchange {
         httpRequestBuilder.method("HEAD", HttpRequest.BodyPublishers.noBody());
         break;
       case "POST":
-        httpRequestBuilder.POST(this.content == null ?
-                HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
+        httpRequestBuilder.POST(this.content == null
+                ? HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
         break;
       default:
         throw new RuntimeException("unknow method " + this.method);
@@ -416,12 +416,12 @@ public class HttpExchange {
     }
 
     for(Map.Entry<String, List<String>> entry : requestHeaders.entrySet()) {
-      entry.getValue().forEach(s -> httpRequestBuilder.header(entry.getKey(),s));
+      entry.getValue().forEach(s -> httpRequestBuilder.header(entry.getKey(), s));
     }
 
     try {
       java.net.http.HttpResponse<String> response = httpClient.send(httpRequestBuilder.build(), java.net.http.HttpResponse.BodyHandlers.ofString());
-      return new HttpResponse(host, port, _isSecure, this.method, response);
+      return new HttpResponse(host, port, isSecure, this.method, response);
     } catch (Exception e) {
       throw new IOException(e.getMessage(), e);
     }
@@ -468,7 +468,10 @@ public class HttpExchange {
     String cookieLine = cookieHeader.substring(cookieHeader.indexOf(':') + 1)
         .trim();
     StringTokenizer st = new StringTokenizer(cookieLine, " ;");
-    String cookieName = "", cookieValue = "", cookieDomain = "", cookiePath = "";
+    String cookieName = "";
+    String cookieValue = "";
+    String cookieDomain = "";
+    String cookiePath = "";
     int cookieVersion = 1;
 
     if (!cookieLine.contains("$Version")) {

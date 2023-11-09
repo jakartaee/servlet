@@ -98,7 +98,7 @@ public class TestServlet extends GenericTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:addTest,Attribute1" };
+    String[] expected = {"AttributeAdded:addTest,Attribute1"};
 
     // the test
     ServletContext context = getServletContext();
@@ -122,8 +122,8 @@ public class TestServlet extends GenericTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:removeTest,Attribute1",
-        "AttributeRemoved:removeTest,Attribute1" };
+    String[] expected = {"AttributeAdded:removeTest,Attribute1",
+        "AttributeRemoved:removeTest,Attribute1"};
 
     // the test
     ServletContext context = getServletContext();
@@ -147,8 +147,8 @@ public class TestServlet extends GenericTCKServlet {
 
     StaticLog.clear();
 
-    String[] expected = { "AttributeAdded:replacedTest,Attribute1",
-        "AttributeReplaced:replacedTest,Attribute1" };
+    String[] expected = {"AttributeAdded:replacedTest,Attribute1",
+        "AttributeReplaced:replacedTest,Attribute1"};
 
     // the test
     ServletContext context = getServletContext();

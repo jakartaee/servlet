@@ -44,13 +44,13 @@ public class TestServlet extends GenericTCKServlet {
 
     ServletContext context = request.getServletContext();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.COOKIE);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       pw.println("No expected IllegalStateException throw when "
           + "setSessionTrackingModes is called");
@@ -77,13 +77,13 @@ public class TestServlet extends GenericTCKServlet {
 
     ServletContext context = request.getServletContext();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.URL);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       pw.println("No expected IllegalStateException throw when "
           + "setSessionTrackingModes is called");
@@ -110,13 +110,13 @@ public class TestServlet extends GenericTCKServlet {
 
     ServletContext context = request.getServletContext();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.SSL);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       pw.println("No expected IllegalStateException throw when "
           + "setSessionTrackingModes is called");
@@ -143,14 +143,14 @@ public class TestServlet extends GenericTCKServlet {
 
     ServletContext context = request.getServletContext();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.COOKIE);
     complete.add(SessionTrackingMode.URL);
 
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       pw.println("No expected IllegalStateException throw when "
           + "setSessionTrackingModes is called");

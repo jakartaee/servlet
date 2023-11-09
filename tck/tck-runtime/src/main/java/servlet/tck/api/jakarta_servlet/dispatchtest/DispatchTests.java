@@ -63,7 +63,7 @@ public class DispatchTests extends AbstractTckTest {
             .addClasses(DispatchTests10.class, DispatchTests11.class, DispatchTests12.class,
                         DispatchTests13.class, DispatchTests14.class, DispatchTests15.class,
                         DispatchTests16.class, DispatchTests17.class, DispatchTests18.class,
-                        DispatchTests19.class,DispatchTests20.class,
+                        DispatchTests19.class, DispatchTests20.class,
                         DispatchTestServlet.class)
             .setWebXML(DispatchTests.class.getResource("servlet_js_dispatchtest1_web.xml"));
   }

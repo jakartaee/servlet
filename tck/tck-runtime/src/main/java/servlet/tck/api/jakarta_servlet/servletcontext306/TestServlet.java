@@ -37,17 +37,17 @@ import servlet.tck.api.jakarta_servlet.servletcontext30.CreateServlet;
 
 public class TestServlet extends GenericTCKServlet {
 
-  final static String addServletName1 = "AddServletString";
+  static final String addServletName1 = "AddServletString";
 
-  final static String addServletName2 = "AddServletClass";
+  static final String addServletName2 = "AddServletClass";
 
-  final static String addServletName3 = "CreateServlet";
+  static final String addServletName3 = "CreateServlet";
 
-  final static String addFilterName1 = "AddFilterString";
+  static final String addFilterName1 = "AddFilterString";
 
-  final static String addFilterName2 = "AddFilterClass";
+  static final String addFilterName2 = "AddFilterClass";
 
-  final static String addFilterName3 = "CreateFilter";
+  static final String addFilterName3 = "CreateFilter";
 
   public void addServletStringTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {

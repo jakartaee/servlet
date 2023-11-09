@@ -39,9 +39,9 @@ import java.util.stream.Stream;
 /**
  * A set of useful utility methods to help perform test functions.
  */
-public class ServletTestUtil {
+public final class ServletTestUtil {
 
-  private static Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
 
   /**
    * Private as this class contains only public static methods.
@@ -138,7 +138,7 @@ public class ServletTestUtil {
         break;
       }
       LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
-      if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
+      if ((Arrays.binarySearch(values, val) < 0) && enforceSizes) {
         LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
       }
@@ -190,7 +190,7 @@ public class ServletTestUtil {
         foundValues.add(val);
       }
       LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
-      if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
+      if ((Arrays.binarySearch(values, val) < 0) && enforceSizes) {
         LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
         valuesFound = false;
         continue;
@@ -210,12 +210,12 @@ public class ServletTestUtil {
   }
 
   public static boolean compareString(String expected, String actual) {
-    String[] list_expected = expected.split("[|]");
+    String[] listExpected = expected.split("[|]");
     boolean found = true;
-    for (int i = 0, n = list_expected.length, startIdx = 0, bodyLength = actual
+    for (int i = 0, n = listExpected.length, startIdx = 0, bodyLength = actual
         .length(); i < n; i++) {
 
-      String search = list_expected[i];
+      String search = listExpected[i];
       if (startIdx >= bodyLength) {
         startIdx = bodyLength;
       }
@@ -224,7 +224,7 @@ public class ServletTestUtil {
           startIdx);
 
       LOGGER.debug("[ServletTestUtil] Scanning response for search string: '{}' starting at index " + "location: {}",
-              search , startIdx);
+              search, startIdx);
       if (searchIdx < 0) {
         found = false;
         StringBuffer sb = new StringBuffer(255);
@@ -257,12 +257,12 @@ public class ServletTestUtil {
    * @return - a String based off the values in the array
    */
   public static String getAsString(Object[] sArray) {
-    return sArray == null ? null : Stream.of(sArray).map(Object::toString).collect(Collectors.joining(",","[","]"));
+    return sArray == null ? null : Stream.of(sArray).map(Object::toString).collect(Collectors.joining(",", "[", "]"));
 
   }
 
   public static String getAsString(List<String> al) {
-    return al == null ? null : al.stream().collect(Collectors.joining(",","[","]"));
+    return al == null ? null : al.stream().collect(Collectors.joining(",", "[", "]"));
 
   }
 
@@ -311,7 +311,7 @@ public class ServletTestUtil {
   public static void printResult(PrintWriter pw, String s) {
 
     // if string is null or empty, then it passed
-    if (s == null || s.equals("")) {
+    if (s == null || "".equals(s)) {
       pw.println(Data.PASSED);
     } else {
       pw.println(Data.FAILED + ": " + s);

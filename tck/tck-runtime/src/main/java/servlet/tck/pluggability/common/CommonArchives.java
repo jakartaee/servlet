@@ -6,7 +6,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommonArchives {
+public final class CommonArchives {
     private CommonArchives() {
         // nothing
     }

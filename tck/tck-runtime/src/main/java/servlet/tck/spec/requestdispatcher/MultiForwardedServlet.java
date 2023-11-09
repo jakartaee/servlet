@@ -33,8 +33,8 @@ public class MultiForwardedServlet extends GenericTCKServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   private static final String TEST1_HEADER = "TestName";
 

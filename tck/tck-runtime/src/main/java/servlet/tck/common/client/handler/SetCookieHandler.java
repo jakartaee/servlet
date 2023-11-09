@@ -26,7 +26,7 @@ import servlet.tck.common.request.Header;
 
 import java.util.StringTokenizer;
 
-public class SetCookieHandler implements Handler {
+public final class SetCookieHandler implements Handler {
   private static final Logger LOGGER = LoggerFactory.getLogger(SetCookieHandler.class);
   private static final Handler HANDLER = new SetCookieHandler();
 
@@ -50,7 +50,7 @@ public class SetCookieHandler implements Handler {
       String token = conf.nextToken();
       String token1 = token;
 
-      if (token.endsWith("\"") && (token.indexOf("=\"") > 1)) {
+      if (token.endsWith("\"") && (token.indexOf("=\"", 1) > -1)) {
         token1 = token.replace("=\"", "=");
         token1 = token1.substring(0, token.length() - 2);
       }

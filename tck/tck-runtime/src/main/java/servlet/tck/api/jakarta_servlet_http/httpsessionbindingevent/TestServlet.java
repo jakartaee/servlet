@@ -85,7 +85,7 @@ public class TestServlet extends HttpTCKServlet {
 
     String[] expected = {
         "attributeAdded: Name=addedTest, Value=attribute1, sessionid="
-            + session.getId() };
+            + session.getId()};
 
     session.setAttribute("addedTest", "attribute1");
 
@@ -113,7 +113,7 @@ public class TestServlet extends HttpTCKServlet {
         "attributeAdded: Name=removedTest, Value=attribute1, sessionid="
             + session.getId(),
         "attributeRemoved: Name=removedTest, Value=attribute1, sessionid="
-            + session.getId() };
+            + session.getId()};
 
     session.setAttribute("removedTest", "attribute1");
     session.removeAttribute("removedTest");
@@ -142,7 +142,7 @@ public class TestServlet extends HttpTCKServlet {
         "attributeAdded: Name=replacedTest, Value=attribute1, sessionid="
             + session.getId(),
         "attributeReplaced: Name=replacedTest, Value=attribute1, sessionid="
-            + session.getId() };
+            + session.getId()};
 
     session.setAttribute("replacedTest", "attribute1");
     session.setAttribute("replacedTest", "attribute2");

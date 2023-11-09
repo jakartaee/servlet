@@ -77,11 +77,11 @@ public class PartTests extends AbstractTckTest {
     public void getPartTest() throws Exception {
         String testname = "getPartTest";
         boolean passed = true;
-        String EXPECTED_RESPONSE = "getParameter(\"xyz\"): 1234567abcdefg"
+        String expectedResponse = "getParameter(\"xyz\"): 1234567abcdefg"
                 + "|Part name: xyz|Submitted File Name: null|Size: 14|Content Type: text/plain|Header Names: content-disposition content-type"
                 + "|getPart(String) test=true";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -112,7 +112,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + _port, ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type: multipart/form-data; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -129,11 +129,11 @@ public class PartTests extends AbstractTckTest {
 
             os.write(header.toString().getBytes());
             os.write(data);
-            test_log.append("Data sent");
+            testLog.append("Data sent");
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -141,12 +141,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -165,9 +165,9 @@ public class PartTests extends AbstractTckTest {
     public void getPartTest1() throws Exception {
         String testname = "getPartTest1";
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "Expected ServletException thrown";
+        String expectedResponse = "Expected ServletException thrown";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -199,7 +199,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + _port, ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type:  text/plain; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -216,11 +216,11 @@ public class PartTests extends AbstractTckTest {
 
             os.write(header.toString().getBytes());
             os.write(data);
-            test_log.append("Data sent");
+            testLog.append("Data sent");
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -228,12 +228,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: ", test_log);
+        logger.debug("test_log: ", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -252,9 +252,9 @@ public class PartTests extends AbstractTckTest {
     public void getPartsTest() throws Exception {
         String testname = "getPartsTest";
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "Expected ServletException thrown";
+        String expectedResponse = "Expected ServletException thrown";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
         byte[] data;
         StringBuilder header = new StringBuilder();
 
@@ -290,7 +290,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + Integer.toString(_port), ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type:  text/plain; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -307,11 +307,11 @@ public class PartTests extends AbstractTckTest {
 
             os.write(header.toString().getBytes());
             os.write(data);
-            test_log.append("Data sent");
+            testLog.append("Data sent");
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -319,12 +319,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -346,12 +346,12 @@ public class PartTests extends AbstractTckTest {
         String testname = "getPartsTest1";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "getParameter(\"xyz\"): 1234567abcdefg"
+        String expectedResponse = "getParameter(\"xyz\"): 1234567abcdefg"
                 + "|Part name: myFile|Submitted File Name: test.txt|Size: 36|Content Type: text/plain|Header Names: content-disposition content-type"
                 + "|Part name: myFile2|Submitted File Name: test2.txt|Size: 37|Content Type: text/plain|Header Names: content-disposition content-type"
                 + "|Part name: xyz|Submitted File Name: null|Size: 14|Content Type: text/plain|Header Names: content-disposition content-type";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -389,7 +389,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + Integer.toString(_port), ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type: multipart/form-data; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -409,7 +409,7 @@ public class PartTests extends AbstractTckTest {
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -417,12 +417,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -442,14 +442,14 @@ public class PartTests extends AbstractTckTest {
         String testname = "getHeaderTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
+        String expectedResponse = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: null"
                 + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: null"
                 + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: null";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -483,7 +483,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + _port, ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type: multipart/form-data; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -503,7 +503,7 @@ public class PartTests extends AbstractTckTest {
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -511,12 +511,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -536,14 +536,14 @@ public class PartTests extends AbstractTckTest {
         String testname = "getHeadersTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
+        String expectedResponse = "Part name: myFile|content-disposition:|form-data;|name=\"myFile\";|filename=\"test.txt\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: 0"
                 + "|Part name: myFile2|content-disposition:|form-data;|name=\"myFile2\";|filename=\"test2.txt\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: 0"
                 + "|Part name: xyz|content-disposition:|form-data;|name=\"xyz\"|content-type: text/plain"
                 + "|TCKDummyNameNonExistant: 0";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -578,10 +578,10 @@ public class PartTests extends AbstractTckTest {
                 header.append("POST ").append(url.toExternalForm().replace("http://", "")
                                 .replace(_hostname, "").replace(":" + Integer.toString(_port), ""))
                         .append(CRLF);
-                header.append("Host: " + _hostname + "\r\n");
+                header.append("Host: ").append(_hostname).append("\r\n");
                 header.append("Connection: close\r\n");
                 header.append("Content-Type: multipart/form-data; boundary=AaB03x\r\n");
-                header.append("Content-Length: " + ba.size() + "\r\n\r\n");
+                header.append("Content-Length: ").append(ba.size()).append("\r\n\r\n");
                 logger.debug("Header: {}", header);
             } catch (IOException ex) {
                 passed = false;
@@ -597,7 +597,7 @@ public class PartTests extends AbstractTckTest {
 
                 String line = null;
                 while ((line = bis.readLine()) != null) {
-                    test_log.append("Received: " + line + CRLF);
+                    testLog.append("Received: ").append(line).append(CRLF);
 
                 }
             } catch (IOException ex) {
@@ -611,12 +611,12 @@ public class PartTests extends AbstractTckTest {
                     + " at port " + _port, ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }
@@ -636,10 +636,10 @@ public class PartTests extends AbstractTckTest {
         String testname = "getInputStreamTest";
 
         Boolean passed = true;
-        String EXPECTED_RESPONSE = "Parts size=1" + "|Part name: myFile"
+        String expectedResponse = "Parts size=1" + "|Part name: myFile"
                 + "|First line." + "|Second line." + "|Last line.";
 
-        StringBuilder test_log = new StringBuilder();
+        StringBuilder testLog = new StringBuilder();
 
         byte[] data;
         StringBuilder header = new StringBuilder();
@@ -669,7 +669,7 @@ public class PartTests extends AbstractTckTest {
             header.append("POST ").append(url.toExternalForm().replace("http://", "")
                             .replace(_hostname, "").replace(":" + Integer.toString(_port), ""))
                     .append(CRLF);
-            header.append("Host: " + _hostname + "\r\n");
+            header.append("Host: ").append(_hostname).append("\r\n");
             header.append("Connection: close\r\n");
             header.append("Content-Type: multipart/form-data; boundary=AaB03x\r\n");
             header.append("Content-Length: " + data.length + "\r\n\r\n");
@@ -689,7 +689,7 @@ public class PartTests extends AbstractTckTest {
 
             String line = null;
             while ((line = bis.readLine()) != null) {
-                test_log.append("Received: " + line + CRLF);
+                testLog.append("Received: ").append(line).append(CRLF);
 
             }
         } catch (IOException ex) {
@@ -697,12 +697,12 @@ public class PartTests extends AbstractTckTest {
             throw new Exception("Exception reading data", ex);
         }
 
-        if (!ServletTestUtil.compareString(EXPECTED_RESPONSE,
-                test_log.toString())) {
+        if (!ServletTestUtil.compareString(expectedResponse,
+                testLog.toString())) {
             passed = false;
         }
 
-        logger.debug("test_log: {}", test_log);
+        logger.debug("test_log: {}", testLog);
         if (!passed) {
             throw new Exception("Test failed due to incorrect response");
         }

@@ -70,9 +70,9 @@ public abstract class CoreServletTest implements Servlet {
 
   ServletConfig config;
 
-  private boolean sawInit = false;
+  private boolean sawInit;
 
-  private boolean sawDestroy = false;
+  private boolean sawDestroy;
 
   // for life cycle test
   public boolean isInit() {

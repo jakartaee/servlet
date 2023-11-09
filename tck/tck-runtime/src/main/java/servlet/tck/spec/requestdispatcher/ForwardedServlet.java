@@ -35,8 +35,8 @@ public class ForwardedServlet extends GenericTCKServlet {
 
   private static final String TEST_HEADER = "testname";
 
-  private static final Class[] TEST_ARGS = { ServletRequest.class,
-      ServletResponse.class };
+  private static final Class[] TEST_ARGS = {ServletRequest.class,
+      ServletResponse.class};
 
   private static final String TEST1_HEADER = "TestName";
 
@@ -45,18 +45,20 @@ public class ForwardedServlet extends GenericTCKServlet {
     String test = req.getParameter(TEST_HEADER);
     try {
       Method method = this.getClass().getMethod(test, TEST_ARGS);
-      method.invoke(this, new Object[] { req, res });
+      method.invoke(this, new Object[]{req, res});
     } catch (InvocationTargetException ite) {
       throw new ServletException(ite.getTargetException());
     } catch (NoSuchMethodException nsme) {
       if (req.getAttribute(TEST1_HEADER) != null) {
         String tmp = (String) req.getAttribute(TEST1_HEADER);
-        if (tmp.indexOf("attributes") < 0)
+        if (tmp.indexOf("attributes") < 0) {
           throw new ServletException("Test: " + test + " does not exist");
-        else
+        } else {
           attributes(req, res);
-      } else
+        }
+      } else {
         throw new ServletException("Test: " + test + " does not exist");
+      }
     } catch (Throwable t) {
       throw new ServletException("Error executing test: " + test, t);
     }
@@ -94,16 +96,16 @@ public class ForwardedServlet extends GenericTCKServlet {
       throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] aname = { "jakarta.servlet.forward.request_uri",
+    String[] aname = {"jakarta.servlet.forward.request_uri",
         "jakarta.servlet.forward.context_path",
         "jakarta.servlet.forward.servlet_path", "jakarta.servlet.forward.path_info",
-        "jakarta.servlet.forward.query_string" };
+        "jakarta.servlet.forward.query_string"};
 
-    String[] avalue = { "/servlet_spec_requestdispatcher_web/TestServlet",
+    String[] avalue = {"/servlet_spec_requestdispatcher_web/TestServlet",
         "/servlet_spec_requestdispatcher_web", "/TestServlet", "*",
-        "testname=" + request.getParameter("query") };
-    String[] types = { "=SET_GOOD;", "=SET_WRONGVALUE;", "=SET_BADTYPE;",
-        "=SET_NO;" };
+        "testname=" + request.getParameter("query")};
+    String[] types = {"=SET_GOOD;", "=SET_WRONGVALUE;", "=SET_BADTYPE;",
+        "=SET_NO;"};
     String[] results = new String[5];
 
     for (int i = 0; i < aname.length; i++) {

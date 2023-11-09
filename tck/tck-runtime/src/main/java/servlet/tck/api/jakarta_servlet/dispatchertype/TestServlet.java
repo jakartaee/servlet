@@ -37,17 +37,17 @@ public class TestServlet extends GenericTCKServlet {
     Boolean pass = true;
     PrintWriter pw = response.getWriter();
 
-    DispatcherType[] types = jakarta.servlet.DispatcherType.values();
-    DispatcherType[] expected_types = { DispatcherType.FORWARD,
+    DispatcherType[] types = DispatcherType.values();
+    DispatcherType[] expectedTypes = {DispatcherType.FORWARD,
         DispatcherType.INCLUDE, DispatcherType.REQUEST, DispatcherType.ASYNC,
-        DispatcherType.ERROR };
+        DispatcherType.ERROR};
 
     int i = 0;
     for (DispatcherType type : types) {
-      if (!type.equals(expected_types[i])) {
+      if (!type.equals(expectedTypes[i])) {
         pw.println(
             "The DispatcherType value at position " + i + " is incorrect.");
-        pw.println("Expecting " + expected_types[i] + "; got " + type + ".");
+        pw.println("Expecting " + expectedTypes[i] + "; got " + type + ".");
         pass = false;
       }
       i++;
@@ -60,16 +60,16 @@ public class TestServlet extends GenericTCKServlet {
     Boolean pass = true;
     PrintWriter pw = response.getWriter();
 
-    String[] types = { "FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR" };
-    DispatcherType[] expected_types = { DispatcherType.FORWARD,
+    String[] types = {"FORWARD", "INCLUDE", "REQUEST", "ASYNC", "ERROR"};
+    DispatcherType[] expectedTypes = {DispatcherType.FORWARD,
         DispatcherType.INCLUDE, DispatcherType.REQUEST, DispatcherType.ASYNC,
-        DispatcherType.ERROR };
+        DispatcherType.ERROR};
 
     int i = 0;
-    for (DispatcherType type : expected_types) {
+    for (DispatcherType type : expectedTypes) {
       if (!type.equals(DispatcherType.valueOf(types[i]))) {
         pw.println("DispatcherType.valueOf does not work correctly.");
-        pw.println("Expecting " + expected_types[i] + "; got "
+        pw.println("Expecting " + expectedTypes[i] + "; got "
             + DispatcherType.valueOf(types[i]) + ".");
         pass = false;
       }
@@ -102,8 +102,8 @@ public class TestServlet extends GenericTCKServlet {
     Boolean pass = true;
     PrintWriter pw = response.getWriter();
 
-    String[] names = { "Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ",
-        "bogus" };
+    String[] names = {"Forward", " INCLUDE", "REQUEST ", "ASYNc", "ERROr ",
+        "bogus"};
 
     for (String name : names) {
       try {

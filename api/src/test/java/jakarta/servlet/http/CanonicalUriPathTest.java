@@ -51,11 +51,12 @@ public class CanonicalUriPathTest {
 
     public static String canonicalUriPath(String uriPath, Consumer<String> rejection) {
 
-        // The code presented here is a non-normative implementation of the algorithm
-        // from section 3.5 of the specification.
+      // The code presented here is a non-normative implementation of the algorithm
+      // from section 3.5 of the specification.
 
-        if (uriPath == null)
-            throw new IllegalArgumentException("null path");
+      if (uriPath == null) {
+        throw new IllegalArgumentException("null path");
+      }
 
         String path = uriPath;
 
@@ -74,9 +75,10 @@ public class CanonicalUriPathTest {
             fragment = true;
         }
 
-        // Separation of path and query.
-        if (path.contains("?"))
-            path = path.substring(0, path.indexOf('?'));
+      // Separation of path and query.
+      if (path.contains("?")) {
+        path = path.substring(0, path.indexOf('?'));
+      }
 
         // This needs to be checked after removal of path and query
         startsWithSlash = path.startsWith("/");
@@ -87,7 +89,7 @@ public class CanonicalUriPathTest {
         // Remove path parameters.
         emptyNonLastSegmentWithParam = segments.stream().limit(segments.size() - 1).anyMatch(s -> s.startsWith(";"));
         dotSegmentWithParam = segments.stream().anyMatch(s -> s.startsWith(".;") || s.startsWith("..;"));
-        segments.replaceAll(s -> (s.contains(";")) ? s.substring(0, s.indexOf(';')) : s);
+        segments.replaceAll(s -> s.contains(";") ? s.substring(0, s.indexOf(';')) : s);
 
         // Decode characters
         encodedDotSegment = segments.stream().anyMatch(ENCODED_DOT_SEGMENT::contains);
@@ -103,11 +105,11 @@ public class CanonicalUriPathTest {
 
         // Remove dot-segments
         int count = 0;
-        for (ListIterator<String> s = segments.listIterator(); s.hasNext();) {
+        for (ListIterator<String> s = segments.listIterator(); s.hasNext(); ) {
             String segment = s.next();
-            if (segment.equals(".")) {
+            if (".".equals(segment)) {
                 s.remove();
-            } else if (segment.equals("..")) {
+            } else if ("..".equals(segment)) {
                 if (count > 0) {
                     s.remove();
                     String prev = s.previous();
@@ -120,47 +122,57 @@ public class CanonicalUriPathTest {
             }
         }
 
-        // Concatenate segments
-        if (segments.size() == 0)
-            path = "/";
-        else {
-            StringBuilder buf = new StringBuilder();
-            if (!decodeError && uriPath.toLowerCase().contains("%2f")) {
-                segments.replaceAll(CanonicalUriPathTest::encode);
-            }
-            segments.forEach(s -> buf.append("/").append(s));
-            path = buf.toString();
+      // Concatenate segments
+      if (segments.isEmpty()) {
+        path = "/";
+      } else {
+        StringBuilder buf = new StringBuilder();
+        if (!decodeError && uriPath.toLowerCase().contains("%2f")) {
+          segments.replaceAll(CanonicalUriPathTest::encode);
         }
+        segments.forEach(s -> buf.append("/").append(s));
+        path = buf.toString();
+      }
 
-        // Rejecting Errors and Suspicious Sequences
-        if (fragment)
-            rejection.accept("fragment");
-        if (decodeError)
-            rejection.accept("decode error");
-        // Any path not starting with the `"/"` character
-        if (!startsWithSlash)
-            rejection.accept("must start with /");
-        // Any path starting with an initial segment of `".."`
-        if (!segments.isEmpty() && segments.get(0).equals(".."))
-            rejection.accept("leading dot-dot-segment");
-        // The encoded `"/"` character
-        if (uriPath.toLowerCase().contains("%2f"))
-            rejection.accept("encoded /");
-        // Any `"."` or `".."` segment that had a path parameter
-        if (dotSegmentWithParam)
-            rejection.accept("dot segment with parameter");
-        // Any `"."` or `".."` segment with any encoded characters
-        if (encodedDotSegment)
-            rejection.accept("encoded dot segment");
-        // Any `".."` segment preceded by an empty segment
-        if (emptySegmentBeforeDotDot)
-            rejection.accept("empty segment before dot dot");
-        // Any empty segment with parameters
-        if (emptyNonLastSegmentWithParam)
-            rejection.accept("empty segment with parameters");
-        // The `"\"` character encoded or not.
-        if (path.contains("\\"))
-            rejection.accept("backslash character");
+      // Rejecting Errors and Suspicious Sequences
+      if (fragment) {
+        rejection.accept("fragment");
+      }
+      if (decodeError) {
+        rejection.accept("decode error");
+      }
+      // Any path not starting with the `"/"` character
+      if (!startsWithSlash) {
+        rejection.accept("must start with /");
+      }
+      // Any path starting with an initial segment of `".."`
+      if (!segments.isEmpty() && "..".equals(segments.get(0))) {
+        rejection.accept("leading dot-dot-segment");
+      }
+      // The encoded `"/"` character
+      if (uriPath.toLowerCase().contains("%2f")) {
+        rejection.accept("encoded /");
+      }
+      // Any `"."` or `".."` segment that had a path parameter
+      if (dotSegmentWithParam) {
+        rejection.accept("dot segment with parameter");
+      }
+      // Any `"."` or `".."` segment with any encoded characters
+      if (encodedDotSegment) {
+        rejection.accept("encoded dot segment");
+      }
+      // Any `".."` segment preceded by an empty segment
+      if (emptySegmentBeforeDotDot) {
+        rejection.accept("empty segment before dot dot");
+      }
+      // Any empty segment with parameters
+      if (emptyNonLastSegmentWithParam) {
+        rejection.accept("empty segment with parameters");
+      }
+      // The `"\"` character encoded or not.
+      if (path.contains("\\")) {
+        rejection.accept("backslash character");
+      }
         // Any control characters either encoded or not.
         for (char c : path.toCharArray()) {
             if (c < 0x20 || c == 0x7f) {
@@ -180,8 +192,9 @@ public class CanonicalUriPathTest {
                 char c = segment.charAt(i);
                 if (c == '%') {
                     int b = Integer.parseInt(segment.substring(i + 1, i + 3), 16);
-                    if (b < 0)
-                        throw new IllegalArgumentException("negative encoding");
+                  if (b < 0) {
+                    throw new IllegalArgumentException("negative encoding");
+                  }
                     utf8.write(b);
                     i += 2;
                 } else {
@@ -219,90 +232,90 @@ public class CanonicalUriPathTest {
 
     private static Stream<Arguments> data() {
         List<Object[]> data = new ArrayList<>();
-        data.add(new Object[] { "foo/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/bar", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar;jsessionid=1234", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar/", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/bar/;jsessionid=1234", "/foo/bar/", false });
-        data.add(new Object[] { "/foo;/bar;", "/foo/bar", false });
-        data.add(new Object[] { "/foo;/bar;/;", "/foo/bar/", false });
-        data.add(new Object[] { "/foo%00/bar/", "/foo\000/bar/", true });
-        data.add(new Object[] { "/foo%7Fbar", "/foo\177bar", true });
-        data.add(new Object[] { "/foo%2Fbar", "/foo%2Fbar", true });
-        data.add(new Object[] { "/foo%2Fb%25r", "/foo%2Fb%25r", true });
-        data.add(new Object[] { "/foo/b%25r", "/foo/b%r", false });
-        data.add(new Object[] { "/foo\\bar", "/foo\\bar", true });
-        data.add(new Object[] { "/foo%5Cbar", "/foo\\bar", true });
-        data.add(new Object[] { "/foo;%2F/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/./bar", "/foo/bar", false });
-        data.add(new Object[] { "/foo/././bar", "/foo/bar", false });
-        data.add(new Object[] { "/./foo/bar", "/foo/bar", false });
-        data.add(new Object[] { "/foo/%2e/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/.;/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/%2e;/bar", "/foo/bar", true });
-        data.add(new Object[] { "/foo/.%2Fbar", "/foo/.%2Fbar", true });
-        data.add(new Object[] { "/foo/.%5Cbar", "/foo/.\\bar", true });
-        data.add(new Object[] { "/foo/bar/.", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar/./", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/bar/.;", "/foo/bar", true });
-        data.add(new Object[] { "/foo/bar/./;", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/.bar", "/foo/.bar", false });
-        data.add(new Object[] { "/foo/../bar", "/bar", false });
-        data.add(new Object[] { "/foo/../../bar", "/../bar", true });
-        data.add(new Object[] { "/../foo/bar", "/../foo/bar", true });
-        data.add(new Object[] { "/foo/%2e%2E/bar", "/bar", true });
-        data.add(new Object[] { "/foo/%2e%2e/%2E%2E/bar", "/../bar", true });
-        data.add(new Object[] { "/foo/./../bar", "/bar", false });
-        data.add(new Object[] { "/foo/..;/bar", "/bar", true });
-        data.add(new Object[] { "/foo/%2e%2E;/bar", "/bar", true });
-        data.add(new Object[] { "/foo/..%2Fbar", "/foo/..%2Fbar", true });
-        data.add(new Object[] { "/foo/..%5Cbar", "/foo/..\\bar", true });
-        data.add(new Object[] { "/foo/bar/..", "/foo", false });
-        data.add(new Object[] { "/foo/bar/../", "/foo/", false });
-        data.add(new Object[] { "/foo/bar/..;", "/foo", true });
-        data.add(new Object[] { "/foo/bar/../;", "/foo/", false });
-        data.add(new Object[] { "/foo/..bar", "/foo/..bar", false });
-        data.add(new Object[] { "/foo/.../bar", "/foo/.../bar", false });
-        data.add(new Object[] { "/foo//bar", "/foo/bar", false });
-        data.add(new Object[] { "//foo//bar//", "/foo/bar/", false });
-        data.add(new Object[] { "/;/foo;/;/bar/;/;", "/foo/bar/", true });
-        data.add(new Object[] { "/foo//../bar", "/bar", false });
-        data.add(new Object[] { "/foo/;/../bar", "/bar", true });
-        data.add(new Object[] { "/foo%E2%82%ACbar", "/foo€bar", false });
-        data.add(new Object[] { "/foo%20bar", "/foo bar", false });
-        data.add(new Object[] { "/foo%E2%82", "/foo%E2%82", true });
-        data.add(new Object[] { "/foo%E2%82bar", "/foo%E2%82bar", true });
-        data.add(new Object[] { "/foo%-1/bar", "/foo%-1/bar", true });
-        data.add(new Object[] { "/foo%XX/bar", "/foo%XX/bar", true });
-        data.add(new Object[] { "/foo%/bar", "/foo%/bar", true });
-        data.add(new Object[] { "/foo/bar%0", "/foo/bar%0", true });
-        data.add(new Object[] { "/good%20/bad%/%20mix%", "/good /bad%/%20mix%", true });
-        data.add(new Object[] { "/foo/bar?q", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar#f", "/foo/bar", true });
-        data.add(new Object[] { "/foo/bar?q#f", "/foo/bar", true });
-        data.add(new Object[] { "/foo/bar/?q", "/foo/bar/", false });
-        data.add(new Object[] { "/foo/bar/#f", "/foo/bar/", true });
-        data.add(new Object[] { "/foo/bar/?q#f", "/foo/bar/", true });
-        data.add(new Object[] { "/foo/bar;?q", "/foo/bar", false });
-        data.add(new Object[] { "/foo/bar;#f", "/foo/bar", true });
-        data.add(new Object[] { "/foo/bar;?q#f", "/foo/bar", true });
-        data.add(new Object[] { "/", "/", false });
-        data.add(new Object[] { "//", "/", false });
-        data.add(new Object[] { "/;/", "/", true });
-        data.add(new Object[] { "/.", "/", false });
-        data.add(new Object[] { "/..", "/..", true });
-        data.add(new Object[] { "/./", "/", false });
-        data.add(new Object[] { "/../", "/../", true });
-        data.add(new Object[] { "foo/bar/", "/foo/bar/", true });
-        data.add(new Object[] { "./foo/bar/", "/foo/bar/", true });
-        data.add(new Object[] { "%2e/foo/bar/", "/foo/bar/", true });
-        data.add(new Object[] { "../foo/bar/", "/../foo/bar/", true });
-        data.add(new Object[] { ".%2e/foo/bar/", "/../foo/bar/", true });
-        data.add(new Object[] { ";/foo/bar/", "/foo/bar/", true });
-        data.add(new Object[] { "/#f", "/", true });
-        data.add(new Object[] { "#f", "/", true });
-        data.add(new Object[] { "/?q", "/", false });
-        data.add(new Object[] { "?q", "/", true });
+        data.add(new Object[]{"foo/bar", "/foo/bar", true});
+        data.add(new Object[]{"/foo/bar", "/foo/bar", false});
+        data.add(new Object[]{"/foo/bar;jsessionid=1234", "/foo/bar", false});
+        data.add(new Object[]{"/foo/bar/", "/foo/bar/", false});
+        data.add(new Object[]{"/foo/bar/;jsessionid=1234", "/foo/bar/", false});
+        data.add(new Object[]{"/foo;/bar;", "/foo/bar", false});
+        data.add(new Object[]{"/foo;/bar;/;", "/foo/bar/", false});
+        data.add(new Object[]{"/foo%00/bar/", "/foo\000/bar/", true});
+        data.add(new Object[]{"/foo%7Fbar", "/foo\177bar", true});
+        data.add(new Object[]{"/foo%2Fbar", "/foo%2Fbar", true});
+        data.add(new Object[]{"/foo%2Fb%25r", "/foo%2Fb%25r", true});
+        data.add(new Object[]{"/foo/b%25r", "/foo/b%r", false});
+        data.add(new Object[]{"/foo\\bar", "/foo\\bar", true});
+        data.add(new Object[]{"/foo%5Cbar", "/foo\\bar", true});
+        data.add(new Object[]{"/foo;%2F/bar", "/foo/bar", true});
+        data.add(new Object[]{"/foo/./bar", "/foo/bar", false});
+        data.add(new Object[]{"/foo/././bar", "/foo/bar", false});
+        data.add(new Object[]{"/./foo/bar", "/foo/bar", false});
+        data.add(new Object[]{"/foo/%2e/bar", "/foo/bar", true});
+        data.add(new Object[]{"/foo/.;/bar", "/foo/bar", true});
+        data.add(new Object[]{"/foo/%2e;/bar", "/foo/bar", true});
+        data.add(new Object[]{"/foo/.%2Fbar", "/foo/.%2Fbar", true});
+        data.add(new Object[]{"/foo/.%5Cbar", "/foo/.\\bar", true});
+        data.add(new Object[]{"/foo/bar/.", "/foo/bar", false});
+        data.add(new Object[]{"/foo/bar/./", "/foo/bar/", false});
+        data.add(new Object[]{"/foo/bar/.;", "/foo/bar", true});
+        data.add(new Object[]{"/foo/bar/./;", "/foo/bar/", false});
+        data.add(new Object[]{"/foo/.bar", "/foo/.bar", false});
+        data.add(new Object[]{"/foo/../bar", "/bar", false});
+        data.add(new Object[]{"/foo/../../bar", "/../bar", true});
+        data.add(new Object[]{"/../foo/bar", "/../foo/bar", true});
+        data.add(new Object[]{"/foo/%2e%2E/bar", "/bar", true});
+        data.add(new Object[]{"/foo/%2e%2e/%2E%2E/bar", "/../bar", true});
+        data.add(new Object[]{"/foo/./../bar", "/bar", false});
+        data.add(new Object[]{"/foo/..;/bar", "/bar", true});
+        data.add(new Object[]{"/foo/%2e%2E;/bar", "/bar", true});
+        data.add(new Object[]{"/foo/..%2Fbar", "/foo/..%2Fbar", true});
+        data.add(new Object[]{"/foo/..%5Cbar", "/foo/..\\bar", true});
+        data.add(new Object[]{"/foo/bar/..", "/foo", false});
+        data.add(new Object[]{"/foo/bar/../", "/foo/", false});
+        data.add(new Object[]{"/foo/bar/..;", "/foo", true});
+        data.add(new Object[]{"/foo/bar/../;", "/foo/", false});
+        data.add(new Object[]{"/foo/..bar", "/foo/..bar", false});
+        data.add(new Object[]{"/foo/.../bar", "/foo/.../bar", false});
+        data.add(new Object[]{"/foo//bar", "/foo/bar", false});
+        data.add(new Object[]{"//foo//bar//", "/foo/bar/", false});
+        data.add(new Object[]{"/;/foo;/;/bar/;/;", "/foo/bar/", true});
+        data.add(new Object[]{"/foo//../bar", "/bar", false});
+        data.add(new Object[]{"/foo/;/../bar", "/bar", true});
+        data.add(new Object[]{"/foo%E2%82%ACbar", "/foo€bar", false});
+        data.add(new Object[]{"/foo%20bar", "/foo bar", false});
+        data.add(new Object[]{"/foo%E2%82", "/foo%E2%82", true});
+        data.add(new Object[]{"/foo%E2%82bar", "/foo%E2%82bar", true});
+        data.add(new Object[]{"/foo%-1/bar", "/foo%-1/bar", true});
+        data.add(new Object[]{"/foo%XX/bar", "/foo%XX/bar", true});
+        data.add(new Object[]{"/foo%/bar", "/foo%/bar", true});
+        data.add(new Object[]{"/foo/bar%0", "/foo/bar%0", true});
+        data.add(new Object[]{"/good%20/bad%/%20mix%", "/good /bad%/%20mix%", true});
+        data.add(new Object[]{"/foo/bar?q", "/foo/bar", false});
+        data.add(new Object[]{"/foo/bar#f", "/foo/bar", true});
+        data.add(new Object[]{"/foo/bar?q#f", "/foo/bar", true});
+        data.add(new Object[]{"/foo/bar/?q", "/foo/bar/", false});
+        data.add(new Object[]{"/foo/bar/#f", "/foo/bar/", true});
+        data.add(new Object[]{"/foo/bar/?q#f", "/foo/bar/", true});
+        data.add(new Object[]{"/foo/bar;?q", "/foo/bar", false});
+        data.add(new Object[]{"/foo/bar;#f", "/foo/bar", true});
+        data.add(new Object[]{"/foo/bar;?q#f", "/foo/bar", true});
+        data.add(new Object[]{"/", "/", false});
+        data.add(new Object[]{"//", "/", false});
+        data.add(new Object[]{"/;/", "/", true});
+        data.add(new Object[]{"/.", "/", false});
+        data.add(new Object[]{"/..", "/..", true});
+        data.add(new Object[]{"/./", "/", false});
+        data.add(new Object[]{"/../", "/../", true});
+        data.add(new Object[]{"foo/bar/", "/foo/bar/", true});
+        data.add(new Object[]{"./foo/bar/", "/foo/bar/", true});
+        data.add(new Object[]{"%2e/foo/bar/", "/foo/bar/", true});
+        data.add(new Object[]{"../foo/bar/", "/../foo/bar/", true});
+        data.add(new Object[]{".%2e/foo/bar/", "/../foo/bar/", true});
+        data.add(new Object[]{";/foo/bar/", "/foo/bar/", true});
+        data.add(new Object[]{"/#f", "/", true});
+        data.add(new Object[]{"#f", "/", true});
+        data.add(new Object[]{"/?q", "/", false});
+        data.add(new Object[]{"?q", "/", true});
 
         return data.stream().map(Arguments::of);
     }

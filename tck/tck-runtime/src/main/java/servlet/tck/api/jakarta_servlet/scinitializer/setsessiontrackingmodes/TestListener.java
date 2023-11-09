@@ -43,12 +43,12 @@ public class TestListener implements ServletContextListener {
     ServletContext context = sce.getServletContext();
     StringBuilder log = new StringBuilder();
 
-    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<SessionTrackingMode>();
+    List<SessionTrackingMode> complete = new CopyOnWriteArrayList<>();
     complete.add(SessionTrackingMode.COOKIE);
-    Set<SessionTrackingMode> complete_set = new HashSet(complete);
+    Set<SessionTrackingMode> completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {
@@ -57,10 +57,10 @@ public class TestListener implements ServletContextListener {
 
     complete.remove(SessionTrackingMode.COOKIE);
     complete.add(SessionTrackingMode.URL);
-    complete_set = new HashSet(complete);
+    completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {
@@ -68,10 +68,10 @@ public class TestListener implements ServletContextListener {
     }
 
     complete.add(SessionTrackingMode.COOKIE);
-    complete_set = new HashSet(complete);
+    completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {
@@ -81,10 +81,10 @@ public class TestListener implements ServletContextListener {
     complete.add(SessionTrackingMode.SSL);
     complete.remove(SessionTrackingMode.URL);
     complete.remove(SessionTrackingMode.COOKIE);
-    complete_set = new HashSet(complete);
+    completeSet = new HashSet(complete);
 
     try {
-      context.setSessionTrackingModes(complete_set);
+      context.setSessionTrackingModes(completeSet);
       passed = false;
       log.append("Expected UnsupportedOperationException not thrown.");
     } catch (UnsupportedOperationException ex) {

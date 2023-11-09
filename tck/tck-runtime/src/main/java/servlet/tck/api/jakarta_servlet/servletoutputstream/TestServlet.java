@@ -114,7 +114,7 @@ public class TestServlet extends GenericTCKServlet {
   public void print_floatTest(ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
     ServletOutputStream sos = null;
-    float floatval = 1234.5f;
+    float floatval = 1234.5F;
 
     try {
       sos = response.getOutputStream();
@@ -267,7 +267,7 @@ public class TestServlet extends GenericTCKServlet {
   public void println_floatTest(ServletRequest request,
       ServletResponse response) throws ServletException, IOException {
     ServletOutputStream sos = null;
-    float floatval = 1234.5f;
+    float floatval = 1234.5F;
 
     try {
       sos = response.getOutputStream();

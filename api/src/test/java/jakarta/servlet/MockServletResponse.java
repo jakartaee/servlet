@@ -38,19 +38,23 @@ public class MockServletResponse implements ServletResponse {
 
     @Override
     public ServletOutputStream getOutputStream() throws IOException {
-        if (printWriter != null)
-            throw new IllegalStateException();
-        if (servletOutputStream == null)
-            servletOutputStream = new MockServletOutputStream();
+      if (printWriter != null) {
+        throw new IllegalStateException();
+      }
+      if (servletOutputStream == null) {
+        servletOutputStream = new MockServletOutputStream();
+      }
         return servletOutputStream;
     }
 
     @Override
     public PrintWriter getWriter() throws IOException {
-        if (printWriter != null)
-            return printWriter;
-        if (servletOutputStream != null)
-            throw new IllegalStateException();
+      if (printWriter != null) {
+        return printWriter;
+      }
+      if (servletOutputStream != null) {
+        throw new IllegalStateException();
+      }
         printWriter = new PrintWriter(getOutputStream());
         return printWriter;
     }
@@ -92,8 +96,9 @@ public class MockServletResponse implements ServletResponse {
 
     @Override
     public void resetBuffer() {
-        if (servletOutputStream instanceof MockServletOutputStream)
-            ((MockServletOutputStream) servletOutputStream).reset();
+      if (servletOutputStream instanceof MockServletOutputStream) {
+        ((MockServletOutputStream) servletOutputStream).reset();
+      }
     }
 
     @Override
@@ -118,8 +123,9 @@ public class MockServletResponse implements ServletResponse {
     }
 
     public MockServletOutputStream getMockServletOutputStream() {
-        if (servletOutputStream instanceof MockServletOutputStream)
-            return (MockServletOutputStream) servletOutputStream;
+      if (servletOutputStream instanceof MockServletOutputStream) {
+        return (MockServletOutputStream) servletOutputStream;
+      }
         return null;
     }
 }

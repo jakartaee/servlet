@@ -40,21 +40,21 @@ public class TestListener implements ServletContextListener {
   public void contextInitialized(ServletContextEvent sce) {
     ServletContext context = sce.getServletContext();
 
-    Boolean listener_test = false;
+    Boolean listenerTest = false;
     String LISTENER_TEST = "LISTENER_TEST";
 
     try {
       context.createListener(
           CreateGenericEventListener.class);
     } catch (java.lang.IllegalArgumentException ex) {
-      listener_test = true;
+      listenerTest = true;
       LOGGER.error("Error creating Listener CreateGenericEventListener: "
           + ex.getMessage());
     } catch (ServletException exs) {
       LOGGER.error("Error creating Listener CreateGenericEventListener: "
           + exs.getMessage());
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
   }
 
   /**

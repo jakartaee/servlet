@@ -97,7 +97,7 @@ public abstract class HttpServlet extends GenericServlet {
     public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
 
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
-    private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+  private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     private boolean legacyHeadHandling;
 
@@ -424,7 +424,7 @@ public abstract class HttpServlet extends GenericServlet {
             clazz = clazz.getSuperclass();
         }
 
-        return ((allMethods != null) ? allMethods : new Method[0]);
+        return allMethods != null ? allMethods : new Method[0];
     }
 
     /**
@@ -451,29 +451,29 @@ public abstract class HttpServlet extends GenericServlet {
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Method[] methods = getAllDeclaredMethods(this.getClass());
 
-        boolean ALLOW_GET = false;
-        boolean ALLOW_HEAD = false;
-        boolean ALLOW_POST = false;
-        boolean ALLOW_PATCH = false;
-        boolean ALLOW_PUT = false;
-        boolean ALLOW_DELETE = false;
-        boolean ALLOW_TRACE = true;
-        boolean ALLOW_OPTIONS = true;
+        boolean allowGet = false;
+        boolean allowHead = false;
+        boolean allowPost = false;
+        boolean allowPatch = false;
+        boolean allowPut = false;
+        boolean allowDelete = false;
+        boolean allowTrace = true;
+        boolean allowOptions = true;
 
         for (int i = 0; i < methods.length; i++) {
             String methodName = methods[i].getName();
 
-            if (methodName.equals("doGet")) {
-                ALLOW_GET = true;
-                ALLOW_HEAD = true;
-            } else if (methodName.equals("doPost")) {
-                ALLOW_POST = true;
-            } else if (methodName.equals("doPut")) {
-                ALLOW_PUT = true;
-            } else if (methodName.equals("doDelete")) {
-                ALLOW_DELETE = true;
-            } else if (methodName.equals("doPatch")) {
-                ALLOW_PATCH = true;
+            if ("doGet".equals(methodName)) {
+                allowGet = true;
+                allowHead = true;
+            } else if ("doPost".equals(methodName)) {
+                allowPost = true;
+            } else if ("doPut".equals(methodName)) {
+                allowPut = true;
+            } else if ("doDelete".equals(methodName)) {
+                allowDelete = true;
+            } else if ("doPatch".equals(methodName)) {
+                allowPatch = true;
             }
 
         }
@@ -481,46 +481,46 @@ public abstract class HttpServlet extends GenericServlet {
         // we know "allow" is not null as ALLOW_OPTIONS = true
         // when this method is invoked
         StringBuilder allow = new StringBuilder();
-        if (ALLOW_GET) {
+        if (allowGet) {
             allow.append(METHOD_GET);
         }
-        if (ALLOW_HEAD) {
+        if (allowHead) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_HEAD);
         }
-        if (ALLOW_PATCH) {
+        if (allowPatch) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_PATCH);
         }
-        if (ALLOW_POST) {
+        if (allowPost) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_POST);
         }
-        if (ALLOW_PUT) {
+        if (allowPut) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_PUT);
         }
-        if (ALLOW_DELETE) {
+        if (allowDelete) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_DELETE);
         }
-        if (ALLOW_TRACE) {
+        if (allowTrace) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
             allow.append(METHOD_TRACE);
         }
-        if (ALLOW_OPTIONS) {
+        if (allowOptions) {
             if (allow.length() > 0) {
                 allow.append(", ");
             }
@@ -549,7 +549,7 @@ public abstract class HttpServlet extends GenericServlet {
 
         int responseLength;
 
-        String CRLF = "\r\n";
+        String crlf = "\r\n";
         StringBuilder buffer = new StringBuilder("TRACE ").append(req.getRequestURI()).append(" ")
                 .append(req.getProtocol());
 
@@ -564,11 +564,11 @@ public abstract class HttpServlet extends GenericServlet {
             Enumeration<String> headerValues = req.getHeaders(headerName);
             while (headerValues.hasMoreElements()) {
                 String headerValue = headerValues.nextElement();
-                buffer.append(CRLF).append(headerName).append(": ").append(headerValue);
+                buffer.append(crlf).append(headerName).append(": ").append(headerValue);
             }
         }
 
-        buffer.append(CRLF);
+        buffer.append(crlf);
 
         responseLength = buffer.length();
 
@@ -688,10 +688,12 @@ public abstract class HttpServlet extends GenericServlet {
      * already, so we check.
      */
     private void maybeSetLastModified(HttpServletResponse resp, long lastModified) {
-        if (resp.containsHeader(HEADER_LASTMOD))
-            return;
-        if (lastModified >= 0)
-            resp.setDateHeader(HEADER_LASTMOD, lastModified);
+      if (resp.containsHeader(HEADER_LASTMOD)) {
+        return;
+      }
+      if (lastModified >= 0) {
+        resp.setDateHeader(HEADER_LASTMOD, lastModified);
+      }
     }
 
     /**
@@ -859,7 +861,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     private static ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
     static ThreadLocal<Boolean> disableFlush = new ThreadLocal<>();
 
-    private int contentLength = 0;
+    private int contentLength;
 
     // file private
     NoBodyOutputStream() {
@@ -880,7 +882,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void write(byte buf[], int offset, int len) throws IOException {
+    public void write(byte[] buf, int offset, int len) throws IOException {
         if (buf == null) {
             throw new NullPointerException(lStrings.getString("err.io.nullArray"));
         }
@@ -900,8 +902,9 @@ class NoBodyOutputStream extends ServletOutputStream {
 
     @Override
     public void flush() throws IOException {
-        if (Boolean.TRUE.equals(disableFlush.get()))
-            super.flush();
+      if (Boolean.TRUE.equals(disableFlush.get())) {
+        super.flush();
+      }
     }
 
     @Override

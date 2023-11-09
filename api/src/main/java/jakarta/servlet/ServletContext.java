@@ -728,7 +728,7 @@ public interface ServletContext {
      *
      * <p>
      * The returned Servlet instance may be further customized before it is registered with this ServletContext via a call
-     * to {@link #addServlet(String,Servlet)}.
+     * to {@link #addServlet(String, Servlet)}.
      *
      * <p>
      * The given Servlet class must define a zero argument constructor, which is used to instantiate it.
@@ -904,7 +904,7 @@ public interface ServletContext {
      *
      * <p>
      * The returned Filter instance may be further customized before it is registered with this ServletContext via a call to
-     * {@link #addFilter(String,Filter)}.
+     * {@link #addFilter(String, Filter)}.
      *
      * <p>
      * The given Filter class must define a zero argument constructor, which is used to instantiate it.
@@ -1357,7 +1357,7 @@ public interface ServletContext {
      *
      * @since Servlet 6.1
      */
-    default public void setRequestCharacterEncoding(Charset encoding) {
+    public default void setRequestCharacterEncoding(Charset encoding) {
         setRequestCharacterEncoding(encoding.name());
     }
 
@@ -1404,7 +1404,7 @@ public interface ServletContext {
      *
      * @since Servlet 6.1
      */
-    default public void setResponseCharacterEncoding(Charset encoding) {
+    public default void setResponseCharacterEncoding(Charset encoding) {
         setResponseCharacterEncoding(encoding.name());
     }
 }

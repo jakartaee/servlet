@@ -127,6 +127,6 @@ public class HttpConstraintElement {
             }
         }
 
-        return ((arr != null) ? arr : new String[0]);
+        return arr != null ? arr : new String[0];
     }
 }

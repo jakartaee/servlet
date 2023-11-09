@@ -62,4 +62,7 @@ public final class Data {
   public static final String PASSED = "Test PASSED";
 
   public static final String FAILED = "Test FAILED";
+
+  private Data() {
+  }
 }

@@ -49,7 +49,7 @@ public class TestServlet extends GenericTCKServlet {
       String tmp = context.getContextPath();
       if (tmp != null) {
         pw.println("ServletContextPath=" + tmp);
-        if (tmp.equals("/servlet_js_servletcontext30_web")) {
+        if ("/servlet_js_servletcontext30_web".equals(tmp)) {
           passed = true;
         } else {
           passed = false;
@@ -156,10 +156,10 @@ public class TestServlet extends GenericTCKServlet {
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] names = { "SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST",
+    String[] names = {"SERVLET_TEST", "FILTER_TEST", "LISTENER_TEST",
         "SCC_LISTENER_TEST", "SCS_LISTENER_TEST", "CSC_LISTENER_TEST",
         "DUPLICATEC_SERVLET_TEST", "DUPLICATES_SERVLET_TEST",
-        "DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST" };
+        "DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST"};
 
     for (String name : names) {
       pw.println(name + "="
@@ -175,7 +175,7 @@ public class TestServlet extends GenericTCKServlet {
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] names = { "DUPLICATEC_SERVLET_TEST", "DUPLICATES_SERVLET_TEST" };
+    String[] names = {"DUPLICATEC_SERVLET_TEST", "DUPLICATES_SERVLET_TEST"};
 
     for (String name : names) {
       pw.println(name + "="
@@ -191,7 +191,7 @@ public class TestServlet extends GenericTCKServlet {
       ServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
 
-    String[] names = { "DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST" };
+    String[] names = {"DUPLICATEC_FILTER_TEST", "DUPLICATES_FILTER_TEST"};
 
     for (String name : names) {
       pw.println(name + "="
@@ -275,25 +275,25 @@ public class TestServlet extends GenericTCKServlet {
     Boolean pass = true;
     PrintWriter pw = response.getWriter();
 
-    SessionTrackingMode[] values_expected = new SessionTrackingMode[3];
-    values_expected[0] = SessionTrackingMode.COOKIE;
-    values_expected[1] = SessionTrackingMode.URL;
-    values_expected[2] = SessionTrackingMode.SSL;
+    SessionTrackingMode[] valuesExpected = new SessionTrackingMode[3];
+    valuesExpected[0] = SessionTrackingMode.COOKIE;
+    valuesExpected[1] = SessionTrackingMode.URL;
+    valuesExpected[2] = SessionTrackingMode.SSL;
 
     int i = 0;
-    SessionTrackingMode[] values_received = new SessionTrackingMode[3];
+    SessionTrackingMode[] valuesReceived = new SessionTrackingMode[3];
 
     for (SessionTrackingMode c : SessionTrackingMode.values()) {
-      values_received[i] = c;
+      valuesReceived[i] = c;
       i++;
     }
 
     for (i = 0; i < 3; i++) {
-      if (!values_expected[i].equals(values_received[i])) {
+      if (!valuesExpected[i].equals(valuesReceived[i])) {
         pass = false;
         pw.println("The number " + i + " SessionTrackingMode didn't match.");
         pw.println(
-            "Expecting " + values_expected[i] + ".  Got " + values_received[i]);
+            "Expecting " + valuesExpected[i] + ".  Got " + valuesReceived[i]);
       }
     }
 

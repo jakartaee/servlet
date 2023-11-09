@@ -153,10 +153,10 @@ public class TestServlet extends GenericTCKServlet {
     boolean result1 = ue.isPermanent();
     boolean result2 = ud.isPermanent();
 
-    if (result1 == false && result2 == true) {
+    if (result1 == false && result2) {
       passed = true;
     } else {
-      if (result1 != false) {
+      if ( result1) {
         passed = false;
         pw.println(
             "isPermanent() failed to detect that the servlet was not initially unavailable");

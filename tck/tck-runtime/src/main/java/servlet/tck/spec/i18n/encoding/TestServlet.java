@@ -75,10 +75,10 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     boolean passed = true;
 
-    String[] call = { "setContentType", "setLocale", "setCharacterEncoding",
+    String[] call = {"setContentType", "setLocale", "setCharacterEncoding",
         "getWriter", "setCharacterEncoding", "setLocale", };
     String[] actual = new String[6];
-    String[] expected = { "utf-16le", "utf-16le", "utf-8", "utf-8", "utf-8",
+    String[] expected = {"utf-16le", "utf-16le", "utf-8", "utf-8", "utf-8",
         "utf-8", };
 
     try {
@@ -124,12 +124,12 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     boolean passed = true;
 
-    String[] call = { "setContentType", "setLocale", "setLocale",
+    String[] call = {"setContentType", "setLocale", "setLocale",
         "setContentType", "setCharacterEncoding", "setLocale", "setContentType",
         "setCharacterEncoding", "getWriter", "setCharacterEncoding",
         "setLocale", };
     String[] actual = new String[11];
-    String[] expected = { "iso-8859-1", "euc-jp", "gb18030", "gb18030", "utf-8",
+    String[] expected = {"iso-8859-1", "euc-jp", "gb18030", "gb18030", "utf-8",
         "utf-8", "gb18030", "utf-8", "utf-8", "utf-8", "utf-8", };
 
     try {
@@ -196,10 +196,10 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     boolean passed = true;
 
-    String[] call = { "setContentType", "flushBuffer", "setCharacterEncoding",
+    String[] call = {"setContentType", "flushBuffer", "setCharacterEncoding",
         "setLocale", "getWriter", };
     String[] actual = new String[5];
-    String[] expected = { "iso-8859-1", "iso-8859-1", "iso-8859-1",
+    String[] expected = {"iso-8859-1", "iso-8859-1", "iso-8859-1",
         "iso-8859-1", "iso-8859-1", };
     try {
       // setContentType should set character encoding

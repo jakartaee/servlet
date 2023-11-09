@@ -38,7 +38,7 @@ public class TestListener implements ServletContextListener {
   public void contextInitialized(ServletContextEvent sce) {
     ServletContext context = sce.getServletContext();
 
-    Boolean listener_test = true;
+    Boolean listenerTest = true;
     String LISTENER_TEST = "LISTENER_TEST";
 
     /*
@@ -53,11 +53,11 @@ public class TestListener implements ServletContextListener {
           CreateHttpSessionListener.class);
       context.addListener(hslistener);
     } catch (ServletException ex) {
-      listener_test = false;
+      listenerTest = false;
       System.out.println("Error creating Listener CreateHttpSessionListener: "
           + ex.getMessage());
     }
-    context.setInitParameter(LISTENER_TEST, listener_test.toString());
+    context.setInitParameter(LISTENER_TEST, listenerTest.toString());
   }
 
   /**

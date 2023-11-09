@@ -84,9 +84,9 @@ public class TestServlet extends GenericTCKServlet {
       throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
     // the last item in the expected is a result of this servlet being called
-    String[] expected = { "in requestInitialized method of listener",
+    String[] expected = {"in requestInitialized method of listener",
         "in requestDestroyed method of listener",
-        "in requestInitialized method of listener" };
+        "in requestInitialized method of listener"};
 
     // verify results
     ArrayList result = (ArrayList) getServletContext()
