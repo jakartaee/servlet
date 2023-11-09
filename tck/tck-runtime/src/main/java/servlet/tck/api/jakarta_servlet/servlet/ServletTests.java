@@ -57,7 +57,7 @@ public class ServletTests extends AbstractTckTest {
    * method execution
    */
   @Test
-  public void DoDestroyedTest() throws Exception {
+  void DoDestroyedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoDestroyedTest");
     invoke();
   }
@@ -72,7 +72,7 @@ public class ServletTests extends AbstractTckTest {
    * UnavailableException is thrown during servlet initialization.
    */
   @Test
-  public void DoInit1Test() throws Exception {
+  void DoInit1Test() throws Exception {
     TEST_PROPS.get().setProperty(TEST_NAME, "DoInit1Test");
     TEST_PROPS.get().setProperty(REQUEST,
         "GET /servlet_js_servlet_web/DoInit1Test HTTP/1.1");
@@ -90,7 +90,7 @@ public class ServletTests extends AbstractTckTest {
    * the variables here in the DoInit2Test
    */
   @Test
-  public void DoInit2Test() throws Exception {
+  void DoInit2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoInit2Test");
     invoke();
   }
@@ -104,7 +104,7 @@ public class ServletTests extends AbstractTckTest {
    * to be a non-null value and an initial paramter can be retrieved
    */
   @Test
-  public void DoServletConfigTest() throws Exception {
+  void DoServletConfigTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoServletConfigTest");
     invoke();
   }
@@ -117,7 +117,7 @@ public class ServletTests extends AbstractTckTest {
    * @test_Strategy: Create a servlet and test that information is returned
    */
   @Test
-  public void DoServletInfoTest() throws Exception {
+  void DoServletInfoTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoServletInfoTest");
     invoke();
   }
@@ -131,7 +131,7 @@ public class ServletTests extends AbstractTckTest {
    * isPermanent() method is true
    */
   @Test
-  public void PUTest() throws Exception {
+  void PUTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "PUTest");
     invoke();
   }
@@ -147,7 +147,7 @@ public class ServletTests extends AbstractTckTest {
    * for that value in the service method
    */
   @Test
-  public void DoServiceTest() throws Exception {
+  void DoServiceTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoServiceTest");
     invoke();
   }

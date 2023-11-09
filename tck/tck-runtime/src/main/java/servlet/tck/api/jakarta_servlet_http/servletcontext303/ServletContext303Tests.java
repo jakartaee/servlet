@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext303Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -58,7 +58,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddHListenerClassTest() throws Exception {
+  void negativeaddHListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddHListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
     invoke();
@@ -73,7 +73,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddHListenerStringTest() throws Exception {
+  void negativeaddHListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddHListenerStringTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HttpSessionListener");
     invoke();
@@ -88,7 +88,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddHAListenerClassTest() throws Exception {
+  void negativeaddHAListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddHAListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
     invoke();
@@ -103,7 +103,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * is added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddHAListenerStringTest() throws Exception {
+  void negativeaddHAListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddHAListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "HSessionAttribute");
     invoke();

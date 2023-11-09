@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 
 public class HttpSessionxTests extends AbstractTckTest {
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -75,7 +75,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * that MaxInactiveInterval is set correctly
    */
   @Test
-  public void getMaxInactiveIntervalTest() throws Exception {
+  void getMaxInactiveIntervalTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -107,7 +107,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * returned this time
    */
   @Test
-  public void expireHttpSessionTest() throws Exception {
+  void expireHttpSessionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -145,7 +145,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * returned this time
    */
   @Test
-  public void expireHttpSessionxTest() throws Exception {
+  void expireHttpSessionxTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -187,7 +187,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * time
    */
   @Test
-  public void expireHttpSessionxriTest() throws Exception {
+  void expireHttpSessionxriTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -229,7 +229,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * request.getSession(false). Verify that no session is returned this time
    */
   @Test
-  public void expireHttpSessionxri1Test() throws Exception {
+  void expireHttpSessionxri1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalxiTest");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -266,7 +266,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * request.getSession(false). Verify that no session is returned this time
    */
   @Test
-  public void expireHttpSessionxrfTest() throws Exception {
+  void expireHttpSessionxrfTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalxfTest");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -297,7 +297,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * Session.invalidate(). Verify that session is invalidated
    */
   @Test
-  public void invalidateHttpSessionTest() throws Exception {
+  void invalidateHttpSessionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -324,7 +324,7 @@ public class HttpSessionxTests extends AbstractTckTest {
    * session is invalidated
    */
   @Test
-  public void invalidateHttpSessionxTest() throws Exception {
+  void invalidateHttpSessionxTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNewSessionx");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();

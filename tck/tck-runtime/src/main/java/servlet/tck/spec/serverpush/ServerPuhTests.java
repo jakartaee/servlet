@@ -52,8 +52,8 @@ import java.util.stream.Collectors;
 
 public class ServerPuhTests extends AbstractTckTest {
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -98,15 +98,15 @@ public class ServerPuhTests extends AbstractTckTest {
         logger.debug("hostname:port:{}:{}", hostname, portnum);
     }
 
-    /*
-     * @testName: serverPushTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify server push can work correctly.
-     */
-    @Test
-    public void serverPushTest() throws Exception {
+  /*
+   * @testName: serverPushTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify server push can work correctly.
+   */
+  @Test
+  void serverPushTest() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum  + getContextRoot()
                 + "/TestServlet";
         Map<String, String> headers = new HashMap<>();
@@ -115,16 +115,16 @@ public class ServerPuhTests extends AbstractTckTest {
         verifyResponses(responses, new String[] { "hello", "INDEX from index.html" });
     }
 
-    /*
-     * @testName: getNullPushBuilderTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify the returned PushBuilder Object is null if the
-     * current connection does not support server push.
-     */
-    @Test
-    public void getNullPushBuilderTest() throws Exception {
+  /*
+   * @testName: getNullPushBuilderTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify the returned PushBuilder Object is null if the
+   * current connection does not support server push.
+   */
+  @Test
+  void getNullPushBuilderTest() throws Exception {
         try {
             requestURI = getContextRoot() + "/TestServlet";
             logger.debug("Sending request {}", requestURI);
@@ -150,15 +150,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushInitTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify PushBuilder is initialized correctly.
-     */
-    @Test
-    public void serverPushInitTest() throws Exception {
+  /*
+   * @testName: serverPushInitTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify PushBuilder is initialized correctly.
+   */
+  @Test
+  void serverPushInitTest() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
                 "/TestServlet2";
         Map<String, String> headers = new HashMap<>();
@@ -253,15 +253,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushSessionTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify PushBuilder with session works as expected.
-     */
-    @Test
-    public void serverPushSessionTest() throws Exception {
+  /*
+   * @testName: serverPushSessionTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify PushBuilder with session works as expected.
+   */
+  @Test
+  void serverPushSessionTest() throws Exception {
         try {
             requestURI = getContextRoot() + "/TestServlet3?generateSession=true";
             logger.debug("Sending request {}", requestURI);
@@ -292,15 +292,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushCookieTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify PushBuilder with cookie works as expected.
-     */
-    @Test
-    public void serverPushCookieTest() throws Exception {
+  /*
+   * @testName: serverPushCookieTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify PushBuilder with cookie works as expected.
+   */
+  @Test
+  void serverPushCookieTest() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
                 "/TestServlet4";
         Map<String, String> headers = new HashMap<>();
@@ -335,15 +335,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushSessionTest2
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify PushBuilder with Session works as expected.
-     */
-    @Test
-    public void serverPushSessionTest2() throws Exception {
+  /*
+   * @testName: serverPushSessionTest2
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify PushBuilder with Session works as expected.
+   */
+  @Test
+  void serverPushSessionTest2() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() + "/TestServlet5";
         Map<String, String> headers = new HashMap<>();
         CookieManager cm = new CookieManager();
@@ -380,15 +380,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushMiscTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify some methods of PushBuilder works as expected.
-     */
-    @Test
-    public void serverPushMiscTest() throws Exception {
+  /*
+   * @testName: serverPushMiscTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify some methods of PushBuilder works as expected.
+   */
+  @Test
+  void serverPushMiscTest() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
                 + "/TestServlet6";
         Map<String, String> headers = new HashMap<>();
@@ -434,15 +434,15 @@ public class ServerPuhTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: serverPushNegtiveTest
-     *
-     * @assertion_ids: N/A;
-     *
-     * @test_Strategy: Verify some methods of PushBuilder works as expected.
-     */
-    @Test
-    public void serverPushNegtiveTest() throws Exception {
+  /*
+   * @testName: serverPushNegtiveTest
+   *
+   * @assertion_ids: N/A;
+   *
+   * @test_Strategy: Verify some methods of PushBuilder works as expected.
+   */
+  @Test
+  void serverPushNegtiveTest() throws Exception {
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
                 + "/TestServlet7";
         Map<String, String> headers = new HashMap<>();

@@ -120,7 +120,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    * the DD. The DD MUST take precedence. 2. Receive an access denied
    */
   @Test
-  public void test1() throws Exception {
+  void test1() throws Exception {
     logger.trace("testing that we can NOT access: {}", pageDeny);
 
     TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
@@ -167,7 +167,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    * constraints do NOT get used.
    */
   @Test
-  public void test2() throws Exception {
+  void test2() throws Exception {
 
     // attempt to POST as "javajoe" should be allowed
     logger.trace("POST w/ user= {} should be allowed due to DD declaration", unauthUsername);
@@ -224,7 +224,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    *
    */
   @Test
-  public void test3() throws Exception {
+  void test3() throws Exception {
 
     // Post is set to be accessed by Administrator in the annotation
     // declaration *but* Post is also set to be accessed only by
@@ -290,7 +290,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    *
    */
   @Test
-  public void test4() throws Exception {
+  void test4() throws Exception {
 
     // now see if we get access denied - since DenyAll anno set on doPost method
     TEST_PROPS.get().setProperty(REQUEST, getRequestLine("POST", pageSec));
@@ -319,7 +319,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    * PermitAll access at the class level. 2. Receive page
    */
   @Test
-  public void test5() throws Exception {
+  void test5() throws Exception {
 
     logger.trace("GET w/ user= {} should be allowed access as DD leaves this servlet unprotected.", unauthUsername);
     TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test5");
@@ -352,7 +352,7 @@ public class MetaDataCompleteTests extends BaseTckTest {
    * 
    */
   @Test
-  public void test6() throws Exception {
+  void test6() throws Exception {
 
     logger.trace("Sending request to resource where DD allows access to override any restricting annotation...");
     TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test6");

@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class ServletInputStreamTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -71,7 +71,7 @@ public class ServletInputStreamTests extends AbstractTckTest {
    *
    */
   @Test
-  public void readLineTest() throws Exception {
+  void readLineTest() throws Exception {
     String testName = "readLineTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,

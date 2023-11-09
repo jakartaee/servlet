@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class ScAttributeListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    *
    */
   @Test
-  public void addedTest() throws Exception {
+  void addedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addedTest");
     invoke();
   }
@@ -79,7 +79,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    * then reads the log and verifies the result.
    */
   @Test
-  public void removedTest() throws Exception {
+  void removedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removedTest");
     invoke();
   }
@@ -94,7 +94,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    * reads the log and verifies the result.
    */
   @Test
-  public void replacedTest() throws Exception {
+  void replacedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "replacedTest");
     invoke();
   }

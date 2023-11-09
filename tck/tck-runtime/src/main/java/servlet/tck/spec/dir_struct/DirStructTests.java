@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class DirStructTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class DirStructTests extends AbstractTckTest {
    *
    */
   @Test
-  public void loadClassesTest() throws Exception {
+  void loadClassesTest() throws Exception {
     String testName = "classFileTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,

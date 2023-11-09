@@ -43,7 +43,7 @@ public class CookieTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -69,7 +69,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void cloneTest() throws Exception {
+  void cloneTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "cloneTest");
     invoke();
   }
@@ -82,7 +82,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void constructorTest() throws Exception {
+  void constructorTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "constructorTest");
     invoke();
   }
@@ -95,7 +95,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void constructorIllegalArgumentExceptionTest() throws Exception {
+  void constructorIllegalArgumentExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
             "GET /servlet_jsh_cookie_web/TestServlet?testname=constructorIllegalArgumentExceptionTest HTTP/1.1");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
@@ -110,7 +110,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getCommentTest() throws Exception {
+  void getCommentTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getCommentTest");
     invoke();
   }
@@ -123,7 +123,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getCommentNullTest() throws Exception {
+  void getCommentNullTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getCommentNullTest");
     invoke();
   }
@@ -137,7 +137,7 @@ public class CookieTests extends AbstractTckTest {
    * Servlet verifies values and returns result to client
    */
   @Test
-  public void getDomainTest() throws Exception {
+  void getDomainTest() throws Exception {
     // version 1
     TEST_PROPS.get().setProperty(REQUEST_HEADERS,
             "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
@@ -155,7 +155,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getMaxAgeTest() throws Exception {
+  void getMaxAgeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMaxAgeTest");
     invoke();
   }
@@ -168,7 +168,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getNameTest() throws Exception {
+  void getNameTest() throws Exception {
     // version 0
     TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
             + _hostname + "; Path=/servlet_jsh_cookie_web");
@@ -190,7 +190,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getPathTest() throws Exception {
+  void getPathTest() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST_HEADERS,
             "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
                     + "; $Path=/servlet_jsh_cookie_web");
@@ -206,7 +206,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getSecureTest() throws Exception {
+  void getSecureTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getSecureTest");
     invoke();
   }
@@ -219,7 +219,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getValueTest() throws Exception {
+  void getValueTest() throws Exception {
     // version 0
     TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
             + _hostname + "; Path=/servlet_jsh_cookie_web");
@@ -241,7 +241,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getVersionTest() throws Exception {
+  void getVersionTest() throws Exception {
     // version 0
     TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
             + _hostname + "; Path=/servlet_jsh_cookie_web");
@@ -263,7 +263,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setDomainTest() throws Exception {
+  void setDomainTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setDomainTest");
     invoke();
   }
@@ -276,7 +276,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   @Test
-  public void setMaxAgePositiveTest() throws Exception {
+  void setMaxAgePositiveTest() throws Exception {
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
     String dateHeader = null;
@@ -348,7 +348,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   @Test
-  public void setMaxAgeZeroTest() throws Exception {
+  void setMaxAgeZeroTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxAgeZeroTest");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
     invoke();
@@ -362,7 +362,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet sets values and client verifies them
    */
   @Test
-  public void setMaxAgeNegativeTest() throws Exception {
+  void setMaxAgeNegativeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxAgeNegativeTest");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
             "Set-Cookie:name1=value1##!Expire##!Max-Age");
@@ -377,7 +377,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setPathTest() throws Exception {
+  void setPathTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setPathTest");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
             "Set-Cookie:Path=\"/servlet_jsh_cookie_web\"");
@@ -392,7 +392,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setSecureTest() throws Exception {
+  void setSecureTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSecureVer0Test");
     invoke();
     TEST_PROPS.get().setProperty(APITEST, "setSecureVer1Test");
@@ -407,7 +407,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setValueTest() throws Exception {
+  void setValueTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setValueVer0Test");
     invoke();
     TEST_PROPS.get().setProperty(APITEST, "setValueVer1Test");
@@ -422,7 +422,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setVersionTest() throws Exception {
+  void setVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setVersionVer0Test");
     invoke();
     TEST_PROPS.get().setProperty(APITEST, "setVersionVer1Test");
@@ -437,7 +437,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setAttributeTest() throws Exception {
+  void setAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
@@ -450,7 +450,7 @@ public class CookieTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getAttributesTest() throws Exception {
+  void getAttributesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getAttributesTest");
     invoke();
   }

@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class CreateListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -67,7 +67,7 @@ public class CreateListenerTests extends AbstractTckTest {
    * that UnsupportedOperationException is thrown.
    */
   @Test
-  public void createListenerTest() throws Exception {
+  void createListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "createListenerTest");
     invoke();
   }

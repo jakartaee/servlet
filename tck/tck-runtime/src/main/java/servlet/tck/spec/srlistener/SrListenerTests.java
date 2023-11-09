@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class SrListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -61,7 +61,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleinclude() throws Exception {
+  void simpleinclude() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "includes");
@@ -89,7 +89,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void multipleincludes() throws Exception {
+  void multipleincludes() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "multipleincludes");
@@ -118,7 +118,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void includeforward() throws Exception {
+  void includeforward() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "includeforward");
@@ -147,7 +147,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void includeerror() throws Exception {
+  void includeerror() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
@@ -176,7 +176,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleforward() throws Exception {
+  void simpleforward() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "forward");
@@ -205,7 +205,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void multipleforwards() throws Exception {
+  void multipleforwards() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "multipleforwards");
@@ -234,7 +234,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void forwardinclude() throws Exception {
+  void forwardinclude() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "forwardinclude");
@@ -263,7 +263,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void forwarderror() throws Exception {
+  void forwarderror() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
@@ -292,7 +292,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleasync() throws Exception {
+  void simpleasync() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "async");
@@ -321,7 +321,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleasyncinclude() throws Exception {
+  void simpleasyncinclude() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "simpleasyncinclude");
@@ -352,7 +352,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleasyncforward() throws Exception {
+  void simpleasyncforward() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(APITEST, "simpleasyncforward");
@@ -381,7 +381,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void simpleasyncerror() throws Exception {
+  void simpleasyncerror() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
@@ -410,7 +410,7 @@ public class SrListenerTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void error() throws Exception {
+  void error() throws Exception {
     boolean pass = true;
     try {
       TEST_PROPS.get().setProperty(REQUEST,

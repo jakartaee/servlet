@@ -158,7 +158,7 @@ public class ClientCertAnnoTests extends AbstractTckTest {
    *
    */
   @Test
-  public void clientCertTest() throws Exception {
+  void clientCertTest() throws Exception {
 
     String testName = "clientCertTest";
     String url = getURLString("https", hostname, portnum,

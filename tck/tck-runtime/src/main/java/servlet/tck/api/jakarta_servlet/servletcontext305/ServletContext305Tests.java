@@ -52,7 +52,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext305Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -130,7 +130,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServletString() throws Exception {
+  void addServletString() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletString HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -170,7 +170,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * that all Listeners are added correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterString() throws Exception {
+  void addFilterString() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testAddFilterString");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletString" + "|AddSRListenerClass_INVOKED"
@@ -203,7 +203,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServletClass() throws Exception {
+  void addServletClass() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletClass HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -239,7 +239,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddFilterClass() throws Exception {
+  void addFilterClass() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testAddFilterClass");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "ADD_FILTER_CLASS_INVOKED");
@@ -277,7 +277,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServlet() throws Exception {
+  void addServlet() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/createServlet HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -319,7 +319,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterForward() throws Exception {
+  void addFilterForward() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateFilterForward");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -359,7 +359,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterInclude() throws Exception {
+  void addFilterInclude() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateFilterInclude");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -396,7 +396,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * Filter is NOT invoked.
    */
   @Test
-  public void testAddServletNotFound() throws Exception {
+  void addServletNotFound() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletNotFound HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
@@ -437,7 +437,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * Listeners are added correctly and invoked in the order added.
    */
   @Test
-  public void testCreateSRAListener() throws Exception {
+  void createSRAListener() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateSRAListener");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -480,7 +480,7 @@ public class ServletContext305Tests extends AbstractTckTest {
    * properly
    */
   @Test
-  public void negativeCreateTests() throws Exception {
+  void negativeCreateTests() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeCreateTests");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SERVLET_TEST=TRUE" + "|FILTER_TEST=TRUE" + "|LISTENER_TEST=TRUE"

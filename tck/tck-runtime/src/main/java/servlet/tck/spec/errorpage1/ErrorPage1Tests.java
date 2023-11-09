@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class ErrorPage1Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -70,7 +70,7 @@ public class ErrorPage1Tests extends AbstractTckTest {
    * info regarding the error
    */
   @Test
-  public void nonServletExceptionTest() throws Exception {
+  void nonServletExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "nonServletExceptionTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -97,7 +97,7 @@ public class ErrorPage1Tests extends AbstractTckTest {
    * Error Page is invoked with the appropriate info regarding the error
    */
   @Test
-  public void servletExceptionTest() throws Exception {
+  void servletExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "ServletExceptionTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Second ErrorPage|"

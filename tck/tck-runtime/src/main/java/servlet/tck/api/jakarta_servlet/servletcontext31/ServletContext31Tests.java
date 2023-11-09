@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext31Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -59,7 +59,7 @@ public class ServletContext31Tests extends AbstractTckTest {
    * verify ServletContext.getVirtualServerName() returns correctly;
    */
   @Test
-  public void getVirtualServerNameTest() throws Exception {
+  void getVirtualServerNameTest() throws Exception {
     String expected_virtualservername = _props
         .getProperty("logical.hostname.servlet").trim();
     TEST_PROPS.get().setProperty(REQUEST,

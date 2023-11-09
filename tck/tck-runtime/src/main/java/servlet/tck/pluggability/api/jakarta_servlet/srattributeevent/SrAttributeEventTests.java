@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class SrAttributeEventTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -70,7 +70,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * @test_Strategy: Servlet instanciate the constructor
    */
   @Test
-  public void constructorTest() throws Exception {
+  void constructorTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "constructorTest");
     invoke();
   }
@@ -87,7 +87,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    *
    */
   @Test
-  public void addedTest() throws Exception {
+  void addedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addedTest");
     invoke();
   }
@@ -104,7 +104,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * that changed
    */
   @Test
-  public void removedTest() throws Exception {
+  void removedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removedTest");
     invoke();
   }
@@ -121,7 +121,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * that changed
    */
   @Test
-  public void replacedTest() throws Exception {
+  void replacedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "replacedTest");
     invoke();
   }

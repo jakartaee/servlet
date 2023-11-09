@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class WebServletApiTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -69,7 +69,7 @@ public class WebServletApiTests extends AbstractTckTest {
    * name is set to the default name;
    */
   @Test
-  public void test1() throws Exception {
+  void test1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1URL HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_INVOKED"
@@ -100,7 +100,7 @@ public class WebServletApiTests extends AbstractTckTest {
    * properly; Verify that servlet name is set properly;
    */
   @Test
-  public void test2() throws Exception {
+  void test2() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2URL1 HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_INVOKED"
@@ -172,7 +172,7 @@ public class WebServletApiTests extends AbstractTckTest {
    * servlet name is set correctly
    */
   @Test
-  public void test3() throws Exception {
+  void test3() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3URL HTTP/1.1");
     TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,

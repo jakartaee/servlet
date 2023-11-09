@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class SetSessionTrackingModesTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class SetSessionTrackingModesTests extends AbstractTckTest {
    * Verify that UnsupportedOperationException is thrown.
    */
   @Test
-  public void setSessionTrackingModesTest() throws Exception {
+  void setSessionTrackingModesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModesTest");
     invoke();
   }

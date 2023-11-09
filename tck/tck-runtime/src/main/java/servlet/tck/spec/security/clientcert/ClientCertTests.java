@@ -218,32 +218,32 @@ public class ClientCertTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: clientCertTest
-     *
-     * @assertion_ids: Servlet:SPEC:140; Servlet:SPEC:368; Servlet:SPEC:369;
-     * Servlet:SPEC:26; Servlet:SPEC:26.1; Servlet:SPEC:26.2; Servlet:SPEC:26.3;
-     * Servlet:JAVADOC:356
-     *
-     * @test_strategy: 1. Look for the following request attributes a)
-     * cipher-suite b) key-size c) SSL certificate If any of the above attributes
-     * are not set report test failure.
-     *
-     * 2. Verify the request.getAuthType returns CLIENT_CERT
-     *
-     * Note: If a request has been transmitted over a secure protocol, such as
-     * HTTPS, this information must be exposed via the isSecure method of the
-     * ServletRequest interface. The web container must expose the following
-     * attributes to the servlet programmer. 1) The cipher suite 2) the bit size
-     * of the algorithm
-     *
-     * If there is an SSL certificate associated with the request, it must be
-     * exposed by the servlet container to the servlet programmer as an array of
-     * objects of type java.security.cert.X509Certificate
-     *
-     */
-    @Test
-    public void clientCertTest() throws Exception {
+  /*
+   * @testName: clientCertTest
+   *
+   * @assertion_ids: Servlet:SPEC:140; Servlet:SPEC:368; Servlet:SPEC:369;
+   * Servlet:SPEC:26; Servlet:SPEC:26.1; Servlet:SPEC:26.2; Servlet:SPEC:26.3;
+   * Servlet:JAVADOC:356
+   *
+   * @test_strategy: 1. Look for the following request attributes a)
+   * cipher-suite b) key-size c) SSL certificate If any of the above attributes
+   * are not set report test failure.
+   *
+   * 2. Verify the request.getAuthType returns CLIENT_CERT
+   *
+   * Note: If a request has been transmitted over a secure protocol, such as
+   * HTTPS, this information must be exposed via the isSecure method of the
+   * ServletRequest interface. The web container must expose the following
+   * attributes to the servlet programmer. 1) The cipher suite 2) the bit size
+   * of the algorithm
+   *
+   * If there is an SSL certificate associated with the request, it must be
+   * exposed by the servlet container to the servlet programmer as an array of
+   * objects of type java.security.cert.X509Certificate
+   *
+   */
+  @Test
+  void clientCertTest() throws Exception {
 
         String testName = "clientCertTest";
         String url = getURLString("https", hostname, portnum, pageBase.substring(1) + authorizedPage);

@@ -56,7 +56,7 @@ public class AsyncTests extends AbstractTckTest {
    * request.isAsyncSupported()=true.
    */
   @Test
-  public void AsyncSupportedTrueTest1() throws Exception {
+  void AsyncSupportedTrueTest1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -75,7 +75,7 @@ public class AsyncTests extends AbstractTckTest {
    * Servlet4 that request.isAsyncSupported()=true.
    */
   @Test
-  public void AsyncSupportedTrueTest2() throws Exception {
+  void AsyncSupportedTrueTest2() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet4?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -96,7 +96,7 @@ public class AsyncTests extends AbstractTckTest {
    * web.xml; verifies in Servlet1 that request.isAsyncSupported()=true.
    */
   @Test
-  public void AsyncSupportedTrueTest3() throws Exception {
+  void AsyncSupportedTrueTest3() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=1 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -118,7 +118,7 @@ public class AsyncTests extends AbstractTckTest {
    * request.isAsyncSupported()=true.
    */
   @Test
-  public void AsyncSupportedTrueTest4() throws Exception {
+  void AsyncSupportedTrueTest4() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=10 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -137,7 +137,7 @@ public class AsyncTests extends AbstractTckTest {
    * request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest1() throws Exception {
+  void AsyncSupportedFalseTest1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet2_Async=false");
@@ -154,7 +154,7 @@ public class AsyncTests extends AbstractTckTest {
    * request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest2() throws Exception {
+  void AsyncSupportedFalseTest2() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -173,7 +173,7 @@ public class AsyncTests extends AbstractTckTest {
    * that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest3() throws Exception {
+  void AsyncSupportedFalseTest3() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet5?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -193,7 +193,7 @@ public class AsyncTests extends AbstractTckTest {
    * that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest4() throws Exception {
+  void AsyncSupportedFalseTest4() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet6?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -213,7 +213,7 @@ public class AsyncTests extends AbstractTckTest {
    * that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest5() throws Exception {
+  void AsyncSupportedFalseTest5() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet7?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -233,7 +233,7 @@ public class AsyncTests extends AbstractTckTest {
    * that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest6() throws Exception {
+  void AsyncSupportedFalseTest6() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet8?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -253,7 +253,7 @@ public class AsyncTests extends AbstractTckTest {
    * that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest7() throws Exception {
+  void AsyncSupportedFalseTest7() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet9?testname=direct HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -274,7 +274,7 @@ public class AsyncTests extends AbstractTckTest {
    * verifies in Servlet2 that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest8() throws Exception {
+  void AsyncSupportedFalseTest8() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=2 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -294,7 +294,7 @@ public class AsyncTests extends AbstractTckTest {
    * verifies in Servlet3 that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest9() throws Exception {
+  void AsyncSupportedFalseTest9() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=3 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -315,7 +315,7 @@ public class AsyncTests extends AbstractTckTest {
    * web.xml; verifies in Servlet5 that request.isAsyncSupported()=false.
    */
   @Test
-  public void AsyncSupportedFalseTest10() throws Exception {
+  void AsyncSupportedFalseTest10() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=testdirect&id=5 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -333,7 +333,7 @@ public class AsyncTests extends AbstractTckTest {
    * that AsyncContext start and complete.
    */
   @Test
-  public void StartAsyncTest1() throws Exception {
+  void StartAsyncTest1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -351,7 +351,7 @@ public class AsyncTests extends AbstractTckTest {
    * that startAsync causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest2() throws Exception {
+  void StartAsyncTest2() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet2?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -369,7 +369,7 @@ public class AsyncTests extends AbstractTckTest {
    * that startAsync causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest3() throws Exception {
+  void StartAsyncTest3() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet3?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -388,7 +388,7 @@ public class AsyncTests extends AbstractTckTest {
    * startAsync() in Servlet4, verifies that AsyncContext start and complete.
    */
   @Test
-  public void StartAsyncTest4() throws Exception {
+  void StartAsyncTest4() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet4?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -409,7 +409,7 @@ public class AsyncTests extends AbstractTckTest {
    * IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest5() throws Exception {
+  void StartAsyncTest5() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet5?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -430,7 +430,7 @@ public class AsyncTests extends AbstractTckTest {
    * IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest6() throws Exception {
+  void StartAsyncTest6() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet6?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -451,7 +451,7 @@ public class AsyncTests extends AbstractTckTest {
    * IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest7() throws Exception {
+  void StartAsyncTest7() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet7?testname=startA HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -473,7 +473,7 @@ public class AsyncTests extends AbstractTckTest {
    * verifies in Servlet1 that startAsync and complete runs.
    */
   @Test
-  public void StartAsyncTest8() throws Exception {
+  void StartAsyncTest8() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=1 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -494,7 +494,7 @@ public class AsyncTests extends AbstractTckTest {
    * thrown.
    */
   @Test
-  public void StartAsyncTest9() throws Exception {
+  void StartAsyncTest9() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=2 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -515,7 +515,7 @@ public class AsyncTests extends AbstractTckTest {
    * thrown.
    */
   @Test
-  public void StartAsyncTest10() throws Exception {
+  void StartAsyncTest10() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=3 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -537,7 +537,7 @@ public class AsyncTests extends AbstractTckTest {
    * startAsync and complete run.
    */
   @Test
-  public void StartAsyncTest11() throws Exception {
+  void StartAsyncTest11() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=10 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -559,7 +559,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest12() throws Exception {
+  void StartAsyncTest12() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=5 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -582,7 +582,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest13() throws Exception {
+  void StartAsyncTest13() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=6 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -605,7 +605,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest14() throws Exception {
+  void StartAsyncTest14() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=7 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -628,7 +628,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest15() throws Exception {
+  void StartAsyncTest15() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=8 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -651,7 +651,7 @@ public class AsyncTests extends AbstractTckTest {
    * startAsync causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest16() throws Exception {
+  void StartAsyncTest16() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet4?testname=teststartA&id=9 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -672,7 +672,7 @@ public class AsyncTests extends AbstractTckTest {
    * verifies in Servlet1 startAsync causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest17() throws Exception {
+  void StartAsyncTest17() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=1 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -693,7 +693,7 @@ public class AsyncTests extends AbstractTckTest {
    * thrown.
    */
   @Test
-  public void StartAsyncTest18() throws Exception {
+  void StartAsyncTest18() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=2 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -714,7 +714,7 @@ public class AsyncTests extends AbstractTckTest {
    * thrown.
    */
   @Test
-  public void StartAsyncTest19() throws Exception {
+  void StartAsyncTest19() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=3 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -736,7 +736,7 @@ public class AsyncTests extends AbstractTckTest {
    * IllegalStateException is thrown.
    */
   @Test
-  public void StartAsyncTest20() throws Exception {
+  void StartAsyncTest20() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=4 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -759,7 +759,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest21() throws Exception {
+  void StartAsyncTest21() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=6 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -782,7 +782,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest22() throws Exception {
+  void StartAsyncTest22() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=7 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -805,7 +805,7 @@ public class AsyncTests extends AbstractTckTest {
    * causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest23() throws Exception {
+  void StartAsyncTest23() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=8 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -828,7 +828,7 @@ public class AsyncTests extends AbstractTckTest {
    * startAsync causes IllegalStateException thrown.
    */
   @Test
-  public void StartAsyncTest24() throws Exception {
+  void StartAsyncTest24() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot()
         + "/Servlet5?testname=teststartA&id=9 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -836,6 +836,7 @@ public class AsyncTests extends AbstractTckTest {
         "Filter9=INVOKED|Servlet9_Async=NOT_STARTED");
     invoke();
   }
+
   /*
    * @testName: StartAsyncTest25
    * 
@@ -847,7 +848,7 @@ public class AsyncTests extends AbstractTckTest {
    * completes fine.
    */
   @Test
-  public void StartAsyncTest25() throws Exception {
+  void StartAsyncTest25() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet?testname=test1 HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);

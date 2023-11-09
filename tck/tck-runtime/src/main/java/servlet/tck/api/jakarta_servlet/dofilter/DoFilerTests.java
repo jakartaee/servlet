@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class DoFilerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -66,7 +66,7 @@ public class DoFilerTests extends AbstractTckTest {
    * CTSResponseWrapper 5. Verify that filter is properly invoked.
    */
   @Test
-  public void wrapResponseTest() throws Exception {
+  void wrapResponseTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "wrapResponseTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "CTSResponseWrapper|WrapResponseFilter|ForwardedServlet");

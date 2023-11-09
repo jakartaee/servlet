@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class ServletOutputStreamTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -53,6 +53,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
             .addAsLibraries(javaArchive);
 
   }
+
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    */
@@ -67,7 +68,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(java.lang.String s) method
    */
   @Test
-  public void print_StringTest() throws Exception {
+  void print_StringTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "some text");
 
     TEST_PROPS.get().setProperty(APITEST, "print_StringTest");
@@ -82,7 +83,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(boolean b) method
    */
   @Test
-  public void print_booleanTest() throws Exception {
+  void print_booleanTest() throws Exception {
     String s = Boolean.TRUE.toString();
 
     StringBuffer ss = new StringBuffer(s);
@@ -102,7 +103,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(char c) method
    */
   @Test
-  public void print_charTest() throws Exception {
+  void print_charTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TEXT");
 
     TEST_PROPS.get().setProperty(APITEST, "print_charTest");
@@ -117,7 +118,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(double d) method
    */
   @Test
-  public void print_doubleTest() throws Exception {
+  void print_doubleTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "12345.612345.6");
 
     TEST_PROPS.get().setProperty(APITEST, "print_doubleTest");
@@ -132,7 +133,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(float f) method
    */
   @Test
-  public void print_floatTest() throws Exception {
+  void print_floatTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "1234.51234.5");
 
     TEST_PROPS.get().setProperty(APITEST, "print_floatTest");
@@ -147,7 +148,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(integer i) method
    */
   @Test
-  public void print_intTest() throws Exception {
+  void print_intTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "11");
 
     TEST_PROPS.get().setProperty(APITEST, "print_intTest");
@@ -162,7 +163,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(long l) method
    */
   @Test
-  public void print_longTest() throws Exception {
+  void print_longTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "12345678901234567890");
 
     TEST_PROPS.get().setProperty(APITEST, "print_longTest");
@@ -178,7 +179,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println () method
    */
   @Test
-  public void printlnTest() throws Exception {
+  void printlnTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "some test");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "some test text");
 
@@ -194,7 +195,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(java.lang.String s) method
    */
   @Test
-  public void println_StringTest() throws Exception {
+  void println_StringTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "some|text");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "sometext");
 
@@ -210,7 +211,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(boolean b) method
    */
   @Test
-  public void println_booleanTest() throws Exception {
+  void println_booleanTest() throws Exception {
     String s = Boolean.TRUE.toString();
 
     StringBuffer ss = new StringBuffer(s);
@@ -231,7 +232,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(char c) method
    */
   @Test
-  public void println_charTest() throws Exception {
+  void println_charTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "T|E|X|T");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "TEXT");
 
@@ -247,7 +248,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(double d) method
    */
   @Test
-  public void println_doubleTest() throws Exception {
+  void println_doubleTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "12345.6");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "12345.612345.6");
 
@@ -263,7 +264,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for print(float f) method
    */
   @Test
-  public void println_floatTest() throws Exception {
+  void println_floatTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "1234.5");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "1234.51234.5");
 
@@ -279,7 +280,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(integer i) method
    */
   @Test
-  public void println_intTest() throws Exception {
+  void println_intTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "1");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "11");
 
@@ -295,7 +296,7 @@ public class ServletOutputStreamTests extends AbstractTckTest {
    * @test_Strategy: Test for println(long l) method
    */
   @Test
-  public void println_longTest() throws Exception {
+  void println_longTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "1234567890");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "12345678901234567890");
 

@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class MultiFilterMappingTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -74,7 +74,7 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    * Verify that Test_RequestFilter is properly invoked.
    */
   @Test
-  public void requestTest() throws Exception {
+  void requestTest() throws Exception {
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_RequestFilter|TestServlet1");
     TEST_PROPS.get().setProperty(APITEST, "foo/bar/index.html");
@@ -138,7 +138,7 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    * forward. 6. Verify that the filter is invoked properly
    */
   @Test
-  public void forwardTest() throws Exception {
+  void forwardTest() throws Exception {
     String testName = "forwardTest";
 
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ForwardFilter|TestServlet1");
@@ -213,7 +213,7 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    * include. 6. Verify that the filter is invoked properly
    */
   @Test
-  public void includeTest() throws Exception {
+  void includeTest() throws Exception {
     String testName = "includeTest";
     String filterString = "Test_IncludeFilter";
 
@@ -295,7 +295,7 @@ public class MultiFilterMappingTests extends AbstractTckTest {
    * forward respectively. 10. Verify that Test_ErrorFilter is properly invoked.
    */
   @Test
-  public void errorTest() throws Exception {
+  void errorTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "test/foo/bar/xyz");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Test_ErrorFilter|ErrorPage");
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");

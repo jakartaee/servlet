@@ -31,7 +31,7 @@ public class AddListenerTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -65,7 +65,7 @@ public class AddListenerTests extends AbstractTckTest {
    * UnsupportedOperationException is thrown.
    */
   @Test
-  public void addListenerTest() throws Exception {
+  void addListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addListenerTest");
     invoke();
   }

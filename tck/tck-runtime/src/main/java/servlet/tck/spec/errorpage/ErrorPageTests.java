@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 public class ErrorPageTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -66,7 +66,7 @@ public class ErrorPageTests extends AbstractTckTest {
    * pages; one is a servlet; thother HTML page
    */
   @Test
-  public void servletToDifferentErrorPagesTest() throws Exception {
+  void servletToDifferentErrorPagesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletErrorPageTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -92,7 +92,7 @@ public class ErrorPageTests extends AbstractTckTest {
    * with the appropriate info regarding the error
    */
   @Test
-  public void statusCodeErrorPageTest() throws Exception {
+  void statusCodeErrorPageTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "statusCodeErrorPageTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, "501");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -115,7 +115,7 @@ public class ErrorPageTests extends AbstractTckTest {
    * error
    */
   @Test
-  public void heirarchyErrorMatchTest() throws Exception {
+  void heirarchyErrorMatchTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "heirarchyErrorMatchTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -137,7 +137,7 @@ public class ErrorPageTests extends AbstractTckTest {
    * Page is invoked with the appropriate info regarding the error
    */
   @Test
-  public void wrappedExceptionTest() throws Exception {
+  void wrappedExceptionTest() throws Exception {
     String testName = "WrappedException";
 
     TEST_PROPS.get().setProperty(TEST_NAME, testName);

@@ -37,7 +37,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
   private static final String CRLF = "\r\n";
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -70,7 +70,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
    * Verify UpgradeHandler accordingly Verify ReadListener works accordingly
    */
   @Test
-  public void upgradeTest() throws Exception {
+  void upgradeTest() throws Exception {
     Boolean passed1 = false;
     Boolean passed2 = false;
     Boolean passed3 = false;

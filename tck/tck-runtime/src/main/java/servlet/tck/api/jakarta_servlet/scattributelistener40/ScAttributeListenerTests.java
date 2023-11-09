@@ -32,7 +32,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -65,7 +65,7 @@ public class ScAttributeListenerTests extends AbstractTckTest {
    *
    */
   @Test
-  public void defaultMethodsTest() throws Exception {
+  void defaultMethodsTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "defaultMethodsTest");
     invoke();
   }

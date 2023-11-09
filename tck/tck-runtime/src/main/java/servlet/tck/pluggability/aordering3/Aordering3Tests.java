@@ -70,7 +70,7 @@ public class Aordering3Tests extends AbstractTckTest {
    * fragnments are ignored.
    */
   @Test
-  public void absoluteOrderingTest() throws Exception {
+  void absoluteOrderingTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "msg1=first|RequestListener");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "msg2=second|TestServlet2|"

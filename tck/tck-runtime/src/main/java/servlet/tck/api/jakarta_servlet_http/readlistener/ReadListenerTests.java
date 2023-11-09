@@ -38,7 +38,7 @@ public class ReadListenerTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -71,7 +71,7 @@ public class ReadListenerTests extends AbstractTckTest {
    * all message received; Verify ReadListener works accordingly
    */
   @Test
-  public void nioInputTest() throws Exception {
+  void nioInputTest() throws Exception {
     int sleepInSeconds = Integer
         .parseInt(_props.getProperty("servlet_async_wait").trim());
     boolean passed = true;

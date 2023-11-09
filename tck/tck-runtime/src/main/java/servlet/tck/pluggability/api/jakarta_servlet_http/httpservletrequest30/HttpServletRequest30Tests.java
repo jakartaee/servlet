@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class HttpServletRequest30Tests extends HttpRequestClient {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("LoginTestServlet");
   }
 
@@ -72,7 +72,7 @@ public class HttpServletRequest30Tests extends HttpRequestClient {
    * login(null, null) throw ServletException.
    */
   @Test
-  public void loginTest() throws Exception {
+  void loginTest() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/LoginTestServlet HTTP/1.1");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 
 public class ScListenerTests extends AbstractTckTest {
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class ScListenerTests extends AbstractTckTest {
    * and verifies the result
    */
   @Test
-  public void contextInitializedTest() throws Exception {
+  void contextInitializedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "contextInitializedTest");
     invoke();
   }

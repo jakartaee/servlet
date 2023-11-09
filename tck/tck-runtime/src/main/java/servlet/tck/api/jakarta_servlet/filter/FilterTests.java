@@ -56,7 +56,7 @@ public class FilterTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void doFilterTest() throws Exception {
+  void doFilterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "DoFilterTest");
     invoke();
   }
@@ -70,7 +70,7 @@ public class FilterTests extends AbstractTckTest {
    * configured for that servlet.
    */
   @Test
-  public void initFilterConfigTest() throws Exception {
+  void initFilterConfigTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "InitFilterConfigTest");
     invoke();
   }

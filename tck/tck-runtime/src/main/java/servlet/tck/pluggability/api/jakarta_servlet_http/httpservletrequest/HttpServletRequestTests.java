@@ -39,8 +39,8 @@ import org.junit.jupiter.api.Test;
 
 public class HttpServletRequestTests extends HttpRequestClient {
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -236,427 +236,427 @@ public class HttpServletRequestTests extends HttpRequestClient {
         invoke();
     }
 
-    /*
-   * @testName: getProtocolTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:586
-   * 
-   * @test_Strategy: Servlet verifies the protocol used by the client
-   */
-    /*
-   * @testName: getReaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:587
-   * 
-   * @test_Strategy: Client sets some content and servlet reads the content
-   */
-    /*
-   * @testName: getReaderIllegalStateExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:590
-   * 
-   * @test_Strategy: Servlet gets an InputStream Object then tries to get a
-   * Reader Object.
-   */
-    /*
-   * @testName: getReaderUnsupportedEncodingExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:589
-   * 
-   * @test_Strategy: Client sets some content but with an invalid encoding,
-   * servlet tries to read content.
-   */
-    /*
-   * @testName: getRemoteAddrTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:592
-   * 
-   * @test_Strategy: Servlet reads and verifies where the request originated
-   */
-    /*
-   * @testName: getLocalAddrTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:719
-   * 
-   * @test_Strategy: Servlet reads and verifies where the request originated
-   */
-    /*
-   * @testName: getLocalNameTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:629;
-   * 
-   * @test_Strategy: Send an HttpServletRequest to server; Verify that
-   * getLocalName();
-   */
-    /*
-   * @testName: getRemoteHostTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:593
-   * 
-   * @test_Strategy: Servlet reads and verifies where the request originated
-   */
-    /*
-   * @testName: getRequestDispatcherTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:594
-   * 
-   * @test_Strategy: Servlet tries to get a dispatcher
-   */
-    /*
-   * @testName: getSchemeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:595
-   * 
-   * @test_Strategy: Servlet verifies the scheme of the url used in the request
-   */
-    /*
-   * @testName: getServerNameTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:596
-   * 
-   * @test_Strategy: Servlet verifies the destination of the request
-   */
-    /*
-   * @testName: getServerPortTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:597
-   * 
-   * @test_Strategy: Servlet verifies the destination port of the request
-   */
-    /*
-   * @testName: isSecureTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:598
-   * 
-   * @test_Strategy: Servlet verifies the isSecure method for the non-secure
-   * case.
-   */
-    /*
-   * @testName: removeAttributeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:599
-   * 
-   * @test_Strategy: Servlet adds then removes an attribute, then verifies it
-   * was removed.
-   */
-    /*
-   * @testName: setAttributeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:600
-   * 
-   * @test_Strategy: Servlet adds an attribute, then verifies it was added
-   */
-    /*
-   * @testName: setCharacterEncodingTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:601
-   * 
-   * @test_Strategy: Servlet sets a new encoding and tries to retrieve it.
-   */
-    /*
-   * @testName: setCharacterEncodingTest1
-   * 
-   * @assertion_ids: Servlet:JAVADOC:601; Servlet:JAVADOC:574; Servlet:SPEC:28;
-   * Servlet:SPEC:213;
-   * 
-   * @test_Strategy: HttpServletRequest calls getReader()first; then sets a new
-   * encoding and tries to retrieve it. verifies that the new encoding is
-   * ignored.
-   */
-    /*
-   * @testName: setCharacterEncodingUnsupportedEncodingExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:602
-   * 
-   * @test_Strategy: Servlet tries to set an invalid encoding.
-   *
-   */
-    // ---------------------------- END ServletRequest
-    // -----------------------------
-    // ---------------------------- HttpServletRequest
-    // -----------------------------
-    /*
-   * @testName: getAuthTypeWithoutProtectionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:530
-   * 
-   * @test_Strategy: Servlet verifies correct result
-   */
-    /*
-   * @testName: getContextPathTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:550
-   * 
-   * @test_Strategy: Client sets header and servlet verifies the result
-   */
-    /*
-   * @testName: getCookiesNoCookiesTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:532
-   * 
-   * @test_Strategy: Servlet tries to get a cookie when none exist
-   */
-    /*
-   * @testName: getCookiesTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:531
-   * 
-   * @test_Strategy:Client sets a cookie and servlet tries to read it
-   */
-    /*
-   * @testName: getDateHeaderIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:535
-   * 
-   * @test_Strategy: Client set invalid date value, servlet tries to read it.
-   */
-    /*
-   * @testName: getDateHeaderNoHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:534
-   * 
-   * @test_Strategy: Servlet tries to get a dateHeader when none exist
-   */
-    /*
-   * @testName: getDateHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:533
-   * 
-   * @test_Strategy: client sets a dateheader and servlet tries to read it.
-   */
-    /*
-   * @testName: getHeaderNamesTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:540
-   * 
-   * @test_Strategy: Client sets some headers and servlet tries to read them.
-   */
-    /*
-   * @testName: getHeaderNoHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:537
-   * 
-   * @test_Strategy: Servlet tries to read a header when none exist
-   */
-    /*
-   * @testName: getHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:536
-   * 
-   * @test_Strategy: Client sets a header and servlet tries to read it.
-   */
-    /*
-   * @testName: getHeadersNoHeadersTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:539
-   * 
-   * @test_Strategy: Servlet tries to get all the headers when none have been
-   * added
-   */
-    /*
-   * @testName: getHeadersTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:538
-   * 
-   * @test_Strategy: Client sets some headers and servlet tries to read them
-   */
-    /*
-   * @testName: getIntHeaderNoHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:543
-   * 
-   * @test_Strategy: Servlet tries to read a header when none exist.
-   */
-    /*
-   * @testName: getIntHeaderNumberFoundExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:544
-   * 
-   * @test_Strategy: Client sets an invalid header and servlet tries to read it.
-   */
-    /*
-   * @testName: getIntHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:542
-   * 
-   * @test_Strategy: Client sets a header and servlet reads it
-   */
-    /*
-   * @testName: getMethodTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:545
-   * 
-   * @test_Strategy: Client makes 3 calls using GET/POST/HEAD
-   */
-    /*
-   * @testName: getPathInfoNullTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:547
-   * 
-   * @test_Strategy:
-   */
-    /*
-   * @testName: getPathInfoTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:546; Servlet:SPEC:25;
-   * 
-   * @test_Strategy: Servlet verifies path info
-   */
-    /*
-   * @testName: getPathTranslatedNullTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:549
-   * 
-   * @test_Strategy: Servlet verifies result when there is no path info
-   */
-    /*
-   * @testName: getPathTranslatedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:548
-   * 
-   * @test_Strategy: client sets extra path info and servlet verifies it
-   */
-    /*
-   * @testName: getQueryStringNullTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:553
-   * 
-   * @test_Strategy: Servlet verifies result when no query string exists
-   */
-    /*
-   * @testName: getQueryStringTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:552
-   * 
-   * @test_Strategy: Client sets query string and servlet verifies it
-   */
-    /*
-   * @testName: getRemoteUserTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:554
-   * 
-   * @test_Strategy: Servlet verifies the result of a non-authed user
-   */
-    /*
-   * @testName: getRequestURITest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:561
-   * 
-   * @test_Strategy: Servlet verifies URI data
-   */
-    /*
-   * @testName: getRequestURLTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:562
-   * 
-   * @test_Strategy: Servlet verifies URL info
-   */
-    /*
-   * @testName: getRequestedSessionIdNullTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:560
-   * 
-   * @test_Strategy: Servlet verifies null result
-   */
-    /*
-   * @testName: getServletPathEmptyStringTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:563; Servlet:SPEC:23;
-   * 
-   * @test_Strategy: Servlet verifies empty string
-   */
-    /*
-   * @testName: getServletPathTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:564; Servlet:SPEC:24;
-   * 
-   * @test_Strategy: Servlet verifies path info
-   */
-    /*
-   * @testName: getSessionTrueTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:565
-   * 
-   * @test_Strategy: Servlet verifies getSession(true) call
-   */
-    /*
-   * @testName: getSessionFalseTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:566
-   * 
-   * @test_Strategy: Servlet verifies getSession(false) call
-   */
-    /*
-   * @testName: getSessionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:567
-   * 
-   * @test_Strategy: Servlet verifies getSession() call
-   */
-    /*
-   * @testName: isRequestedSessionIdFromCookieTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:569
-   * 
-   * @test_Strategy: Servlet verifies correct result
-   */
-    /*
-   * @testName: isRequestedSessionIdFromURLTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:570
-   * 
-   * @test_Strategy: Servlet verifies correct result
-   */
-    /*
-   * @testName: isRequestedSessionIdValidTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:568; Servlet:SPEC:211;
-   * 
-   * @test_Strategy: Client sends request without session ID; Verifies
-   * isRequestedSessionIdValid() returns false;
-   */
-    /*
-   * @testName: getRequestedSessionIdTest1
-   * 
-   * @assertion_ids: Servlet:JAVADOC:559;
-   * 
-   * @test_Strategy: Client sends request with a session ID; Verifies
-   * getRequestedSessionId() returns the same;
-   */
-    /*
-   * @testName: getRequestedSessionIdTest2
-   * 
-   * @assertion_ids: Servlet:JAVADOC:559;
-   * 
-   * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet
-   * start a sesison; Verifies getRequestedSessionId() returns the same;
-   */
-    /*
-   * @testName: sessionTimeoutTest
-   *
-   * @assertion_ids: Servlet:SPEC:67;
-   *
-   * @test_Strategy: First set a HttpSession's timeout to 60 seconds; then sleep
-   * 90 seconds in servlet; verify that the session is still valid after.
-   */
-    /*
-   * @testName: getLocalPortTest
-   *
-   * @assertion_ids: Servlet:JAVADOC:630;
-   *
-   * @test_Strategy: Send an HttpServletRequest to server; Verify that
-   * getLocalPort();
-   */
-    /*
-   * @testName: getServletContextTest
-   *
-   * @assertion_ids:
-   *
-   * @test_Strategy: Send an HttpServletRequest to server; Verify that
-   * getServletContext return the same as stored in ServletConfig
-   */
-    @Test
-    public void getServletContextTest() throws Exception {
+  /*
+ * @testName: getProtocolTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:586
+ * 
+ * @test_Strategy: Servlet verifies the protocol used by the client
+ */
+  /*
+ * @testName: getReaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:587
+ * 
+ * @test_Strategy: Client sets some content and servlet reads the content
+ */
+  /*
+ * @testName: getReaderIllegalStateExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:590
+ * 
+ * @test_Strategy: Servlet gets an InputStream Object then tries to get a
+ * Reader Object.
+ */
+  /*
+ * @testName: getReaderUnsupportedEncodingExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:589
+ * 
+ * @test_Strategy: Client sets some content but with an invalid encoding,
+ * servlet tries to read content.
+ */
+  /*
+ * @testName: getRemoteAddrTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:592
+ * 
+ * @test_Strategy: Servlet reads and verifies where the request originated
+ */
+  /*
+ * @testName: getLocalAddrTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:719
+ * 
+ * @test_Strategy: Servlet reads and verifies where the request originated
+ */
+  /*
+ * @testName: getLocalNameTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:629;
+ * 
+ * @test_Strategy: Send an HttpServletRequest to server; Verify that
+ * getLocalName();
+ */
+  /*
+ * @testName: getRemoteHostTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:593
+ * 
+ * @test_Strategy: Servlet reads and verifies where the request originated
+ */
+  /*
+ * @testName: getRequestDispatcherTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:594
+ * 
+ * @test_Strategy: Servlet tries to get a dispatcher
+ */
+  /*
+ * @testName: getSchemeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:595
+ * 
+ * @test_Strategy: Servlet verifies the scheme of the url used in the request
+ */
+  /*
+ * @testName: getServerNameTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:596
+ * 
+ * @test_Strategy: Servlet verifies the destination of the request
+ */
+  /*
+ * @testName: getServerPortTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:597
+ * 
+ * @test_Strategy: Servlet verifies the destination port of the request
+ */
+  /*
+ * @testName: isSecureTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:598
+ * 
+ * @test_Strategy: Servlet verifies the isSecure method for the non-secure
+ * case.
+ */
+  /*
+ * @testName: removeAttributeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:599
+ * 
+ * @test_Strategy: Servlet adds then removes an attribute, then verifies it
+ * was removed.
+ */
+  /*
+ * @testName: setAttributeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:600
+ * 
+ * @test_Strategy: Servlet adds an attribute, then verifies it was added
+ */
+  /*
+ * @testName: setCharacterEncodingTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:601
+ * 
+ * @test_Strategy: Servlet sets a new encoding and tries to retrieve it.
+ */
+  /*
+ * @testName: setCharacterEncodingTest1
+ * 
+ * @assertion_ids: Servlet:JAVADOC:601; Servlet:JAVADOC:574; Servlet:SPEC:28;
+ * Servlet:SPEC:213;
+ * 
+ * @test_Strategy: HttpServletRequest calls getReader()first; then sets a new
+ * encoding and tries to retrieve it. verifies that the new encoding is
+ * ignored.
+ */
+  /*
+ * @testName: setCharacterEncodingUnsupportedEncodingExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:602
+ * 
+ * @test_Strategy: Servlet tries to set an invalid encoding.
+ *
+ */
+  // ---------------------------- END ServletRequest
+  // -----------------------------
+  // ---------------------------- HttpServletRequest
+  // -----------------------------
+  /*
+ * @testName: getAuthTypeWithoutProtectionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:530
+ * 
+ * @test_Strategy: Servlet verifies correct result
+ */
+  /*
+ * @testName: getContextPathTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:550
+ * 
+ * @test_Strategy: Client sets header and servlet verifies the result
+ */
+  /*
+ * @testName: getCookiesNoCookiesTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:532
+ * 
+ * @test_Strategy: Servlet tries to get a cookie when none exist
+ */
+  /*
+ * @testName: getCookiesTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:531
+ * 
+ * @test_Strategy:Client sets a cookie and servlet tries to read it
+ */
+  /*
+ * @testName: getDateHeaderIllegalArgumentExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:535
+ * 
+ * @test_Strategy: Client set invalid date value, servlet tries to read it.
+ */
+  /*
+ * @testName: getDateHeaderNoHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:534
+ * 
+ * @test_Strategy: Servlet tries to get a dateHeader when none exist
+ */
+  /*
+ * @testName: getDateHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:533
+ * 
+ * @test_Strategy: client sets a dateheader and servlet tries to read it.
+ */
+  /*
+ * @testName: getHeaderNamesTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:540
+ * 
+ * @test_Strategy: Client sets some headers and servlet tries to read them.
+ */
+  /*
+ * @testName: getHeaderNoHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:537
+ * 
+ * @test_Strategy: Servlet tries to read a header when none exist
+ */
+  /*
+ * @testName: getHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:536
+ * 
+ * @test_Strategy: Client sets a header and servlet tries to read it.
+ */
+  /*
+ * @testName: getHeadersNoHeadersTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:539
+ * 
+ * @test_Strategy: Servlet tries to get all the headers when none have been
+ * added
+ */
+  /*
+ * @testName: getHeadersTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:538
+ * 
+ * @test_Strategy: Client sets some headers and servlet tries to read them
+ */
+  /*
+ * @testName: getIntHeaderNoHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:543
+ * 
+ * @test_Strategy: Servlet tries to read a header when none exist.
+ */
+  /*
+ * @testName: getIntHeaderNumberFoundExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:544
+ * 
+ * @test_Strategy: Client sets an invalid header and servlet tries to read it.
+ */
+  /*
+ * @testName: getIntHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:542
+ * 
+ * @test_Strategy: Client sets a header and servlet reads it
+ */
+  /*
+ * @testName: getMethodTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:545
+ * 
+ * @test_Strategy: Client makes 3 calls using GET/POST/HEAD
+ */
+  /*
+ * @testName: getPathInfoNullTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:547
+ * 
+ * @test_Strategy:
+ */
+  /*
+ * @testName: getPathInfoTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:546; Servlet:SPEC:25;
+ * 
+ * @test_Strategy: Servlet verifies path info
+ */
+  /*
+ * @testName: getPathTranslatedNullTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:549
+ * 
+ * @test_Strategy: Servlet verifies result when there is no path info
+ */
+  /*
+ * @testName: getPathTranslatedTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:548
+ * 
+ * @test_Strategy: client sets extra path info and servlet verifies it
+ */
+  /*
+ * @testName: getQueryStringNullTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:553
+ * 
+ * @test_Strategy: Servlet verifies result when no query string exists
+ */
+  /*
+ * @testName: getQueryStringTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:552
+ * 
+ * @test_Strategy: Client sets query string and servlet verifies it
+ */
+  /*
+ * @testName: getRemoteUserTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:554
+ * 
+ * @test_Strategy: Servlet verifies the result of a non-authed user
+ */
+  /*
+ * @testName: getRequestURITest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:561
+ * 
+ * @test_Strategy: Servlet verifies URI data
+ */
+  /*
+ * @testName: getRequestURLTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:562
+ * 
+ * @test_Strategy: Servlet verifies URL info
+ */
+  /*
+ * @testName: getRequestedSessionIdNullTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:560
+ * 
+ * @test_Strategy: Servlet verifies null result
+ */
+  /*
+ * @testName: getServletPathEmptyStringTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:563; Servlet:SPEC:23;
+ * 
+ * @test_Strategy: Servlet verifies empty string
+ */
+  /*
+ * @testName: getServletPathTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:564; Servlet:SPEC:24;
+ * 
+ * @test_Strategy: Servlet verifies path info
+ */
+  /*
+ * @testName: getSessionTrueTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:565
+ * 
+ * @test_Strategy: Servlet verifies getSession(true) call
+ */
+  /*
+ * @testName: getSessionFalseTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:566
+ * 
+ * @test_Strategy: Servlet verifies getSession(false) call
+ */
+  /*
+ * @testName: getSessionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:567
+ * 
+ * @test_Strategy: Servlet verifies getSession() call
+ */
+  /*
+ * @testName: isRequestedSessionIdFromCookieTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:569
+ * 
+ * @test_Strategy: Servlet verifies correct result
+ */
+  /*
+ * @testName: isRequestedSessionIdFromURLTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:570
+ * 
+ * @test_Strategy: Servlet verifies correct result
+ */
+  /*
+ * @testName: isRequestedSessionIdValidTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:568; Servlet:SPEC:211;
+ * 
+ * @test_Strategy: Client sends request without session ID; Verifies
+ * isRequestedSessionIdValid() returns false;
+ */
+  /*
+ * @testName: getRequestedSessionIdTest1
+ * 
+ * @assertion_ids: Servlet:JAVADOC:559;
+ * 
+ * @test_Strategy: Client sends request with a session ID; Verifies
+ * getRequestedSessionId() returns the same;
+ */
+  /*
+ * @testName: getRequestedSessionIdTest2
+ * 
+ * @assertion_ids: Servlet:JAVADOC:559;
+ * 
+ * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet
+ * start a sesison; Verifies getRequestedSessionId() returns the same;
+ */
+  /*
+ * @testName: sessionTimeoutTest
+ *
+ * @assertion_ids: Servlet:SPEC:67;
+ *
+ * @test_Strategy: First set a HttpSession's timeout to 60 seconds; then sleep
+ * 90 seconds in servlet; verify that the session is still valid after.
+ */
+  /*
+ * @testName: getLocalPortTest
+ *
+ * @assertion_ids: Servlet:JAVADOC:630;
+ *
+ * @test_Strategy: Send an HttpServletRequest to server; Verify that
+ * getLocalPort();
+ */
+  /*
+ * @testName: getServletContextTest
+ *
+ * @assertion_ids:
+ *
+ * @test_Strategy: Send an HttpServletRequest to server; Verify that
+ * getServletContext return the same as stored in ServletConfig
+ */
+  @Test
+  void getServletContextTest() throws Exception {
         TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/getServletContextTest HTTP/1.1");
         TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
         TEST_PROPS.get().setProperty(STATUS_CODE, OK);

@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class UnAvailableExceptionTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -70,7 +70,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    * method.
    */
   @Test
-  public void getUnavailableSecondsTest() throws Exception {
+  void getUnavailableSecondsTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getUnavailableSecondsTest");
     invoke();
   }
@@ -84,7 +84,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    * @test_Strategy: A test for UnavailableException.isPermanent() method.
    */
   @Test
-  public void isPermanentTest() throws Exception {
+  void isPermanentTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "isPermanentTest");
     invoke();
   }
@@ -100,7 +100,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    * returned
    */
   @Test
-  public void unavailableTest() throws Exception {
+  void unavailableTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, " ");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "");
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
@@ -119,7 +119,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    * tests for permanent unavailability
    */
   @Test
-  public void unavailableException_Constructor1Test() throws Exception {
+  void unavailableException_Constructor1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "unavailableException_Constructor1Test");
     invoke();
   }
@@ -134,7 +134,7 @@ public class UnAvailableExceptionTests extends AbstractTckTest {
    * constructor tests for temporarily unavailability
    */
   @Test
-  public void unavailableException_Constructor2Test() throws Exception {
+  void unavailableException_Constructor2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "unavailableException_Constructor2Test");
     invoke();
   }

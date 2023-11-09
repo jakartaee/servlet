@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 
 public class HttpSessionAttributeListenerTests extends AbstractTckTest {
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -44,6 +44,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
             .addClasses(HSAttributeListener.class, TestServlet.class)
             .setWebXML(HttpSessionAttributeListenerTests.class.getResource("servlet_jsh_httpsessionattributelistener_web.xml"));
   }
+
   /*
    * @class.setup_props: webServerHost; webServerPort; ts_home;
    *
@@ -62,7 +63,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    *
    */
   @Test
-  public void attributeAddedTest() throws Exception {
+  void attributeAddedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "attributeAddedTest");
     invoke();
   }
@@ -77,7 +78,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    * log. Servlet then reads the log and verifies the result
    */
   @Test
-  public void attributeRemovedTest() throws Exception {
+  void attributeRemovedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "attributeRemovedTest");
     invoke();
   }
@@ -92,7 +93,7 @@ public class HttpSessionAttributeListenerTests extends AbstractTckTest {
    * log. Servlet then reads the log and verifies the result
    */
   @Test
-  public void attributeReplacedTest() throws Exception {
+  void attributeReplacedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "attributeReplacedTest");
     invoke();
   }

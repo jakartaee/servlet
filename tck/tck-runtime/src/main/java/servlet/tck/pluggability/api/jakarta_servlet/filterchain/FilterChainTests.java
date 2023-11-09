@@ -64,7 +64,7 @@ public class FilterChainTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void filterChainTest() throws Exception {
+  void filterChainTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "FilterChainTest");
     invoke();
   }

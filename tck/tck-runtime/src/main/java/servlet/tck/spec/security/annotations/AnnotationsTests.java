@@ -146,7 +146,7 @@ public class AnnotationsTests extends BaseTckTest {
    * access denied
    */
   @Test
-  public void test1() throws Exception {
+  void test1() throws Exception {
     trace("testing DenyAll");
 
     TEST_PROPS.get().setProperty(TEST_NAME, "SecAnnotations/Test1");
@@ -192,7 +192,7 @@ public class AnnotationsTests extends BaseTckTest {
    * roles as defined in DD.
    */
   @Test
-  public void test2() throws Exception {
+  void test2() throws Exception {
 
     StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(unauthUsername);
@@ -275,7 +275,7 @@ public class AnnotationsTests extends BaseTckTest {
    *
    */
   @Test
-  public void test3() throws Exception {
+  void test3() throws Exception {
     String invalidUser = "invalid";
 
     // this should all work as @PermitAll is set on ServletSecTestServlet.doGet
@@ -311,7 +311,7 @@ public class AnnotationsTests extends BaseTckTest {
    *
    */
   @Test
-  public void test4() throws Exception {
+  void test4() throws Exception {
     String invalidUser = "invalid";
 
     // now see if we get access denied - since DenyAll anno set on doPost method
@@ -353,7 +353,7 @@ public class AnnotationsTests extends BaseTckTest {
    * PermitAll access at the class level. 2. Receive page
    */
   @Test
-  public void test5() throws Exception {
+  void test5() throws Exception {
 
     trace("Sending request to resource that uses the PermitAll annotation....");
     TEST_PROPS.get().setProperty(TEST_NAME, "BasicSec/Test5");
@@ -390,7 +390,7 @@ public class AnnotationsTests extends BaseTckTest {
    * the servlet.
    */
   @Test
-  public void test6() throws Exception {
+  void test6() throws Exception {
 
     trace(
         "Sending request to resource where DD allows access to override any restricting annotation...");
@@ -443,7 +443,7 @@ public class AnnotationsTests extends BaseTckTest {
    * 
    */
   @Test
-  public void test7() throws Exception {
+  void test7() throws Exception {
     trace("testing http-method-omission");
 
     // try to access servlet via GET with NO creds/roles should fail

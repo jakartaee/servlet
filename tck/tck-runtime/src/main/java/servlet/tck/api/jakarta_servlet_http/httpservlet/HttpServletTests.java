@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class HttpServletTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class HttpServletTests extends AbstractTckTest {
    *
    */
   @Test
-  public void destroyTest() throws Exception {
+  void destroyTest() throws Exception {
     String testName = "destroyTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,
@@ -87,7 +87,7 @@ public class HttpServletTests extends AbstractTckTest {
    *
    */
   @Test
-  public void getServletConfigTest() throws Exception {
+  void getServletConfigTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletConfigTest");
     invoke();
   }
@@ -102,7 +102,7 @@ public class HttpServletTests extends AbstractTckTest {
    *
    */
   @Test
-  public void getServletContextTest() throws Exception {
+  void getServletContextTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     invoke();
   }
@@ -117,7 +117,7 @@ public class HttpServletTests extends AbstractTckTest {
    *
    */
   @Test
-  public void getServletInfoTest() throws Exception {
+  void getServletInfoTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletInfoTest");
     invoke();
   }
@@ -130,7 +130,7 @@ public class HttpServletTests extends AbstractTckTest {
    * @test_Strategy: Servlet tries to access a parameter that exists
    */
   @Test
-  public void getInitParameterTest() throws Exception {
+  void getInitParameterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getInitParameterTest");
     invoke();
   }
@@ -143,7 +143,7 @@ public class HttpServletTests extends AbstractTckTest {
    * @test_Strategy: Servlet tries to access a parameter that doesnot exist
    */
   @Test
-  public void getInitParameterTestNull() throws Exception {
+  void getInitParameterTestNull() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getInitParameterTestNull");
     invoke();
   }
@@ -156,7 +156,7 @@ public class HttpServletTests extends AbstractTckTest {
    * @test_Strategy: Servlet tries to get all parameter names
    */
   @Test
-  public void getInitParameterNamesTest() throws Exception {
+  void getInitParameterNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getInitParameterNamesTest");
     invoke();
   }
@@ -169,7 +169,7 @@ public class HttpServletTests extends AbstractTckTest {
    * @test_Strategy: Servlet gets name of servlet
    */
   @Test
-  public void getServletNameTest() throws Exception {
+  void getServletNameTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletNameTest");
     invoke();
   }
@@ -182,7 +182,7 @@ public class HttpServletTests extends AbstractTckTest {
    * @test_Strategy: Servlet which has a service method that is called
    */
   @Test
-  public void serviceTest() throws Exception {
+  void serviceTest() throws Exception {
     String testName = "serviceTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,
@@ -199,7 +199,7 @@ public class HttpServletTests extends AbstractTckTest {
    * Servlet when called reads value from context
    */
   @Test
-  public void initTest() throws Exception {
+  void initTest() throws Exception {
     String testName = "initTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,
@@ -216,7 +216,7 @@ public class HttpServletTests extends AbstractTckTest {
    * Servlet when called reads value from context
    */
   @Test
-  public void init_ServletConfigTest() throws Exception {
+  void init_ServletConfigTest() throws Exception {
     String testName = "init_ServletConfigTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST,

@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 public class ProtocolsHttpTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -63,7 +63,7 @@ public class ProtocolsHttpTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpTest() throws Exception {
+  void httpTest() throws Exception {
     String testName = "httpTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"

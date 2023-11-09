@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class HttpSessionBindingListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -76,7 +76,7 @@ public class HttpSessionBindingListenerTests extends AbstractTckTest {
    * result.
    */
   @Test
-  public void unBoundTest() throws Exception {
+  void unBoundTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "unBoundTest");
     invoke();
   }
@@ -92,7 +92,7 @@ public class HttpSessionBindingListenerTests extends AbstractTckTest {
    * static log. The servlet then reads the log and verifies the result.
    */
   @Test
-  public void boundTest() throws Exception {
+  void boundTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "boundTest");
     invoke();
   }

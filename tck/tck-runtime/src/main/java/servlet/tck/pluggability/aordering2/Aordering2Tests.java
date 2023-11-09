@@ -68,7 +68,7 @@ public class Aordering2Tests extends AbstractTckTest {
    * no <name>, is ignored.
    */
   @Test
-  public void absoluteOrderingTest() throws Exception {
+  void absoluteOrderingTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "msg1=first|msg2=second|" + "RequestListener|RequestListener1|"
             + "RequestListener2|RequestListener3|"

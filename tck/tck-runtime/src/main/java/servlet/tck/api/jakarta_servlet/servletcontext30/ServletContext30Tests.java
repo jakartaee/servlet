@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext30Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -93,7 +93,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * order added.
    */
   @Test
-  public void getContextPathTest() throws Exception {
+  void getContextPathTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getContextPathTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddSRListenerClass_INVOKED" + "|AddSRListenerString_INVOKED"
@@ -121,7 +121,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServletString() throws Exception {
+  void addServletString() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletString HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -153,7 +153,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * that all Listeners are added correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterString() throws Exception {
+  void addFilterString() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testAddFilterString");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "AddServletString" + "|AddSRListenerClass_INVOKED"
@@ -181,7 +181,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServletClass() throws Exception {
+  void addServletClass() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletClass HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -212,7 +212,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddFilterClass() throws Exception {
+  void addFilterClass() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testAddFilterClass");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,
         "ADD_FILTER_CLASS_INVOKED");
@@ -245,7 +245,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * invoked in the order added.
    */
   @Test
-  public void testAddServlet() throws Exception {
+  void addServlet() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/createServlet HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -279,7 +279,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterForward() throws Exception {
+  void addFilterForward() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateFilterForward");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -312,7 +312,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * correctly and invoked in the order added.
    */
   @Test
-  public void testAddFilterInclude() throws Exception {
+  void addFilterInclude() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateFilterInclude");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -342,7 +342,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * Filter is NOT invoked.
    */
   @Test
-  public void testAddServletNotFound() throws Exception {
+  void addServletNotFound() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/addServletNotFound HTTP/1.1");
     TEST_PROPS.get().setProperty(STATUS_CODE, NOT_FOUND);
@@ -376,7 +376,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * Listeners are added correctly and invoked in the order added.
    */
   @Test
-  public void testCreateSRAListener() throws Exception {
+  void createSRAListener() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "testCreateSRAListener");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "CREATE_FILTER_INVOKED");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -415,7 +415,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * setInitParameter works properly
    */
   @Test
-  public void negativeCreateTests() throws Exception {
+  void negativeCreateTests() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeCreateTests");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SERVLET_TEST=TRUE" + "|FILTER_TEST=TRUE" + "|LISTENER_TEST=TRUE"
@@ -435,7 +435,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * that the Servlet can be invoked as defined in web.xml1.
    */
   @Test
-  public void duplicateServletTest1() throws Exception {
+  void duplicateServletTest1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletClass HTTP/1.0");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DuplicateServletClass");
@@ -453,7 +453,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * Verify that the Servlet can be invoked as defined in web.xm1.
    */
   @Test
-  public void duplicateServletTest2() throws Exception {
+  void duplicateServletTest2() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/DuplicateServletString HTTP/1.0");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DuplicateServletString");
@@ -474,7 +474,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * "Servlet.class") 4. Verify null is returned in both cases.
    */
   @Test
-  public void duplicateServletTest3() throws Exception {
+  void duplicateServletTest3() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "duplicateServletTest3");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "DUPLICATEC_SERVLET_TEST=TRUE" + "|DUPLICATES_SERVLET_TEST=TRUE");
@@ -494,7 +494,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * Verify that both Filter can be invoked as defined in web.xml
    */
   @Test
-  public void duplicateFilterTest() throws Exception {
+  void duplicateFilterTest() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/FilterTestServlet HTTP/1.0");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "FilterTestServlet");
@@ -514,7 +514,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * Verify that null is returned in both cases
    */
   @Test
-  public void duplicateFilterTest1() throws Exception {
+  void duplicateFilterTest1() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "duplicateFilterTest1");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "DUPLICATEC_FILTER_TEST=TRUE" + "|DUPLICATES_FILTER_TEST=TRUE");
@@ -530,7 +530,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * ServletContext.getEffectiveMajorVersion() Verify that 5 is returned.
    */
   @Test
-  public void getEffectiveMajorVersionTest() throws Exception {
+  void getEffectiveMajorVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getEffectiveMajorVersionTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "EFFECTIVEMAJORVERSION=5;");
     invoke();
@@ -545,7 +545,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * ServletContext.getEffectiveMinorVersion() Verify that 0 is returned.
    */
   @Test
-  public void getEffectiveMinorVersionTest() throws Exception {
+  void getEffectiveMinorVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getEffectiveMinorVersionTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "EFFECTIVEMINORVERSION=0;");
     invoke();
@@ -560,7 +560,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * ServletContext.getDefaultSessionTrackingModes() Verify it works.
    */
   @Test
-  public void getDefaultSessionTrackingModes() throws Exception {
+  void getDefaultSessionTrackingModes() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getDefaultSessionTrackingModes");
     invoke();
   }
@@ -574,7 +574,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * works
    */
   @Test
-  public void sessionTrackingModesValueOfTest() throws Exception {
+  void sessionTrackingModesValueOfTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "sessionTrackingModesValueOfTest");
     invoke();
   }
@@ -588,7 +588,7 @@ public class ServletContext30Tests extends AbstractTckTest {
    * works
    */
   @Test
-  public void sessionTrackingModesValuesTest() throws Exception {
+  void sessionTrackingModesValuesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "sessionTrackingModesValuesTest");
     invoke();
   }

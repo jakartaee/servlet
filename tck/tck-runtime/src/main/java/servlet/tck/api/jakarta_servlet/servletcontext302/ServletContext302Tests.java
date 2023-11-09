@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext302Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -67,7 +67,7 @@ public class ServletContext302Tests extends AbstractTckTest {
    * IllegalArgumentException is thrown.
    */
   @Test
-  public void addListenerTest() throws Exception {
+  void addListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "LISTENER_TEST=TRUE");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH,

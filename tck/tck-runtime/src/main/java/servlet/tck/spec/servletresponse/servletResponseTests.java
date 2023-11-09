@@ -45,19 +45,19 @@ public class servletResponseTests extends AbstractTckTest {
                 .setWebXML(servletResponseTests.class.getResource("servlet_spec_servletresponse_web.xml"));
     }
 
-    /* Run test */
-    /*
-     * @testName: testFlushBufferHttp
-     *
-     * @assertion_ids: Servlet:JAVADOC:603
-     *
-     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
-     * data is sent back to client due to the flush, not by exiting service method
-     * This is done by sleeping a long time between flush and exit in servlet;
-     * Then verify time gap on client side.
-     */
-    @Test
-    public void testFlushBufferHttp() throws Exception {
+  /* Run test */
+  /*
+   * @testName: testFlushBufferHttp
+   *
+   * @assertion_ids: Servlet:JAVADOC:603
+   *
+   * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
+   * data is sent back to client due to the flush, not by exiting service method
+   * This is done by sleeping a long time between flush and exit in servlet;
+   * Then verify time gap on client side.
+   */
+  @Test
+  void flushBufferHttp() throws Exception {
         logger.trace("testFlushBufferHttp");
         URL u = new URL(
                 "http://" + _hostname + ":" + _port + getContextRoot() + "/HttpTestServlet");
@@ -94,18 +94,18 @@ public class servletResponseTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: testFlushBuffer
-     *
-     * @assertion_ids: Servlet:JAVADOC:153
-     *
-     * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
-     * data is sent back to client due to the flush, not by exiting service method
-     * This is done by sleeping a long time between flush and exit in servlet;
-     * Then verify time gap on client side.
-     */
-    @Test
-    public void testFlushBuffer() throws Exception {
+  /*
+   * @testName: testFlushBuffer
+   *
+   * @assertion_ids: Servlet:JAVADOC:153
+   *
+   * @test_Strategy: Servlet writes data in the buffer and flushes it; Verify
+   * data is sent back to client due to the flush, not by exiting service method
+   * This is done by sleeping a long time between flush and exit in servlet;
+   * Then verify time gap on client side.
+   */
+  @Test
+  void flushBuffer() throws Exception {
         logger.trace("testFlushBuffer");
 
         URL u = new URL(

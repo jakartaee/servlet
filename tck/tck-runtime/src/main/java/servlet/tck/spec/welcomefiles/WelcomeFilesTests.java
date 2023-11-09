@@ -61,7 +61,7 @@ public class WelcomeFilesTests extends AbstractTckTest {
    * Servlet Spec(9.10)
    */
   @Test
-  public void partialfound1() throws Exception {
+  void partialfound1() throws Exception {
     TEST_PROPS.get().setProperty(FOLLOW_REDIRECT, "follow_redirect");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "<html>|<head>|<title>index.html</title>|</head>|<body>|INDEX from foo/index.html|</body>|</html>");
@@ -81,7 +81,7 @@ public class WelcomeFilesTests extends AbstractTckTest {
    * based on Servlet Spec(9.10)
    */
   @Test
-  public void partialfound2() throws Exception {
+  void partialfound2() throws Exception {
     TEST_PROPS.get().setProperty(FOLLOW_REDIRECT, "follow_redirect");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "HELLO from catalog/default.jsp");
     TEST_PROPS.get().setProperty(APITEST, "catalog");

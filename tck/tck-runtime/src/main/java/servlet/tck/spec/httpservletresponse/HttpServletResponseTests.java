@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class HttpServletResponseTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("HttpTestServlet");
   }
 
@@ -61,7 +61,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * second set is ignored
    */
   @Test
-  public void intHeaderTest() throws Exception {
+  void intHeaderTest() throws Exception {
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header2: 56789");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
@@ -79,7 +79,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * setIntHeader to set header 3. Verify that the header value is not set,
    */
   @Test
-  public void flushBufferTest() throws Exception {
+  void flushBufferTest() throws Exception {
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + "flushBufferTest" + " HTTP/1.1");
@@ -96,7 +96,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * wrote to buffer is ignored
    */
   @Test
-  public void sendErrorCommitTest() throws Exception {
+  void sendErrorCommitTest() throws Exception {
     String testname = "sendErrorCommitTest";
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
@@ -116,7 +116,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    */
 
   @Test
-  public void sendRedirectCommitTest() throws Exception {
+  void sendRedirectCommitTest() throws Exception {
     String testname = "sendRedirectCommitTest";
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
@@ -135,7 +135,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * that content wrote to buffer is cleared
    */
   @Test
-  public void sendRedirectClearBufferTest() throws Exception {
+  void sendRedirectClearBufferTest() throws Exception {
     String testname = "sendRedirectClearBufferTest";
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
     TEST_PROPS.get().setProperty(STATUS_CODE, MOVED_TEMPORARY);

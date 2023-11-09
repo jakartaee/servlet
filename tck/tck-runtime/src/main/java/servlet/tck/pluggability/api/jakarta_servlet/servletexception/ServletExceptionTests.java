@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class ServletExceptionTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -70,7 +70,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    * @test_Strategy: A Test for getRootCause method
    */
   @Test
-  public void getRootCauseTest() throws Exception {
+  void getRootCauseTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getRootCause");
     invoke();
   }
@@ -83,7 +83,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    * @test_Strategy: A Test for ServletException() constructor method
    */
   @Test
-  public void servletExceptionConstructor1Test() throws Exception {
+  void servletExceptionConstructor1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor1");
     invoke();
   }
@@ -96,7 +96,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    * @test_Strategy: A Test for ServletException(String) constructor method
    */
   @Test
-  public void servletExceptionConstructor2Test() throws Exception {
+  void servletExceptionConstructor2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor2");
     invoke();
   }
@@ -110,7 +110,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    * @test_Strategy: A Test for ServletException(Throwable) constructor method
    */
   @Test
-  public void servletExceptionConstructor3Test() throws Exception {
+  void servletExceptionConstructor3Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor3");
     invoke();
 
@@ -126,7 +126,7 @@ public class ServletExceptionTests extends AbstractTckTest {
    * method
    */
   @Test
-  public void servletExceptionConstructor4Test() throws Exception {
+  void servletExceptionConstructor4Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletExceptionConstructor4");
     invoke();
   }

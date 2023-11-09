@@ -34,8 +34,8 @@ import org.junit.jupiter.api.Test;
 
 public class ServletResponseWrapperTests extends HttpResponseClient {
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -48,58 +48,58 @@ public class ServletResponseWrapperTests extends HttpResponseClient {
         return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletresponsewrapper_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(SetCharacterEncodingTestServlet.class, TestServlet.class, ResponseTestServlet.class).addAsLibraries(javaArchive);
     }
 
-    /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-    /* Run test */
-    /*
-   * @testName: responseWrapperConstructorTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:9
-   * 
-   * @test_Strategy: Servlet calls wrapper constructor
-   */
-    @Test
-    public void responseWrapperConstructorTest() throws Exception {
+  /*
+ * @class.setup_props: webServerHost; webServerPort; ts_home;
+ */
+  /* Run test */
+  /*
+ * @testName: responseWrapperConstructorTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:9
+ * 
+ * @test_Strategy: Servlet calls wrapper constructor
+ */
+  @Test
+  void responseWrapperConstructorTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "responseWrapperConstructorTest");
         invoke();
     }
 
-    /*
-   * @testName: responseWrapperGetResponseTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:10
-   * 
-   * @test_Strategy: Servlet gets wrapped response object
-   */
-    @Test
-    public void responseWrapperGetResponseTest() throws Exception {
+  /*
+ * @testName: responseWrapperGetResponseTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:10
+ * 
+ * @test_Strategy: Servlet gets wrapped response object
+ */
+  @Test
+  void responseWrapperGetResponseTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "responseWrapperGetResponseTest");
         invoke();
     }
 
-    /*
-   * @testName: responseWrapperSetResponseTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:11
-   * 
-   * @test_Strategy: Servlet sets wrapped response object
-   */
-    @Test
-    public void responseWrapperSetResponseTest() throws Exception {
+  /*
+ * @testName: responseWrapperSetResponseTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:11
+ * 
+ * @test_Strategy: Servlet sets wrapped response object
+ */
+  @Test
+  void responseWrapperSetResponseTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "responseWrapperSetResponseTest");
         invoke();
     }
 
-    /*
-   * @testName: responseWrapperSetResponseIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:12
-   * 
-   * @test_Strategy: Servlet sets wrapped response object
-   */
-    @Test
-    public void responseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
+  /*
+ * @testName: responseWrapperSetResponseIllegalArgumentExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:12
+ * 
+ * @test_Strategy: Servlet sets wrapped response object
+ */
+  @Test
+  void responseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "responseWrapperSetResponseIllegalArgumentExceptionTest");
         invoke();
     }

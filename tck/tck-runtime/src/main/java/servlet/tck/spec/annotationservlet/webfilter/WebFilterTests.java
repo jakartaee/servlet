@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class WebFilterTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class WebFilterTests extends AbstractTckTest {
    * Veriy TestFilter1 is invoked properly.
    */
   @Test
-  public void test1() throws Exception {
+  void test1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/Servlet1 HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "FILTER1_INVOKED|Servlet1_INVOKED");
@@ -90,7 +90,7 @@ public class WebFilterTests extends AbstractTckTest {
    * Servlet; Veriy TestFilter2 is invoked. Veriy TestFilter1 is not invoked.
    */
   @Test
-  public void test2() throws Exception {
+  void test2() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "forward1");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");
     TEST_PROPS.get().setProperty(UNORDERED_SEARCH_STRING,
@@ -115,7 +115,7 @@ public class WebFilterTests extends AbstractTckTest {
    * Servlet; Veriy TestFilter1 is not invoked.
    */
   @Test
-  public void test3() throws Exception {
+  void test3() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "include1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Servlet1_INVOKED");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "FILTER1_INVOKED");

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class EncodingTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class EncodingTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void spec1Test() throws Exception {
+  void spec1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "spec1Test");
     invoke();
   }
@@ -76,7 +76,7 @@ public class EncodingTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void spec2Test() throws Exception {
+  void spec2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "spec2Test");
     invoke();
   }
@@ -90,7 +90,7 @@ public class EncodingTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void spec3Test() throws Exception {
+  void spec3Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "spec3Test");
     invoke();
   }

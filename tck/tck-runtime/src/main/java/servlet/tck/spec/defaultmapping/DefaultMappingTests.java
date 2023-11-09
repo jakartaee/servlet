@@ -54,7 +54,7 @@ public class DefaultMappingTests extends AbstractTckTest {
    * Verify that TestServlet6 is invoked based on Servlet Spec(11.1)
    */
   @Test
-  public void defaultservletTest1() throws Exception {
+  void defaultservletTest1() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet6");
     TEST_PROPS.get().setProperty(APITEST, "TestServlet3/xyz");
     invoke();
@@ -73,7 +73,7 @@ public class DefaultMappingTests extends AbstractTckTest {
    * is found.
    */
   @Test
-  public void defaultservletTest() throws Exception {
+  void defaultservletTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet6");
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/test/foo/bar/xxx" + " HTTP/1.1");

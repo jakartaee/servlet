@@ -79,7 +79,7 @@ public class Aordering4Tests extends AbstractTckTest {
    * ignored; that fragment7 is not scanned for annotation.
    */
   @Test
-  public void absoluteOrderingTest() throws Exception {
+  void absoluteOrderingTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "msg1=first|msg2=second|" + "RequestListener|RequestListener1|"
             + "RequestListener2|RequestListener3|"

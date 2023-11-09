@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class SessionTrackingMode3Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -61,7 +61,7 @@ public class SessionTrackingMode3Tests extends AbstractTckTest {
    * Verify that IllegalArgumentException is thrown.
    */
   @Test
-  public void setSessionTrackingModes6() throws Exception {
+  void setSessionTrackingModes6() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes6");
     invoke();
   }

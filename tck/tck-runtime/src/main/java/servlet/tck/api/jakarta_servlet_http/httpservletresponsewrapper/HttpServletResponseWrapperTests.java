@@ -28,8 +28,8 @@ import org.junit.jupiter.api.Test;
 
 public class HttpServletResponseWrapperTests extends HttpResponseClient {
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -41,255 +41,255 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
         return ShrinkWrap.create(WebArchive.class, "servlet_jsh_HSRespWrapper_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(RedirectedTestServlet.class, SetCharacterEncodingTestServlet.class, TestServlet.class).setWebXML(HttpServletResponseWrapperTests.class.getResource("servlet_jsh_HSRespWrapper_web.xml"));
     }
 
-    /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
-    /* Run test */
-    // ------------------ ServletResponseWrapper
-    // -----------------------------------
-    /*
-   * @testName: flushBufferTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:348
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet writes data in the buffer
-   * and flushes it
-   */
-    /*
-   * @testName: getBufferSizeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:347
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet flushes buffer and verifies
-   * the size of the buffer
-   */
-    /*
-   * @testName: getLocaleTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:354
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet set Locale and then
-   * verifies it
-   *
-   */
-    /*
-   * @testName: getOutputStreamTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:339
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet gets an output stream and
-   * writes to it.
-   */
-    /*
-   * @testName: getWriterTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:341
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet gets a Writer object; then
-   * sets the content type. verify that content type didn't get set by servlet
-   */
-    /*
-   * @testName: isCommittedTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:350
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet checks before and after
-   * response is flushed
-   *
-   */
-    /*
-   * @testName: resetBufferTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:352
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet writes data to the
-   * response, resets the buffer and then writes new data
-   */
-    /*
-   * @testName: resetTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:351
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet writes data to the
-   * response, does a reset, then writes new data
-   */
-    /*
-   * @testName: resetTest1
-   * 
-   * @assertion_ids: Servlet:JAVADOC:351; Servlet:SPEC:31;
-   * 
-   * @test_Strategy: Servlet writes data to the response, set the Headers, does
-   * a reset, then writes new data, set the new Header
-   */
-    /*
-   * @testName: getCharacterEncodingTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:338
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet checks for the default
-   * encoding
-   */
-    /*
-   * @testName: setCharacterEncodingTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:337
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet set the encoding and client
-   * verifies it
-   */
-    /*
-   * @testName: setBufferSizeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:346
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet sets the buffer size then
-   * verifies it was set
-   */
-    /*
-   * @testName: setContentLengthTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:343
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet sets the content length
-   */
-    /*
-   * @testName: getContentTypeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:345; Servlet:SPEC:34;
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet verifies the content type
-   * sent by the client
-   */
-    /*
-   * @testName: setContentTypeTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:344; Servlet:SPEC:34;
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet sets the content type
-   *
-   */
-    /*
-   * @testName: setLocaleTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:353
-   * 
-   * @test_Strategy: Servlet wraps response. Servlet sets the Locale
-   */
-    // ----------------------- END ServletResponseWrapper
-    // --------------------------
-    // --------------------- HttpServletResponseWrapper
-    // ----------------------------
-    /*
-   * @testName: httpResponseWrapperGetResponseTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:334
-   * 
-   * @test_Strategy: Servlet gets wrapped response object
-   */
-    @Test
-    public void httpResponseWrapperGetResponseTest() throws Exception {
+  /*
+ * @class.setup_props: webServerHost; webServerPort; ts_home;
+ *
+ */
+  /* Run test */
+  // ------------------ ServletResponseWrapper
+  // -----------------------------------
+  /*
+ * @testName: flushBufferTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:348
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet writes data in the buffer
+ * and flushes it
+ */
+  /*
+ * @testName: getBufferSizeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:347
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet flushes buffer and verifies
+ * the size of the buffer
+ */
+  /*
+ * @testName: getLocaleTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:354
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet set Locale and then
+ * verifies it
+ *
+ */
+  /*
+ * @testName: getOutputStreamTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:339
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet gets an output stream and
+ * writes to it.
+ */
+  /*
+ * @testName: getWriterTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:341
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet gets a Writer object; then
+ * sets the content type. verify that content type didn't get set by servlet
+ */
+  /*
+ * @testName: isCommittedTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:350
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet checks before and after
+ * response is flushed
+ *
+ */
+  /*
+ * @testName: resetBufferTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:352
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet writes data to the
+ * response, resets the buffer and then writes new data
+ */
+  /*
+ * @testName: resetTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:351
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet writes data to the
+ * response, does a reset, then writes new data
+ */
+  /*
+ * @testName: resetTest1
+ * 
+ * @assertion_ids: Servlet:JAVADOC:351; Servlet:SPEC:31;
+ * 
+ * @test_Strategy: Servlet writes data to the response, set the Headers, does
+ * a reset, then writes new data, set the new Header
+ */
+  /*
+ * @testName: getCharacterEncodingTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:338
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet checks for the default
+ * encoding
+ */
+  /*
+ * @testName: setCharacterEncodingTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:337
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet set the encoding and client
+ * verifies it
+ */
+  /*
+ * @testName: setBufferSizeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:346
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet sets the buffer size then
+ * verifies it was set
+ */
+  /*
+ * @testName: setContentLengthTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:343
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet sets the content length
+ */
+  /*
+ * @testName: getContentTypeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:345; Servlet:SPEC:34;
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet verifies the content type
+ * sent by the client
+ */
+  /*
+ * @testName: setContentTypeTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:344; Servlet:SPEC:34;
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet sets the content type
+ *
+ */
+  /*
+ * @testName: setLocaleTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:353
+ * 
+ * @test_Strategy: Servlet wraps response. Servlet sets the Locale
+ */
+  // ----------------------- END ServletResponseWrapper
+  // --------------------------
+  // --------------------- HttpServletResponseWrapper
+  // ----------------------------
+  /*
+ * @testName: httpResponseWrapperGetResponseTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:334
+ * 
+ * @test_Strategy: Servlet gets wrapped response object
+ */
+  @Test
+  void httpResponseWrapperGetResponseTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperGetResponseTest");
         invoke();
     }
 
-    /*
-   * @testName: httpResponseWrapperSetResponseTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:335
-   * 
-   * @test_Strategy: Servlet sets wrapped response object
-   */
-    @Test
-    public void httpResponseWrapperSetResponseTest() throws Exception {
+  /*
+ * @testName: httpResponseWrapperSetResponseTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:335
+ * 
+ * @test_Strategy: Servlet sets wrapped response object
+ */
+  @Test
+  void httpResponseWrapperSetResponseTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperSetResponseTest");
         invoke();
     }
 
-    /*
-   * @testName: httpResponseWrapperSetResponseIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:336
-   * 
-   * @test_Strategy: Servlet sets wrapped response object
-   */
-    @Test
-    public void httpResponseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
+  /*
+ * @testName: httpResponseWrapperSetResponseIllegalArgumentExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:336
+ * 
+ * @test_Strategy: Servlet sets wrapped response object
+ */
+  @Test
+  void httpResponseWrapperSetResponseIllegalArgumentExceptionTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperSetResponseIllegalArgumentExceptionTest");
         invoke();
     }
 
-    /*
-   * @testName: httpResponseWrapperConstructorTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:313
-   * 
-   * @test_Strategy: Validate constuctor of HttpServletResponseWrapper.
-   */
-    @Test
-    public void httpResponseWrapperConstructorTest() throws Exception {
+  /*
+ * @testName: httpResponseWrapperConstructorTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:313
+ * 
+ * @test_Strategy: Validate constuctor of HttpServletResponseWrapper.
+ */
+  @Test
+  void httpResponseWrapperConstructorTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "httpResponseWrapperConstructorTest");
         invoke();
     }
 
-    /*
-   * @testName: addCookieTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:314
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: addDateHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:327
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: addHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:329
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: addIntHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:331
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: containsHeaderTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:315
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: sendErrorClearBufferTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:322; Servlet:SPEC:39;
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: sendError_StringTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:320
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    /*
-   * @testName: sendRedirectTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:324
-   * 
-   * @test_Strategy: Servlet wrappers response and calls test
-   */
-    @Test
-    public void sendRedirectTest() throws Exception {
+  /*
+ * @testName: addCookieTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:314
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: addDateHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:327
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: addHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:329
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: addIntHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:331
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: containsHeaderTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:315
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: sendErrorClearBufferTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:322; Servlet:SPEC:39;
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: sendError_StringTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:320
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  /*
+ * @testName: sendRedirectTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:324
+ * 
+ * @test_Strategy: Servlet wrappers response and calls test
+ */
+  @Test
+  void sendRedirectTest() throws Exception {
         String testName = "sendRedirectWithLeadingSlashTest";
         TEST_PROPS.get().setProperty(TEST_NAME, testName);
         TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/" + getServletName() + "?testname=" + testName + " HTTP/1.1");

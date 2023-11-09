@@ -43,8 +43,8 @@ public class PartTests extends AbstractTckTest {
 
     private static final String CRLF = "\r\n";
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -58,23 +58,23 @@ public class PartTests extends AbstractTckTest {
                 .addClasses(TestServlet.class);
     }
 
-    /*
-     * @class.setup_props: webServerHost; webServerPort; ts_home;
-     */
-    /* Run test */
-    /*
-     * @testName: getPartTest
-     *
-     * @assertion_ids: Servlet:JAVADOC:754; Servlet:JAVADOC:757;
-     * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
-     * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
-     * form without file Verify that the data is received correctly Verify all
-     * relevant API works correctly
-     */
-    @Test
-    public void getPartTest() throws Exception {
+  /*
+   * @class.setup_props: webServerHost; webServerPort; ts_home;
+   */
+  /* Run test */
+  /*
+   * @testName: getPartTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:754; Servlet:JAVADOC:757;
+   * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
+   * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
+   * form without file Verify that the data is received correctly Verify all
+   * relevant API works correctly
+   */
+  @Test
+  void getPartTest() throws Exception {
         String testname = "getPartTest";
         boolean passed = true;
         String EXPECTED_RESPONSE = "getParameter(\"xyz\"): 1234567abcdefg"
@@ -152,17 +152,17 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getPartTest1
-     *
-     * @assertion_ids: Servlet:JAVADOC:756;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send a
-     * non-multi-part form data request with a form data Verify
-     * HttpServletRequest.getPart(String name) throw ServletException
-     */
-    @Test
-    public void getPartTest1() throws Exception {
+  /*
+   * @testName: getPartTest1
+   *
+   * @assertion_ids: Servlet:JAVADOC:756;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send a
+   * non-multi-part form data request with a form data Verify
+   * HttpServletRequest.getPart(String name) throw ServletException
+   */
+  @Test
+  void getPartTest1() throws Exception {
         String testname = "getPartTest1";
         Boolean passed = true;
         String EXPECTED_RESPONSE = "Expected ServletException thrown";
@@ -239,17 +239,17 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getPartsTest
-     *
-     * @assertion_ids: Servlet:JAVADOC:759;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send a
-     * non-multi-part form data request with a few form data Verify
-     * HttpServletRequest.getParts() throw ServletException
-     */
-    @Test
-    public void getPartsTest() throws Exception {
+  /*
+   * @testName: getPartsTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:759;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send a
+   * non-multi-part form data request with a few form data Verify
+   * HttpServletRequest.getParts() throw ServletException
+   */
+  @Test
+  void getPartsTest() throws Exception {
         String testname = "getPartsTest";
         Boolean passed = true;
         String EXPECTED_RESPONSE = "Expected ServletException thrown";
@@ -330,19 +330,19 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getPartsTest1
-     *
-     * @assertion_ids: Servlet:JAVADOC:754; Servlet:JAVADOC:757;
-     * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
-     * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
-     * form with several parts, with and without file Verify that the data is
-     * received correctly Verify all relevant API works correctly
-     */
-    @Test
-    public void getPartsTest1() throws Exception {
+  /*
+   * @testName: getPartsTest1
+   *
+   * @assertion_ids: Servlet:JAVADOC:754; Servlet:JAVADOC:757;
+   * Servlet:JAVADOC:787; Servlet:JAVADOC:789; Servlet:JAVADOC:793;
+   * Servlet:JAVADOC:794; Servlet:JAVADOC:955;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
+   * form with several parts, with and without file Verify that the data is
+   * received correctly Verify all relevant API works correctly
+   */
+  @Test
+  void getPartsTest1() throws Exception {
         String testname = "getPartsTest1";
 
         Boolean passed = true;
@@ -428,17 +428,17 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getHeaderTest
-     *
-     * @assertion_ids: Servlet:JAVADOC:788;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
-     * form with several parts, with and without file Verify that
-     * Part.getHeader(String) works correctly
-     */
-    @Test
-    public void getHeaderTest() throws Exception {
+  /*
+   * @testName: getHeaderTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:788;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
+   * form with several parts, with and without file Verify that
+   * Part.getHeader(String) works correctly
+   */
+  @Test
+  void getHeaderTest() throws Exception {
         String testname = "getHeaderTest";
 
         Boolean passed = true;
@@ -522,17 +522,17 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getHeadersTest
-     *
-     * @assertion_ids: Servlet:JAVADOC:790;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
-     * form with several parts, with and without file Verify that
-     * Part.getHeaders(String) works correctly
-     */
-    @Test
-    public void getHeadersTest() throws Exception {
+  /*
+   * @testName: getHeadersTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:790;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
+   * form with several parts, with and without file Verify that
+   * Part.getHeaders(String) works correctly
+   */
+  @Test
+  void getHeadersTest() throws Exception {
         String testname = "getHeadersTest";
 
         Boolean passed = true;
@@ -622,17 +622,17 @@ public class PartTests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getInputStreamTest
-     *
-     * @assertion_ids: Servlet:JAVADOC:791;
-     *
-     * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
-     * form with several parts, with and without file Verify that
-     * Part.getInputStream() works correctly
-     */
-    @Test
-    public void getInputStreamTest() throws Exception {
+  /*
+   * @testName: getInputStreamTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:791;
+   *
+   * @test_Strategy: Create a Servlet TestServlet; From client, send multi-part
+   * form with several parts, with and without file Verify that
+   * Part.getInputStream() works correctly
+   */
+  @Test
+  void getInputStreamTest() throws Exception {
         String testname = "getInputStreamTest";
 
         Boolean passed = true;

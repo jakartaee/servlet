@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class ServletConfigTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -69,7 +69,7 @@ public class ServletConfigTests extends AbstractTckTest {
    * enumerated values in the servlet.
    */
   @Test
-  public void getServletConfigInitParameterNamesTest() throws Exception {
+  void getServletConfigInitParameterNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameterNames");
     invoke();
   }
@@ -83,7 +83,7 @@ public class ServletConfigTests extends AbstractTckTest {
    * value in the servlet.
    */
   @Test
-  public void getServletConfigInitParameterTest() throws Exception {
+  void getServletConfigInitParameterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameter");
     invoke();
   }
@@ -98,7 +98,7 @@ public class ServletConfigTests extends AbstractTckTest {
    * for the Verify that ServletConfig.getInitParameter(name) return null.
    */
   @Test
-  public void getServletConfigInitParameterTestNull() throws Exception {
+  void getServletConfigInitParameterTestNull() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletConfigInitParameterNull");
     invoke();
   }
@@ -112,7 +112,7 @@ public class ServletConfigTests extends AbstractTckTest {
    * @test_Strategy: Try to get the ServletContext for this servlet itself
    */
   @Test
-  public void getServletContextTest() throws Exception {
+  void getServletContextTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletContext");
     invoke();
   }
@@ -125,7 +125,7 @@ public class ServletConfigTests extends AbstractTckTest {
    * @test_Strategy: Try to get the ServletName for this servlet itself
    */
   @Test
-  public void getServletNameTest() throws Exception {
+  void getServletNameTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletName");
     invoke();
   }

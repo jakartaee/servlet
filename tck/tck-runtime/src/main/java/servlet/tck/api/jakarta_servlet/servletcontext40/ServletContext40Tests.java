@@ -52,15 +52,15 @@ public class ServletContext40Tests extends AbstractTckTest {
                 .setWebXML(ServletContext40Tests.class.getResource("servlet_js_servletcontext40_web.xml"));
     }
 
-    /*
-     * @testName: addJspTest
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy:
-     */
-    @Test
-    public void addJspTest() throws Exception {
+  /*
+   * @testName: addJspTest
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy:
+   */
+  @Test
+  void addJspTest() throws Exception {
         try {
             request = getContextRoot() + "/servlet/addJspFile";
             logMsg("Sending request \"" + request + "\"");
@@ -89,15 +89,15 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: changeSessionTimeoutTest
-     *
-     * @assertion_ids: servlet40:changeSessionTimeoutTest;
-     *
-     * @test_Strategy:
-     */
-    @Test
-    public void changeSessionTimeoutTest() throws Exception {
+  /*
+   * @testName: changeSessionTimeoutTest
+   *
+   * @assertion_ids: servlet40:changeSessionTimeoutTest;
+   *
+   * @test_Strategy:
+   */
+  @Test
+  void changeSessionTimeoutTest() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet";
             logMsg("Sending request \"" + request + "\"");
@@ -125,16 +125,16 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: addJspContextInitialized
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: IllegalStateException - if this ServletContext has already
-     * been initialized
-     */
-    @Test
-    public void addJspContextInitialized() throws Exception {
+  /*
+   * @testName: addJspContextInitialized
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: IllegalStateException - if this ServletContext has already
+   * been initialized
+   */
+  @Test
+  void addJspContextInitialized() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -165,16 +165,16 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: setSessionTimeoutContextInitialized
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: IllegalStateException - if this ServletContext has already
-     * been initialized
-     */
-    @Test
-    public void setSessionTimeoutContextInitialized() throws Exception {
+  /*
+   * @testName: setSessionTimeoutContextInitialized
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: IllegalStateException - if this ServletContext has already
+   * been initialized
+   */
+  @Test
+  void setSessionTimeoutContextInitialized() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -205,18 +205,18 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: addJspContextListenerInTLD
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: UnsupportedOperationException - if this ServletContext was
-     * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
-     * ServletContextEvent) method of a ServletContextListener that was neither
-     * declared in web.xml or web-fragment.xml, nor annotated with WebListener
-     */
-    @Test
-    public void addJspContextListenerInTLD() throws Exception {
+  /*
+   * @testName: addJspContextListenerInTLD
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: UnsupportedOperationException - if this ServletContext was
+   * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
+   * ServletContextEvent) method of a ServletContextListener that was neither
+   * declared in web.xml or web-fragment.xml, nor annotated with WebListener
+   */
+  @Test
+  void addJspContextListenerInTLD() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet";
             logMsg("Sending request \"" + request + "\"");
@@ -246,18 +246,18 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: setSessionTimeoutContextListenerInTLD
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: UnsupportedOperationException - if this ServletContext was
-     * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
-     * ServletContextEvent) method of a ServletContextListener that was neither
-     * declared in web.xml or web-fragment.xml, nor annotated with WebListener
-     */
-    @Test
-    public void setSessionTimeoutContextListenerInTLD() throws Exception {
+  /*
+   * @testName: setSessionTimeoutContextListenerInTLD
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: UnsupportedOperationException - if this ServletContext was
+   * passed to the ServletContextListener.contextInitialized(jakarta.servlet.
+   * ServletContextEvent) method of a ServletContextListener that was neither
+   * declared in web.xml or web-fragment.xml, nor annotated with WebListener
+   */
+  @Test
+  void setSessionTimeoutContextListenerInTLD() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet";
             logMsg("Sending request \"" + request + "\"");
@@ -287,16 +287,16 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: addJspEmptyAndNullName
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: IllegalArgumentException - if servletName is null or an
-     * empty String
-     */
-    @Test
-    public void addJspEmptyAndNullName() throws Exception {
+  /*
+   * @testName: addJspEmptyAndNullName
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: IllegalArgumentException - if servletName is null or an
+   * empty String
+   */
+  @Test
+  void addJspEmptyAndNullName() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet";
             logMsg("Sending request \"" + request + "\"");
@@ -334,15 +334,15 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getAttributeWithNullName
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: NullPointerException - if name is null
-     */
-    @Test
-    public void getAttributeWithNullName() throws Exception {
+  /*
+   * @testName: getAttributeWithNullName
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: NullPointerException - if name is null
+   */
+  @Test
+  void getAttributeWithNullName() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -373,15 +373,15 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getInitParameterWithNullName
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: NullPointerException - if name is null
-     */
-    @Test
-    public void getInitParameterWithNullName() throws Exception {
+  /*
+   * @testName: getInitParameterWithNullName
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: NullPointerException - if name is null
+   */
+  @Test
+  void getInitParameterWithNullName() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -412,15 +412,15 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: setAttributeWithNullName
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: NullPointerException - if name is null
-     */
-    @Test
-    public void setAttributeWithNullName() throws Exception {
+  /*
+   * @testName: setAttributeWithNullName
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: NullPointerException - if name is null
+   */
+  @Test
+  void setAttributeWithNullName() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -451,15 +451,15 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: setInitParameterWithNullName
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: NullPointerException - if name is null
-     */
-    @Test
-    public void setInitParameterWithNullName() throws Exception {
+  /*
+   * @testName: setInitParameterWithNullName
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: NullPointerException - if name is null
+   */
+  @Test
+  void setInitParameterWithNullName() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");
@@ -490,16 +490,16 @@ public class ServletContext40Tests extends AbstractTckTest {
         }
     }
 
-    /*
-     * @testName: getEffectiveSessionTrackingModes
-     *
-     * @assertion_ids: NA
-     *
-     * @test_Strategy: with no setEffectiveSesssionTrackingModes, default is in
-     * effective
-     */
-    @Test
-    public void getEffectiveSessionTrackingModes() throws Exception {
+  /*
+   * @testName: getEffectiveSessionTrackingModes
+   *
+   * @assertion_ids: NA
+   *
+   * @test_Strategy: with no setEffectiveSesssionTrackingModes, default is in
+   * effective
+   */
+  @Test
+  void getEffectiveSessionTrackingModes() throws Exception {
         try {
             request = getContextRoot() + "/TestServlet2";
             logMsg("Sending request \"" + request + "\"");

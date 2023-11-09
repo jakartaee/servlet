@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class CreateFilterTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class CreateFilterTests extends AbstractTckTest {
    * UnsupportedOperationException is thrown.
    */
   @Test
-  public void createFilterTest() throws Exception {
+  void createFilterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "createFilterTest");
     invoke();
   }

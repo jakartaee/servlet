@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class RdSpecialCharTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class RdSpecialCharTests extends AbstractTckTest {
    * RequestDispatcher.include. 3. Verify that IncludedServlet is invoked.
    */
   @Test
-  public void querySemicolonInclude() throws Exception {
+  void querySemicolonInclude() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "querySemicolonInclude");
     invoke();
   }
@@ -82,7 +82,7 @@ public class RdSpecialCharTests extends AbstractTckTest {
    * RequestDispatcher.forward. 3. Verify that IncludedServlet is invoked.
    */
   @Test
-  public void querySemicolonForward() throws Exception {
+  void querySemicolonForward() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "querySemicolonForward");
     invoke();
   }

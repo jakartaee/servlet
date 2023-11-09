@@ -34,7 +34,7 @@ import java.util.Arrays;
 public class FilterRequestDispatcherTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -74,7 +74,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * all of them directly. 4. Verify that filter is properly invoked.
    */
   @Test
-  public void RequestTest() throws Exception {
+  void RequestTest() throws Exception {
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.get().setProperty(APITEST, "generic/DummyServlet");
     invoke();
@@ -99,7 +99,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * Verify that filter is properly invoked.
    */
   @Test
-  public void RequestTest1() throws Exception {
+  void RequestTest1() throws Exception {
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.get().setProperty(APITEST, "request/RequestTest");
     invoke();
@@ -116,7 +116,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * forward/ForwardedServlet directly. 4. Verify that filter is not invoked.
    */
   @Test
-  public void RequestTest2() throws Exception {
+  void RequestTest2() throws Exception {
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.get().setProperty(SEARCH_STRING, Data.FAILED);
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, Data.PASSED);
@@ -137,7 +137,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * properly invoked.
    */
   @Test
-  public void ForwardTest() throws Exception {
+  void ForwardTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "forwardTest");
     invoke();
   }
@@ -155,7 +155,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * properly invoked.
    */
   @Test
-  public void ForwardTest1() throws Exception {
+  void ForwardTest1() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "forwardServletTest");
     invoke();
 
@@ -178,7 +178,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * properly invoked.
    */
   @Test
-  public void IncludeTest() throws Exception {
+  void IncludeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "includeTest");
     invoke();
   }
@@ -196,7 +196,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * TestServlet. 4. Verify that filter is properly invoked.
    */
   @Test
-  public void IncludeTest1() throws Exception {
+  void IncludeTest1() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "includeJSPTest");
     invoke();
 
@@ -219,7 +219,7 @@ public class FilterRequestDispatcherTests extends AbstractTckTest {
    * properly invoked.
    */
   @Test
-  public void ErrorTest() throws Exception {
+  void ErrorTest() throws Exception {
     TEST_PROPS.get().setProperty(DONOTUSEServletName, "true");
     TEST_PROPS.get().setProperty(APITEST, "forward/IncludedServlet");
     TEST_PROPS.get().setProperty(STATUS_CODE, "404");

@@ -29,10 +29,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class CookieTest {
-    @SuppressWarnings("removal")
-    @Test
-    public void testCookie() {
+class CookieTest {
+  @SuppressWarnings("removal")
+  @Test
+  void cookie() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getName(), is("name"));
         assertThat(cookie.getValue(), is("value"));
@@ -46,21 +46,21 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "",
-            "=",
-            " ",
-            "name=value",
-            "\377",
-    })
-    public void testBadCookie(String name) {
+  @ParameterizedTest
+  @ValueSource(strings = {
+      "",
+      "=",
+      " ",
+      "name=value",
+      "\377",
+  })
+  void badCookie(String name) {
         assertThrows(IllegalArgumentException.class, () -> new Cookie(name, "value"));
     }
 
-    @SuppressWarnings("removal")
-    @Test
-    public void testComment() {
+  @SuppressWarnings("removal")
+  @Test
+  void comment() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setComment("comment");
         assertThat(cookie.getComment(), nullValue());
@@ -74,8 +74,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testDomain() {
+  @Test
+  void domain() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setDomain("domain");
         assertThat(cookie.getDomain(), is("domain"));
@@ -90,8 +90,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testMaxAge() {
+  @Test
+  void maxAge() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setMaxAge(100);
         assertThat(cookie.getMaxAge(), is(100));
@@ -109,8 +109,8 @@ public class CookieTest {
         assertThrows(NumberFormatException.class, () -> cookie.setAttribute("max-age", "not-a-number"));
     }
 
-    @Test
-    public void testPath() {
+  @Test
+  void path() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setPath("path");
         assertThat(cookie.getPath(), is("path"));
@@ -125,8 +125,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testSecure() {
+  @Test
+  void secure() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setSecure(true);
         assertThat(cookie.getSecure(), is(true));
@@ -147,8 +147,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testValue() {
+  @Test
+  void value() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getName(), is("name"));
         assertThat(cookie.getValue(), is("value"));
@@ -158,9 +158,9 @@ public class CookieTest {
         assertThat(cookie.getValue(), nullValue());
     }
 
-    @SuppressWarnings("removal")
-    @Test
-    public void testVersion() {
+  @SuppressWarnings("removal")
+  @Test
+  void version() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getVersion(), is(0));
         cookie.setVersion(1);
@@ -171,8 +171,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testHttpOnly() {
+  @Test
+  void httpOnly() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setHttpOnly(true);
         assertThat(cookie.isHttpOnly(), is(true));
@@ -193,8 +193,8 @@ public class CookieTest {
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
-    @Test
-    public void testAttribute() {
+  @Test
+  void attribute() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getAttributes().size(), is(0));
         assertThat(cookie.getAttribute("A0"), nullValue());
@@ -218,19 +218,19 @@ public class CookieTest {
         assertThrows(UnsupportedOperationException.class, cookie.getAttributes()::clear);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "",
-            " ",
-            "\377",
-    })
-    public void testBadAttribute(String name) {
+  @ParameterizedTest
+  @ValueSource(strings = {
+      "",
+      " ",
+      "\377",
+  })
+  void badAttribute(String name) {
         Cookie cookie = new Cookie("name", "value");
         assertThrows(IllegalArgumentException.class, () -> cookie.setAttribute(name, "value"));
     }
 
-    @Test
-    public void testCloneHashEquals() {
+  @Test
+  void cloneHashEquals() {
         Cookie cookie = new Cookie("name", "value");
         cookie.setDomain("domain");
         cookie.setHttpOnly(true);

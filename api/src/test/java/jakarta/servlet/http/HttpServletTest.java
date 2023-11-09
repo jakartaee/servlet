@@ -38,15 +38,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class HttpServletTest {
+class HttpServletTest {
     public interface Handler {
         void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
     }
 
-    @ParameterizedTest
-    @MethodSource("headTest")
-    public void testLegacyHead(String test, Handler doGet, boolean expectedFlushed, long expectedContentLength)
-            throws ServletException, IOException {
+  @ParameterizedTest
+  @MethodSource("headTest")
+  void legacyHead(String test, Handler doGet, boolean expectedFlushed, long expectedContentLength)
+      throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
             private static final long serialVersionUID = 20214996986006168L;
 
@@ -96,10 +96,10 @@ public class HttpServletTest {
         assertThat(test, actual, anyOf(is(""), nullValue()));
     }
 
-    @ParameterizedTest
-    @MethodSource("traceHeadersTest")
-    public void testTraceHeaders(String testHeader, Handler doTrace)
-            throws ServletException, IOException {
+  @ParameterizedTest
+  @MethodSource("traceHeadersTest")
+  void traceHeaders(String testHeader, Handler doTrace)
+      throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
 
             private static final long serialVersionUID = 20214996986006169L;
@@ -241,9 +241,9 @@ public class HttpServletTest {
         );
     }
 
-    @Test
-    public void testContainerHead()
-            throws ServletException, IOException {
+  @Test
+  void containerHead()
+      throws ServletException, IOException {
         HttpServlet servlet = new HttpServlet() {
             private static final long serialVersionUID = -7111162937549196282L;
 

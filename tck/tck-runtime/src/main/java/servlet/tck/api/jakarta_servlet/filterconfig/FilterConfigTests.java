@@ -58,7 +58,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetFilterNameTest() throws Exception {
+  void GetFilterNameTest() throws Exception {
     String testName = "GetFilterNameTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
@@ -73,7 +73,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetInitParamNamesTest() throws Exception {
+  void GetInitParamNamesTest() throws Exception {
     String testName = "GetInitParamNamesTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
@@ -88,7 +88,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetInitParamNamesNullTest() throws Exception {
+  void GetInitParamNamesNullTest() throws Exception {
     String testName = "GetInitParamNamesNullTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
@@ -103,7 +103,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetInitParamTest() throws Exception {
+  void GetInitParamTest() throws Exception {
     String testName = "GetInitParamTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
@@ -118,7 +118,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetInitParamNullTest() throws Exception {
+  void GetInitParamNullTest() throws Exception {
     String testName = "GetInitParamNullTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();
@@ -133,7 +133,7 @@ public class FilterConfigTests extends AbstractTckTest {
    * configured for that servlet should be invoked.
    */
   @Test
-  public void GetServletContextTest() throws Exception {
+  void GetServletContextTest() throws Exception {
     String testName = "GetServletContextTest";
     TEST_PROPS.get().setProperty(APITEST, testName);
     invoke();

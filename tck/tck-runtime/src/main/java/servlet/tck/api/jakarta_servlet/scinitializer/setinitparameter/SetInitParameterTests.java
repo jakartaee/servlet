@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 public class SetInitParameterTests extends AbstractTckTest {
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class SetInitParameterTests extends AbstractTckTest {
    * Verify that UnsupportedOperationException is thrown.
    */
   @Test
-  public void setInitParameterTest() throws Exception {
+  void setInitParameterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setInitParameterTest");
     invoke();
   }

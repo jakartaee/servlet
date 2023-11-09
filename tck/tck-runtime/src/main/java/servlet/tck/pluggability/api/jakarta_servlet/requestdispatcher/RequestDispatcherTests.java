@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
 public class RequestDispatcherTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -74,7 +74,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * forward to a servlet
    */
   @Test
-  public void forwardTest() throws Exception {
+  void forwardTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "forwardTest");
     invoke();
   }
@@ -90,7 +90,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * the string, get its RequestDispatcher and use it to forward to a servlet.
    */
   @Test
-  public void forward_1Test() throws Exception {
+  void forward_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "forward_1Test");
     invoke();
   }
@@ -104,7 +104,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * include a servlet
    */
   @Test
-  public void includeTest() throws Exception {
+  void includeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "includeTest");
     invoke();
   }
@@ -121,7 +121,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * for correct Content-Type.
    */
   @Test
-  public void include_1Test() throws Exception {
+  void include_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "include_1Test");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Content-Type: text/sgml");
     invoke();
@@ -139,7 +139,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * throws ServletException.
    */
   @Test
-  public void include_2Test() throws Exception {
+  void include_2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "include_2Test");
     invoke();
   }
@@ -156,7 +156,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
    * throws IOException.
    */
   @Test
-  public void include_3Test() throws Exception {
+  void include_3Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "include_3Test");
     invoke();
   }

@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class HttpServletResponseWrapper30Tests extends HttpResponseClient {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 

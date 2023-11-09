@@ -38,7 +38,7 @@ import java.net.URL;
 public class ReadListener1Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
     setContextRoot("/servlet_jsh_readlistener1_web");
   }
@@ -70,7 +70,7 @@ public class ReadListener1Tests extends AbstractTckTest {
    * ServletInputStream.setReadListener(null) works accordingly
    */
   @Test
-  public void nioInputTest1() throws Exception {
+  void nioInputTest1() throws Exception {
     boolean passed = true;
     int sleepInSeconds = Integer
             .parseInt(_props.getProperty("servlet_async_wait").trim());
@@ -141,7 +141,7 @@ public class ReadListener1Tests extends AbstractTckTest {
    * throws IllegalStateException without Async or upgrade
    */
   @Test
-  public void nioInputTest2() throws Exception {
+  void nioInputTest2() throws Exception {
     boolean passed = true;
     int sleepInSeconds = Integer
             .parseInt(_props.getProperty("servlet_async_wait").trim());

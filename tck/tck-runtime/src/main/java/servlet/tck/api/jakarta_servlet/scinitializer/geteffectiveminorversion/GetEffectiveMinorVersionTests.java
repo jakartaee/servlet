@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class GetEffectiveMinorVersionTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class GetEffectiveMinorVersionTests extends AbstractTckTest {
    * Verify that UnsupportedOperationException is thrown.
    */
   @Test
-  public void getEffectiveMajorVersionTest() throws Exception {
+  void getEffectiveMajorVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getEffectiveMajorVersionTest");
     invoke();
   }

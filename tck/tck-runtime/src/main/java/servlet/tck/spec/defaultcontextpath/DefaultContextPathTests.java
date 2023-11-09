@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class DefaultContextPathTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -56,7 +56,7 @@ public class DefaultContextPathTests extends AbstractTckTest {
    * expected value;
    */
   @Test
-  public void getDefaultContextPathTest() throws Exception {
+  void getDefaultContextPathTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getDefaultContextPathTest");
     invoke();
   }

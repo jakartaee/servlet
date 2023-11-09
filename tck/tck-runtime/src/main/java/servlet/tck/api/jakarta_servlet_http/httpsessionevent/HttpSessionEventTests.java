@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class HttpSessionEventTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -64,7 +64,7 @@ public class HttpSessionEventTests extends AbstractTckTest {
    * the log and verifies the result
    */
   @Test
-  public void getSessionTest() throws Exception {
+  void getSessionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getSessionTest");
     invoke();
   }
@@ -77,7 +77,7 @@ public class HttpSessionEventTests extends AbstractTckTest {
    * @test_Strategy: servlet calls the constructor
    */
   @Test
-  public void constructorTest() throws Exception {
+  void constructorTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "constructorTest");
     invoke();
   }

@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -65,7 +65,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    * getHeaders(String) works properly
    */
   @Test
-  public void getHeadersTest() throws Exception {
+  void getHeadersTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getHeadersTest");
     invoke();
   }
@@ -81,7 +81,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    * getHeader(String) works properly
    */
   @Test
-  public void getHeaderTest() throws Exception {
+  void getHeaderTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getHeaderTest");
     invoke();
   }
@@ -99,7 +99,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    * that getHeaderNames() works properly
    */
   @Test
-  public void getHeaderNamesTest() throws Exception {
+  void getHeaderNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getHeaderNamesTest");
     invoke();
   }
@@ -113,7 +113,7 @@ public class HttpServletResponseWrapper30Tests extends AbstractTckTest {
    * servlet, set a status value; verify that getStatus() works properly
    */
   @Test
-  public void getStatusTest() throws Exception {
+  void getStatusTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getStatusTest");
     invoke();
   }

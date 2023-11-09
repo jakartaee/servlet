@@ -53,7 +53,7 @@ public class AccessWebinfTests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void accessWebInfTest() throws Exception {
+  void accessWebInfTest() throws Exception {
     String testName = "accessWebInfTest";
     TEST_PROPS.get().setProperty(TEST_NAME, testName);
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"

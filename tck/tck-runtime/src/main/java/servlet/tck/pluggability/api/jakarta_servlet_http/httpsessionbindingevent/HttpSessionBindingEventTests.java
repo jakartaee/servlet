@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class HttpSessionBindingEventTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -73,7 +73,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    * the log and verifies the result
    */
   @Test
-  public void addedTest() throws Exception {
+  void addedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addedTest");
     invoke();
   }
@@ -89,7 +89,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    * reads the log and verifies the result
    */
   @Test
-  public void removedTest() throws Exception {
+  void removedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removedTest");
     invoke();
   }
@@ -105,7 +105,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    * reads the log and verifies the result
    */
   @Test
-  public void replacedTest() throws Exception {
+  void replacedTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "replacedTest");
     invoke();
   }
@@ -118,7 +118,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    * @test_Strategy: Servlet creates an object using the 2 argument method.
    */
   @Test
-  public void constructor_StringTest() throws Exception {
+  void constructor_StringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "constructor_StringTest");
     invoke();
   }
@@ -131,7 +131,7 @@ public class HttpSessionBindingEventTests extends AbstractTckTest {
    * @test_Strategy: Servlet creates an object using the 3 argument method.
    */
   @Test
-  public void constructor_String_ObjectTest() throws Exception {
+  void constructor_String_ObjectTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "constructor_String_ObjectTest");
     invoke();
   }

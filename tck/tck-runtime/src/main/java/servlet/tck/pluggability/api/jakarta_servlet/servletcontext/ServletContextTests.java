@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContextTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -69,7 +69,7 @@ public class ServletContextTests extends AbstractTckTest {
    * value that points an exsiting directory.
    */
   @Test
-  public void GetServletTempDirTest() throws Exception {
+  void GetServletTempDirTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletTempDir");
     invoke();
   }
@@ -84,7 +84,7 @@ public class ServletContextTests extends AbstractTckTest {
    * itself
    */
   @Test
-  public void GetMajorVersionTest() throws Exception {
+  void GetMajorVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMajorVersion");
     invoke();
   }
@@ -99,7 +99,7 @@ public class ServletContextTests extends AbstractTckTest {
    * itself
    */
   @Test
-  public void GetMinorVersionTest() throws Exception {
+  void GetMinorVersionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMinorVersion");
     invoke();
   }
@@ -114,7 +114,7 @@ public class ServletContextTests extends AbstractTckTest {
    * itself
    */
   @Test
-  public void GetMimeTypeTest() throws Exception {
+  void GetMimeTypeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMimeType");
     invoke();
   }
@@ -129,7 +129,7 @@ public class ServletContextTests extends AbstractTckTest {
    * ServletContext.getMimeType() for this servlet itself
    */
   @Test
-  public void GetMimeType_1Test() throws Exception {
+  void GetMimeType_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMimeType_1");
     invoke();
   }
@@ -144,7 +144,7 @@ public class ServletContextTests extends AbstractTckTest {
    * itself
    */
   @Test
-  public void GetRealPathTest() throws Exception {
+  void GetRealPathTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getRealPath");
     invoke();
   }
@@ -158,7 +158,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: A negative test for getResourceAsStream() method
    */
   @Test
-  public void GetResourceAsStream_1Test() throws Exception {
+  void GetResourceAsStream_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getResourceAsStream_1");
     invoke();
   }
@@ -173,7 +173,7 @@ public class ServletContextTests extends AbstractTckTest {
    * method
    */
   @Test
-  public void GetResource_1Test() throws Exception {
+  void GetResource_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getResource_1");
     invoke();
   }
@@ -188,7 +188,7 @@ public class ServletContextTests extends AbstractTckTest {
    * if path does not start with /, MalformedURLException should be thrown
    */
   @Test
-  public void GetResource_2Test() throws Exception {
+  void GetResource_2Test() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "");
     TEST_PROPS.get().setProperty(APITEST, "getResource_2");
     invoke();
@@ -203,7 +203,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Test for ServletContext.getServerInfo() method
    */
   @Test
-  public void GetServerInfoTest() throws Exception {
+  void GetServerInfoTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServerInfo");
     invoke();
   }
@@ -217,7 +217,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Try to get the attributes for this servlet itself
    */
   @Test
-  public void ServletContextGetAttributeTest() throws Exception {
+  void ServletContextGetAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttribute");
     invoke();
   }
@@ -232,7 +232,7 @@ public class ServletContextTests extends AbstractTckTest {
    * null attribute values for this servlet itself
    */
   @Test
-  public void ServletContextGetAttribute_1Test() throws Exception {
+  void ServletContextGetAttribute_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttribute_1");
     invoke();
   }
@@ -246,7 +246,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Test for ServletContext object for this servlet itself
    */
   @Test
-  public void ServletContextGetContextTest() throws Exception {
+  void ServletContextGetContextTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetContext");
     invoke();
   }
@@ -261,7 +261,7 @@ public class ServletContextTests extends AbstractTckTest {
    * servlet itself
    */
   @Test
-  public void ServletContextGetInitParameterNamesTest() throws Exception {
+  void ServletContextGetInitParameterNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameterNames");
     invoke();
   }
@@ -276,7 +276,7 @@ public class ServletContextTests extends AbstractTckTest {
    * servlet itself
    */
   @Test
-  public void ServletContextGetInitParameterTest() throws Exception {
+  void ServletContextGetInitParameterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameter");
     invoke();
   }
@@ -291,7 +291,7 @@ public class ServletContextTests extends AbstractTckTest {
    * not set
    */
   @Test
-  public void ServletContextGetInitParameterTestNull() throws Exception {
+  void ServletContextGetInitParameterTestNull() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetInitParameterNull");
     invoke();
   }
@@ -305,7 +305,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Test for ServletContext.removeAttribute() method
    */
   @Test
-  public void ServletContextRemoveAttributeTest() throws Exception {
+  void ServletContextRemoveAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextRemoveAttribute");
     invoke();
   }
@@ -319,7 +319,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Test for ServletContext.setAttribute() method
    */
   @Test
-  public void ServletContextSetAttributeTest() throws Exception {
+  void ServletContextSetAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute");
     invoke();
   }
@@ -335,7 +335,7 @@ public class ServletContextTests extends AbstractTckTest {
    * same Attribute, verify that second value replace the first Attribute value.
    */
   @Test
-  public void ServletContextSetAttribute_1Test() throws Exception {
+  void ServletContextSetAttribute_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute_1");
     invoke();
   }
@@ -350,7 +350,7 @@ public class ServletContextTests extends AbstractTckTest {
    * to null and verify getAttribute return null.
    */
   @Test
-  public void ServletContextSetAttribute_2Test() throws Exception {
+  void ServletContextSetAttribute_2Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextSetAttribute_2");
     invoke();
   }
@@ -364,7 +364,7 @@ public class ServletContextTests extends AbstractTckTest {
    * @test_Strategy: Servlet retrieves attributes which it set itself
    */
   @Test
-  public void ServletContextGetAttributeNamesTest() throws Exception {
+  void ServletContextGetAttributeNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetAttributeNames");
     invoke();
   }
@@ -379,7 +379,7 @@ public class ServletContextTests extends AbstractTckTest {
    * this servlet itself
    */
   @Test
-  public void ServletContextGetRequestDispatcherTest() throws Exception {
+  void ServletContextGetRequestDispatcherTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "servletContextGetRequestDispatcher");
     invoke();
   }
@@ -395,7 +395,7 @@ public class ServletContextTests extends AbstractTckTest {
    * servlet.
    */
   @Test
-  public void GetNamedDispatcherTest() throws Exception {
+  void GetNamedDispatcherTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNamedDispatcher");
     invoke();
   }
@@ -410,7 +410,7 @@ public class ServletContextTests extends AbstractTckTest {
    * getNamedDispatcher call return null with non-existent path. Negative test.
    */
   @Test
-  public void GetNamedDispatcher_1Test() throws Exception {
+  void GetNamedDispatcher_1Test() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getNamedDispatcher_1");
     invoke();
   }

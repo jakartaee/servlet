@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class DispatcherTypeTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    * DispatcherType.values works properly.
    */
   @Test
-  public void valuesTest() throws Exception {
+  void valuesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "valuesTest");
     invoke();
   }
@@ -77,10 +77,11 @@ public class DispatcherTypeTests extends AbstractTckTest {
    * that DispatcherType.valueOf works properly.
    */
   @Test
-  public void valueOfTest() throws Exception {
+  void valueOfTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "valueOfTest");
     invoke();
   }
+
   /*
    * @testName: valueOfNullTest
    *
@@ -92,10 +93,11 @@ public class DispatcherTypeTests extends AbstractTckTest {
    * is null
    */
   @Test
-  public void valueOfNullTest() throws Exception {
+  void valueOfNullTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "valueOfNullTest");
     invoke();
   }
+
   /*
    * @testName: valueOfInvalidTest
    *
@@ -107,7 +109,7 @@ public class DispatcherTypeTests extends AbstractTckTest {
    * name is invalid Dispatcher type
    */
   @Test
-  public void valueOfInvalidTest() throws Exception {
+  void valueOfInvalidTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "valueOfInvalidTest");
     invoke();
   }

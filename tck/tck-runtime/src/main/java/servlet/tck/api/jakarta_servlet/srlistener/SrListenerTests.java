@@ -36,7 +36,7 @@ public class SrListenerTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -67,7 +67,7 @@ public class SrListenerTests extends AbstractTckTest {
    * to verify results
    */
   @Test
-  public void initializeDestroyTest() throws Exception {
+  void initializeDestroyTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "initializeDestroyTest");
     invoke();
     TEST_PROPS.get().setProperty(APITEST, "checkLog");

@@ -79,7 +79,7 @@ public class PluggabilityOrderingTests extends AbstractTckTest {
    * precedence.
    */
   @Test
-  public void initParamTest() throws Exception {
+  void initParamTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4|"
         + "msg1=first|msg2=second|msg3=third|msg4=fourth|" + "RequestListener");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");

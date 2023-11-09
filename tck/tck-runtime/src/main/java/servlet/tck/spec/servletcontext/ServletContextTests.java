@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContextTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -56,7 +56,7 @@ public class ServletContextTests extends AbstractTckTest {
    * verify getJspConfigDescriptor retunes null;
    */
   @Test
-  public void getJspConfigDescriptorTest() throws Exception {
+  void getJspConfigDescriptorTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getJspConfigDescriptorTest");
     invoke();
   }

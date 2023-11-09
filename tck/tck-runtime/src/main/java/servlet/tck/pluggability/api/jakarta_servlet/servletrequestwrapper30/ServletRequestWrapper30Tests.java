@@ -73,7 +73,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * ServletConfigs.
    */
   @Test
-  public void getServletContextTest() throws Exception {
+  void getServletContextTest() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     TEST_PROPS.get().setProperty(STATUS_CODE, OK);
@@ -93,7 +93,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * DispatcherType.REQUEST is returned.
    */
   @Test
-  public void getDispatcherTypeTestRequest() throws Exception {
+  void getDispatcherTypeTestRequest() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getDispatcherTypeTestRequest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DispatcherType=REQUEST");
@@ -111,7 +111,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * DispatcherType.FORWARD is returned.
    */
   @Test
-  public void getDispatcherTypeTestForward() throws Exception {
+  void getDispatcherTypeTestForward() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getDispatcherTypeTestForward");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DispatcherType=FORWARD");
@@ -129,7 +129,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * DispatcherType.INCLUDE is returned.
    */
   @Test
-  public void getDispatcherTypeTestInclude() throws Exception {
+  void getDispatcherTypeTestInclude() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getDispatcherTypeTestInclude");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DispatcherType=INCLUDE");
@@ -148,7 +148,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * DispatcherType.ERROR is returned.
    */
   @Test
-  public void getDispatcherTypeTestError() throws Exception {
+  void getDispatcherTypeTestError() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/nowheretobefound/  HTTP/1.1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DispatcherType=ERROR");
@@ -171,7 +171,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * DispatcherType.ASYNC is returned.
    */
   @Test
-  public void getDispatcherTypeTestAsync() throws Exception {
+  void getDispatcherTypeTestAsync() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getDispatcherTypeTestAsync");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "DispatcherType=ASYNC");
@@ -190,7 +190,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * ServletRequestWrapper.isAsyncStarted() verifies that true is returned.
    */
   @Test
-  public void asyncStartedTest1() throws Exception {
+  void asyncStartedTest1() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "asyncStartedTest1");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "IsAsyncStarted=true");
@@ -209,7 +209,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * verifies that false is returned.
    */
   @Test
-  public void asyncStartedTest2() throws Exception {
+  void asyncStartedTest2() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "asyncStartedTest2");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "IsAsyncStarted=false");
@@ -230,7 +230,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * verifies that true is returned before it dispatch return to the container
    */
   @Test
-  public void asyncStartedTest3() throws Exception {
+  void asyncStartedTest3() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "asyncStartedTest3");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "IsAsyncStarted=true");
@@ -251,7 +251,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * ServletRequestWrapper.isAsyncStarted() verifies that false is returned.
    */
   @Test
-  public void asyncStartedTest4() throws Exception {
+  void asyncStartedTest4() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "asyncStartedTest4");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "IsAsyncStarted=false");
@@ -269,7 +269,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * ServletRequestWrapper.isAsyncSupported() verifies that true is returned.
    */
   @Test
-  public void isAsyncSupportedTest1() throws Exception {
+  void isAsyncSupportedTest1() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "isAsyncSupportedTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "isAsyncSupported=true");
@@ -287,7 +287,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * ServletRequestWrapper.isAsyncSupported() verifies that false is returned.
    */
   @Test
-  public void isAsyncSupportedTest2() throws Exception {
+  void isAsyncSupportedTest2() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "isAsyncSupportedTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "isAsyncSupported=false");
@@ -305,7 +305,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * verifies that IllegalStateException is thrown.
    */
   @Test
-  public void startAsyncTest1() throws Exception {
+  void startAsyncTest1() throws Exception {
     setServletName("TestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "startAsyncTest");
     invoke();
@@ -325,7 +325,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * outside of dispatch verifies that IllegalStateException is thrown.
    */
   @Test
-  public void startAsyncTest2() throws Exception {
+  void startAsyncTest2() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "startAsyncTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "IllegalStateException thrown");
@@ -345,7 +345,7 @@ public class ServletRequestWrapper30Tests extends AbstractTckTest {
    * verifies it works.
    */
   @Test
-  public void getAsyncContextTest() throws Exception {
+  void getAsyncContextTest() throws Exception {
     setServletName("AsyncTestServletWrapper");
     TEST_PROPS.get().setProperty(APITEST, "getAsyncContextTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");

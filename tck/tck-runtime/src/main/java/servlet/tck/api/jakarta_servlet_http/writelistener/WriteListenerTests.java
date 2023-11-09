@@ -36,7 +36,7 @@ import java.net.URL;
 public class WriteListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -65,7 +65,7 @@ public class WriteListenerTests extends AbstractTckTest {
    * all message received by client; Verify WriteListener works accordingly
    */
     @Test
-  public void nioOutputTest() throws Exception {
+  void nioOutputTest() throws Exception {
     boolean passed = true;
     String testName = "nioOutputTest";
     String EXPECTED_RESPONSE = "=onWritePossible";

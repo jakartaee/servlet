@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class WebListenerTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -62,7 +62,7 @@ public class WebListenerTests extends AbstractTckTest {
    * Veriy ServletContextListener is invoked properly.
    */
   @Test
-  public void ContextListenerTest() throws Exception {
+  void ContextListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "ContextListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING, "ContextInitialized");
     invoke();
@@ -78,7 +78,7 @@ public class WebListenerTests extends AbstractTckTest {
    * TestServlet; Veriy ServletContextAttributeListener is invoked properly.
    */
   @Test
-  public void ContextAttributeListenerTest() throws Exception {
+  void ContextAttributeListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "ContextAttributeListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SCAAdded:ContextListener|" + "ContextInitialized|" + "SCAAdded:SRList|"
@@ -97,7 +97,7 @@ public class WebListenerTests extends AbstractTckTest {
    * Veriy ServletRequestListener is invoked properly.
    */
   @Test
-  public void RequsetListenerTest() throws Exception {
+  void RequsetListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "RequsetListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in requestInitialized method of listener");
@@ -115,7 +115,7 @@ public class WebListenerTests extends AbstractTckTest {
    * invoked properly.
    */
   @Test
-  public void RepeatRequsetListenerTest() throws Exception {
+  void RepeatRequsetListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "RepeatRequsetListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "in requestInitialized method of listener");
@@ -139,7 +139,7 @@ public class WebListenerTests extends AbstractTckTest {
    * Veriy ServletRequestListener is invoked properly.
    */
   @Test
-  public void RequsetAttributeListenerTest() throws Exception {
+  void RequsetAttributeListenerTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "RequsetAttributeListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "SRAAdded:Test,RequestAttribute|" + "SRARemoved:Test,RequestAttribute");
@@ -157,7 +157,7 @@ public class WebListenerTests extends AbstractTckTest {
    * invoked properly.
    */
   @Test
-  public void HttpSessionListenerTest() throws Exception {
+  void HttpSessionListenerTest() throws Exception {
     setServletName("HttpTestServlet");
     TEST_PROPS.get().setProperty(APITEST, "HttpSessionListenerTest");
     TEST_PROPS.get().setProperty(SEARCH_STRING,
@@ -180,7 +180,7 @@ public class WebListenerTests extends AbstractTckTest {
    * invocation to HttpSessionAttributeListenerTest below.
    */
   @Test
-  public void HttpSessionAttributeListenerTest() throws Exception {
+  void HttpSessionAttributeListenerTest() throws Exception {
 
     // first invocation is to do some session attribute manipulations
     // which should trigger HttpSessionAttributeListener notifications

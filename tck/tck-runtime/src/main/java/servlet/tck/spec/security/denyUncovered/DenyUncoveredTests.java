@@ -118,7 +118,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    * 
    */
   @Test
-  public void testAllMethodsAllowedAnno() throws Exception {
+  void allMethodsAllowedAnno() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtAllMethodsAllowedAnno, "POST");
     if (httpStatusCode != 200) {
@@ -164,7 +164,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    * 
    */
   @Test
-  public void testAccessToMethodAllowed() throws Exception {
+  void accessToMethodAllowed() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "POST");
     if (httpStatusCode != 200) {
@@ -198,7 +198,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    * 
    */
   @Test
-  public void testDenySomeUncovered() throws Exception {
+  void denySomeUncovered() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtTestServlet, "DELETE");
     if (httpStatusCode != 403) {
@@ -237,7 +237,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    * 
    */
   @Test
-  public void testExcludeAuthConstraint() throws Exception {
+  void excludeAuthConstraint() throws Exception {
 
     int httpStatusCode = invokeServlet(ctxtExcludeAuthConstraint, "GET");
     if (httpStatusCode != 403) {
@@ -277,7 +277,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    * 
    */
   @Test
-  public void testPartialDDServlet() throws Exception {
+  void partialDDServlet() throws Exception {
 
     logger.debug("Invoking {} (GET)", ctxtPartialDDServlet);
     int httpStatusCode = invokeServlet(ctxtPartialDDServlet, "GET");

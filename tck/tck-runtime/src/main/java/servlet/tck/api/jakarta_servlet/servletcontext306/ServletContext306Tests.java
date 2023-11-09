@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext306Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -68,7 +68,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * expected IllegalStateException is thrown.
    */
   @Test
-  public void addServletStringTest() throws Exception {
+  void addServletStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addServletStringTest");
     invoke();
   }
@@ -83,7 +83,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * expected IllegalStateException is thrown.
    */
   @Test
-  public void addServletClassTest() throws Exception {
+  void addServletClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addServletClassTest");
     invoke();
   }
@@ -98,7 +98,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * Verify the expected IllegalStateException is thrown.
    */
   @Test
-  public void addServletTest() throws Exception {
+  void addServletTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addServletTest");
     invoke();
   }
@@ -113,7 +113,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * expected IllegalStateException is thrown.
    */
   @Test
-  public void addFilterStringTest() throws Exception {
+  void addFilterStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addFilterStringTest");
     invoke();
   }
@@ -128,7 +128,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * expected IllegalStateException is thrown.
    */
   @Test
-  public void addFilterClassTest() throws Exception {
+  void addFilterClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addFilterClassTest");
     invoke();
   }
@@ -143,7 +143,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * expected IllegalStateException is thrown.
    */
   @Test
-  public void addFilterTest() throws Exception {
+  void addFilterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addFilterTest");
     invoke();
   }
@@ -158,7 +158,7 @@ public class ServletContext306Tests extends AbstractTckTest {
    * String) Verify the expected IllegalStateException is thrown.
    */
   @Test
-  public void setInitParameterTest() throws Exception {
+  void setInitParameterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setInitParameterTest");
     invoke();
   }

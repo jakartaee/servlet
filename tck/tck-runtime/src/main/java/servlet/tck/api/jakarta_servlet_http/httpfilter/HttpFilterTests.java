@@ -55,7 +55,7 @@ public class HttpFilterTests extends AbstractTckTest {
    * extending HttpFilter configured for that servlet should be invoked.
    */
   @Test
-  public void dofilterTest() throws Exception {
+  void dofilterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "HttpFilterTest");
     invoke();
   }

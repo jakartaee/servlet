@@ -32,8 +32,9 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -307,14 +308,14 @@ public class CanonicalUriPathTest {
         return data.stream().map(Arguments::of);
     }
 
-    @ParameterizedTest
-    @MethodSource("data")
-    public void testCanonicalUriPath(String path, String expected, boolean rejected) {
+  @ParameterizedTest
+  @MethodSource("data")
+  void canonicalUriPath(String path, String expected, boolean rejected) {
         List<String> rejections = new ArrayList<>();
         String canonical = canonicalUriPath(path, rejections::add);
 
-        Assertions.assertEquals(expected, canonical);
-        Assertions.assertEquals(rejected, !rejections.isEmpty());
+        assertEquals(expected, canonical);
+        assertEquals(rejected, !rejections.isEmpty());
 
         // print for inclusion in adoc
         System.err.printf("| `%s` | `%s` | ", path, canonical);

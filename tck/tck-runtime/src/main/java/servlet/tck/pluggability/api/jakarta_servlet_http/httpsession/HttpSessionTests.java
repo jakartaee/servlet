@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 public class HttpSessionTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -71,7 +71,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getCreationTimeTest() throws Exception {
+  void getCreationTimeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getCreationTimeTest");
     invoke();
   }
@@ -84,7 +84,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet starts session, invalidates it then calls method
    */
   @Test
-  public void getCreationTimeIllegalStateExceptionTest() throws Exception {
+  void getCreationTimeIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getCreationTimeIllegalStateExceptionTest");
     invoke();
   }
@@ -97,7 +97,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getIdTestServlet() throws Exception {
+  void getIdTestServlet() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getIdTestServlet");
     invoke();
   }
@@ -111,7 +111,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * IllegalStateException is thrown when getId is called.
    */
   @Test
-  public void getIdIllegalStateExceptionTest() throws Exception {
+  void getIdIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getIdIllegalStateExceptionTest");
     invoke();
   }
@@ -124,7 +124,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getLastAccessedTimeTest() throws Exception {
+  void getLastAccessedTimeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getLastAccessedTimeTest");
     invoke();
   }
@@ -137,7 +137,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet does a get/set operation
    */
   @Test
-  public void getLastAccessedTimeSetGetTest() throws Exception {
+  void getLastAccessedTimeSetGetTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getLastAccessedTimeSetGetTest");
     invoke();
   }
@@ -150,7 +150,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet verifies exception is generated
    */
   @Test
-  public void getLastAccessedTimeIllegalStateExceptionTest() throws Exception {
+  void getLastAccessedTimeIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getSession");
     TEST_PROPS.get().setProperty(SAVE_STATE, "true");
     invoke();
@@ -168,7 +168,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getMaxInactiveIntervalTest() throws Exception {
+  void getMaxInactiveIntervalTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getMaxInactiveIntervalTest");
     invoke();
   }
@@ -181,7 +181,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getAttributeNamesTest() throws Exception {
+  void getAttributeNamesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getAttributeNamesTest");
     invoke();
   }
@@ -194,7 +194,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getAttributeNamesIllegalStateExceptionTest() throws Exception {
+  void getAttributeNamesIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST,
         "getAttributeNamesIllegalStateExceptionTest");
     invoke();
@@ -208,7 +208,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getAttributeTest() throws Exception {
+  void getAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getAttributeTest");
     invoke();
   }
@@ -221,7 +221,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getAttributeIllegalStateExceptionTest() throws Exception {
+  void getAttributeIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getAttributeIllegalStateExceptionTest");
     invoke();
   }
@@ -234,7 +234,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void getServletContextTest() throws Exception {
+  void getServletContextTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getServletContextTest");
     invoke();
   }
@@ -247,7 +247,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void invalidateTest() throws Exception {
+  void invalidateTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "invalidateTest");
     invoke();
   }
@@ -260,7 +260,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void invalidateIllegalStateExceptionTest() throws Exception {
+  void invalidateIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "invalidateIllegalStateExceptionTest");
     invoke();
   }
@@ -273,7 +273,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void isNewTest() throws Exception {
+  void isNewTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "isNewTest");
     invoke();
   }
@@ -286,7 +286,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void isNewIllegalStateExceptionTest() throws Exception {
+  void isNewIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "isNewIllegalStateExceptionTest");
     invoke();
   }
@@ -299,7 +299,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void removeAttributeTest() throws Exception {
+  void removeAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removeAttributeTest");
     invoke();
   }
@@ -313,7 +313,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * to get it.
    */
   @Test
-  public void removeAttributeDoNothingTest() throws Exception {
+  void removeAttributeDoNothingTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removeAttributeDoNothingTest");
     invoke();
   }
@@ -326,7 +326,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void removeAttributeIllegalStateExceptionTest() throws Exception {
+  void removeAttributeIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "removeAttributeIllegalStateExceptionTest");
     invoke();
   }
@@ -339,7 +339,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setAttributeTest() throws Exception {
+  void setAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
@@ -352,7 +352,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet passes null to setAttribute
    */
   @Test
-  public void setAttributeNullTest() throws Exception {
+  void setAttributeNullTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeNullTest");
     invoke();
   }
@@ -365,7 +365,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setAttributeIllegalStateExceptionTest() throws Exception {
+  void setAttributeIllegalStateExceptionTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeIllegalStateExceptionTest");
     invoke();
   }
@@ -378,7 +378,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
-  public void setMaxInactiveIntervalTest() throws Exception {
+  void setMaxInactiveIntervalTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxInactiveIntervalTest");
     invoke();
   }

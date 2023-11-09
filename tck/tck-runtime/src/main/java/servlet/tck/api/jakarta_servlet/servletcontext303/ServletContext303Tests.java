@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class ServletContext303Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -65,7 +65,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSRAListenerClassTest() throws Exception {
+  void negativeaddSRAListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSRAListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
     invoke();
@@ -81,7 +81,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSRAListenerStringTest() throws Exception {
+  void negativeaddSRAListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSRAListenerStringTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRAttributeListener");
     invoke();
@@ -96,7 +96,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSRListenerClassTest() throws Exception {
+  void negativeaddSRListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSRListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
@@ -111,7 +111,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSRListenerStringTest() throws Exception {
+  void negativeaddSRListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSRListenerStringTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
@@ -127,7 +127,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSCAListenerClassTest() throws Exception {
+  void negativeaddSCAListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSCAListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SRListener");
     invoke();
@@ -143,7 +143,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSCAListenerStringTest() throws Exception {
+  void negativeaddSCAListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSCAListenerStringTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCAttributeListener");
     invoke();
@@ -158,7 +158,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSCListenerClassTest() throws Exception {
+  void negativeaddSCListenerClassTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSCListenerClassTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
     invoke();
@@ -173,7 +173,7 @@ public class ServletContext303Tests extends AbstractTckTest {
    * added; Verify in servlet that java.lang.IllegalStateException is thrown.
    */
   @Test
-  public void negativeaddSCListenerStringTest() throws Exception {
+  void negativeaddSCListenerStringTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeaddSCListenerStringTest");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "SCListener");
     invoke();

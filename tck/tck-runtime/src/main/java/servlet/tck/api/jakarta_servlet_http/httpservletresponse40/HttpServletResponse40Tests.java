@@ -61,7 +61,7 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void TrailerTestWithHTTP10() throws Exception {
+  void TrailerTestWithHTTP10() throws Exception {
 
     String response = simpleTest("TrailerTestWithHTTP10", "HTTP/1.0",
         "/TrailerTestServlet");
@@ -81,7 +81,7 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void TrailerTestResponseCommitted() throws Exception {
+  void TrailerTestResponseCommitted() throws Exception {
 
     String response = simpleTest("TrailerTestResponseCommitted", "HTTP/1.1",
         "/TrailerTestServlet2");
@@ -101,7 +101,7 @@ public class HttpServletResponse40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void TrailerTest() throws Exception {
+  void TrailerTest() throws Exception {
     String content = simpleTest("TrailerTest", "HTTP/1.1",
         "/TrailerTestServlet");
     // if (content.indexOf("Trailer: myTrailer") < 0) {

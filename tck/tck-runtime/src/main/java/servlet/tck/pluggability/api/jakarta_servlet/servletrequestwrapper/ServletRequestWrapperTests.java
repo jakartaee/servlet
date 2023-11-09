@@ -36,8 +36,8 @@ import org.junit.jupiter.api.Test;
 
 public class ServletRequestWrapperTests extends RequestClient {
 
-    @BeforeEach
-    public void setupServletName() throws Exception {
+  @BeforeEach
+  void setupServletName() throws Exception {
         setServletName("TestServlet");
     }
 
@@ -50,59 +50,59 @@ public class ServletRequestWrapperTests extends RequestClient {
         return ShrinkWrap.create(WebArchive.class, "servlet_plu_servletrequestwrapper_web.war").addAsLibraries(CommonServlets.getCommonServletsArchive()).addClasses(SetCharacterEncodingTest.class, SetCharacterEncodingTestWrapper.class, SetCharacterEncodingUnsupportedEncodingExceptionTest.class, SetCharacterEncodingUnsupportedEncodingExceptionTestWrapper.class, TestServlet.class).addAsLibraries(javaArchive1);
     }
 
-    /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
-    /* Run test */
-    /*
-   * @testName: requestWrapperConstructorTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:31
-   * 
-   * @test_Strategy: Servlet calls wrapper constructor
-   */
-    @Test
-    public void requestWrapperConstructorTest() throws Exception {
+  /*
+ * @class.setup_props: webServerHost; webServerPort; ts_home;
+ *
+ */
+  /* Run test */
+  /*
+ * @testName: requestWrapperConstructorTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:31
+ * 
+ * @test_Strategy: Servlet calls wrapper constructor
+ */
+  @Test
+  void requestWrapperConstructorTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "requestWrapperConstructorTest");
         invoke();
     }
 
-    /*
-   * @testName: requestWrapperGetRequestTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:32
-   * 
-   * @test_Strategy: Servlet gets wrapped request object
-   */
-    @Test
-    public void requestWrapperGetRequestTest() throws Exception {
+  /*
+ * @testName: requestWrapperGetRequestTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:32
+ * 
+ * @test_Strategy: Servlet gets wrapped request object
+ */
+  @Test
+  void requestWrapperGetRequestTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "requestWrapperGetRequestTest");
         invoke();
     }
 
-    /*
-   * @testName: requestWrapperSetRequestTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:33
-   * 
-   * @test_Strategy: Servlet sets wrapped request object
-   */
-    @Test
-    public void requestWrapperSetRequestTest() throws Exception {
+  /*
+ * @testName: requestWrapperSetRequestTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:33
+ * 
+ * @test_Strategy: Servlet sets wrapped request object
+ */
+  @Test
+  void requestWrapperSetRequestTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "requestWrapperSetRequestTest");
         invoke();
     }
 
-    /*
-   * @testName: requestWrapperSetRequestIllegalArgumentExceptionTest
-   * 
-   * @assertion_ids: Servlet:JAVADOC:34
-   * 
-   * @test_Strategy: Servlet sets wrapped request object
-   */
-    @Test
-    public void requestWrapperSetRequestIllegalArgumentExceptionTest() throws Exception {
+  /*
+ * @testName: requestWrapperSetRequestIllegalArgumentExceptionTest
+ * 
+ * @assertion_ids: Servlet:JAVADOC:34
+ * 
+ * @test_Strategy: Servlet sets wrapped request object
+ */
+  @Test
+  void requestWrapperSetRequestIllegalArgumentExceptionTest() throws Exception {
         TEST_PROPS.get().setProperty(APITEST, "requestWrapperSetRequestIllegalArgumentExceptionTest");
         invoke();
     }

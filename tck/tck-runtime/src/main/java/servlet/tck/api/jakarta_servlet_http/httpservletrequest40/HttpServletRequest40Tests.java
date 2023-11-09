@@ -53,8 +53,8 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
                     IncludeServlet.class, NamedForwardServlet.class, NamedIncludeServlet.class,
                     TestServlet.class, TrailerTestServlet.class, Utilities.class)
             .setWebXML(HttpServletRequest40Tests.class.getResource("servlet_jsh_httpservletrequest40_web.xml"));
-  }  
-  
+  }
+
   /*
    * @testName: httpServletMappingTest
    * 
@@ -63,7 +63,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingTest() throws Exception {
+  void httpServletMappingTest() throws Exception {
     simpleTest("httpServletMappingTest", getContextRoot() + "/TestServlet", "GET",
         "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
   }
@@ -76,7 +76,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingTest2() throws Exception {
+  void httpServletMappingTest2() throws Exception {
     simpleTest("httpServletMappingTest2", getContextRoot() + "/a.ts", "GET",
         "matchValue=a, pattern=*.ts, servletName=TestServlet, mappingMatch=EXTENSION");
   }
@@ -89,7 +89,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingTest3() throws Exception {
+  void httpServletMappingTest3() throws Exception {
     simpleTest("httpServletMappingTest3", getContextRoot() + "/default", "GET", 
         "matchValue=, pattern=/, servletName=defaultServlet, mappingMatch=DEFAULT");
   }
@@ -102,7 +102,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingForwardTest() throws Exception {
+  void httpServletMappingForwardTest() throws Exception {
     simpleTest("httpServletMappingForwardTest",
         getContextRoot() + "/ForwardServlet", "GET",
         "matchValue=a, pattern=*.ts, servletName=TestServlet, mappingMatch=EXTENSION");
@@ -116,7 +116,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingNamedForwardTest() throws Exception {
+  void httpServletMappingNamedForwardTest() throws Exception {
     simpleTest("httpServletMappingNamedForwardTest",
         getContextRoot() + "/NamedForwardServlet", "GET",
         "matchValue=NamedForwardServlet, pattern=/NamedForwardServlet, servletName=NamedForwardServlet, mappingMatch=EXACT");
@@ -130,7 +130,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingNamedIncludeTest() throws Exception {
+  void httpServletMappingNamedIncludeTest() throws Exception {
     simpleTest("httpServletMappingNamedIncludeTest",
         getContextRoot() + "/NamedIncludeServlet", "GET",
         "matchValue=NamedIncludeServlet, pattern=/NamedIncludeServlet, servletName=NamedIncludeServlet, mappingMatch=EXACT");
@@ -144,7 +144,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingIncludeTest() throws Exception {
+  void httpServletMappingIncludeTest() throws Exception {
     simpleTest("httpServletMappingIncludeTest",
         getContextRoot() + "/IncludeServlet", "POST",
         "matchValue=IncludeServlet, pattern=/IncludeServlet, servletName=IncludeServlet, mappingMatch=EXACT");
@@ -158,7 +158,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingFilterTest() throws Exception {
+  void httpServletMappingFilterTest() throws Exception {
     simpleTest("httpServletMappingFilterTest", getContextRoot() + "/ForwardFilter",
         "GET",
         "matchValue=, pattern=/, servletName=defaultServlet, mappingMatch=DEFAULT");
@@ -172,7 +172,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void httpServletMappingDispatchTest() throws Exception {
+  void httpServletMappingDispatchTest() throws Exception {
     simpleTest("httpServletMappingDispatchTest",
             getContextRoot() + "/DispatchServlet", "GET",
             "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
@@ -215,7 +215,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void TrailerTest() throws Exception {
+  void TrailerTest() throws Exception {
     InputStream input;
 
     URL url = new URL("http://" + _hostname + ":" + _port + getContextRoot()
@@ -283,7 +283,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
    * @test_Strategy:
    */
   @Test
-  public void TrailerTest2() throws Exception {
+  void TrailerTest2() throws Exception {
     simpleTest("TrailerTest2", getContextRoot() + "/TrailerTestServlet", "POST",
         "isTrailerFieldsReady: true");
     simpleTest("TrailerTest2", getContextRoot() + "/TrailerTestServlet", "POST",

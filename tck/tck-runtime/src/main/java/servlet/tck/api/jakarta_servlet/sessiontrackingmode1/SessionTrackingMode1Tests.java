@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class SessionTrackingMode1Tests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -61,7 +61,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    * IllegalStateException is thrown.
    */
   @Test
-  public void setSessionTrackingModes1() throws Exception {
+  void setSessionTrackingModes1() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes1");
     invoke();
   }
@@ -77,10 +77,11 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    * IllegalStateException is thrown.
    */
   @Test
-  public void setSessionTrackingModes2() throws Exception {
+  void setSessionTrackingModes2() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes2");
     invoke();
   }
+
   /*
    * @testName: setSessionTrackingModes3
    *
@@ -92,7 +93,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    * IllegalStateException is thrown.
    */
   @Test
-  public void setSessionTrackingModes3() throws Exception {
+  void setSessionTrackingModes3() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes3");
     invoke();
   }
@@ -108,7 +109,7 @@ public class SessionTrackingMode1Tests extends AbstractTckTest {
    * IllegalStateException is thrown.
    */
   @Test
-  public void setSessionTrackingModes4() throws Exception {
+  void setSessionTrackingModes4() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSessionTrackingModes4");
     invoke();
   }

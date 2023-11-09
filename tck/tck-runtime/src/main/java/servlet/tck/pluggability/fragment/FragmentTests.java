@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 public class FragmentTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setContextRoot("/servlet_spec_fragment_web");
     setServletName("TestServlet");
   }
@@ -79,7 +79,7 @@ public class FragmentTests extends AbstractTckTest {
    * precedence.
    */
   @Test
-  public void initParamTest() throws Exception {
+  void initParamTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestServlet1|msg1=first|msg2=second");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
@@ -98,7 +98,7 @@ public class FragmentTests extends AbstractTckTest {
    * that filter is invoked too.
    */
   @Test
-  public void addServletTest() throws Exception {
+  void addServletTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestFilter3|fragment|three|TestServlet3|msg1=third|msg2=third");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
@@ -119,7 +119,7 @@ public class FragmentTests extends AbstractTckTest {
    * web-fragment.xml, verify 404 is returned.
    */
   @Test
-  public void addServletURLTest() throws Exception {
+  void addServletURLTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet2");
     TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "ignore");
     TEST_PROPS.get().setProperty(REQUEST,
@@ -142,7 +142,7 @@ public class FragmentTests extends AbstractTckTest {
    * <welcome-file>; 2. Send request to URL /, verify TestServlet4 is invoked
    */
   @Test
-  public void welcomefileTest() throws Exception {
+  void welcomefileTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING, "TestServlet4");
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/" + " HTTP/1.1");
@@ -163,7 +163,7 @@ public class FragmentTests extends AbstractTckTest {
    * accordingly.
    */
   @Test
-  public void filterOrderingTest() throws Exception {
+  void filterOrderingTest() throws Exception {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "TestFilter|fragment|none|" + "TestFilter3|fragment|three|"
             + "TestFilter2|fragment|two|"

@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 public class SessionCookieConfigTests extends AbstractTckTest {
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -76,7 +76,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * SessionCookieConfig APIs work accordingly.
    */
   @Test
-  public void constructortest1() throws Exception {
+  void constructortest1() throws Exception {
     TEST_PROPS.get().setProperty(REQUEST,
         "GET " + getContextRoot() + "/TestServlet?testname=constructortest1 HTTP/1.1");
     TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
@@ -96,7 +96,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setNameTest() throws Exception {
+  void setNameTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setNameTest");
     invoke();
   }
@@ -111,7 +111,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setCommentTest() throws Exception {
+  void setCommentTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setCommentTest");
     invoke();
   }
@@ -126,7 +126,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setPathTest() throws Exception {
+  void setPathTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setPathTest");
     invoke();
   }
@@ -141,7 +141,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setDomainTest() throws Exception {
+  void setDomainTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setDomainTest");
     invoke();
   }
@@ -156,7 +156,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setMaxAgeTest() throws Exception {
+  void setMaxAgeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxAgeTest");
     invoke();
   }
@@ -171,7 +171,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setHttpOnlyTest() throws Exception {
+  void setHttpOnlyTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setHttpOnlyTest");
     invoke();
   }
@@ -186,7 +186,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setSecureTest() throws Exception {
+  void setSecureTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setSecureTest");
     invoke();
   }
@@ -201,7 +201,7 @@ public class SessionCookieConfigTests extends AbstractTckTest {
    * called once is set.
    */
   @Test
-  public void setAttributeTest() throws Exception {
+  void setAttributeTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }

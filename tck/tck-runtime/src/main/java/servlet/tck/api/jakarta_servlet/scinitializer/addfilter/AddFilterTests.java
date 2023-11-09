@@ -31,7 +31,7 @@ public class AddFilterTests extends AbstractTckTest {
 
 
   @BeforeEach
-  public void setupServletName() throws Exception {
+  void setupServletName() throws Exception {
     setServletName("TestServlet");
   }
 
@@ -63,7 +63,7 @@ public class AddFilterTests extends AbstractTckTest {
    * that UnsupportedOperationException is thrown.
    */
   @Test
-  public void addFilterTest() throws Exception {
+  void addFilterTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "addFilterTest");
     invoke();
   }
