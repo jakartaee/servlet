@@ -7702,7 +7702,7 @@ of the definitions listed in the deployment descriptor schema.
 
 .Basic Deployment Descriptor Example
 
-[source,xml]
+[source,xml,subs="attributes"]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
@@ -7759,7 +7759,7 @@ of the definitions listed in the deployment descriptor schema.
 ==== An Example of Security
 
 .Deployment Descriptor Example Using Security
-[source,xml]
+[source,xml,subs="attributes"]
 ----
 <?xml version="1.0" encoding="UTF-8"?>
 
