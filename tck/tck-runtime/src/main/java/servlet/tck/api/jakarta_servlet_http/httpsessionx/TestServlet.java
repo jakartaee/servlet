@@ -44,10 +44,15 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/getNewSession");
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/getNewSession");
 
-    rd.include(request, response);
+      rd.include(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
+
   }
 
   public void setMaxInactiveIntervalTest(HttpServletRequest request,
@@ -100,30 +105,41 @@ public class TestServlet extends HttpTCKServlet {
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/setMaxInterval");
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/setMaxInterval");
 
-    rd.include(request, response);
+      rd.include(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
   }
 
   public void setMaxInactiveIntervalxfTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/setMaxInterval");
-
-    rd.forward(request, response);
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/setMaxInterval");
+      rd.forward(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
   }
 
   public void expireHttpSessionxriTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/expireHttpSession");
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/expireHttpSession");
 
-    rd.include(request, response);
+      rd.include(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
   }
 
   public void expireHttpSessionxrfTest(HttpServletRequest request,
@@ -131,10 +147,14 @@ public class TestServlet extends HttpTCKServlet {
 
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/expireHttpSession");
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/expireHttpSession");
 
-    rd.forward(request, response);
+      rd.forward(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
   }
 
   public void invalidateSessionTest(HttpServletRequest request,
@@ -162,9 +182,13 @@ public class TestServlet extends HttpTCKServlet {
 
     ServletContext servletContext = getServletContext()
         .getContext("/servlet_jsh_httpsessionx2_web");
-    RequestDispatcher rd = servletContext
-        .getRequestDispatcher("/invalidateHttpSession");
+    if(servletContext!=null || ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      RequestDispatcher rd = servletContext
+              .getRequestDispatcher("/invalidateHttpSession");
 
-    rd.include(request, response);
+      rd.include(request, response);
+    } else {
+      response.getWriter().println("Test PASSED");
+    }
   }
 }

@@ -28,6 +28,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import servlet.tck.common.util.ServletTestUtil;
 
 import java.net.URL;
 
@@ -205,12 +206,19 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void dispatchReturnTest4() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "dispatchReturnTest4");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_dispatchReturnTest4|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if (ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchReturnTest4|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,"ASYNC_NOT_STARTED_dispatchReturnTest4|"
+              + "IsAsyncSupported=true|"
+              + "IsAsyncStarted=false|"
+              + "DispatcherType=REQUEST");
+    }
     invoke();
   }
 
@@ -233,12 +241,19 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void dispatchReturnTest5() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "dispatchReturnTest5");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_dispatchReturnTest5|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if (ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchReturnTest5|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,"ASYNC_NOT_STARTED_dispatchReturnTest5|"
+              + "IsAsyncSupported=true|"
+              + "IsAsyncStarted=false|"
+              + "DispatcherType=REQUEST");
+    }
     invoke();
   }
 
@@ -656,16 +671,23 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest12() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest12");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest12|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest11|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "Before second dispatch|" + "second dispatch return|"
-            + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
-            + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
-            + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest12|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest11|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "Before second dispatch|" + "second dispatch return|"
+                      + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
+                      + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
+                      + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest12|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -689,16 +711,23 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest13() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest13");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest13|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest12|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "Before second dispatch|" + "second dispatch return|"
-            + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
-            + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
-            + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest13|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest12|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "Before second dispatch|" + "second dispatch return|"
+                      + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
+                      + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
+                      + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest13|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -723,13 +752,20 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest14() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest14");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest14|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest13|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "Before complete");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest14|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest13|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "Before complete");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest14|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -753,13 +789,20 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest15() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest15");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest15|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest14|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "Before complete");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest15|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest14|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "Before complete");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest15|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -783,16 +826,23 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest16() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest16");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest16|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest15|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "startAsync called|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=true|" + "DispatcherType=ASYNC|"
-            + "startAsync called again|"
-            + "Expected IllegalStateException thrown");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest16|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest15|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "startAsync called|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=true|" + "DispatcherType=ASYNC|"
+                      + "startAsync called again|"
+                      + "Expected IllegalStateException thrown");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest16|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -816,16 +866,24 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void startAsyncAgainTest17() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "startAsyncAgainTest17");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_startAsyncAgainTest17|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest16|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
-            + "startAsync called|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=true|" + "DispatcherType=ASYNC|"
-            + "startAsync called again|"
-            + "Expected IllegalStateException thrown");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_startAsyncAgainTest17|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest16|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC|"
+                      + "startAsync called|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=true|" + "DispatcherType=ASYNC|"
+                      + "startAsync called again|"
+                      + "Expected IllegalStateException thrown");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING, "ASYNC_NOT_STARTED_startAsyncAgainTest17|"
+              + "IsAsyncSupported=true|"
+              + "IsAsyncStarted=false|"
+              + "DispatcherType=REQUEST");
+    }
+
     invoke();
   }
 
@@ -967,14 +1025,21 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void negativeDispatchTest8() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeDispatchTest8");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_negativeDispatchTest8|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "dispatch again|"
-            + "dispatch() called again|"
-            + "Expected IllegalStateException thrown|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest8|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "dispatch again|"
+                      + "dispatch() called again|"
+                      + "Expected IllegalStateException thrown|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest8|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -998,14 +1063,21 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void negativeDispatchTest9() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeDispatchTest9");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_negativeDispatchTest9|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "dispatch again|"
-            + "dispatch() called again|"
-            + "Expected IllegalStateException thrown|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest9|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "dispatch again|"
+                      + "dispatch() called again|"
+                      + "Expected IllegalStateException thrown|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest9|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -1029,14 +1101,21 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void negativeDispatchTest12() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeDispatchTest12");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_negativeDispatchTest12|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "dispatch again|"
-            + "dispatch(URI) called again|"
-            + "Expected IllegalStateException thrown|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest12|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "dispatch again|"
+                      + "dispatch(URI) called again|"
+                      + "Expected IllegalStateException thrown|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest12|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -1060,14 +1139,21 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void negativeDispatchTest13() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "negativeDispatchTest13");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_negativeDispatchTest13|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "Before dispatch|" + "dispatch return|" + "dispatch again|"
-            + "dispatch(URI) called again|"
-            + "Expected IllegalStateException thrown|" + "After dispatch|"
-            + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest13|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|" + "dispatch return|" + "dispatch again|"
+                      + "dispatch(URI) called again|"
+                      + "Expected IllegalStateException thrown|" + "After dispatch|"
+                      + "ASYNC_STARTED_dispatchTest10|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_negativeDispatchTest13|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -1186,13 +1272,20 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void dispatchAfterCommitTest4() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "dispatchAfterCommitTest4");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_dispatchAfterCommitTest4|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
-            + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
-            + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
-            + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchAfterCommitTest4|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "After commmit|" + "Before dispatch|" + "dispatch return|"
+                      + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
+                      + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
+                      + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchAfterCommitTest4|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "After commmit|" + "Before dispatch|");
+    }
     invoke();
   }
 
@@ -1211,13 +1304,20 @@ public class DispatchTests extends AbstractTckTest {
   @Test
   public void dispatchAfterCommitTest5() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "dispatchAfterCommitTest5");
-    TEST_PROPS.get().setProperty(SEARCH_STRING,
-        "ASYNC_NOT_STARTED_dispatchAfterCommitTest5|" + "IsAsyncSupported=true|"
-            + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
-            + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
-            + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
-            + "DispatcherType=ASYNC");
+    if(ServletTestUtil.SUPPORT_CROSS_CONTEXT) {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchAfterCommitTest5|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "After commmit|" + "Before dispatch|" + "dispatch return|"
+                      + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
+                      + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
+                      + "DispatcherType=ASYNC");
+    } else {
+      TEST_PROPS.get().setProperty(SEARCH_STRING,
+              "ASYNC_NOT_STARTED_dispatchAfterCommitTest5|" + "IsAsyncSupported=true|"
+                      + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
+                      + "After commmit|" + "Before dispatch|");
+    }
     invoke();
   }
 }

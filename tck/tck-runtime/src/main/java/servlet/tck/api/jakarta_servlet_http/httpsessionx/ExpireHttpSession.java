@@ -38,7 +38,7 @@ public class ExpireHttpSession extends HttpServlet {
       ServletTestUtil.printResult(pw, true);
     } else {
       pw.println(
-          "From expireHttpSession: Test Failed. Session didnot expire as expected.");
+          "From expireHttpSession: Test Failed. Session did not expire as expected.");
       ServletTestUtil.printResult(pw, false);
     }
   }
