@@ -8586,6 +8586,11 @@ be controlled.
 link:https://github.com/eclipse-ee4j/servlet-api/issues/95[Issue 95]::
 Clarify that Servlet containers are required to support HTTPS.
  
+link:https://github.com/eclipse-ee4j/servlet-api/issues/130[Issue 130]::
+Add the `jakarta.servlet.request.secure_protocol` attribute to the list of
+request attributes that servlet containers are required to populate if the
+request has been transmitted over a secure protocol.
+ 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/159[Issue 159]::
 Clarify the behaviour of the various methods for adding headers when passed
 `null` or the empty string.
