@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -37,8 +37,7 @@ public interface HttpSessionIdListener extends EventListener {
     /**
      * Receives notification that session id has been changed in a session.
      *
-     * @param event the HttpSessionBindingEvent containing the session and the name and (old) value of the attribute that
-     * was replaced
+     * @param event the HttpSessionEvent containing the session for which the ID changed
      *
      * @param oldSessionId the old session id
      */
