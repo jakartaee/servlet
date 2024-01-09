@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -441,9 +441,19 @@ public class Cookie implements Cloneable, Serializable {
      * except for <code>version</code>. E.g. when <code>cookie.setAttribute("domain", domain)</code> is invoked, then
      * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
      *
+     * <p>
+     * Attributes with a value of the empty string will appear as {@code "attribute-name="} in any {@code Set-Cookie} header
+     * generated from the {@code Cookie} instance unless special handling is required as defined in the following paragraph.
+     *
+     * <p>
+     * Attributes that are defined as not having a value, such as {@code HttpOnly}, must set with a value such that {@code
+     * Boolean.parseBoolean(attribute-value)} evaluates to {@code true} for the attribute to be included in any
+     * {@code Set-Cookie} header generated from the {@code Cookie} instance, otherwise the attribute is not included.
+     *
      * @param name the name of the cookie attribute to set the value for, case insensitive
      *
-     * @param value the value of the cookie attribute associated with the given name, can be {@code null}
+     * @param value the value of the cookie attribute associated with the given name, can be {@code null} which removes the
+     * attribute with the given name if present
      *
      * @throws IllegalArgumentException if the cookie name is null or empty or contains any illegal characters (for example,
      * a comma, space, or semicolon) or matches a token reserved for use by the cookie protocol.
