@@ -20,6 +20,7 @@ package jakarta.servlet.http;
 
 import jakarta.servlet.ServletContext;
 import java.util.Enumeration;
+import java.util.function.Consumer;
 
 /**
  *
@@ -59,6 +60,11 @@ import java.util.Enumeration;
  * <p>
  * Session information is scoped only to the current web application (<code>ServletContext</code>), so information
  * stored in one context will not be directly visible in another.
+ *
+ * <p>
+ * This object is <b>only</b> valid within the scope of the HTTP request from which it was obtained. Once the processing
+ * of that request returns to the container, this object must not be used. If there is a requirement to access the
+ * session outside of the scope of an HTTP request then this must be done via {@code #getAccessor()}.
  *
  * @author Various
  *
@@ -212,5 +218,47 @@ public interface HttpSession {
      * @exception IllegalStateException if this method is called on an already invalidated session
      */
     boolean isNew();
+
+    /**
+     * An accessor for applications to interact with a {@code HttpSession} outside of the scope of an HTTP request.
+     */
+    interface Accessor {
+        /**
+         * Call to access the {@code HttpSession} used to obtain this {@code Accessor} from outside the scope of a HTTP request.
+         * <p>
+         * When called, the container will call the {@link Consumer#accept(Object)} method of the {@code sessionConsumer} passed
+         * by the application, with an {@code HttpSession} object that represents the same {@code HttpSession} that this
+         * {@code Accessor} was obtained from.
+         * <p>
+         * The passed {@code HttpSession} may be the same instance as used to obtain this {@code Accessor}, or a new instance
+         * for the session which has possibly been passivated and activated since the {@code Accessor} was obtained.
+         * <p>
+         * The passed {@code HttpSession} may be shared concurrently with other {@code Accessor}s for the same session, other
+         * calls to this {@code Accessor} and/or {@link jakarta.servlet.Servlet}s and {@link jakarta.servlet.Filter}s.
+         * <p>
+         * The passed {@code HttpSession} must not be used or referenced outside the scope of the call to the
+         * {@link Consumer#accept(Object)} method of {@code sessionConsumer}.
+         * <p>
+         * For the purposes of session access, validity, passivation, activation etc. the container behaves as if the call to
+         * the {@link Consumer#accept(Object)} method of {@code sessionConsumer} occurs during the processing of an HTTP request
+         * for the same session.
+         *
+         * @param sessionConsumer the application provided {@link Consumer} of {@code HttpSession} to access the session.
+         * @throws IllegalStateException if this method is called on an invalidated session or if the session ID has changed
+         * since the {@code Accessor} was obtained.
+         */
+        void access(Consumer<HttpSession> sessionConsumer);
+    }
+
+    /**
+     * Provides a mechanism for applications to interact with this session outside the scope of an HTTP request.
+     *
+     * @return A container provided {@link Accessor} for this session or {@code null} if access is not supported outside an
+     * HTTP request.
+     * @throws IllegalStateException if this method is called on an invalidated session
+     */
+    default Accessor getAccessor() {
+        return null;
+    }
 
 }
