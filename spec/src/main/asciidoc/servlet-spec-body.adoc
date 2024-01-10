@@ -8686,6 +8686,11 @@ Require that all error dispatches are performed as HTTP GET requests with the
 original HTTP method being made available via a new request attribute
 `jakarta.servlet.error.method`.
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/546[Issue 546]::
+Provide a mechanism to allow applications to interact with the `HttpSession`
+object outside of the standard HTTP request processing. This is expected to be
+particularly useful to applications using the Jakarta WebSocket API.
+
 === Changes Since Jakarta Servlet 5.0
 
 The minimum Java version has been increased to Java 11.
