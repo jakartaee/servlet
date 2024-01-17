@@ -178,11 +178,12 @@ public abstract class ServletInputStream extends InputStream {
      * If an attempt is made to read from the stream when the stream is in async mode and this method has not returned
      * {@code true} the method will throw an {@link IllegalStateException}.
      * <p>
-     * If an error occurs and {@link ReadListener#onError(Throwable)} is invoked then this method will always return false,
-     * as no further IO operations are allowed after {@code onError} notification.
+     * If an error occurs then either: this method will return {@code true} and an {@link IOException} will be thrown from a
+     * subsequent call to {@code read(...)}; or this method will return {@code false} and subsequently
+     * {@link ReadListener#onError(Throwable)} will be invoked with the error. Once the error has either been thrown or
+     * passed to {@link ReadListener#onError(Throwable)}, then this method will always return {@code true} and all further
+     * {@code read} operations will throw an {@link IOException}.
      * <p>
-     * Note that due to the requirement for {@code read} to never throw in async mode, this method must return false if a
-     * call to {@code read} would result in an exception.
      *
      * @return {@code true} if data can be obtained without blocking, otherwise returns {@code false}.
      * @see ReadListener
@@ -194,11 +195,10 @@ public abstract class ServletInputStream extends InputStream {
      * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to
      * read.
      * <p>
-     * Note that after this method has been called methods on this stream that are documented to throw {@link IOException}
-     * will no longer throw these exceptions directly, instead any exception that occurs will be reported via
-     * {@link ReadListener#onError(Throwable)}. Please refer to this method for more information. This only applies to
-     * {@code IOException}, other exception types may still be thrown (e.g. methods can throw {@link IllegalStateException}
-     * if {@link #isReady()} has not returned true).
+     * Note that after this method has been called, methods on this stream that are documented to throw {@link IOException}
+     * might not throw these exceptions directly, instead they may be reported via {@link ReadListener#onError(Throwable)}
+     * after a call to {@link #isReady()} has returned {@code false}. Please refer to {@link #isReady()} method for more
+     * information.
      *
      * @param readListener the {@link ReadListener} that should be notified when it's possible to read.
      *

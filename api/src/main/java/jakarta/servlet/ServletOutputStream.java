@@ -340,11 +340,11 @@ public abstract class ServletOutputStream extends OutputStream {
      * If an attempt is made to write to the stream when the stream is in async mode and this method has not returned
      * {@code true} the method will throw an {@link IllegalStateException}.
      * <p>
-     * If an error occurs and {@link WriteListener#onError(Throwable)} is invoked then this method will always return false,
-     * as no further IO operations are allowed after {@code onError} notification.
-     * <p>
-     * Note that due to the requirement for {@code write} to never throw in async mode, this method must return false if a
-     * call to {@code write} would result in an exception.
+     * If an error occurs then either: this method will return {@code true} and an {@link IOException} will be thrown from a
+     * subsequent call to {@code write(...)}; or this method will return {@code false} and subsequently
+     * {@link WriteListener#onError(Throwable)} will be invoked with the error. Once the error has either been thrown or
+     * passed to {@link WriteListener#onError(Throwable)}, then this method will always return {@code true} and all further
+     * {@code write} operations will throw an {@link IOException}.
      *
      * @return {@code true} if data can be written without blocking, otherwise returns {@code false}.
      * @see WriteListener
@@ -356,15 +356,15 @@ public abstract class ServletOutputStream extends OutputStream {
      * Instructs the <code>ServletOutputStream</code> to invoke the provided {@link WriteListener} when it is possible to
      * write.
      * <p>
-     * Note that after this method has been called methods on this stream that are documented to throw {@link IOException}
-     * will no longer throw these exceptions directly, instead any exception that occurs will be reported via
-     * {@link WriteListener#onError(Throwable)}. Please refer to this method for more information. This only applies to
-     * {@code IOException}, other exception types may still be thrown (e.g. methods can throw {@link IllegalStateException}
-     * if {@link #isReady()} has not returned true).
+     * Note that after this method has been called, methods on this stream that are documented to throw {@link IOException}
+     * might not throw these exceptions directly, instead they may be reported via {@link ReadListener#onError(Throwable)}
+     * after a call to {@link #isReady()} has returned {@code false}. Please refer to {@link #isReady()} method for more
+     * information.
      * <p>
-     * Once this method has been called {@link #flush()} and {@link #close()} become asynchronous operations, they will be
-     * performed in the background and any problems will be reported through the {@link WriteListener#onError(Throwable)}
-     * method.
+     * Once this method has been called {@link #flush()} and {@link #close()} become asynchronous operations, possibly
+     * performed in the background. Thus any problems may be reported through the {@link WriteListener#onError(Throwable)}
+     * method, which may be called at any time after a {@link #close()} or otherwise only after a call to {@link #isReady()}
+     * has returned {@code false}.
      *
      * @param writeListener the {@link WriteListener} that should be notified when it's possible to write
      *
