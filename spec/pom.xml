@@ -22,7 +22,7 @@
     <parent>
         <groupId>jakarta.servlet</groupId>
         <artifactId>servlet-parent</artifactId>
-        <version>6.1.0-SNAPSHOT</version>
+        <version>6.1.0-M2</version>
     </parent>
 
     <artifactId>servlet-spec</artifactId>
