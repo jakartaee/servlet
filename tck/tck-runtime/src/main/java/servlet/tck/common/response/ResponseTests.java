@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2022 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -224,10 +224,10 @@ public class ResponseTests {
       ServletResponse response) throws IOException {
     boolean pass = true;
     StringBuilder report = new StringBuilder();
-    
+
     // First need to know the default
     String defaultEncoding = response.getCharacterEncoding();
-    
+
     report.append("Test 1: Direct UTF-8 then null:\n");
     response.setCharacterEncoding("UTF-8");
     if ("UTF-8".equalsIgnoreCase(response.getCharacterEncoding())) {
@@ -236,7 +236,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set with UTF-8 Fail\n");
     }
-    response.setCharacterEncoding(null);
+    response.setCharacterEncoding((String) null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -245,7 +245,7 @@ public class ResponseTests {
       report.append(" Set with null Fail\n");
     }
     response.reset();
-    
+
     report.append("Test 2: Content-Type UTF-8 then null:\n");
     response.setContentType("text/plain; charset=UTF-8");
     if ("UTF-8".equalsIgnoreCase(response.getCharacterEncoding())) {
@@ -254,7 +254,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set via Content-Type Fail\n");
     }
-    response.setCharacterEncoding(null);
+    response.setCharacterEncoding((String) null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -263,7 +263,7 @@ public class ResponseTests {
       report.append(" Set with null Fail\n");
     }
     response.reset();
-    
+
     report.append("Test 3: Locale Shift_Jis then null:\n");
     response.setLocale(new Locale("ja"));
     if ("Shift_Jis".equalsIgnoreCase(response.getCharacterEncoding())) {
@@ -272,7 +272,7 @@ public class ResponseTests {
       pass = false;
       report.append(" Set via Locale Fail\n");
     }
-    response.setCharacterEncoding(null);
+    response.setCharacterEncoding((String) null);
     if ((defaultEncoding == null && response.getCharacterEncoding() == null) ||
         defaultEncoding != null && defaultEncoding.equalsIgnoreCase(response.getCharacterEncoding())) {
       report.append(" Set with null Pass\n");
@@ -281,7 +281,7 @@ public class ResponseTests {
       report.append(" Set with null Fail\n");
     }
     response.reset();
-    
+
     report.append("Test 4: Invalid then getWriter():\n");
     response.setCharacterEncoding("does-not-exist");
     if ("does-not-exist".equalsIgnoreCase(response.getCharacterEncoding())) {
@@ -298,7 +298,7 @@ public class ResponseTests {
       report.append(" getWriter() throw UnsupportedEncodingException Pass\n");
     }
     response.reset();
-    
+
     report.append("Test 5: Check getContentType():\n");
     final String ENCODING = "ISO-8859-7";
     response.setContentType("text/html");
