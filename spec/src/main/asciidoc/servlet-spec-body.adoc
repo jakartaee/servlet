@@ -8586,6 +8586,9 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 6.0
 
+link:https://github.com/eclipse-ee4j/servlet-api/issues/433[Issue 433]::
+Clarify how IO errors are handled by async streams.
+
 link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
 A new attribute, `jakarta.servlet.error.query_string`, has been added to the
 attributes that must be set on the request as part of an error dispatch.
