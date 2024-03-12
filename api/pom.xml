@@ -233,6 +233,11 @@
                         <Export-Package>jakarta.servlet.*</Export-Package>
                         <_removeheaders>Bnd-LastModified</_removeheaders>
                         <_reproducible>true</_reproducible>
+                        <Include-Resource>
+                            {maven-resources},
+                            META-INF/LICENSE.md=META-INF/LICENSE.md,
+                            META-INF/NOTICE.md=META-INF/NOTICE.md
+                        </Include-Resource>
                     </instructions>
                 </configuration>
                 <executions>
