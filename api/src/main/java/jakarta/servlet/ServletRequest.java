@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -409,6 +409,11 @@ public interface ServletRequest {
      * <p>
      * The difference between this method and {@link ServletContext#getRequestDispatcher} is that this method can take a
      * relative path.
+     *
+     * <p>
+     * The provided {@code path} parameter is canonicalized as per <a href=
+     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
+     * 3.5.2</a> before being used to match resources.
      *
      * @param path a <code>String</code> specifying the pathname to the resource. If it is relative, it must be relative
      * against the current servlet.
