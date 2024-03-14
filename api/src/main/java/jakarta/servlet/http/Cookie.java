@@ -70,6 +70,7 @@ public class Cookie implements Cloneable, Serializable {
     private static final String PATH = "Path"; // ;Path=VALUE ... URLs that see the cookie
     private static final String SECURE = "Secure"; // ;Secure ... e.g. use SSL
     private static final String HTTP_ONLY = "HttpOnly";
+    private static final String EMPTY_STRING = "";
 
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
@@ -274,7 +275,11 @@ public class Cookie implements Cloneable, Serializable {
      * @see #getSecure
      */
     public void setSecure(boolean flag) {
-        putAttribute(SECURE, String.valueOf(flag));
+        if (flag) {
+            putAttribute(SECURE, EMPTY_STRING);
+        } else {
+            putAttribute(SECURE, null);
+        }
     }
 
     /**
@@ -286,7 +291,7 @@ public class Cookie implements Cloneable, Serializable {
      * @see #setSecure
      */
     public boolean getSecure() {
-        return Boolean.parseBoolean(getAttribute(SECURE));
+        return EMPTY_STRING.equals(getAttribute(SECURE));
     }
 
     /**
@@ -419,7 +424,11 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 3.0
      */
     public void setHttpOnly(boolean httpOnly) {
-        putAttribute(HTTP_ONLY, String.valueOf(httpOnly));
+        if (httpOnly) {
+            putAttribute(HTTP_ONLY, EMPTY_STRING);
+        } else {
+            putAttribute(HTTP_ONLY, null);
+        }
     }
 
     /**
@@ -430,7 +439,7 @@ public class Cookie implements Cloneable, Serializable {
      * @since Servlet 3.0
      */
     public boolean isHttpOnly() {
-        return Boolean.parseBoolean(getAttribute(HTTP_ONLY));
+        return EMPTY_STRING.equals(getAttribute(HTTP_ONLY));
     }
 
     /**
@@ -442,13 +451,18 @@ public class Cookie implements Cloneable, Serializable {
      * <code>cookie.getDomain()</code> should return exactly that value, and vice versa.
      *
      * <p>
-     * Attributes with a value of the empty string will appear as {@code "attribute-name="} in any {@code Set-Cookie} header
-     * generated from the {@code Cookie} instance unless special handling is required as defined in the following paragraph.
+     * Attributes with a value of the empty string will appear as {@code "attribute-name"} (a cookie attribute with neither
+     * a name or value) in any {@code Set-Cookie} header generated from the {@code Cookie} instance.
      *
-     * <p>
-     * Attributes that are defined as not having a value, such as {@code HttpOnly}, must set with a value such that {@code
-     * Boolean.parseBoolean(attribute-value)} evaluates to {@code true} for the attribute to be included in any
-     * {@code Set-Cookie} header generated from the {@code Cookie} instance, otherwise the attribute is not included.
+     * <pre>{@code
+     * setAttribute("name", "value"); // becomes "name=value;"
+     * setAttribute("name", ""); // becomes "name;"
+     * setAttribute("name", null); // removes "name" from the cookie
+     * setAttribute("HttpOnly", ""); // becomes "HttpOnly;"
+     * setAttribute("Partitioned", ""); // becomes "Partitioned;
+     * setAttribute("SameSite", "Strict"); // becomes "SameSite=Strict;"
+     * }
+     * </pre>
      *
      * @param name the name of the cookie attribute to set the value for, case insensitive
      *
