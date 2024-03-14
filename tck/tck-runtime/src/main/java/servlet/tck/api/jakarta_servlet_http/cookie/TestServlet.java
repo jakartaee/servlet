@@ -69,7 +69,6 @@ import java.util.TimeZone;
 import servlet.tck.common.servlets.HttpTCKServlet;
 import servlet.tck.common.util.ServletTestUtil;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -81,7 +80,7 @@ public class TestServlet extends HttpTCKServlet {
   public static String CUSTOM_HEADER_DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
   public void cloneTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -103,7 +102,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void constructorTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -127,7 +126,7 @@ public class TestServlet extends HttpTCKServlet {
 
   public void constructorIllegalArgumentExceptionTest(
       HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+      throws IOException {
     String[] invalidNameValues = { ",test", ";test", " test", "\ttest", "\ntest" };
 
     PrintWriter pw = response.getWriter();
@@ -154,7 +153,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getCommentTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
@@ -177,7 +176,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getCommentNullTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
@@ -194,7 +193,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getDomainTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -232,7 +231,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getMaxAgeTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = true;
@@ -265,7 +264,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getNameTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -281,7 +280,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getPathTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -313,7 +312,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getSecureTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -335,7 +334,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getValueTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -365,7 +364,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getVersionVer0Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     // Version should be hard-coded to zero
     PrintWriter pw = response.getWriter();
@@ -391,7 +390,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void getVersionVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     // Version should be hard-coded to zero
     PrintWriter pw = response.getWriter();
@@ -417,7 +416,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setDomainTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -447,7 +446,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setMaxAgePositiveTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     Cookie testCookie = new Cookie("name1", "value1");
@@ -467,7 +466,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setMaxAgeZeroTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     Cookie testCookie = new Cookie("name1", "value1");
@@ -480,7 +479,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setMaxAgeNegativeTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     Cookie testCookie = new Cookie("name1", "value1");
@@ -493,7 +492,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setPathTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -523,7 +522,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setSecureVer0Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -546,7 +545,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setSecureVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -569,7 +568,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setValueVer0Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -599,7 +598,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setValueVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -629,7 +628,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setVersionVer0Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
 
     // Expected to be hard-coded to zero
     PrintWriter pw = response.getWriter();
@@ -654,7 +653,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void setVersionVer1Test(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
