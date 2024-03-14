@@ -79,7 +79,7 @@ public class TestServlet extends HttpTCKServlet {
 
   public static String CUSTOM_HEADER_DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
-  public void cloneTest(HttpServletRequest request,
+  public void cloneTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -101,7 +101,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void constructorTest(HttpServletRequest request,
+  public void constructorTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -125,7 +125,7 @@ public class TestServlet extends HttpTCKServlet {
   }
 
   public void constructorIllegalArgumentExceptionTest(
-      HttpServletRequest request, HttpServletResponse response)
+      @SuppressWarnings("unused") HttpServletRequest request, HttpServletResponse response)
       throws IOException {
     String[] invalidNameValues = { ",test", ";test", " test", "\ttest", "\ntest" };
 
@@ -152,7 +152,7 @@ public class TestServlet extends HttpTCKServlet {
     }
   }
 
-  public void getCommentTest(HttpServletRequest request,
+  public void getCommentTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -175,7 +175,7 @@ public class TestServlet extends HttpTCKServlet {
 
   }
 
-  public void getCommentNullTest(HttpServletRequest request,
+  public void getCommentNullTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -230,7 +230,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void getMaxAgeTest(HttpServletRequest request,
+  public void getMaxAgeTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -311,7 +311,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void getSecureTest(HttpServletRequest request,
+  public void getSecureTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -415,7 +415,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setDomainTest(HttpServletRequest request,
+  public void setDomainTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -445,7 +445,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setMaxAgePositiveTest(HttpServletRequest request,
+  public void setMaxAgePositiveTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -465,7 +465,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setMaxAgeZeroTest(HttpServletRequest request,
+  public void setMaxAgeZeroTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -478,7 +478,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setMaxAgeNegativeTest(HttpServletRequest request,
+  public void setMaxAgeNegativeTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -491,7 +491,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, true);
   }
 
-  public void setPathTest(HttpServletRequest request,
+  public void setPathTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -521,7 +521,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setSecureVer0Test(HttpServletRequest request,
+  public void setSecureVer0Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -544,7 +544,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setSecureVer1Test(HttpServletRequest request,
+  public void setSecureVer1Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -567,7 +567,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setValueVer0Test(HttpServletRequest request,
+  public void setValueVer0Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -597,7 +597,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setValueVer1Test(HttpServletRequest request,
+  public void setValueVer1Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -627,7 +627,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setVersionVer0Test(HttpServletRequest request,
+  public void setVersionVer0Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     // Expected to be hard-coded to zero
@@ -652,7 +652,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setVersionVer1Test(HttpServletRequest request,
+  public void setVersionVer1Test(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     PrintWriter pw = response.getWriter();
     boolean passed = false;
@@ -675,7 +675,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setAttributeTest(HttpServletRequest request,
+  public void setAttributeTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
@@ -703,7 +703,7 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void getAttributesTest(HttpServletRequest request,
+  public void getAttributesTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
