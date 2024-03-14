@@ -3,7 +3,7 @@
  *  *
  *  * The Apache Software License, Version 1.1
  *  *
- *  * Copyright (c) 2001, 2021 Oracle and/or its affiliates and others.
+ *  * Copyright (c) 2001, 2024 Oracle and/or its affiliates and others.
  *  * All rights reserved.
  *  * Copyright (c) 1999-2001 The Apache Software Foundation.  All rights
  *  * reserved.
@@ -75,6 +75,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class TestServlet extends HttpTCKServlet {
+
+  private static final long serialVersionUID = 1L;
 
   public static String CUSTOM_HEADER_DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
