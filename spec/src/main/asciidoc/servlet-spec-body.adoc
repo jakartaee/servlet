@@ -8591,7 +8591,7 @@ A new attribute, `jakarta.servlet.error.query_string`, has been added to the
 attributes that must be set on the request as part of an error dispatch.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/74[Issue 74]::
-Add additional methods to `HttpServeltResponse` to allow the status code used
+Add additional methods to `HttpServletResponse` to allow the status code used
 with the redirect to be chosen and/or the response body used for the redirect to
 be controlled.
  
