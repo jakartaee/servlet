@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -166,10 +166,8 @@ public class Cookie implements Cloneable, Serializable {
      * Specifies the domain within which this cookie should be presented.
      *
      * <p>
-     * The form of the domain name is specified by RFC 6265. A domain name begins with a dot (<code>.foo.com</code>) and
-     * means that the cookie is visible to servers in a specified Domain Name System (DNS) zone (for example,
-     * <code>www.foo.com</code>, but not <code>a.b.foo.com</code>). By default, cookies are only returned to the server that
-     * sent them.
+     * The form of the domain name is specified by RFC 6265. By default, cookies are only returned to the server that sent
+     * them.
      *
      * @param domain the domain name within which this cookie is visible; form is according to RFC 6265
      *
