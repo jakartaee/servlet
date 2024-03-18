@@ -50,7 +50,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ServerPuhTests extends AbstractTckTest {
+public class ServerPushTests extends AbstractTckTest {
 
     @BeforeEach
     public void setupServletName() throws Exception {
@@ -66,7 +66,7 @@ public class ServerPuhTests extends AbstractTckTest {
                 .addAsWebResource("spec/serverpush/index.html")
                 .addClasses(TestServlet.class, TestServlet2.class, TestServlet3.class, TestServlet4.class,
                         TestServlet5.class, TestServlet6.class, TestServlet7.class)
-                .setWebXML(ServerPuhTests.class.getResource("servlet_spec_serverpush_web.xml"));
+                .setWebXML(ServerPushTests.class.getResource("servlet_spec_serverpush_web.xml"));
     }
 
     private String requestURI = null;
