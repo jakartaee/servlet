@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,7 +31,7 @@ public class TestListener implements ServletContextListener {
   public void contextInitialized(ServletContextEvent sce) {
     StringBuffer testData = new StringBuffer("Testing_Session_Cookie_Config");
     String domain = "sun.com";
-    String path = "/servlet_jsh_sessioncookieconfig_web/TestServlet";
+    String path = sce.getServletContext().getContextPath() + "/TestServlet";
     boolean isSecure = true;
     boolean httpOnly = false;
     int maxage = 50000;
@@ -76,7 +76,7 @@ public class TestListener implements ServletContextListener {
     if (!scf.getAttribute(attrName).equals(attrValue)) {
       testData.append("|getAttribute-FAILED-expecting-" + attrValue + "-got-" + scf.getAttribute(attrName));
     }
-    
+
     if (scf.getName() != null && !"JSESSIONID".equals(scf.getName())) {
       testData.append("|getName-FAILED-expecting-null-or-JSESSIONID-got-" + scf.getName());
     }
@@ -85,7 +85,7 @@ public class TestListener implements ServletContextListener {
     if (!scf.getName().equals(name)) {
       testData.append("|getName-FAILED-expecting-" + name + "-got-" + scf.getName());
     }
-    
+
     sce.getServletContext().setAttribute(this.getClass().getName(), testData.toString());
   }
 }
