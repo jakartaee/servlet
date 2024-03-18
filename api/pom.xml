@@ -233,6 +233,7 @@
                         <Export-Package>jakarta.servlet.*</Export-Package>
                         <_removeheaders>Bnd-LastModified</_removeheaders>
                         <_reproducible>true</_reproducible>
+                        <_removeheaders>Include-Resource</_removeheaders>
                     </instructions>
                 </configuration>
                 <executions>
