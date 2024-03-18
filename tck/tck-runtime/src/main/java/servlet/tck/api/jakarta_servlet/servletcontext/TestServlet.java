@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -73,7 +73,7 @@ public class TestServlet extends GenericTCKServlet {
     PrintWriter pw = response.getWriter();
     ServletConfig config = this.getServletConfig();
     ServletContext context = config.getServletContext();
-    int expectedResult = 0;
+    int expectedResult = 1;
     int result = context.getMinorVersion();
 
     if (result == expectedResult) {
@@ -172,14 +172,14 @@ public class TestServlet extends GenericTCKServlet {
       pw.println("getRealPath(" + path + ") did not contain the named files");
       pw.println("Actual result = " + realPath + " ");
     }
-    
+
     // Leading '/' is optional. Ensure the result is the same with or without it
     String pathNoSolidus = path.substring(1);
     String realPathNoSolidus = context.getRealPath(pathNoSolidus);
-    
+
     if (realPath == null && realPathNoSolidus == null ||
         realPath != null && realPath.equals(realPathNoSolidus)) {
-      pw.println("realPathNoSolidus = " + realPathNoSolidus);      
+      pw.println("realPathNoSolidus = " + realPathNoSolidus);
     } else {
       passed = false;
       pw.println("getRealPath(" + path + ") returned [" + realPath + "]");
