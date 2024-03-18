@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2012, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -13,10 +13,6 @@
  * https://www.gnu.org/software/classpath/license.html.
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- */
-
-/*
- * $Id:$
  */
 package servlet.tck.pluggability.api.jakarta_servlet_http.cookie;
 
@@ -85,9 +81,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: constructorTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:434
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests constructor method and verify it works;
@@ -100,9 +96,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: constructorIllegalArgumentExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:628
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests constructor method throws IllegalArgumentException when
@@ -118,9 +114,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: getCommentTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:436
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method getComment;
@@ -133,9 +129,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: getCommentNullTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:437
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method getComment when there is no comment;
@@ -148,9 +144,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: getDomainTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:439
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Client sends a version 0 and 1 cookie to the servlet. Servlet verifies
@@ -158,20 +154,15 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getDomainTest() throws Exception {
-    // version 1
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=" + getContextRoot());
     TEST_PROPS.get().setProperty(APITEST, "getDomainTest");
     invoke();
-
   }
 
   /*
    * @testName: getMaxAgeTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:443
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method getMaxAge;
@@ -184,9 +175,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: getNameTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:448
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
@@ -194,25 +185,17 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getNameTest() throws Exception {
-    // version 0 Cookie
     TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
         + _hostname + "; Path=" + getContextRoot());
-    TEST_PROPS.get().setProperty(APITEST, "getNameTest");
-    invoke();
-
-    // version 1 Cookie
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=" + getContextRoot());
     TEST_PROPS.get().setProperty(APITEST, "getNameTest");
     invoke();
   }
 
   /*
    * @testName: getPathTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:445
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Client sends a version 1 cookie to a servlet; Servlet tests method getPath
@@ -220,18 +203,15 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getPathTest() throws Exception {
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=" + getContextRoot());
     TEST_PROPS.get().setProperty(APITEST, "getPathTest");
     invoke();
   }
 
   /*
    * @testName: getSecureTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:447
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method Cookie.getSecure;
@@ -242,11 +222,17 @@ public class CookieTests extends AbstractTckTest {
     invoke();
   }
 
+  @Test
+  public void getAttributeSecureTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "getAttributeSecureTest");
+    invoke();
+  }
+
   /*
    * @testName: getValueTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:450
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
@@ -254,24 +240,25 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getValueTest() throws Exception {
-    // version 0 Cookie
     TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
         + _hostname + "; Path=" + getContextRoot());
     TEST_PROPS.get().setProperty(APITEST, "getValueTest");
     invoke();
-    // version 1 Cookie
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=" + getContextRoot());
-    TEST_PROPS.get().setProperty(APITEST, "getValueTest");
+  }
+
+  @Test
+  public void getValueQuotedTest() throws Exception {
+    TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=\"value1\"; Domain="
+            + _hostname + "; Path=" + getContextRoot());
+    TEST_PROPS.get().setProperty(APITEST, "getValueQuotedTest");
     invoke();
   }
 
   /*
    * @testName: getVersionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:451
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Client sends a version 0 and 1 cookie to a servlet; Servlet tests method
@@ -279,24 +266,15 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void getVersionTest() throws Exception {
-    // version 0 Cookie
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS, "Cookie: name1=value1; Domain="
-        + _hostname + "; Path=" + getContextRoot());
-    TEST_PROPS.get().setProperty(APITEST, "getVersionVer0Test");
-    invoke();
-    // version 1 Cookie
-    TEST_PROPS.get().setProperty(REQUEST_HEADERS,
-        "Cookie: $Version=1; name1=value1; $Domain=" + _hostname
-            + "; $Path=" + getContextRoot());
-    TEST_PROPS.get().setProperty(APITEST, "getVersionVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "getVersionTest");
     invoke();
   }
 
   /*
    * @testName: setDomainTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:438
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method Cookie.setDomain
@@ -309,9 +287,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: setMaxAgePositiveTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:440
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Cookie and sets values using Cookie.setMaxAge(2) Cookie is
@@ -319,11 +297,9 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setMaxAgePositiveTest() throws Exception {
-    // version 0 cookie
     String testName = "setMaxAgePositiveTest";
     HttpResponse response = null;
     String dateHeader = null;
-    int index = -1;
     Date expiryDate = null;
     String body = null;
 
@@ -336,21 +312,18 @@ public class CookieTests extends AbstractTckTest {
       dateHeader = response.getResponseHeader("testDate")
               .orElseThrow(() -> new NullPointerException("testDate is empty")).getValue();
 
-      logger.trace("Found {} set-cookie entry", response.getResponseHeaders("Set-Cookie").size());
+      logger.trace("Found {} set-cookie entry", String.valueOf(response.getResponseHeaders("Set-Cookie").size()));
 
       boolean foundcookie = false;
       List<String> cookiesHeaders = response.getResponseHeaders("Set-Cookie");
-
       int i = 0;
       while (i < cookiesHeaders.size()) {
         if(logger.isTraceEnabled()) {
-          logger.trace("Checking set-cookiei {}, {}", i, cookiesHeaders.get(i));
+          logger.trace("Checking set-cookiei {}:{}", String.valueOf(i), cookiesHeaders.get(i));
         }
         List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
-
-        Optional<HttpCookie> optionalHttpCookie =
-                cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1")).findFirst();
-
+        Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1"))
+                .findFirst();
         if (optionalHttpCookie.isPresent()) {
           HttpCookie httpCookie = optionalHttpCookie.get();
           expiryDate = new Date(httpCookie.getMaxAge());
@@ -365,7 +338,7 @@ public class CookieTests extends AbstractTckTest {
         throw new Exception("The test cookie was not located in the response");
       }
     } catch (Throwable t) {
-      throw new Exception("Exception occurred:" + t);
+      throw new Exception("Exception occurred:" + t, t);
     }
 
     // put expiry date into GMT
@@ -384,16 +357,16 @@ public class CookieTests extends AbstractTckTest {
       throw new Exception("Exception occurred: " + t);
     }
 
-    if (body.indexOf(Data.PASSED) == -1) {
+    if (body == null || !body.contains(Data.PASSED)) {
       throw new Exception("The string: " + Data.PASSED + " not found in response");
     }
   }
 
   /*
    * @testName: setMaxAgeZeroTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:442
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Cookie and sets values using Cookie.setMaxAge(0) Cookie is
@@ -402,15 +375,83 @@ public class CookieTests extends AbstractTckTest {
   @Test
   public void setMaxAgeZeroTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "setMaxAgeZeroTest");
-    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Max-Age=0");
+    // RFC 6265 - server should only send +ve values for Max-Age
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##!Max-Age##Expires=");
     invoke();
+  }
+
+  @Test
+  public void setMaxAgeZeroDateTest() throws Exception {
+    String testName = "setMaxAgeZeroTest";
+    HttpResponse response = null;
+    Date expiryDate = null;
+    String body = null;
+
+    HttpExchange request = new HttpExchange("GET " + getContextRoot() + "/"
+            + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
+            _port);
+
+    try {
+      response = request.execute();
+
+      logger.trace("Found {} set-cookie entry", String.valueOf(response.getResponseHeaders("Set-Cookie").size()));
+
+      boolean foundcookie = false;
+      List<String> cookiesHeaders = response.getResponseHeaders("Set-Cookie");
+      int i = 0;
+      while (i < cookiesHeaders.size()) {
+        logger.trace("Checking set-cookie i {}:{}", String.valueOf(i), cookiesHeaders.get(i));
+        List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
+        Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1"))
+                .findFirst();
+        if (optionalHttpCookie.isPresent()) {
+          HttpCookie httpCookie = optionalHttpCookie.get();
+          expiryDate = new Date(httpCookie.getMaxAge());
+          body = response.getResponseBodyAsString();
+          foundcookie = true;
+          break;
+        }
+        i++;
+      }
+
+      if (!foundcookie)
+        throw new Exception("The test cookie was not located in the response");
+    } catch (Throwable t) {
+      throw new Exception("Exception occurred:" + t, t);
+    }
+
+    // put expiry date into GMT
+    SimpleDateFormat sdf = new SimpleDateFormat(TestServlet.CUSTOM_HEADER_DATE_FORMAT);
+    sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+    String resultStringDate = sdf.format(expiryDate);
+
+    try {
+      Date resultDate = sdf.parse(resultStringDate);
+      /*
+       * RFC 6265 does not allow the server to send a Max-Age attribute with value zero. The implication from the client
+       * requirements is that an expires header should be sent with the earliest representable date. There is a fair
+       * amount of room for interpretation in all of this so check that whatever has been sent is in the past.
+       */
+      Date expectedDate = new Date(System.currentTimeMillis());
+      if (resultDate.after(expectedDate)) {
+        throw new Exception("The expiry date was incorrect, expected ="
+                + expectedDate + ", result = " + resultDate);
+      }
+    } catch (Throwable t) {
+      throw new Exception("Exception occurred: " + t);
+    }
+
+    if (body == null || !body.contains(Data.PASSED)) {
+      throw new Exception("The string: " + Data.PASSED + " not found in response");
+    }
+
   }
 
   /*
    * @testName: setMaxAgeNegativeTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:441
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Cookie and sets values using Cookie.setMaxAge(-1) Cookie is
@@ -425,10 +466,26 @@ public class CookieTests extends AbstractTckTest {
   }
 
   /*
+   * @testName: setPathTest
+   *
+   * @assertion_ids: Servlet:JAVADOC:444
+   *
+   * @test_Strategy: Servlet tests method and returns result to client
+   */
+  @Test
+  public void setPathTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setPathTest");
+    // The path is set in the Servlet so need to check for that, not the current context path
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS,
+            "Set-Cookie:Path=\"/servlet_jsh_cookie_web\"");
+    invoke();
+  }
+
+  /*
    * @testName: setSecureTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:446
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Version 0 and Version 1 Cookie and sets values using
@@ -436,17 +493,27 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setSecureTest() throws Exception {
-    TEST_PROPS.get().setProperty(APITEST, "setSecureVer0Test");
+    TEST_PROPS.get().setProperty(APITEST, "setSecureTest");
     invoke();
-    TEST_PROPS.get().setProperty(APITEST, "setSecureVer1Test");
+  }
+
+  @Test
+  public void setAttributeSecureTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeSecureTest");
+    invoke();
+  }
+
+  @Test
+  public void setAttributeSecureInvalidTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeSecureInvalidTest");
     invoke();
   }
 
   /*
    * @testName: setValueTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:449
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Version 0 and Version 1 Cookie and sets values using
@@ -454,17 +521,15 @@ public class CookieTests extends AbstractTckTest {
    */
   @Test
   public void setValueTest() throws Exception {
-    TEST_PROPS.get().setProperty(APITEST, "setValueVer0Test");
-    invoke();
-    TEST_PROPS.get().setProperty(APITEST, "setValueVer1Test");
+    TEST_PROPS.get().setProperty(APITEST, "setValueTest");
     invoke();
   }
 
   /*
    * @testName: setVersionTest
-   * 
+   *
    * @assertion_ids: Servlet:JAVADOC:452
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet create Version 0 and Version 1 Cookie and sets values using
@@ -480,9 +545,9 @@ public class CookieTests extends AbstractTckTest {
 
   /*
    * @testName: setAttributeTest
-   * 
+   *
    * @assertion_ids:
-   * 
+   *
    * @test_Strategy: Create a web application with no web.xml and one fragment;
    * Define everything in web-fragment.xml; Package everything in the fragment;
    * Servlet tests method Cookie.setAttribute
@@ -492,17 +557,54 @@ public class CookieTests extends AbstractTckTest {
     TEST_PROPS.get().setProperty(APITEST, "setAttributeTest");
     invoke();
   }
-  
+
   /*
    * @testName: getAttributesTest
-   * 
+   *
    * @assertion_ids:
-   * 
+   *
    * @test_Strategy: Servlet tests method and returns result to client
    */
   @Test
   public void getAttributesTest() throws Exception {
     TEST_PROPS.get().setProperty(APITEST, "getAttributesTest");
+    invoke();
+  }
+
+  @Test
+  public void getHttpOnlyTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "getHttpOnlyTest");
+    invoke();
+  }
+
+  @Test
+  public void getAttributeHttpOnlyTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "getAttributeHttpOnlyTest");
+    invoke();
+  }
+
+  @Test
+  public void setHttpOnlyTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setHttpOnlyTest");
+    invoke();
+  }
+
+  @Test
+  public void setAttributeHttpOnlyTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeHttpOnlyTest");
+    invoke();
+  }
+
+  @Test
+  public void setAttributeHttpOnlyInvalidTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setAttributeHttpOnlyInvalidTest");
+    invoke();
+  }
+
+  @Test
+  public void setPartitionedTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setPartitionedTest");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Partitioned##!Partitioned=");
     invoke();
   }
 }

@@ -261,8 +261,8 @@ public class CookieTests extends AbstractTckTest {
     String body = null;
 
     HttpExchange request = new HttpExchange("GET " + getContextRoot() + "/"
-            + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
-            _port);
+        + getServletName() + "?testname=" + testName + " HTTP/1.1", _hostname,
+        _port);
 
     try {
       response = request.execute();
@@ -275,7 +275,9 @@ public class CookieTests extends AbstractTckTest {
       List<String> cookiesHeaders = response.getResponseHeaders("Set-Cookie");
       int i = 0;
       while (i < cookiesHeaders.size()) {
-        logger.trace("Checking set-cookiei {}:{}", String.valueOf(i), cookiesHeaders.get(i));
+        if(logger.isTraceEnabled()) {
+          logger.trace("Checking set-cookiei {}:{}", String.valueOf(i), cookiesHeaders.get(i));
+        }
         List<HttpCookie> cookies = HttpCookie.parse(cookiesHeaders.get(i));
         Optional<HttpCookie> optionalHttpCookie = cookies.stream().filter(httpCookie -> httpCookie.getName().equals("name1"))
                 .findFirst();
@@ -289,8 +291,9 @@ public class CookieTests extends AbstractTckTest {
         i++;
       }
 
-      if (!foundcookie)
+      if (!foundcookie) {
         throw new Exception("The test cookie was not located in the response");
+      }
     } catch (Throwable t) {
       throw new Exception("Exception occurred:" + t, t);
     }
@@ -302,10 +305,10 @@ public class CookieTests extends AbstractTckTest {
     try {
       Date resultDate = sdf.parse(resultStringDate);
       Date expectedDate = sdf
-              .parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
+          .parse(dateHeader.substring(dateHeader.indexOf(": ") + 2).trim());
       if (resultDate.before(expectedDate)) {
         throw new Exception("The expiry date was incorrect, expected ="
-                + expectedDate + ", result = " + resultDate);
+            + expectedDate + ", result = " + resultDate);
       }
     } catch (Throwable t) {
       throw new Exception("Exception occurred: " + t);
