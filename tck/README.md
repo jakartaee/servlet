@@ -39,6 +39,8 @@ This will be achieved by adding a dependency within your surefire configuration
         <systemProperties>
           <!-- if the servlet container doesn't support optional cross context -->  
           <servlet.tck.support.crossContext>false</servlet.tck.support.crossContext>
+          <!-- if the servlet container doesn't support optional http2 push -->  
+          <servlet.tck.support.http2Push>false</servlet.tck.support.http2Push>
         </systemProperties>          
       </configuration>
     </plugin>
