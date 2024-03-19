@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -22,6 +22,8 @@ import servlet.tck.common.client.AbstractTckTest;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +53,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ServerPushTests extends AbstractTckTest {
+
+    public static boolean SUPPORT_HTTP_PUSH = Boolean.parseBoolean(System.getProperty("servlet.tck.support.http2Push", "true"));
 
     @BeforeEach
     public void setupServletName() throws Exception {
@@ -107,6 +111,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum  + getContextRoot()
                 + "/TestServlet";
         Map<String, String> headers = new HashMap<>();
@@ -159,6 +164,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushInitTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
                 "/TestServlet2";
         Map<String, String> headers = new HashMap<>();
@@ -262,6 +268,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushSessionTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         try {
             requestURI = getContextRoot() + "/TestServlet3?generateSession=true";
             logger.debug("Sending request {}", requestURI);
@@ -301,6 +308,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushCookieTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() +
                 "/TestServlet4";
         Map<String, String> headers = new HashMap<>();
@@ -344,6 +352,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushSessionTest2() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot() + "/TestServlet5";
         Map<String, String> headers = new HashMap<>();
         CookieManager cm = new CookieManager();
@@ -389,6 +398,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushMiscTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
                 + "/TestServlet6";
         Map<String, String> headers = new HashMap<>();
@@ -443,6 +453,7 @@ public class ServerPushTests extends AbstractTckTest {
      */
     @Test
     public void serverPushNegtiveTest() throws Exception {
+    	Assumptions.assumeTrue(SUPPORT_HTTP_PUSH);
         requestURI = "http://" + hostname + ":" + portnum + getContextRoot()
                 + "/TestServlet7";
         Map<String, String> headers = new HashMap<>();
