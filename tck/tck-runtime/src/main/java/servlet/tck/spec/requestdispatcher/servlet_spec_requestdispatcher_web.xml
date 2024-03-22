@@ -39,10 +39,6 @@
         <servlet-name>ForwardedServlet</servlet-name>
         <servlet-class>servlet.tck.spec.requestdispatcher.ForwardedServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>WrapServlet</servlet-name>
-        <servlet-class>servlet.tck.spec.requestdispatcher.WrapServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
@@ -62,10 +58,6 @@
     <servlet-mapping>
         <servlet-name>MultiForwardedServlet</servlet-name>
         <url-pattern>/forward/MultiForwardedServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>WrapServlet</servlet-name>
-        <url-pattern>/WrapServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>54</session-timeout>
