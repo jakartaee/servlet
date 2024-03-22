@@ -695,12 +695,13 @@ public class HttpServletRequestTests extends HttpRequestClient {
                     // RFC 9110, section 9.32
                     .filter(name -> !name.toLowerCase(Locale.ENGLISH).equals("content-length"))
                     .filter(name -> !name.toLowerCase(Locale.ENGLISH).equals("vary"))
+                    .filter(name -> !name.toLowerCase(Locale.ENGLISH).equals("transfer-encoding"))
                     .collect(Collectors.toSet());
 
             List<Header> headersHead = responseHead.getResponseHeaders();
             for (Header header : headersHead) {
                 if (header.getName().equalsIgnoreCase("date") || header.getName().equalsIgnoreCase("content-length") ||
-                		header.getName().equalsIgnoreCase("vary")) {
+                		header.getName().equalsIgnoreCase("vary") || header.getName().equalsIgnoreCase("transfer-encoding")) {
                     // Skip date, content-length and vary header to align with filtering just above
                     continue;
                 }
