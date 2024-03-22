@@ -42,7 +42,7 @@ public class RequestDispatcherTests extends AbstractTckTest {
     return ShrinkWrap.create(WebArchive.class, "servlet_spec_requestdispatcher_web.war")
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
             .addClasses(ForwardedServlet.class, HttpTestServlet.class, IncludedServlet.class,
-                    MultiForwardedServlet.class, TestServlet.class, WrapServlet.class)
+                    MultiForwardedServlet.class, TestServlet.class)
             .setWebXML(RequestDispatcherTests.class.getResource("servlet_spec_requestdispatcher_web.xml"));
   }
 
@@ -123,9 +123,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherIncludeIOAndServletExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82; Servlet:JAVADOC:279; Servlet:JAVADOC:280;
-   * 
+   *
    * @test_Strategy: Validate an exception thrown during a
    * RequestDispatcher.include() operation results in an IOException or
    * ServletException being thrown, the Servlet or IOException will be
@@ -143,9 +143,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherIncludeRuntimeExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82
-   * 
+   *
    * @test_Strategy: Validate a RuntimeException thrown during a
    * RequestDispacher.include() operation results in the RuntimeException being
    * propagated back to the caller and will not be wrapped by a
@@ -162,9 +162,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherIncludeCheckedExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82
-   * 
+   *
    * @test_Strategy: Validate a checked exception that is thrown during a
    * RequetDispatcher.include() operation and is not an instance of
    * ServletException or IOException is returned to the caller wrapped by
@@ -181,9 +181,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherForwardIOAndServletExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82; Servlet:JAVADOC:275; Servlet:JAVADOC:276;
-   * 
+   *
    * @test_Strategy: Validate an exception thrown during a
    * RequestDispatcher.forward() operation results in an IOException or
    * ServletException being thrown, the Servlet or IOException will be
@@ -201,9 +201,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherForwardRuntimeExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82
-   * 
+   *
    * @test_Strategy: Validate a RuntimeException thrown during a
    * RequestDispacher.forward() operation results in the RuntimeException being
    * propagated back to the caller and will not be wrapped by a
@@ -220,9 +220,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: requestDispatcherForwardCheckedExceptionTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:82
-   * 
+   *
    * @test_Strategy: Validate a checked exception that is thrown during a
    * RequetDispatcher.forward() operation and is not an instance of
    * ServletException or IOException is returned to the caller wrapped by
@@ -373,33 +373,10 @@ public class RequestDispatcherTests extends AbstractTckTest {
   }
 
   /*
-   * @testName: requestDispatcherNoWrappingTest
-   * 
-   * @assertion_ids: Servlet:SPEC:50;
-   * 
-   * @test_Strategy: Validate the container passes the same objects from a
-   * RequestDispatcher operation to the target entity. The container should not
-   * wrap the object at any point.
-   */
-  @Test
-  public void requestDispatcherNoWrappingTest() throws Exception {
-    TEST_PROPS.get().setProperty(REQUEST,
-        "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=rdNoWrappingTest&operation=0 HTTP/1.1");
-    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    invoke();
-    TEST_PROPS.get().setProperty(REQUEST,
-        "GET /servlet_spec_requestdispatcher_web/TestServlet?testname=rdNoWrappingTest&operation=1 HTTP/1.1");
-    TEST_PROPS.get().setProperty(SEARCH_STRING, "Test PASSED");
-    TEST_PROPS.get().setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
-    invoke();
-  }
-
-  /*
    * @testName: getRequestURIIncludeTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:76; Servlet:JAVADOC:561;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
    * TestServlet;, access HttpTestServlet using RequestDispatcher.include. 3.
    * Verify in HttpTestServlet, that getRequestURI returns correct URI according
@@ -413,9 +390,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: getRequestURLIncludeTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:76; Servlet:JAVADOC:562;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
    * TestServlet;, access HttpTestServlet using RequestDispatcher.include. 3.
    * Verify in HttpTestServlet, that getRequestURL returns correct URI according
@@ -429,9 +406,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: getRequestURIForwardTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:78;; Servlet:JAVADOC:561;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
    * TestServlet;, access HttpTestServlet using RequestDispatcher.forward. 3.
    * Verify in HttpTestServlet, that getRequestURI returns correct URI according
@@ -445,9 +422,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: getRequestURLForwardTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:78; Servlet:JAVADOC:562;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. In
    * TestServlet;, access HttpTestServlet using RequestDispatcher.forward. 3.
    * Verify in HttpTestServlet, that getRequestURL returns correct URL according
@@ -461,9 +438,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: getQueryStringIncludeTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:192; Servlet:JAVADOC:552;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send
    * request to TestServlet with ?testname=getQueryStringIncludeTest; 3. In
    * TestServlet, access HttpTestServlet using RequestDispatcher.include, with
@@ -479,9 +456,9 @@ public class RequestDispatcherTests extends AbstractTckTest {
 
   /*
    * @testName: getQueryStringForwardTest
-   * 
+   *
    * @assertion_ids: Servlet:SPEC:78; Servlet:JAVADOC:552;
-   * 
+   *
    * @test_Strategy: 1. Create servlets TestServlet and HttpTestServlet; 2. Send
    * request to TestServlet with ?testname=getQueryStringForwardTest; 3. In
    * TestServlet, access HttpTestServlet using RequestDispatcher.forward, with

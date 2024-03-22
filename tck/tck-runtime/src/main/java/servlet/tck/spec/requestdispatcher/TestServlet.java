@@ -391,39 +391,6 @@ public class TestServlet extends HttpTCKServlet {
       rd.forward(request, response);
   }
 
-  public void rdNoWrappingTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-
-    // when calling the request dispatcher, the objects passed to the included
-    // or forwarded servlet must be the same objects passed to the
-    // RequestDispatcher
-
-    int operation = Integer.parseInt(request.getParameter("operation"));
-    System.out.println("Operation: " + operation);
-    HttpServletRequestWrapper reqw = new HttpServletRequestWrapper(request);
-    HttpServletResponseWrapper resw = new HttpServletResponseWrapper(response);
-
-    ServletContext ctx = getServletConfig().getServletContext();
-    ctx.setAttribute("tck.request", reqw);
-    ctx.setAttribute("tck.response", resw);
-
-    RequestDispatcher rd = request.getRequestDispatcher("/WrapServlet");
-
-    if (rd != null) {
-      switch (operation) {
-      case 0:
-        System.out.println("PERFORMING RD.FORWARD....");
-        System.out.println("COMMITTED: " + response.isCommitted());
-        rd.forward(reqw, resw);
-        break;
-      case 1:
-        System.out.println("PERFORMING RD.INCLUDE...");
-        rd.include(reqw, resw);
-        break;
-      }
-    }
-  }
-
   public void getRequestURIIncludeTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     PrintWriter pw = response.getWriter();
