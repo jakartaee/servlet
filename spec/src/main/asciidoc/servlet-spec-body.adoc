@@ -1383,7 +1383,6 @@ If suspicious sequences are discovered during the prior processing steps, the re
   * Any illegal UTF-8 code sequences.
 
 ==== Example URIs
-. Example URIs
 |===
 | Encoded URI path  | Decoded Path | Rejected
 
