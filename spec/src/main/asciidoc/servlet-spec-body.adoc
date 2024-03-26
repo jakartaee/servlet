@@ -1518,6 +1518,7 @@ points, consider the following:
 
 .Example Context Configuration
 [caption="Table 3-1 ", cols="2"]
+[%breakable]
 |===
 | Context Path
 | `/catalog`
@@ -1540,6 +1541,7 @@ The following behavior is observed:
 
 .Observed Path Element Behavior
 [caption="Table 3-2  ", cols="2", options="header"]
+[%breakable]
 |===
 |Request Path
 |Path Elements
@@ -1723,6 +1725,7 @@ must expose the following attributes to the servlet programmer:
 
 .Protocol Attributes
 [caption="Table 3-3  "]
+[%breakable]
 [cols="30,50,20", options="header"]
 |===
 |Attribute
@@ -4900,6 +4903,7 @@ fragments.
 
 .Annotations and web fragment processing requirements
 [caption="Table 8-1  "]
+[%breakable]
 [cols="3", options="header"]
 |===
 |Deployment descriptor
@@ -5496,6 +5500,7 @@ a `RequestDispatcher.forward` to the error resource had been performed.
 [[Request_Attributes_and_their_types]]
 .Request Attributes and their types
 [caption="Table 10-1  "]
+[%breakable]
 [cols="2", options="header"]
 |===
 |Request Attributes
@@ -5807,6 +5812,7 @@ to monitor them are shown in the following tables:
 
 .Servlet Context Events
 [caption="Table 11-1  "]
+[%breakable]
 [cols="25,35,40", options="header"]
 |===
 |Event Type
@@ -5828,6 +5834,7 @@ added, removed, or replaced.
 
 .HTTP Session Events
 [caption="Table 11-2  "]
+[%breakable]
 [cols="25,35,40", options="header"]
 |===
 |Event Type
@@ -5864,6 +5871,7 @@ replaced on an `HttpSession`.
 
 .Table 11-3 Servlet Request Events
 [caption="Table 11-3  "]
+[%breakable]
 [cols="25,35,40", options="header"]
 |===
 |Event Type
@@ -6143,6 +6151,7 @@ Consider the following set of mappings:
 
 .Example Set of Maps
 [caption="Table 12-1  "]
+[%breakable]
 [cols="2", options="header"]
 |===
 |Path Pattern
@@ -6165,6 +6174,7 @@ The following behavior would result:
 
 .Incoming Paths Applied to Example Maps
 [caption="Table 12-2  "]
+[%breakable]
 [cols="2", options="header"]
 |===
 |Incoming Path
@@ -6417,6 +6427,7 @@ public @interface ServletSecurity {
 
 .The ServletSecurity Interface
 [caption="TABLE 13-1   "]
+[%breakable]
 [cols="25,50,25", options="header"]
 |===
 |Element
@@ -6471,6 +6482,7 @@ public @interface HttpConstraint {
 
 .The HttpConstraint Interface
 [caption="TABLE 13-2   "]
+[%breakable]
 [cols="25,50,25", options="header"]
 |===
 |Element
@@ -6515,6 +6527,7 @@ public @interface HttpMethodConstraint {
 
 .The HttpMethodConstraint Interface
 [caption="TABLE 13-3   "]
+[%breakable]
 [cols="25,50,25", options="header"]
 |===
 |Element
@@ -7298,6 +7311,7 @@ deployment descriptor would yield the constraints defined in
 [[Security_Constraint_Table]]
 .Security Constraint Table
 [caption="Table 13-4  "]
+[%breakable]
 [cols="4", options="header"]
 |===
 |url-pattern
@@ -8122,6 +8136,7 @@ application deployment descriptor or using the annotations defined in
 
 .Components and Interfaces supporting Annotations and Resource Injection
 [caption="Table 15-1  "]
+[%breakable]
 [cols="20,80", options="header"]
 |===
 |Component Type
