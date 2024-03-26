@@ -3,6 +3,7 @@
 :spec-version-underscore: 6_1
 
 :sectnums!:
+:figure-caption!:
 == Jakarta Servlet Specification, Version {spec-version}
 
 Copyright (c) 2024 Contributors to the Eclipse Foundation.
@@ -1037,7 +1038,7 @@ can be used for generating content.
 the state transitions for various asynchronous operations.
 
 .*Figure 2-1* State transition diagram for asynchronous operations
-image:state-transition.png[image]
+image::state-transition.png[image]
 
 ===== Thread Safety
 
