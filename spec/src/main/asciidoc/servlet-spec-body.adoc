@@ -80,7 +80,7 @@ referenced throughout this specification:
 
 * Jakarta EE Platform, version 11
 
-* Jakarta Server Pages™ (JSP), version 3.1
+* Jakarta Server Pages™ (JSP), version 4.0
 
 * Java Naming and Directory Interface™ (JNDI).
 
