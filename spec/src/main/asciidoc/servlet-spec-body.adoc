@@ -215,7 +215,7 @@ the servlet under the compliance with RFC 9111.
 A servlet container may place security restrictions on the environment in which
 a servlet executes.
 
-Java SE 11 is the minimum version of the
+Java SE 17 is the minimum version of the
 underlying Java platform with which servlet containers must be built.
 
 === An Example
