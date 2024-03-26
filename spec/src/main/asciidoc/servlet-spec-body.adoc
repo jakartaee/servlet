@@ -5425,7 +5425,7 @@ the following types of configuration and deployment information:
 
 * Security
 
-==== Dependencies On Extensions
+==== Common Dependencies
 
 When a number of applications make use of the
 same code or resources, they will typically be installed as library
@@ -5439,28 +5439,6 @@ container-specific. The class loader the servlet container uses for
 loading these library files must be the same for all web applications
 within the same JVM. This class loader instance must be somewhere in the
 chain of parent class loaders of the web application class loader.
-
-Application developers need to know what
-extensions are installed on a web container, and containers need to know
-what dependencies servlets in a WAR have on such libraries in order to
-preserve portability.
-
-The application developer depending on such an
-extension or extensions must provide a `META-INF/MANIFEST.MF` entry in
-the WAR file listing all extensions needed by the WAR. The format of the
-manifest entry should follow standard JAR manifest format. During
-deployment of the web application, the web container must make the
-correct versions of the extensions available to the application
-following the rules defined by the Optional Package Versioning mechanism
-(`http://docs.oracle.com/javase/8/docs/technotes/guides/extensions/versioning.html`).
-
-Web containers must also be able to recognize
-declared dependencies expressed in the manifest entry of any of the
-library JARs under the `WEB-INF/lib` entry in a WAR.
-
-If a web container is not able to satisfy the
-dependencies declared in this manner, it should reject the application
-with an informative error message.
 
 ==== Web Application Class Loader
 
