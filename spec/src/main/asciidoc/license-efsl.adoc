@@ -54,7 +54,7 @@ specification is expressly prohibited.
 
 The notice is:
 
-"Copyright © 2018, 2020 Eclipse Foundation. This software or document
+"Copyright © 2018, 2024 Eclipse Foundation. This software or document
 includes material copied from or derived from
 Jakarta ® Servlet
 \https://jakarta.ee/specifications/servlet/6.0/"

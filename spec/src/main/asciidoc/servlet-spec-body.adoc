@@ -5,7 +5,7 @@
 :sectnums!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2023 Contributors to the Eclipse Foundation.
+Copyright (c) 2024 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
