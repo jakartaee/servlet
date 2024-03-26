@@ -2437,7 +2437,7 @@ specification does not require that this header be set in an HTTP
 response. Servlet containers must not set a default content type when
 the servlet programmer does not set the type.
 
-=== HTTP Trailer
+=== HTTP Trailers
 
 An HTTP trailer is a collection of HTTP headers that comes after the
 response body. It is specified
@@ -2611,7 +2611,7 @@ types. Note that the character encoding cannot be communicated via HTTP
 headers if the servlet does not specify a content type; however, it is
 still used to encode text written via the servlet response’s writer.
 
-=== Closure of Response Object
+=== Closure of the Response Object
 
 When a response is closed, the container must
 immediately flush all remaining content in the response buffer to the
