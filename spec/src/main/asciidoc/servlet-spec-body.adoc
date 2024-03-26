@@ -6426,7 +6426,7 @@ public @interface ServletSecurity {
 ----
 
 .The ServletSecurity Interface
-[caption="TABLE 13-1   "]
+[caption="Table 13-1   "]
 [%breakable]
 [cols="25,50,25", options="header"]
 |===
@@ -6481,7 +6481,7 @@ public @interface HttpConstraint {
 ----
 
 .The HttpConstraint Interface
-[caption="TABLE 13-2   "]
+[caption="Table 13-2   "]
 [%breakable]
 [cols="25,50,25", options="header"]
 |===
@@ -6526,7 +6526,7 @@ public @interface HttpMethodConstraint {
 ----
 
 .The HttpMethodConstraint Interface
-[caption="TABLE 13-3   "]
+[caption="Table 13-3   "]
 [%breakable]
 [cols="25,50,25", options="header"]
 |===
