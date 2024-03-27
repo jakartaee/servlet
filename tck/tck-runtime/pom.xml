@@ -34,7 +34,7 @@
 
     <properties>
         <shrinkwrap-resolver.version>3.1.4</shrinkwrap-resolver.version>
-        <servlet.api.version>6.1.0-M2</servlet.api.version> 
+        <servlet.api.version>6.1.0</servlet.api.version> 
     </properties>
 
     <dependencies>
