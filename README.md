@@ -12,8 +12,8 @@ Building
 --------
 Prerequisites:
 
-* JDK 11+
-* Maven 3.5.4+
+* JDK 17+
+* Maven 3.9.0+
 
 Run the build: 
 
@@ -22,7 +22,4 @@ Run the build:
 The build runs copyright check and generates the jar, sources-jar and javadoc-jar by default.
 The API jar is built in /api/target.
 
-Checking findbugs
------------------
-`mvn -DskipTests -Dfindbugs.threshold=Low findbugs:findbugs`
 

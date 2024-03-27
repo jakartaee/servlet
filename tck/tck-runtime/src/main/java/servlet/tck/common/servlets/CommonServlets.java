@@ -1,5 +1,6 @@
 package servlet.tck.common.servlets;
 
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import servlet.tck.api.common.sharedfiles.HSessionAttributeListener;
 import servlet.tck.api.common.sharedfiles.HSessionListener;
 import servlet.tck.common.response.HttpResponseTestServlet;
@@ -11,8 +12,11 @@ import servlet.tck.common.util.StaticLog;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommonServlets {
 
@@ -21,17 +25,17 @@ public class CommonServlets {
     private final JavaArchive[] javaArchives;
 
     private CommonServlets() {
-        List<JavaArchive> archives = new ArrayList<>();
-//
-//        File[] files = Maven.configureResolver().workOffline().loadPomFromFile("pom.xml")
-//                .resolve("org.slf4j:slf4j-simple")
-//                .withTransitivity()
-//                .asFile();
-//        List<JavaArchive> slf4jJars =
-//                Arrays.stream(files).map(file -> ShrinkWrap.createFromZipFile(JavaArchive.class, file))
-//                        .collect(Collectors.toList());
-//
-//        //archives.addAll(slf4jJars);
+
+        String slf4jImplCanonicalForm = System.getProperty("servlet.tck.slf4jimpl", "org.slf4j:slf4j-simple");
+        File[] files = Maven.configureResolver().workOffline().loadPomFromFile("pom.xml")
+                .resolve(slf4jImplCanonicalForm)
+                .withTransitivity()
+                .asFile();
+        List<JavaArchive> slf4jJars =
+                Arrays.stream(files).map(file -> ShrinkWrap.createFromZipFile(JavaArchive.class, file))
+                        .collect(Collectors.toList());
+
+        List<JavaArchive> archives = new ArrayList<>(slf4jJars);
 
         archives.add(ShrinkWrap.create(JavaArchive.class, "common-servlets.jar")
                 .addClasses(GenericCheckTestResultServlet.class, GenericTCKServlet.class, RequestTestServlet.class,

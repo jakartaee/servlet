@@ -1,6 +1,6 @@
 # Jakarta Servlet
 
-This repository contains the code for Jakarta Servle TCK
+This repository contains the code for Jakarta Servlet TCK
 
 About Jakarta Servlet TCK
 -------------------------
@@ -10,7 +10,7 @@ Building
 --------
 Prerequisites:
 
-* JDK 11+
+* JDK 17+
 * Maven 3.9.0+
 
 Run the build: 
@@ -41,6 +41,10 @@ This will be achieved by adding a dependency within your surefire configuration
           <servlet.tck.support.crossContext>false</servlet.tck.support.crossContext>
           <!-- if the servlet container doesn't support optional http2 push -->  
           <servlet.tck.support.http2Push>false</servlet.tck.support.http2Push>
+          <!-- 
+          the slf4j impl to include within the deployed wars, default value is org.slf4j:slf4j-simple
+          -->  
+          <servlet.tck.slf4jimpl>org.slf4j:slf4j-simple</servlet.tck.slf4jimpl>  
         </systemProperties>          
       </configuration>
     </plugin>
