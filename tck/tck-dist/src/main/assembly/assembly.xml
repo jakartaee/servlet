@@ -33,6 +33,16 @@
     </files>
     <fileSets>
         <fileSet>
+            <directory>${project.basedir}/../tck-docs</directory>
+            <outputDirectory>docs</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>assertions</include>
+                <include>*.html</include>
+                <include>*.txt</include>
+            </includes>
+        </fileSet>        
+        <fileSet>
             <directory>${project.basedir}/../tck-docs/userguide/target/generated-docs</directory>
             <outputDirectory>docs/pdf-usersguide</outputDirectory>
             <fileMode>755</fileMode>
