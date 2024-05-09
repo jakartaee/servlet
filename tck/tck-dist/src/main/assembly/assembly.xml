@@ -32,7 +32,16 @@
         </file>
     </files>
         <!-- TODO user guide -->
-        <!-- TODO install script -->
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>artifacts</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+        </fileSet>   
+    </fileSets>
     <dependencySets>
         <dependencySet>
             <includes>
