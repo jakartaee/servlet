@@ -50,6 +50,7 @@
     <modules>
         <module>tck-util</module>
         <module>tck-runtime</module>
+        <module>tck-dist</module>
     </modules>
 
     <dependencyManagement>
