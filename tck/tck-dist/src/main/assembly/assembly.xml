@@ -31,9 +31,25 @@
             <destName>eftl.adoc</destName>
         </file>
     </files>
-        <!-- TODO user guide -->
     <fileSets>
         <fileSet>
+            <directory>${project.basedir}/../tck-docs/userguide/target/generated-docs</directory>
+            <outputDirectory>docs/pdf-usersguide</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.pdf</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/../tck-docs/userguide/target/staging</directory>
+            <outputDirectory>docs/html-usersguide</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.html</include>
+                <include>css/**</include>
+                <include>img/**</include>
+            </includes>
+        </fileSet>        <fileSet>
             <directory>${project.basedir}/src/main/resources</directory>
             <outputDirectory>artifacts</outputDirectory>
             <fileMode>755</fileMode>
