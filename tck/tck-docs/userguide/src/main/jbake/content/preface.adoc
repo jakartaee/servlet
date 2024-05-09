@@ -23,8 +23,6 @@ The {TechnologyShortName} TCK is a portable, configurable automated
 test suite for verifying the compatibility of a vendor's
 implementation of the {TechnologyShortName} {TechnologyVersion}
 Specification (hereafter referred to as the vendor implementation or VI).
-The {TechnologyShortName} TCK uses the JavaTest harness version
-{JavaTestVersion} to run the test suite
 
 
 [NOTE]
