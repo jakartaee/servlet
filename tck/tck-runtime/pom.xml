@@ -89,7 +89,7 @@
             <artifactId>arquillian-junit-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.servlet</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>servlet-tck-util</artifactId>
             <version>${project.version}</version>
         </dependency>
