@@ -90,7 +90,7 @@
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
-            <artifactId>tck-util</artifactId>
+            <artifactId>servlet-tck-util</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
