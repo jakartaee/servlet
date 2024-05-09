@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2017, 2022 Oracle and/or its affiliates and others.
+    Copyright (c) 2017, 2024 Oracle and/or its affiliates and others.
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -23,13 +23,13 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.9</version>
     </parent>
     <groupId>org.glassfish</groupId>
     <artifactId>tck_servlet</artifactId>
     <packaging>pom</packaging>
-    <version>6.0.0</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Servlet for Jakarta EE, Release 6.0</name>
+    <version>6.1.0</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Servlet for Jakarta EE, Release 6.1</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,7 +49,7 @@
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:eclipse-ee4j/jakartaee-tck.git</url>
+            <url>scm:git:git@github.com:jakartaee/servlet.git</url>
         </site>
     </distributionManagement>
 
