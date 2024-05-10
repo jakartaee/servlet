@@ -72,7 +72,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <bundle-name>jakarta-websocket-tck</bundle-name>
+                <bundle-name>jakarta-servlet-tck</bundle-name>
             </properties>
         </profile>
     </profiles>
