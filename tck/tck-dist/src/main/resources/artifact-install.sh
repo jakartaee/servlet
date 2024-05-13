@@ -25,6 +25,11 @@ fi
 
 JAKARTAEE_VERSION="11.0.0-M1"
 
+# servlet-tck pom
+mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
+-Dfile=servlet-tck-$VERSION.pom -DgroupId=jakarta.tck -DartifactId=servlet-tck \
+-Dversion=$VERSION -Dpackaging=pom
+
 # servlet-tck-runtime jar
 mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file  \
 -Dfile=servlet-tck-runtime-$VERSION.jar -DgroupId=jakarta.tck -DartifactId=servlet-tck-runtime \
