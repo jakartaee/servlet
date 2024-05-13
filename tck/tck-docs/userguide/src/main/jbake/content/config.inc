@@ -49,7 +49,7 @@ slashes as a path separator instead.
   Paths must be separated by the appropriate path separator ("`;`" on
   Windows, "`:`" on Solaris/Linux).
   b.   The `servlet.tck.support.http2Push` must be set to the appropriate value
-  to indicate if the CI supports HTTP/2 server puch.
+  to indicate if the CI supports HTTP/2 server push.
 +
 3. 3. Set the below jars to the classpath 
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
