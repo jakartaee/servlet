@@ -31,6 +31,12 @@
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
+            <artifactId>servlet-tck</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
             <artifactId>servlet-tck-runtime</artifactId>
             <version>${project.version}</version>
         </dependency>

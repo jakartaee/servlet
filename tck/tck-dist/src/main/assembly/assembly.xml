@@ -71,6 +71,7 @@
     <dependencySets>
         <dependencySet>
             <includes>
+                <include>jakarta.tck:servlet-tck</include>
                 <include>jakarta.tck:servlet-tck-runtime</include>
                 <include>jakarta.tck:servlet-tck-util</include>
             </includes>
