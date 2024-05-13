@@ -148,9 +148,7 @@ is based on the {TechnologyShortName}
 Specification, Version {TechnologyVersion}.
 * Compatible Implementation: One {TechnologyShortName}
 {TechnologyVersion} Compatible Implementation, {TechnologyRI} is
-available from the Eclipse EE4J project
-(https://projects.eclipse.org/projects/ee4j). See the CI documentation page at
-{TechnologyRIURL} for more information.
+available from {TechnologyRIURL}.
 
 See the {TechnologyShortName} TCK Release Notes for more specific
 information about Java SE version requirements, supported platforms,
