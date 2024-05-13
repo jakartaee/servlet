@@ -26,6 +26,8 @@
     <artifactId>servlet-tck-dist</artifactId>
     <packaging>jar</packaging>
     
+    <name>Jakarta Servlet TCK distribution</name>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
