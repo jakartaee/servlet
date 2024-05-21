@@ -17,6 +17,8 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.util.Map;
 
 /**
@@ -56,6 +58,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getName()
      */
+    @Nullable
     String getName();
 
     /**
@@ -79,6 +82,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getDomain()
      */
+    @Nullable
     String getDomain();
 
     /**
@@ -106,6 +110,7 @@ public interface SessionCookieConfig {
      *
      * @see jakarta.servlet.http.Cookie#getPath()
      */
+    @Nullable
     String getPath();
 
     /**
@@ -135,6 +140,7 @@ public interface SessionCookieConfig {
      *
      * @deprecated This is no longer required with RFC 6265
      */
+    @Nullable
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
     String getComment();
 
@@ -253,7 +259,7 @@ public interface SessionCookieConfig {
      *
      * @since Servlet 6.0
      */
-    void setAttribute(String name, String value);
+    void setAttribute(@Nonnull String name, String value);
 
     /**
      * Obtain the value for a given session cookie attribute. Values returned from this method must be consistent with the

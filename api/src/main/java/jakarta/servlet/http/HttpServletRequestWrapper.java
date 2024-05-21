@@ -18,10 +18,13 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequestWrapper;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  * Provides a convenient implementation of the HttpServletRequest interface that can be subclassed by developers wishing
@@ -54,6 +57,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getAuthType() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getAuthType() {
         return this._getHttpServletRequest().getAuthType();
@@ -62,6 +66,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getCookies() on the wrapped request object.
      */
+    @Nullable
     @Override
     public Cookie[] getCookies() {
         return this._getHttpServletRequest().getCookies();
@@ -78,6 +83,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getHeader(String name) on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getHeader(String name) {
         return this._getHttpServletRequest().getHeader(name);
@@ -86,6 +92,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getHeaders(String name) on the wrapped request object.
      */
+    @Nullable
     @Override
     public Enumeration<String> getHeaders(String name) {
         return this._getHttpServletRequest().getHeaders(name);
@@ -94,6 +101,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getHeaderNames() on the wrapped request object.
      */
+    @Nullable
     @Override
     public Enumeration<String> getHeaderNames() {
         return this._getHttpServletRequest().getHeaderNames();
@@ -128,6 +136,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getPathInfo() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getPathInfo() {
         return this._getHttpServletRequest().getPathInfo();
@@ -136,6 +145,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getPathTranslated() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getPathTranslated() {
         return this._getHttpServletRequest().getPathTranslated();
@@ -152,6 +162,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getQueryString() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getQueryString() {
         return this._getHttpServletRequest().getQueryString();
@@ -160,6 +171,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getRemoteUser() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getRemoteUser() {
         return this._getHttpServletRequest().getRemoteUser();
@@ -176,6 +188,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getUserPrincipal() on the wrapped request object.
      */
+    @Nullable
     @Override
     public java.security.Principal getUserPrincipal() {
         return this._getHttpServletRequest().getUserPrincipal();
@@ -184,6 +197,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getRequestedSessionId() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getRequestedSessionId() {
         return this._getHttpServletRequest().getRequestedSessionId();
@@ -216,6 +230,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * The default behavior of this method is to return getSession(boolean create) on the wrapped request object.
      */
+    @Nullable
     @Override
     public HttpSession getSession(boolean create) {
         return this._getHttpServletRequest().getSession(create);
@@ -311,6 +326,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      *
      * @since Servlet 3.0
      */
+    @Nullable
     @Override
     public Part getPart(String name) throws IOException, ServletException {
         return this._getHttpServletRequest().getPart(name);
@@ -334,6 +350,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      *
      * @deprecated In favor of 103 early hints
      */
+    @Nullable
     @Deprecated
     @Override
     public PushBuilder newPushBuilder() {

@@ -18,6 +18,7 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nonnull;
 import jakarta.servlet.GenericServlet;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -910,7 +911,7 @@ class NoBodyOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void setWriteListener(WriteListener writeListener) {
+    public void setWriteListener(@Nonnull WriteListener writeListener) {
         throw new UnsupportedOperationException();
     }
 }

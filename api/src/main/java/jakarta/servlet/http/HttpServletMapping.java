@@ -17,6 +17,8 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
+
 /**
  * <p>
  * Allows runtime discovery of the manner in which the {@link HttpServlet} for the current {@link HttpServletRequest}
@@ -159,6 +161,7 @@ public interface HttpServletMapping {
      *
      * @return the {@code MappingMatch} for this instance.
      */
+    @Nullable
     MappingMatch getMappingMatch();
 
 }

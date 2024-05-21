@@ -18,6 +18,8 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -46,7 +48,7 @@ public class ServletRequestWrapper implements ServletRequest {
      *
      * @throws java.lang.IllegalArgumentException if the request is null
      */
-    public ServletRequestWrapper(ServletRequest request) {
+    public ServletRequestWrapper(@Nonnull ServletRequest request) {
         if (request == null) {
             throw new IllegalArgumentException("Request cannot be null");
         }
@@ -70,7 +72,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * @throws java.lang.IllegalArgumentException if the request is null.
      *
      */
-    public void setRequest(ServletRequest request) {
+    public void setRequest(@Nonnull ServletRequest request) {
         if (request == null) {
             throw new IllegalArgumentException("Request cannot be null");
         }
@@ -80,6 +82,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to call getAttribute(String name) on the wrapped request object.
      */
+    @Nullable
     @Override
     public Object getAttribute(String name) {
         return this.request.getAttribute(name);
@@ -96,6 +99,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getCharacterEncoding() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getCharacterEncoding() {
         return this.request.getCharacterEncoding();
@@ -140,6 +144,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getContentType() on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getContentType() {
         return this.request.getContentType();
@@ -156,6 +161,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getParameter(String name) on the wrapped request object.
      */
+    @Nullable
     @Override
     public String getParameter(String name) {
         return this.request.getParameter(name);
@@ -180,6 +186,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getParameterValues(String name) on the wrapped request object.
      */
+    @Nullable
     @Override
     public String[] getParameterValues(String name) {
         return this.request.getParameterValues(name);
@@ -245,7 +252,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * The default behavior of this method is to return setAttribute(String name, Object o) on the wrapped request object.
      */
     @Override
-    public void setAttribute(String name, Object o) {
+    public void setAttribute(String name, @Nullable Object o) {
         this.request.setAttribute(name, o);
     }
 
@@ -284,6 +291,7 @@ public class ServletRequestWrapper implements ServletRequest {
     /**
      * The default behavior of this method is to return getRequestDispatcher(String path) on the wrapped request object.
      */
+    @Nullable
     @Override
     public RequestDispatcher getRequestDispatcher(String path) {
         return this.request.getRequestDispatcher(path);

@@ -18,6 +18,8 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import jakarta.servlet.descriptor.JspConfigDescriptor;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -111,6 +113,7 @@ public interface ServletContext {
      *
      * @see RequestDispatcher
      */
+    @Nullable
     ServletContext getContext(String uripath);
 
     /**
@@ -168,6 +171,7 @@ public interface ServletContext {
      *
      * @return a <code>String</code> specifying the file's MIME type
      */
+    @Nullable
     String getMimeType(String file);
 
     /**
@@ -224,6 +228,7 @@ public interface ServletContext {
      *
      * @since Servlet 2.3
      */
+    @Nullable
     Set<String> getResourcePaths(String path);
 
     /**
@@ -274,6 +279,7 @@ public interface ServletContext {
      *
      * @exception MalformedURLException if the pathname is not given in the correct form
      */
+    @Nullable
     URL getResource(String path) throws MalformedURLException;
 
     /**
@@ -312,6 +318,7 @@ public interface ServletContext {
      * @return the <code>InputStream</code> returned to the servlet, or <code>null</code> if no resource exists at the
      * specified path
      */
+    @Nullable
     InputStream getResourceAsStream(String path);
 
     /**
@@ -346,6 +353,7 @@ public interface ServletContext {
      * @see RequestDispatcher
      * @see ServletContext#getContext
      */
+    @Nullable
     RequestDispatcher getRequestDispatcher(String path);
 
     /**
@@ -368,6 +376,7 @@ public interface ServletContext {
      * @see ServletContext#getContext
      * @see ServletConfig#getServletName
      */
+    @Nullable
     RequestDispatcher getNamedDispatcher(String name);
 
     /**
@@ -430,6 +439,7 @@ public interface ServletContext {
      *
      * @return the <i>real</i> path, or <tt>null</tt> if the translation cannot be performed
      */
+    @Nullable
     String getRealPath(String path);
 
     /**
@@ -465,6 +475,7 @@ public interface ServletContext {
      *
      * @see ServletConfig#getInitParameter
      */
+    @Nullable
     String getInitParameter(String name);
 
     /**
@@ -499,7 +510,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    boolean setInitParameter(String name, String value);
+    boolean setInitParameter(@Nonnull String name, String value);
 
     /**
      * Returns the servlet container attribute with the given name, or <code>null</code> if there is no attribute by that
@@ -527,7 +538,8 @@ public interface ServletContext {
      * @throws NullPointerException if the argument {@code name} is {@code null}
      *
      */
-    Object getAttribute(String name);
+    @Nullable
+    Object getAttribute(@Nonnull String name);
 
     /**
      * Returns an <code>Enumeration</code> containing the attribute names available within this ServletContext.
@@ -560,7 +572,7 @@ public interface ServletContext {
      * @throws NullPointerException if the name parameter is {@code null}
      *
      */
-    void setAttribute(String name, Object object);
+    void setAttribute(@Nonnull String name, @Nullable Object object);
 
     /**
      * Removes the attribute with the given name from this ServletContext. After removal, subsequent calls to
@@ -581,6 +593,7 @@ public interface ServletContext {
      *
      * @since Servlet 2.3
      */
+    @Nullable
     String getServletContextName();
 
     /**
@@ -623,7 +636,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    ServletRegistration.Dynamic addServlet(String servletName, String className);
+    @Nullable
+    ServletRegistration.Dynamic addServlet(@Nonnull String servletName, String className);
 
     /**
      * Registers the given servlet instance with this ServletContext under the given <tt>servletName</tt>.
@@ -654,7 +668,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet);
+    @Nullable
+    ServletRegistration.Dynamic addServlet(@Nonnull String servletName, Servlet servlet);
 
     /**
      * Adds the servlet with the given name and class type to this servlet context.
@@ -691,7 +706,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass);
+    @Nullable
+    ServletRegistration.Dynamic addServlet(@Nonnull String servletName, Class<? extends Servlet> servletClass);
 
     /**
      * Adds the servlet with the given jsp file to this servlet context.
@@ -721,7 +737,8 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
-    ServletRegistration.Dynamic addJspFile(String servletName, String jspFile);
+    @Nullable
+    ServletRegistration.Dynamic addJspFile(@Nonnull String servletName, String jspFile);
 
     /**
      * Instantiates the given Servlet class.
@@ -771,6 +788,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
+    @Nullable
     ServletRegistration getServletRegistration(String servletName);
 
     /**
@@ -832,7 +850,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    FilterRegistration.Dynamic addFilter(String filterName, String className);
+    @Nullable
+    FilterRegistration.Dynamic addFilter(@Nonnull String filterName, String className);
 
     /**
      * Registers the given filter instance with this ServletContext under the given <tt>filterName</tt>.
@@ -863,7 +882,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    FilterRegistration.Dynamic addFilter(String filterName, Filter filter);
+    @Nullable
+    FilterRegistration.Dynamic addFilter(@Nonnull String filterName, Filter filter);
 
     /**
      * Adds the filter with the given name and class type to this servlet context.
@@ -897,7 +917,8 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
-    FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass);
+    @Nullable
+    FilterRegistration.Dynamic addFilter(@Nonnull String filterName, Class<? extends Filter> filterClass);
 
     /**
      * Instantiates the given Filter class.
@@ -943,6 +964,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
+    @Nullable
     FilterRegistration getFilterRegistration(String filterName);
 
     /**
@@ -1233,6 +1255,7 @@ public interface ServletContext {
      *
      * @since Servlet 3.0
      */
+    @Nullable
     JspConfigDescriptor getJspConfigDescriptor();
 
     /**
@@ -1323,6 +1346,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
+    @Nullable
     String getRequestCharacterEncoding();
 
     /**
@@ -1370,6 +1394,7 @@ public interface ServletContext {
      *
      * @since Servlet 4.0
      */
+    @Nullable
     String getResponseCharacterEncoding();
 
     /**

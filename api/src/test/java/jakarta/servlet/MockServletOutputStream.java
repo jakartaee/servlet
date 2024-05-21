@@ -16,6 +16,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -54,7 +55,7 @@ public class MockServletOutputStream extends ServletOutputStream {
     }
 
     @Override
-    public void setWriteListener(WriteListener writeListener) {
+    public void setWriteListener(@Nonnull WriteListener writeListener) {
         throw new UnsupportedOperationException();
     }
 

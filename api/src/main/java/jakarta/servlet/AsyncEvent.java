@@ -17,6 +17,8 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
+
 /**
  * Event that gets fired when the asynchronous operation initiated on a ServletRequest (via a call to
  * {@link ServletRequest#startAsync} or {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}) has
@@ -29,6 +31,7 @@ public class AsyncEvent {
     private final AsyncContext context;
     private final ServletRequest request;
     private final ServletResponse response;
+    @Nullable
     private final Throwable throwable;
 
     /**
@@ -69,7 +72,7 @@ public class AsyncEvent {
      * @param response the ServletResponse to be delivered with this AsyncEvent
      * @param throwable the Throwable to be delivered with this AsyncEvent
      */
-    public AsyncEvent(AsyncContext context, ServletRequest request, ServletResponse response, Throwable throwable) {
+    public AsyncEvent(AsyncContext context, ServletRequest request, ServletResponse response, @Nullable Throwable throwable) {
         this.context = context;
         this.request = request;
         this.response = response;
@@ -97,6 +100,7 @@ public class AsyncEvent {
      * @return the ServletRequest that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized
      * without any ServletRequest
      */
+    @Nullable
     public ServletRequest getSuppliedRequest() {
         return request;
     }
@@ -113,6 +117,7 @@ public class AsyncEvent {
      * @return the ServletResponse that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized
      * without any ServletResponse
      */
+    @Nullable
     public ServletResponse getSuppliedResponse() {
         return response;
     }
@@ -123,6 +128,7 @@ public class AsyncEvent {
      * @return the Throwable that was used to initialize this AsyncEvent, or null if this AsyncEvent was initialized without
      * any Throwable
      */
+    @Nullable
     public Throwable getThrowable() {
         return throwable;
     }

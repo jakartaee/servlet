@@ -16,6 +16,8 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import jakarta.servlet.descriptor.JspConfigDescriptor;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -117,12 +119,12 @@ public class MockServletContext implements ServletContext {
     }
 
     @Override
-    public boolean setInitParameter(String name, String value) {
+    public boolean setInitParameter(@Nonnull String name, String value) {
         return false;
     }
 
     @Override
-    public Object getAttribute(String name) {
+    public Object getAttribute(@Nonnull String name) {
         return null;
     }
 
@@ -132,7 +134,7 @@ public class MockServletContext implements ServletContext {
     }
 
     @Override
-    public void setAttribute(String name, Object object) {
+    public void setAttribute(@Nonnull String name, @Nullable Object object) {
 
     }
 
@@ -147,22 +149,22 @@ public class MockServletContext implements ServletContext {
     }
 
     @Override
-    public ServletRegistration.Dynamic addServlet(String servletName, String className) {
+    public ServletRegistration.Dynamic addServlet(@Nonnull String servletName, String className) {
         return null;
     }
 
     @Override
-    public ServletRegistration.Dynamic addServlet(String servletName, Servlet servlet) {
+    public ServletRegistration.Dynamic addServlet(@Nonnull String servletName, Servlet servlet) {
         return null;
     }
 
     @Override
-    public ServletRegistration.Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass) {
+    public ServletRegistration.Dynamic addServlet(@Nonnull String servletName, Class<? extends Servlet> servletClass) {
         return null;
     }
 
     @Override
-    public ServletRegistration.Dynamic addJspFile(String servletName, String jspFile) {
+    public ServletRegistration.Dynamic addJspFile(@Nonnull String servletName, String jspFile) {
         return null;
     }
 
@@ -171,6 +173,7 @@ public class MockServletContext implements ServletContext {
         return null;
     }
 
+    @Nullable
     @Override
     public ServletRegistration getServletRegistration(String servletName) {
         return null;
@@ -181,18 +184,21 @@ public class MockServletContext implements ServletContext {
         return null;
     }
 
+    @Nullable
     @Override
-    public FilterRegistration.Dynamic addFilter(String filterName, String className) {
+    public FilterRegistration.Dynamic addFilter(@Nonnull String filterName, String className) {
         return null;
     }
 
+    @Nullable
     @Override
-    public FilterRegistration.Dynamic addFilter(String filterName, Filter filter) {
+    public FilterRegistration.Dynamic addFilter(@Nonnull String filterName, Filter filter) {
         return null;
     }
 
+    @Nullable
     @Override
-    public FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass) {
+    public FilterRegistration.Dynamic addFilter(@Nonnull String filterName, Class<? extends Filter> filterClass) {
         return null;
     }
 
@@ -201,6 +207,7 @@ public class MockServletContext implements ServletContext {
         return null;
     }
 
+    @Nullable
     @Override
     public FilterRegistration getFilterRegistration(String filterName) {
         return null;
@@ -251,6 +258,7 @@ public class MockServletContext implements ServletContext {
         return null;
     }
 
+    @Nullable
     @Override
     public JspConfigDescriptor getJspConfigDescriptor() {
         return null;
@@ -281,6 +289,7 @@ public class MockServletContext implements ServletContext {
 
     }
 
+    @Nullable
     @Override
     public String getRequestCharacterEncoding() {
         return null;
@@ -291,6 +300,7 @@ public class MockServletContext implements ServletContext {
 
     }
 
+    @Nullable
     @Override
     public String getResponseCharacterEncoding() {
         return null;

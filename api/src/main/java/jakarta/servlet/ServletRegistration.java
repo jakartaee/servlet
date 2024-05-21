@@ -17,7 +17,10 @@
 
 package jakarta.servlet;
 
-import java.util.*;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * Interface through which a {@link Servlet} may be further configured.
@@ -48,7 +51,7 @@ public interface ServletRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this ServletRegistration was obtained has already been
      * initialized
      */
-    Set<String> addMapping(String... urlPatterns);
+    Set<String> addMapping(@Nonnull String... urlPatterns);
 
     /**
      * Gets the currently available mappings of the Servlet represented by this <code>ServletRegistration</code>.
@@ -67,6 +70,7 @@ public interface ServletRegistration extends Registration {
      *
      * @return the name of the runAs role, or null if the Servlet is configured to run as its caller
      */
+    @Nullable
     String getRunAsRole();
 
     /**
@@ -141,7 +145,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this <code>ServletRegistration</code> was
          * obtained has already been initialized
          */
-        Set<String> setServletSecurity(ServletSecurityElement constraint);
+        Set<String> setServletSecurity(@Nonnull ServletSecurityElement constraint);
 
         /**
          * Sets the {@link MultipartConfigElement} to be applied to the mappings defined for this
@@ -155,7 +159,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this ServletRegistration was obtained has
          * already been initialized
          */
-        void setMultipartConfig(MultipartConfigElement multipartConfig);
+        void setMultipartConfig(@Nonnull MultipartConfigElement multipartConfig);
 
         /**
          * Sets the name of the <code>runAs</code> role for this <code>ServletRegistration</code>.
@@ -167,7 +171,7 @@ public interface ServletRegistration extends Registration {
          * @throws IllegalStateException if the {@link ServletContext} from which this ServletRegistration was obtained has
          * already been initialized
          */
-        void setRunAsRole(String roleName);
+        void setRunAsRole(@Nonnull String roleName);
 
     }
 

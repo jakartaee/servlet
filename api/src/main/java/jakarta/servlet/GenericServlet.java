@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
@@ -50,6 +51,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
+    @Nullable
     private transient ServletConfig config;
 
     /**
@@ -83,6 +85,7 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
      * @return String a <code>String</code> containing the value of the initialization parameter
      *
      */
+    @Nullable
     @Override
     public String getInitParameter(String name) {
         ServletConfig sc = getServletConfig();
@@ -117,10 +120,11 @@ public abstract class GenericServlet implements Servlet, ServletConfig, java.io.
     }
 
     /**
-     * Returns this servlet's {@link ServletConfig} object.
+     * Returns this servlet's {@link ServletConfig} object, or <code>null</code> if it has not been initialized.
      *
      * @return ServletConfig the <code>ServletConfig</code> object that initialized this servlet
      */
+    @Nullable
     @Override
     public ServletConfig getServletConfig() {
         return config;

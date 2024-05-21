@@ -18,6 +18,8 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import jakarta.servlet.ServletContext;
 import java.util.Enumeration;
 import java.util.function.Consumer;
@@ -148,6 +150,7 @@ public interface HttpSession {
      *
      * @exception IllegalStateException if this method is called on an invalidated session
      */
+    @Nullable
     Object getAttribute(String name);
 
     /**
@@ -184,7 +187,7 @@ public interface HttpSession {
      *
      * @exception IllegalStateException if this method is called on an invalidated session
      */
-    void setAttribute(String name, Object value);
+    void setAttribute(@Nonnull String name, @Nullable Object value);
 
     /**
      * Removes the object bound with the specified name from this session. If the session does not have an object bound with
@@ -257,6 +260,7 @@ public interface HttpSession {
      * HTTP request.
      * @throws IllegalStateException if this method is called on an invalidated session
      */
+    @Nullable
     default Accessor getAccessor() {
         return null;
     }

@@ -18,6 +18,7 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Collections;
@@ -93,6 +94,7 @@ public class Cookie implements Cloneable, Serializable {
     //
     // Attributes encoded in the header's cookie fields.
     //
+    @Nullable
     private Map<String, String> attributes = null;
 
     /**
@@ -157,6 +159,7 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @deprecated This is no longer required with RFC 6265
      */
+    @Nullable
     @Deprecated(since = "Servlet 6.0", forRemoval = true)
     public String getComment() {
         return null;
@@ -475,7 +478,7 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @since Servlet 6.0
      */
-    public void setAttribute(String name, String value) {
+    public void setAttribute(String name, @Nullable String value) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException(createErrorMessage("err.cookie_attribute_name_blank"));
         }
@@ -491,7 +494,7 @@ public class Cookie implements Cloneable, Serializable {
         }
     }
 
-    private void putAttribute(String name, String value) {
+    private void putAttribute(String name, @Nullable String value) {
         if (attributes == null) {
             attributes = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         }
@@ -517,6 +520,7 @@ public class Cookie implements Cloneable, Serializable {
      *
      * @since Servlet 6.0
      */
+    @Nullable
     public String getAttribute(String name) {
         return attributes == null ? null : attributes.get(name);
     }

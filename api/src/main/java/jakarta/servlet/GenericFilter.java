@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
 
@@ -49,6 +50,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
     private static final String LSTRING_FILE = "jakarta.servlet.LocalStrings";
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
+    @Nullable
     private transient FilterConfig config;
 
     /**
@@ -79,6 +81,7 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
      * @since Servlet 4.0
      *
      */
+    @Nullable
     @Override
     public String getInitParameter(String name) {
         FilterConfig fc = getFilterConfig();
@@ -117,13 +120,14 @@ public abstract class GenericFilter implements Filter, FilterConfig, java.io.Ser
 
     /**
      * <p>
-     * Returns this servlet's {@link ServletConfig} object.
+     * Returns this servlet's {@link ServletConfig} object, or null if it has not been initialized.
      * </p>
      *
      * @return FilterConfig the <code>FilterConfig</code> object that initialized this filter
      *
      * @since Servlet 4.0
      */
+    @Nullable
     public FilterConfig getFilterConfig() {
         return config;
     }

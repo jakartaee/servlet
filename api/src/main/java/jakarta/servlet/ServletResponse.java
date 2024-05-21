@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -87,6 +88,7 @@ public interface ServletResponse {
      *
      * @since Servlet 2.4
      */
+    @Nullable
     String getContentType();
 
     /**
@@ -175,7 +177,7 @@ public interface ServletResponse {
      *
      * @since Servlet 2.4
      */
-    void setCharacterEncoding(String encoding);
+    void setCharacterEncoding(@Nullable String encoding);
 
     /**
      * Sets the character encoding (MIME charset) of the response being sent to the client, for example, to UTF-8. If the
@@ -274,7 +276,7 @@ public interface ServletResponse {
      * @see #getWriter
      *
      */
-    void setContentType(String type);
+    void setContentType(@Nullable String type);
 
     /**
      * Sets the preferred buffer size for the body of the response. The servlet container will use a buffer at least as
@@ -401,7 +403,7 @@ public interface ServletResponse {
      * @see #setCharacterEncoding(String)
      * @see #setCharacterEncoding(Charset)
      */
-    void setLocale(Locale loc);
+    void setLocale(@Nullable Locale loc);
 
     /**
      * Returns the locale specified for this response using the {@link #setLocale} method. Calls made to

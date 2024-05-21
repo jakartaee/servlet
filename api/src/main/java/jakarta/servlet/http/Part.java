@@ -17,8 +17,10 @@
 
 package jakarta.servlet.http;
 
-import java.io.*;
-import java.util.*;
+import jakarta.annotation.Nullable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
 
 /**
  * <p>
@@ -102,6 +104,7 @@ public interface Part {
      * @return a <code>String</code> containing the value of the requested header, or <code>null</code> if the part does not
      * have a header of that name
      */
+    @Nullable
     String getHeader(String name);
 
     /**
@@ -131,6 +134,7 @@ public interface Part {
      *
      * @return a (possibly empty) <code>Collection</code> of the header names of this Part
      */
+    @Nullable
     Collection<String> getHeaderNames();
 
 }

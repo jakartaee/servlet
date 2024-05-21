@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.util.Set;
 
 /**
@@ -74,5 +75,5 @@ public interface ServletContainerInitializer {
      *
      * @throws ServletException if an error has occurred
      */
-    void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException;
+    void onStartup(@Nullable Set<Class<?>> c, ServletContext ctx) throws ServletException;
 }
