@@ -21,6 +21,7 @@
 package servlet.tck.spec.servletresponse;
 
 import servlet.tck.common.client.AbstractTckTest;
+import servlet.tck.common.servlets.CommonServlets;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -42,6 +43,7 @@ public class servletResponseTests extends AbstractTckTest {
     public static WebArchive getTestArchive() throws Exception {
         return ShrinkWrap.create(WebArchive.class, "servlet_spec_servletresponse_web.war")
                 .addClasses(HttpTestServlet.class, TestServlet.class)
+                .addAsLibraries(CommonServlets.getCommonServletsArchive())
                 .setWebXML(servletResponseTests.class.getResource("servlet_spec_servletresponse_web.xml"));
     }
 
