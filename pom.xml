@@ -29,7 +29,7 @@
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>servlet-parent</artifactId>
-    <version>6.1.0</version>
+    <version>6.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Servlet Parent</name>

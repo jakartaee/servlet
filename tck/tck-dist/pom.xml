@@ -20,7 +20,7 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>servlet-tck</artifactId>
-        <version>6.1.0</version>
+        <version>6.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>servlet-tck-dist</artifactId>
