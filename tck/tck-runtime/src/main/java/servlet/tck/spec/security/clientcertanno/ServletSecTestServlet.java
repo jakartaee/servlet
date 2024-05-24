@@ -31,8 +31,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /*
  * There are security annotations being used now which shoudl eliminate the 
@@ -61,8 +59,6 @@ public class ServletSecTestServlet extends HttpServlet {
   private String FAILSTRING = "FAILED";
 
   private String PASSSTRING = "PASSED";
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ServletSecTestServlet.class);
 
   /*
    * testName: clientCertTest
