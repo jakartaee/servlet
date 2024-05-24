@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -314,10 +314,7 @@ public interface HttpServletRequest extends ServletRequest {
      * of the application.
      *
      * @return a <code>String</code> specifying the portion of the request URI that indicates the context of the request.
-     * The path will be canonicalized as per <a href=
-     * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#request-uri-path-processing">Servlet
-     * 6.0, 3.5</a>. This method will not return any encoded characters unless the container is configured specifically to
-     * allow them.
+     *
      * @throws IllegalArgumentException In standard configuration, this method will never throw. However, a container may be
      * configured to not reject some suspicious sequences identified by <a href=
      * "https://jakarta.ee/specifications/servlet/6.0/jakarta-servlet-spec-6.0.html#uri-path-canonicalization">Servlet 6.0,
