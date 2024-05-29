@@ -18,9 +18,14 @@
 
 package jakarta.servlet;
 
-import java.io.*;
+import jakarta.annotation.Nullable;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Defines an object to provide client request information to a servlet. The servlet container creates a
@@ -58,6 +63,7 @@ public interface ServletRequest {
      * @return an <code>Object</code> containing the value of the attribute, or <code>null</code> if the attribute does not
      * exist
      */
+    @Nullable
     Object getAttribute(String name);
 
     /**
@@ -78,6 +84,7 @@ public interface ServletRequest {
      * @return a <code>String</code> containing the name of the character encoding, or <code>null</code> if the request does
      * not specify a character encoding
      */
+    @Nullable
     String getCharacterEncoding();
 
     /**
@@ -133,6 +140,7 @@ public interface ServletRequest {
      *
      * @return a <code>String</code> containing the name of the MIME type of the request, or null if the type is not known
      */
+    @Nullable
     String getContentType();
 
     /**
@@ -183,6 +191,7 @@ public interface ServletRequest {
      *
      * @see #getParameterValues
      */
+    @Nullable
     String getParameter(String name);
 
     /**
@@ -234,6 +243,7 @@ public interface ServletRequest {
      *
      * @see #getParameter
      */
+    @Nullable
     String[] getParameterValues(String name);
 
     /**
@@ -347,7 +357,7 @@ public interface ServletRequest {
      * @param o the <code>Object</code> to be stored
      *
      */
-    void setAttribute(String name, Object o);
+    void setAttribute(String name, @Nullable Object o);
 
     /**
      *
@@ -424,6 +434,7 @@ public interface ServletRequest {
      * @see RequestDispatcher
      * @see ServletContext#getRequestDispatcher
      */
+    @Nullable
     RequestDispatcher getRequestDispatcher(String path);
 
     /**

@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,6 +51,7 @@ public interface Registration {
      * @return the fully qualified class name of the Servlet or Filter that is represented by this Registration, or null if
      * this Registration is preliminary
      */
+    @Nullable
     String getClassName();
 
     /**
@@ -77,6 +79,7 @@ public interface Registration {
      * @return the value of the initialization parameter with the given name, or <tt>null</tt> if no initialization
      * parameter with the given name exists
      */
+    @Nullable
     String getInitParameter(String name);
 
     /**

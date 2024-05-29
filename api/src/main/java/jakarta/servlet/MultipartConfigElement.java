@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.annotation.MultipartConfig;
 
 /**
@@ -36,7 +37,7 @@ public class MultipartConfigElement {
      *
      * @param location defaults to "" if values is null.
      */
-    public MultipartConfigElement(String location) {
+    public MultipartConfigElement(@Nullable String location) {
         if (location == null) {
             this.location = "";
         } else {
@@ -55,7 +56,7 @@ public class MultipartConfigElement {
      * @param maxRequestSize the maximum size allowed (in bytes) for multipart/form-data requests
      * @param fileSizeThreshold the size threshold (in bytes) after which files will be written to disk
      */
-    public MultipartConfigElement(String location, long maxFileSize, long maxRequestSize, int fileSizeThreshold) {
+    public MultipartConfigElement(@Nullable String location, long maxFileSize, long maxRequestSize, int fileSizeThreshold) {
         if (location == null) {
             this.location = "";
         } else {

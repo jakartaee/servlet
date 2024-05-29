@@ -17,6 +17,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
 import jakarta.servlet.annotation.HttpMethodConstraint;
 
 /**
@@ -34,7 +35,7 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
      * @param methodName the name of an HTTP protocol method. The name must not be null, or the empty string, and must be a
      * legitimate HTTP Method name as defined by RFC 7231
      */
-    public HttpMethodConstraintElement(String methodName) {
+    public HttpMethodConstraintElement(@Nonnull String methodName) {
         if (methodName == null || methodName.length() == 0) {
             throw new IllegalArgumentException("invalid HTTP method name");
         }
@@ -49,7 +50,7 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
      *
      * @param constraint the HTTPconstraintElement value to assign to the named HTTP method
      */
-    public HttpMethodConstraintElement(String methodName, HttpConstraintElement constraint) {
+    public HttpMethodConstraintElement(@Nonnull String methodName, HttpConstraintElement constraint) {
         super(constraint.getEmptyRoleSemantic(), constraint.getTransportGuarantee(), constraint.getRolesAllowed());
         if (methodName == null || methodName.length() == 0) {
             throw new IllegalArgumentException("invalid HTTP method name");

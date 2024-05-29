@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
 import java.io.CharConversionException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -86,7 +87,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      * @since Servlet 6.1
      */
-    public void write(ByteBuffer buffer) throws IOException {
+    public void write(@Nonnull ByteBuffer buffer) throws IOException {
         Objects.requireNonNull(buffer);
 
         if (!isReady()) {
@@ -360,7 +361,7 @@ public abstract class ServletOutputStream extends OutputStream {
      *
      * @since Servlet 3.1
      */
-    public abstract void setWriteListener(WriteListener writeListener);
+    public abstract void setWriteListener(@Nonnull WriteListener writeListener);
 
     /**
      * {@inheritDoc}

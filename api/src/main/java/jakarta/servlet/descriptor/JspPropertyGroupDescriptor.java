@@ -17,6 +17,7 @@
 
 package jakarta.servlet.descriptor;
 
+import jakarta.annotation.Nullable;
 import java.util.Collection;
 
 /**
@@ -49,6 +50,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>el-ignored</code> configuration, or null if unspecified
      */
+    @Nullable
     String getElIgnored();
 
     /**
@@ -66,6 +68,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>page-encoding</code> configuration, or null if unspecified
      */
+    @Nullable
     String getPageEncoding();
 
     /**
@@ -74,6 +77,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>scripting-invalid</code> configuration, or null if unspecified
      */
+    @Nullable
     String getScriptingInvalid();
 
     /**
@@ -83,6 +87,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>is-xml</code> configuration, or null if unspecified
      */
+    @Nullable
     String getIsXml();
 
     /**
@@ -117,6 +122,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>deferred-syntax-allowed-as-literal</code> configuration, or null if unspecified
      */
+    @Nullable
     String getDeferredSyntaxAllowedAsLiteral();
 
     /**
@@ -126,6 +132,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>trim-directive-whitespaces</code> configuration, or null if unspecified
      */
+    @Nullable
     String getTrimDirectiveWhitespaces();
 
     /**
@@ -134,6 +141,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>default-content-type</code> configuration, or null if unspecified
      */
+    @Nullable
     String getDefaultContentType();
 
     /**
@@ -142,6 +150,7 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>buffer</code> configuration, or null if unspecified
      */
+    @Nullable
     String getBuffer();
 
     /**
@@ -151,5 +160,6 @@ public interface JspPropertyGroupDescriptor {
      *
      * @return the value of the <code>error-on-undeclared-namespace</code> configuration, or null if unspecified
      */
+    @Nullable
     String getErrorOnUndeclaredNamespace();
 }

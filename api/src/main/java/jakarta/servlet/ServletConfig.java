@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.util.Enumeration;
 
 /**
@@ -51,6 +52,7 @@ public interface ServletConfig {
      * @return a <code>String</code> containing the value of the initialization parameter, or <code>null</code> if the
      * initialization parameter does not exist
      */
+    @Nullable
     String getInitParameter(String name);
 
     /**

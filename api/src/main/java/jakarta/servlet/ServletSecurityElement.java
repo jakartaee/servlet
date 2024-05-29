@@ -19,7 +19,9 @@ package jakarta.servlet;
 
 import jakarta.servlet.annotation.HttpMethodConstraint;
 import jakarta.servlet.annotation.ServletSecurity;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 
 /**
  * Java Class representation of a {@link ServletSecurity} annotation value.

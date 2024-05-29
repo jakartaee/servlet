@@ -18,11 +18,15 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Map;
 
 /**
  *
@@ -66,6 +70,7 @@ public interface HttpServletRequest extends ServletRequest {
      * or the container-specific string indicating the authentication scheme, or <code>null</code> if the request was not
      * authenticated.
      */
+    @Nullable
     String getAuthType();
 
     /**
@@ -75,6 +80,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return an array of all the <code>Cookies</code> included with this request, or <code>null</code> if the request has
      * no cookies
      */
+    @Nullable
     Cookie[] getCookies();
 
     /**
@@ -109,6 +115,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>String</code> containing the value of the requested header, or <code>null</code> if the request does
      * not have a header of that name
      */
+    @Nullable
     String getHeader(String name);
 
     /**
@@ -128,6 +135,7 @@ public interface HttpServletRequest extends ServletRequest {
      * headers of that name return an empty enumeration. If the container does not allow access to header information,
      * return null
      */
+    @Nullable
     Enumeration<String> getHeaders(String name);
 
     /**
@@ -141,6 +149,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return an enumeration of all the header names sent with this request; if the request has no headers, an empty
      * enumeration; if the servlet container does not allow servlets to use this method, <code>null</code>
      */
+    @Nullable
     Enumeration<String> getHeaderNames();
 
     /**
@@ -222,6 +231,7 @@ public interface HttpServletRequest extends ServletRequest {
                 return "";
             }
 
+            @Nullable
             @Override
             public MappingMatch getMappingMatch() {
                 return null;
@@ -263,6 +273,7 @@ public interface HttpServletRequest extends ServletRequest {
      * 3.5.2<a/>, furthermore the container may be configured to allow such paths to only be accessed via safer methods like
      * {@link #getRequestURI()} and to throw IllegalArgumentException if this method is called for such suspicious paths.
      */
+    @Nullable
     String getPathInfo();
 
     /**
@@ -279,6 +290,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>String</code> specifying the real path, or <code>null</code> if the URL does not have any extra path
      * information
      */
+    @Nullable
     String getPathTranslated();
 
     /**
@@ -296,6 +308,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @deprecated In favor of 103 early hints
      */
+    @Nullable
     @Deprecated
     default PushBuilder newPushBuilder() {
         return null;
@@ -331,6 +344,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>String</code> containing the query string or <code>null</code> if the URL contains no query string.
      * The value is not decoded by the container.
      */
+    @Nullable
     String getQueryString();
 
     /**
@@ -341,6 +355,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>String</code> specifying the login of the user making this request, or <code>null</code> if the user
      * login is not known
      */
+    @Nullable
     String getRemoteUser();
 
     /**
@@ -370,6 +385,7 @@ public interface HttpServletRequest extends ServletRequest {
      * @return a <code>java.security.Principal</code> containing the name of the user making this request; <code>null</code>
      * if the user has not been authenticated
      */
+    @Nullable
     java.security.Principal getUserPrincipal();
 
     /**
@@ -381,6 +397,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #isRequestedSessionIdValid
      */
+    @Nullable
     String getRequestedSessionId();
 
     /**
@@ -472,6 +489,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @see #getSession()
      */
+    @Nullable
     HttpSession getSession(boolean create);
 
     /**
@@ -641,6 +659,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @since Servlet 3.0
      */
+    @Nullable
     Part getPart(String name) throws IOException, ServletException;
 
     /**

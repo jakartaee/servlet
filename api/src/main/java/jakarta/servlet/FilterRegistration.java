@@ -17,7 +17,9 @@
 
 package jakarta.servlet;
 
-import java.util.*;
+import jakarta.annotation.Nullable;
+import java.util.Collection;
+import java.util.EnumSet;
 
 /**
  * Interface through which a {@link Filter} may be further configured.
@@ -51,8 +53,8 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this FilterRegistration was obtained has already been
      * initialized
      */
-    void addMappingForServletNames(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-            String... servletNames);
+    void addMappingForServletNames(
+            @Nullable EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... servletNames);
 
     /**
      * Gets the currently available servlet name mappings of the Filter represented by this <code>FilterRegistration</code>.
@@ -91,8 +93,8 @@ public interface FilterRegistration extends Registration {
      * @throws IllegalStateException if the ServletContext from which this FilterRegistration was obtained has already been
      * initialized
      */
-    void addMappingForUrlPatterns(EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
-            String... urlPatterns);
+    void addMappingForUrlPatterns(
+            @Nullable EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter, String... urlPatterns);
 
     /**
      * Gets the currently available URL pattern mappings of the Filter represented by this <code>FilterRegistration</code>.

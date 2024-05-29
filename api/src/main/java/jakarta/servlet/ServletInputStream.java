@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nonnull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -87,7 +88,7 @@ public abstract class ServletInputStream extends InputStream {
      *
      * @since Servlet 6.1
      */
-    public int read(ByteBuffer buffer) throws IOException {
+    public int read(@Nonnull ByteBuffer buffer) throws IOException {
         Objects.requireNonNull(buffer);
 
         if (!isReady()) {

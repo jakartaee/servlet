@@ -18,6 +18,7 @@
 
 package jakarta.servlet;
 
+import jakarta.annotation.Nullable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
@@ -140,7 +141,7 @@ public class ServletResponseWrapper implements ServletResponse {
      * The default behavior of this method is to call setContentType(String type) on the wrapped response object.
      */
     @Override
-    public void setContentType(String type) {
+    public void setContentType(@Nullable String type) {
         this.response.setContentType(type);
     }
 
@@ -149,6 +150,7 @@ public class ServletResponseWrapper implements ServletResponse {
      *
      * @since Servlet 2.4
      */
+    @Nullable
     @Override
     public String getContentType() {
         return this.response.getContentType();
@@ -206,7 +208,7 @@ public class ServletResponseWrapper implements ServletResponse {
      * The default behavior of this method is to call setLocale(Locale loc) on the wrapped response object.
      */
     @Override
-    public void setLocale(Locale loc) {
+    public void setLocale(@Nullable Locale loc) {
         this.response.setLocale(loc);
     }
 

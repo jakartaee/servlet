@@ -18,6 +18,7 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.ServletResponseWrapper;
 import java.io.IOException;
 import java.util.Collection;
@@ -161,7 +162,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      * The default behavior of this method is to return setHeader(String name, String value) on the wrapped response object.
      */
     @Override
-    public void setHeader(String name, String value) {
+    public void setHeader(String name, @Nullable String value) {
         this._getHttpServletResponse().setHeader(name, value);
     }
 
@@ -219,6 +220,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      *
      * @since Servlet 3.0
      */
+    @Nullable
     @Override
     public String getHeader(String name) {
         return _getHttpServletResponse().getHeader(name);
@@ -279,6 +281,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
      *
      * @since Servlet 4.0
      */
+    @Nullable
     @Override
     public Supplier<Map<String, String>> getTrailerFields() {
         return _getHttpServletResponse().getTrailerFields();

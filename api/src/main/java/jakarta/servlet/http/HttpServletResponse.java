@@ -18,6 +18,7 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.ServletResponse;
 import java.io.IOException;
 import java.util.Collection;
@@ -303,7 +304,7 @@ public interface HttpServletResponse extends ServletResponse {
      * @see #containsHeader
      * @see #addHeader
      */
-    void setHeader(String name, String value);
+    void setHeader(String name, @Nullable String value);
 
     /**
      * Adds a response header with the given name and value. This method allows response headers to have multiple values.
@@ -409,6 +410,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @since Servlet 3.0
      */
+    @Nullable
     String getHeader(String name);
 
     /**
@@ -484,12 +486,13 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Gets the supplier of trailer headers.
      *
-     * @implSpec The default implememtation return null.
+     * @implSpec The default implementation return null.
      *
      * @return <code>Supplier</code> of trailer headers
      *
      * @since Servlet 4.0
      */
+    @Nullable
     default Supplier<Map<String, String>> getTrailerFields() {
         return null;
     }

@@ -17,6 +17,7 @@
 
 package jakarta.servlet.http;
 
+import jakarta.annotation.Nonnull;
 import java.util.Set;
 
 /**
@@ -102,7 +103,7 @@ public interface PushBuilder {
      *
      * @return this builder.
      */
-    PushBuilder method(String method);
+    PushBuilder method(@Nonnull String method);
 
     /**
      * Set the query string to be used for the push.
