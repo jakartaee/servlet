@@ -219,7 +219,7 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Version>6.1.0</Bundle-Version>
+                        <Bundle-Version>6.1.1</Bundle-Version>
                         <Bundle-SymbolicName>jakarta.servlet-api</Bundle-SymbolicName>
                         <Bundle-Description>
                             Jakarta Servlet 6.1
