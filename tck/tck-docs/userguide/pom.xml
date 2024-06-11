@@ -28,7 +28,7 @@
     <groupId>jakarta.tck</groupId>
     <artifactId>servlet-tck-docs</artifactId>
     <packaging>pom</packaging>
-    <version>6.1.0-SNAPSHOT</version>
+    <version>6.1.1-SNAPSHOT</version>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Servlet for Jakarta EE, Release 6.1</name>
 
     <properties>
