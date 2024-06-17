@@ -22,4 +22,4 @@
 # package that should be tested by the signature tests.
 ###############################################################
 
-jakarta.servlet=6.1
+jakarta.servlet=6.2
