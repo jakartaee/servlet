@@ -1,6 +1,6 @@
 :xrefstyle: full
-:spec-version: 6.1
-:spec-version-underscore: 6_1
+:spec-version: 6.2
+:spec-version-underscore: 6_2
 
 :sectnums!:
 :figure-caption!:
@@ -8576,6 +8576,10 @@ for Dependency Injection" of the Jakarta EE Platform 11 specification.
 
 This document is the final release of the
 Jakarta Servlet {spec-version} specification developed under the Jakarta EE Working Group.
+
+=== Changes Since Jakarta Servlet 6.1
+
+TBD.
 
 === Changes Since Jakarta Servlet 6.0
 
