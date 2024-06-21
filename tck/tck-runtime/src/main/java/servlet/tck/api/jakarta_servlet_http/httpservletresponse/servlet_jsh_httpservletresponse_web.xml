@@ -71,7 +71,7 @@
     <session-timeout>54</session-timeout>
   </session-config>
   <error-page>
-    <error-code>411</error-code>
+    <error-code>410</error-code>
     <location>/servletErrorPage</location>
   </error-page>
 </web-app>
