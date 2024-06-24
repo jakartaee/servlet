@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -211,7 +211,11 @@ public interface ServletResponse {
      * @since Servlet 6.1
      */
     default void setCharacterEncoding(Charset encoding) {
-        setCharacterEncoding(encoding.name());
+        if (encoding == null) {
+            setCharacterEncoding((String) null);
+        } else {
+            setCharacterEncoding(encoding.name());
+        }
     }
 
     /**
