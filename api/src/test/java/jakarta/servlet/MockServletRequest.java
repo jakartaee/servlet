@@ -224,4 +224,9 @@ public class MockServletRequest implements ServletRequest {
     public ServletConnection getServletConnection() {
         return null;
     }
+
+    @Override
+    public void addConnectionFailureListener(ConnectionFailureListener listener) {
+
+    }
 }
