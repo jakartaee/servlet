@@ -75,7 +75,7 @@ public class Cookie implements Cloneable, Serializable {
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
     static {
-        boolean enforced = Boolean.valueOf(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"));
+        boolean enforced = Boolean.parseBoolean(System.getProperty("org.glassfish.web.rfc2109_cookie_names_enforced", "true"));
 
         if (enforced) {
             TSPECIALS = "/()<>@,;:\\\"[]?={} \t";
