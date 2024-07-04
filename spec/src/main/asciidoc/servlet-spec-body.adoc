@@ -8579,7 +8579,9 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 6.1
 
-TBD.
+link:https://github.com/eclipse-ee4j/servlet-api/issues/542[Issue 542]::
+Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
+the `HttpServletResponse` 
 
 === Changes Since Jakarta Servlet 6.0
 

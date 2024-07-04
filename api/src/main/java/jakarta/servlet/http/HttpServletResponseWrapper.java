@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -139,6 +139,16 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     @Override
     public void sendRedirect(String location, int sc, boolean clearBuffer) throws IOException {
         this._getHttpServletResponse().sendRedirect(location, sc, clearBuffer);
+    }
+
+    /**
+     * The default behavior of this method is to call sendEarlyHints() on the wrapped response object.
+     *
+     * @since Servlet 6.2
+     */
+    @Override
+    public void sendEarlyHints() {
+        this._getHttpServletResponse().sendEarlyHints();
     }
 
     /**

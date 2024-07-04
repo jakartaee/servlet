@@ -74,6 +74,11 @@ public class MockHttpServletResponse extends MockServletResponse implements Http
     }
 
     @Override
+    public void sendEarlyHints() {
+
+    }
+
+    @Override
     public void setDateHeader(String name, long date) {
 
     }
