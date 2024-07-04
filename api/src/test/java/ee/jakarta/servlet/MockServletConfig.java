@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Contributors to the Eclipse Foundation.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,8 +14,10 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package jakarta.servlet;
+package ee.jakarta.servlet;
 
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
