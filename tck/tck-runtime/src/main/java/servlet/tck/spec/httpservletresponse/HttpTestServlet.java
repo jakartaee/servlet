@@ -25,7 +25,10 @@
 package servlet.tck.spec.httpservletresponse;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 import servlet.tck.common.servlets.HttpTCKServlet;
 
@@ -42,22 +45,44 @@ public class HttpTestServlet extends HttpTCKServlet {
     response.addIntHeader("header2", 56789);
   }
 
-  public void flushBufferTest(HttpServletRequest request,
+  public void flushBufferOnContentLengthTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
     int size = 40;
     response.setContentLength(size);
 
-    PrintWriter pw = response.getWriter();
-    pw.println("Test PASSED");
-    StringBuffer tmp = new StringBuffer(2 * size);
-    int i = 0;
+    OutputStream out = response.getOutputStream();
+    byte[] passed = "Test PASSED\n".getBytes(StandardCharsets.ISO_8859_1);
+    out.write(passed);
 
-    while (i < 8) {
-      tmp = tmp.append("111111111x");
-      i = i + 1;
-    }
-    pw.println(tmp);
+    byte[] fill = new byte[size - passed.length];
+    Arrays.fill(fill, (byte) 'x');
+    out.write(fill);
     response.addIntHeader("header1", 12345);
+
+    try {
+      out.write(fill);
+      throw new IllegalStateException("write did not fail");
+    } catch (Throwable ignored) {}
+  }
+
+  public void flushBufferOnContentLengthCommittedTest(HttpServletRequest request,
+         HttpServletResponse response) throws ServletException, IOException {
+    int size = 40;
+    response.setContentLength(size);
+
+    OutputStream out = response.getOutputStream();
+    byte[] passed = "Test PASSED\n".getBytes(StandardCharsets.ISO_8859_1);
+    out.write(passed);
+    response.flushBuffer();
+
+    byte[] fill = new byte[size - passed.length];
+    Arrays.fill(fill, (byte) 'x');
+    out.write(fill);
+
+    try {
+      out.write(fill);
+      throw new IllegalStateException("write did not fail");
+    } catch (Throwable ignored) {}
   }
 
   public void sendErrorCommitTest(HttpServletRequest request,
