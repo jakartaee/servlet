@@ -79,9 +79,18 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * setIntHeader to set header; 4. Attempt to write
    * additional bytes, expecting an exception to confirm the output stream
    * is closed; 5. Verify a 200 response without the header value set.
+   * 6. Repeat the test to check that the expected exception was thrown
+   * after the first request.
    */
   @Test
   public void flushBufferOnContentLengthTest() throws Exception {
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
+        + getServletName() + "?testname=" + "flushBufferOnContentLengthTest" + " HTTP/1.1");
+    invoke();
+
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + "flushBufferOnContentLengthTest" + " HTTP/1.1");
@@ -97,10 +106,17 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * content; 2. Write some bytes and flush the response; 3. Write
    * remaining bytes to the expected content length; 4. Attempt to write
    * additional bytes, expecting an exception to confirm the output stream
-   * is closed; 5. Verify a 200 response.
+   * is closed; 5. Verify a 200 response; 6. Repeat the test to check that
+   * the expected exception was thrown after the first request.
    */
   @Test
   public void flushBufferOnContentLengthCommittedTest() throws Exception {
+    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
+        + getServletName() + "?testname=" + "flushBufferOnContentLengthCommittedTest" + " HTTP/1.1");
+    invoke();
+
+    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
         + getServletName() + "?testname=" + "flushBufferOnContentLengthCommittedTest" + " HTTP/1.1");
     invoke();

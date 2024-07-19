@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+import jakarta.servlet.http.HttpSession;
 import servlet.tck.common.servlets.HttpTCKServlet;
 
 import jakarta.servlet.ServletException;
@@ -47,6 +48,11 @@ public class HttpTestServlet extends HttpTCKServlet {
 
   public void flushBufferOnContentLengthTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
+    HttpSession session = request.getSession(true);
+    Object illegalStateException = session.getAttribute("IllegalStateException");
+    if (illegalStateException instanceof IllegalStateException)
+      throw (IllegalStateException)illegalStateException;
+
     int size = 40;
     response.setContentLength(size);
 
@@ -61,12 +67,17 @@ public class HttpTestServlet extends HttpTCKServlet {
 
     try {
       out.write(fill);
-      throw new IllegalStateException("write did not fail");
-    } catch (Throwable ignored) {}
+      session.setAttribute("IllegalStateException", new IllegalStateException("write did not fail"));
+    } catch (IOException ignored) {}
   }
 
   public void flushBufferOnContentLengthCommittedTest(HttpServletRequest request,
-         HttpServletResponse response) throws ServletException, IOException {
+      HttpServletResponse response) throws ServletException, IOException {
+    HttpSession session = request.getSession(true);
+    Object illegalStateException = session.getAttribute("IllegalStateException");
+    if (illegalStateException instanceof IllegalStateException)
+        throw (IllegalStateException)illegalStateException;
+
     int size = 40;
     response.setContentLength(size);
 
@@ -81,8 +92,8 @@ public class HttpTestServlet extends HttpTCKServlet {
 
     try {
       out.write(fill);
-      throw new IllegalStateException("write did not fail");
-    } catch (Throwable ignored) {}
+      session.setAttribute("IllegalStateException", new IllegalStateException("write did not fail"));
+    } catch (IOException ignored) {}
   }
 
   public void sendErrorCommitTest(HttpServletRequest request,
