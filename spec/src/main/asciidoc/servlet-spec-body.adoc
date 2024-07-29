@@ -5506,8 +5506,8 @@ a `RequestDispatcher.forward` to the error resource had been performed.
 |Request Attributes
 |Type
 
-|`jakarta.servlet.error.status_code`
-|`java.lang.Integer`
+|`jakarta.servlet.error.exception`
+|`java.lang.Throwable`
 
 |`jakarta.servlet.error.exception_type`
 |`java.lang.Class`
@@ -5515,17 +5515,20 @@ a `RequestDispatcher.forward` to the error resource had been performed.
 |`jakarta.servlet.error.message`
 |`java.lang.String`
 
-|`jakarta.servlet.error.exception`
-|`java.lang.Throwable`
-
-|`jakarta.servlet.error.request_uri`
+|`jakarta.servlet.error.method`
 |`java.lang.String`
 
 |`jakarta.servlet.error.query_string`
 |`java.lang.String`
 
+|`jakarta.servlet.error.request_uri`
+|`java.lang.String`
+
 |`jakarta.servlet.error.servlet_name`
 |`java.lang.String`
+
+|`jakarta.servlet.error.status_code`
+|`java.lang.Integer`
 |===
 
 These attributes allow the servlet to generate
