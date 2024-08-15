@@ -720,12 +720,12 @@ public class TestServlet extends HttpTCKServlet {
     Cookie testCookie = new Cookie("name1", "value1");
 
     boolean expectedResult = false;
-    boolean result = testCookie.getSecure();
+    boolean result = testCookie.isHttpOnly();
 
     response.addCookie(testCookie);
     if (result != expectedResult) {
       passed = false;
-      pw.println("getSecure() returned an incorrect result");
+      pw.println("isHttpOnly() returned an incorrect result");
       pw.println("Expected = " + expectedResult + " ");
       pw.println("Actual = |" + result + "| ");
     } else {
@@ -741,12 +741,12 @@ public class TestServlet extends HttpTCKServlet {
     boolean passed = false;
     Cookie testCookie = new Cookie("name1", "value1");
 
-    String result = testCookie.getAttribute("secure");
+    String result = testCookie.getAttribute("httponly");
 
     response.addCookie(testCookie);
     if (result != null) {
       passed = false;
-      pw.println("getAttribute(\"Secure\") returned non-null result");
+      pw.println("getAttribute(\"HttpOnly\") returned non-null result");
       pw.println("Actual = |" + result + "| ");
     } else {
       passed = true;
@@ -762,13 +762,13 @@ public class TestServlet extends HttpTCKServlet {
     Cookie testCookie = new Cookie("name1", "value1");
 
     boolean expectedResult = true;
-    testCookie.setSecure(expectedResult);
-    boolean result = testCookie.getSecure();
+    testCookie.setHttpOnly(expectedResult);
+    boolean result = testCookie.isHttpOnly();
 
     response.addCookie(testCookie);
     if (result != expectedResult) {
       passed = false;
-      pw.println("getSecure() returned an incorrect result ");
+      pw.println("isHttpOnly() returned an incorrect result ");
       pw.println("Expected = " + expectedResult + " ");
       pw.println("Actual = |" + result + "| ");
     } else {
@@ -785,13 +785,13 @@ public class TestServlet extends HttpTCKServlet {
     Cookie testCookie = new Cookie("name1", "value1");
 
     boolean expectedResult = true;
-    testCookie.setAttribute("secure", EMPTY_STRING);
-    boolean result = testCookie.getSecure();
+    testCookie.setAttribute("httponly", EMPTY_STRING);
+    boolean result = testCookie.isHttpOnly();
 
     response.addCookie(testCookie);
     if (result != expectedResult) {
       passed = false;
-      pw.println("getSecure() returned an incorrect result ");
+      pw.println("isHttpOnly() returned an incorrect result ");
       pw.println("Expected = " + expectedResult + " ");
       pw.println("Actual = |" + result + "| ");
     } else {
@@ -808,13 +808,13 @@ public class TestServlet extends HttpTCKServlet {
     Cookie testCookie = new Cookie("name1", "value1");
 
     boolean expectedResult = false;
-    testCookie.setAttribute("secure", "other");
-    boolean result = testCookie.getSecure();
+    testCookie.setAttribute("httponly", "other");
+    boolean result = testCookie.isHttpOnly();
 
     response.addCookie(testCookie);
     if (result != expectedResult) {
       passed = false;
-      pw.println("getSecure() returned an incorrect result ");
+      pw.println("isHttpOnly() returned an incorrect result ");
       pw.println("Expected = " + expectedResult + " ");
       pw.println("Actual = |" + result + "| ");
     } else {
