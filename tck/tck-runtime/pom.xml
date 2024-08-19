@@ -33,7 +33,7 @@
     <name>Jakarta Servlet TCK Runtime</name>
 
     <properties>
-        <shrinkwrap-resolver.version>3.3.0</shrinkwrap-resolver.version>
+        <shrinkwrap-resolver.version>3.3.1</shrinkwrap-resolver.version>
         <servlet.api.version>6.2.0-SNAPSHOT</servlet.api.version>
         <sigtest.version>2.3</sigtest.version>
     </properties>
