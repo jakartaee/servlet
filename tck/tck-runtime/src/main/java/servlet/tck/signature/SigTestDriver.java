@@ -53,26 +53,6 @@ public class SigTestDriver extends SignatureTestDriver {
 
   private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
-  private static String[] excludeJdkClasses = {
-          "java.util.Map",
-          "java.lang.Object",
-          "java.io.ByteArrayInputStream",
-          "java.io.InputStream",
-          "java.lang.Deprecated",
-          "java.io.Writer",
-          "java.io.OutputStream",
-          "java.util.List",
-          "java.util.Collection",
-          "java.lang.instrument.IllegalClassFormatException",
-          "javax.transaction.xa.XAException",
-          "java.lang.annotation.Repeatable",
-          "java.lang.InterruptedException",
-          "java.lang.CloneNotSupportedException",
-          "java.lang.Throwable",
-          "java.lang.Thread",
-          "java.lang.Enum"
-  };
-
 
   @Override
   protected String[] createTestArguments(String packageListFile, String mapFile,
@@ -123,11 +103,7 @@ public class SigTestDriver extends SignatureTestDriver {
       command.add(subPackages[i]);
     }
 
-    for(String jdkClassName:excludeJdkClasses) {
-      command.add(EXCLUDE_JDK_CLASS_FLAG);
-      command.add(jdkClassName);
-    }
-
+    command.add(EXCLUDE_JDK_CLASS_FLAG);
 
     command.add(API_VERSION_FLAG);
     command.add(info.getVersion());
