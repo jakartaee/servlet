@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018, 2021 Oracle and/or its affiliates and others.
+# Copyright (c) 2018, 2024 Oracle and/or its affiliates and others.
 # All rights reserved.
 #
 # This program and the accompanying materials are made available under the
@@ -16,10 +16,10 @@
 #
 
 ###############################################################
-# The signature test mapping file for the JSF TCK.  This file
-# should be formatted as a standard java properties file.  The
-# name is the package name and the value is the version of the
-# package that should be tested by the signature tests.
+# The signature test mapping file for the Servlet TCK.  This
+# file should be formatted as a standard java properties file.
+# The name is the package name and the value is the version of
+# the package that should be tested by the signature tests.
 ###############################################################
 
 jakarta.servlet=6.2
