@@ -823,13 +823,13 @@ public class TestServlet extends HttpTCKServlet {
     ServletTestUtil.printResult(pw, passed);
   }
 
-  public void setPartitionedTest(@SuppressWarnings("unused") HttpServletRequest request,
+  public void setEmptyAttributeTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
     PrintWriter pw = response.getWriter();
     Cookie testCookie = new Cookie("name1", "value1");
 
-    testCookie.setAttribute("Partitioned", EMPTY_STRING);
+    testCookie.setAttribute("EmptyAttribute", EMPTY_STRING);
     response.addCookie(testCookie);
 
     ServletTestUtil.printResult(pw, true);
