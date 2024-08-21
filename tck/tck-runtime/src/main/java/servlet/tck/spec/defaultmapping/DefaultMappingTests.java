@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,6 +21,12 @@
 package servlet.tck.spec.defaultmapping;
 
 import servlet.tck.common.client.AbstractTckTest;
+import servlet.tck.spec.requestmap.TestServlet1;
+import servlet.tck.spec.requestmap.TestServlet2;
+import servlet.tck.spec.requestmap.TestServlet3;
+import servlet.tck.spec.requestmap.TestServlet4;
+import servlet.tck.spec.requestmap.TestServlet5;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -34,7 +40,8 @@ public class DefaultMappingTests extends AbstractTckTest {
   @Deployment(testable = false)
   public static WebArchive getTestArchive() throws Exception {
     return ShrinkWrap.create(WebArchive.class, "servlet_spec_defaultmapping_web.war")
-            .addClasses(TestServlet6.class)
+            .addClasses(TestServlet1.class, TestServlet2.class, TestServlet3.class, TestServlet4.class,
+                    TestServlet5.class, TestServlet6.class)
             .setWebXML(DefaultMappingTests.class.getResource("servlet_spec_defaultmapping_web.xml"));
   }
 
