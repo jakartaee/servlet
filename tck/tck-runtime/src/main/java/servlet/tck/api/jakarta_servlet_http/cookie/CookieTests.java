@@ -540,10 +540,18 @@ public class CookieTests extends AbstractTckTest {
     invoke();
   }
 
+  /*
+   * @testName: setEmptyAttributeTest
+   *
+   * @assertion_ids:
+   *
+   * @test_Strategy: Servlet sets a cookie that includes an empty attribute. Ensures that the attribute is present and
+   *                 that there is no '=' after the attribute name.
+   */
   @Test
-  public void setPartitionedTest() throws Exception {
-    TEST_PROPS.get().setProperty(APITEST, "setPartitionedTest");
-    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Partitioned##!Partitioned=");
+  public void setEmptyAttributeTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setEmptyAttributeTest");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##EmptyAttribute##!EmptyAttribute=");
     invoke();
   }
 }

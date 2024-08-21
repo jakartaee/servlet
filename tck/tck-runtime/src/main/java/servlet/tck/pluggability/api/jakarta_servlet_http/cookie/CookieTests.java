@@ -602,9 +602,9 @@ public class CookieTests extends AbstractTckTest {
   }
 
   @Test
-  public void setPartitionedTest() throws Exception {
-    TEST_PROPS.get().setProperty(APITEST, "setPartitionedTest");
-    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##Partitioned##!Partitioned=");
+  public void setEmptyAttributeTest() throws Exception {
+    TEST_PROPS.get().setProperty(APITEST, "setEmptyAttributeTest");
+    TEST_PROPS.get().setProperty(EXPECTED_HEADERS, "Set-Cookie:name1=value1##EmptyAttribute##!EmptyAttribute=");
     invoke();
   }
 }
