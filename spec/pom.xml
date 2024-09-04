@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2019, 2023 Contributors to the Eclipse Foundation.
+    Copyright (c) 2019, 2024 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,7 +34,7 @@
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
-        <asciidoctorj.version>2.5.13</asciidoctorj.version>
+        <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <asciidoctorj.pdf.version>2.3.18</asciidoctorj.pdf.version>
         <jruby.version>9.3.15.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
@@ -90,6 +90,8 @@
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
+                <!-- Override parent until parent is updated -->
+                <version>3.0.0</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.jruby</groupId>
