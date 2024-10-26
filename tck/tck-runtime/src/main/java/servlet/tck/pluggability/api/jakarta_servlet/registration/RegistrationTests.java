@@ -21,6 +21,7 @@ package servlet.tck.pluggability.api.jakarta_servlet.registration;
 
 import servlet.tck.api.jakarta_servlet.registration.TestListener;
 import servlet.tck.api.jakarta_servlet.registration.TestServlet;
+import servlet.tck.api.jakarta_servlet.servletcontext30.AddFilterString;
 import servlet.tck.api.jakarta_servlet.servletcontext30.AddServletString;
 import servlet.tck.api.jakarta_servlet.servletcontext30.AddServletClass;
 import servlet.tck.api.jakarta_servlet.servletcontext30.AddServletNotFound;
@@ -56,7 +57,7 @@ public class RegistrationTests extends AbstractTckTest {
   public static WebArchive getTestArchive() throws Exception {
     JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class, "fragment-1.jar")
             .addClasses(TestServlet1.class, RequestListener1.class, AddServletString.class, AddServletClass.class,
-                    AddFilterClass.class, CreateServlet.class, CreateFilter.class, AddServletNotFound.class,
+                    AddFilterString.class, AddFilterClass.class, CreateServlet.class, CreateFilter.class, AddServletNotFound.class,
                     AddFilterNotFound.class, BadServlet.class, BadFilter.class, BadListener.class)
             .addAsResource(RegistrationTests.class.getResource("servlet_plu_registration_web-fragment.xml"),
                     "META-INF/web-fragment.xml");
