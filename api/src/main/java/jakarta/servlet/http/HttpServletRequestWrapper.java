@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
@@ -284,7 +285,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call login on the wrapped request object.
+     * The default behavior of this method is to call logout on the wrapped request object.
      *
      * @since Servlet 3.0
      */
