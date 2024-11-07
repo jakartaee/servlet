@@ -6535,11 +6535,11 @@ public @interface HttpMethodConstraint {
 |===
 |Element
 |Description
-|value
 |Default
 
-
-
+|value
+|The HTTP protocol method name
+|
 
 |`emptyRoleSemantic`
 |The default authorization semantic that
