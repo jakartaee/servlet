@@ -34,7 +34,7 @@
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
         <maven.site.skip>true</maven.site.skip>
-        <asciidoctorj.version>2.5.13</asciidoctorj.version>
+        <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
         <jruby.version>9.4.9.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
