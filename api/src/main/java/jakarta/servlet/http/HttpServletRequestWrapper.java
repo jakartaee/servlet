@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2024 Contributors to the Eclipse Foundation
- * Copyright (c) 1997, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
