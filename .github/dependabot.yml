@@ -2,9 +2,21 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
+    target-branch: "master"
     schedule:
       interval: "weekly"
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "master"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "6.1.x"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "6.1.x"
     schedule:
       interval: "weekly"
