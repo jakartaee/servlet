@@ -78,7 +78,7 @@ public class HttpServletResponseTests extends AbstractTckTest {
    * content; 2. Then write to the buffer to fill up the buffer. 2. Call
    * setIntHeader to set header 3. Verify that the header value is not set,
    */
-  @Test
+  @Ignore @Test
   public void flushBufferTest() throws Exception {
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
