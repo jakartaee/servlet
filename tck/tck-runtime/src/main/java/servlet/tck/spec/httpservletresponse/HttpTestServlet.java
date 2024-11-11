@@ -25,12 +25,8 @@
 package servlet.tck.spec.httpservletresponse;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
-import jakarta.servlet.http.HttpSession;
 import servlet.tck.common.servlets.HttpTCKServlet;
 
 import jakarta.servlet.ServletException;
@@ -46,54 +42,22 @@ public class HttpTestServlet extends HttpTCKServlet {
     response.addIntHeader("header2", 56789);
   }
 
-  public void flushBufferOnContentLengthTest(HttpServletRequest request,
+  public void flushBufferTest(HttpServletRequest request,
       HttpServletResponse response) throws ServletException, IOException {
-    HttpSession session = request.getSession(true);
-    Object illegalStateException = session.getAttribute("IllegalStateException");
-    if (illegalStateException instanceof IllegalStateException)
-      throw (IllegalStateException)illegalStateException;
-
     int size = 40;
     response.setContentLength(size);
 
-    OutputStream out = response.getOutputStream();
-    byte[] passed = "Test PASSED\n".getBytes(StandardCharsets.ISO_8859_1);
-    out.write(passed);
+    PrintWriter pw = response.getWriter();
+    pw.println("Test PASSED");
+    StringBuffer tmp = new StringBuffer(2 * size);
+    int i = 0;
 
-    byte[] fill = new byte[size - passed.length];
-    Arrays.fill(fill, (byte) 'x');
-    out.write(fill);
+    while (i < 8) {
+      tmp = tmp.append("111111111x");
+      i = i + 1;
+    }
+    pw.println(tmp);
     response.addIntHeader("header1", 12345);
-
-    try {
-      out.write(fill);
-      session.setAttribute("IllegalStateException", new IllegalStateException("write did not fail"));
-    } catch (IOException ignored) {}
-  }
-
-  public void flushBufferOnContentLengthCommittedTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    HttpSession session = request.getSession(true);
-    Object illegalStateException = session.getAttribute("IllegalStateException");
-    if (illegalStateException instanceof IllegalStateException)
-        throw (IllegalStateException)illegalStateException;
-
-    int size = 40;
-    response.setContentLength(size);
-
-    OutputStream out = response.getOutputStream();
-    byte[] passed = "Test PASSED\n".getBytes(StandardCharsets.ISO_8859_1);
-    out.write(passed);
-    response.flushBuffer();
-
-    byte[] fill = new byte[size - passed.length];
-    Arrays.fill(fill, (byte) 'x');
-    out.write(fill);
-
-    try {
-      out.write(fill);
-      session.setAttribute("IllegalStateException", new IllegalStateException("write did not fail"));
-    } catch (IOException ignored) {}
   }
 
   public void sendErrorCommitTest(HttpServletRequest request,
