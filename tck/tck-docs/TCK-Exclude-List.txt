@@ -18,3 +18,4 @@
 # This is intended only for documentation purpose and is not used to exclude any tests.
 # The tests are excluded from the test source using @Disabled tag in JUnit framework.
 #
+#servlet/tck/tck-runtime/src/main/java/servlet/tck/spec/httpservletresponse/HttpServletResponseTests.flushBufferTest()

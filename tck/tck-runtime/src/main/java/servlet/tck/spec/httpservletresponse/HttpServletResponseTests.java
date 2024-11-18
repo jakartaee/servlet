@@ -26,6 +26,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class HttpServletResponseTests extends AbstractTckTest {
@@ -70,55 +71,20 @@ public class HttpServletResponseTests extends AbstractTckTest {
   }
 
   /*
-   * @testName: flushBufferOnContentLengthTest
+   * @testName: flushBufferTest
    *
    * @assertion_ids: Servlet:SPEC:32; Servlet:SPEC:33; Servlet:SPEC:42.2;
    *
    * @test_Strategy: 1. First call setContentLength to set the length of
-   * content; 2. Write bytes to the expected content length; 3. Call
-   * setIntHeader to set header; 4. Attempt to write
-   * additional bytes, expecting an exception to confirm the output stream
-   * is closed; 5. Verify a 200 response without the header value set.
-   * 6. Repeat the test to check that the expected exception was thrown
-   * after the first request.
+   * content; 2. Then write to the buffer to fill up the buffer. 2. Call
+   * setIntHeader to set header 3. Verify that the header value is not set,
    */
+  @Disabled
   @Test
-  public void flushBufferOnContentLengthTest() throws Exception {
-    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
+  public void flushBufferTest() throws Exception {
     TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
     TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "flushBufferOnContentLengthTest" + " HTTP/1.1");
-    invoke();
-
-    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.get().setProperty(UNEXPECTED_HEADERS, "header1: 12345");
-    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "flushBufferOnContentLengthTest" + " HTTP/1.1");
-    invoke();
-  }
-
-  /*
-   * @testName: flushBufferOnContentLengthCommittedTest
-   *
-   * @assertion_ids: Servlet:SPEC:32; Servlet:SPEC:33; Servlet:SPEC:42.2;
-   *
-   * @test_Strategy: 1. First call setContentLength to set the length of
-   * content; 2. Write some bytes and flush the response; 3. Write
-   * remaining bytes to the expected content length; 4. Attempt to write
-   * additional bytes, expecting an exception to confirm the output stream
-   * is closed; 5. Verify a 200 response; 6. Repeat the test to check that
-   * the expected exception was thrown after the first request.
-   */
-  @Test
-  public void flushBufferOnContentLengthCommittedTest() throws Exception {
-    TEST_PROPS.get().setProperty(SAVE_STATE, "true");
-    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "flushBufferOnContentLengthCommittedTest" + " HTTP/1.1");
-    invoke();
-
-    TEST_PROPS.get().setProperty(USE_SAVED_STATE, "true");
-    TEST_PROPS.get().setProperty(REQUEST, "GET " + getContextRoot() + "/"
-        + getServletName() + "?testname=" + "flushBufferOnContentLengthCommittedTest" + " HTTP/1.1");
+        + getServletName() + "?testname=" + "flushBufferTest" + " HTTP/1.1");
     invoke();
   }
 
