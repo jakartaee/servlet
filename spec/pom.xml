@@ -91,7 +91,7 @@
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <!-- Override parent until parent is updated -->
-                <version>3.1.0</version>
+                <version>3.1.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.jruby</groupId>
