@@ -1359,7 +1359,9 @@ All segments that are exactly `"."` are removed from the segment series. Segment
 
 . **Concatenate segments.**
 +
-The segments are concatenated into a single path string with each segment preceded by the `"/"` character. If there are no segments remaining, the resulting path is `"/"`. If a segment contains the "/" or "%" characters, and the container is configured to not reject the request for containing an encoded `"/"`, then the container should re-encode those characters to the %nn form. If any characters are re-encoded, then the `"%"` must also be re-encoded.
+The segments are concatenated into a single path string with each segment preceded by the `"/"` character.
+If there are no segments remaining, the resulting path is `"/"`.
+If the container is configured not to reject URIs containing an encoded `"/"` then all instances of `"/"` and `"%"` in the individual segments must be `%nn` encoded before concatenating them.
 
 . **Mapping URI to context and resource.**
 +
@@ -8585,6 +8587,8 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 link:https://github.com/eclipse-ee4j/servlet-api/issues/542[Issue 542]::
 Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
 the `HttpServletResponse` 
+
+Clarify the description of when and how segments are re-encoded as part of URI Path Canonicalization.
 
 === Changes Since Jakarta Servlet 6.0
 
