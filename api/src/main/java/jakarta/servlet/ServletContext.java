@@ -1238,12 +1238,6 @@ public interface ServletContext {
     /**
      * Gets the class loader of the web application represented by this ServletContext.
      *
-     * <p>
-     * If a security manager exists, and the caller's class loader is not the same as, or an ancestor of the requested class
-     * loader, then the security manager's <code>checkPermission</code> method is called with a
-     * <code>RuntimePermission("getClassLoader")</code> permission to check whether access to the requested class loader
-     * should be granted.
-     *
      * @return the class loader of the web application represented by this ServletContext
      *
      * @since Servlet 3.0
