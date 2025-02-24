@@ -35,7 +35,7 @@
     <properties>
         <shrinkwrap-resolver.version>3.3.3</shrinkwrap-resolver.version>
         <servlet.api.version>6.1.1-SNAPSHOT</servlet.api.version>
-        <sigtest.version>2.5</sigtest.version>
+        <sigtest.version>2.6</sigtest.version>
     </properties>
 
     <dependencies>
