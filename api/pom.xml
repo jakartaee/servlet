@@ -165,7 +165,7 @@
             <!-- Restricts the Java version to 11 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>3.14.0</version>
                 <configuration>
                     <source>11</source>
                     <target>11</target>
