@@ -269,7 +269,7 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @throws IOException if an input or output error is detected when the servlet handles the request
      *
-     * @throws ServletException if the request for the POST could not be handled
+     * @throws ServletException if the request for the PATCH could not be handled
      *
      * @see jakarta.servlet.ServletOutputStream
      * @see jakarta.servlet.ServletResponse#setContentType
