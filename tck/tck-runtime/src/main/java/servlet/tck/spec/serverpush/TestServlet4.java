@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,9 +39,14 @@ public class TestServlet4 extends HttpServlet {
     resp.addCookie(cookie1);
 
     Cookie cookie2 = new Cookie("baz", "qux");
-    cookie2.setMaxAge(-1);
+    cookie2.setMaxAge(0);
     resp.addCookie(cookie2);
-    pw.println("add cookies [foo,bar] [baz,qux] to response");
+
+    Cookie cookie3 = new Cookie("abc", "123");
+    cookie3.setMaxAge(-1);
+    resp.addCookie(cookie3);
+
+    pw.println("add cookies [foo,bar] [baz,qux] [abc,123] to response");
 
     HttpSession session = req.getSession(true);
     pw.println("create session: " + session);

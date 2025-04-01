@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -65,7 +65,7 @@ import java.util.Set;
  * {@link HttpServletRequest#getQueryString()}</li>
  *
  * <li>If {@link HttpServletResponse#addCookie(Cookie)} has been called on the associated response, then a corresponding
- * Cookie header will be added to the PushBuilder, unless the {@link Cookie#getMaxAge()} is &lt;=0, in which case the
+ * Cookie header will be added to the PushBuilder, unless the {@link Cookie#getMaxAge()} is zero, in which case the
  * Cookie will be removed from the builder.</li>
  *
  * </ul>

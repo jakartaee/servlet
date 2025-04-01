@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -315,7 +315,7 @@ public class ServerPushTests extends AbstractTckTest {
         headers.put("foo", "bar");
         CookieManager cm = new CookieManager();
         List<HttpResponse<String>> responses = sendRequest(headers, null, cm);
-        verifyResponses(responses, new String[] { "add cookies [foo,bar] [baz,qux] to response", "INDEX from index.html" });
+        verifyResponses(responses, new String[] { "add cookies [foo,bar] [baz,qux] [abc,123] to response", "INDEX from index.html" });
         boolean cookieExisted = false;
         String pbCookies = "";
         try {
@@ -335,7 +335,11 @@ public class ServerPushTests extends AbstractTckTest {
             }
 
             if (pbCookies.contains("baz") || pbCookies.contains("qux")) {
-                throw new Exception("the maxAge for Cookie 'baz=qux' is <= 0, it should be removed from the builder");
+                throw new Exception("The maxAge for Cookie 'baz=qux' is == 0, it should be removed from the PushBuilder.");
+            }
+
+            if (!pbCookies.contains("abc") || !pbCookies.contains("123")) {
+                throw new Exception("The maxAge for Cookie 'abc=123' is < 0, it should be added to the PushBuilder.");
             }
         } catch (Exception e) {
             logger.error("Caught exception: " + e.getMessage(), e);

@@ -8584,11 +8584,17 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 6.1
 
-link:https://github.com/eclipse-ee4j/servlet-api/issues/542[Issue 542]::
+link:https://github.com/jakartaee/servlet/issues/542[Issue 542]::
 Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
 the `HttpServletResponse` 
 
 Clarify the description of when and how segments are re-encoded as part of URI Path Canonicalization.
+
+link:https://github.com/jakartaee/servlet/issues/661[Issue 661]::
+Limit the requirement on `PushBuilder` to remove cookies to those `Cookie` instances where
+`Cookie.getMaxAge()` returns zero. This allows `Cookie` instances where `Cookie.getMaxAge()`
+returns a negative value to be retained which is consistent with (per RFC 6265) such cookies
+being retained until "the current session is over" as defined by the user agent.  
 
 === Changes Since Jakarta Servlet 6.0
 
