@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -200,8 +200,13 @@ public class Cookie implements Cloneable, Serializable {
      * the <i>maximum</i> age when the cookie will expire, not the cookie's current age.
      *
      * <p>
-     * A negative value means that the cookie is not stored persistently and will be deleted when the Web browser exits. A
-     * zero value causes the cookie to be deleted.
+     * A zero value causes the cookie to be deleted.
+     *
+     * <p>
+     * A negative value means that neither the {@code Max-Age} nor the {@code Expires} attribute will be set on the cookie
+     * sent to the user agent. As per RFC 6265, this means that the user agent will retain the cookie until "the current
+     * session is over" as defined by thge user agent. Typically, this means that the cookie will persist until browser
+     * shutdown.
      *
      * @param expiry an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie is not
      * stored; if zero, deletes the cookie
@@ -216,7 +221,10 @@ public class Cookie implements Cloneable, Serializable {
      * Gets the maximum age in seconds of this Cookie.
      *
      * <p>
-     * By default, <code>-1</code> is returned, which indicates that the cookie will persist until browser shutdown.
+     * By default, {@code -1} is returned, which indicates that neither the {@code Max-Age} nor the {@code Expires}
+     * attribute will be set on the cookie sent to the user agent. As per RFC 6265, this means that the user agent will
+     * retain the cookie until "the current session is over" as defined by thge user agent. Typically, this means that the
+     * cookie will persist until browser shutdown.
      *
      * @return an integer specifying the maximum age of the cookie in seconds; if negative, means the cookie persists until
      * browser shutdown
