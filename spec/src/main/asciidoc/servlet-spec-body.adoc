@@ -6,7 +6,7 @@
 :figure-caption!:
 == Jakarta Servlet Specification, Version {spec-version}
 
-Copyright (c) 2024 Contributors to the Eclipse Foundation.
+Copyright (c) 2025 Contributors to the Eclipse Foundation.
 
 Eclipse is a registered trademark of the Eclipse Foundation. Jakarta
 is a trademark of the Eclipse Foundation. Oracle and Java are
@@ -8591,6 +8591,10 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 link:https://github.com/jakartaee/servlet/issues/7[Issue 7]::
 Clarify that welcome files are processed before filter mapping occurs.
+
+link:https://github.com/jakartaee/servlet/issues/11[Issue 11]::
+Clarify the behaviour of `ServletContext.getRealPath()` when the virtual path
+can be mapped to a physical path but the physical path does not exist.
 
 link:https://github.com/jakartaee/servlet/issues/542[Issue 542]::
 Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
