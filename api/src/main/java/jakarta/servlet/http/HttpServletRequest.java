@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2024 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -304,7 +304,12 @@ public interface HttpServletRequest extends ServletRequest {
     /**
      * Returns the portion of the request URI that indicates the context of the request. The context path always comes first
      * in a request URI. The path starts with a "/" character but does not end with a "/" character. For servlets in the
-     * default (root) context, this method returns "". The container does not decode this string.
+     * default (root) context, this method returns "".
+     *
+     * <p>
+     * The value returned will be suitable for inclusion in a URI. It will be equivalent to the value provided by the user
+     * agent but it may not be identical to the value provided by the user agent. Path parameters will be removed, the path
+     * may be normalized or partially normalized and optional %nn encoding may be decoded or partially decoded.
      *
      * <p>
      * It is possible that a servlet container may match a context by more than one context path. In such cases this method
