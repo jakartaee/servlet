@@ -8596,6 +8596,9 @@ link:https://github.com/jakartaee/servlet/issues/11[Issue 11]::
 Clarify the behaviour of `ServletContext.getRealPath()` when the virtual path
 can be mapped to a physical path but the physical path does not exist.
 
+link:https://github.com/jakartaee/servlet/issues/18[Issue 18]::
+Clarify the behaviour of `HttpServletRequest.getContextPath()`.
+
 link:https://github.com/jakartaee/servlet/issues/542[Issue 542]::
 Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
 the `HttpServletResponse`.
