@@ -22,4 +22,7 @@ Run the build:
 The build runs copyright check and generates the jar, sources-jar and javadoc-jar by default.
 The API jar is built in /api/target.
 
+## TCk Challenges
 
+All test challenges for Jakarta Servlet must be resolved by Active Resolution.
+Please see the TCK Users guide for more details.

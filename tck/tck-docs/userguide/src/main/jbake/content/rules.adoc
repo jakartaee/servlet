@@ -355,9 +355,8 @@ for that version of the {TechnologyShortName} TCK.
 * A full description of why the test is invalid and what the correct behavior is believed to be
 * Any supporting material; debug logs, test output, test logs, run scripts, etc.
 
-
-
 2. Specification project evaluates the challenge. +
+This specification requires that all test challenges follow the "Active Resolution" process as described in the https://jakarta.ee/committees/specification/tckprocess/[Jakarta EE TCK Process Guide]. This team will attempt to take timely action in response to your challenge.
 Challenges can be resolved by a specification project lead, or a project challenge triage team, after a consensus of the specification project committers is reached or attempts to gain consensus fails.
 Specification projects may exercise lazy consensus, voting or any practice that follows the principles of Eclipse Foundation Development Process.
 The expected timeframe for a response is two weeks or less.
