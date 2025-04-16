@@ -408,6 +408,10 @@ public interface ServletContext {
      * container is running, including the proper path separators.
      *
      * <p>
+     * The real path returned is not required to exist. Generally, that means if a non-null result is returned for the
+     * <i>virtual</i> path <tt>/</tt> then a non-null must be returned all <i>virtual</i> paths within this ServletContext.
+     *
+     * <p>
      * Resources inside the <tt>/META-INF/resources</tt> directories of JAR files bundled in the application's
      * <tt>/WEB-INF/lib</tt> directory must be considered only if the container has unpacked them from their containing JAR
      * file, in which case the path to the unpacked location must be returned.
