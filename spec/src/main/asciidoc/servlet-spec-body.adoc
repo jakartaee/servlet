@@ -8584,6 +8584,9 @@ Jakarta Servlet {spec-version} specification developed under the Jakarta EE Work
 
 === Changes Since Jakarta Servlet 6.1
 
+link:https://github.com/jakartaee/servlet/issues/18[Issue 18]::
+Clarify the behaviour of `HttpServletRequest.getContextPath()`.
+
 link:https://github.com/jakartaee/servlet/issues/542[Issue 542]::
 Add support for RFC 8297 (Early Hints) via a new method `sendEarlyHints()` on
 the `HttpServletResponse` 
