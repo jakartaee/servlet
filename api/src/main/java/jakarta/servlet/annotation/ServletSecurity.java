@@ -59,6 +59,12 @@ public @interface ServletSecurity {
          * no protection of user data must be performed by the transport.
          */
         NONE,
+
+        /**
+         * Data Integrity: The information must can't be changed in transit (typically using SSL/TLS).
+         */
+        INTEGRAL,
+
         /**
          * All user data must be encrypted by the transport (typically using SSL/TLS).
          */
