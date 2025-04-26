@@ -89,8 +89,6 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
-    private boolean legacyHeadHandling;
-
     /**
      * Does nothing, because this is an abstract class.
      *
