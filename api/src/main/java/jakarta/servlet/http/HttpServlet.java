@@ -86,16 +86,6 @@ public abstract class HttpServlet extends GenericServlet {
     // Add headers in lower case as HTTP headers are case insensitive
     private static final List<String> SENSITIVE_HTTP_HEADERS = Arrays.asList("authorization", "cookie", "x-forwarded", "forwarded", "proxy-authorization");
 
-    /**
-     * The parameter obtained {@link ServletConfig#getInitParameter(String)} to determine if legacy processing of
-     * {@link #doHead(HttpServletRequest, HttpServletResponse)} is provided.
-     *
-     * @deprecated may be removed in future releases
-     * @since Servlet 6.0
-     */
-    @Deprecated(forRemoval = true, since = "Servlet 6.0")
-    public static final String LEGACY_DO_HEAD = "jakarta.servlet.http.legacyDoHead";
-
     private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
     private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
 
@@ -112,7 +102,6 @@ public abstract class HttpServlet extends GenericServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        legacyHeadHandling = Boolean.parseBoolean(config.getInitParameter(LEGACY_DO_HEAD));
     }
 
     /**
@@ -204,10 +193,7 @@ public abstract class HttpServlet extends GenericServlet {
      * protects itself from being called multiple times for one HTTP HEAD request).
      *
      * <p>
-     * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}. If the
-     * {@link ServletConfig} init parameter {@link #LEGACY_DO_HEAD} is set to "TRUE", then the response instance is wrapped
-     * so that the response body is discarded.
-     *
+     * The default implementation calls {@link #doGet(HttpServletRequest, HttpServletResponse)}.
      * <p>
      * If the HTTP HEAD request is incorrectly formatted, <code>doHead</code> returns an HTTP "Bad Request" message.
      *
@@ -220,13 +206,7 @@ public abstract class HttpServlet extends GenericServlet {
      * @throws ServletException if the request for the HEAD could not be handled
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (legacyHeadHandling) {
-            NoBodyResponse response = new NoBodyResponse(resp);
-            doGet(req, response);
-            response.setContentLength();
-        } else {
-            doGet(req, resp);
-        }
+        doGet(req, resp);
     }
 
     /**
