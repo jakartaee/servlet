@@ -282,6 +282,26 @@ public interface HttpServletRequest extends ServletRequest {
     String getPathTranslated();
 
     /**
+     * Instantiates a new instance of {@link PushBuilder} for issuing server push responses from the current request. This
+     * method returns null if the current connection does not support server push, or server push has been disabled by the
+     * client via a {@code SETTINGS_ENABLE_PUSH} settings frame value of {@code 0} (zero).
+     *
+     * @implSpec The default implementation returns null.
+     *
+     * @return a {@link PushBuilder} for issuing server push responses from the current request, or {@code null} if push is
+     * not supported. Note that some implementations may opt not to support server push and will therefore always return
+     * {@code null}
+     *
+     * @since Servlet 4.0
+     *
+     * @deprecated In favor of 103 early hints
+     */
+    @Deprecated
+    default PushBuilder newPushBuilder() {
+        return null;
+    }
+
+    /**
      * Returns the portion of the request URI that indicates the context of the request. The context path always comes first
      * in a request URI. The path starts with a "/" character but does not end with a "/" character. For servlets in the
      * default (root) context, this method returns "".

@@ -24,8 +24,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.WriteListener;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -696,5 +699,196 @@ public abstract class HttpServlet extends GenericServlet {
         response = (HttpServletResponse) res;
 
         service(request, response);
+    }
+}
+
+/*
+ * A response that includes no body, for use in (dumb) "HEAD" support. This just swallows that body, counting the bytes
+ * in order to set the content length appropriately. All other methods delegate directly to the wrapped HTTP Servlet
+ * Response object.
+ */
+// file private
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
+class NoBodyResponse extends HttpServletResponseWrapper {
+
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle("jakarta.servlet.http.LocalStrings");
+
+    private final NoBodyOutputStream noBody;
+    private PrintWriter writer;
+    private boolean didSetContentLength;
+    private boolean usingOutputStream;
+
+    // file private
+    NoBodyResponse(HttpServletResponse r) {
+        super(r);
+        noBody = new NoBodyOutputStream();
+    }
+
+    // file private
+    void setContentLength() {
+        if (!didSetContentLength) {
+            if (writer != null) {
+                writer.flush();
+            }
+            setContentLength(noBody.getContentLength());
+        }
+    }
+
+    @Override
+    public void setContentLength(int len) {
+        super.setContentLength(len);
+        didSetContentLength = true;
+    }
+
+    @Override
+    public void setContentLengthLong(long len) {
+        super.setContentLengthLong(len);
+        didSetContentLength = true;
+    }
+
+    @Override
+    public void setHeader(String name, String value) {
+        super.setHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void addHeader(String name, String value) {
+        super.addHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void setIntHeader(String name, int value) {
+        super.setIntHeader(name, value);
+        checkHeader(name);
+    }
+
+    @Override
+    public void addIntHeader(String name, int value) {
+        super.addIntHeader(name, value);
+        checkHeader(name);
+    }
+
+    private void checkHeader(String name) {
+        if ("content-length".equalsIgnoreCase(name)) {
+            didSetContentLength = true;
+        }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        noBody.reset();
+        usingOutputStream = false;
+        writer = null;
+        didSetContentLength = false;
+    }
+
+    @Override
+    public void resetBuffer() {
+        super.resetBuffer();
+        if (writer != null) {
+            try {
+                NoBodyOutputStream.disableFlush.set(Boolean.TRUE);
+                writer.flush();
+            } finally {
+                NoBodyOutputStream.disableFlush.remove();
+            }
+        }
+        noBody.reset();
+    }
+
+    @Override
+    public ServletOutputStream getOutputStream() throws IOException {
+
+        if (writer != null) {
+            throw new IllegalStateException(lStrings.getString("err.ise.getOutputStream"));
+        }
+        usingOutputStream = true;
+
+        return noBody;
+    }
+
+    @Override
+    public PrintWriter getWriter() throws UnsupportedEncodingException {
+
+        if (usingOutputStream) {
+            throw new IllegalStateException(lStrings.getString("err.ise.getWriter"));
+        }
+
+        if (writer == null) {
+            OutputStreamWriter w = new OutputStreamWriter(noBody, getCharacterEncoding());
+            writer = new PrintWriter(w);
+        }
+
+        return writer;
+    }
+}
+
+/*
+ * Servlet output stream that gobbles up all its data.
+ */
+// file private
+@Deprecated(forRemoval = true, since = "Servlet 6.0")
+class NoBodyOutputStream extends ServletOutputStream {
+
+    private static final String LSTRING_FILE = "jakarta.servlet.http.LocalStrings";
+    private static final ResourceBundle lStrings = ResourceBundle.getBundle(LSTRING_FILE);
+    static ThreadLocal<Boolean> disableFlush = new ThreadLocal<>();
+
+    private int contentLength = 0;
+
+    // file private
+    NoBodyOutputStream() {
+    }
+
+    void reset() {
+        contentLength = 0;
+    }
+
+    // file private
+    int getContentLength() {
+        return contentLength;
+    }
+
+    @Override
+    public void write(int b) {
+        contentLength++;
+    }
+
+    @Override
+    public void write(byte[] buf, int offset, int len) throws IOException {
+        if (buf == null) {
+            throw new NullPointerException(lStrings.getString("err.io.nullArray"));
+        }
+
+        if (offset < 0 || len < 0 || offset + len > buf.length) {
+            String msg = lStrings.getString("err.io.indexOutOfBounds");
+            Object[] msgArgs = new Object[3];
+            msgArgs[0] = Integer.valueOf(offset);
+            msgArgs[1] = Integer.valueOf(len);
+            msgArgs[2] = Integer.valueOf(buf.length);
+            msg = MessageFormat.format(msg, msgArgs);
+            throw new IndexOutOfBoundsException(msg);
+        }
+
+        contentLength += len;
+    }
+
+    @Override
+    public void flush() throws IOException {
+        if (Boolean.TRUE.equals(disableFlush.get()))
+            super.flush();
+    }
+
+    @Override
+    public boolean isReady() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setWriteListener(WriteListener writeListener) {
+        throw new UnsupportedOperationException();
     }
 }
