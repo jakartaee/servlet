@@ -156,49 +156,6 @@ public class TestServlet extends HttpTCKServlet {
     }
   }
 
-  @Deprecated
-  public void getCommentTest(@SuppressWarnings("unused") HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-
-    // set and get
-    testCookie.setComment("This is a comment");
-    String result = testCookie.getComment();
-
-    response.addCookie(testCookie);
-    if (result == null) {
-      passed = true;
-    } else {
-      passed = false;
-      pw.println("getComment() returned an incorrect result");
-      pw.println("Expected null value");
-      pw.println("Actual = |" + result + "| ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  @Deprecated
-  public void getCommentNullTest(@SuppressWarnings("unused") HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    String result = testCookie.getComment();
-
-    if (result != null) {
-      passed = false;
-      pw.println("getComment() returned a non-null result");
-      pw.println("Actual = |" + result + "|");
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
   public void getDomainTest(@SuppressWarnings("unused") HttpServletRequest request,
       HttpServletResponse response) throws IOException {
 
@@ -373,30 +330,6 @@ public class TestServlet extends HttpTCKServlet {
     } else {
       passed = false;
       pw.println("Error: The expected cookie was not received from the client");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  @Deprecated
-  public void getVersionTest(@SuppressWarnings("unused") HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-
-    // Version should be hard-coded to zero
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-
-    int expectedResult = 0;
-    int result = testCookie.getVersion();
-
-    response.addCookie(testCookie);
-    if (result != expectedResult) {
-      passed = false;
-      pw.println("getVersion() returned an incorrect result");
-      pw.println("Expected = " + expectedResult + " ");
-      pw.println("Actual = |" + result + "| ");
-    } else {
-      passed = true;
     }
     ServletTestUtil.printResult(pw, passed);
   }
@@ -596,57 +529,6 @@ public class TestServlet extends HttpTCKServlet {
     } else {
       passed = false;
       pw.println("getValue() returned a null result ");
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  @Deprecated
-  public void setVersionVer0Test(@SuppressWarnings("unused") HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-
-    // Expected to be hard-coded to zero
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    int expectedResult = 0;
-    testCookie.setVersion(expectedResult);
-
-    int result = testCookie.getVersion();
-
-    response.addCookie(testCookie);
-    if (result != expectedResult) {
-      passed = false;
-      pw.println("setVersion(" + expectedResult
-          + ") did not set the version properly");
-      pw.println("Expected = " + expectedResult + " ");
-      pw.println("Actual = |" + result + "| ");
-    } else {
-      passed = true;
-    }
-    ServletTestUtil.printResult(pw, passed);
-  }
-
-  @Deprecated
-  public void setVersionVer1Test(@SuppressWarnings("unused") HttpServletRequest request,
-      HttpServletResponse response) throws IOException {
-
-    PrintWriter pw = response.getWriter();
-    boolean passed = false;
-    Cookie testCookie = new Cookie("name1", "value1");
-    int expectedResult = 0;
-    testCookie.setVersion(1);
-
-    int result = testCookie.getVersion();
-
-    response.addCookie(testCookie);
-    if (result != expectedResult) {
-      passed = false;
-      pw.println("setVersion(" + expectedResult
-          + ") did not set the version properly");
-      pw.println("Expected = " + expectedResult + " ");
-      pw.println("Actual = |" + result + "| ");
-    } else {
-      passed = true;
     }
     ServletTestUtil.printResult(pw, passed);
   }
