@@ -109,6 +109,36 @@ public interface SessionCookieConfig {
     String getPath();
 
     /**
+     * With the adoption of support for RFC 6265, this method should no longer be used.
+     * <p>
+     * If called, this method has no effect.
+     *
+     * @param comment ignore
+     *
+     * @throws IllegalStateException if the <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was
+     * acquired has already been initialized
+     *
+     * @see jakarta.servlet.http.Cookie#setComment(String)
+     * @see jakarta.servlet.http.Cookie#getVersion
+     *
+     * @deprecated This is no longer required with RFC 6265
+     */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
+    void setComment(String comment);
+
+    /**
+     * With the adoption of support for RFC 6265, this method should no longer be used.
+     *
+     * @return Always {@code null}
+     *
+     * @see jakarta.servlet.http.Cookie#getComment()
+     *
+     * @deprecated This is no longer required with RFC 6265
+     */
+    @Deprecated(since = "Servlet 6.0", forRemoval = true)
+    String getComment();
+
+    /**
      * Marks or unmarks the session tracking cookies created on behalf of the application represented by the
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt> was acquired as <i>HttpOnly</i>.
      *

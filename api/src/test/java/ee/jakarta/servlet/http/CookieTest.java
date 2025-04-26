@@ -32,16 +32,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class CookieTest {
+    @SuppressWarnings("removal")
     @Test
     public void testCookie() {
         Cookie cookie = new Cookie("name", "value");
         assertThat(cookie.getName(), is("name"));
         assertThat(cookie.getValue(), is("value"));
+        assertThat(cookie.getComment(), nullValue());
         assertThat(cookie.getDomain(), nullValue());
         assertThat(cookie.getMaxAge(), is(-1));
         assertThat(cookie.getPath(), nullValue());
         assertThat(cookie.getSecure(), is(false));
         assertThat(cookie.isHttpOnly(), is(false));
+        assertThat(cookie.getVersion(), is(0));
         assertThat(cookie.getAttributes().size(), is(0));
     }
 
@@ -55,6 +58,22 @@ public class CookieTest {
     })
     public void testBadCookie(String name) {
         assertThrows(IllegalArgumentException.class, () -> new Cookie(name, "value"));
+    }
+
+    @SuppressWarnings("removal")
+    @Test
+    public void testComment() {
+        Cookie cookie = new Cookie("name", "value");
+        cookie.setComment("comment");
+        assertThat(cookie.getComment(), nullValue());
+        assertThat(cookie.getAttributes().size(), is(0));
+        cookie.setAttribute("COMMENT", "Comment!");
+        assertThat(cookie.getComment(), nullValue());
+        assertThat(cookie.getAttributes().keySet(), contains("COMMENT"));
+        assertThat(cookie.getAttributes().values(), contains("Comment!"));
+        cookie.setAttribute("COMMENT", null);
+        assertThat(cookie.getComment(), nullValue());
+        assertThat(cookie.getAttributes().size(), is(0));
     }
 
     @Test
@@ -139,6 +158,19 @@ public class CookieTest {
         assertThat(cookie.getValue(), is("other"));
         cookie.setValue(null);
         assertThat(cookie.getValue(), nullValue());
+    }
+
+    @SuppressWarnings("removal")
+    @Test
+    public void testVersion() {
+        Cookie cookie = new Cookie("name", "value");
+        assertThat(cookie.getVersion(), is(0));
+        cookie.setVersion(1);
+        assertThat(cookie.getVersion(), is(0));
+        assertThat(cookie.getAttributes().size(), is(0));
+        cookie.setVersion(Integer.MAX_VALUE);
+        assertThat(cookie.getVersion(), is(0));
+        assertThat(cookie.getAttributes().size(), is(0));
     }
 
     @Test

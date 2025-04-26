@@ -64,6 +64,26 @@ public class TestServlet extends HttpTCKServlet {
     }
   }
 
+  public void setCommentTest(HttpServletRequest request,
+      HttpServletResponse response) throws IOException {
+    String comment = "WHO_SHOULD_NOT_BE_NAMED_HERE";
+    boolean pass = true;
+    PrintWriter pw = response.getWriter();
+    HttpSession session = request.getSession();
+
+    try {
+      pw.println("calling method setComment");
+      getServletContext().getSessionCookieConfig().setComment(comment);
+      pass = false;
+      pw.println("Expected IllegalStateException not thrown");
+    } catch (IllegalStateException ex) {
+      pw.println("Expected IllegalStateException thrown");
+    } finally {
+      session.invalidate();
+      ServletTestUtil.printResult(pw, pass);
+    }
+  }
+
   public void setPathTest(HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     String path = "WHO_SHOULD_NOT_BE_NAMED_HERE";
