@@ -328,19 +328,6 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call newPushBuilder on the wrapped request object.
-     *
-     * @since Servlet 4.0
-     *
-     * @deprecated In favor of 103 early hints
-     */
-    @Deprecated
-    @Override
-    public PushBuilder newPushBuilder() {
-        return this._getHttpServletRequest().newPushBuilder();
-    }
-
-    /**
      * The default behavior of this method is to call getTrailerFields on the wrapped request object.
      *
      * @since Servlet 4.0
