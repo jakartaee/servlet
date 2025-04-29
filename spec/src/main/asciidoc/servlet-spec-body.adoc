@@ -8611,6 +8611,9 @@ Limit the requirement on `PushBuilder` to remove cookies to those `Cookie` insta
 returns a negative value to be retained which is consistent with (per RFC 6265) such cookies
 being retained until "the current session is over" as defined by the user agent.  
 
+link:https://github.com/jakartaee/servlet/issues/859[Issue 859]::
+Correct the Javadoc for `HttpServletRequest.getRequestURI()`.
+
 === Changes Since Jakarta Servlet 6.0
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
