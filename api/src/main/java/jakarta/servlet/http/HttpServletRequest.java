@@ -296,7 +296,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @deprecated In favor of 103 early hints
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     default PushBuilder newPushBuilder() {
         return null;
     }
