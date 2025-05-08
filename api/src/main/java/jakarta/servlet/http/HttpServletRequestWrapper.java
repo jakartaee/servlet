@@ -334,7 +334,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      *
      * @deprecated In favor of 103 early hints
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @Override
     public PushBuilder newPushBuilder() {
         return this._getHttpServletRequest().newPushBuilder();

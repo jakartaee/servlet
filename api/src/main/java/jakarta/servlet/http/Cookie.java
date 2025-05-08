@@ -133,36 +133,6 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * With the adoption of support for RFC 6265, this method should no longer be used.
-     * <p>
-     * If called, this method has no effect.
-     *
-     * @param purpose This parameter is ignored
-     *
-     * @see #getComment
-     *
-     * @deprecated This is no longer required with RFC 6265
-     */
-    @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public void setComment(String purpose) {
-        // NO-OP
-    }
-
-    /**
-     * With the adoption of support for RFC 6265, this method should no longer be used.
-     *
-     * @return Always {@code null}
-     *
-     * @see #setComment
-     *
-     * @deprecated This is no longer required with RFC 6265
-     */
-    @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public String getComment() {
-        return null;
-    }
-
-    /**
      *
      * Specifies the domain within which this cookie should be presented.
      *
@@ -337,36 +307,6 @@ public class Cookie implements Cloneable, Serializable {
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * With the adoption of support for RFC 6265, this method should no longer be used.
-     *
-     * @return Always 0
-     *
-     * @see #setVersion
-     *
-     * @deprecated This is no longer required with RFC 6265
-     */
-    @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public int getVersion() {
-        return 0;
-    }
-
-    /**
-     * With the adoption of support for RFC 6265, this method should no longer be used.
-     * <p>
-     * If called, this method has no effect.
-     *
-     * @param v This parameter is ignored
-     *
-     * @see #getVersion
-     *
-     * @deprecated This is no longer required with RFC 6265
-     */
-    @Deprecated(since = "Servlet 6.0", forRemoval = true)
-    public void setVersion(int v) {
-        // NO-OP
     }
 
     /*
@@ -553,7 +493,6 @@ public class Cookie implements Cloneable, Serializable {
             Cookie c = (Cookie) obj;
             return Objects.equals(getName(), c.getName()) &&
                     Objects.equals(getValue(), c.getValue()) &&
-                    getVersion() == c.getVersion() &&
                     Objects.equals(getAttributes(), c.getAttributes());
         }
         return false;
