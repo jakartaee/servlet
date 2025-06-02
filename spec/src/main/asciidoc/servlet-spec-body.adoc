@@ -8614,6 +8614,10 @@ being retained until "the current session is over" as defined by the user agent.
 link:https://github.com/jakartaee/servlet/issues/859[Issue 859]::
 Correct the Javadoc for `HttpServletRequest.getRequestURI()`.
 
+link:https://github.com/jakartaee/servlet/issues/867[Issue 867]::
+When processing the `If-Modified-Since` header in `HttpServerlet.service()`,
+invalid header values must be ignored as per RFC 9110.
+
 === Changes Since Jakarta Servlet 6.0
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
