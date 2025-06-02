@@ -632,7 +632,13 @@ public abstract class HttpServlet extends GenericServlet {
                 // to go through further expensive logic
                 doGet(req, resp);
             } else {
-                long ifModifiedSince = req.getDateHeader(HEADER_IFMODSINCE);
+                long ifModifiedSince;
+                try {
+                    ifModifiedSince = req.getDateHeader(HEADER_IFMODSINCE);
+                } catch (IllegalArgumentException iae) {
+                    // RFC 9110, 13.1.3 - Invalid If-Modified-Since must be ignored
+                    ifModifiedSince = -1;
+                }
                 if (ifModifiedSince < lastModified) {
                     // If the servlet mod time is later, call doGet()
                     // Round down to the nearest second for a proper compare
