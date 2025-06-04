@@ -7901,62 +7901,6 @@ of this specification. Developers are cautioned that depending on this
 capability for application-created threads is not recommended, as it is
 non-portable.
 
-==== JNDI Name for Web Module Context Root URL
-
-The Jakarta EE Platform Specification defines a
-standardized global JNDI namespace and a series of related namespaces
-that map to various scopes of a Jakarta application. These namespaces
-can be used by applications to portably retrieve references to
-components and resources. This section defines the JNDI names by which
-the base url for a web application is required to be registered.
-
-The name of the pre-defined `java.net.URL`
-resource for the context root of a web application has the following
-syntax:
-
-`java:global[/<app-name>]/<module-name>!ROOT` in the global namespace
-and
-
-`java:app/<module-name>!ROOT` in the application-specific namespace.
-
-Please see section EE 8.1.1 (Component
-creation) and EE 8.1.2 (Application assembly) for the rules to determine
-the `app-name` and `module-name`.
-
-The `<app-name>` is applicable only when the
-web application is packaged within a `.ear` file.
-
-The `java:app` prefix allows a component
-executing within a Jakarta application to access an application-specific
-namespace. The `java:app` name allows a module in an enterprise
-application to reference the context root of another module in the same
-enterprise application. The `<module-name>` is a required part of the
-syntax for `java:app` url.
-
-.Examples
-
-The above URL can then be used within an
-application as follows:
-
-If a web application is deployed standalone
-with `module-name` as `myWebApp.` The URL can then be injected into
-another web module as follows:
-
-[source,java]
-----
-@Resource(lookup="java:global/myWebApp!ROOT")
-URL myWebApp;
-----
-
-When packaged in an ear file named `myApp` it
-can be used as follows:
-
-[source,java]
-----
-@Resource(lookup="java:global/myApp/myWebApp!ROOT")
-URL myWebApp;
-----
-
 === Security
 
 This section details the additional security
@@ -8613,6 +8557,10 @@ being retained until "the current session is over" as defined by the user agent.
 
 link:https://github.com/jakartaee/servlet/issues/859[Issue 859]::
 Correct the Javadoc for `HttpServletRequest.getRequestURI()`.
+
+link:https://github.com/jakartaee/servlet/issues/863[Issue 863]::
+Remove section 15.2.3 "JNDI Name for Web Module Context Root URL" as it was poorly specified,
+untested by the TCK, rarely implemented and rarely used.
 
 link:https://github.com/jakartaee/servlet/issues/867[Issue 867]::
 When processing the `If-Modified-Since` header in `HttpServerlet.service()`,
