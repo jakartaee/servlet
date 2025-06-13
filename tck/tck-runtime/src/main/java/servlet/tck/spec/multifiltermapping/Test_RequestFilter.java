@@ -25,6 +25,7 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 public final class Test_RequestFilter implements Filter {
 
@@ -33,7 +34,7 @@ public final class Test_RequestFilter implements Filter {
             throws IOException, ServletException {
         PrintWriter pw = response.getWriter();
         pw.println("in Test_RequestFilter");
-        chain.doFilter(request, response);
+        chain.doFilter(request, new NoContentLengthResponseWrapper((HttpServletResponse) response));
     }
 
     // initialize the filter configuration object for this filter.
