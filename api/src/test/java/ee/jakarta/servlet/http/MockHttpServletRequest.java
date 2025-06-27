@@ -162,6 +162,11 @@ public class MockHttpServletRequest extends MockServletRequest implements HttpSe
     }
 
     @Override
+    public AuthenticationResult authenticate() throws IOException {
+        return AuthenticationResult.NOT_SUPPORTED;
+    }
+
+    @Override
     public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
         return false;
     }
