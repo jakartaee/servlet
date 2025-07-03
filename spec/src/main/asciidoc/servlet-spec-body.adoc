@@ -3726,9 +3726,15 @@ In addition to these annotations all the
 annotations defined in <<Annotations and Resource Injection>> will continue
 to work in the context of these new annotations.
 
-By default all applications will have
-`index.htm[l]` and `index.jsp` in the `welcome-file-list`. The
-descriptor may to be used to override these default settings.
+By default all applications will have a `welcome-file-list` of:
+```
+<welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+```
+The descriptor may to be used to override these default settings.
 
 The order in which the listeners, servlets
 are loaded from the various framework jars / classes in the
@@ -4323,7 +4329,7 @@ but with different `<load-on-startup>` elements, and the same servlet is
 also declared in the main `web.xml`, but without any
 `<load-on-startup>`, then an error must be reported.
 
-... `<welcome-file>` declarations are additive.
+... `<welcome-file>` and `<welcome-servlet>` declarations are additive.
 
 ... `<servlet-mapping>` elements with the same
 `<servlet-name>` are additive across `web-fragments`.
@@ -5442,7 +5448,7 @@ the following types of configuration and deployment information:
 
 * MIME Type Mappings
 
-* Welcome File list
+* Welcome Resources List
 
 * Error Pages
 
@@ -5653,10 +5659,10 @@ the container. The mechanism described in
 may be used to specify filters that are applied before an error response
 is generated.
 
-=== Welcome Files
+=== Welcome Resources
 
 Application Developers can define an
-ordered list of partial URIs called welcome files in the web application
+ordered list of partial URIs called welcome resources in the web application
 deployment descriptor. The deployment descriptor syntax for the list is
 described in the web application deployment descriptor schema.
 
@@ -5673,26 +5679,40 @@ where `directory` is an entry in the WAR that is not mapped to a
 servlet or JSP page, is returned to the client as
 `host:port/webapp/directory/index.html`.
 
-If a web container receives a valid partial
-request, the web container must examine the welcome file list defined in
-the deployment descriptor. The welcome file list is an ordered list of
-partial URLs with no trailing or leading `"/"`. The web server must append
-each welcome file in the order specified in the deployment descriptor to
-the partial request and check whether a static resource in the WAR is
-mapped to that request URI. If no match is found, the web server MUST
-again append each welcome file in the order specified in the deployment
-descriptor to the partial request and check if a servlet is mapped to
-that request URI. The web container must send the request to the first
-resource in the WAR that matches.
+Deployment descriptors that declare a version of 6.2 or later, may define
+welcome files or welcome servlets. Deployment descriptors that declare an
+earlier version than 6.2 define legacy welcome files.
 
-If a matching welcome file is found in the manner described, the container may
+The web container identifies the servlet to serve the request using the process
+described in the following paragraphs. The process stops when the first match is
+found.
+
+For each welcome resource in the order it appears in the deployment descriptor:
+- append the partial URI to the request URI to create a welcome URI
+- if the welcome URI has an exact match to a servlet mapping, send the request
+  to that servlet
+- if the welcome URI has a prefix match to a servlet mapping, send the request
+  to that servlet
+- if the welcome resource is a welcome file or legacy welcome file and a static
+  file exists in the web application for the welcome URI, send the request to
+  that static resource
+- if the welcome resource is a welcome servlet and a servlet mapping (other than
+  the default servlet) matches the welcome URI, send the request to that servlet
+
+If no match is found then for each legacy welcome file in the order they appear
+in the deployment descriptor:
+- append the partial URI to the request URI to create a welcome URI
+- if a servlet mapping (other than the default servlet) matches the welcome URI,
+  send the request to that servlet
+
+If a matching welcome resource is found in the manner described, the container may
 send the request to the welcome resource with a forward, a redirect, or a
 container specific mechanism that is indistinguishable from a direct request. In
 later case, the request information (e.g. `getRequestURI()`) presented to the
 filter chain and the servlet will include the welcome file since filter mapping
 occurs after welcome file mapping.
 
-If no matching welcome file is found in the
+If no matching welcome resource is found in the
 manner described, the container may handle the request in a manner it
 finds suitable. For some configurations this may mean returning a
 directory listing or for others returning a `404` response.
@@ -8559,6 +8579,14 @@ can be mapped to a physical path but the physical path does not exist.
 
 link:https://github.com/jakartaee/servlet/issues/18[Issue 18]::
 Clarify the behaviour of `HttpServletRequest.getContextPath()`.
+
+link:https://github.com/jakartaee/servlet/issues/20[Issue 20]::
+Introduce a new element, `<welcome-servlet>` to the web.xml schema that can be
+used to specify a welcome resource that is not backed by a file but is backed by
+a servlet. With the introduction of this new element, the rules for mapping
+welcome resources have been updated to differentiate welcome resources that are
+expected to be backed by files and those that are only expected to be backed by
+a servlet.
 
 link:https://github.com/jakartaee/servlet/issues/25[Issue 25]::
 Document the risks created by a filter modifying the `ServletResponse`. Add a
