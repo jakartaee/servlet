@@ -8560,6 +8560,11 @@ can be mapped to a physical path but the physical path does not exist.
 link:https://github.com/jakartaee/servlet/issues/18[Issue 18]::
 Clarify the behaviour of `HttpServletRequest.getContextPath()`.
 
+link:https://github.com/jakartaee/servlet/issues/21[Issue 21]::
+Add a new method, `HttpServletRequest.authenticate()` that can be used to
+trigger authentication using the credentials, if any, present in the request
+without any futher user interaction.
+
 link:https://github.com/jakartaee/servlet/issues/25[Issue 25]::
 Document the risks created by a filter modifying the `ServletResponse`. Add a
 recommendation that filters that modify the `ServletResponse` should endeavour
