@@ -177,8 +177,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
             getContextRoot() + "/DispatchServlet", "GET",
             "matchValue=TestServlet, pattern=/TestServlet, servletName=TestServlet, mappingMatch=EXACT");
   }
-
-  @Test
+  
   private void simpleTest(String testName, String request, String method,
       String expected) throws Exception {
     try {
