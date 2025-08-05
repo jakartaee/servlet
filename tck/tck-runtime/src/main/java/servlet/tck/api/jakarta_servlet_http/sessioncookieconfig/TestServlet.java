@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -12,10 +13,6 @@
  * https://www.gnu.org/software/classpath/license.html.
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- */
-
-/*
- * $Id$
  */
 package servlet.tck.api.jakarta_servlet_http.sessioncookieconfig;
 
@@ -31,6 +28,8 @@ import jakarta.servlet.http.HttpSession;
 
 public class TestServlet extends HttpTCKServlet {
 
+  private static final long serialVersionUID = 1L;
+
   public void constructortest1(HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     request.getSession(true);
@@ -39,7 +38,7 @@ public class TestServlet extends HttpTCKServlet {
 
     if (results.indexOf("-FAILED-") > -1) {
       ServletTestUtil.printResult(
-          response.getWriter(), "At least on test failed.  " + results);
+          response.getWriter(), "At least one test failed.  " + results);
     }
 
   }
@@ -64,6 +63,7 @@ public class TestServlet extends HttpTCKServlet {
     }
   }
 
+  @SuppressWarnings("removal")
   public void setCommentTest(HttpServletRequest request,
       HttpServletResponse response) throws IOException {
     String comment = "WHO_SHOULD_NOT_BE_NAMED_HERE";
