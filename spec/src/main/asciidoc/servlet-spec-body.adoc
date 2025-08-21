@@ -5687,23 +5687,21 @@ The web container identifies the servlet to serve the request using the process
 described in the following paragraphs. The process stops when the first match is
 found.
 
-For each welcome resource in the order it appears in the deployment descriptor:
+For each `<welcome-file>` or legacy `<welcome-file>` in the order it appears in
+the deployment descriptor:
 - append the partial URI to the request URI to create a welcome URI
-- if the welcome URI has an exact match to a servlet mapping, send the request
-  to that servlet
-- if the welcome URI has a prefix match to a servlet mapping, send the request
-  to that servlet
-- if the welcome resource is a welcome file or legacy welcome file and a static
-  file exists in the web application for the welcome URI, send the request to
-  that static resource
-- if the welcome resource is a welcome servlet and a servlet mapping (other than
-  the default servlet) matches the welcome URI, send the request to that servlet
+- if a static file exists in the web application for the welcome URI, map the
+  welcome URI using the standard servlet mapping rules and process with the
+  mapped servlet
+- if the welcome URI is an exact match to a mapping for a servlet, process with
+  that servlet
 
-If no match is found then for each legacy welcome file in the order they appear
+For each `<welcome-servlet>` or legacy `<welcome-file>` in the order it appears
 in the deployment descriptor:
 - append the partial URI to the request URI to create a welcome URI
-- if a servlet mapping (other than the default servlet) matches the welcome URI,
-  send the request to that servlet
+- map the welcome URI to a servlet using the standing mapping rules
+- if the welcome URI maps to a servlet other than the default servlet, process
+  with that servlet
 
 If a matching welcome resource is found in the manner described, the container may
 send the request to the welcome resource with a forward, a redirect, or a
