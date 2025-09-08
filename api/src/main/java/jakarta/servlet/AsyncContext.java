@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2017, 2025 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -200,8 +200,9 @@ public interface AsyncContext {
      * within the same asynchronous cycle will result in an IllegalStateException. If startAsync is subsequently called on
      * the dispatched request, then any of the dispatch or {@link #complete} methods may be called.
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
-     * called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if, for the current request, one of the {@code startAsync} methods has not been called,
+     * one of the {@code dispatch} methods has been called and a {@code startAsync} method has not been called during the
+     * resulting dispatch, or if {@link #complete()} has been called
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -233,8 +234,9 @@ public interface AsyncContext {
      * @param path the path of the dispatch target, scoped to the ServletContext from which this AsyncContext was
      * initialized
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
-     * called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if, for the current request, one of the {@code startAsync} methods has not been called,
+     * one of the {@code dispatch} methods has been called and a {@code startAsync} method has not been called during the
+     * resulting dispatch, or if {@link #complete()} has been called
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -267,8 +269,9 @@ public interface AsyncContext {
      * @param context the ServletContext of the dispatch target
      * @param path the path of the dispatch target, scoped to the given ServletContext
      *
-     * @throws IllegalStateException if one of the dispatch methods has been called and the startAsync method has not been
-     * called during the resulting dispatch, or if {@link #complete} was called
+     * @throws IllegalStateException if, for the current request, one of the {@code startAsync} methods has not been called,
+     * one of the {@code dispatch} methods has been called and a {@code startAsync} method has not been called during the
+     * resulting dispatch, or if {@link #complete()} has been called
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -302,6 +305,10 @@ public interface AsyncContext {
      * described by {@code ServletOutputStream#close} and this call to complete will not take effect (and any invocations of
      * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until after any in progress non-blocking write has
      * completed.
+     *
+     * @throws IllegalStateException if, for the current request, one of the {@code startAsync} methods has not been called,
+     * one of the {@code dispatch} methods has been called and a {@code startAsync} method has not been called during the
+     * resulting dispatch, or if {@link #complete()} has been called
      */
     void complete();
 
