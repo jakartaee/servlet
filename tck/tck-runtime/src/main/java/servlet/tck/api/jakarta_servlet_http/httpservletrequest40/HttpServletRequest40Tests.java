@@ -40,7 +40,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
   public static final String DELIMITER = "\r\n";
 
   public static final String ENCODING = "ISO-8859-1";
-  
+
   private WebUtil.Response response = null;
 
   private String request = null;
@@ -54,13 +54,13 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
                     IncludeServlet.class, NamedForwardServlet.class, NamedIncludeServlet.class,
                     TestServlet.class, TrailerTestServlet.class, Utilities.class)
             .setWebXML(HttpServletRequest40Tests.class.getResource("servlet_jsh_httpservletrequest40_web.xml"));
-  }  
-  
+  }
+
   /*
    * @testName: httpServletMappingTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -71,9 +71,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingTest2
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingTest2;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -84,22 +84,22 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingTest3
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingTest3;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
   public void httpServletMappingTest3() throws Exception {
-    simpleTest("httpServletMappingTest3", getContextRoot() + "/default", "GET", 
+    simpleTest("httpServletMappingTest3", getContextRoot() + "/default", "GET",
         "matchValue=, pattern=/, servletName=defaultServlet, mappingMatch=DEFAULT");
   }
 
   /*
    * @testName: httpServletMappingForwardTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingForwardTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -111,9 +111,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingNamedForwardTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingNamedForwardTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -125,9 +125,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingNamedIncludeTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingNamedIncludeTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -139,9 +139,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingIncludeTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingIncludeTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -153,9 +153,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingFilterTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingFilterTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -167,9 +167,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: httpServletMappingDispatchTest
-   * 
+   *
    * @assertion_ids: servlet40:httpServletMappingDispatchTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -209,9 +209,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: TrailerTest
-   * 
+   *
    * @assertion_ids: servlet40:TrailerTest;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
@@ -228,7 +228,7 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
       StringBuffer outputBuffer = new StringBuffer();
       outputBuffer.append("POST " + path + " HTTP/1.1" + DELIMITER);
       outputBuffer.append("Host: " + url.getHost() + DELIMITER);
-      outputBuffer.append("Connection: keep-alive" + DELIMITER);
+      outputBuffer.append("Connection: close" + DELIMITER);
       outputBuffer.append("Content-Type: text/plain" + DELIMITER);
       outputBuffer.append("Transfer-Encoding: chunked" + DELIMITER);
       outputBuffer.append("Trailer: myTrailer, myTrailer2" + DELIMITER);
@@ -277,9 +277,9 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
 
   /*
    * @testName: TrailerTest2
-   * 
+   *
    * @assertion_ids: servlet40:TrailerTest2;
-   * 
+   *
    * @test_Strategy:
    */
   @Test
