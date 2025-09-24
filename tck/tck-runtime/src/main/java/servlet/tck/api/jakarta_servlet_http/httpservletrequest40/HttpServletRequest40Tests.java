@@ -14,10 +14,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
-/*
- * $Id:$
- */
 package servlet.tck.api.jakarta_servlet_http.httpservletrequest40;
 
 import servlet.tck.util.WebUtil;
@@ -42,8 +38,6 @@ public class HttpServletRequest40Tests extends AbstractTckTest {
   public static final String ENCODING = "ISO-8859-1";
 
   private WebUtil.Response response = null;
-
-  private String request = null;
 
 
   @Deployment(testable = false)
