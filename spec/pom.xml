@@ -124,6 +124,7 @@
                                 <source-highlighter>coderay</source-highlighter>
                                 <imagesdir>images</imagesdir>
                                 <doctype>book</doctype>
+                                <docinfo>private-head</docinfo>
                                 <status>${status}</status>
                                 <data-uri />
                                 <icons>font</icons>
