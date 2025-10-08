@@ -1,10 +1,10 @@
 type=page
 status=published
-title=TCK User's Guide for Technology Implementors
+title=TCK User's Guide for Technology Implementers
 next=title.html
 ~~~~~~
 include::attributes.conf[]
-TCK User's Guide for Technology Implementors
+TCK User's Guide for Technology Implementers
 ============================================
 
 [[contents]]

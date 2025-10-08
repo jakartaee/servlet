@@ -307,8 +307,8 @@ include::rules.inc[]
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta has a well established process for managing challenges to its
-TCKs. Any implementor may submit a challenge to one or more tests in the
-{TechnologyShortName} TCK as it relates to their implementation.  Implementor
+TCKs. Any implementer may submit a challenge to one or more tests in the
+{TechnologyShortName} TCK as it relates to their implementation.  Implementer
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 

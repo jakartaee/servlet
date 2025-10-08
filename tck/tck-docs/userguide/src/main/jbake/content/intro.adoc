@@ -64,7 +64,7 @@ to deploy them across heterogeneous computing environments without
 porting.
 * Compatibility testing allows application users to obtain applications
 from disparate sources and deploy them with confidence.
-* Conformance testing benefits Jakarta platform implementors by ensuring a
+* Conformance testing benefits Jakarta platform implementers by ensuring a
 level playing field for all Jakarta platform ports.
 
 [[GBFPR]][[tck-compatibility-rules]]
