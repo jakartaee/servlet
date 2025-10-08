@@ -74,7 +74,7 @@ public class ServletRequestTests extends RequestClient {
    * 
    * @assertion_ids: Servlet:JAVADOC:173
    * 
-   * @test_Strategy: Servlet tries to retrieve a non-existant attribute.
+   * @test_Strategy: Servlet tries to retrieve a non-existent attribute.
    *
    */
     /*
@@ -206,7 +206,7 @@ public class ServletRequestTests extends RequestClient {
    * @assertion_ids: Servlet:JAVADOC:191
    * 
    * @test_Strategy: Client sets a parameter which has 2 values and servlet
-   * verifies boths values.
+   * verifies both values.
    */
     /*
    * @testName: getParameterValuesDoesNotExistTest

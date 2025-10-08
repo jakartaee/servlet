@@ -158,7 +158,7 @@ public abstract class SecBasicClient extends BaseTckTest {
    */
   
   public void test2() throws Exception {
-    logMessage("Sending request with Authroization header...");
+    logMessage("Sending request with Authorization header...");
 
     StringBuilder sb = new StringBuilder(100);
     sb.append(USER_PRINCIPAL_SEARCH).append(username).append("|");

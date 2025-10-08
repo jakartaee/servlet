@@ -67,7 +67,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @assertion_ids: Servlet:JAVADOC:66
    * 
-   * @test_Strategy: Servlet instanciate the constructor
+   * @test_Strategy: Servlet instantiate the constructor
    */
   @Test
   public void constructorTest() throws Exception {
@@ -83,7 +83,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds an attribute. The listener should detect the
    * add and write a message out to a static log. Servlet then reads the log and
-   * verifys the result. It also verifies the requets and context that changed
+   * verifys the result. It also verifies the requests and context that changed
    *
    */
   @Test
@@ -100,7 +100,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds/removes an attribute. The listener should
    * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result. It also verifies the requets and context
+   * the log and verifys the result. It also verifies the requests and context
    * that changed
    */
   @Test
@@ -117,7 +117,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds/replaces an attribute. The listener should
    * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result. It also verifies the requets and context
+   * the log and verifys the result. It also verifies the requests and context
    * that changed
    */
   @Test

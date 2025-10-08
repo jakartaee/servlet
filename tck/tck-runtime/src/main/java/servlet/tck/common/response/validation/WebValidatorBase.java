@@ -138,7 +138,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    * @throws IOException
    *           if an IO error occurs during validation
    */
@@ -234,7 +234,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * strings contains two entities, the search for the second entity will be
    * started after the index if the first match.
    *
-   * @return boolen result of check
+   * @return boolean result of check
    * @throws IOException
    *           if an IO error occurs during validation
    */
@@ -275,7 +275,7 @@ public class WebValidatorBase implements ValidationStrategy {
 
         logger.debug(" Test {} Found search string: '{}' at index '{}' in the server's response",
                 _case.getName(), search, searchIdx);
-        // the new searchIdx is the old index plus the lenght of the
+        // the new searchIdx is the old index plus the length of the
         // search string.
         startIdx = searchIdx + search.length();
       }
@@ -308,7 +308,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * strings contains two entities, the search for the second entity will be
    * started after the index if the first match.
    *
-   * @return boolen result of check
+   * @return boolean result of check
    * @throws IOException
    *           if an IO error occurs during validation
    */
@@ -350,7 +350,7 @@ public class WebValidatorBase implements ValidationStrategy {
 
         logger.debug(" Test {} Found search string: '{}' at index '{}' in the server's response",
                 _case.getName(), search, searchIdx);
-        // the new searchIdx is the old index plus the lenght of the
+        // the new searchIdx is the old index plus the length of the
         // search string.
         startIdx = searchIdx + search.length();
       }
@@ -378,7 +378,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    * @throws IOException
    *           if an IO error occurs during validation
    */
@@ -433,7 +433,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    * @throws IOException
    *           if an IO error occurs during validation
    */
@@ -462,7 +462,7 @@ public class WebValidatorBase implements ValidationStrategy {
 
   /**
    * <code>checkReasonPhrase</code> will perform comparisons between the
-   * configued reason-phrase and that of the response.
+   * configured reason-phrase and that of the response.
    * <ul>
    * <li>Check reason-phrase</li>
    * <ul>
@@ -481,7 +481,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    */
   protected boolean checkReasonPhrase() {
     String sReason = _case.getReasonPhrase();
@@ -520,7 +520,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    */
   protected boolean checkExpectedHeaders() throws Exception {
     Header[] expected = _case.getExpectedHeaders();
@@ -585,7 +585,7 @@ public class WebValidatorBase implements ValidationStrategy {
    * </ul>
    * </ul>
    *
-   * @return boolen result of check
+   * @return boolean result of check
    */
   protected boolean checkUnexpectedHeaders() {
     Header[] unexpected = _case.getUnexpectedHeaders();
@@ -602,7 +602,7 @@ public class WebValidatorBase implements ValidationStrategy {
             sb.append(" Test {} Unexpected header found in the ");
             sb.append("server's response: ");
             sb.append("{}").append("\n");
-            sb.append(" Response headers recieved from");
+            sb.append(" Response headers received from");
             sb.append("server:");
 
             List<Header> resHeaders = _res.getResponseHeaders();

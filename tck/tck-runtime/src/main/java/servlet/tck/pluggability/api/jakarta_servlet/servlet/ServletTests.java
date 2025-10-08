@@ -115,7 +115,7 @@ public class ServletTests extends AbstractTckTest {
    * @assertion_ids: Servlet:SPEC:5; Servlet:SPEC:6; Servlet:JAVADOC:266;
    *
    * @test_Strategy: Create a servlet and test for the getServletConfig() method
-   * to be a non-null value and an initial paramter can be retrieved
+   * to be a non-null value and an initial parameter can be retrieved
    */
   @Test
   public void DoServletConfigTest() throws Exception {

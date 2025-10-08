@@ -42,7 +42,7 @@ import java.util.TreeSet;
  * exists, and removes the package (as well as sub-packages) that are currently
  * being recorded. All package names read from the existing package list file
  * are held in a tree set which sorts the package names and keeps duplicate
- * package names from ocurring. The user can then instruct this class to write
+ * package names from occurring. The user can then instruct this class to write
  * out the package list file. At this point this class reads the currently
  * recorded signature file and extracts each package names and adds it to the
  * tree set. After this step the previous package list file is saved as a backup
@@ -113,7 +113,7 @@ class PackageList {
    *          The name of the package whos signatures are being recorded (along
    *          with sub-packages).
    * @param sigFileName
-   *          The name of the file that contains the recored signatures.
+   *          The name of the file that contains the recorded signatures.
    * @param packageFileName
    *          The name of the file that contains the package list. This file
    *          contains the names of all the packages that exist across all the
@@ -171,7 +171,7 @@ class PackageList {
    * denoted by the COMMENT_CHAR constant.
    *
    * @param line
-   *          Determins of this line is a comment line
+   *          Determines of this line is a comment line
    *
    * @return boolean True if the specified line is a comment line else false.
    */

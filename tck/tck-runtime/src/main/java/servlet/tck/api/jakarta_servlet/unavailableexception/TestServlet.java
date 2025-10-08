@@ -59,7 +59,7 @@ public class TestServlet extends GenericTCKServlet {
       ServletResponse response) throws ServletException, IOException {
     boolean passed = false;
     PrintWriter pw = response.getWriter();
-    String expected = "Excpetional";
+    String expected = "Exceptional";
     UnavailableException ue = new UnavailableException(expected);
 
     try {

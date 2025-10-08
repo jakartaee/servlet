@@ -140,7 +140,7 @@ public class HttpServletTests extends AbstractTckTest {
    * 
    * @assertion_ids: Servlet:JAVADOC:418
    * 
-   * @test_Strategy: Servlet tries to access a parameter that doesnot exist
+   * @test_Strategy: Servlet tries to access a parameter that does not exist
    */
   @Test
   public void getInitParameterTestNull() throws Exception {
