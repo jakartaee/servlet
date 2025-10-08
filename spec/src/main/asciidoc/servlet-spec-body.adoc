@@ -2986,22 +2986,22 @@ is equivalent to:
 [source,xml]
 ----
 <filter-mapping>
-  <filter-name>Multipe Mappings Filter</filter-name>
+  <filter-name>Multiple Mappings Filter</filter-name>
   <url-pattern>/foo/*</url-pattern>
 </filter-mapping>
 
 <filter-mapping>
-  <filter-name>Multipe Mappings Filter</filter-name>
+  <filter-name>Multiple Mappings Filter</filter-name>
   <servlet-name>Servlet1</servlet-name>
 </filter-mapping>
 
 <filter-mapping>
-  <filter-name>Multipe Mappings Filter</filter-name>
+  <filter-name>Multiple Mappings Filter</filter-name>
   <servlet-name>Servlet2</servlet-name>
 </filter-mapping>
 
 <filter-mapping>
-  <filter-name>Multipe Mappings Filter</filter-name>
+  <filter-name>Multiple Mappings Filter</filter-name>
   <url-pattern>/bar/*</url-pattern>
 </filter-mapping>
 ----
@@ -7004,7 +7004,7 @@ password (and additional data). Although passwords are not sent on the
 wire, HTTP Digest authentication requires that clear text password
 equivalents footnote:[The password equivalents can be such that they can
 only be used to authenticate as the user at a specific realm.]
- be avaialble to the authenticating
+ be available to the authenticating
 container so that it can validate received authenticators by calculating
 the expected digest. Servlet containers SHOULD support HTTP_DIGEST
 authentication.
@@ -7601,7 +7601,7 @@ the request combine to impose a `user-data-constraint` (with a protected
 The container establishes the caller identity
 of a request prior to dispatching the request to the servlet engine. The
 caller identity remains unchanged throughout the processing of the
-request or until the application sucessfully calls `authenticate`,
+request or until the application successfully calls `authenticate`,
 `login` or `logout` on the request. For asynchronous requests, the
 caller identity established at the initial dispatch remains unchanged
 until the processing of the overall request completes, or the
@@ -7651,7 +7651,7 @@ application deployment descriptor for all servlet containers:
 * Session Configuration
 * Servlet Declaration
 * Servlet Mappings
-* Application Lifecyle Listener classes
+* Application Lifecycle Listener classes
 * Filter Definitions and Filter Mappings
 * MIME Type Mappings
 * Welcome File list
@@ -8187,7 +8187,7 @@ annotation is specified on a class, and it is used to define roles that
 could be tested (i.e., by calling `isUserInRole`) from within the
 methods of the annotated class. Roles that are implicitly declared as a
 result of their use in a `@RolesAllowed` need not be explicitly declared
-using the `@DeclareRoles` annotaion. The `@DeclareRoles` annotation may
+using the `@DeclareRoles` annotation. The `@DeclareRoles` annotation may
 only be defined in classes implementing the `jakarta.servlet.Servlet`
 interface or a subclass thereof.
 
@@ -8250,7 +8250,7 @@ An example:
 
 In the case above a reference to the Jakarta Enterprise Bean
 component `myCart` is injected as the value of the private field
-`myCart` prior to the classs declaring the injection being made
+`myCart` prior to the class declaring the injection being made
 available.
 
 The behavior the `@EJB` annotation is further detailed in section
@@ -8752,7 +8752,7 @@ the container to wrap Requests and Responses to meet the requirements of
 implementing the `RequestDispatcher` functionality.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/416[Issue 416]::
-Remove the restriction on programatically added listeners calling some `ServletContext` getter methods.
+Remove the restriction on programmatically added listeners calling some `ServletContext` getter methods.
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/418[Issue 418]::
 Remove API classes and methods that were deprecated in Servlet 5.0 and earlier.
