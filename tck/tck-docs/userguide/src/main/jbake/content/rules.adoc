@@ -307,8 +307,8 @@ include::rules.inc[]
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jakarta has a well established process for managing challenges to its
-TCKs. Any implementer may submit a challenge to one or more tests in the
-{TechnologyShortName} TCK as it relates to their implementation.  Implementer
+TCKs. Any implementor may submit a challenge to one or more tests in the
+{TechnologyShortName} TCK as it relates to their implementation.  Implementor
 means the entity as a whole in charge of producing the final certified release.
 *Challenges filed should represent the consensus of that entity*.
 
@@ -368,7 +368,7 @@ A consensus that a test produces invalid results will result in the exclusion of
 4.  Rejected Challenges and Remedy. +
 When a`challenge` issue is rejected, it must be closed with a label of `invalid` to indicate it has been rejected.
 There appeal process for challenges rejected on technical terms is outlined in Escalation Appeal.
-If, however, an implementer feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
+If, however, an implementor feels the TCK challenge process was not followed, an appeal issue should be filed with specification project’s TCK issue tracker using the label `challenge-appeal`.
 A project lead should escalate the issue with the Jakarta EE Specification Committee via email (jakarta.ee-spec@eclipse.org).
 The committee will evaluate the matter purely in terms of due process.
 If the appeal is accepted, the original TCK challenge issue will be reopened and a label of `appealed-challenge` added, along with a discussion of the appeal decision, and the `challenge-appeal` issue with be closed.

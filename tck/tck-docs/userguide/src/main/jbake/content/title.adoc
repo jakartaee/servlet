@@ -1,6 +1,6 @@
 type=page
 status=published
-title=TCK User's Guide for Technology Implementers
+title=TCK User's Guide for Technology Implementors
 next=preface.html
 prev=toc.html
 ~~~~~~
