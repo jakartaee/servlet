@@ -138,7 +138,7 @@ public class AnnotationsTests extends BaseTckTest {
    *
    * @assertion_ids: Servlet:SPEC:214; Servlet:SPEC:215;
    *
-   * @assertion: 1. teh DenyAll annotation must be supported by the Web
+   * @assertion: 1. the DenyAll annotation must be supported by the Web
    * container. Access a web resource that uses the DenyAll annotation applied
    * at the class level should result in an access denied.
    *

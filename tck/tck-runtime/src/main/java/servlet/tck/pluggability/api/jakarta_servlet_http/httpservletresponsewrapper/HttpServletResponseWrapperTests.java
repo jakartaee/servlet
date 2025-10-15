@@ -231,7 +231,7 @@ public class HttpServletResponseWrapperTests extends HttpResponseClient {
    * 
    * @assertion_ids: Servlet:JAVADOC:313
    * 
-   * @test_Strategy: Validate constuctor of HttpServletResponseWrapper.
+   * @test_Strategy: Validate constructor of HttpServletResponseWrapper.
    */
     @Test
     public void httpResponseWrapperConstructorTest() throws Exception {

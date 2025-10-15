@@ -75,7 +75,7 @@ public abstract class SigTest {
 
   /**
    * Returns an array of individual classes that must be tested by the signature
-   * test framwork. TCK developers may override this method when this
+   * test framework. TCK developers may override this method when this
    * functionality is needed. Most will only need package level granularity.
    *
    * @return an Array of Strings containing the individual classes the framework

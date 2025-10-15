@@ -399,7 +399,7 @@ public class DispatchTests extends AbstractTckTest {
    * ServletRequest.getDispatcherType() check System times: before calling
    * dispatch; dispatch returns dispatch operation starts. StartAsync in
    * dispatched thread, and check all above; StartAsync again in the
-   * asynchrounous thread verifies all work accordingly.
+   * asynchronous thread verifies all work accordingly.
    */
   @Test
   public void startAsyncAgainTest4() throws Exception {
@@ -432,7 +432,7 @@ public class DispatchTests extends AbstractTckTest {
    * ServletRequest.isAsyncStarted() call ServletRequest.getDispatcherType()
    * check System times: before calling dispatch; dispatch returns dispatch
    * operation starts. StartAsync in dispatched thread, and check all above;
-   * StartAsync again in the asynchrounous thread verifies all work accordingly.
+   * StartAsync again in the asynchronous thread verifies all work accordingly.
    */
   @Test
   public void startAsyncAgainTest5() throws Exception {
@@ -597,7 +597,7 @@ public class DispatchTests extends AbstractTckTest {
    * ASYNC_REQUEST_URI ASYNC_CONTEXT_PATH ASYNC_PATH_INFO ASYNC_SERVLET_PATH
    * ASYNC_QUERY_STRING check System times: before calling dispatch; dispatch
    * returns dispatch operation starts. StartAsync in dispatched thread, and
-   * check all above; StartAsync again in the asynchrounous thread verifies all
+   * check all above; StartAsync again in the asynchronous thread verifies all
    * work accordingly.
    */
   @Test
@@ -633,7 +633,7 @@ public class DispatchTests extends AbstractTckTest {
    * ASYNC_SERVLET_PATH ASYNC_QUERY_STRING check System times: before calling
    * dispatch; dispatch returns dispatch operation starts. StartAsync in
    * dispatched thread, and check all above; StartAsync again in the
-   * asynchrounous thread verifies all work accordingly.
+   * asynchronous thread verifies all work accordingly.
    */
   @Test
   public void startAsyncAgainTest11() throws Exception {
@@ -821,7 +821,7 @@ public class DispatchTests extends AbstractTckTest {
    * ServletRequest.getDispatcherType() check System times: before calling
    * dispatch; dispatch returns dispatch operation starts. StartAsync in
    * dispatched thread, and check all above; StartAsync again in the
-   * asynchrounous thread verifies all work accordingly.
+   * asynchronous thread verifies all work accordingly.
    */
   @Test
   public void startAsyncAgainTest16() throws Exception {
@@ -861,7 +861,7 @@ public class DispatchTests extends AbstractTckTest {
    * ServletRequest.getDispatcherType() check System times: before calling
    * dispatch; dispatch returns dispatch operation starts. StartAsync in
    * dispatched thread, and check all above; StartAsync again in the
-   * asynchrounous thread verifies all work accordingly.
+   * asynchronous thread verifies all work accordingly.
    */
   @Test
   public void startAsyncAgainTest17() throws Exception {
@@ -1175,7 +1175,7 @@ public class DispatchTests extends AbstractTckTest {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchAfterCommitTest|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
+            + "After commit|" + "Before dispatch|" + "dispatch return|"
             + "After dispatch|" + "ASYNC_STARTED_dispatchAfterCommitTest|"
             + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
             + "DispatcherType=ASYNC");
@@ -1201,7 +1201,7 @@ public class DispatchTests extends AbstractTckTest {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchAfterCommitTest1|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
+            + "After commit|" + "Before dispatch|" + "dispatch return|"
             + "After dispatch|" + "ASYNC_STARTED_dispatchAfterCommitTest1|"
             + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
             + "DispatcherType=ASYNC");
@@ -1225,7 +1225,7 @@ public class DispatchTests extends AbstractTckTest {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchAfterCommitTest2|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
+            + "After commit|" + "Before dispatch|" + "dispatch return|"
             + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
             + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
             + "DispatcherType=ASYNC");
@@ -1250,7 +1250,7 @@ public class DispatchTests extends AbstractTckTest {
     TEST_PROPS.get().setProperty(SEARCH_STRING,
         "ASYNC_NOT_STARTED_dispatchAfterCommitTest3|" + "IsAsyncSupported=true|"
             + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-            + "After commmit|" + "Before dispatch|" + "dispatch return|"
+            + "After commit|" + "Before dispatch|" + "dispatch return|"
             + "After dispatch|" + "ASYNC_STARTED_dispatchTest|"
             + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
             + "DispatcherType=ASYNC");
@@ -1276,7 +1276,7 @@ public class DispatchTests extends AbstractTckTest {
       TEST_PROPS.get().setProperty(SEARCH_STRING,
               "ASYNC_NOT_STARTED_dispatchAfterCommitTest4|" + "IsAsyncSupported=true|"
                       + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-                      + "After commmit|" + "Before dispatch|" + "dispatch return|"
+                      + "After commit|" + "Before dispatch|" + "dispatch return|"
                       + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
                       + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
                       + "DispatcherType=ASYNC");
@@ -1284,7 +1284,7 @@ public class DispatchTests extends AbstractTckTest {
       TEST_PROPS.get().setProperty(SEARCH_STRING,
               "ASYNC_NOT_STARTED_dispatchAfterCommitTest4|" + "IsAsyncSupported=true|"
                       + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-                      + "After commmit|" + "Before dispatch|");
+                      + "After commit|" + "Before dispatch|");
     }
     invoke();
   }
@@ -1308,7 +1308,7 @@ public class DispatchTests extends AbstractTckTest {
       TEST_PROPS.get().setProperty(SEARCH_STRING,
               "ASYNC_NOT_STARTED_dispatchAfterCommitTest5|" + "IsAsyncSupported=true|"
                       + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-                      + "After commmit|" + "Before dispatch|" + "dispatch return|"
+                      + "After commit|" + "Before dispatch|" + "dispatch return|"
                       + "After dispatch|" + "ASYNC_STARTED_dispatchTest10|"
                       + "IsAsyncSupported=true|" + "IsAsyncStarted=false|"
                       + "DispatcherType=ASYNC");
@@ -1316,7 +1316,7 @@ public class DispatchTests extends AbstractTckTest {
       TEST_PROPS.get().setProperty(SEARCH_STRING,
               "ASYNC_NOT_STARTED_dispatchAfterCommitTest5|" + "IsAsyncSupported=true|"
                       + "IsAsyncStarted=false|" + "DispatcherType=REQUEST|"
-                      + "After commmit|" + "Before dispatch|");
+                      + "After commit|" + "Before dispatch|");
     }
     invoke();
   }

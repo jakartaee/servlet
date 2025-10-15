@@ -1008,7 +1008,7 @@ public class SecformClient extends BaseTckTest {
    * @assertion: Test isUserInRole(), specified in the Java Servlet
    * Specification v2.3, Sec 12.3.
    *
-   * The isUserInRole method expets a String rolename. In order that this
+   * The isUserInRole method expects a String rolename. In order that this
    * rolename can be adjusted by the application assembler, or the deployer
    * without having to recompile the Servlet making the call a
    * <security-role-ref> element should be declared in the deployment descriptor
@@ -1108,7 +1108,7 @@ public class SecformClient extends BaseTckTest {
    *
    * @test_Strategy: Configure allRoles.jsp to be accessible by allRoles (*)
    *
-   * 1) Try accesing allRoles.jsp as the following user a) j2ee b) javajoe 2)
+   * 1) Try accessing allRoles.jsp as the following user a) j2ee b) javajoe 2)
    * Based on the http reply, report test status
    * 
    *
@@ -1183,7 +1183,7 @@ public class SecformClient extends BaseTckTest {
    * 2) Access Sample.jsp using HTTP methods GET, HEAD, POST, DELETE and PUT.
    * 
    * 3) If Sample.jsp is accessible with all of the above HTTP methods then
-   * declare test successfull otherwise report test failure
+   * declare test successful otherwise report test failure
    * 
    * Note: test12 is ONLY for JSP Area
    *
@@ -1614,7 +1614,7 @@ public class SecformClient extends BaseTckTest {
 
       logger.trace(response.content); // debug aid
 
-      // verify there were no errors detected fom within our servlet
+      // verify there were no errors detected from within our servlet
       String searchString = "ERROR - HttpServletRequest.login";
       if (response.content.contains(searchString)) {
         logErr(response.content);
@@ -1650,7 +1650,7 @@ public class SecformClient extends BaseTckTest {
    * @test_Strategy: 1. Send request to access protected page (ie.
    * pageServletProgLogout) 2. Receive login page 3. Send form response with
    * username(j2ee) and password 4. Receive resource 5. make sure no ERRORs
-   * occurrred on pageServletProgLogout and that it actually did log us out.
+   * occurred on pageServletProgLogout and that it actually did log us out.
    * 
    */
   
@@ -1691,7 +1691,7 @@ public class SecformClient extends BaseTckTest {
         throw new Exception("test17 failed.");
       }
 
-      // now make sure we didnt get any errors in our content
+      // now make sure we didn't get any errors in our content
       String errString = "ERROR - HttpServletRequest.logout()";
       if (response.content.contains(errString)) {
         // there was an error msg detected in servlet content
@@ -1760,14 +1760,14 @@ public class SecformClient extends BaseTckTest {
         throw new Exception("test18 failed.");
       }
 
-      // verify there were no errors detected fom within our servlet
+      // verify there were no errors detected from within our servlet
       String searchString = "ERROR - HttpServletRequest.authenticate";
       if (response.content.contains(searchString)) {
         logErr(response.content);
         throw new Exception("test18 failed.");
       }
 
-      // now verify the authenticate truely passed
+      // now verify the authenticate truly passed
       if (!response.content.contains("HttpServletRequest.authenticate passed")) {
         logErr(response.content);
         throw new Exception("test18 failed.");
@@ -1897,7 +1897,7 @@ public class SecformClient extends BaseTckTest {
 
         // Analyze special tags location and set cookie
         if (line.toLowerCase().startsWith("location:")) {
-          // This is a redirect. Extract valuable infomration:
+          // This is a redirect. Extract valuable information:
           response.location = line.substring(10);
         } else if (line.toLowerCase().startsWith("set-cookie:")) {
           // This is a cookie. Add the cookie to the response
@@ -2007,8 +2007,8 @@ public class SecformClient extends BaseTckTest {
      * Check whether response.content ==loginPageRequestResponse.content if
      * (response.content.equals(loginPageRequestResponse.content))
      * TestUtil.logMsg("Received the expected login form"); else {
-     * TestUtil.logMsg("response.conent\n"+response.content);
-     * TestUtil.logMsg("loginPageRequestResponse.conent\n"+
+     * TestUtil.logMsg("response.content\n"+response.content);
+     * TestUtil.logMsg("loginPageRequestResponse.content\n"+
      * loginPageRequestResponse.content);
      * TestUtil.logMsg("Received incorrect login form"); throw new Exception( "test"
      * + testNum + " failed." ); }
@@ -2153,7 +2153,7 @@ public class SecformClient extends BaseTckTest {
       response = WebUtil.sendRequest("GET", InetAddress.getByName(hostname),
           portnum, request, null, cookies);
 
-      // After a succesful http post request,
+      // After a successful http post request,
       // Sun's Reference Implementation returns a redirected URL
       // (Note: No cookies are sent back to the client at this point)
       // Only when the client accesses the redirected URL,

@@ -46,7 +46,7 @@ public class WebUtil {
   private static final Logger LOGGER = LoggerFactory.getLogger(WebUtil.class);
 
   /**
-   * Reponse object containing information returned from the web server
+   * Response object containing information returned from the web server
    */
   public static class Response {
     /** Version (usually HTTP/1.0) */
@@ -265,7 +265,7 @@ public class WebUtil {
 
         // Analyze special tags location and set cookie
         if (line.toLowerCase().startsWith("location:")) {
-          // This is a redirect. Extract valuable infomration:
+          // This is a redirect. Extract valuable information:
           response.location = line.substring(10);
         } else if (line.toLowerCase().startsWith("set-cookie:")) {
           // This is a cookie. Add the cookie to the response

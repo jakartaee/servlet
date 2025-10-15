@@ -160,7 +160,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    *                 be protected/denied access. - this uses servlet TestServlet
    *                 and it's Get & Post methods. - get & put are specified in
    *                 security constraint - so we should be able to access them -
-   *                 attempts to access get & put must be alloed (return 200=ok)
+   *                 attempts to access get & put must be allowed (return 200=ok)
    * 
    */
   @Test
@@ -194,7 +194,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
    *                 be protected/denied access. - this uses servlet TestServlet
    *                 and it's Get & Post methods. - get & put are specified in
    *                 security constraint - so we should be able to access them -
-   *                 attempts to access get & put must be alloed (return 200=ok)
+   *                 attempts to access get & put must be allowed (return 200=ok)
    * 
    */
   @Test
@@ -329,7 +329,7 @@ public class DenyUncoveredTests extends AbstractTckTest {
 
       // Encode authData
       // hint: make sure username and password are valid for your
-      // (J2EE) security realm otherwise you recieve http 401 error.
+      // (J2EE) security realm otherwise you receive http 401 error.
       String authData = username + ":" + password;
       logger.debug("authData : {}", authData);
 

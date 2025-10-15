@@ -871,7 +871,7 @@ public class RequestTests {
 
     String expectedResult = null;
     String actual = request.getParameter("doesnotexist");
-    // we are not settting any parameter in the client side so we should get
+    // we are not setting any parameter in the client side so we should get
     // null
     if (actual != expectedResult) {
       passed = false;
@@ -2577,7 +2577,7 @@ public class RequestTests {
       try {
         Thread.sleep(90000);
       } catch (java.lang.InterruptedException ex) {
-        pw.println("Sleep interupted - " + ex.getMessage());
+        pw.println("Sleep interrupted - " + ex.getMessage());
       }
 
       if (request.getSession(false) != null) {

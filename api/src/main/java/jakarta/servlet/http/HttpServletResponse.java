@@ -495,7 +495,7 @@ public interface HttpServletResponse extends ServletResponse {
     /**
      * Gets the supplier of trailer headers.
      *
-     * @implSpec The default implememtation return null.
+     * @implSpec The default implementation return null.
      *
      * @return <code>Supplier</code> of trailer headers
      *

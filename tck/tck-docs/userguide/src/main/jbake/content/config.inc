@@ -56,7 +56,7 @@ slashes as a path separator instead.
   eg.  `${webServerHost}/modules/jakarta.servlet-api.jar`.
 +
   b. JUnit 5 jars (5.9.3+)
-  Maven cordinates :
+  Maven coordinates :
 +
 [source,oac_no_warn]
 ----
@@ -70,7 +70,7 @@ slashes as a path separator instead.
 ----
 +
  c. sigtest-maven-plugin (2.2) to run the signature tests.
-  Maven cordinates :
+  Maven coordinates :
 +
 [source,oac_no_warn]
 ----

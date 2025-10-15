@@ -361,7 +361,7 @@ public interface ServletResponse {
      * Clears any data that exists in the buffer as well as the status code, headers. The state of calling
      * {@link #getWriter} or {@link #getOutputStream} is also cleared. It is legal, for instance, to call
      * {@link #getWriter}, {@link #reset} and then {@link #getOutputStream}. If {@link #getWriter} or
-     * {@link #getOutputStream} have been called before this method, then the corrresponding returned Writer or OutputStream
+     * {@link #getOutputStream} have been called before this method, then the corresponding returned Writer or OutputStream
      * will be staled and the behavior of using the stale object is undefined. If the response has been committed, this
      * method throws an <code>IllegalStateException</code>.
      *

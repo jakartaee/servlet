@@ -275,7 +275,7 @@ public interface AsyncContext {
     void dispatch(ServletContext context, String path);
 
     /**
-     * Completes the asynchronous operation that was started on the request that was used to initialze this AsyncContext,
+     * Completes the asynchronous operation that was started on the request that was used to initialize this AsyncContext,
      * closing the response that was used to initialize this AsyncContext.
      *
      * <p>

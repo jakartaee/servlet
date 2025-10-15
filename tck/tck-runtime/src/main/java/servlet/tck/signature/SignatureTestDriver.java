@@ -82,7 +82,7 @@ public abstract class SignatureTestDriver {
             + packagesUnderTest[i] + "' **********\n");
 
         logger.log(Logger.Level.INFO,
-            "********** VALIDATE IN STATIC MODE - TO CHECK CONSANT VALUES ****");
+            "********** VALIDATE IN STATIC MODE - TO CHECK CONSTANT VALUES ****");
         logger.log(Logger.Level.INFO, "Static mode supports checks of static constants values ");
 
         String[] args = createTestArguments(packageListFile, mapFile,
@@ -139,7 +139,7 @@ public abstract class SignatureTestDriver {
             + classesUnderTest[i] + "' **********\n");
 
         logger.log(Logger.Level.INFO,
-            "********** VALIDATE IN STATIC MODE - TO CHECK CONSANT VALUES ****");
+            "********** VALIDATE IN STATIC MODE - TO CHECK CONSTANT VALUES ****");
         logger.log(Logger.Level.INFO, "Static mode supports checks of static constants values ");
 
         String[] args = createTestArguments(packageListFile, mapFile,
@@ -231,7 +231,7 @@ public abstract class SignatureTestDriver {
   /**
    * Loads the specified file into a Properties object provided the specified
    * file exists and is a regular file. The call to new FileInputStream verifies
-   * that the specfied file is a regular file and exists.
+   * that the specified file is a regular file and exists.
    *
    * @param mapFile
    *          the path and name of the map file to be loaded
@@ -326,7 +326,7 @@ public abstract class SignatureTestDriver {
    * @param repositoryDir
    *          The directory that conatisn all signature files
    *
-   * @return String The path and name of the siganture file that contains the
+   * @return String The path and name of the signature file that contains the
    *         specified package's signatures
    *
    * @throws Exception

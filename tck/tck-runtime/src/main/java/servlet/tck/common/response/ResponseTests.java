@@ -823,7 +823,7 @@ public class ResponseTests {
     } else {
       pw.println(
           "Test FAILED.  Expected ServletResponse.getLocale() to return the "
-              + "default locale of the VM if the locale was not explicily set.");
+              + "default locale of the VM if the locale was not explicitly set.");
       pw.println("VM default locale: " + defaultLocale);
       pw.println(
           "Locale returned by ServletResponse.getLocale(): " + containerLocale);

@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /*
  * This should require employee role perms to access the Get or Post
- * methods.  This should be an equivelent to RoleReverseTest with the
+ * methods.  This should be an equivalent to RoleReverseTest with the
  * main difference being that this uses Servlet based annotations whereas
  * RoleReverseTest uses DD for configuring its security constraints.
  * It is worth noting that all methods (besides GET and POST) do NOT 

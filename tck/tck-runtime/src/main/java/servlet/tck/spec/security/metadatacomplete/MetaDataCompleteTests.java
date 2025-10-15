@@ -218,8 +218,8 @@ public class MetaDataCompleteTests extends BaseTckTest {
    * the annotation declaration which states ServletSecTest POST can be accessed
    * is WRONG since the DD declares that POST is set to be deny for all roles.
    * 3. try to access GET using valid creds (for Administrator=j2ee) since the
-   * DD specifies GET for role=Adminstrator. (Note that annotation declares GET
-   * should be deny by role=Adminstrator - so verify this annotation is NOT
+   * DD specifies GET for role=Administrator. (Note that annotation declares GET
+   * should be deny by role=Administrator - so verify this annotation is NOT
    * used.)
    *
    */

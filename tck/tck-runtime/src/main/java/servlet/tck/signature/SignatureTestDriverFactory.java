@@ -25,7 +25,7 @@ public class SignatureTestDriverFactory {
 
   /**
    * <p>
-   * Identifier for the driver that uses the Signature Test framwork for
+   * Identifier for the driver that uses the Signature Test framework for
    * signature validation.
    * </p>
    */

@@ -33,7 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /*
- * There are security annotations being used now which shoudl eliminate the 
+ * There are security annotations being used now which should eliminate the 
  * need for much of the DD elements.  Most notably, the TransportProtected
  * is used to indicate we want secure transport mechanism (eg SSL) though
  * we are still using the DD to specify and auth-metho of CLIENT-CERT.

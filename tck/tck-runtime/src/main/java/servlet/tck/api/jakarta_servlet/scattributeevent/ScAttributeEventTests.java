@@ -62,7 +62,7 @@ public class ScAttributeEventTests extends AbstractTckTest {
    * 
    * @assertion_ids: Servlet:JAVADOC:112
    * 
-   * @test_Strategy: Servlet instanciate the constructor
+   * @test_Strategy: Servlet instantiate the constructor
    */
   @Test
   public void constructorTest() throws Exception {

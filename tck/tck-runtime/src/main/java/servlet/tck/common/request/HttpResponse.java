@@ -133,7 +133,7 @@ public class HttpResponse {
   /**
    * Returns the response header designated by the name provided.
    *
-   * @return a specfic response header or null if the specified header doesn't
+   * @return a specific response header or null if the specified header doesn't
    *         exist.
    */
   public Optional<Header> getResponseHeader(String headerName) {

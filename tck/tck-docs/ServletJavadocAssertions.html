@@ -1205,7 +1205,7 @@
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:115"></a><font size="1PT">Servlet:JAVADOC:115</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.ServletContextAttributeEvent.getValue<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the value of the attribute that has been added removed or replaced.
-                              If the attrubute was  removed, this is the value of the removed attribute.
+                              If the attribute was  removed, this is the value of the removed attribute.
 
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -2468,7 +2468,7 @@ reading input using getReader(). Otherwise, it has no effect.
 	(
 		ServletContextAttributeEvent
 	)
-	</font></TD><TD align="left" valign="center"><font size="1PT">                            Notification that an existing attribute has been remved from the servlet context.
+	</font></TD><TD align="left" valign="center"><font size="1PT">                            Notification that an existing attribute has been removed from the servlet context.
                              Called after the attribute is removed.
 
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
@@ -2925,7 +2925,7 @@ reading input using getReader(). Otherwise, it has no effect.
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:256"></a><font size="1PT">Servlet:JAVADOC:256</font></TD><TD align="center" valign="center"><font size="1PT">String</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.ServletContext.getServletContextName<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the name of this web application correponding to this ServletContext as specified in the deployment  descriptor for this web application by the display-name element.
+</font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the name of this web application corresponding to this ServletContext as specified in the deployment  descriptor for this web application by the display-name element.
 
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -3538,7 +3538,7 @@ The web container cannot place the filter into service if the init method throws
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:310"></a><font size="1PT">Servlet:JAVADOC:310</font></TD><TD align="center" valign="center"><font size="1PT">Object</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.http.HttpSessionBindingEvent.getValue<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the value of the attribute that has been added, removed or replaced.
-                              If the attrubute was  removed (or unbound), this is the value of the removed attribute.
+                              If the attribute was  removed (or unbound), this is the value of the removed attribute.
 
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5044,7 +5044,7 @@ The web container cannot place the filter into service if the init method throws
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:469"></a><font size="1PT">Servlet:JAVADOC:469</font></TD><TD align="center" valign="center"><font size="1PT">long</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.http.HttpSession.getLastAccessedTime<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the last time the client sent a request associated with  this session, as the number of milliseconds since midnight  January 1, 1970 GMT, and marked by the time the container recieved the request.
+</font></TD><TD align="left" valign="center"><font size="1PT">                            Returns the last time the client sent a request associated with  this session, as the number of milliseconds since midnight  January 1, 1970 GMT, and marked by the time the container received the request.
 
 			</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
@@ -5403,7 +5403,7 @@ The web container cannot place the filter into service if the init method throws
 		String
 	)
 	</font></TD><TD align="left" valign="center"><font size="1PT">                            Encodes the specified URL for use in the  sendRedirect method or, if encoding is not needed,  returns the URL unchanged.
-                              The implementation of this method  includes the logic to determine whether the session ID  needs to be encoded in the URL.  Because the rules for making  this determination can differ from those used to decide whether to  encode a normal link, this method is seperate from the  encodeURL method.    All URLs sent to the HttpServletResponse.sendRedirect  method should be run through this method.  Otherwise, URL  rewriting cannot be used with browsers which do not support  cookies.
+                              The implementation of this method  includes the logic to determine whether the session ID  needs to be encoded in the URL.  Because the rules for making  this determination can differ from those used to decide whether to  encode a normal link, this method is separate from the  encodeURL method.    All URLs sent to the HttpServletResponse.sendRedirect  method should be run through this method.  Otherwise, URL  rewriting cannot be used with browsers which do not support  cookies.
 
 
 
@@ -6158,7 +6158,7 @@ Returns: true if this request has an id for a valid session in the current sessi
                                      Attributes can be set two ways.  The servlet container may set attributes to make available custom information about a request.
                                      For example, for requests made using HTTPS, the attribute jakarta.servlet.request.X509Certificate can be used to retrieve information
                                      on the certificate of the client.
-                                     Attributes can also be set programatically using setAttribute(java.lang.String, java.lang.Object).
+                                     Attributes can also be set programmatically using setAttribute(java.lang.String, java.lang.Object).
                                      This allows information to be embedded into a request before a RequestDispatcher call.
                                      Attribute names should follow the same conventions as package names.
                                      This specification reserves names matching java.*,  jakarta.*, and sun.*.
@@ -6580,7 +6580,7 @@ Returns: true if this request has an id for a valid session in the current sessi
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:616"></a><font size="1PT">Servlet:JAVADOC:616</font></TD><TD align="center" valign="center"><font size="1PT">boolean</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.http.HttpServletResponse.{jakarta.servlet.ServletResponse}.isCommitted<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Returns a boolean indicating if the response has been  committed.
-                              A commited response has already had its status code and headers written.
+                              A committed response has already had its status code and headers written.
                         </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
@@ -6825,7 +6825,7 @@ Returns: true if this request has an id for a valid session in the current sessi
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:638"></a><font size="1PT">Servlet:JAVADOC:638</font></TD><TD align="center" valign="center"><font size="1PT">void</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.AsyncContext.complete<br>
 </font></TD><TD align="left" valign="center"><font size="1PT">Completes the asynchronous operation that was started on the request
-                that was used to initialze this AsyncContext, closing the response that was used to initialize this AsyncContext.
+                that was used to initialize this AsyncContext, closing the response that was used to initialize this AsyncContext.
                 Any listeners of type AsyncListener that were added to the request that was used to initialize this AsyncContext
                 will have their AsyncListener#onComplete(AsyncEvent) method invoked.
                 It is legal to call this method any time after a call to ServletRequest#startAsync()
@@ -11264,7 +11264,7 @@ Returns: true if this request has an id for a valid session in the current sessi
 </TR>
 <TR>
 <TD align="center" valign="center"><a name="Servlet:JAVADOC:897"></a><font size="1PT">Servlet:JAVADOC:897</font></TD><TD align="center" valign="center"><font size="1PT">Collection</font></TD><TD align="left" valign="center"><font size="1PT">jakarta.servlet.ServletSecurityElement.getMethodNames<br>
-</font></TD><TD align="left" valign="center"><font size="1PT">Gets the set of HTTP methid names named by the HttpMethodConstraints.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
+</font></TD><TD align="left" valign="center"><font size="1PT">Gets the set of HTTP method names named by the HttpMethodConstraints.</font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD><TD align="center" valign="center"><font size="1PT">
 <br>
 </font></TD><TD align="center" valign="center"><font size="1PT">true</font></TD>
 </TR>

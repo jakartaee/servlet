@@ -62,7 +62,7 @@ public class ServletRequestWrapper30xTests extends AbstractTckTest {
    * @assertion_ids: Servlet:JAVADOC:724; Servlet:JAVADOC:725;
    *
    * @test_Strategy: Create a Servlets isWrapperForTest; In the servlet, wrap
-   * the Resquest a few time and in different ways; verifies the following
+   * the Request a few time and in different ways; verifies the following
    * works: - jakarta.servlet.ServletRequestWrapper.isWrapperFor(ServletRequest) -
    * jakarta.servlet.ServletRequestWrapper.isWrapperFor(Class)
    */

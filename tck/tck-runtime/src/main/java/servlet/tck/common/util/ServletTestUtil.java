@@ -241,7 +241,7 @@ public class ServletTestUtil {
 
       LOGGER.debug("[ServletTestUtil] Found search string: '{}' at index '{}' in the server's response",
               search, searchIdx);
-      // the new searchIdx is the old index plus the lenght of the
+      // the new searchIdx is the old index plus the length of the
       // search string.
       startIdx = searchIdx + search.length();
     }
@@ -279,7 +279,7 @@ public class ServletTestUtil {
   }
 
   /**
-   * Returnes the provides Enumeration as an Array of String Arguments.
+   * Returns the provides Enumeration as an Array of String Arguments.
    * 
    * @param e
    *          - an Enumeration
@@ -294,7 +294,7 @@ public class ServletTestUtil {
   }
 
   /**
-   * Returnes the provided string as an Array of Strings.
+   * Returns the provided string as an Array of Strings.
    * 
    * @param value String
    * @return - the elements of the String as an array of Strings

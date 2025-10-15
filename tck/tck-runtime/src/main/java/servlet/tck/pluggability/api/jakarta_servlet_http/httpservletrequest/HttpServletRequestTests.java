@@ -628,7 +628,7 @@ public class HttpServletRequestTests extends HttpRequestClient {
    * 
    * @assertion_ids: Servlet:JAVADOC:559;
    * 
-   * @test_Strategy: Client sends request to a servlet with a sesion ID; Servlet
+   * @test_Strategy: Client sends request to a servlet with a session ID; Servlet
    * start a sesison; Verifies getRequestedSessionId() returns the same;
    */
     /*

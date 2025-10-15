@@ -521,7 +521,7 @@ public abstract class BaseTckTest {
           || request.startsWith("OPTIONS") || request.startsWith("PUT")
           || request.startsWith("DELETE") || request.startsWith("HEAD")
           || request.endsWith(HTTP10) || request.endsWith(HTTP11)) {
-        // user has overriden default request behavior
+        // user has overridden default request behavior
         req = new HttpExchange(request, _hostname, _port);
         testCase.setRequest(req);
       } else {

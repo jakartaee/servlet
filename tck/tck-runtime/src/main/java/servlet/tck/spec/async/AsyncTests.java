@@ -490,7 +490,7 @@ public class AsyncTests extends AbstractTckTest {
    * async-supported=true in web.xml; Servlet4 has a filter Filter4 associated
    * with it which is declared async-supported=true in web.xml; send request to
    * Servlet2 in Servlet4; Servlet2 is not declared async-supported wise in
-   * web.xml; verifiy in Servlet2 that startAsync causes IllegalStateException
+   * web.xml; verify in Servlet2 that startAsync causes IllegalStateException
    * thrown.
    */
   @Test
@@ -689,7 +689,7 @@ public class AsyncTests extends AbstractTckTest {
    * async-supported=true in web.xml; Servlet5 has a filter Filter5 associated
    * with it which is declared async-supported=false in web.xml; send request to
    * Servlet2 in Servlet5; Servlet2 is not declared async-supported wise in
-   * web.xml; verifiy in Servlet2 that startAsync causes IllegalStateException
+   * web.xml; verify in Servlet2 that startAsync causes IllegalStateException
    * thrown.
    */
   @Test

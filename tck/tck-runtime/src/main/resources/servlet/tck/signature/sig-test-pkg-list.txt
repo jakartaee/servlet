@@ -24,6 +24,6 @@
 ##
 
 jakarta.servlet
-jakarta.servlet.anotations
+jakarta.servlet.annotations
 jakarta.servlet.descriptor
 jakarta.servlet.http

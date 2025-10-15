@@ -61,7 +61,7 @@ public class TestServlet extends GenericTCKServlet {
         expected_modes.add(SessionTrackingMode.URL);
       } else {
         passed = false;
-        pw.println("Unrecogized SessionTrackingMode expected: " + mode);
+        pw.println("Unrecognized SessionTrackingMode expected: " + mode);
       }
 
     }
@@ -77,7 +77,7 @@ public class TestServlet extends GenericTCKServlet {
     if (!results.containsAll(expected_modes)) {
       passed = false;
       pw.append("setSessionTrackingModes and getEffectiveSessionTrackingModes "
-          + "retuns different set of SessionTrackingModes");
+          + "returns different set of SessionTrackingModes");
 
       pw.append("getEffectiveSessionTrackingModes =");
       for (SessionTrackingMode tmp : results) {

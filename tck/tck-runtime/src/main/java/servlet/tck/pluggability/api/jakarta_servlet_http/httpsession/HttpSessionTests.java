@@ -309,7 +309,7 @@ public class HttpSessionTests extends AbstractTckTest {
    * 
    * @assertion_ids: Servlet:JAVADOC:491
    * 
-   * @test_Strategy: Servlet removes non-existant attribute then tries to tries
+   * @test_Strategy: Servlet removes non-existent attribute then tries to tries
    * to get it.
    */
   @Test
