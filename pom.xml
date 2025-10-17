@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>2.0.0-M1</version>
     </parent>
 
     <groupId>jakarta.servlet</groupId>
@@ -34,82 +34,15 @@
 
     <name>Jakarta Servlet Parent</name>
     <description>
-        Jakarta Servlet defines a server-side API for handling HTTP requests and responses.
+        This POM is only used as a convenient way to build each of the modules.
+        The individual modules do not inherit from this POM.
     </description>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
-    <licenses>
-        <license>
-            <name>EPL 2.0</name>
-            <url>http://www.eclipse.org/legal/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>GPL2 w/ CPE</name>
-            <url>https://www.gnu.org/software/classpath/license.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
-    <properties>
-        <maven.compiler.release>11</maven.compiler.release>
-    </properties>
     <modules>
         <module>api</module>
         <module>spec</module>
         <module>tck</module>
     </modules>
 
-    <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/servlet-api.git</connection>
-        <developerConnection>scm:git:git@github.com:eclipse-ee4j/servlet-api.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/servlet-api</url>
-        <tag>HEAD</tag>
-    </scm>
-    
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.14.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>3.7.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>3.6.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>enforce-maven</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.9</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>11</version>
-                                </requireJavaVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
