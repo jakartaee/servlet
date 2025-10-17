@@ -24,69 +24,68 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0-M1</version>
         <relativePath/>
     </parent>
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
     <version>6.2.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    <name>Jakarta Servlet</name>
+    <name>Jakarta Servlet API</name>
+    <description>
+        Jakarta Servlet defines a server-side API for handling HTTP requests and responses
+    </description>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
-    <licenses>
-        <license>
-            <name>EPL 2.0</name>
-            <url>http://www.eclipse.org/legal/epl-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>GPL2 w/ CPE</name>
-            <url>https://www.gnu.org/software/classpath/license.html</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <developers>
         <developer>
-            <id>yaminikb</id>
-            <name>Yamini K B</name>
-            <organization>Oracle Corporation</organization>
-            <organizationUrl>http://www.oracle.com/</organizationUrl>
+            <id>jakarta-ee4j-servlet</id>
+            <name>Jakarta Servlet Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>servlet-dev@eclipse.org</email>
         </developer>
     </developers>
     <contributors>
-        <contributor>
-            <name>Ed Burns</name>
-        </contributor>
-        <contributor>
-            <name>Shing Wai Chan</name>
-        </contributor>
+       <contributor>
+           <name>Jakarta Servlet Contributors</name>
+           <email>servlet-dev@eclipse.org</email>
+           <url>https://github.com/jakartaee/servlet/graphs/contributors</url>
+       </contributor>
     </contributors>
 
     <mailingLists>
         <mailingList>
-            <name>Servlet mailing list</name>
+            <name>Servlet dev mailing list</name>
             <post>servlet-dev@eclipse.org</post>
-            <subscribe>https://dev.eclipse.org/mailman/listinfo/servlet-dev</subscribe>
-            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/servlet-dev</unsubscribe>
-            <archive>https://dev.eclipse.org/mhonarc/lists/servlet-dev</archive>
+            <subscribe>https://accounts.eclipse.org/mailing-list/servlet-dev</subscribe>
+            <unsubscribe>https://accounts.eclipse.org/mailing-list/servlet-dev</unsubscribe>
+            <archive>https://www.eclipse.org/lists/servlet-dev</archive>
         </mailingList>
     </mailingLists>
 
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/servlet-api.git</connection>
-        <developerConnection>scm:git:git@github.com:eclipse-ee4j/servlet-api.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/servlet-api</url>
+        <connection>scm:git:https://github.com/jakartaee/servlet.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/servlet.git</developerConnection>
+        <url>https://github.com/jakartaee/servlet</url>
         <tag>HEAD</tag>
     </scm>
+
     <issueManagement>
         <system>github</system>
-        <url>https://github.com/eclipse-ee4j/servlet-api/issues</url>
+        <url>https://github.com/jakartaee/servlet/issues</url>
     </issueManagement>
 
     <properties>
-        <project.build.outputTimestamp>2020-12-19T17:27:00Z</project.build.outputTimestamp>
+        <!-- Timestamp for repeatable builds (more recent than parent) -->
+        <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
+        <!-- OSGi properties -->
+        <!-- Make sure the two versions are in sync with the maven version -->
+        <spec.version>6.2</spec.version>
+        <bundle.version>${project.version}</bundle.version>
+        <extensionName>jakarta.servlet</extensionName>
+        <bundle.symbolicName>jakarta.servlet-api</bundle.symbolicName>
     </properties>
 
     <dependencyManagement>
@@ -104,12 +103,7 @@
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -132,6 +126,14 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>${project.basedir}/..</directory>
+                <includes>
+                    <include>LICENSE.md</include>
+                    <include>NOTICE.md</include>
+                </includes>
+                <targetPath>META-INF</targetPath>
+            </resource>
         </resources>
         <pluginManagement>
             <plugins>
@@ -151,7 +153,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- Sets minimal Maven version to 3.5.4 -->
+            <!-- Sets minimal Maven version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -164,21 +166,25 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>3.5.4</version>
+                                    <version>3.8.6</version>
                                 </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
+                                <requireJavaVersion>
+                                    <version>21</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-            
-            <!-- Restricts the Java version to 11 -->
+        
+            <!-- Minimum Java version in spec document is 17 -->
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.14.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <release>17</release>
                     <compilerArgument>-Xlint:all</compilerArgument>
                 </configuration>
             </plugin>
@@ -190,17 +196,17 @@
                 <version>3.5.4</version>
             </plugin>
 
-            <!-- Checks copyright / license headers -->        
+            <!-- Checks copyright / license headers -->
             <plugin>
                 <groupId>org.glassfish.copyright</groupId>
                 <artifactId>glassfish-copyright-maven-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
                     <excludeFile>etc/config/copyright-exclude</excludeFile>
-                    <!--svn|mercurial|git - defaults to svn-->
+                    <!-- svn|mercurial|git - defaults to svn -->
                     <scm>git</scm>
                     <!-- turn on/off debugging -->
-                    <debug>off</debug>
+                    <debug>false</debug>
                     <!-- skip files not under SCM -->
                     <scmOnly>true</scmOnly>
                     <!-- turn off warnings -->
@@ -214,11 +220,6 @@
                 </configuration>
             </plugin>
 
-            <!-- 
-                spec-version-maven-plugin would normally appear here.
-                But somehow is missing for Servlet.
-            -->
-            
             <!-- Creates the OSGi MANIFEST.MF file -->
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -229,14 +230,12 @@
                         <supportedProjectType>jar</supportedProjectType>
                     </supportedProjectTypes>
                     <instructions>
-                        <Bundle-Version>6.2.0</Bundle-Version>
-                        <Bundle-SymbolicName>jakarta.servlet-api</Bundle-SymbolicName>
-                        <Bundle-Description>
-                            Jakarta Servlet 6.2
-                        </Bundle-Description>
-                        <Extension-Name>jakarta.servlet</Extension-Name>
-                        <Specification-Version>6.2</Specification-Version>
-                        <Specification-Vendor>Eclipse Foundation</Specification-Vendor>
+                        <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+                        <Bundle-Version>${bundle.version}</Bundle-Version>
+                        <Bundle-Description>Jakarta Servlet ${spec.version}</Bundle-Description>
+                        <Extension-Name>${extensionName}</Extension-Name>
+                        <Specification-Version>${spec.version}</Specification-Version>
+                        <Specification-Vendor>${vendorName}</Specification-Vendor>
                         <Implementation-Version>${project.version}</Implementation-Version>
                         <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                         <Implementation-Vendor-Id>org.eclipse</Implementation-Vendor-Id>
@@ -256,7 +255,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -270,7 +269,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-        
+
             <!-- Creates the source jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -287,24 +286,21 @@
                     </execution>
                 </executions>
             </plugin>
-            
-            <!-- 
-               Create Javadoc for API jar
-            -->
+
+            <!-- Create Javadoc for API jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>attach-api-javadocs</id>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
                         <configuration>
-                            <quiet>true</quiet>
-                            <source>11</source>
+                            <source>17</source>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
-                            <description>Jakarta Servlet API documentation</description>
+                            <quiet>true</quiet>
                             <doctitle>Jakarta Servlet API documentation</doctitle>
                             <windowtitle>Jakarta Servlet API documentation</windowtitle>
                             <header><![CDATA[<br>Jakarta Servlet API v${project.version}]]></header>
@@ -328,76 +324,13 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
                                     <placement>a</placement>
                                     <head>Implementation Requirements:</head>
                                 </tag>
-                                <tag>
-                                    <name>param</name>
-                                </tag>
-                                <tag>
-                                    <name>return</name>
-                                </tag>
-                                <tag>
-                                    <name>throws</name>
-                                </tag>
-                                <tag>
-                                    <name>since</name>
-                                </tag>
-                                <tag>
-                                    <name>version</name>
-                                </tag>
-                                <tag>
-                                    <name>serialData</name>
-                                </tag>
-                                <tag>
-                                    <name>factory</name>
-                                </tag>
-                                <tag>
-                                    <name>see</name>
-                                </tag>
                             </tags>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-          
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.6.1</version>
-                <executions>
-                    <execution>
-                        <id>add-resource</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>add-resource</goal>
-                        </goals>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <directory>${maven.multiModuleProjectDirectory}</directory>
-                                    <targetPath>META-INF</targetPath>
-                                    <includes>
-                                        <include>LICENSE.md</include>
-                                        <include>NOTICE.md</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <autoPublish>true</autoPublish>
-                    <waitUntil>published</waitUntil>
-                    <centralSnapshotsUrl>https://central.sonatype.com/repository/maven-snapshots/</centralSnapshotsUrl>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
-
 
     <profiles>
         <profile>
@@ -482,18 +415,4 @@ Use is subject to <a href="{@docRoot}/doc-files/speclicense.html" target="_top">
         </profile>
     </profiles>
     
-    <!-- Required if parent is a SNAPSHOT and to pick-up API SNAPSHOTs from Central-->
-    <repositories>
-        <repository>
-            <name>Central Portal Snapshots</name>
-            <id>central-portal-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 </project>

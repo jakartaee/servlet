@@ -16,20 +16,74 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>servlet-parent</artifactId>
-        <version>6.2.0-SNAPSHOT</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>2.0.0-M1</version>
+        <relativePath/>
     </parent>
 
+    <groupId>jakarta.servlet</groupId>
     <artifactId>servlet-spec</artifactId>
     <version>6.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Jakarta Servlet Specification</name>
+    <description>Jakarta Servlet - Specification</description>
+    <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
+
+    <!--
+        Override the license in the parent POM as specifications all have a different license. 
+    -->
+    <licenses>
+        <license>
+            <name>Eclipse Foundation Specification License – v1.0</name>
+            <url>https://www.eclipse.org/legal/efsl.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>jakarta-ee4j-servlet</id>
+            <name>Jakarta Servlet Developers</name>
+            <organization>Eclipse Foundation</organization>
+            <email>servlet-dev@eclipse.org</email>
+        </developer>
+    </developers>
+    <contributors>
+       <contributor>
+           <name>Jakarta Servlet Contributors</name>
+           <email>servlet-dev@eclipse.org</email>
+           <url>https://github.com/jakartaee/servlet/graphs/contributors</url>
+       </contributor>
+    </contributors>
+
+    <mailingLists>
+        <mailingList>
+            <name>Servlet dev mailing list</name>
+            <post>servlet-dev@eclipse.org</post>
+            <subscribe>https://accounts.eclipse.org/mailing-list/servlet-dev</subscribe>
+            <unsubscribe>https://accounts.eclipse.org/mailing-list/servlet-dev</unsubscribe>
+            <archive>https://www.eclipse.org/lists/servlet-dev</archive>
+        </mailingList>
+    </mailingLists>
+
+    <scm>
+        <connection>scm:git:https://github.com/jakartaee/servlet.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jakartaee/servlet.git</developerConnection>
+        <url>https://github.com/jakartaee/servlet</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/jakartaee/servlet/issues</url>
+    </issueManagement>
 
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
@@ -41,26 +95,29 @@
         <status>DRAFT</status>
         <maven.build.timestamp.format>MMMM dd, yyyy</maven.build.timestamp.format>
         <revisiondate>${maven.build.timestamp}</revisiondate>
-        <spec.version>${project.version}</spec.version>
     </properties>
 
     <build>
         <defaultGoal>package</defaultGoal>
         <plugins>
+            <!-- Sets minimal Maven version and Java version-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>enforce-versions</id>
+                        <id>enforce-maven</id>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
                         <configuration>
                             <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.6</version>
+                                </requireMavenVersion>
+                                <!-- Plugins used to build spec require Java 21 so use 21 a minimum for all modules -->
                                 <requireJavaVersion>
-                                    <version>[11,)</version>
-                                    <message>You need JDK11 or higher</message>
+                                    <version>21</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
@@ -71,6 +128,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <id>timestamp-property</id>
@@ -119,7 +177,7 @@
                         <configuration>
                             <backend>html5</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${spec.version}.html</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${project.version}.html</outputFile>
                             <attributes>
                                 <source-highlighter>coderay</source-highlighter>
                                 <imagesdir>images</imagesdir>
@@ -146,7 +204,7 @@
                         <configuration>
                             <backend>pdf</backend>
                             <sourceDirectory>${basedir}/src/main/asciidoc</sourceDirectory>
-                            <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${spec.version}.pdf</outputFile>
+                            <outputFile>${project.build.directory}/generated-docs/jakarta-servlet-spec-${project.version}.pdf</outputFile>
                             <attributes>
                                 <source-highlighter>coderay</source-highlighter>
                                 <imagesdir>images</imagesdir>
@@ -171,7 +229,7 @@
                 <configuration>
                     <sourceDocumentName>servlet-spec.adoc</sourceDocumentName>
                     <attributes>
-                        <revnumber>${spec.version}</revnumber>
+                        <revnumber>${project.version}</revnumber>
                         <revremark>${status}</revremark>
                         <revdate>${revisiondate}</revdate>
                         <revyear>${current.year}</revyear>
@@ -179,12 +237,11 @@
                 </configuration>
             </plugin>
 
-            <!--
-                This is the rule that builds the zip file for download.
-            -->
+            <!-- This is the rule that builds the zip file for download. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
