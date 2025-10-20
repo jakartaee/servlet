@@ -37,12 +37,12 @@
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
 
     <!--
-        Override the license in the parent POM as specifications all have a different license. 
+        Override the license in the parent POM as specifications all use the EFSL. 
     -->
     <licenses>
         <license>
-            <name>Eclipse Foundation Specification License – v1.0</name>
-            <url>https://www.eclipse.org/legal/efsl.php</url>
+            <name>Eclipse Foundation Specification License – v2.0</name>
+            <url>https://www.eclipse.org/legal/efsl/</url>
             <distribution>repo</distribution>
         </license>
     </licenses>

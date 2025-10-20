@@ -16,67 +16,28 @@ Release: {revdate}
 
 == Copyright
 
-Copyright (c) 2019, {revyear} Eclipse Foundation.
+== Eclipse Foundation Specification License - v2.0
 
-=== Eclipse Foundation Specification License
+This license (the "`License`") governs the use, modification and distribution of a specification generated pursuant to the Eclipse Foundation Specification Process.
 
-By using and/or copying this document, or the Eclipse Foundation
-document from which this statement is linked, you (the licensee) agree
-that you have read, understood, and will comply with the following
-terms and conditions:
+By using the file or document that incorporates this License (the "`Document`"), you (the licensee) agree that you have read, understood, and will comply with the following terms and conditions.
 
-Permission to copy, and distribute the contents of this document, or
-the Eclipse Foundation document from which this statement is linked, in
-any medium for any purpose and without fee or royalty is hereby
-granted, provided that you include the following on ALL copies of the
-document, or portions thereof, that you use:
+Permission to copy and distribute the contents of the Document, in any medium for any purpose, and without fee or royalty is hereby granted, provided that you include the following on ALL copies of the Document that you copy or distribute:
 
-* link or URL to the original Eclipse Foundation document.
-* All existing copyright notices, or if one does not exist, a notice
-  (hypertext is preferred, but a textual representation is permitted)
-  of the form: "Copyright © [$date-of-document] Eclipse Foundation, Inc.
-  \<<url to this license>>"
+- link or URL to the Document
+- All existing copyright notices, or if one does not exist, a notice (hypertext is preferred, but a textual representation is permitted) of the form: "`Copyright (C) [date-of-document] Eclipse Foundation AISBL [URL to this license] This document includes material copied from [title and URL of the Eclipse Foundation specification document].`"
 
-Inclusion of the full text of this NOTICE must be provided. We
-request that authorship attribution be provided in any software,
-documents, or other items or products that you create pursuant to the
-implementation of the contents of this document, or any portion
-thereof.
+In addition to the license granted above, you are granted the  right to create modifications or derivatives of the Document:
 
-No right to create modifications or derivatives of Eclipse Foundation
-documents is granted pursuant to this license, except anyone may
-prepare and distribute derivative works and portions of this document
-in software that implements the specification, in supporting materials
-accompanying such software, and in documentation of such software,
-PROVIDED that all such works include the notice below. HOWEVER, the
-publication of derivative works of this document for use as a technical
-specification is expressly prohibited.
+- in software that implements the Document, in supporting materials accompanying such software, and in documentation of such software (collectively the "`Works`"), such  Works to be made available under terms of your choice  PROVIDED that all such Works include a notice of the form: "`This [software/document (choose as applicable)] includes material derived from [title and URL of the Eclipse Foundation specification document].`"; and
+- in materials that demonstrate or describe conformance with the Document PROVIDED that all such materials include a notice of the form: "`This material demonstrates conformance with the [title and URL of the Eclipse Foundation specification document].`"
 
-The notice is:
+NOTWITHSTANDING THE FOREGOING, the creation or publication of derivative works of the Document or portions of the Document for use as a specification or standard is expressly prohibited.
 
-"Copyright © 2018, 2024 Eclipse Foundation. This software or document
-includes material copied from or derived from
-Jakarta ® Servlet
-\https://jakarta.ee/specifications/servlet/6.0/"
+=== Disclaimers
 
-==== Disclaimers
+THE DOCUMENT IS PROVIDED "AS IS," AND TO THE EXTENT PERMITTED BY APPLICABLE LAW THE COPYRIGHT HOLDERS AND THE ECLIPSE FOUNDATION AISBL MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE DOCUMENT ARE SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
 
-THIS DOCUMENT IS PROVIDED &quot;AS IS,&quot; AND THE COPYRIGHT
-HOLDERS AND THE ECLIPSE FOUNDATION MAKE NO REPRESENTATIONS OR
-WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-NON-INFRINGEMENT, OR TITLE; THAT THE CONTENTS OF THE DOCUMENT ARE
-SUITABLE FOR ANY PURPOSE; NOR THAT THE IMPLEMENTATION OF SUCH CONTENTS
-WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR
-OTHER RIGHTS.
+TO THE EXTENT PERMITTED BY APPLICABLE LAW THE COPYRIGHT HOLDERS AND THE ECLIPSE FOUNDATION AISBL WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE DOCUMENT OR THE PERFORMANCE OR IMPLEMENTATION OF THE CONTENTS THEREOF.
 
-THE COPYRIGHT HOLDERS AND THE ECLIPSE FOUNDATION WILL NOT BE LIABLE
-FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT
-OF ANY USE OF THE DOCUMENT OR THE PERFORMANCE OR IMPLEMENTATION OF THE
-CONTENTS THEREOF.
-
-The name and trademarks of the copyright holders or the Eclipse
-Foundation may NOT be used in advertising or publicity pertaining to
-this document or its contents without specific, written prior
-permission. Title to copyright in this document will at all times
-remain with copyright holders.
+The name and trademarks of the copyright holders or the Eclipse Foundation AISBL may NOT be used in advertising or publicity pertaining to this document or its contents without specific, written prior permission. 
