@@ -30,6 +30,10 @@
     
     <name>Jakarta Servlet TCK distribution</name>
 
+    <properties>
+        <bundle-name>jakarta-servlet-tck</bundle-name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -55,6 +59,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <id>distribution</id>
@@ -68,21 +73,11 @@
                             </descriptors>
                             <escapeString>\</escapeString>
                             <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${bundle-name}-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>EFTL</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <bundle-name>jakarta-servlet-tck</bundle-name>
-            </properties>
-        </profile>
-    </profiles>
 </project>
