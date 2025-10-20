@@ -17,6 +17,7 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -35,6 +36,17 @@
     <name>Jakarta Servlet TCK</name>
     <description>Jakarta Servlet TCK</description>
     <url>https://projects.eclipse.org/projects/ee4j.servlet</url>
+
+    <!--
+        Override the license in the parent POM as TCKs all use the EFTL. 
+    -->
+    <licenses>
+        <license>
+            <name>Eclipse Foundation Technology Compatibility Kit License - v1.1</name>
+            <url>https://www.eclipse.org/legal/tck/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
