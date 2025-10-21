@@ -33,8 +33,12 @@
     <name>Jakarta Servlet TCK Runtime</name>
 
     <properties>
-        <shrinkwrap-resolver.version>3.3.4</shrinkwrap-resolver.version>
+        <!-- API version for signature test-->
+        <api.version>6.2</api.version>
+        <!-- Jakarta API versions -->
         <servlet.api.version>6.2.0-SNAPSHOT</servlet.api.version>
+        <!-- Plugin versions -->
+        <shrinkwrap-resolver.version>3.3.4</shrinkwrap-resolver.version>
         <sigtest.version>2.6</sigtest.version>
     </properties>
 
@@ -116,24 +120,37 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>jakarta.tck</groupId>
-                <artifactId>sigtest-maven-plugin</artifactId>
-                <version>${sigtest.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <release>17</release> <!-- specify version of JDK API to use 6,7,8,...15 -->
-                    <packages>jakarta.servlet,jakarta.servlet.annotation,jakarta.servlet.descriptor,jakarta.servlet.http</packages>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>record-signature</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>jakarta.tck</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <sigfile>${project.build.directory}/jakarta.servlet.sig_${api.version}</sigfile>
+                            <packages>jakarta.servlet,jakarta.servlet.annotation,jakarta.servlet.descriptor,jakarta.servlet.http</packages>
+                            <version>${api.version}</version>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>
