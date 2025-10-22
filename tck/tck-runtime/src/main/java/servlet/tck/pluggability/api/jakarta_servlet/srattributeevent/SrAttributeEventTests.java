@@ -83,7 +83,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds an attribute. The listener should detect the
    * add and write a message out to a static log. Servlet then reads the log and
-   * verifys the result. It also verifies the requests and context that changed
+   * verifys the result. It also verifies the request and context that changed
    *
    */
   @Test
@@ -100,7 +100,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds/removes an attribute. The listener should
    * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result. It also verifies the requests and context
+   * the log and verifys the result. It also verifies the request and context
    * that changed
    */
   @Test
@@ -117,7 +117,7 @@ public class SrAttributeEventTests extends AbstractTckTest {
    * 
    * @test_Strategy: Servlet adds/replaces an attribute. The listener should
    * detect the add and write a message out to a static log. Servlet then reads
-   * the log and verifys the result. It also verifies the requests and context
+   * the log and verifys the result. It also verifies the request and context
    * that changed
    */
   @Test
