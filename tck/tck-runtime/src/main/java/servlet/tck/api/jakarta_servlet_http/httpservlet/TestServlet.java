@@ -20,11 +20,11 @@
  * *    distribution.
  * *
  * * 3. The end-user documentation included with the redistribution, if
- * *    any, must include the following acknowlegement:
+ * *    any, must include the following acknowledgement:
  * *       "This product includes software developed by the
  * *        Apache Software Foundation (http://www.apache.org/)."
- * *    Alternately, this acknowlegement may appear in the software itself,
- * *    if and wherever such third-party acknowlegements normally appear.
+ * *    Alternately, this acknowledgement may appear in the software itself,
+ * *    if and wherever such third-party acknowledgements normally appear.
  * *
  * * 4. The names "The Jakarta Project", "Tomcat", and "Apache Software
  * *    Foundation" must not be used to endorse or promote products derived
@@ -169,11 +169,11 @@ public class TestServlet extends HttpTCKServlet {
         "something_that_will_not_be_there_no_matter_how_many_time");
     if (actual != null) {
       passed = false;
-      pw.println("getInitParameter(String) did not return exected null");
+      pw.println("getInitParameter(String) did not return expected null");
       pw.println("Actual result=" + actual);
     } else {
       passed = true;
-      pw.println("getInitParameter(String) return exected null");
+      pw.println("getInitParameter(String) return expected null");
     }
     ServletTestUtil.printResult(pw, passed);
   }

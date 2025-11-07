@@ -7,7 +7,7 @@
 // The first block below is additional definitions needed by
 // Jakarta XML Web Services.
 //
-// The second block below is additional defintions needed by
+// The second block below is additional definitions needed by
 // Jakarta Server Pages.
 //
 // NOTE: This set of examples is NOT complete, but should be.

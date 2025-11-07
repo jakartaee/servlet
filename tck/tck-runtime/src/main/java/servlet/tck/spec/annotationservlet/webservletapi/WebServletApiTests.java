@@ -64,7 +64,7 @@ public class WebServletApiTests extends AbstractTckTest {
    * annotation @WebServlet(String); Add Servlet1 to ServletContext
    * programmatically using different name; Invoke Servlet1 at the URL specified
    * by @WebServlet; Verify that it works as defined at @WebServlet; Invoke
-   * Servlet1 at the URL specified by API programing; Veriy Servlet1 is invoked
+   * Servlet1 at the URL specified by API programming; Veriy Servlet1 is invoked
    * properly; Verify that servlet name is set correctly; Verify that servlet
    * name is set to the default name;
    */

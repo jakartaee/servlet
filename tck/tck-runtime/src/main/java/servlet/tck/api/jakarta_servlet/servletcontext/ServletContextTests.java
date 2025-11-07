@@ -58,7 +58,7 @@ public class ServletContextTests extends AbstractTckTest {
    *
    * @test_Strategy: Servlet verify's that the value from the
    * ServletContext.getAttribute("jakarta.servlet.temp.dir") returns non-null
-   * value that points an exsiting directory.
+   * value that points an existing directory.
    */
   @Test
   public void GetServletTempDirTest() throws Exception {

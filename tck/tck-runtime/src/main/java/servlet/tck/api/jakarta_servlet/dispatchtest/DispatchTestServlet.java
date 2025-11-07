@@ -369,7 +369,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     }
   }
 
-  // Test AsyncContext.dispatch() when startAsync() called in an asynchrounous
+  // Test AsyncContext.dispatch() when startAsync() called in an asynchronous
   // thread
   public void startAsyncAgainTest4(ServletRequest request,
       ServletResponse response) throws IOException {
@@ -420,7 +420,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
   }
 
   // Test AsyncContext.dispatch() when startAsync(request, response) called in
-  // an asynchrounous thread
+  // an asynchronous thread
   public void startAsyncAgainTest5(ServletRequest request,
       ServletResponse response) throws IOException {
 
@@ -543,7 +543,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
   }
 
   // Test AsyncContext.dispatch(URI) when startAsync() called in an
-  // asynchrounous thread
+  // asynchronous thread
   public void startAsyncAgainTest10(ServletRequest request,
       ServletResponse response) throws IOException {
     response.getWriter().println("ASYNC_NOT_STARTED_startAsyncAgainTest10");
@@ -561,7 +561,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
   }
 
   // Test AsyncContext.dispatch(URI) when startAsync(request, response) called
-  // in an asynchrounous thread
+  // in an asynchronous thread
   public void startAsyncAgainTest11(ServletRequest request,
       ServletResponse response) throws IOException {
     response.getWriter().println("ASYNC_NOT_STARTED_startAsyncAgainTest11");
@@ -672,7 +672,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
   }
 
   // Test AsyncContext.dispatch(ServletContext, URI) when startAsync() called in
-  // an asynchrounous thread
+  // an asynchronous thread
   public void startAsyncAgainTest16(ServletRequest request,
       ServletResponse response) throws IOException {
     response.getWriter().println("ASYNC_NOT_STARTED_startAsyncAgainTest16");
@@ -695,7 +695,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
   }
 
   // Test AsyncContext.dispatch(ServletContext, URI) when startAsync(request,
-  // response) called in an asynchrounous thread
+  // response) called in an asynchronous thread
   public void startAsyncAgainTest17(ServletRequest request,
       ServletResponse response) throws IOException {
     response.getWriter().println("ASYNC_NOT_STARTED_startAsyncAgainTest17");
@@ -1021,7 +1021,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
       response.getWriter()
           .println("DispatcherType=" + request.getDispatcherType());
       response.flushBuffer();
-      response.getWriter().println("After commmit");
+      response.getWriter().println("After commit");
       AsyncContext ac = request.startAsync();
       request.setAttribute("WHERE", "ASYNC");
       response.getWriter()
@@ -1058,7 +1058,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
       response.getWriter()
           .println("DispatcherType=" + request.getDispatcherType());
       response.flushBuffer();
-      response.getWriter().println("After commmit");
+      response.getWriter().println("After commit");
       AsyncContext ac = request.startAsync(request, response);
       request.setAttribute("WHERE", "ASYNC");
       response.getWriter()
@@ -1080,7 +1080,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("DispatcherType=" + request.getDispatcherType());
     response.flushBuffer();
-    response.getWriter().println("After commmit");
+    response.getWriter().println("After commit");
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
@@ -1101,7 +1101,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("DispatcherType=" + request.getDispatcherType());
     response.flushBuffer();
-    response.getWriter().println("After commmit");
+    response.getWriter().println("After commit");
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
@@ -1121,7 +1121,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("DispatcherType=" + request.getDispatcherType());
     response.flushBuffer();
-    response.getWriter().println("After commmit");
+    response.getWriter().println("After commit");
     AsyncContext ac = request.startAsync();
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());
@@ -1147,7 +1147,7 @@ public class DispatchTestServlet extends GenericTCKServlet {
     response.getWriter()
         .println("DispatcherType=" + request.getDispatcherType());
     response.flushBuffer();
-    response.getWriter().println("After commmit");
+    response.getWriter().println("After commit");
     AsyncContext ac = request.startAsync(request, response);
     response.getWriter()
         .println("Before dispatch=" + System.currentTimeMillis());

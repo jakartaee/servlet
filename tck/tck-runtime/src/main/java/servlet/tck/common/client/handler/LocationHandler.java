@@ -140,13 +140,13 @@ public class LocationHandler implements Handler {
       if (configURL.getQuery() == null) {
         if (responseURL.getQuery() != null) {
           pass = false;
-          LOGGER.error("[LocationHandler] Mismatch between querys:");
+          LOGGER.error("[LocationHandler] Mismatch between queries:");
           LOGGER.error("[LocationHandler] Configured value is null");
           LOGGER.error("[LocationHandler] Response value is non-null");
         }
       } else if (!(configURL.getQuery().equals(responseURL.getQuery()))) {
         pass = false;
-        LOGGER.error("[LocationHandler] Mismatch between querys:");
+        LOGGER.error("[LocationHandler] Mismatch between queries:");
         LOGGER.error(
             "[LocationHandler] Configured value: {}", configURL.getQuery());
         LOGGER.error(

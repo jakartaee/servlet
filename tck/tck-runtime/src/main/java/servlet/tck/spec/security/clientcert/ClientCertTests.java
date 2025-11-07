@@ -291,7 +291,7 @@ public class ClientCertTests extends AbstractTckTest {
     }
 
     public void verifyTestOutput(String output, String testName) throws Exception {
-        // check for the occurance of <testName>+": PASSED"
+        // check for the occurrence of <testName>+": PASSED"
         // message in server's response. If this message is not present
         // report test failure.
         if (!output.contains(testName + ": PASSED")) {

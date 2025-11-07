@@ -32,7 +32,7 @@ import java.util.Properties;
  * The tests within this file will either test security constraints using the 
  * DD file or by using annotations.  The naming scheme in this file is as
  * follows:
- *   test1()      -  tests security constaints using DD file
+ *   test1()      -  tests security constraints using DD file
  *   test1_anno() - tests security constraints using annotations
  * In both cases (testing using DD or annotations) the actual tests are 
  * being done in the secBasicClient.  The real difference regards whether
@@ -141,7 +141,7 @@ public class SecBasicTests extends SecBasicClient {
    * being that this test is using a servlet w/ security constraints defined
    * thru annotations instead of DD. This particular test (test2_anno) actually
    * requires the use of the DD to set the <role-name> and <role-link> since
-   * these cant be linked using annotations only.
+   * these can't be linked using annotations only.
    *
    * This test validates the following: 1. Send request with correct
    * authentication. 2. Receive page (ensure principal is correct, and ensure

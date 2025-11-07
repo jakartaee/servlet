@@ -57,7 +57,7 @@ public class TestListener implements ServletContextListener {
               + oldTimeout + "and" + newTimeout);
     }
 
-    // negtive test
+    // negative test
     try {
       context.addJspFile("", "/addJspFile.jsp");
       list.add("add_jsp_with_empty_name");

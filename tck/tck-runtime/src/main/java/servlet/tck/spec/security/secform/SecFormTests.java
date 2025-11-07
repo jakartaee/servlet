@@ -30,7 +30,7 @@ import java.util.Properties;
  * The tests within this file will either test security constraints using the
  * DD file or by using annotations.  The naming scheme in this file is as
  * follows:
- *   test1()      -  tests security constaints using DD file
+ *   test1()      -  tests security constraints using DD file
  *   test1_anno() - tests security constraints using annotations
  * In both cases (testing using DD or annotations) the actual tests are
  * being done in the secformClient.  The real difference regards whether
@@ -441,7 +441,7 @@ public class SecFormTests extends SecformClient {
    * @test_Strategy: Configure allRoles.jsp to be accessible by allRoles (
    * Administrator and * )
    *
-   * 1) Try accesing allRoles.jsp as the following user a) j2ee b) javajoe 2)
+   * 1) Try accessing allRoles.jsp as the following user a) j2ee b) javajoe 2)
    * Based on the http reply, report test status
    *
    * Note: The auth-constraint element indicates the user roles that should be
@@ -637,7 +637,7 @@ public class SecFormTests extends SecformClient {
    * @test_Strategy: 1. Send request to access protected page (ie.
    * pageServletProgLogout) 2. Receive login page 3. Send form response with
    * username(j2ee) and password 4. Receive resource 5. make sure no ERRORs
-   * occurrred on pageServletProgLogout and that it actually did log us out.
+   * occurred on pageServletProgLogout and that it actually did log us out.
    *
    */
     /*
