@@ -8589,6 +8589,9 @@ link:https://github.com/jakartaee/servlet/issues/867[Issue 867]::
 When processing the `If-Modified-Since` header in `HttpServerlet.service()`,
 invalid header values must be ignored as per RFC 9110.
 
+Clarify the Javadoc for when the `AsyncContext` `complete()` and `dispatch()`
+methods throw an `IllegalStateException`. 
+
 === Changes Since Jakarta Servlet 6.0
 
 link:https://github.com/eclipse-ee4j/servlet-api/issues/59[Issue 59]::
