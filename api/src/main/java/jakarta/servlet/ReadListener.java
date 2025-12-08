@@ -50,7 +50,20 @@ public interface ReadListener extends EventListener {
     void onAllDataRead() throws IOException;
 
     /**
-     * Invoked when an error occurs processing the request.
+     * Invoked when an error occurs reading data after {@link #setReadListener(ReadListener)} has been called. This method
+     * will be invoked if there is a problem while data is being read from the stream and either:
+     * <ul>
+     * <li>{@link ServletInputStream#isReady()} has been invoked and returned false;</li>
+     * <li>or {@link ServletInputStream#close()} has been called, and the failure occurred before the response could be
+     * completed</li>
+     * </ul>
+     * If these conditions are not met and the stream is still open then any failure notification will be delivered either:
+     * by an exception thrown from a {@code IO} operation after an invocation of {@link ServletInputStream#isReady()} has
+     * returned {@code true}; or by a call to this method after an invocation of {@link ServletInputStream#isReady()} has
+     * returned {@code false};
+     * <p>
+     * This method will not be invoked in any circumstances after {@link AsyncListener#onComplete(AsyncEvent)} has been
+     * called.
      *
      * @param t the throwable to indicate why the read operation failed
      */
