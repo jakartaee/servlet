@@ -1,0 +1,10 @@
+language: java
+
+jdk:
+  - openjdk21
+
+install:
+  - mvn -B --errors --batch-mode --show-version install -DskipTests=true -Dmaven.javadoc.skip=true
+
+script:
+  - mvn -B verify -Dvalidate-format
