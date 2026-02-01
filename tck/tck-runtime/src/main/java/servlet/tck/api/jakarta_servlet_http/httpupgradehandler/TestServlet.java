@@ -40,6 +40,11 @@ public class TestServlet extends HttpServlet {
       TCKHttpUpgradeHandler handler = request
           .upgrade(TCKHttpUpgradeHandler.class);
       handler.setDelimiter("/");
+
+      String filterHeader = response.getHeader("X-Filter-After-Upgrade");
+      if (filterHeader != null) {
+        handler.setFilterHeaderValue(filterHeader);
+      }
     } else {
       response.getWriter().println("No upgrade");
       response.getWriter().println("End of Test");
