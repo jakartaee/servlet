@@ -23,6 +23,8 @@ import jakarta.servlet.ReadListener;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.ServletOutputStream;
 
+import java.util.Objects;
+
 public class TCKReadListener implements ReadListener {
 
   private ServletInputStream input = null;
@@ -32,9 +34,15 @@ public class TCKReadListener implements ReadListener {
   private String delimiter = null;
 
   TCKReadListener(String del, ServletInputStream in, ServletOutputStream out) {
+    delimiter = Objects.requireNonNull(del,
+        "Delimiter cannot be null - HttpUpgradeHandler was not properly initialized before init() was called"
+    );
     input = in;
     output = out;
-    delimiter = del;
+  }
+
+  public String getDelimiter() {
+    return delimiter;
   }
 
   public void onDataAvailable() {
