@@ -28,7 +28,10 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
 
   private String delimiter = null;
 
+  private String filterHeaderValue = null;
+
   private TCKReadListener readListener;
+
 
   public TCKHttpUpgradeHandler() {
   }
@@ -42,6 +45,11 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
       input.setReadListener(readListener);
 
       output.println("===============TCKHttpUpgradeHandler.init");
+
+      if (filterHeaderValue != null) {
+        output.println("===============Filter-Header: " + filterHeaderValue);
+      }
+
       output.flush();
     } catch (Exception ex) {
       throw new RuntimeException(ex);
@@ -75,5 +83,15 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
       }
     }
     return delimiter;
+  }
+
+  public void setFilterHeaderValue(String value) {
+    System.out.print("=============== setFilterHeaderValue");
+    this.filterHeaderValue = value;
+  }
+
+  public String getFilterHeaderValue() {
+    System.out.print("=============== getFilterHeaderValue");
+    return filterHeaderValue;
   }
 }

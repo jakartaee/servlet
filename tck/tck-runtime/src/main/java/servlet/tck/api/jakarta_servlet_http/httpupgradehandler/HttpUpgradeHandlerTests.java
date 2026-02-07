@@ -48,7 +48,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
   public static WebArchive getTestArchive() throws Exception {
     return ShrinkWrap.create(WebArchive.class, "servlet_jsh_upgradehandler_web.war")
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
-            .addClasses(TCKHttpUpgradeHandler.class, TCKReadListener.class, TestServlet.class);
+            .addClasses(TCKHttpUpgradeHandler.class, TCKReadListener.class, TestServlet.class, TestUpgradeFilter.class);
   }
 
 
@@ -68,15 +68,18 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
    * request with two batch of messages to the Servlet; Servlet upgrade the
    * request accordingly; Create a ReadListener; Verify all message received;
    * Verify UpgradeHandler accordingly Verify ReadListener works accordingly
+   * Verify that Filters are processed before upgrade() is called
    */
   @Test
   public void upgradeTest() throws Exception {
     Boolean passed1 = false;
     Boolean passed2 = false;
     Boolean passed3 = false;
+    Boolean passed4 = false;
     String EXPECTED_RESPONSE1 = "TCKHttpUpgradeHandler.init";
     String EXPECTED_RESPONSE2 = "onDataAvailable|Hello";
     String EXPECTED_RESPONSE3 = "onDataAvailable|World";
+    String EXPECTED_RESPONSE4 = "Filter-Header: invoked";
 
     String requestUrl = getContextRoot() + "/" + getServletName() + " HTTP/1.1";
 
@@ -118,6 +121,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
       boolean receivedFirstMessage = false;
       boolean receivedSecondMessage = false;
       boolean receivedThirdMessage = false;
+      boolean receivedFilterMessage = false;
       StringBuilder sb = new StringBuilder();
       while ((len = input.read(b)) != -1) {
         String line = new String(b, 0, len);
@@ -135,10 +139,15 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
           logger.debug("==============Received third expected response!");
           receivedThirdMessage = true;
         }
+        if (passed4 = ServletTestUtil.compareString(EXPECTED_RESPONSE4, sb.toString())) {
+          logger.debug("==============Received filter header response!");
+          receivedFilterMessage = true;
+        }
         logger.debug("receivedFirstMessage : {}", receivedFirstMessage);
         logger.debug("receivedSecondMessage : {}", receivedSecondMessage);
         logger.debug("receivedThirdMessage : {}", receivedThirdMessage);
-        if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage) {
+        logger.debug("receivedFilterMessage : {}", receivedFilterMessage);
+        if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage && receivedFilterMessage) {
           break;
         }
       }
@@ -147,8 +156,8 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
     }
 
 
-    if (!passed1 || !passed2 || !passed3) {
-      throw new Exception("Test Failed. ");
+    if (!passed1 || !passed2 || !passed3 || !passed4) {
+      throw new Exception("Test Failed. Filter was not processed correctly before upgrade.");
     }
   }
 
