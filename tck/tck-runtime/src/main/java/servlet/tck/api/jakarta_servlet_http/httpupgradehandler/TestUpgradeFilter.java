@@ -33,15 +33,19 @@ public class TestUpgradeFilter implements Filter {
       httpResponse.setHeader("X-Filter-Before-Upgrade", "invoked");
     }
 
+    request.setAttribute("filter.invoked.before.upgrade", true);
+
     chain.doFilter(request, response);
 
-    if(filterConfig != null && response instanceof HttpServletResponse){
+    if (filterConfig != null && response instanceof HttpServletResponse) {
       HttpServletResponse httpResponse = (HttpServletResponse) response;
       httpResponse.setHeader("X-Filter-After-Upgrade", "processed");
     }
   }
 
+  @Override
   public void destroy(){
+    this.filterConfig = null;
   }
 
   public void init(FilterConfig filterConfig) throws ServletException{
