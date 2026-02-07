@@ -34,6 +34,12 @@ public class TestServlet extends HttpServlet {
       throws ServletException, IOException {
 
     if (request.getHeader("Upgrade") != null) {
+      Boolean filterInvoked = (Boolean) request.getAttribute("filter.invoked.before.upgrade");
+      if (filterInvoked == null || !filterInvoked) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Filter was not invoked before upgrade");
+        return;
+      }
+
       response.setStatus(101);
       response.setHeader("Upgrade", "YES");
       response.setHeader("Connection", "Upgrade");
@@ -44,6 +50,11 @@ public class TestServlet extends HttpServlet {
       String filterHeader = response.getHeader("X-Filter-After-Upgrade");
       if (filterHeader != null) {
         handler.setFilterHeaderValue(filterHeader);
+      } else {
+        String filterBeforeHeader = response.getHeader("X-Filter-Before-Upgrade");
+        if (filterBeforeHeader != null) {
+          handler.setFilterHeaderValue(filterBeforeHeader);
+        }
       }
     } else {
       response.getWriter().println("No upgrade");
