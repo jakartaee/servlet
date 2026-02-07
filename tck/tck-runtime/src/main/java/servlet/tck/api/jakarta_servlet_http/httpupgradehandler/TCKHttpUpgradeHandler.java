@@ -27,7 +27,11 @@ import jakarta.servlet.http.WebConnection;
 public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
 
   private String delimiter = null;
+
   private String filterHeaderValue = null;
+
+  private TCKReadListener readListener;
+
 
   public TCKHttpUpgradeHandler() {
   }
@@ -36,9 +40,10 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
     try {
       ServletInputStream input = wc.getInputStream();
       ServletOutputStream output = wc.getOutputStream();
-      TCKReadListener readListener = new TCKReadListener(delimiter, input,
-          output);
+
+      readListener = new TCKReadListener(delimiter, input, output);
       input.setReadListener(readListener);
+
       output.println("===============TCKHttpUpgradeHandler.init");
 
       if (filterHeaderValue != null) {
@@ -63,6 +68,20 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
   public String getDelimiter() {
     System.out.print("=============== getDelimiter");
 
+    if (delimiter == null) {
+      throw new IllegalStateException(
+          "Delimiter was never initialized - setDelimiter() was not called"
+      );
+    }
+
+    if (readListener != null) {
+      String listenerDelimiter = readListener.getDelimiter();
+      if (!delimiter.equals(listenerDelimiter)) {
+        throw new IllegalStateException(
+            "Delimiter mismatch between handler and listener"
+        );
+      }
+    }
     return delimiter;
   }
 
