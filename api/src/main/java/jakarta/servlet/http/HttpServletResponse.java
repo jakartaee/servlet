@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2025 Oracle and/or its affiliates and others.
+ * Copyright (c) 1997, 2026 Oracle and/or its affiliates and others.
  * All rights reserved.
  * Copyright 2004 The Apache Software Foundation
  *
@@ -745,6 +745,10 @@ public interface HttpServletResponse extends ServletResponse {
      */
     int SC_UPGRADE_REQUIRED = 426;
 
+    /**
+     * Status code (429) indicating that the user has sent too many requests in a given amount of time ("rate limiting").
+     */
+    int SC_TOO_MANY_REQUESTS = 429;
     /**
      * Status code (500) indicating an error inside the HTTP server which prevented it from fulfilling the request.
      */
