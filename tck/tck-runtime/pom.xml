@@ -38,7 +38,7 @@
         <!-- Jakarta API versions -->
         <servlet.api.version>6.2.0-SNAPSHOT</servlet.api.version>
         <!-- Plugin versions -->
-        <shrinkwrap-resolver.version>3.3.4</shrinkwrap-resolver.version>
+        <shrinkwrap-resolver.version>3.3.5</shrinkwrap-resolver.version>
         <sigtest.version>2.6</sigtest.version>
     </properties>
 
