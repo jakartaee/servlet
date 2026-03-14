@@ -81,20 +81,15 @@ public abstract class SecBasicClient extends BaseTckTest {
    *
    *
    */
-
+  @Override
   public void setup(String[] args, Properties p) throws Exception {
     super.setup(args, p);
 
-      // TOFIX configurable
-//    user=j2ee
-//    password=j2ee
-//    authuser=javajoe
-//    authpassword=javajoe
-
-    p.setProperty(USERNAME, "j2ee");
-    p.setProperty(PASSWORD, "j2ee");
-    p.setProperty(UNAUTH_USERNAME, "javajoe");
-    p.setProperty(UNAUTH_PASSWORD, "javajoe");
+    // Configurable in BaseTckTest super class.
+    //    user=j2ee
+    //    password=j2ee
+    //    authuser=javajoe
+    //    authpassword=javajoe
 
     try {
       username = p.getProperty(USERNAME);
