@@ -402,9 +402,10 @@ public abstract class BaseTckTest {
     properties.setProperty("logical.hostname.servlet", System.getProperty("logical.hostname.servlet","server"));
     properties.setProperty(USERNAME, System.getProperty(USERNAME, "j2ee"));
     properties.setProperty(PASSWORD, System.getProperty(PASSWORD, "j2ee"));
-    properties.setProperty(BASIC_AUTH_PASSWD, System.getProperty(UNAUTH_PASSWORD, "j2ee"));
-    properties.setProperty(BASIC_AUTH_USER, System.getProperty(BASIC_AUTH_USER, "j2ee"));
-    properties.setProperty(BASIC_AUTH_PASSWD, System.getProperty(UNAUTH_PASSWORD, "j2ee"));
+    properties.setProperty(BASIC_AUTH_USER, System.getProperty(BASIC_AUTH_USER,
+        System.getProperty(USERNAME, "j2ee")));
+    properties.setProperty(BASIC_AUTH_PASSWD, System.getProperty(BASIC_AUTH_PASSWD,
+        System.getProperty(PASSWORD, "j2ee")));
     properties.setProperty(UNAUTH_USERNAME, System.getProperty(UNAUTH_USERNAME, "javajoe"));
     properties.setProperty(UNAUTH_PASSWORD, System.getProperty(UNAUTH_PASSWORD, "javajoe"));
     setup(null, properties);
