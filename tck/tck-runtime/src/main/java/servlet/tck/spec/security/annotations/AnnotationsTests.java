@@ -89,6 +89,7 @@ public class AnnotationsTests extends BaseTckTest {
    * user; password; authuser; authpassword; ts_home;
    *
    */
+  @Override
   public void setup(String[] args, Properties p) throws Exception {
     super.setup(args, p);
 
@@ -99,12 +100,13 @@ public class AnnotationsTests extends BaseTckTest {
 
     //portnum = Integer.parseInt(p.getProperty("securedWebServicePort"));
 
-    // TOFIX configurable
+    // Configurable via the parent class so there is no need for these extra
+    // System properties.  Leaving them in place in case anyone depends on them.
     try {
-      username = System.getProperty("tck.servlet.username", "j2ee");
-      password = System.getProperty("tck.servlet.password", "j2ee");
-      unauthUsername = System.getProperty("tck.servlet.unauth.username", "javajoe");
-      unauthPassword = System.getProperty("tck.servlet.unauth.password", "javajoe");
+      username = System.getProperty("tck.servlet.username", p.getProperty(USERNAME));
+      password = System.getProperty("tck.servlet.password", p.getProperty(PASSWORD));
+      unauthUsername = System.getProperty("tck.servlet.unauth.username", p.getProperty(UNAUTH_USERNAME));
+      unauthPassword = System.getProperty("tck.servlet.unauth.password", p.getProperty(UNAUTH_PASSWORD));
       realm = System.getProperty("tck.servlet.realm", "");
 
       String pageServletBase = getContextRoot();//"/servlet_sec_annotations_web";
