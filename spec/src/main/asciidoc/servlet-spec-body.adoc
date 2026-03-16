@@ -7636,9 +7636,9 @@ For Servlet {spec-version}, the deployment descriptor is defined in terms of an 
 
 For backwards compatibility of applications
 written to previous versions of the API, any deployment descriptors
-written to comply with earlier versions of the specification, must still
-be supported such that applications continue to deploy. For the actual XSD files
-please visit `https://jakarta.ee/xml/ns/jakartaee/`.
+written to comply with Servlet 4.0 onwards must still be supported such that applications continue to deploy.
+Servlet containers may also optionally support deployment descriptors written to comply with earlier specification versions.  
+For the actual XSD files please visit `https://jakarta.ee/xml/ns/jakartaee/`.
 
 === Deployment Descriptor Elements
 
