@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2026 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -12,10 +13,6 @@
  * https://www.gnu.org/software/classpath/license.html.
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
- */
-
-/*
- * $Id$
  */
 package servlet.tck.api.jakarta_servlet_http.httpupgradehandler;
 
@@ -45,6 +42,7 @@ public class TCKReadListener implements ReadListener {
     return delimiter;
   }
 
+  @Override
   public void onDataAvailable() {
     try {
       output.println("=onDataAvailable");
@@ -62,6 +60,7 @@ public class TCKReadListener implements ReadListener {
     }
   }
 
+  @Override
   public void onAllDataRead() {
     try {
       output.println("=onAllDataRead");
@@ -71,6 +70,7 @@ public class TCKReadListener implements ReadListener {
     }
   }
 
+  @Override
   public void onError(final Throwable t) {
     t.printStackTrace();
   }
