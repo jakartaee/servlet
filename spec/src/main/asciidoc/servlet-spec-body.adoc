@@ -120,6 +120,8 @@ Generic Syntax
 
 * RFC 6265 HTTP State Management Mechanism
 
+* RFC 6585 Additional HTTP Status Codes
+
 * RFC 7258 Pervasive Monitoring Is an Attack
 
 * RFC 7541 HPACK: Header Compression for HTTP/2 (HPACK)
@@ -8587,6 +8589,9 @@ untested by the TCK, rarely implemented and rarely used.
 link:https://github.com/jakartaee/servlet/issues/867[Issue 867]::
 When processing the `If-Modified-Since` header in `HttpServerlet.service()`,
 invalid header values must be ignored as per RFC 9110.
+
+link:https://github.com/jakartaee/servlet/issues/981[Issue 981]::
+Add constants to `HttpServletResponse` for the status codes defined in RFC 6585.
 
 link:https://github.com/jakartaee/servlet/issues/994[Issue 994]::
 The value returned by `HttpServletRequest.getpathInfo()` does not contain path paremeter information.
