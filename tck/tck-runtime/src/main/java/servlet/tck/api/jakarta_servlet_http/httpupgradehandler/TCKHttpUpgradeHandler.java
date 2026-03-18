@@ -52,27 +52,7 @@ public class TCKHttpUpgradeHandler implements HttpUpgradeHandler {
   }
 
   public void setDelimiter(String delimiter) {
-    System.out.print("=============== setDelimiter");
+    System.out.println("===============setDelimiter");
     this.delimiter = delimiter;
-  }
-
-  public String getDelimiter() {
-    System.out.print("=============== getDelimiter");
-
-    if (delimiter == null) {
-      throw new IllegalStateException(
-          "Delimiter was never initialized - setDelimiter() was not called"
-      );
-    }
-
-    if (readListener != null) {
-      String listenerDelimiter = readListener.getDelimiter();
-      if (!delimiter.equals(listenerDelimiter)) {
-        throw new IllegalStateException(
-            "Delimiter mismatch between handler and listener"
-        );
-      }
-    }
-    return delimiter;
   }
 }

@@ -51,7 +51,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
   public static WebArchive getTestArchive() throws Exception {
     return ShrinkWrap.create(WebArchive.class, "servlet_jsh_upgradehandler_web.war")
             .addAsLibraries(CommonServlets.getCommonServletsArchive())
-            .addClasses(TCKHttpUpgradeHandler.class, TCKReadListener.class, TestServlet.class);
+            .addClasses(TCKHttpUpgradeHandler.class, TCKReadListener.class, TestServlet.class, TestFilter.class);
   }
 
 
@@ -74,12 +74,13 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
    */
   @Test
   public void upgradeTest() throws Exception {
-    boolean receivedFirstMessage = false;
-    boolean receivedSecondMessage = false;
-    boolean receivedThirdMessage = false;
-    String EXPECTED_RESPONSE1 = "TCKHttpUpgradeHandler.init";
-    String EXPECTED_RESPONSE2 = "onDataAvailable|Hello";
-    String EXPECTED_RESPONSE3 = "onDataAvailable|World";
+    boolean pass = false;
+    /*
+     * This isn't the whole response. Rather it is key, selected parts of the response in the order they are expected to
+     * appear
+     */
+    String EXPECTED_RESPONSE = "HTTP/1.1 101|x-tracking:|filter-before,servlet-upgrade,filter-after|" +
+            "TCKHttpUpgradeHandler.init|onDataAvailable|Hello|World";
 
     String requestUrl = getContextRoot() + "/" + getServletName() + " HTTP/1.1";
 
@@ -88,6 +89,8 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
          OutputStream output = s.getOutputStream();
          InputStream input = s.getInputStream()) {
 
+      // Prevent the test waiting for ever if an incorrect response is provided.
+      s.setSoTimeout(30*1000);
 
       StringBuilder reqStr = new StringBuilder("POST "
           + url.toExternalForm().replace("http://", "").replace(_hostname, "")
@@ -115,39 +118,25 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
       logger.debug("Consuming the response from the server");
 
       // Consume the response from the server
-
       int len = -1;
       byte[] b = new byte[1024];
       StringBuilder sb = new StringBuilder();
-      while ((len = input.read(b)) != -1) {
+      while (!pass && (len = input.read(b)) != -1) {
         String line = new String(b, 0, len);
         sb.append(line);
         logger.debug("==============Read from server: {} {} {}", CRLF, sb, CRLF);
-        if (ServletTestUtil.compareString(EXPECTED_RESPONSE1, sb.toString())) {
-          logger.debug("==============Received first expected response!");
-          receivedFirstMessage = true;
-        }
-		if (ServletTestUtil.compareString(EXPECTED_RESPONSE2, sb.toString())) {
-          logger.debug("==============Received second expected response!");
-          receivedSecondMessage = true;
-        }
-        if (ServletTestUtil.compareString(EXPECTED_RESPONSE3, sb.toString())) {
-          logger.debug("==============Received third expected response!");
-          receivedThirdMessage = true;
-        }
-        logger.debug("receivedFirstMessage : {}", Boolean.toString(receivedFirstMessage));
-        logger.debug("receivedSecondMessage : {}", Boolean.toString(receivedSecondMessage));
-        logger.debug("receivedThirdMessage : {}", Boolean.toString(receivedThirdMessage));
-        if (receivedFirstMessage && receivedSecondMessage && receivedThirdMessage) {
-          break;
-        }
+
+        // Check for the expected messages in the expected order. Exit the loop once they have been observed.
+        pass = ServletTestUtil.compareString(EXPECTED_RESPONSE, sb.toString());
       }
+
+    System.out.println(sb.toString());
     } catch (Exception ex2) {
       logger.error("exception caught: " + ex2.getMessage(), ex2);
     }
 
 
-    if (!receivedFirstMessage || !receivedSecondMessage || !receivedThirdMessage) {
+    if (!pass) {
       throw new Exception("Test Failed. ");
     }
   }
