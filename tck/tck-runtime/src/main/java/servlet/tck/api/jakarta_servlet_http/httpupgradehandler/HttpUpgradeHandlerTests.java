@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2026 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -14,7 +14,6 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
-
 package servlet.tck.api.jakarta_servlet_http.httpupgradehandler;
 
 import servlet.tck.common.client.AbstractTckTest;
@@ -43,6 +42,10 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
 
   /**
    * Deployment for the test
+   *
+   * @return The web application archive to be deployed for the test
+   *
+   * @throws Exception if the archive cannot be created
    */
   @Deployment(testable = false)
   public static WebArchive getTestArchive() throws Exception {
@@ -71,9 +74,9 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
    */
   @Test
   public void upgradeTest() throws Exception {
-    Boolean passed1 = false;
-    Boolean passed2 = false;
-    Boolean passed3 = false;
+    boolean receivedFirstMessage = false;
+    boolean receivedSecondMessage = false;
+    boolean receivedThirdMessage = false;
     String EXPECTED_RESPONSE1 = "TCKHttpUpgradeHandler.init";
     String EXPECTED_RESPONSE2 = "onDataAvailable|Hello";
     String EXPECTED_RESPONSE3 = "onDataAvailable|World";
@@ -115,30 +118,27 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
 
       int len = -1;
       byte[] b = new byte[1024];
-      boolean receivedFirstMessage = false;
-      boolean receivedSecondMessage = false;
-      boolean receivedThirdMessage = false;
       StringBuilder sb = new StringBuilder();
       while ((len = input.read(b)) != -1) {
         String line = new String(b, 0, len);
         sb.append(line);
         logger.debug("==============Read from server: {} {} {}", CRLF, sb, CRLF);
-        if (passed1 = ServletTestUtil.compareString(EXPECTED_RESPONSE1, sb.toString())) {
+        if (ServletTestUtil.compareString(EXPECTED_RESPONSE1, sb.toString())) {
           logger.debug("==============Received first expected response!");
           receivedFirstMessage = true;
         }
-		if (passed2 = ServletTestUtil.compareString(EXPECTED_RESPONSE2, sb.toString())) {
+		if (ServletTestUtil.compareString(EXPECTED_RESPONSE2, sb.toString())) {
           logger.debug("==============Received second expected response!");
           receivedSecondMessage = true;
         }
-        if (passed3 = ServletTestUtil.compareString(EXPECTED_RESPONSE3, sb.toString())) {
+        if (ServletTestUtil.compareString(EXPECTED_RESPONSE3, sb.toString())) {
           logger.debug("==============Received third expected response!");
           receivedThirdMessage = true;
         }
-        logger.debug("receivedFirstMessage : {}", receivedFirstMessage);
-        logger.debug("receivedSecondMessage : {}", receivedSecondMessage);
-        logger.debug("receivedThirdMessage : {}", receivedThirdMessage);
-        if (receivedFirstMessage &&  receivedSecondMessage && receivedThirdMessage) {
+        logger.debug("receivedFirstMessage : {}", Boolean.toString(receivedFirstMessage));
+        logger.debug("receivedSecondMessage : {}", Boolean.toString(receivedSecondMessage));
+        logger.debug("receivedThirdMessage : {}", Boolean.toString(receivedThirdMessage));
+        if (receivedFirstMessage && receivedSecondMessage && receivedThirdMessage) {
           break;
         }
       }
@@ -147,7 +147,7 @@ public class HttpUpgradeHandlerTests extends AbstractTckTest {
     }
 
 
-    if (!passed1 || !passed2 || !passed3) {
+    if (!receivedFirstMessage || !receivedSecondMessage || !receivedThirdMessage) {
       throw new Exception("Test Failed. ");
     }
   }
