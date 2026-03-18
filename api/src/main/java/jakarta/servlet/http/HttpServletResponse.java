@@ -759,7 +759,7 @@ public interface HttpServletResponse extends ServletResponse {
      * Status code (431) indicating that the server is unwilling to process the request because its header fields are too
      * large.
      */
-    int SC_REQUEST_HEADER_FIELS_TOO_LARGE = 431;
+    int SC_REQUEST_HEADER_FIELDS_TOO_LARGE = 431;
 
     /**
      * Status code (500) indicating an error inside the HTTP server which prevented it from fulfilling the request.
