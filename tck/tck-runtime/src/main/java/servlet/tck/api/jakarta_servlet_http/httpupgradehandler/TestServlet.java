@@ -37,9 +37,18 @@ public class TestServlet extends HttpServlet {
       response.setStatus(101);
       response.setHeader("Upgrade", "YES");
       response.setHeader("Connection", "Upgrade");
-      TCKHttpUpgradeHandler handler = request
-          .upgrade(TCKHttpUpgradeHandler.class);
+      TCKHttpUpgradeHandler handler = request.upgrade(TCKHttpUpgradeHandler.class);
       handler.setDelimiter("/");
+
+      String value = response.getHeader(TestFilter.TRACKING_HEADER_NAME);
+      // value should not be null here but just in case...
+      if (value == null) {
+          value = "servlet-upgrade";
+      } else {
+          value = value + ",servlet-upgrade";
+      }
+      response.setHeader(TestFilter.TRACKING_HEADER_NAME, value);
+
     } else {
       response.getWriter().println("No upgrade");
       response.getWriter().println("End of Test");
