@@ -58,40 +58,54 @@
 package servlet.tck.common.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
 public final class StaticLog {
 
-  private static List<String> al = new ArrayList<>();
+  // each webapp running in the same JVM needs its own log
+  // required when the TCK runs parallel test classes against an embedded container.
+  // WeakHashMap so undeployed webapps be collected once their classloader is.
+  private static final Map<ClassLoader, List<String>> LOGS =
+      Collections.synchronizedMap(new WeakHashMap<>());
+
+  private static List<String> log() {
+    ClassLoader key = Thread.currentThread().getContextClassLoader();
+    synchronized (LOGS) {
+        List<String> list = LOGS.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>()));
+        return list;
+    }
+  }
 
   public static void clear() {
+    List<String> al = log();
     al.clear();
-    if (!al.isEmpty()) {
-      // we'll try one more time
-      al.clear();
-      if (!al.isEmpty()) {
-        System.out.println(
-            "ERROR: The StaticLog could not be clear after 2 attempts");
-      }
-    } else {
       // System.out.println("log is clear");
-    }
 
   }
 
   public static void add(String s) {
     // System.out.println("Adding the following item to the log:"+s);
-    al.add(s);
+    log().add(s);
   }
 
-  public static ArrayList getClear() {
+  // FIXME this naming looks really wrong as it is not clearing the list
+  // but returning a List with the same content as the log.
+  // The caller can then clear the log by clearing the returned list.
+  public static ArrayList<String> getClear() {
+    List<String> al = log();
     /*
      * Object[] o = al.toArray(); for (int i = 0;i<o.length;i++){
      * System.out.println("al - o["+i+"]="+(String)o[i]); }
      */
     // Create a new list which will be returned so that the old list can be
     // cleared
-    ArrayList tmp = new ArrayList(al);
+    ArrayList<String> tmp;
+    synchronized (al) {
+      tmp = new ArrayList<>(al);
+    }
     /*
      * Object[] o1 = tmp.toArray(); for (int i = 0;i<o1.length;i++){
      * System.out.println("tmp - o1["+i+"]="+(String)o1[i]); }
@@ -100,7 +114,7 @@ public final class StaticLog {
     return tmp;
   }
 
-  public static List get() {
-    return al;
+  public static List<String> get() {
+    return log();
   }
 }
