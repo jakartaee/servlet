@@ -30,7 +30,7 @@
 
     <groupId>jakarta.servlet</groupId>
     <artifactId>jakarta.servlet-api</artifactId>
-    <version>6.2.0-M2</version>
+    <version>6.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Jakarta Servlet API</name>
@@ -79,7 +79,7 @@
 
     <properties>
         <!-- Timestamp for repeatable builds (more recent than parent) -->
-        <project.build.outputTimestamp>2026-05-18T11:42:46Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2026-05-18T11:43:32Z</project.build.outputTimestamp>
         <!-- OSGi properties -->
         <!-- Make sure the two versions are in sync with the maven version -->
         <spec.version>6.2</spec.version>
