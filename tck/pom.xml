@@ -94,7 +94,7 @@
 
     <properties>
         <!-- Timestamp for repeatable builds (more recent than parent -->
-        <project.build.outputTimestamp>2025-10-15T00:00:00Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2026-05-18T11:42:46Z</project.build.outputTimestamp>
     </properties>
 
     <build>
