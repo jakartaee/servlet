@@ -18,7 +18,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.tck</groupId>
+        <groupId>jakarta.servlet.tck</groupId>
         <artifactId>servlet-tck</artifactId>
         <version>6.1.2-SNAPSHOT</version>
     </parent>
@@ -30,18 +30,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>jakarta.servlet.tck</groupId>
             <artifactId>servlet-tck</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>jakarta.servlet.tck</groupId>
             <artifactId>servlet-tck-runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>jakarta.servlet.tck</groupId>
             <artifactId>servlet-tck-util</artifactId>
             <version>${project.version}</version>
         </dependency>
