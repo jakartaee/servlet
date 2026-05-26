@@ -24,7 +24,7 @@
     <parent>
         <groupId>jakarta.servlet.tck</groupId>
         <artifactId>servlet-tck</artifactId>
-        <version>6.1.2-SNAPSHOT</version>
+        <version>6.1.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>servlet-tck-runtime</artifactId>
