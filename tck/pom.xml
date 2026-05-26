@@ -27,7 +27,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>jakarta.tck</groupId>
+    <groupId>jakarta.servlet.tck</groupId>
     <artifactId>servlet-tck</artifactId>
     <version>6.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
