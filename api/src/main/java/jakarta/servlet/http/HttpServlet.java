@@ -618,16 +618,16 @@ public abstract class HttpServlet extends GenericServlet {
      * request is intended to change stored data, the request should use some other HTTP method.
      *
      * <p>
-     * The QUERY method should also be idempotent, meaning that it can be safely repeated. Sometimes making a method safe also
-     * makes it idempotent. For example, repeating queries is both safe and idempotent, but buying a product online or
+     * The QUERY method should also be idempotent, meaning that it can be safely repeated. Sometimes making a method safe
+     * also makes it idempotent. For example, repeating queries is both safe and idempotent, but buying a product online or
      * modifying data is neither safe nor idempotent.
      *
      * <p>
-     * Unlike <code>doGet</code>, the container does not perform automatic conditional header processing
-     * (e.g. checking <code>If-Modified-Since</code> using <code>getLastModified</code>). Because a QUERY request
-     * contains a request body, reading the body to determine the modification time would consume the input stream,
-     * preventing the servlet from reading the query. Therefore, if conditional requests (RFC 10008, Section 2.6)
-     * are supported, the servlet must handle them manually inside this method.
+     * Unlike <code>doGet</code>, the container does not perform automatic conditional header processing (e.g. checking
+     * <code>If-Modified-Since</code> using <code>getLastModified</code>). Because a QUERY request contains a request body,
+     * reading the body to determine the modification time would consume the input stream, preventing the servlet from
+     * reading the query. Therefore, if conditional requests (RFC 10008, Section 2.6) are supported, the servlet must handle
+     * them manually inside this method.
      *
      * <p>
      * If the HTTP QUERY request is incorrectly formatted, <code>doQuery</code> returns an HTTP "Bad Request" message.
