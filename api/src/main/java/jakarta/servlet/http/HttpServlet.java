@@ -643,6 +643,8 @@ public abstract class HttpServlet extends GenericServlet {
      *
      * @see jakarta.servlet.ServletOutputStream
      * @see jakarta.servlet.ServletResponse#setContentType
+     *
+     * @since Servlet 6.2
      */
     protected void doQuery(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String protocol = req.getProtocol();
