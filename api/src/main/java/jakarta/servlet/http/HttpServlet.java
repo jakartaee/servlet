@@ -79,6 +79,7 @@ public abstract class HttpServlet extends GenericServlet {
     private static final String METHOD_POST = "POST";
     private static final String METHOD_PUT = "PUT";
     private static final String METHOD_TRACE = "TRACE";
+    private static final String METHOD_QUERY = "QUERY";
 
     private static final String HEADER_IFMODSINCE = "If-Modified-Since";
     private static final String HEADER_LASTMOD = "Last-Modified";
@@ -458,6 +459,7 @@ public abstract class HttpServlet extends GenericServlet {
         boolean ALLOW_PUT = false;
         boolean ALLOW_DELETE = false;
         boolean ALLOW_TRACE = true;
+        boolean ALLOW_QUERY = false;
         boolean ALLOW_OPTIONS = true;
 
         for (int i = 0; i < methods.length; i++) {
@@ -474,8 +476,9 @@ public abstract class HttpServlet extends GenericServlet {
                 ALLOW_DELETE = true;
             } else if (methodName.equals("doPatch")) {
                 ALLOW_PATCH = true;
+            } else if (methodName.equals("doQuery")) {
+                ALLOW_QUERY = true;
             }
-
         }
 
         // we know "allow" is not null as ALLOW_OPTIONS = true
@@ -519,6 +522,12 @@ public abstract class HttpServlet extends GenericServlet {
                 allow.append(", ");
             }
             allow.append(METHOD_TRACE);
+        }
+        if (ALLOW_QUERY) {
+            if (allow.length() > 0) {
+                allow.append(", ");
+            }
+            allow.append(METHOD_QUERY);
         }
         if (ALLOW_OPTIONS) {
             if (allow.length() > 0) {
@@ -576,6 +585,69 @@ public abstract class HttpServlet extends GenericServlet {
         resp.setContentLength(responseLength);
         ServletOutputStream out = resp.getOutputStream();
         out.print(buffer.toString());
+    }
+
+    /**
+     *
+     * Called by the server (via the <code>service</code> method) to allow a servlet to handle a QUERY request.
+     *
+     * The HTTP QUERY method allows the client to send data to be processed in a safe and idempotent manner.
+     *
+     * <p>
+     * When overriding this method, read the request data, write the response headers, get the response's writer or output
+     * stream object, and finally, write the response data. It's best to include content type and encoding. When using a
+     * <code>PrintWriter</code> object to return the response, set the content type before accessing the
+     * <code>PrintWriter</code> object.
+     *
+     * <p>
+     * The servlet container must write the headers before committing the response, because in HTTP the headers must be sent
+     * before the response body.
+     *
+     * <p>
+     * Where possible, set the Content-Length header (with the {@link jakarta.servlet.ServletResponse#setContentLength}
+     * method), to allow the servlet container to use a persistent connection to return its response to the client,
+     * improving performance. The content length is automatically set if the entire response fits inside the response
+     * buffer.
+     *
+     * <p>
+     * When using HTTP 1.1 chunked encoding (which means that the response has a Transfer-Encoding header), do not set the
+     * Content-Length header.
+     *
+     * <p>
+     * The QUERY method should be safe, that is, without any side effects for which users are held responsible. If a client
+     * request is intended to change stored data, the request should use some other HTTP method.
+     *
+     * <p>
+     * The QUERY method should also be idempotent, meaning that it can be safely repeated. Sometimes making a method safe also
+     * makes it idempotent. For example, repeating queries is both safe and idempotent, but buying a product online or
+     * modifying data is neither safe nor idempotent.
+     *
+     * <p>
+     * Unlike <code>doGet</code>, the container does not perform automatic conditional header processing
+     * (e.g. checking <code>If-Modified-Since</code> using <code>getLastModified</code>). Because a QUERY request
+     * contains a request body, reading the body to determine the modification time would consume the input stream,
+     * preventing the servlet from reading the query. Therefore, if conditional requests (RFC 10008, Section 2.6)
+     * are supported, the servlet must handle them manually inside this method.
+     *
+     * <p>
+     * If the HTTP QUERY request is incorrectly formatted, <code>doQuery</code> returns an HTTP "Bad Request" message.
+     *
+     *
+     * @param req an {@link HttpServletRequest} object that contains the request the client has made of the servlet
+     *
+     * @param resp an {@link HttpServletResponse} object that contains the response the servlet sends to the client
+     *
+     * @throws IOException if an input or output error is detected when the servlet handles the request
+     *
+     * @throws ServletException if the request for the QUERY could not be handled
+     *
+     * @see jakarta.servlet.ServletOutputStream
+     * @see jakarta.servlet.ServletResponse#setContentType
+     */
+    protected void doQuery(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String protocol = req.getProtocol();
+        String msg = lStrings.getString("http.method_query_not_supported");
+        resp.sendError(getMethodNotSupportedCode(protocol), msg);
     }
 
     /**
@@ -672,6 +744,9 @@ public abstract class HttpServlet extends GenericServlet {
 
         } else if (method.equals(METHOD_PATCH)) {
             doPatch(req, resp);
+
+        } else if (method.equals(METHOD_QUERY)) {
+            doQuery(req, resp);
 
         } else {
             //

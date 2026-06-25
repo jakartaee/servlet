@@ -153,6 +153,8 @@ Requirement Levels
 
 * RFC 9114 HTTP/3
 
+* RFC 10008 The HTTP QUERY Method
+
 Online versions of these RFCs are at
 `http://www.ietf.org/rfc/`.
 
@@ -1188,9 +1190,7 @@ parsed from the `String` value returned by the `getRequestURI` method.
 The following are the conditions that must be
 met before form data will be populated to the parameter set:
 
-. The request is an HTTP or HTTPS request.
-
-. The HTTP method is POST.
+. The HTTP method is POST or QUERY.
 
 . The content type is `application/x-www-form-urlencoded`.
 
@@ -8595,6 +8595,9 @@ Add constants to `HttpServletResponse` for the status codes defined in RFC 6585.
 
 link:https://github.com/jakartaee/servlet/issues/994[Issue 994]::
 The value returned by `HttpServletRequest.getpathInfo()` does not contain path paremeter information.
+
+link:https://github.com/jakartaee/servlet/issues/1068[Issue 1068]::
+Add support for the HTTP `QUERY` method.
 
 === Changes Since Jakarta Servlet 6.0
 
