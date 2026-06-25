@@ -132,7 +132,7 @@ public class HttpExchange {
   /**
    * Creates new HttpRequest based of the passed request line. The request line
    * provided must be in the form of:<br>
-   * 
+   *
    * <pre>
    *     METHOD PATH HTTP-VERSION
    *     Ex.  GET /index.html HTTP/1.0
@@ -340,9 +340,6 @@ public class HttpExchange {
    *           if an I/O error occurs during dispatch.
    */
   public HttpResponse execute() throws IOException {
-    String method;
-    int defaultPort;
-
     CookieManager cookieManager = new CookieManager();
 
     HttpClient.Builder builder = HttpClient.newBuilder().followRedirects(followRedirect?HttpClient.Redirect.ALWAYS:HttpClient.Redirect.NEVER)
@@ -400,6 +397,10 @@ public class HttpExchange {
       case "POST":
         httpRequestBuilder.POST(this.content == null ?
                 HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
+        break;
+      case "QUERY":
+          httpRequestBuilder.method("QUERY", this.content == null ?
+                  HttpRequest.BodyPublishers.noBody() : HttpRequest.BodyPublishers.ofString(this.content));
         break;
       default:
         throw new RuntimeException("unknown method " + this.method);

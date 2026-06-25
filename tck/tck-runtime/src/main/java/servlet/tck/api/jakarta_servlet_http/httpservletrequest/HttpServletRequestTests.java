@@ -222,6 +222,18 @@ public class HttpServletRequestTests extends HttpRequestClient {
         invoke();
     }
 
+    @Override
+    @Test
+    public void getParameterQueryTest() throws Exception {
+        String testName = "getParameterQueryTest";
+        TEST_PROPS.get().setProperty(TEST_NAME, testName);
+        TEST_PROPS.get().setProperty(REQUEST, "QUERY " + getContextRoot() + "/" + getServletName() + " HTTP/1.1");
+        TEST_PROPS.get().setProperty(REQUEST_HEADERS,"Content-Type: application/x-www-form-urlencoded");
+        TEST_PROPS.get().setProperty(CONTENT, "testname="+ testName + "&parameter1=value1");
+        TEST_PROPS.get().setProperty(SEARCH_STRING, Data.PASSED);
+        invoke();
+      }
+
     /*
    * @testName: getParameterValuesTest
    *

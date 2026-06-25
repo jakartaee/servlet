@@ -757,11 +757,12 @@ meth protected void doPatch(jakarta.servlet.http.HttpServletRequest,jakarta.serv
 meth protected void doPost(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doPut(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void doTrace(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
+meth protected void doQuery(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth protected void service(jakarta.servlet.http.HttpServletRequest,jakarta.servlet.http.HttpServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 meth public void init(jakarta.servlet.ServletConfig) throws jakarta.servlet.ServletException
 meth public void service(jakarta.servlet.ServletRequest,jakarta.servlet.ServletResponse) throws jakarta.servlet.ServletException,java.io.IOException
 supr jakarta.servlet.GenericServlet
-hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_PATCH,METHOD_POST,METHOD_PUT,METHOD_TRACE,SENSITIVE_HTTP_HEADERS,lStrings,legacyHeadHandling,serialVersionUID
+hfds HEADER_IFMODSINCE,HEADER_LASTMOD,LSTRING_FILE,METHOD_DELETE,METHOD_GET,METHOD_HEAD,METHOD_OPTIONS,METHOD_PATCH,METHOD_POST,METHOD_PUT,METHOD_QUERY,METHOD_TRACE,SENSITIVE_HTTP_HEADERS,lStrings,legacyHeadHandling,serialVersionUID
 
 CLSS public abstract interface jakarta.servlet.http.HttpServletMapping
 meth public abstract jakarta.servlet.http.MappingMatch getMappingMatch()

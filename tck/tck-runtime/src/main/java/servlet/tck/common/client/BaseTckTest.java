@@ -379,7 +379,7 @@ public abstract class BaseTckTest {
 
   /**
    * Sets the goldenfile directory
-   * 
+   *
    * @param goldenDir
    *          goldenfile directory based off test directory
    */
@@ -521,6 +521,7 @@ public abstract class BaseTckTest {
       if (request.startsWith("GET") || request.startsWith("POST")
           || request.startsWith("OPTIONS") || request.startsWith("PUT")
           || request.startsWith("DELETE") || request.startsWith("HEAD")
+          || request.startsWith("QUERY")
           || request.endsWith(HTTP10) || request.endsWith(HTTP11)) {
         // user has overridden default request behavior
         req = new HttpExchange(request, _hostname, _port);
