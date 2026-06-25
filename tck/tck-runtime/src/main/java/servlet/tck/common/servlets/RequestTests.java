@@ -767,6 +767,12 @@ public class RequestTests {
     ServletTestUtil.printResult(pw, passed);
   }
 
+  public static void getParameterQueryTest(PrintWriter pw, ServletRequest request,
+          ServletResponse response) throws ServletException, IOException {
+      // Essentially same inputs (just a different method), same expected outputs
+      getParameterTest(pw, request, response);
+  }
+
   public static void getParameterValuesTest(PrintWriter pw,
       ServletRequest request, ServletResponse response)
       throws ServletException, IOException {
