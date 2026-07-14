@@ -175,6 +175,16 @@ public abstract class ServletInputStream extends InputStream {
      * available. Other than the initial call, {@link ReadListener#onDataAvailable()} will only be called if and only if
      * this method is called and returns false.
      *
+     * If an attempt is made to read from the stream when the stream is in async mode and this method has not returned
+     * {@code true} the method will throw an {@link IllegalStateException}.
+     * <p>
+     * If an error occurs then either: this method will return {@code true} and an {@link IOException} will be thrown from a
+     * subsequent call to {@code read(...)}; or this method will return {@code false} and subsequently
+     * {@link ReadListener#onError(Throwable)} will be invoked with the error. Once the error has either been thrown or
+     * passed to {@link ReadListener#onError(Throwable)}, then this method will always return {@code true} and all further
+     * {@code read} operations will throw an {@link IOException}.
+     * <p>
+     *
      * @return {@code true} if data can be obtained without blocking, otherwise returns {@code false}.
      * @see ReadListener
      * @since Servlet 3.1
@@ -182,7 +192,13 @@ public abstract class ServletInputStream extends InputStream {
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to read
+     * Instructs the <code>ServletInputStream</code> to invoke the provided {@link ReadListener} when it is possible to
+     * read.
+     * <p>
+     * Note that after this method has been called, methods on this stream that are documented to throw {@link IOException}
+     * might not throw these exceptions directly, instead they may be reported via {@link ReadListener#onError(Throwable)}
+     * after a call to {@link #isReady()} has returned {@code false}. Please refer to {@link #isReady()} method for more
+     * information.
      *
      * @param readListener the {@link ReadListener} that should be notified when it's possible to read.
      *
