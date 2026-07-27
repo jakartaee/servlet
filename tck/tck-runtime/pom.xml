@@ -39,7 +39,7 @@
         <servlet.api.version>6.2.0-SNAPSHOT</servlet.api.version>
         <!-- Plugin versions -->
         <shrinkwrap-resolver.version>3.3.7</shrinkwrap-resolver.version>
-        <sigtest.version>2.6</sigtest.version>
+        <sigtest.version>2.7</sigtest.version>
     </properties>
 
     <dependencies>
@@ -133,7 +133,7 @@
                     <plugin>
                         <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>2.6</version>
+                        <version>2.7</version>
                         <configuration>
                             <sigfile>${project.build.directory}/jakarta.servlet.sig_${api.version}</sigfile>
                             <packages>jakarta.servlet,jakarta.servlet.annotation,jakarta.servlet.descriptor,jakarta.servlet.http</packages>
