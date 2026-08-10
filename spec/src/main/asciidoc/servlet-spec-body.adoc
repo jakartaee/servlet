@@ -7932,7 +7932,7 @@ requirements
 A security identity, or principal, must always
 be provided for use in a call to an enterprise bean. The default mode in
 calls to enterprise beans from web applications is for the security
-identity of a web user to be propagated to the Jakarta Enterprise Bea
+identity of a web user to be propagated to the Jakarta Enterprise Bean
 container.
 
 In other scenarios, web containers are
