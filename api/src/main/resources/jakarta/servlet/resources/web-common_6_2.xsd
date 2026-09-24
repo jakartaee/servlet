@@ -9,7 +9,8 @@
   <xsd:annotation>
     <xsd:documentation>
 
-      Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
+      Copyright (c) 2009, 2025 Oracle and/or its affiliates and others.
+      All rights reserved.
       
       This program and the accompanying materials are made available under the
       terms of the Eclipse Public License v. 2.0, which is available at
@@ -1337,9 +1338,11 @@
         <xsd:annotation>
           <xsd:documentation>
 
-            The welcome-file element contains a file name to use
-            as a default welcome file, such as index.html
-            
+            The welcome-file element contains a file name to use as a
+            welcome file, such as index.html, that must match an
+            actual file or be an exact or prefix match to a servlet
+            URL pattern.
+
           </xsd:documentation>
         </xsd:annotation>
       </xsd:element>
@@ -1348,9 +1351,10 @@
         <xsd:annotation>
           <xsd:documentation>
 
-            The welcome-servlet element contains servlet name to use
-            as a default welcome servlet, such as index.do
-            
+            The welcome-servlet element contains a file name to use as
+            a welcome file, such as index.do, that must match a
+            servlet mapping other than that for the default servlet.
+
           </xsd:documentation>
         </xsd:annotation>
       </xsd:element>
