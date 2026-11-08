@@ -539,6 +539,24 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this
+     * request but without any further interaction with the user agent.
+     * <p>
+     * This method may modify the associated <code>HttpServletResponse</code>.
+     *
+     * @return The result of the authentication attempt. If a user has been successfully authenticated using credentials
+     * already present in the request, the authenticated user will be associated with the request.
+     *
+     * @throws IOException if the authentication process attempted to read from the request or write to the response and an
+     * I/O error occurred
+     * @throws IllegalStateException if the authentication process attempted to write to the response after it had been
+     * committed
+     *
+     * @since Servlet 6.2
+     */
+    AuthenticationResult authenticate() throws IOException;
+
+    /**
+     * Use the container login mechanism configured for the <code>ServletContext</code> to authenticate the user making this
      * request.
      *
      * <p>
@@ -716,5 +734,38 @@ public interface HttpServletRequest extends ServletRequest {
      */
     default boolean isTrailerFieldsReady() {
         return true;
+    }
+
+    /**
+     * The result of attempting to perform authentication.
+     *
+     * @since Servlet 6.2
+     */
+    enum AuthenticationResult {
+        /**
+         * No credentials are present in the request. No user has been authenticated.
+         */
+        NO_CREDENTIALS,
+
+        /**
+         * The configured authenticated mechanism for this context does not support authentication using the credentials, if
+         * any, that are present in the request. No user has been authenticated.
+         */
+        NOT_SUPPORTED,
+
+        /**
+         * The credentials present in the request are not valid. No user has been authenticated.
+         */
+        INVALID_CREDENTIALS,
+
+        /**
+         * The credentials present in the request are valid. The user has been authenticated and associated with the request.
+         */
+        AUTHENTICATED,
+
+        /**
+         * Something went wrong during the authentication process.
+         */
+        FAILED
     }
 }

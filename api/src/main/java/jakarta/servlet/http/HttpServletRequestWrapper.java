@@ -264,6 +264,17 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
+     * The default behavior of this method is to return {@link HttpServletRequest#authenticate()} on the wrapped request
+     * object.
+     *
+     * @since Servlet 6.2
+     */
+    @Override
+    public AuthenticationResult authenticate() throws IOException {
+        return this._getHttpServletRequest().authenticate();
+    }
+
+    /**
      * The default behavior of this method is to call authenticate on the wrapped request object.
      *
      * @since Servlet 3.0
